@@ -1,9 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
 a {
@@ -15,12 +18,66 @@ a {
   box-sizing: border-box;
 }
 
+.title {
+  height: 400px;
+  flex: none;
+  /* line-height: 109px; */
+  padding: 50px;
+}
+
+.menu-nav {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.menu-nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-nav li {
+  list-style: none;
+}
+.menu-nav a {
+  margin-right: 40px;
+  margin-left: 40px;
+  display: block;
+  padding: 4px 0;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+main {
+  background: linear-gradient(180deg, #9dc1eb 0%, #eaf3fa 100%);
+}
+
+.hero h1 {
+  text-shadow: 0px 8px 4px rgba(0, 0, 0, 0.25);
+}
+
+.hero h2 {
+  font-family: "Nunito", sans-serif;
+  margin: -4px 0;
+}
+
+.hero p {
+  font-family: "Yrsa", serif;
+}
+
+.hero {
+  background: url(../public/assets/prato.png);
+  background-position: center;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: #0d0d0d;
+    background: rgb(255, 255, 255);
   }
 }
