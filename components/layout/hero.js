@@ -12,7 +12,7 @@ const Hero = () => {
           Lou On Tour
         </h1>
 
-        <p className="w-3/4 mx-auto text-white text-[0.85rem] 2xl:text-[1.4rem] fxl:text-[2.5rem] leading-tight mb-5">
+        <p className="w-3/4 mx-auto text-white text-[0.86rem] 2xl:text-[1.4rem] fxl:text-[2.5rem] leading-tight mb-5">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
           necessitatibus ipsam, assumenda, modi.
         </p>
