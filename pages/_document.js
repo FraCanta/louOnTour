@@ -25,9 +25,9 @@ export default function Document() {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta
           name="apple-mobile-web-app-title"
-          content="Ubiquity | Web Creative Lab"
+          content="Lou On Tour - Guida Turistica"
         />
-        <meta name="description" content="Ubiquity | Web Creative Lab" />
+        <meta name="description" content="Lou On Tour - Guida Turistica" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-config" content="/icons/browserconfig.xml" />
