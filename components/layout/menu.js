@@ -47,7 +47,7 @@ const Menu = () => {
               </li>
             </ul>
           </nav>
-          <div className="socials">
+          <div>
             <button className="btn lg:text-lg 3xl:text-2xl mr-4">
               <Link href="/contact" className="">
                 <Icon
