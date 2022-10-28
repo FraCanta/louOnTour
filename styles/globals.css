@@ -36,11 +36,7 @@ a {
   list-style: none;
 }
 .menu-nav a {
-  margin-right: 40px;
-  margin-left: 40px;
   display: block;
-  padding: 4px 0;
-  font-weight: 500;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.5s;
@@ -51,7 +47,7 @@ a {
 }
 
 .hero {
-  background: url(../public/assets/prato.png);
+  background: url(../public/assets/prato.webp);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -148,14 +144,12 @@ a {
 }
 
 .menu_mobile_item ul li a {
-  font-size: 25px;
-  font-weight: 500;
   margin-left: 0;
 }
 
-/* .menu_mobile_item li a.active {
+.menu_mobile_item li a.active {
   color: red;
-} */
+}
 
 @media (prefers-color-scheme: dark) {
   html {

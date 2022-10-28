@@ -27,6 +27,8 @@ module.exports = {
       // => @media (min-width: 2560px) { ... }
       "4xl": "3840px",
       // => @media (min-width: 3840px) { ... }
+      rotated: { raw: "(max-height: 500px)" },
+      // => @media (max-heigh: 3840px) { ... }
     },
   },
   plugins: [],

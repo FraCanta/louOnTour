@@ -49,7 +49,6 @@ function Menu_mobile() {
         duration: 0.5,
         width: "100vw",
         opacity: 1,
-        // bottom: 0,
         ease: Power1.inOut,
       });
       tl.to(".bar-1", {
@@ -77,22 +76,6 @@ function Menu_mobile() {
         opacity: 1,
         stagger: {
           each: 0.5,
-        },
-      });
-
-      tl.to(
-        ".btn_mobile_contact",
-        {
-          duration: 0.4,
-          opacity: 1,
-        },
-        "+=0.5"
-      );
-      tl.to(".social_mobile a", {
-        duration: 0.3,
-        opacity: 1,
-        stagger: {
-          each: 0.2,
         },
       });
     } else if (!mobileMenu.isOpen) {
@@ -149,7 +132,7 @@ function Menu_mobile() {
           setMobileMenu({ isOpen: false, fastClose: false });
       }
     }
-  }); // eslint-disable-next-line no-console
+  }, [mobileMenu]); // eslint-disable-next-line no-console
 
   return (
     <div className="block xl:hidden sticky top-0 right-0 z-10  flex">
@@ -171,22 +154,34 @@ function Menu_mobile() {
           <div className="menu-nav menu_mobile_item">
             <ul onClick={handleBurgerClose} className="w-4/5  ">
               <li>
-                <Link href="/" className="text-black">
-                  Home
+                <Link
+                  href="/"
+                  className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
+                >
+                  Inizi da qui!
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-black">
+                <Link
+                  href="/about"
+                  className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
+                >
                   Tours
                 </Link>
               </li>
               <li>
-                <Link href="/how" className="text-black">
+                <Link
+                  href="/how"
+                  className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
+                >
                   Chi sono
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-black">
+                <Link
+                  href="/pricing"
+                  className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
+                >
                   Contatti
                 </Link>
               </li>
