@@ -80,16 +80,16 @@ a {
 }
 
 .menu-hamburger-line {
-  width: 30px;
-  height: 3px;
-  background-color: black;
+  width: 20px;
+  height: 2.5px;
+  background-color: #5d68a6;
   border-radius: 5px;
 }
 
 .menu-hamburger-line:nth-child(2) {
-  width: 20px;
-  height: 3px;
-  background-color: black;
+  width: 30px;
+  height: 2.5px;
+  background-color: #5d68a6;
   z-index: 1;
   transition: 0.5s width;
   border-radius: 5px;
