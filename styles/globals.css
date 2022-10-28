@@ -18,17 +18,13 @@ a {
   box-sizing: border-box;
 }
 
-.title {
-  height: 400px;
-  flex: none;
-  /* line-height: 109px; */
-  padding: 50px;
+.menu {
+  height: 98px;
 }
 
 .menu-nav {
   display: flex;
   align-items: center;
-  z-index: 1;
 }
 
 .menu-nav ul {
@@ -50,8 +46,13 @@ a {
   transition: 0.5s;
 }
 
-main {
+.hero_container {
   background: linear-gradient(180deg, #9dc1eb 0%, #eaf3fa 100%);
+}
+
+.hero {
+  background: url(../public/assets/prato.png);
+  background-position: center center;
 }
 
 .hero h1 {
@@ -60,16 +61,36 @@ main {
 
 .hero h2 {
   font-family: "Nunito", sans-serif;
-  margin: -4px 0;
 }
 
 .hero p {
   font-family: "Yrsa", serif;
 }
 
-.hero {
-  background: url(../public/assets/prato.png);
-  background-position: center;
+.menu-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  transition: 1s tranform;
+  width: 30px;
+  height: 21px;
+}
+
+.menu-hamburger-line {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  border-radius: 5px;
+}
+
+.menu-hamburger-line:nth-child(2) {
+  width: 20px;
+  height: 3px;
+  background-color: black;
+  z-index: 1;
+  transition: 0.5s width;
+  border-radius: 5px;
 }
 
 @media (prefers-color-scheme: dark) {

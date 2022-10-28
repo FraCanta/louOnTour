@@ -9,11 +9,6 @@ export default function Home() {
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className={styles.footer}>
-        <nav>Nav</nav>
-      </header>
-
-      <footer className={styles.footer}>Footer</footer>
     </div>
   );
 }
