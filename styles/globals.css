@@ -36,7 +36,10 @@ a {
   list-style: none;
 }
 .menu-nav a {
+  margin-right: 40px;
+  margin-left: 40px;
   display: block;
+  padding: 4px 0;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.5s;
