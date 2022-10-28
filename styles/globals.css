@@ -53,6 +53,8 @@ a {
 .hero {
   background: url(../public/assets/prato.png);
   background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .hero h1 {
