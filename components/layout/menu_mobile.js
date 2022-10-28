@@ -79,6 +79,13 @@ function Menu_mobile() {
           each: 0.5,
         },
       });
+      tl.to(".socials a", {
+        duration: 0.3,
+        opacity: 1,
+        stagger: {
+          each: 0.2,
+        },
+      });
     } else if (!mobileMenu.isOpen) {
       {
         /* quando è chiuso */
@@ -126,6 +133,11 @@ function Menu_mobile() {
         duration: 0.3,
         opacity: 0,
         stagger: 0.1,
+      });
+      tl.to(".socials a", {
+        duration: 0.2,
+        opacity: 0,
+        stagger: 0.5,
       });
 
       {
