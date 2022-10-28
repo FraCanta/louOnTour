@@ -4,7 +4,7 @@ import React from "react";
 function Menu_mobile() {
   return (
     <div className="block xl:hidden sticky top-0 right-0 z-10  flex">
-      <div className="flex justify-between h-[50px] w-full  px-8 md:px-12 py-4">
+      <div className="flex justify-between h-[70px] items-center w-full  px-8 md:px-12 py-4">
         <div>
           <Link href="/">
             {/* <Image
