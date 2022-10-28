@@ -20,7 +20,7 @@ export default function Document() {
           content="width=device-width, initial-scale=1.0"
         ></meta>
 
-        <meta name="application-name" content="Ubiquity | Web Creative Lab" />
+        <meta name="application-name" content="Lou On Tour - Guida Turistica" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta
