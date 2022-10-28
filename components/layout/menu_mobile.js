@@ -1,19 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
+import Lou from "../../public/assets/lou.webp";
 function Menu_mobile() {
   return (
     <div className="block xl:hidden sticky top-0 right-0 z-10  flex">
       <div className="flex justify-between h-[70px] items-center w-full  px-8 md:px-12 py-4">
         <div>
           <Link href="/">
-            {/* <Image
-                src={MobileLogo}
-                alt="Ubiquity Logo"
-                width={50}
-                height={50}
-              /> */}
-            Logo
+            <Image src={Lou} alt="Lou Logo" width={50} height={50} />
           </Link>
         </div>
 
