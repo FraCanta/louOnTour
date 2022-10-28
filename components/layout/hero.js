@@ -8,7 +8,7 @@ const Hero = () => {
         <h2 className="text-[1.8rem] 2xl:text-[2.5rem] fxl:text-[4rem] font-medium text-[#D93280] mb-4 mt-10">
           Tuscan Experience
         </h2>
-        <h1 className="text-[5rem] 2xl:text-[12rem] fxl:text-[15.625rem] font-bold tracking-[-0.020em] text-white mb-8 mt-5">
+        <h1 className="text-[4rem] 2xl:text-[12rem] fxl:text-[15.625rem] font-bold tracking-[-0.020em] text-white mb-8 mt-5">
           Lou On Tour
         </h1>
 
