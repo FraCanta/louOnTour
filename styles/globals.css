@@ -38,7 +38,8 @@ a {
 .menu-nav a {
   margin-right: 40px;
   margin-left: 40px;
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 4px 0;
   text-decoration: none;
   text-transform: uppercase;
