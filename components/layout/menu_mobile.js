@@ -193,6 +193,35 @@ function Menu_mobile() {
                 </Link>
               </li>
             </ul>
+            <div className="socials w-4/5">
+              <button className="btn lg:text-lg 3xl:text-2xl ">
+                <Link href="/contact" className="">
+                  <Icon
+                    icon="entypo-social:facebook"
+                    color="#e3494d"
+                    width="25"
+                  />
+                </Link>
+              </button>
+              <button className="btn lg:text-lg 3xl:text-2xl ">
+                <Link href="/contact" className="">
+                  <Icon
+                    icon="akar-icons:instagram-fill"
+                    color="#e3494d"
+                    width="25"
+                  />
+                </Link>
+              </button>
+              <button className="btn lg:text-lg 3xl:text-2xl">
+                <Link href="/contact" className="">
+                  <Icon
+                    icon="entypo-social:youtube"
+                    color="#e3494d"
+                    width="25"
+                  />{" "}
+                </Link>
+              </button>
+            </div>
           </div>
         </div>
       </div>
