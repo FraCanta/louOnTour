@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Lou from "../../public/assets/lou.webp";
 import gsap from "gsap";
 import { Power1, Power2 } from "gsap";
+import { Icon } from "@iconify/react";
 
 function Menu_mobile() {
   const [mobileMenu, setMobileMenu] = useState({
@@ -167,6 +168,12 @@ function Menu_mobile() {
                   className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
                 >
                   Tours
+                  <Icon
+                    icon="bxs:down-arrow"
+                    color="#0d0d0d"
+                    width="12"
+                    className="ml-2"
+                  />
                 </Link>
               </li>
               <li>
