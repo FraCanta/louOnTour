@@ -22,7 +22,10 @@ const Menu = () => {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="2xl:text-l[12px] fxl:text-[18px] ">
+                <Link
+                  href="/tours"
+                  className="2xl:text-l[12px] fxl:text-[18px] "
+                >
                   Tours{" "}
                   <Icon
                     icon="bxs:down-arrow"
