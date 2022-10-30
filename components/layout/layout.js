@@ -1,8 +1,5 @@
 import Menu from "./menu";
 import Menu_mobile from "./menu_mobile";
-import Hero from "./hero";
-import Mission from "../sectionOne/mission";
-import Map from "../sectionTwo/map";
 
 function Layout({ children }) {
   return (
@@ -10,9 +7,6 @@ function Layout({ children }) {
       <Menu_mobile />
       <Menu />
       {children}
-      {/* <Hero />
-      <Mission />
-      <Map /> */}
     </>
   );
 }
