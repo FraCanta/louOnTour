@@ -23,13 +23,13 @@ const Map = () => {
           </p>
           <Button>Contattami</Button>
         </div>
-        <Image
+        {/* <Image
           src={Toscana}
           alt="brand"
           width={600}
           height={600}
-          //   className="brand-img rounded-lg"
-        />
+        /> */}
+        <div className="bg-toscana overflowBg"></div>
       </div>
     </div>
   );
