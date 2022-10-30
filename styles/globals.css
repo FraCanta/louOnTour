@@ -201,7 +201,7 @@ h4 {
   background-image: url(../public/assets/Toscana.png);
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 @media (prefers-color-scheme: dark) {
