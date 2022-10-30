@@ -6,7 +6,7 @@ import Map from "../components/sectionTwo/map";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Luisa Quaglia - Guida Turistica</title>
         <meta name="description" content="Guida Turistica" />

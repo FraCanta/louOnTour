@@ -4,14 +4,15 @@ import Hero from "./hero";
 import Mission from "../sectionOne/mission";
 import Map from "../sectionTwo/map";
 
-function Layout() {
+function Layout({ children }) {
   return (
     <>
       <Menu_mobile />
       <Menu />
-      <Hero />
+      {children}
+      {/* <Hero />
       <Mission />
-      <Map />
+      <Map /> */}
     </>
   );
 }
