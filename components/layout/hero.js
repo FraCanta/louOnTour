@@ -20,14 +20,14 @@ const Hero = () => {
           </p>
           <Cta>get started</Cta>
         </section>
-      </div>
-      <div className="shape">
-        <Icon
-          icon="carbon:arrow-down"
-          color="#0d0d0d"
-          width="50"
-          className="arrow_icon"
-        />
+        <div className="shape">
+          <Icon
+            icon="carbon:arrow-down"
+            color="#0d0d0d"
+            width="50"
+            className="arrow_icon"
+          />
+        </div>
       </div>
     </>
   );
