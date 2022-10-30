@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 const Hero = () => {
   return (
     <>
-      <div className="hero_container leading-none w-full">
+      <div className="hero_container leading-none w-full ">
         <section className="text-center h-[calc(100vh_-_80px)] xl:h-[calc(100vh_-_100px)] flex flex-col items-center justify-center hero">
           <h2 className="text-[1.2rem] md:text-[2rem] 2xl:text-[2.5rem] lg:text-[2.5rem] xl:text-[3.5rem] fxl:text-[4rem] font-semibold text-[#D93280] mb-4 mt-10 rotated:mb-0 rotated:mt-0 rotated:text-[1.5rem]">
             Tuscan Experience

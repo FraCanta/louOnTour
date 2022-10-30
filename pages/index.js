@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Mission from "../components/sectionOne/mission";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Mission />
     </div>
   );
 }
