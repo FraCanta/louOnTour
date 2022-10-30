@@ -145,11 +145,11 @@ h4 {
 .menu_mobile_item {
   display: flex;
   flex-direction: column;
-  height: 90%;
+  height: 65%;
 }
 
 .socials {
-  height: 10%;
+  height: 35%;
   margin: 0 auto;
 }
 
@@ -162,7 +162,7 @@ h4 {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 4px 0;
   list-style: none;
   height: 100%;
 }
