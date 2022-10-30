@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Toscana from "../../public/assets/Toscana.png";
+import Button from "../button/button";
 
 const Map = () => {
   return (
@@ -20,6 +21,7 @@ const Map = () => {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
+          <Button>Contattami</Button>
         </div>
         <Image
           src={Toscana}
