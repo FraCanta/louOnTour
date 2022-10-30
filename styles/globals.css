@@ -120,7 +120,7 @@ h4 {
 .menu_mobile_content {
   position: fixed;
   top: 0;
-  right: 0;
+  /* right: 0; */
   display: flex;
   opacity: 0;
   flex-direction: column;
