@@ -19,15 +19,15 @@ const Hero = () => {
             necessitatibus ipsam, assumenda, modi.
           </p>
           <Cta>get started</Cta>
+          <div className="shape">
+            <Icon
+              icon="carbon:arrow-down"
+              color="#0d0d0d"
+              width="50"
+              className="arrow_icon"
+            />
+          </div>
         </section>
-        <div className="shape">
-          <Icon
-            icon="carbon:arrow-down"
-            color="#0d0d0d"
-            width="50"
-            className="arrow_icon"
-          />
-        </div>
       </div>
     </>
   );
