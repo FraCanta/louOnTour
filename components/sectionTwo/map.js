@@ -5,7 +5,7 @@ import Button from "../button/button";
 
 const Map = () => {
   return (
-    <div className="h-[50vh]  pt-20 container mx-auto w-4/5">
+    <div className="h-[50vh]  pt-20 container mx-auto w-4/5 relative">
       <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 md:grid-cols-2 justify-items-center content-center pt-60 lg:pt-12 pb-12">
         <div>
           <h4 className="text-[#5D68A6]">Tours</h4>
@@ -23,14 +23,20 @@ const Map = () => {
           </p>
           <Button>Contattami</Button>
         </div>
-        <div className="flex flex-col absolute top-100 right-16">
-          <Image src={Choose} alt="brand" width={120} height={120} />
-          <h3 className="uppercase bold pt-2 text-lg">
+        <div className="flex ">
+          <Image
+            src={Choose}
+            alt="brand"
+            width={150}
+            height={150}
+            className="absolute top-[51rem] 2xl:top-20 right-20"
+          />
+          <h3 className="uppercase bold pt-10 text-lg absolute top-[57rem] 2xl:top-44  -right-4 2xl:-right-12 text-[1rem]">
             Scegli la tua Destinazione!
           </h3>
         </div>
 
-        <div className="bg-toscana overflowBg relative"></div>
+        <div className="bg-toscana overflowBg absolute top-[59rem]  2xl:top-44 -right-[6.5rem] 2xl:right-2"></div>
       </div>
     </div>
   );
