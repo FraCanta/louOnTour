@@ -1,11 +1,10 @@
-import React from "react";
-import Mission from "../sectionOne/mission";
-import Map from "../sectionTwo/map";
-import Hero from "./hero";
 import Menu from "./menu";
 import Menu_mobile from "./menu_mobile";
+import Hero from "./hero";
+import Mission from "../sectionOne/mission";
+import Map from "../sectionTwo/map";
 
-const Layout = () => {
+function Layout() {
   return (
     <>
       <Menu_mobile />
@@ -15,6 +14,6 @@ const Layout = () => {
       <Map />
     </>
   );
-};
+}
 
 export default Layout;
