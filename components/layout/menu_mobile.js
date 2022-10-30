@@ -176,7 +176,7 @@ function Menu_mobile() {
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href="/tours"
                   className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
                 >
                   Tours
