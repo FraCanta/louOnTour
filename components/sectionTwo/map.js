@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Toscana from "../../public/assets/Toscana.png";
+import Choose from "../../public/assets/choose.svg";
 import Button from "../button/button";
 
 const Map = () => {
@@ -23,13 +23,14 @@ const Map = () => {
           </p>
           <Button>Contattami</Button>
         </div>
-        {/* <Image
-          src={Toscana}
-          alt="brand"
-          width={600}
-          height={600}
-        /> */}
-        <div className="bg-toscana overflowBg"></div>
+        <div className="flex flex-col absolute top-100 right-16">
+          <Image src={Choose} alt="brand" width={120} height={120} />
+          <h3 className="uppercase bold pt-2 text-lg">
+            Scegli la tua Destinazione!
+          </h3>
+        </div>
+
+        <div className="bg-toscana overflowBg relative"></div>
       </div>
     </div>
   );
