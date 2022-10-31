@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import Hero from "../components/layout/hero";
+import Hero from "../components/hero/hero";
 import Mission from "../components/sectionOne/mission";
 import Map from "../components/sectionTwo/map";
 

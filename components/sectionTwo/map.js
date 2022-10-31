@@ -2,13 +2,14 @@ import React from "react";
 import Image from "next/image";
 import Toscana from "../../public/assets/toscana.svg";
 import Choose from "../../public/assets/choose.svg";
+import { Icon } from "@iconify/react";
 
 import Button from "../button/button";
 
 const Map = () => {
   return (
-    <div className="h-[70vh] container mx-auto w-4/5 relative">
-      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-60 lg:pt-20 pb-12">
+    <div className="h-[100vh] container mx-auto w-4/5 relative">
+      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-60 lg:pt-10 pb-12">
         <div>
           <h4 className="text-[#5D68A6]">Tours</h4>
           <h2 className="text-4xl md:text-[64px] font-medium mt-2 md:leading-none lg:leading-none">
@@ -25,7 +26,7 @@ const Map = () => {
           </p>
           <Button>Contattami</Button>
         </div>
-        <div className="flex flex-col-reverse pt-0 w-[600px] ">
+        <div className="pt-0 w-[700px] ">
           <Image
             src={Toscana}
             alt="brand"
@@ -33,6 +34,43 @@ const Map = () => {
             height={700}
             className="overflow-x-hidden"
           />
+          <Icon
+            icon="fontisto:map-marker-alt"
+            color="#e3494d"
+            width="40"
+            className="absolute top-64 right-40"
+          />
+          <Icon
+            icon="fontisto:map-marker-alt"
+            color="#e3494d"
+            width="40"
+            className="absolute top-80 right-60"
+          />
+          <Icon
+            icon="fontisto:map-marker-alt"
+            color="#e3494d"
+            width="40"
+            className="absolute bottom-60 right-32"
+          />
+          <Icon
+            icon="fontisto:map-marker-alt"
+            color="#e3494d"
+            width="40"
+            className="absolute bottom-80 right-44"
+          />
+          <Icon
+            icon="fontisto:map-marker-alt"
+            color="#e3494d"
+            width="40"
+            className="absolute bottom-40 right-44"
+          />
+          <Icon
+            icon="fontisto:map-marker-alt"
+            color="#e3494d"
+            width="40"
+            className="absolute bottom-64 right-72"
+          />
+
           {/* <div className="flex justify-end text-end">
             <Image src={Choose} alt="brand" width={70} height={70} />
 
