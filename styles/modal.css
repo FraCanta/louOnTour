@@ -5,13 +5,32 @@
 }
 
 .bg-modal {
-  background-image: url(../public/assets/florence.png);
-  background-size: cover;
+  /* background-image: url(../public/assets/florence.png);
+  background-size: cover; */
   transform: scale(0.05);
   transition: 1s all;
   transition-delay: 300ms;
   opacity: 0;
 }
+
+#myVideo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* #myVideo::after {
+  content: "";
+  background: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+} */
 
 .scale-modal {
   transform: scale(1);

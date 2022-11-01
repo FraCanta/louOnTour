@@ -23,7 +23,7 @@ const Map = () => {
   };
   return (
     <div className="h-[100vh] container mx-auto w-4/5 ">
-      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-60 lg:pt-10 pb-12">
+      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-8 lg:pt-10 pb-12">
         <div>
           <h4 className="text-[#5D68A6]">Tours</h4>
           <h2 className="text-4xl md:text-[64px] font-medium mt-2 md:leading-none lg:leading-none">
