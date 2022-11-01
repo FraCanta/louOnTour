@@ -148,7 +148,7 @@ function Menu_mobile() {
   }, [mobileMenu]); // eslint-disable-next-line no-console
 
   return (
-    <div className="block xl:hidden sticky top-0 right-0 z-10  flex">
+    <div className="block xl:hidden relative top-0 right-0 z-10  flex">
       <div className="header_mobile  flex justify-between h-[70px] items-center w-full  px-8 md:px-12 py-4">
         <div>
           <Link href="/">
