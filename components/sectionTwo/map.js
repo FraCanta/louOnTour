@@ -7,8 +7,11 @@ import { Icon } from "@iconify/react";
 import Button from "../button/button";
 
 const Map = () => {
+  const handleModal = () => {
+    alert("sono Firenze");
+  };
   return (
-    <div className="h-[100vh] container mx-auto w-4/5 relative">
+    <div className="h-[100vh] container mx-auto w-4/5 ">
       <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-60 lg:pt-10 pb-12">
         <div>
           <h4 className="text-[#5D68A6]">Tours</h4>
@@ -26,7 +29,7 @@ const Map = () => {
           </p>
           <Button>Contattami</Button>
         </div>
-        <div className="pt-0 w-[700px] ">
+        <div className="pt-0 w-[700px] height-[697.359px] relative">
           <Image
             src={Toscana}
             alt="brand"
@@ -38,37 +41,44 @@ const Map = () => {
             icon="fontisto:map-marker-alt"
             color="#e3494d"
             width="40"
-            className="absolute top-64 right-40"
+            className="absolute top-[256px] right-[240px] animate-bounce"
+            onClick={handleModal}
+            id="Firenze"
           />
           <Icon
             icon="fontisto:map-marker-alt"
             color="#e3494d"
             width="40"
-            className="absolute top-80 right-60"
+            className="absolute top-[320px] right-[320px] animate-bounce"
+            id="SanGimignano"
           />
           <Icon
             icon="fontisto:map-marker-alt"
             color="#e3494d"
             width="40"
-            className="absolute bottom-60 right-32"
+            className="absolute bottom-[240px] right-[208px] animate-bounce"
+            id="Siena"
           />
           <Icon
             icon="fontisto:map-marker-alt"
             color="#e3494d"
             width="40"
-            className="absolute bottom-80 right-44"
+            className="absolute bottom-[293px] right-[256px] animate-bounce"
+            id="Monteriggioni"
           />
           <Icon
             icon="fontisto:map-marker-alt"
             color="#e3494d"
             width="40"
-            className="absolute bottom-40 right-44"
+            className="absolute bottom-[160px] right-[256px] animate-bounce"
+            id="SanGalgano"
           />
           <Icon
             icon="fontisto:map-marker-alt"
             color="#e3494d"
             width="40"
-            className="absolute bottom-64 right-72"
+            className="absolute bottom-[272px] right-[352px] animate-bounce"
+            id="Volterra"
           />
 
           {/* <div className="flex justify-end text-end">
