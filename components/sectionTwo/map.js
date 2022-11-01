@@ -8,12 +8,18 @@ import Button from "../button/button";
 import Modal from "../modal/modal";
 
 const Map = () => {
-  const [showModal, setShowModal] = useState({ isOpen: false, place: null });
+  const [showModal, setShowModal] = useState({
+    isOpen: "hide",
+    place: null,
+    scale: "",
+  });
   const openModal = (place) => {
-    setShowModal({ isOpen: true, place: place });
+    setShowModal({ isOpen: "", place: place, scale: "scale-modal" });
   };
   const closeModal = () => {
-    setShowModal({ isOpen: false, place: null });
+    setShowModal((prevData) => {
+      return { ...prevData, isOpen: "hide", scale: "" };
+    });
   };
   return (
     <div className="h-[100vh] container mx-auto w-4/5 ">
@@ -44,9 +50,7 @@ const Map = () => {
             onClick={() => openModal("Firenze")}
             id="Firenze"
           />
-          {showModal.isOpen && (
-            <Modal place={showModal.place} closeModal={closeModal} />
-          )}
+          <Modal showModal={showModal} closeModal={closeModal} />
 
           <Icon
             icon="fontisto:map-marker-alt"

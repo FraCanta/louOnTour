@@ -1,4 +1,23 @@
+.overlay {
+  visibility: visible;
+  opacity: 1;
+  transition: all 1s;
+}
+
 .bg-modal {
-  width: 725px;
-  height: 708px;
+  background-image: url(../public/assets/florence.png);
+  background-size: cover;
+  transform: scale(0.05);
+  transition: 1s all;
+  transition-delay: 300ms;
+  opacity: 0;
+}
+
+.scale-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+.hide {
+  visibility: hidden;
+  opacity: 0;
 }
