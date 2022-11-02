@@ -39,6 +39,10 @@ const AboutMe = () => {
               </div>
               {/* <div class="blog-slider__content"> */}
               <div>
+                <div className="flex flex-end w-full text-black justify-end items-center mb-4">
+                  <address className="mx-2 text-[0.8rem]">posted on</address>
+                  <Icon icon="logos:airbnb" width="73" />
+                </div>
                 <span class="blog-slider__code">26 December 2019</span>
                 <div class="blog-slider__title">Lorem Ipsum Dolor</div>
                 <div class="blog-slider__text">
