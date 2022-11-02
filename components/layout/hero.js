@@ -5,30 +5,6 @@ import { Icon } from "@iconify/react";
 const Hero = () => {
   return (
     <>
-      {/* <div className="hero_container leading-none w-full ">
-        <section className="text-center h-screen flex flex-col items-center justify-center hero">
-          <h2 className="text-[1.2rem] md:text-[2rem] 2xl:text-[2.5rem] lg:text-[2.5rem] xl:text-[3.5rem] fxl:text-[4rem] font-semibold text-[#D93280] mb-4 mt-10 rotated:mb-0 rotated:mt-0 rotated:text-[1.5rem]">
-            Tuscan Experience
-          </h2>
-          <h1 className="text-[4.5rem] md:text-[8rem] 2xl:text-[12rem] lg:text-[8rem] xl:text-[10rem] fxl:text-[15.625rem] font-bold tracking-[-0.020em] text-white mb-5 md:mb-8 mt-5 rotated:text-[5rem] rotated:mb-5">
-            Lou On Tour
-          </h1>
-
-          <p className="w-4/5 2xl:w-3/4 mx-auto text-white text-[0.86rem] md:text-[1.2rem] 2xl:text-[1.4rem] lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2.5rem] leading-tight mb-5">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
-            necessitatibus ipsam, assumenda, modi.
-          </p>
-          <Cta>get started</Cta>
-          <div className="shape">
-            <Icon
-              icon="carbon:arrow-down"
-              color="#0d0d0d"
-              width="50"
-              className="arrow_icon"
-            />
-          </div>
-        </section>
-      </div> */}
       <div className="hero flex flex-col items-center justify-center ">
         <div className="parallax-layer layer-6"></div>
         <div className="parallax-layer layer-5"></div>
@@ -40,7 +16,7 @@ const Hero = () => {
         <div className="parallax-layer layer-3"></div>
         <div className="parallax-layer layer-2"></div>
         <div className="parallax-layer layer-1"></div>
-        <div className="text-center h-screen flex flex-col items-center justify-center absolute z-10">
+        <div className="text-center h-full flex flex-col items-center justify-center absolute z-10 title">
           <h2 className="text-[1.2rem] md:text-[2rem] 2xl:text-[2.5rem] lg:text-[2.5rem] xl:text-[3.5rem] fxl:text-[4rem] font-semibold text-[#D93280] -mb-6 mt-10 rotated:mb-0 rotated:mt-0 rotated:text-[1.5rem]">
             Tuscan Experience
           </h2>
