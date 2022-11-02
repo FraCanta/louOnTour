@@ -166,7 +166,8 @@ h4 {
 }
 
 .bike-1,
-.bike-2 {
+.bike-2,
+.bike-3 {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/bike.png) 0
     100% no-repeat;
   z-index: 1;
@@ -188,6 +189,10 @@ h4 {
   animation: parallax_bike linear 15s infinite both;
 }
 
+.bike-3 {
+  -webkit-animation: parallax_bike linear 20s infinite both;
+  animation: parallax_bike linear 20s infinite both;
+}
 @-webkit-keyframes parallax_fg {
   0% {
     background-position: 2765px 100%;
@@ -251,6 +256,7 @@ h4 {
 
 .hero p {
   font-family: "Yrsa", serif;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 .header_mobile {
