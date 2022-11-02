@@ -38,16 +38,18 @@ const AboutMe = () => {
                 {/* <img src="../assets/Toscana.png" alt="" /> */}
               </div>
               {/* <div class="blog-slider__content"> */}
-              <div>
-                <div className="flex flex-end w-full text-black justify-end items-center mb-4">
+              <div className="flex flex-col-reverse lg:flex-col">
+                <div className="flex  w-full text-black justify-end items-center mb-4">
                   <address className="mx-2 text-[0.8rem]">posted on</address>
                   <Icon icon="logos:airbnb" width="73" />
                 </div>
-                <span class="blog-slider__code">26 December 2019</span>
-                <div class="blog-slider__title">Lorem Ipsum Dolor</div>
-                <div class="blog-slider__text">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Recusandae voluptate repellendus magni illo ea animi?{" "}
+                <div>
+                  <span class="blog-slider__code">26 December 2019</span>
+                  <div class="blog-slider__title">Lorem Ipsum Dolor</div>
+                  <div class="blog-slider__text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Recusandae voluptate repellendus magni illo ea animi?{" "}
+                  </div>
                 </div>
               </div>
             </div>
