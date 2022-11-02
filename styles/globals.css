@@ -59,7 +59,7 @@ h4 {
   transition: 0.5s;
 }
 
-.hero_container {
+/* .hero_container {
   background: linear-gradient(180deg, #9dc1eb 0%, #eaf3fa 100%);
 }
 
@@ -69,6 +69,173 @@ h4 {
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
+} */
+
+.hero {
+  width: 100%;
+  min-height: 800px;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: #d9edfd;
+  text-align: center;
+}
+
+.layer-1 {
+  -webkit-animation: parallax_fg linear 20s infinite both;
+  animation: parallax_fg linear 20s infinite both;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/1.png) 0
+    100% repeat-x;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 136px;
+}
+
+.layer-2 {
+  -webkit-animation: parallax_fg linear 30s infinite both;
+  animation: parallax_fg linear 30s infinite both;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/2.png) 0
+    100% repeat-x;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 145px;
+}
+
+.layer-3 {
+  -webkit-animation: parallax_fg linear 55s infinite both;
+  animation: parallax_fg linear 55s infinite both;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/3.png) 0
+    100% repeat-x;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 158px;
+}
+
+.layer-4 {
+  -webkit-animation: parallax_fg linear 75s infinite both;
+  animation: parallax_fg linear 75s infinite both;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/4.png) 0
+    100% repeat-x;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 468px;
+}
+
+.layer-5 {
+  -webkit-animation: parallax_fg linear 95s infinite both;
+  animation: parallax_fg linear 95s infinite both;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/5.png) 0
+    100% repeat-x;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 311px;
+}
+
+.layer-6 {
+  -webkit-animation: parallax_fg linear 120s infinite both;
+  animation: parallax_fg linear 120s infinite both;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/6.png) 0
+    100% repeat-x;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 222px;
+}
+
+.bike-1,
+.bike-2 {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/bike.png) 0
+    100% no-repeat;
+  z-index: 1;
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 75px;
+}
+
+.bike-1 {
+  -webkit-animation: parallax_bike linear 10s infinite both;
+  animation: parallax_bike linear 10s infinite both;
+}
+
+.bike-2 {
+  -webkit-animation: parallax_bike linear 15s infinite both;
+  animation: parallax_bike linear 15s infinite both;
+}
+
+@-webkit-keyframes parallax_fg {
+  0% {
+    background-position: 2765px 100%;
+  }
+  100% {
+    background-position: 550px 100%;
+  }
+}
+
+@keyframes parallax_fg {
+  0% {
+    background-position: 2765px 100%;
+  }
+  100% {
+    background-position: 550px 100%;
+  }
+}
+@-webkit-keyframes parallax_bike {
+  0% {
+    background-position: -300px 100%;
+  }
+  100% {
+    background-position: 2000px 100%;
+  }
+}
+@keyframes parallax_bike {
+  0% {
+    background-position: -300px 100%;
+  }
+  100% {
+    background-position: 2000px 100%;
+  }
+}
+.logo {
+  margin: 70px auto;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+}
+.logo img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+@media (max-width: 700px) {
+  .logo img {
+    max-width: 90%;
+  }
 }
 
 .hero h1 {

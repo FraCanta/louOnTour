@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 const Hero = () => {
   return (
     <>
-      <div className="hero_container leading-none w-full ">
+      {/* <div className="hero_container leading-none w-full ">
         <section className="text-center h-screen flex flex-col items-center justify-center hero">
           <h2 className="text-[1.2rem] md:text-[2rem] 2xl:text-[2.5rem] lg:text-[2.5rem] xl:text-[3.5rem] fxl:text-[4rem] font-semibold text-[#D93280] mb-4 mt-10 rotated:mb-0 rotated:mt-0 rotated:text-[1.5rem]">
             Tuscan Experience
@@ -28,6 +28,24 @@ const Hero = () => {
             />
           </div>
         </section>
+      </div> */}
+      <div className="hero">
+        <div className="parallax-layer layer-6"></div>
+        <div className="parallax-layer layer-5"></div>
+        <div className="parallax-layer layer-4"></div>
+        <div className="parallax-layer bike-1"></div>
+        <div className="parallax-layer bike-2"></div>
+        <div className="parallax-layer layer-3"></div>
+        <div className="parallax-layer layer-2"></div>
+        <div className="parallax-layer layer-1"></div>
+        <div className="logo">
+          <h2 className="text-[1.2rem] md:text-[2rem] 2xl:text-[2.5rem] lg:text-[2.5rem] xl:text-[3.5rem] fxl:text-[4rem] font-semibold text-[#D93280] mb-4 mt-10 rotated:mb-0 rotated:mt-0 rotated:text-[1.5rem]">
+            Tuscan Experience
+          </h2>
+          <h1 className="text-[4.5rem] md:text-[8rem] 2xl:text-[12rem] lg:text-[8rem] xl:text-[10rem] fxl:text-[15.625rem] font-bold tracking-[-0.020em] text-white mb-5 md:mb-8 mt-5 rotated:text-[5rem] rotated:mb-5">
+            Lou On Tour
+          </h1>
+        </div>
       </div>
     </>
   );
