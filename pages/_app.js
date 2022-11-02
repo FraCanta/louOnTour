@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import "../styles/modal.css";
+import "../styles/aboutMe.css";
 
 import Layout from "../components/layout/layout";
 

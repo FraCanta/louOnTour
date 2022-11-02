@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Hero from "../components/layout/hero";
 import Mission from "../components/sectionOne/mission";
+import AboutMe from "../components/sectionThree/aboutMe";
 import Map from "../components/sectionTwo/map";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <Mission />
       <Map />
+      <AboutMe />
     </div>
   );
 }
