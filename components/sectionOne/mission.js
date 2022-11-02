@@ -2,7 +2,7 @@ import React from "react";
 
 const Mission = () => {
   return (
-    <div className="min-h-[60vh] text-center pt-20">
+    <div className="min-h-[60vh] text-center pt-2 2xl:pt-20">
       <div className="container w-4/5 md:w-4/5 mx-auto pt-12 md:pt-10">
         <div className="mx-auto relative z-1">
           <div>
