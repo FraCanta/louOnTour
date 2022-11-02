@@ -78,6 +78,7 @@ h4 {
   top: 0;
   left: 0;
   background-color: #d9edfd;
+  /* background: linear-gradient(rgb(149, 180, 201), rgb(83, 111, 127)); */
   text-align: center;
 }
 
