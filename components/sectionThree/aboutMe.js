@@ -37,16 +37,14 @@ const AboutMe = () => {
               <div class="blog-slider__img">
                 {/* <img src="../assets/Toscana.png" alt="" /> */}
               </div>
-              <div class="blog-slider__content">
+              {/* <div class="blog-slider__content"> */}
+              <div>
                 <span class="blog-slider__code">26 December 2019</span>
                 <div class="blog-slider__title">Lorem Ipsum Dolor</div>
                 <div class="blog-slider__text">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Recusandae voluptate repellendus magni illo ea animi?{" "}
                 </div>
-                <a href="#" class="blog-slider__button">
-                  READ MORE
-                </a>
               </div>
             </div>
             {/* <div class="blog-slider__item swiper-slide">

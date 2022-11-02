@@ -174,7 +174,7 @@
   margin-bottom: 30px;
   line-height: 1.5em;
 }
-.blog-slider__button {
+/* .blog-slider__button {
   display: inline-flex;
   background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
   padding: 15px 35px;
@@ -186,7 +186,7 @@
   justify-content: center;
   text-align: center;
   letter-spacing: 1px;
-}
+} */
 @media screen and (max-width: 576px) {
   .blog-slider__button {
     width: 100%;
