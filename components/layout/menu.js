@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 
 const Menu = () => {
   return (
-    <div className="hidden xl:flex w-full bg-white border-b border-black-500 z-3 menu">
+    <div className="hidden xl:flex w-full bg-white border-b border-black-500 z-20 menu">
       <div className="container mx-auto w-4/5">
         <div className="flex  mx-auto justify-between items-center px-0 py-6">
           <div className="flex items-center justify-center  menu-logo">
