@@ -22,7 +22,7 @@ const AboutMe = () => {
   //   });
   return (
     <div className="min-h-[50vh] container mx-auto w-full bg-[#0d0d0d] mt-20 text-white pt-20 ">
-      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center items-center pt-8 lg:pt-10 pb-12 w-4/5 mx-auto">
+      <div className="grid gap-14 md:gap-14 xl:gap-148 grid-cols-1 lg:grid-cols-2  items-center pt-8 lg:pt-10 pb-12 w-4/5 mx-auto">
         <div>
           <h4 className="text-[#D93280]">About me</h4>
           <h2 className="text-4xl md:text-[64px] font-medium mt-2 md:leading-none lg:leading-none mb-20">

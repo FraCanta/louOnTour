@@ -375,15 +375,6 @@ h4 {
   transform: translate(-50%, 50%);
 }
 
-/* .bg-toscana {
-  width: 600px;
-  height: 600px;
-  background-image: url(../public/assets/toscana.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-} */
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -392,4 +383,9 @@ h4 {
     color: #0d0d0d;
     background: rgb(255, 255, 255);
   }
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
