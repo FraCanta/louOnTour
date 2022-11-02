@@ -233,6 +233,9 @@ h4 {
   max-width: 100%;
 }
 @media (max-width: 700px) {
+  .hero {
+    min-height: 600px;
+  }
   .logo img {
     max-width: 90%;
   }
