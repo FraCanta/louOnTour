@@ -16,7 +16,7 @@ const Modal = ({ showModal, closeModal }) => {
       onClick={closeModal}
     >
       <div
-        className={`min-w-[330px] min-h-[300px] 2xl:min-w-[660px] 2xl:min-h-[600px] fxl:min-w-[725px] fxl:min-h-[708px] rounded-[10px] text-black flex flex-col  items-end border-none shadow-lg bg-black bg-clip-padding text-current drop-shadow-lg bg-modal ${showModal.scale} bold`}
+        className={`min-w-[330px] min-h-[300px] 2xl:min-w-[660px] 2xl:min-h-[600px] fxl:min-w-[725px] fxl:min-h-[708px] rounded-[10px] text-black flex flex-col justify-center  items-center border-none shadow-lg bg-black bg-clip-padding text-current drop-shadow-lg bg-modal ${showModal.scale} bold`}
       >
         <div className="w-full h-full relative">
           <video autoPlay muted loop id="myVideo">
@@ -31,16 +31,16 @@ const Modal = ({ showModal, closeModal }) => {
           </button> */}
         </div>
 
-        {/* <h3 className="uppercase text-white 2xl:text-6xl mb-4">
+        <h3 className="uppercase text-white 2xl:text-6xl mb-4 z-[999]">
           {showModal.place}
         </h3>
 
         <Link
-          href=""
-          className="text-bold text-white uppercase 2xl:text-2xl underline"
+          href="/tours"
+          className="text-bold text-white uppercase 2xl:text-2xl underline z-[999]"
         >
           Scopri
-        </Link> */}
+        </Link>
       </div>
     </div>
   );
