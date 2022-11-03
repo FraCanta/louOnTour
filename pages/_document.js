@@ -14,10 +14,6 @@ export default function Document() {
         />
 
         {/* <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" /> */}
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0"
-        ></meta>
 
         <meta name="application-name" content="Lou On Tour - Guida Turistica" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

@@ -16,7 +16,7 @@ const Hero = () => {
         <div className="parallax-layer layer-3"></div>
         <div className="parallax-layer layer-2"></div>
         <div className="parallax-layer layer-1"></div>
-        <div className="text-center h-full flex flex-col items-center justify-center absolute z-10 title">
+        <div className="text-center h-full flex flex-col items-center  absolute z-10 title">
           <h2 className="text-[1.2rem] md:text-[2rem] 2xl:text-[2.5rem] lg:text-[2.5rem] xl:text-[3.5rem] fxl:text-[4rem] font-semibold text-[#D93280] -mb-6 mt-10 rotated:mb-0 rotated:mt-0 rotated:text-[1.5rem]">
             Tuscan Experience
           </h2>

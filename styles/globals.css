@@ -77,8 +77,11 @@ h4 {
   position: relative;
   top: 0;
   left: 0;
-  background-color: #d9edfd;
-  /* background: linear-gradient(rgb(149, 180, 201), rgb(83, 111, 127)); */
+  background: linear-gradient(
+    -51.479deg,
+    rgb(149, 180, 201),
+    rgb(83, 111, 127)
+  );
   text-align: center;
 }
 
@@ -99,8 +102,8 @@ h4 {
 .layer-2 {
   -webkit-animation: parallax_fg linear 30s infinite both;
   animation: parallax_fg linear 30s infinite both;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/2.png) 0
-    100% repeat-x;
+  /* background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/2.png) 0
+    100% repeat-x; */
   z-index: 1;
   position: absolute;
   bottom: 0;
@@ -113,36 +116,33 @@ h4 {
 .layer-3 {
   -webkit-animation: parallax_fg linear 55s infinite both;
   animation: parallax_fg linear 55s infinite both;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/3.png) 0
-    100% repeat-x;
+  background: url(../public/assets/erba_lou.png) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: auto 158px;
+  background-size: auto 65px;
 }
 
 .layer-4 {
   -webkit-animation: parallax_fg linear 75s infinite both;
   animation: parallax_fg linear 75s infinite both;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/4.png) 0
-    100% repeat-x;
+  background: url(../public/assets/prova_skyline_lou.png) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: auto 468px;
+  background-size: auto 368px;
 }
 
 .layer-5 {
   -webkit-animation: parallax_fg linear 95s infinite both;
   animation: parallax_fg linear 95s infinite both;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/5.png) 0
-    100% repeat-x;
+  background: url(https://i.ibb.co/F5q4z3V/buildings.png) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
@@ -152,28 +152,26 @@ h4 {
   background-size: auto 311px;
 }
 
-.layer-6 {
+/* .layer-6 {
   -webkit-animation: parallax_fg linear 120s infinite both;
   animation: parallax_fg linear 120s infinite both;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/6.png) 0
-    100% repeat-x;
+  background: url(https://i.ibb.co/F5q4z3V/buildings.png) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: auto 222px;
-}
+  background-size: auto 311px;
+} */
 
 .bike-1,
 .bike-2,
 .bike-3 {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/bike.png) 0
-    100% no-repeat;
+  background: url(https://i.ibb.co/r06bbW1/palio.png) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
-  bottom: 100px;
+  bottom: 10px;
   left: 0;
   width: 100%;
   height: 20%;
@@ -240,7 +238,7 @@ h4 {
 }
 @media (max-width: 700px) {
   .hero {
-    min-height: 600px;
+    min-height: 800px;
   }
   .logo img {
     max-width: 90%;
