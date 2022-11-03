@@ -85,6 +85,39 @@ h4 {
   text-align: center;
 }
 
+.layer-1a {
+  background: url(../public/assets/baloon.png) 0 100% no-repeat;
+  z-index: 2;
+  position: absolute;
+  top: -500px;
+  left: 30px;
+  width: 100%;
+  height: 100%;
+  background-size: auto 136px;
+}
+
+.layer-2a {
+  background: url(../public/assets/baloon2.png) 0 100% no-repeat;
+  z-index: 2;
+  position: absolute;
+  top: -600px;
+  left: 45%;
+  width: 100%;
+  height: 100%;
+  background-size: auto 180px;
+}
+
+.layer-3a {
+  background: url(../public/assets/baloon.png) 0 100% no-repeat;
+  z-index: 2;
+  position: absolute;
+  top: -500px;
+  right: -1369px;
+  width: 100%;
+  height: 100%;
+  background-size: auto 136px;
+}
+
 .layer-1 {
   -webkit-animation: parallax_fg linear 20s infinite both;
   animation: parallax_fg linear 20s infinite both;
@@ -102,21 +135,7 @@ h4 {
 .layer-2 {
   -webkit-animation: parallax_fg linear 30s infinite both;
   animation: parallax_fg linear 30s infinite both;
-  /* background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/2.png) 0
-    100% repeat-x; */
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: auto 145px;
-}
-
-.layer-3 {
-  -webkit-animation: parallax_fg linear 55s infinite both;
-  animation: parallax_fg linear 55s infinite both;
-  background: url(../public/assets/erba_lou.png) 0 100% repeat-x;
+  background: url(../public/assets/erba_lou_l2.png) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
@@ -124,6 +143,17 @@ h4 {
   width: 100%;
   height: 100%;
   background-size: auto 65px;
+}
+
+.layer-3 {
+  background: url(../public/assets/erba_lou_l3.png) 0 100% repeat-x;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: auto 75px;
 }
 
 .layer-4 {
@@ -136,7 +166,7 @@ h4 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: auto 368px;
+  background-size: auto 408px;
 }
 
 .layer-5 {
@@ -149,29 +179,16 @@ h4 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: auto 311px;
+  background-size: auto 411px;
 }
-
-/* .layer-6 {
-  -webkit-animation: parallax_fg linear 120s infinite both;
-  animation: parallax_fg linear 120s infinite both;
-  background: url(https://i.ibb.co/F5q4z3V/buildings.png) 0 100% repeat-x;
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: auto 311px;
-} */
 
 .bike-1,
 .bike-2,
 .bike-3 {
-  background: url(https://i.ibb.co/r06bbW1/palio.png) 0 100% no-repeat;
+  background: url(../public/assets/cavallo.png) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
-  bottom: 15px;
+  bottom: 10px;
   left: 0;
   width: 100%;
   height: 18%;
