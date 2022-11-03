@@ -31,13 +31,13 @@ const Modal = ({ showModal, closeModal }) => {
           </button> */}
         </div>
 
-        <h3 className="uppercase text-white 2xl:text-6xl mb-4 z-[999]">
+        <h3 className="uppercase text-white text-4xl 2xl:text-6xl mb-4 z-[999]">
           {showModal.place}
         </h3>
 
         <Link
           href="/tours"
-          className="text-bold text-white uppercase 2xl:text-2xl underline z-[999]"
+          className="text-bold text-white uppercase text-xl  2xl:text-2xl underline z-[999]"
         >
           Scopri
         </Link>
