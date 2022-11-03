@@ -9,6 +9,10 @@ const Hero = () => {
         <div className="parallax-layer layer-1a"></div>
         <div className="parallax-layer layer-2a"></div>
         <div className="parallax-layer layer-3a"></div>
+        <div className="parallax-layer layer-4a"></div>
+        <div className="parallax-layer layer-5a"></div>
+        <div className="parallax-layer layer-6a"></div>
+        <div className="parallax-layer layer-7a"></div>
 
         <div className="parallax-layer layer-5"></div>
         <div className="parallax-layer layer-4"></div>
