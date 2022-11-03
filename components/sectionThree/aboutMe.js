@@ -5,27 +5,27 @@ import Modal from "../modal/modal";
 import Swiper from "swiper";
 
 const AboutMe = () => {
-  //   useEffect(() => {
-  //     var swiper = new Swiper(".blog-slider", {
-  //       spaceBetween: 30,
-  //       effect: "fade",
-  //       loop: true,
-  //       mousewheel: {
-  //         invert: false,
-  //       },
-  //       // autoHeight: true,
-  //       pagination: {
-  //         el: ".blog-slider__pagination",
-  //         clickable: true,
-  //       },
-  //     });
+  // useEffect(() => {
+  //   var swiper = new Swiper(".blog-slider", {
+  //     spaceBetween: 30,
+  //     effect: "fade",
+  //     loop: true,
+  //     mousewheel: {
+  //       invert: false,
+  //     },
+  //     // autoHeight: true,
+  //     pagination: {
+  //       el: ".blog-slider__pagination",
+  //       clickable: true,
+  //     },
   //   });
+  // });
   return (
-    <div className="min-h-[50vh] container mx-auto w-full bg-[#0d0d0d] mt-20 text-white pt-20 ">
-      <div className="grid gap-14 md:gap-14 xl:gap-14 grid-cols-1 lg:grid-cols-2  items-center pt-8 lg:pt-10 pb-12 w-4/5 mx-auto">
+    <div className="about_me min-h-[70vh] container mx-auto w-full bg-[#0d0d0d] mt-20 text-white flex items-center relative">
+      <div className="grid gap-14 md:gap-14 xl:gap-14 grid-cols-1 lg:grid-cols-2  items-center w-4/5 mx-auto">
         <div>
           <h4 className="text-[#D93280]">About me</h4>
-          <h2 className="text-4xl md:text-[64px] font-medium mt-2 md:leading-none lg:leading-none mb-20">
+          <h2 className="text-4xl md:text-[64px] font-medium  md:leading-none lg:leading-none mb-20">
             Che dicono di me!
           </h2>
 
@@ -40,7 +40,9 @@ const AboutMe = () => {
               {/* <div class="blog-slider__content"> */}
               <div className="flex flex-col-reverse lg:flex-col">
                 <div className="flex  w-full text-black justify-end items-center mb-4">
-                  <address className="mx-2 text-[0.8rem]">posted on</address>
+                  <h6 className="mx-2 text-[0.8rem] text-[#707070]">
+                    posted on
+                  </h6>
                   <Icon icon="logos:airbnb" width="73" />
                 </div>
                 <div>

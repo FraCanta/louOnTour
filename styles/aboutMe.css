@@ -1,3 +1,12 @@
+.about_me::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url(../public/assets/prato.png);
+  z-index: 10;
+}
+
 .blog-slider {
   position: relative;
   max-width: 800px;

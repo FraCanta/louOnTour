@@ -357,17 +357,6 @@ h4 {
   color: red;
 }
 
-.shape {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: rgb(255, 255, 255);
-}
-
 .arrow_icon {
   position: absolute;
   bottom: 50%;

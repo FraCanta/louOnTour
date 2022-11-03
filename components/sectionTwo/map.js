@@ -24,9 +24,9 @@ const Map = () => {
   return (
     <div className="min-h-[70vh] container mx-auto w-full 2xl:w-4/5  ">
       <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible">
-        <div className="p-8 2xl:p-0">
+        <div className="p-8 2xl:p-0 md:w-4/5 2xl:w-full">
           <h4 className="text-[#5D68A6]">Tours</h4>
-          <h2 className="text-4xl md:text-[64px] font-medium mt-2 md:leading-none lg:leading-none">
+          <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none">
             Disegnamo insieme il Tuo Tour
           </h2>
           <p className="text-base sm:text-lg  mt-4 sm:mt-16 mb-8 text-[#2d2d2d] ">
@@ -42,13 +42,13 @@ const Map = () => {
         </div>
 
         <div className="pt-0 w-[700px] height-[697.359px] relative ">
-          {/* <div className="flex flex-col justify-end text-end absolute -top-10 right-0 ">
+          <div className="flex flex-col justify-end text-end absolute -top-10 2xl:right-0 right-24">
             <Image src={Choose} alt="brand" width={100} height={100} />
 
             <h3 className="uppercase bold pt-5 text-lg  text-[0.8rem] 2xl:text-[1.2rem]">
               Scegli la tua Destinazione!
             </h3>
-          </div> */}
+          </div>
           <Image src={Toscana} alt="brand" width={700} height={697.359} />
           <Icon
             icon="fontisto:map-marker-alt"
