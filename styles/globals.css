@@ -83,6 +83,7 @@ h4 {
     rgb(83, 111, 127)
   );
   text-align: center;
+  overflow-x: hidden;
 }
 
 .layer-1a {
