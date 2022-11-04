@@ -208,7 +208,7 @@ span {
 .layer-5 {
   -webkit-animation: parallax_fg linear 95s infinite both;
   animation: parallax_fg linear 95s infinite both;
-  background: url(../public/assets/second_bui.png) 0 100% repeat-x;
+  background: url(../public/assets/second_buildu.png) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
