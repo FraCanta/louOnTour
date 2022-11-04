@@ -11,10 +11,6 @@ function Menu_mobile() {
     isOpen: false,
     fastClose: false,
   });
-  const [resolution, setResolution] = useState({
-    width: 0,
-    height: 0,
-  });
 
   const handleBurgerClick = () => {
     setMobileMenu((prevData) => {
@@ -24,12 +20,6 @@ function Menu_mobile() {
   const handleBurgerClose = () => {
     setMobileMenu({ isOpen: false, fastClose: true });
   };
-
-  useEffect(() => {
-    console.log(window.innerHeight);
-
-    setResolution({ width: window.innerWidth, height: window.innerHeight });
-  });
 
   useEffect(() => {
     var tl = gsap.timeline({ defaults: { ease: Power1.easeOut } });
@@ -165,8 +155,6 @@ function Menu_mobile() {
             <Image src={Lou} alt="Lou Logo" width={50} height={50} />
           </Link>
         </div>
-        <div>{resolution.width}</div>
-        <div>{resolution.height}</div>
 
         <div className="menu-hamburger" onClick={handleBurgerClick}>
           <div className="menu-hamburger-line bar-1"></div>
