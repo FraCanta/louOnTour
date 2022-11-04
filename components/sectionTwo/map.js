@@ -51,14 +51,6 @@ const Map = ({ translation }) => {
             </h3>
           </div>
           <Image src={Toscana} alt="map" width={700} height={697.359} />
-          {/* <Icon
-            icon="fontisto:map-marker-alt"
-            color="#e3494d"
-            width="40"
-            className="absolute top-[256px] right-[240px] animate-bounce"
-            onClick={() => openModal("Firenze")}
-            id="Firenze"
-          /> */}
           <Modal showModal={showModal} closeModal={closeModal} />
           {translation?.markers?.map((el, i) => (
             <Icon
@@ -67,55 +59,14 @@ const Map = ({ translation }) => {
               color="#e3494d"
               width="40"
               className={`absolute ${
-                el?.marker?.top > 0 && `top-[${el?.marker?.top}]`
-              } ${
-                el?.marker?.bottom > 0 && `top-[${el?.marker?.bottom}]`
-              } right-[${el?.marker?.right}] animate-bounce`}
+                el?.marker?.top > 0
+                  ? `top-[${el?.marker?.top}px]`
+                  : `bottom-[${el?.marker?.bottom}px]`
+              } right-[${el?.marker?.right}px] animate-bounce`}
               id={el?.title}
-              onClick={() => openModal(el?.title)}
+              onClick={() => openModal(el?.id)}
             />
           ))}
-
-          {/* <Icon
-            icon="fontisto:map-marker-alt"
-            color="#e3494d"
-            width="40"
-            className="absolute top-[320px] right-[320px] animate-bounce"
-            id="SanGimignano"
-            onClick={() => openModal("San Gimignano")}
-          />
-          <Icon
-            icon="fontisto:map-marker-alt"
-            color="#e3494d"
-            width="40"
-            className="absolute bottom-[240px] right-[208px] animate-bounce"
-            id="Siena"
-            onClick={() => openModal("Siena")}
-          />
-          <Icon
-            icon="fontisto:map-marker-alt"
-            color="#e3494d"
-            width="40"
-            className="absolute bottom-[293px] right-[256px] animate-bounce"
-            id="Monteriggioni"
-            onClick={() => openModal("Monteriggioni")}
-          />
-          <Icon
-            icon="fontisto:map-marker-alt"
-            color="#e3494d"
-            width="40"
-            className="absolute bottom-[160px] right-[256px] animate-bounce"
-            id="SanGalgano"
-            onClick={() => openModal("San Galgano")}
-          />
-          <Icon
-            icon="fontisto:map-marker-alt"
-            color="#e3494d"
-            width="40"
-            className="absolute bottom-[272px] right-[352px] animate-bounce"
-            id="Volterra"
-            onClick={() => openModal("Volterra")}
-          /> */}
         </div>
       </div>
     </div>
