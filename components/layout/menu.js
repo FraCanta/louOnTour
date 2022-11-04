@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Lou from "../../public/assets/logo3.png";
+import Lou from "../../public/assets/logo_mobile.png";
 import { Icon } from "@iconify/react";
 
 const Menu = () => {
@@ -11,8 +11,12 @@ const Menu = () => {
         <div className="flex  mx-auto justify-between items-center px-0 py-6">
           <div className="flex items-center justify-center ">
             <Link href="/">
-              <Image src={Lou} alt="Lou Logo" width={200} height={200} />
+              <Image src={Lou} alt="Lou Logo" width={60} height={60} />
             </Link>
+            <div className="flex flex-col mx-2">
+              <span className="text-2xl">Lou On Tour</span>
+              <span className="text-[0.6rem]">Tailored Tour</span>
+            </div>
           </div>
           <nav className="menu-nav text-[#232F37]">
             <ul>
