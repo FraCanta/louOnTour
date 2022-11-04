@@ -13,6 +13,7 @@ const Hero = () => {
         <div className="parallax-layer layer-5a"></div>
         <div className="parallax-layer layer-6a"></div>
         <div className="parallax-layer layer-7a"></div>
+        <div className="parallax-layer layer-6"></div>
 
         <div className="parallax-layer layer-5"></div>
         <div className="parallax-layer layer-4"></div>
