@@ -6,7 +6,7 @@ const Mission = () => {
       <div className="container w-4/5 md:w-4/5 mx-auto pt-12 md:pt-10">
         <div className="mx-auto relative z-1">
           <div>
-            <h4 className="text-[#E24750]">Mission</h4>
+            <h4 className="text-[#4bbfdc] text-bold">Mission</h4>
             <h2 className="text-4xl md:text-[64px] font-medium mt-2 leading-10 text-[#232F37]">
               Welcome to Lou On Tour
             </h2>

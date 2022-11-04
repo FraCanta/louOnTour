@@ -20,9 +20,11 @@ a {
 
 p {
   font-family: "Yrsa", serif;
+  font-weight: 100;
 }
 
-h4 {
+h4,
+span {
   font-family: "Nunito", serif;
   font-size: 25px;
 }
@@ -65,11 +67,13 @@ h4 {
   position: relative;
   top: 0;
   left: 0;
-  background: linear-gradient(
+  /* background: linear-gradient(
     -51.479deg,
     rgb(149, 180, 201),
     rgb(83, 111, 127)
-  );
+  ); */
+
+  background-color: #4bbfdc;
   text-align: center;
   overflow-x: hidden;
 }

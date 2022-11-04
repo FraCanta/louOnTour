@@ -59,7 +59,7 @@ const Menu = () => {
               <Link href="/contact" className="">
                 <Icon
                   icon="entypo-social:facebook"
-                  color="#e3494d"
+                  color="#dd602f"
                   width="25"
                 />
               </Link>
@@ -68,14 +68,14 @@ const Menu = () => {
               <Link href="/contact" className="">
                 <Icon
                   icon="akar-icons:instagram-fill"
-                  color="#e3494d"
+                  color="#dd602f"
                   width="25"
                 />
               </Link>
             </button>
             <button className="btn lg:text-lg 3xl:text-2xl">
               <Link href="/contact" className="">
-                <Icon icon="entypo-social:youtube" color="#e3494d" width="25" />{" "}
+                <Icon icon="entypo-social:youtube" color="#dd602f" width="25" />{" "}
               </Link>
             </button>
           </div>

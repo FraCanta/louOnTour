@@ -22,9 +22,9 @@ const AboutMe = () => {
   // });
   return (
     <div className="about_me min-h-[70vh] container mx-auto w-full bg-[#232F37] mt-20 text-white flex items-center relative">
-      <div className="grid gap-14 md:gap-14 xl:gap-14 grid-cols-1 lg:grid-cols-2 content-center  items-center w-4/5 mx-auto">
+      <div className="grid gap-14 md:gap-14 xl:gap-14 grid-cols-1 lg:grid-cols-2  items-center w-4/5 mx-auto">
         <div>
-          <h4 className="text-[#E24750]">About me</h4>
+          <h4 className="text-[#4bbfdc]">About me</h4>
           <h2 className="text-4xl md:text-[64px] font-medium  md:leading-none lg:leading-none mb-20">
             Che dicono di me!
           </h2>
