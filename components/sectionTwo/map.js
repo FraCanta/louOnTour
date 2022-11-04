@@ -56,13 +56,21 @@ const Map = ({ translation }) => {
             <Icon
               key={i}
               icon="fontisto:map-marker-alt"
-              color="#e3494d"
               width="40"
-              className={`absolute ${
+              className="absolute  animate-bounce"
+              style={
                 el?.marker?.top > 0
-                  ? `top-[${el?.marker?.top}px]`
-                  : `bottom-[${el?.marker?.bottom}px]`
-              } right-[${el?.marker?.right}px] animate-bounce`}
+                  ? {
+                      top: `${el?.marker?.top}px`,
+                      right: `${el?.marker?.right}px`,
+                      color: "#e3494d",
+                    }
+                  : {
+                      bottom: `${el?.marker?.bottom}px`,
+                      right: `${el?.marker?.right}px`,
+                      color: "#e3494d",
+                    }
+              }
               id={el?.title}
               onClick={() => openModal(el?.id)}
             />
