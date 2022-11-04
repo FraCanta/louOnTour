@@ -7,7 +7,8 @@ import { Icon } from "@iconify/react";
 import Button from "../button/button";
 import Modal from "../modal/modal";
 
-const Map = () => {
+const Map = ({ translation }) => {
+  console.log(translation);
   const [showModal, setShowModal] = useState({
     isOpen: "hide",
     place: null,
@@ -23,9 +24,9 @@ const Map = () => {
   };
   return (
     <div className="min-h-[70vh] container mx-auto w-full 2xl:w-4/5  ">
-      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible">
+      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible h-full">
         <div className="p-8 2xl:p-0">
-          <h4 className="text-[#4bbfdc]">Tours</h4>
+          <h4 className="text-[#E3494D]">Tours</h4>
           <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Disegnamo insieme il Tuo Tour
           </h2>
@@ -50,17 +51,32 @@ const Map = () => {
             </h3>
           </div>
           <Image src={Toscana} alt="map" width={700} height={697.359} />
-          <Icon
+          {/* <Icon
             icon="fontisto:map-marker-alt"
             color="#e3494d"
             width="40"
             className="absolute top-[256px] right-[240px] animate-bounce"
             onClick={() => openModal("Firenze")}
             id="Firenze"
-          />
+          /> */}
           <Modal showModal={showModal} closeModal={closeModal} />
+          {translation?.markers?.map((el, i) => (
+            <Icon
+              key={i}
+              icon="fontisto:map-marker-alt"
+              color="#e3494d"
+              width="40"
+              className={`absolute ${
+                el?.marker?.top > 0 && `top-[${el?.marker?.top}]`
+              } ${
+                el?.marker?.bottom > 0 && `top-[${el?.marker?.bottom}]`
+              } right-[${el?.marker?.right}] animate-bounce`}
+              id={el?.title}
+              onClick={() => openModal(el?.title)}
+            />
+          ))}
 
-          <Icon
+          {/* <Icon
             icon="fontisto:map-marker-alt"
             color="#e3494d"
             width="40"
@@ -99,7 +115,7 @@ const Map = () => {
             className="absolute bottom-[272px] right-[352px] animate-bounce"
             id="Volterra"
             onClick={() => openModal("Volterra")}
-          />
+          /> */}
         </div>
       </div>
     </div>

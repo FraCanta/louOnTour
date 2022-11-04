@@ -14,8 +14,10 @@ const Menu = () => {
               <Image src={Lou} alt="Lou Logo" width={60} height={60} />
             </Link>
             <div className="flex flex-col mx-2">
-              <span className="text-2xl">Lou On Tour</span>
-              <span className="text-[0.6rem]">Tailored Tour</span>
+              <span className="text-2xl font-[600]">Lou On Tour</span>
+              <span className="text-[0.7rem] text-[#dd602f] font-medium">
+                Tailored Tour
+              </span>
             </div>
           </div>
           <nav className="menu-nav text-[#232F37]">
@@ -59,7 +61,7 @@ const Menu = () => {
               <Link href="/contact" className="">
                 <Icon
                   icon="entypo-social:facebook"
-                  color="#dd602f"
+                  color="#E3494D"
                   width="25"
                 />
               </Link>
@@ -68,14 +70,14 @@ const Menu = () => {
               <Link href="/contact" className="">
                 <Icon
                   icon="akar-icons:instagram-fill"
-                  color="#dd602f"
+                  color="#E3494D"
                   width="25"
                 />
               </Link>
             </button>
             <button className="btn lg:text-lg 3xl:text-2xl">
               <Link href="/contact" className="">
-                <Icon icon="entypo-social:youtube" color="#dd602f" width="25" />{" "}
+                <Icon icon="entypo-social:youtube" color="#E3494D" width="25" />{" "}
               </Link>
             </button>
           </div>

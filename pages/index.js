@@ -1,9 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
 import Hero from "../components/layout/hero";
+import Insta from "../components/sectionFour/insta";
 import Mission from "../components/sectionOne/mission";
 import AboutMe from "../components/sectionThree/aboutMe";
 import Map from "../components/sectionTwo/map";
+import translationIT from "../public/locales/it/it.json";
 
 export default function Home() {
   return (
@@ -15,8 +17,9 @@ export default function Home() {
       </Head>
       <Hero />
       <Mission />
-      <Map />
+      <Map translation={translationIT?.home?.map} />
       <AboutMe />
+      <Insta />
     </div>
   );
 }

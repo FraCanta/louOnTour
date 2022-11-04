@@ -23,8 +23,11 @@ p {
   font-weight: 100;
 }
 
-h4,
 span {
+  font-family: "Nunito", serif;
+}
+
+h4 {
   font-family: "Nunito", serif;
   font-size: 25px;
 }
@@ -217,7 +220,7 @@ span {
 .layer-4 {
   -webkit-animation: parallax_fg linear 75s infinite both;
   animation: parallax_fg linear 75s infinite both;
-  background: url(../public/assets/prova_skyline_lou.png) 0 100% repeat-x;
+  background: url(../public/assets/building_lou.png) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;

@@ -1,0 +1,50 @@
+{
+  "home": {
+    "map": {
+      "markers": [
+        {
+          "id": "fi",
+          "title": "Firenze",
+          "link": "Scopri",
+          "video": "",
+          "marker": { "top": 256, "right": 240 }
+        },
+        {
+          "id": "sgim",
+          "title": "San Gimignano",
+          "link": "",
+          "video": "Scopri",
+          "marker": { "top": 320, "right": 320 }
+        },
+        {
+          "id": "vol",
+          "title": "Volterra",
+          "link": "Scopri",
+          "video": "",
+          "marker": { "bottom": 272, "right": 352 }
+        },
+        {
+          "id": "mont",
+          "title": "Monteriggioni",
+          "link": "Scopri",
+          "video": "",
+          "marker": { "bottom": 293, "right": 256 }
+        },
+        {
+          "id": "si",
+          "title": "Siena",
+          "link": "Scopri",
+          "video": "",
+          "marker": { "bottom": 240, "right": 208 }
+        },
+        {
+          "id": "sangalg",
+          "title": "San Galgano",
+          "link": "Scopri",
+          "video": "",
+          "marker": { "bottom": 160, "right": 256 }
+        }
+      ]
+    }
+  }
+}
