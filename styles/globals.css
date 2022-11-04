@@ -287,7 +287,7 @@ h4 {
 }
 @media (max-width: 700px) {
   .hero {
-    min-height: 800px;
+    min-height: 700px;
   }
   .layer-1a {
     top: 180px;
