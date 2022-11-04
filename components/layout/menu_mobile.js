@@ -169,7 +169,7 @@ function Menu_mobile() {
               <li>
                 <Link
                   href="/"
-                  className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
+                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px]"
                 >
                   Inizi da qui!
                 </Link>
@@ -177,12 +177,12 @@ function Menu_mobile() {
               <li>
                 <Link
                   href="/tours"
-                  className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
+                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px]"
                 >
                   Tours
                   <Icon
                     icon="bxs:down-arrow"
-                    color="#0d0d0d"
+                    color="#232F37"
                     width="12"
                     className="ml-2"
                   />
@@ -191,7 +191,7 @@ function Menu_mobile() {
               <li>
                 <Link
                   href="/how"
-                  className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
+                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px]"
                 >
                   Chi sono
                 </Link>
@@ -199,7 +199,7 @@ function Menu_mobile() {
               <li>
                 <Link
                   href="/pricing"
-                  className="text-[#0d0d0d] text-[40px] md:text-[60px] lg:text-[50px]"
+                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px]"
                 >
                   Contatti
                 </Link>

@@ -6,11 +6,11 @@ const Mission = () => {
       <div className="container w-4/5 md:w-4/5 mx-auto pt-12 md:pt-10">
         <div className="mx-auto relative z-1">
           <div>
-            <h4 className="text-[#5D68A6]">Mission</h4>
-            <h2 className="text-4xl md:text-[64px] font-medium mt-2 leading-10">
+            <h4 className="text-[#E24750]">Mission</h4>
+            <h2 className="text-4xl md:text-[64px] font-medium mt-2 leading-10 text-[#232F37]">
               Welcome to Lou On Tour
             </h2>
-            <p className="text-base sm:text-lg  mt-4 sm:mt-16 mb-8 text-[#2d2d2d] ">
+            <p className="text-base sm:text-lg  mt-4 sm:mt-16 mb-8 text-[#515151] ">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris

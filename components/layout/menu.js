@@ -14,7 +14,7 @@ const Menu = () => {
               <Image src={Lou} alt="Lou Logo" width={80} height={80} />
             </Link>
           </div>
-          <nav className="menu-nav ">
+          <nav className="menu-nav text-[#232F37]">
             <ul>
               <li>
                 <Link href="/" className="2xl:text-l[12px] fxl:text-[18px]">
@@ -29,7 +29,7 @@ const Menu = () => {
                   Tours{" "}
                   <Icon
                     icon="bxs:down-arrow"
-                    color="#0d0d0d"
+                    color="#232F37"
                     width="10"
                     className="ml-2"
                   />

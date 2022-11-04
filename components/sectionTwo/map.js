@@ -25,11 +25,11 @@ const Map = () => {
     <div className="min-h-[70vh] container mx-auto w-full 2xl:w-4/5  ">
       <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible">
         <div className="p-8 2xl:p-0">
-          <h4 className="text-[#5D68A6]">Tours</h4>
-          <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none">
+          <h4 className="text-[#E24750]">Tours</h4>
+          <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Disegnamo insieme il Tuo Tour
           </h2>
-          <p className="text-base sm:text-lg  mt-4 sm:mt-16 mb-8 text-[#2d2d2d] ">
+          <p className="text-base sm:text-lg  mt-4 sm:mt-16 mb-8 text-[#515151] ">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
