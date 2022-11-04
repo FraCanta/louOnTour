@@ -82,7 +82,7 @@ span {
   background: url(../public/assets/baloon_small.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
-  top: 240px;
+  top: 147px;
   left: 40px;
   width: 73px;
   height: 113px;
@@ -93,7 +93,7 @@ span {
   background: url(../public/assets/baloon_big.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
-  top: 100px;
+  top: 39px;
   left: 50%;
   width: 109px;
   height: 180px;
@@ -104,7 +104,7 @@ span {
   background: url(../public/assets/baloon_small.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
-  top: 240px;
+  top: 114px;
   right: 40px;
   width: 73px;
   height: 113px;
@@ -115,7 +115,7 @@ span {
   background: url(../public/assets/cloud_small.png) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
-  top: 254px;
+  top: 154px;
   left: 80px;
   width: 169px;
   height: 53px;
@@ -126,7 +126,7 @@ span {
   background: url(../public/assets/cloud_big.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
-  top: 209px;
+  top: 108px;
   left: 269px;
   width: 252px;
   height: 58px;
@@ -137,7 +137,7 @@ span {
   background: url(../public/assets/cloud_big.png) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
-  top: 209px;
+  top: 118px;
   right: 269px;
   width: 252px;
   height: 58px;
@@ -148,7 +148,7 @@ span {
   background: url(../public/assets/cloud_small.png) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
-  top: 254px;
+  top: 154px;
   right: 20px;
   width: 169px;
   height: 53px;
