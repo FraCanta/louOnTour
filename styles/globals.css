@@ -79,36 +79,58 @@ span {
 }
 
 .layer-1a {
-  background: url(../public/assets/baloon_small.png) 0 100% no-repeat;
+  background: url(../public/assets/bird.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 147px;
   left: 40px;
-  width: 73px;
-  height: 113px;
-  background-size: auto 83px;
+  width: 37px;
+  height: 23px;
+  background-size: auto 16px;
 }
 
 .layer-2a {
-  background: url(../public/assets/baloon_big.png) 0 100% no-repeat;
+  background: url(../public/assets/bird.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
-  top: 39px;
+  top: 181px;
   left: 50%;
-  width: 109px;
-  height: 180px;
-  background-size: auto 130px;
+  width: 37px;
+  height: 23px;
+  background-size: auto 16px;
+}
+
+.layer-2ab {
+  background: url(../public/assets/bird.png) 0 100% no-repeat;
+  z-index: 2;
+  position: absolute;
+  top: 281px;
+  left: 280px;
+  width: 37px;
+  height: 23px;
+  background-size: auto 16px;
 }
 
 .layer-3a {
-  background: url(../public/assets/baloon_small.png) 0 100% no-repeat;
+  background: url(../public/assets/bird.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 114px;
   right: 40px;
-  width: 73px;
-  height: 113px;
-  background-size: auto 83px;
+  width: 37px;
+  height: 23px;
+  background-size: auto 16px;
+}
+
+.layer-3ab {
+  background: url(../public/assets/bird.png) 0 100% no-repeat;
+  z-index: 2;
+  position: absolute;
+  top: 214px;
+  right: 240px;
+  width: 37px;
+  height: 23px;
+  background-size: auto 16px;
 }
 
 .layer-4a {
@@ -293,13 +315,21 @@ span {
   .hero {
     min-height: 700px;
   }
-  .layer-1a {
+  .layer-2a {
     top: 180px;
   }
   .layer-2a {
     top: 50px;
   }
+
+  .layer-2ab {
+    top: 80px;
+  }
   .layer-3a {
+    top: 220px;
+  }
+
+  .layer-3ab {
     top: 220px;
   }
   .logo img {
