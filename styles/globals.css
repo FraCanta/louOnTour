@@ -383,12 +383,13 @@ h4 {
 .menu_mobile_item {
   display: flex;
   flex-direction: column;
-  height: 65%;
+  height: 80%;
 }
 
 .socials {
-  height: 35%;
+  height: 20%;
   margin: 0 auto;
+  display: flex;
 }
 
 .socials a {
