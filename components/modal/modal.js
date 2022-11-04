@@ -12,7 +12,7 @@ const Modal = ({ showModal, closeModal }) => {
 
   return (
     <div
-      className={`flex items-center justify-center w-screen h-screen fixed top-0 left-0 bottom-0 right-0 z-20 bg-gray-900 bg-opacity-40 overlay ${showModal.isOpen} `}
+      className={`flex items-center justify-center w-screen h-screen fixed top-0 left-0 bottom-0 right-0 z-20 bg-[#232F37] bg-opacity-50 overlay ${showModal.isOpen} `}
       onClick={closeModal}
     >
       <div

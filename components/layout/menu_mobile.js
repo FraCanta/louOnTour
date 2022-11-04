@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import Lou from "../../public/assets/lou.webp";
+import Lou from "../../public/assets/logo3.png";
 import gsap from "gsap";
 import { Power1, Power2 } from "gsap";
 import { Icon } from "@iconify/react";
@@ -152,7 +152,7 @@ function Menu_mobile() {
       <div className="header_mobile  flex justify-between h-[70px] items-center w-full  px-8 md:px-12 py-4">
         <div>
           <Link href="/">
-            <Image src={Lou} alt="Lou Logo" width={50} height={50} />
+            <Image src={Lou} alt="Lou Logo" width={90} height={90} />
           </Link>
         </div>
 

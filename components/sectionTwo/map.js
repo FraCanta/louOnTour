@@ -45,7 +45,7 @@ const Map = () => {
           <div className="flex flex-col justify-end text-end absolute -top-10 right-0 ">
             <Image src={Choose} alt="brand" width={100} height={100} />
 
-            <h3 className="uppercase bold pt-5 text-lg  text-[0.8rem] 2xl:text-[1.2rem]">
+            <h3 className="uppercase bold pt-5 text-lg  text-[0.8rem] 2xl:text-[1.2rem] text-[#232F37]">
               Scegli la tua Destinazione!
             </h3>
           </div>
