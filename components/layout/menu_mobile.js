@@ -152,7 +152,7 @@ function Menu_mobile() {
       <div className="header_mobile  flex justify-between h-[70px] items-center w-full  px-8 md:px-12 py-4">
         <div>
           <Link href="/">
-            <Image src={Lou} alt="Lou Logo" width={60} height={60} />
+            <Image src={Lou} alt="Lou Logo" width={50} height={50} />
           </Link>
         </div>
 
