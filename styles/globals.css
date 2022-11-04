@@ -79,80 +79,80 @@ span {
 }
 
 .layer-1a {
-  background: url(../public/assets/baloon.png) 0 100% no-repeat;
+  background: url(../public/assets/baloon_small.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 240px;
   left: 40px;
-  width: 91px;
+  width: 73px;
   height: 113px;
-  background-size: auto 113px;
+  background-size: auto 83px;
 }
 
 .layer-2a {
-  background: url(../public/assets/baloon2.png) 0 100% no-repeat;
+  background: url(../public/assets/baloon_big.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 100px;
   left: 50%;
   width: 109px;
   height: 180px;
-  background-size: auto 180px;
+  background-size: auto 130px;
 }
 
 .layer-3a {
-  background: url(../public/assets/baloon.png) 0 100% no-repeat;
+  background: url(../public/assets/baloon_small.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 240px;
   right: 40px;
-  width: 91px;
+  width: 73px;
   height: 113px;
-  background-size: auto 113px;
+  background-size: auto 83px;
 }
 
 .layer-4a {
-  background: url(../public/assets/cloud1.png) 0 100% no-repeat;
+  background: url(../public/assets/cloud_small.png) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
-  top: 192px;
+  top: 254px;
   left: 80px;
-  width: 300px;
-  height: 110px;
-  background-size: auto 65px;
+  width: 169px;
+  height: 53px;
+  background-size: auto 33px;
 }
 
 .layer-5a {
-  background: url(../public/assets/cloud2.png) 0 100% no-repeat;
+  background: url(../public/assets/cloud_big.png) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
-  top: 150px;
+  top: 209px;
   left: 269px;
-  width: 307px;
-  height: 113px;
-  background-size: auto 100px;
+  width: 252px;
+  height: 58px;
+  background-size: auto 50px;
 }
 
 .layer-6a {
-  background: url(../public/assets/cloud2.png) 0 100% no-repeat;
+  background: url(../public/assets/cloud_big.png) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
-  top: 150px;
+  top: 209px;
   right: 269px;
-  width: 307px;
-  height: 113px;
-  background-size: auto 100px;
+  width: 252px;
+  height: 58px;
+  background-size: auto 50px;
 }
 
 .layer-7a {
-  background: url(../public/assets/cloud1.png) 0 100% no-repeat;
-  z-index: 2;
+  background: url(../public/assets/cloud_small.png) 0 100% no-repeat;
+  z-index: 1;
   position: absolute;
-  top: 192px;
+  top: 254px;
   right: 20px;
-  width: 300px;
-  height: 110px;
-  background-size: auto 65px;
+  width: 169px;
+  height: 53px;
+  background-size: auto 33px;
 }
 .layer-1 {
   -webkit-animation: parallax_fg linear 20s infinite both;
