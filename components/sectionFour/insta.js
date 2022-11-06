@@ -13,7 +13,7 @@ const Insta = () => {
       <div className="grid gap-14 md:gap-32 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8 ">
         <div className="pt-0 ">
           <div className="w-full whitespace-nowrap overflow-x-auto overflow-y-hidden">
-            <div className="columns-auto 2xl:columns-2">
+            <div className="columns-auto lg:columns-4 2xl:columns-2">
               <div className="relative mb-4 before:content-[''] before:rounded-md before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
                 <Image
                   src={Lou}
@@ -126,12 +126,12 @@ const Insta = () => {
             </div>
           </div>
         </div>
-        <div className="p-8 2xl:p-0">
+        <div className="p-8 2xl:p-0 w-4/5">
           <h4 className="text-[#E3494D]">Social</h4>
           <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Lou On Tour Instagram
           </h2>
-          <p className="text-base sm:text-lg  mt-4 sm:mt-16 mb-8 text-[#515151] ">
+          <p className="text-base sm:text-lg  mt-4 sm:mt-10 mb-8 text-[#515151] ">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

@@ -23,9 +23,9 @@ const Map = ({ translation }) => {
     });
   };
   return (
-    <div className="min-h-[70vh] container mx-auto w-full 2xl:w-4/5  ">
-      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible h-full">
-        <div className="p-8 2xl:p-0">
+    <div className="min-h-[70vh] container mx-auto w-full lg:w-4/5">
+      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible">
+        <div className="p-8 2xl:p-0 ">
           <h4 className="text-[#E3494D]">Tours</h4>
           <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Disegnamo insieme il Tuo Tour
@@ -42,7 +42,7 @@ const Map = ({ translation }) => {
         </div>
 
         <div className="pt-0 w-[700px] height-[697.359px] relative ">
-          <div className="flex flex-col justify-end text-end absolute -top-10 2xl:right-10 right-40">
+          <div className="flex flex-col justify-end text-end absolute -top-10 lg:right-10 right-40">
             <Image src={Choose} alt="brand" className="w-[120px]" />
 
             <h3 className="uppercase font-medium pt-2 text-lg  text-[0.7rem] 2xl:text-[1rem] text-[#232F37] w-[80%]">

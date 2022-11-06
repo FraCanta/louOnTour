@@ -11,7 +11,7 @@ const Menu = () => {
         <div className="flex  mx-auto justify-between items-center px-0 ">
           <div className="flex items-center justify-center">
             <Link href="/">
-              <Image src={Lou} alt="Lou Logo" width={140} height={130} />
+              <Image src={Lou} alt="Lou Logo" className="w-[250px]" />
             </Link>
             {/* <div className="flex flex-col mx-2">
               <span className="text-2xl font-[600]">Lou On Tour</span>
