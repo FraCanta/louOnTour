@@ -149,10 +149,10 @@ function Menu_mobile() {
 
   return (
     <div className="block xl:hidden relative top-0 right-0 z-20  flex">
-      <div className="header_mobile  flex justify-between h-[70px] items-center w-full  px-8 md:px-12 py-4">
+      <div className="header_mobile  flex justify-between  items-center w-full  px-8 md:px-12 py-4">
         <div>
           <Link href="/">
-            <Image src={Lou} alt="Lou Logo" width={50} height={50} />
+            <Image src={Lou} alt="Lou Logo" width={55} height={55} />
           </Link>
         </div>
 

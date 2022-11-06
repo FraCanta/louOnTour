@@ -42,11 +42,11 @@ const Map = ({ translation }) => {
         </div>
 
         <div className="pt-0 w-[700px] height-[697.359px] relative ">
-          <div className="flex flex-col justify-end text-end absolute -top-10 right-0 ">
-            <Image src={Choose} alt="brand" width={100} height={100} />
+          <div className="flex flex-col justify-end text-end absolute -top-10 2xl:right-10 right-40">
+            <Image src={Choose} alt="brand" className="w-[120px]" />
 
-            <h3 className="uppercase bold pt-5 text-lg  text-[0.8rem] 2xl:text-[1.2rem] text-[#232F37]">
-              Scegli la tua Destinazione!
+            <h3 className="uppercase font-medium pt-2 text-lg  text-[0.7rem] 2xl:text-[1rem] text-[#232F37] w-[80%]">
+              Scegli la tua Destinazione
             </h3>
           </div>
           <Image src={Toscana} alt="map" width={700} height={697.359} />
