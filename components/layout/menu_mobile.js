@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import Lou from "../../public/assets/logo_mobile.png";
+import Lou from "../../public/assets/logo_mobile3.png";
 import gsap from "gsap";
 import { Power1, Power2 } from "gsap";
 import { Icon } from "@iconify/react";

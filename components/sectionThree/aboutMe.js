@@ -22,12 +22,21 @@ const AboutMe = () => {
   // });
   return (
     <div className="about_me min-h-[70vh]  container mx-auto w-full bg-[#232F37] mt-20 text-white flex items-center relative">
-      <div className="grid gap-14 md:gap-14 xl:gap-14 grid-cols-1 lg:grid-cols-2  items-center w-4/5 mx-auto h-full">
+      <div className="grid gap-6 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2  items-center w-4/5 mx-auto h-full">
         <div>
           <h4 className="text-[#E3494D]">About me</h4>
-          <h2 className="text-4xl md:text-[64px] font-medium  md:leading-none lg:leading-none mb-20">
+          <h2 className="text-4xl md:text-[64px] font-medium  md:leading-none lg:leading-none mb-10">
             Che dicono di me!
           </h2>
+          <p className="text-base sm:text-lg  mb-8 text-white">
+            Il fatto che tu stia cercando un tour per conoscere meglio un luogo
+            fa di te una persona curiosa e questo, a me, piace moltissimo! Ma
+            dal tuo punto di vista però, è anche vero che è importante trovare
+            la guida giusta, con cui poter entrare in sintonia e apprezzare
+            meglio l’esperienza. Facciamo così: nell’attesa di conoscerci meglio
+            durante il nostro tour, dai un’occhiata qui e leggi cosa dicono di
+            me.
+          </p>
 
           <Button>scopri di più</Button>
         </div>

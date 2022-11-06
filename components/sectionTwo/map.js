@@ -31,13 +31,12 @@ const Map = ({ translation }) => {
             Disegnamo insieme il Tuo Tour
           </h2>
           <p className="text-base sm:text-lg  mt-4 sm:mt-16 mb-8 text-[#515151] ">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Qui troverai alcuni tra i tour più popolari, che sono piaciuti a
+            molti e che io amo spesso fare! Scegli una location sulla mappa qui
+            accanto e dai un’occhiata alle mie proposte di tour: ce ne sono per
+            tutti i gusti! Ma se cerchi qualcosa che faccia più al caso tuo,
+            contattatami e proveremo insieme a creare il tour che meglio
+            soddisfi i tuoi gusti e le tue esigenze.
           </p>
           <Button>Contattami</Button>
         </div>

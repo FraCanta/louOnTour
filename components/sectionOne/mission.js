@@ -2,8 +2,8 @@ import React from "react";
 
 const Mission = () => {
   return (
-    <div className="min-h-[60vh] text-center pt-2 2xl:pt-20">
-      <div className="container w-4/5 md:w-4/5 mx-auto pt-12 md:pt-10">
+    <div className="min-h-[70vh] text-center pt-2 2xl:pt-20">
+      <div className="container w-4/5 md:w-4/5 mx-auto pt-12 md:pt-10 h-full">
         <div className="mx-auto relative z-1">
           <div>
             <h4 className="text-[#E3494D] text-bold">Mission</h4>
@@ -11,13 +11,19 @@ const Mission = () => {
               Welcome to Lou On Tour
             </h2>
             <p className="text-base sm:text-lg  mt-4 sm:mt-16 mb-8 text-[#515151] ">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Se sei approdato su questo sito molto probabilmente stai cercando
+              un’esperienza da vivere qui in Toscana assieme al tuo partner, ai
+              tuoi amici o alla tua famiglia. Allora sei nel sito giusto perché
+              “ho un’offerta che non potrai rifiutare!”. Scherzi a parte, io
+              sono Luisa, guida turistica e archeologa e sono qui per guidarti
+              alla scoperta di questa splendida regione italiana. Ma questo è
+              anche il sito giusto per chi vuole godersi appieno il suo viaggio,
+              che cerca l’essenza del luogo, attraverso uno scorcio
+              caratteristico o un’opera d’arte; attraverso la storia di un
+              personaggio famoso, o le mani esperte di un orgoglioso artigiano
+              locale; per non parlare della scoperta di nuovi sapori e di
+              antiche tradizioni. E tutto al tuo passo! Che ne pesi, fa al caso
+              tuo? Allora dai una sbirciata ai miei tour.
             </p>
           </div>
         </div>

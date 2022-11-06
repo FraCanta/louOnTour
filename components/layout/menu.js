@@ -1,24 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Lou from "../../public/assets/logo_mobile.png";
+import Lou from "../../public/assets/logo4.png";
 import { Icon } from "@iconify/react";
 
 const Menu = () => {
   return (
-    <div className="hidden xl:flex w-full bg-white border-b border-black-500 z-20 menu">
+    <div className="hidden xl:flex items-center w-full bg-white border-b border-black-500 z-20 menu">
       <div className="container mx-auto w-4/5">
-        <div className="flex  mx-auto justify-between items-center px-0 py-6">
-          <div className="flex items-center justify-center ">
+        <div className="flex  mx-auto justify-between items-center px-0 ">
+          <div className="flex items-center justify-center">
             <Link href="/">
-              <Image src={Lou} alt="Lou Logo" width={60} height={60} />
+              <Image src={Lou} alt="Lou Logo" width={180} height={180} />
             </Link>
-            <div className="flex flex-col mx-2">
+            {/* <div className="flex flex-col mx-2">
               <span className="text-2xl font-[600]">Lou On Tour</span>
               <span className="text-[0.7rem] text-[#dd602f] font-medium">
                 Tailored Tour
               </span>
-            </div>
+            </div> */}
           </div>
           <nav className="menu-nav text-[#232F37]">
             <ul>
