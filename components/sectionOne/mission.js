@@ -22,7 +22,7 @@ const Mission = () => {
               caratteristico o un’opera d’arte; attraverso la storia di un
               personaggio famoso, o le mani esperte di un orgoglioso artigiano
               locale; per non parlare della scoperta di nuovi sapori e di
-              antiche tradizioni. E tutto al tuo passo! Che ne pesi, fa al caso
+              antiche tradizioni. E tutto al tuo passo! Che ne pensi, fa al caso
               tuo? Allora dai una sbirciata ai miei tour.
             </p>
           </div>
