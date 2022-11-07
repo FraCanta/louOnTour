@@ -20,7 +20,6 @@ a {
 
 p {
   font-family: "Yrsa", serif;
-  font-weight: 100;
 }
 
 span {
@@ -79,6 +78,17 @@ h4 {
   background-color: #4bbfdc;
   text-align: center;
   overflow-x: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 85, 80, 0.3);
+  z-index: 8;
 }
 
 .layer-1a {
