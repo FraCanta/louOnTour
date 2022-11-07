@@ -3,24 +3,33 @@ import Image from "next/image";
 import Toscana from "../../public/assets/toscana.svg";
 import Choose from "../../public/assets/choose.svg";
 import { Icon } from "@iconify/react";
-
 import Button from "../button/button";
 import Modal from "../modal/modal";
 
 const Map = ({ translation }) => {
-  console.log(translation);
   const [showModal, setShowModal] = useState({
     isOpen: "hide",
-    place: null,
     scale: "",
+    title: "",
+    video: "",
+    link: "",
   });
-  const openModal = (place) => {
-    setShowModal({ isOpen: "", place: place, scale: "scale-modal" });
-  };
-  const closeModal = () => {
-    setShowModal((prevData) => {
-      return { ...prevData, isOpen: "hide", scale: "" };
-    });
+  const handleModal = (title, video, link) => {
+    showModal.isOpen === "hide"
+      ? setShowModal({
+          isOpen: "",
+          scale: "scale-modal",
+          title: title,
+          video: video,
+          link: link,
+        })
+      : setShowModal({
+          isOpen: "hide",
+          scale: "",
+          title: title,
+          video: video,
+          link: link,
+        });
   };
   return (
     <div className="min-h-[70vh] container mx-auto w-full lg:w-4/5">
@@ -49,14 +58,15 @@ const Map = ({ translation }) => {
               Scegli la tua Destinazione
             </h3>
           </div>
-          <Image src={Toscana} alt="map" width={700} height={697.359} />
-          <Modal showModal={showModal} closeModal={closeModal} />
+          <Image src={Toscana} priority alt="map" width="auto" height="auto" />
+          <Modal handleModal={handleModal} showModal={showModal} />
           {translation?.markers?.map((el, i) => (
             <Icon
               key={i}
               icon="fontisto:map-marker-alt"
               width="40"
-              className="absolute  animate-bounce"
+              className={`absolute animate-bounce `}
+              alt={el?.title}
               style={
                 el?.marker?.top > 0
                   ? {
@@ -70,8 +80,8 @@ const Map = ({ translation }) => {
                       color: "#e3494d",
                     }
               }
-              id={el?.title}
-              onClick={() => openModal(el?.id)}
+              id={el?.id}
+              onClick={() => handleModal(el?.title, el?.video, el?.link)}
             />
           ))}
         </div>
