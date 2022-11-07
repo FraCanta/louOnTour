@@ -39,7 +39,7 @@ const Map = ({ translation }) => {
           <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Disegnamo insieme il Tuo Tour
           </h2>
-          <p className="text-base sm:text-lg  mt-4 sm:mt-16 mb-8 text-[#515151] ">
+          <p className="text-base sm:text-lg 2xl:text-xl  mt-4 sm:mt-16 mb-8 text-[#515151] ">
             Qui troverai alcuni tra i tour più popolari, che sono piaciuti a
             molti e che io amo spesso fare! Scegli una location sulla mappa qui
             accanto e dai un’occhiata alle mie proposte di tour: ce ne sono per

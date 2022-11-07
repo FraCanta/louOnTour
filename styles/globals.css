@@ -80,16 +80,16 @@ h4 {
   overflow-x: hidden;
 }
 
-.hero::before {
+/* .hero::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(26, 85, 80, 0.3);
-  z-index: 8;
-}
+  background-color: rgba(39, 39, 39, 0.164);
+  z-index: 3;
+} */
 
 .layer-1a {
   background: url(../public/assets/bird.png) 0 100% no-repeat;

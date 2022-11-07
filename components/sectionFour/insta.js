@@ -131,14 +131,14 @@ const Insta = () => {
           <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Lou On Tour Instagram
           </h2>
-          <p className="text-base sm:text-lg  mt-4 sm:mt-10 mb-8 text-[#515151] ">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+          <p className="text-base sm:text-lg 2xl:text-xl   mt-4 sm:mt-10 mb-8 text-[#515151] ">
+            L’aspetto che più adoro del mio lavoro è che mi permette di
+            conoscere gente con cui condivido i miei stessi interessi. Ma il
+            tour finisce e spesso ci si perde di vista, ed è un peccato! Quindi
+            se ti va di rimanere in contatto con me o vuoi conoscermi, mi trovi
+            tutti i giorni su Instagram, Facebook e Tik Tok. Qui pubblico
+            curiosità e aneddoti proprio sui posti che hai visitato o che hai
+            intenzione di conoscere qui in Toscana. Ti aspetto qui allora!
           </p>
           <Cta>
             Follow me <Icon icon="ant-design:instagram-filled" color="white" />

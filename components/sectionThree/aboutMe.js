@@ -28,7 +28,7 @@ const AboutMe = () => {
           <h2 className="text-4xl md:text-[64px] font-medium  md:leading-none lg:leading-none mb-10">
             Che dicono di me!
           </h2>
-          <p className="text-base sm:text-lg  mb-8 text-white">
+          <p className="text-base sm:text-lg 2xl:text-xl   mb-8 text-white">
             Il fatto che tu stia cercando un tour per conoscere meglio un luogo
             fa di te una persona curiosa e questo, a me, piace moltissimo! Ma
             dal tuo punto di vista però, è anche vero che è importante trovare
