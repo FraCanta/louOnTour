@@ -14,7 +14,7 @@
           "title": "San Gimignano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "top": 320, "right": 320 }
+          "marker": { "top": 280, "right": 320 }
         },
         {
           "id": "vol",
@@ -35,14 +35,21 @@
           "title": "Siena",
           "link": "Scopri",
           "video": "../assets/siena.mp4",
-          "marker": { "bottom": 240, "right": 208 }
+          "marker": { "bottom": 260, "right": 218 }
         },
         {
           "id": "sangalg",
           "title": "San Galgano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 160, "right": 256 }
+          "marker": { "bottom": 180, "right": 286 }
+        },
+        {
+          "id": "montepu",
+          "title": "Montepulciano",
+          "link": "Scopri",
+          "video": "../assets/florence.mp4",
+          "marker": { "bottom": 200, "right": 156 }
         }
       ]
     }

@@ -62,12 +62,8 @@ const Map = ({ translation }) => {
           <Modal handleModal={handleModal} showModal={showModal} />
           {translation?.markers?.map((el, i) => (
             <>
-              <Icon
-                key={i}
-                icon="fontisto:map-marker-alt"
-                width="32"
-                className={`absolute hover:animate-bounce cursor-pointer`}
-                alt={el?.title}
+              <div
+                className="flex flex-col justify-center absolute items-center"
                 style={
                   el?.marker?.top > 0
                     ? {
@@ -79,29 +75,24 @@ const Map = ({ translation }) => {
                         bottom: `${el?.marker?.bottom}px`,
                         right: `${el?.marker?.right}px`,
                         color: "#e3494d",
-                      }
-                }
-                id={el?.id}
-                onClick={() => handleModal(el?.title, el?.video, el?.link)}
-              />
-              <p
-                className="absolute uppercase text-[0.8rem] "
-                style={
-                  el?.marker?.top > 0
-                    ? {
-                        top: `${el?.marker?.top}px`,
-                        right: `${el?.marker?.right}px`,
-                        color: "#232F37",
-                      }
-                    : {
-                        bottom: `${el?.marker?.bottom}px`,
-                        right: `${el?.marker?.right}px`,
-                        color: "#232F37",
                       }
                 }
               >
-                {el?.title}
-              </p>
+                <Icon
+                  key={i}
+                  icon="fontisto:map-marker-alt"
+                  width="32"
+                  className={` hover:animate-bounce cursor-pointer`}
+                  alt={el?.title}
+                  id={el?.id}
+                  onClick={() => handleModal(el?.title, el?.video, el?.link)}
+                />
+                <div className="bg-[#232F37] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 "></div>
+
+                <p className="uppercase text-[0.8rem] text-[#232F37] font-medium py-2">
+                  {el?.title}
+                </p>
+              </div>
             </>
           ))}
         </div>
