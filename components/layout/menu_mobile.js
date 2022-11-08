@@ -206,7 +206,7 @@ function Menu_mobile() {
               </li>
             </ul>
             <div className="socials w-4/5">
-              <button className="btn lg:text-lg 3xl:text-2xl ">
+              <button className="btn btn-ghost lg:text-lg 3xl:text-2xl ">
                 <Link href="/contact" className="">
                   <Icon
                     icon="entypo-social:facebook"
@@ -215,7 +215,7 @@ function Menu_mobile() {
                   />
                 </Link>
               </button>
-              <button className="btn lg:text-lg 3xl:text-2xl ">
+              <button className="btn btn-ghost lg:text-lg 3xl:text-2xl ">
                 <Link href="/contact" className="">
                   <Icon
                     icon="akar-icons:instagram-fill"
@@ -224,7 +224,7 @@ function Menu_mobile() {
                   />
                 </Link>
               </button>
-              <button className="btn lg:text-lg 3xl:text-2xl">
+              <button className="btn btn-ghost lg:text-lg 3xl:text-2xl">
                 <Link href="/contact" className="">
                   <Icon
                     icon="entypo-social:youtube"

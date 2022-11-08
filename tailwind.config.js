@@ -4,6 +4,8 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [require("daisyui")],
+
   theme: {
     screens: {
       sm: "640px",
@@ -31,5 +33,4 @@ module.exports = {
       // => @media (max-heigh: 3840px) { ... }
     },
   },
-  plugins: [],
 };
