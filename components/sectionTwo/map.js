@@ -50,7 +50,7 @@ const Map = ({ translation }) => {
           <Button>Contattami</Button>
         </div>
 
-        <div className="pt-0 w-[700px] height-[697.359px] relative ">
+        <div className="pt-0 w-[650px] height-[697.359px] relative ">
           <div className="flex flex-col justify-end text-end absolute -top-10 lg:right-10 right-40">
             <Image src={Choose} alt="brand" className="w-[120px]" />
 

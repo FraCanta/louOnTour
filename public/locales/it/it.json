@@ -7,49 +7,49 @@
           "title": "Firenze",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "top": 256, "right": 240 }
+          "marker": { "top": 213, "right": 240 }
         },
         {
           "id": "sgim",
           "title": "San Gimignano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "top": 280, "right": 320 }
+          "marker": { "top": 245, "right": 285 }
         },
         {
           "id": "vol",
           "title": "Volterra",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 272, "right": 352 }
+          "marker": { "bottom": 238, "right": 337 }
         },
         {
           "id": "mont",
           "title": "Monteriggioni",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 293, "right": 256 }
+          "marker": { "bottom": 258, "right": 236 }
         },
         {
           "id": "si",
           "title": "Siena",
           "link": "Scopri",
           "video": "../assets/siena.mp4",
-          "marker": { "bottom": 260, "right": 218 }
+          "marker": { "bottom": 231, "right": 207 }
         },
         {
           "id": "sangalg",
           "title": "San Galgano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 180, "right": 286 }
+          "marker": { "bottom": 160, "right": 256 }
         },
         {
           "id": "montepu",
           "title": "Montepulciano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 200, "right": 156 }
+          "marker": { "bottom": 200, "right": 133 }
         }
       ]
     }
