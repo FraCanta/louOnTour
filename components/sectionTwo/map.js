@@ -39,7 +39,7 @@ const Map = ({ translation }) => {
           <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Disegnamo insieme il Tuo Tour
           </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl mt-4 sm:mt-16 mb-8 text-[#515151] ">
+          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl mt-4 sm:mt-16 mb-8 text-[#515151] leading-6 2xl:leading-9">
             Qui troverai alcuni tra i tour più popolari, che sono piaciuti a
             molti e che io amo spesso fare! Scegli una location sulla mappa qui
             accanto e dai un’occhiata alle mie proposte di tour: ce ne sono per
@@ -61,28 +61,48 @@ const Map = ({ translation }) => {
           <Image src={Toscana} priority alt="map" width="auto" height="auto" />
           <Modal handleModal={handleModal} showModal={showModal} />
           {translation?.markers?.map((el, i) => (
-            <Icon
-              key={i}
-              icon="fontisto:map-marker-alt"
-              width="40"
-              className={`absolute animate-bounce `}
-              alt={el?.title}
-              style={
-                el?.marker?.top > 0
-                  ? {
-                      top: `${el?.marker?.top}px`,
-                      right: `${el?.marker?.right}px`,
-                      color: "#e3494d",
-                    }
-                  : {
-                      bottom: `${el?.marker?.bottom}px`,
-                      right: `${el?.marker?.right}px`,
-                      color: "#e3494d",
-                    }
-              }
-              id={el?.id}
-              onClick={() => handleModal(el?.title, el?.video, el?.link)}
-            />
+            <>
+              <Icon
+                key={i}
+                icon="fontisto:map-marker-alt"
+                width="32"
+                className={`absolute hover:animate-bounce cursor-pointer`}
+                alt={el?.title}
+                style={
+                  el?.marker?.top > 0
+                    ? {
+                        top: `${el?.marker?.top}px`,
+                        right: `${el?.marker?.right}px`,
+                        color: "#e3494d",
+                      }
+                    : {
+                        bottom: `${el?.marker?.bottom}px`,
+                        right: `${el?.marker?.right}px`,
+                        color: "#e3494d",
+                      }
+                }
+                id={el?.id}
+                onClick={() => handleModal(el?.title, el?.video, el?.link)}
+              />
+              <p
+                className="absolute uppercase text-[0.8rem] "
+                style={
+                  el?.marker?.top > 0
+                    ? {
+                        top: `${el?.marker?.top}px`,
+                        right: `${el?.marker?.right}px`,
+                        color: "#232F37",
+                      }
+                    : {
+                        bottom: `${el?.marker?.bottom}px`,
+                        right: `${el?.marker?.right}px`,
+                        color: "#232F37",
+                      }
+                }
+              >
+                {el?.title}
+              </p>
+            </>
           ))}
         </div>
       </div>

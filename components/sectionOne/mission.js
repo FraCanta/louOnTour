@@ -10,7 +10,7 @@ const Mission = () => {
             <h2 className="text-4xl md:text-[64px] font-medium mt-2 leading-10 text-[#232F37]">
               Welcome to Lou On Tour
             </h2>
-            <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl   mt-4 sm:mt-16 mb-8 text-[#515151] ">
+            <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl   mt-4 sm:mt-16 mb-8 text-[#515151] leading-6 2xl:leading-9 2xl:w-[80%] mx-auto">
               Se sei approdato su questo sito molto probabilmente stai cercando
               un’esperienza da vivere qui in Toscana assieme al tuo partner, ai
               tuoi amici o alla tua famiglia. Allora sei nel sito giusto perché
