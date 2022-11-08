@@ -49,7 +49,7 @@
           "title": "Montepulciano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 200, "right": 133 }
+          "marker": { "bottom": 165, "right": 154 }
         }
       ]
     }

@@ -58,7 +58,14 @@ const Map = ({ translation }) => {
               Scegli la tua Destinazione
             </h3>
           </div>
-          <Image src={Toscana} priority alt="map" width="auto" height="auto" />
+          <Image
+            src={Toscana}
+            priority
+            alt="map"
+            width="auto"
+            height="auto"
+            className="opacity-50"
+          />
           <Modal handleModal={handleModal} showModal={showModal} />
           {translation?.markers?.map((el, i) => (
             <>

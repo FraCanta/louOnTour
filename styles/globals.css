@@ -35,7 +35,7 @@ h4 {
   box-sizing: border-box;
 }
 
-.menu {
+.menu_container {
   height: 100px;
 }
 
@@ -44,7 +44,7 @@ h4 {
   align-items: center;
 }
 
-.menu-nav ul {
+.menu-nav .links {
   display: flex;
   align-items: center;
   justify-content: center;

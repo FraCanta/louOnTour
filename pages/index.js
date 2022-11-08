@@ -21,6 +21,7 @@ export default function Home() {
       <Map translation={translationIT?.home?.map} />
       <AboutMe />
       <Insta />
+      <Banner />
     </div>
   );
 }

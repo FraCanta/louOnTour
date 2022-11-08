@@ -3,10 +3,12 @@ import Link from "next/link";
 import React from "react";
 import Lou from "../../public/assets/logo4.png";
 import { Icon } from "@iconify/react";
+import translation from "../../public/locales/it/it.json";
 
 const Menu = () => {
+  console.log(translation);
   return (
-    <div className="hidden xl:flex justify-center items-center w-full bg-white border-b border-black-500 z-20 menu">
+    <div className="hidden xl:flex justify-center items-center w-full bg-white border-b border-black-500 z-20 menu_container">
       <div className="container mx-auto w-4/5">
         <div className="flex  mx-auto justify-between items-center px-0 ">
           <div className="flex items-center justify-center">
@@ -15,28 +17,48 @@ const Menu = () => {
             </Link>
           </div>
           <nav className="menu-nav text-[#232F37]">
-            <ul>
+            <ul className="links">
               <li>
-                <Link href="/" className="2xl:text-l[12px] fxl:text-[18px]">
+                <Link href="/" className="2xl:text-base fxl:text-[18px]">
                   Inizi da qui!
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/tours"
-                  className="2xl:text-l[12px] fxl:text-[18px] "
+
+              <div className="dropdown dropdown-hover">
+                <label
+                  tabIndex={0}
+                  className="btn btn-ghost  font-normal 2xl:text-base fxl:text-[18px]"
                 >
-                  Tours{" "}
+                  Tours
                   <Icon
                     icon="bxs:down-arrow"
                     color="#232F37"
                     width="10"
                     className="ml-2"
                   />
-                </Link>
-              </li>
+                </label>
+
+                <>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content  shadow p-2 bg-white rounded-box w-48 "
+                  >
+                    {translation?.home?.map?.markers?.map((el, i) => (
+                      <li key={i} className="py-1.5">
+                        <Link
+                          className="hover:underline text-sm "
+                          href="/tours"
+                        >
+                          {el?.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              </div>
+              {/* </li> */}
               <li>
-                <Link href="/how" className="2xl:text-l[12px] fxl:text-[18px]">
+                <Link href="/how" className="2xl:text-base fxl:text-[18px]">
                   Chi sono
                 </Link>
               </li>

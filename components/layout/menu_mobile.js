@@ -5,6 +5,7 @@ import Lou from "../../public/assets/logo_mobile2.png";
 import gsap from "gsap";
 import { Power1, Power2 } from "gsap";
 import { Icon } from "@iconify/react";
+import translation from "../../public/locales/it/it.json";
 
 function Menu_mobile() {
   const [mobileMenu, setMobileMenu] = useState({
