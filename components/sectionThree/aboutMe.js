@@ -21,8 +21,8 @@ const AboutMe = () => {
   //   });
   // });
   return (
-    <div className="about_me min-h-[100vh]  container mx-auto w-full bg-[#232F37] mt-20 text-white flex items-center relative">
-      <div className="grid gap-6 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2  items-center w-4/5 mx-auto h-full">
+    <div className="about_me min-h-[100vh] py-8  container mx-auto w-full bg-[#232F37] mt-20 text-white flex items-center relative">
+      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center w-4/5 mx-auto h-full">
         <div>
           <h4 className="text-[#E3494D]">About me</h4>
           <h2 className="text-4xl md:text-[64px] font-medium  md:leading-none lg:leading-none mb-10">
@@ -40,32 +40,34 @@ const AboutMe = () => {
 
           <Button>scopri di più</Button>
         </div>
-        <div className="blog-slider">
-          <div className="blog-slider__wrp swiper-wrapper">
-            <div className="blog-slider__item swiper-slide">
-              <div className="blog-slider__img">
-                {/* <img src="../assets/Toscana.png" alt="" /> */}
-              </div>
-              {/* <div class="blog-slider__content"> */}
-              <div className="flex flex-col-reverse lg:flex-col">
-                <div className="flex  w-full text-black justify-end items-center mb-4">
-                  <h6 className="mx-2 text-[0.8rem] text-[#707070]">
-                    posted on
-                  </h6>
-                  <Icon icon="logos:airbnb" width="73" />
+        <div className="pt-20 2xl:pt-0">
+          <div className="blog-slider ">
+            <div className="blog-slider__wrp swiper-wrapper">
+              <div className="blog-slider__item swiper-slide">
+                <div className="blog-slider__img">
+                  {/* <img src="../assets/Toscana.png" alt="" /> */}
                 </div>
-                <div>
-                  <span className="blog-slider__code">26 December 2019</span>
-                  <div className="blog-slider__title">Lorem Ipsum Dolor</div>
-                  <div className="blog-slider__text">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Recusandae voluptate repellendus magni illo ea animi?{" "}
+                {/* <div class="blog-slider__content"> */}
+                <div className="flex flex-col-reverse lg:flex-col">
+                  <div className="flex  w-full text-black justify-end items-center mb-4">
+                    <h6 className="mx-2 text-[0.8rem] text-[#707070]">
+                      posted on
+                    </h6>
+                    <Icon icon="logos:airbnb" width="73" />
+                  </div>
+                  <div>
+                    <span className="blog-slider__code">26 December 2019</span>
+                    <div className="blog-slider__title">Lorem Ipsum Dolor</div>
+                    <div className="blog-slider__text">
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Recusandae voluptate repellendus magni illo ea animi?{" "}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div className="blog-slider__pagination"></div>
           </div>
-          <div className="blog-slider__pagination"></div>
         </div>
       </div>
     </div>
