@@ -21,7 +21,7 @@ const AboutMe = () => {
   //   });
   // });
   return (
-    <div className="about_me min-h-[100vh] py-8  container mx-auto w-full bg-[#232F37] mt-20 text-white flex items-center relative">
+    <div className="about_me min-h-[100vh] py-8  w-full bg-[#232F37] mt-20 text-white flex items-center relative">
       <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center w-4/5 mx-auto h-full">
         <div>
           <h4 className="text-[#E3494D]">About me</h4>
