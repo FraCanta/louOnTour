@@ -190,7 +190,7 @@ function Menu_mobile() {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content min-h-[300px] !p-4 shadow rounded-box w-52  "
+                  className="dropdown-content min-h-[300px] !p-4 shadow rounded-box w-52"
                 >
                   {translation?.home?.map?.markers?.map((el, i) => (
                     <li key={i} className="py-1.5" onClick={handleBurgerClose}>
