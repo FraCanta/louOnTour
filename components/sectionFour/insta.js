@@ -11,7 +11,7 @@ import Masonry from "./masonry";
 const Insta = () => {
   return (
     <div className="min-h-[100vh] w-full 2xl:p-8">
-      <div className="grid gap-8 md:gap-32 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8 ">
+      <div className="grid gap-8 md:gap-32 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center lg:pt-8 pt-0">
         <div className="pt-0 h-full whitespace-nowrap overflow-x-auto overflow-y-hidden w-full">
           <Masonry />
         </div>

@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import Button from "../button/button";
 import Modal from "../modal/modal";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCube, Pagination } from "swiper";
+import { EffectFade, Pagination, Mousewheel } from "swiper";
 import "swiper/css/bundle";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
