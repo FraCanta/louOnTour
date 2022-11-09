@@ -27,7 +27,7 @@ const Menu = () => {
               <li className="dropdown dropdown-hover">
                 <label
                   tabIndex={0}
-                  className="font-normal 2xl:text-base fxl:text-[18px] flex items-center uppercase "
+                  className="font-normal 2xl:text-base fxl:text-[18px] flex items-center uppercase !mr-[40px] !ml-[40px]"
                 >
                   Tours
                   <Icon
