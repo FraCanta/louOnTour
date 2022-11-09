@@ -110,7 +110,6 @@ h4 {
   );
 
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#239EAB", endColorstr="#74DEEE", GradientType=1 );
-
   overflow-x: hidden;
 }
 
@@ -465,6 +464,7 @@ h4 {
   display: flex;
   flex-direction: column;
   height: 80%;
+  z-index: 2;
 }
 
 .socials {
@@ -481,10 +481,10 @@ h4 {
 .menu_mobile_item ul {
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
-  padding: 4px 0;
+  justify-content: space-evenly;
+  padding: 10px 0;
   list-style: none;
-  height: 100%;
+  height: 60%;
 }
 
 .menu_mobile_item ul li a {

@@ -166,38 +166,50 @@ function Menu_mobile() {
       <div className="menu_mobile_content ">
         <div className="menu_mobile_body">
           <div className="menu-nav menu_mobile_item">
-            <ul onClick={handleBurgerClose} className="w-4/5  ">
-              <li>
+            <ul className="w-4/5  ">
+              <li onClick={handleBurgerClose}>
                 <Link
                   href="/"
-                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px]"
+                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px] !pb-4"
                 >
                   Inizi da qui!
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/tours"
-                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px]"
+              <li className="dropdown dropdown-right">
+                <label
+                  tabIndex={0}
+                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px] font-normal !pl-0  !pr-8 flex items-center uppercase !pb-4"
                 >
                   Tours
                   <Icon
                     icon="bxs:down-arrow"
                     color="#232F37"
-                    width="12"
+                    width="10"
                     className="ml-2"
                   />
-                </Link>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content min-h-[300px] !p-4 shadow rounded-box w-52  "
+                >
+                  {translation?.home?.map?.markers?.map((el, i) => (
+                    <li key={i} className="py-1.5" onClick={handleBurgerClose}>
+                      <Link className="hover:underline text-sm " href="/tours">
+                        {el?.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </li>
-              <li>
+              <li onClick={handleBurgerClose}>
                 <Link
                   href="/how"
-                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px]"
+                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px] !pb-4"
                 >
                   Chi sono
                 </Link>
               </li>
-              <li>
+              <li onClick={handleBurgerClose}>
                 <Link
                   href="/pricing"
                   className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px]"
@@ -207,7 +219,7 @@ function Menu_mobile() {
               </li>
             </ul>
             <div className="socials w-4/5">
-              <button className="btn btn-ghost lg:text-lg 3xl:text-2xl ">
+              <button className="lg:text-lg 3xl:text-2xl ">
                 <Link href="/contact" className="">
                   <Icon
                     icon="entypo-social:facebook"
@@ -216,7 +228,7 @@ function Menu_mobile() {
                   />
                 </Link>
               </button>
-              <button className="btn btn-ghost lg:text-lg 3xl:text-2xl ">
+              <button className=" lg:text-lg 3xl:text-2xl ">
                 <Link href="/contact" className="">
                   <Icon
                     icon="akar-icons:instagram-fill"
@@ -225,7 +237,7 @@ function Menu_mobile() {
                   />
                 </Link>
               </button>
-              <button className="btn btn-ghost lg:text-lg 3xl:text-2xl">
+              <button className="lg:text-lg 3xl:text-2xl">
                 <Link href="/contact" className="">
                   <Icon
                     icon="entypo-social:youtube"

@@ -45,8 +45,8 @@
           "marker": { "bottom": 160, "right": 256 }
         },
         {
-          "id": "montepu",
-          "title": "Montepulciano",
+          "id": "valdo",
+          "title": "Valdorcia",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
           "marker": { "bottom": 165, "right": 154 }
