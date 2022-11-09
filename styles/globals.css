@@ -89,30 +89,28 @@ h4 {
     #75bed6
   ); */
 
-  background: hsla(154, 53%, 82%, 1);
+  background: hsla(186, 66%, 40%, 1);
 
   background: linear-gradient(
     90deg,
-    hsla(154, 53%, 82%, 1) 0%,
-    hsla(24, 88%, 65%, 1) 50%,
-    hsla(216, 56%, 16%, 1) 100%
+    hsla(186, 66%, 40%, 1) 0%,
+    hsla(188, 78%, 69%, 1) 100%
   );
 
   background: -moz-linear-gradient(
     90deg,
-    hsla(154, 53%, 82%, 1) 0%,
-    hsla(24, 88%, 65%, 1) 50%,
-    hsla(216, 56%, 16%, 1) 100%
+    hsla(186, 66%, 40%, 1) 0%,
+    hsla(188, 78%, 69%, 1) 100%
   );
 
   background: -webkit-linear-gradient(
     90deg,
-    hsla(154, 53%, 82%, 1) 0%,
-    hsla(24, 88%, 65%, 1) 50%,
-    hsla(216, 56%, 16%, 1) 100%
+    hsla(186, 66%, 40%, 1) 0%,
+    hsla(188, 78%, 69%, 1) 100%
   );
 
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B8E9D4", endColorstr="#F4985A", GradientType=1 );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#239EAB", endColorstr="#74DEEE", GradientType=1 );
+
   overflow-x: hidden;
 }
 
