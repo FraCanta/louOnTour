@@ -13,7 +13,6 @@
   width: 80%;
   justify-content: space-around;
   align-items: center;
-  padding: 30px;
 }
 
 .section_container h2 {
@@ -24,10 +23,19 @@
 @media screen and (max-width: 768px) {
   .section_container {
     align-items: start;
-    padding: 0;
   }
   .section_container h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 900px) {
+  .section_container {
+    padding: 0;
+  }
+  .section_container h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
   }
 }

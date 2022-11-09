@@ -10,7 +10,7 @@ const Footer = ({ translation }) => {
   return (
     <footer>
       <div className="bg-white text-[#232f37] ">
-        <div className="container mx-auto p-4 w-11/12 md:w-4/5">
+        <div className="container mx-auto p-8 ">
           <div className="grid grid-row-2">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 pt-12 pb-16 px-4">
               <div className="grid grid-rows-2 grid-flow-col">

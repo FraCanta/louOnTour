@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 const Banner = () => {
   return (
     <section className="section4 ">
-      <div className="section_container">
+      <div className="section_container ">
         <h2 className="text-white">
           Organizziamo insieme il tour su misura per te!
         </h2>
