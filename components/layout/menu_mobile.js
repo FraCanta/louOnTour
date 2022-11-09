@@ -73,7 +73,7 @@ function Menu_mobile() {
         width: "55px",
         ease: Power2.easeInOut,
       });
-      tl.to(".menu_mobile_item li a", {
+      tl.to(".link_menu", {
         duration: 0.08,
         opacity: 1,
         stagger: {
@@ -130,7 +130,7 @@ function Menu_mobile() {
         opacity: 0,
         ease: Power1.inOut,
       });
-      tl.to(".menu_mobile_item li a", {
+      tl.to(".link_menu", {
         duration: 0.3,
         opacity: 0,
         stagger: 0.1,
@@ -170,7 +170,7 @@ function Menu_mobile() {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/"
-                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px] !pb-4"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] !pb-4 md:!pb-8 link_menu"
                 >
                   Inizi da qui!
                 </Link>
@@ -178,7 +178,7 @@ function Menu_mobile() {
               <li className="dropdown dropdown-right">
                 <label
                   tabIndex={0}
-                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px] font-normal !pl-0  !pr-8 flex items-center uppercase !pb-4"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] font-normal !pl-0  !pr-8 md:!pr-20 flex items-center uppercase !pb-4 md:!pb-8 link_menu"
                 >
                   Tours
                   <Icon
@@ -190,11 +190,14 @@ function Menu_mobile() {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content min-h-[300px] !p-4 shadow rounded-box w-52"
+                  className="dropdown-content min-h-[300px] md:min-h-[380px] !p-4 shadow rounded-box w-52 md:w-60"
                 >
                   {translation?.home?.map?.markers?.map((el, i) => (
                     <li key={i} className="py-1.5" onClick={handleBurgerClose}>
-                      <Link className="hover:underline text-sm " href="/tours">
+                      <Link
+                        className="hover:underline text-sm md:text-xl"
+                        href="/tours"
+                      >
                         {el?.title}
                       </Link>
                     </li>
@@ -204,7 +207,7 @@ function Menu_mobile() {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/how"
-                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px] !pb-4"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] !pb-4 md:!pb-8 link_menu"
                 >
                   Chi sono
                 </Link>
@@ -212,7 +215,7 @@ function Menu_mobile() {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/pricing"
-                  className="text-[#232F37] text-[40px] md:text-[60px] lg:text-[50px]"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] link_menu"
                 >
                   Contatti
                 </Link>
@@ -220,7 +223,7 @@ function Menu_mobile() {
             </ul>
             <div className="socials w-4/5">
               <button className="lg:text-lg 3xl:text-2xl ">
-                <Link href="/contact" className="">
+                <Link href="/contact" className="link_menu">
                   <Icon
                     icon="entypo-social:facebook"
                     color="#e3494d"
@@ -228,8 +231,8 @@ function Menu_mobile() {
                   />
                 </Link>
               </button>
-              <button className=" lg:text-lg 3xl:text-2xl ">
-                <Link href="/contact" className="">
+              <button className=" llinks">
+                <Link href="/contact" className="link_menu">
                   <Icon
                     icon="akar-icons:instagram-fill"
                     color="#e3494d"
@@ -238,7 +241,7 @@ function Menu_mobile() {
                 </Link>
               </button>
               <button className="lg:text-lg 3xl:text-2xl">
-                <Link href="/contact" className="">
+                <Link href="/contact" className="link_menu">
                   <Icon
                     icon="entypo-social:youtube"
                     color="#e3494d"
