@@ -2,24 +2,18 @@ import React, { useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Button from "../button/button";
 import Modal from "../modal/modal";
-import Swiper from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCube, Pagination } from "swiper";
+import "swiper/css/bundle";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import Lou from "../../public/assets/foto1.jpg";
+import Lou2 from "../../public/assets/foto2.jpg";
+import Lou3 from "../../public/assets/foto3.jpg";
+import Lou4 from "../../public/assets/foto4.jpg";
+import Image from "next/image";
 
 const AboutMe = () => {
-  // useEffect(() => {
-  //   var swiper = new Swiper(".blog-slider", {
-  //     spaceBetween: 30,
-  //     effect: "fade",
-  //     loop: true,
-  //     mousewheel: {
-  //       invert: false,
-  //     },
-  //     // autoHeight: true,
-  //     pagination: {
-  //       el: ".blog-slider__pagination",
-  //       clickable: true,
-  //     },
-  //   });
-  // });
   return (
     <div className="about_me min-h-[100vh] py-8  w-full bg-[#232F37] mt-20 text-white flex items-center relative">
       <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center w-4/5 mx-auto h-full">
@@ -40,14 +34,11 @@ const AboutMe = () => {
 
           <Button>scopri di più</Button>
         </div>
-        <div className="pt-20 2xl:pt-0">
+        <div className="pt-20 2xl:pt-0 flex items-center">
           <div className="blog-slider ">
             <div className="blog-slider__wrp swiper-wrapper">
               <div className="blog-slider__item swiper-slide">
-                <div className="blog-slider__img">
-                  {/* <img src="../assets/Toscana.png" alt="" /> */}
-                </div>
-                {/* <div class="blog-slider__content"> */}
+                <div className="blog-slider__img"></div>
                 <div className="flex flex-col-reverse lg:flex-col">
                   <div className="flex  w-full text-black justify-end items-center mb-4">
                     <h6 className="mx-2 text-[0.8rem] text-[#707070]">
