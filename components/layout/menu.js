@@ -4,9 +4,19 @@ import React from "react";
 import Lou from "../../public/assets/logo4.png";
 import { Icon } from "@iconify/react";
 import translation from "../../public/locales/it/it.json";
+// import { useRouter } from "next/router";
 
-const Menu = () => {
+const Menu = ({ exact, href }) => {
   console.log(translation);
+  // const { pathname } = useRouter();
+
+  // const isActive = exact ? pathname === href : pathname.startsWith(href);
+
+  // if (isActive) {
+  //   props.className !== undefined
+  //     ? (props.className += " active")
+  //     : (props.className = "active");
+  // }
   return (
     <div className="hidden xl:flex justify-center items-center w-full bg-white border-b border-black-500 z-20 menu_container">
       <div className="container mx-auto w-4/5">

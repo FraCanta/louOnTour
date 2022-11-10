@@ -11,7 +11,7 @@ const HeroChiSono = () => {
           <div className="flex flex-col justify-center h-full">
             <h4 className="text-[#E3494D]">About me</h4>
             <h2 className="text-5xl 2xl:text-[64px] xl:text-[45px] font-medium md:leading-none lg:leading-none text-white ">
-              Ciao! Mi Presento sono Luisa Quaglia!
+              Ciao! Mi presento sono Luisa Quaglia!
             </h2>
             <p className="text-base sm:text-lg fxl:text-2xl mt-4 sm:mt-8 mb-8 text-white leading-6 2xl:leading-9 xl:w-4/5">
               Vivo vicino Volterra, in un agriturismo con mio marito Luigi, la

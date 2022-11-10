@@ -32,10 +32,10 @@ const Hero = () => {
             Lou On Tour
           </h1>
           <p className="w-4/5 2xl:w-[68%] mx-auto text-white text-basemd:text-[1.2rem] 2xl:text-[1.5rem] lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2rem] leading-6 2xl:leading-9 mb-5 font-bold">
-            Sono Luisa Quaglia, Guida Turistica abilitata in italiano e in
-            inglese. Propongo tour guidati a Firenze, Volterra, Siena e la sua
-            provincia. Sono a tua disposizione per disegnare il tuo tour su
-            misura, secondo i tuoi gusti e le tue esigenze.
+            Guida Turistica abilitata in italiano e in inglese. Propongo tour
+            guidati a Firenze, Volterra, Siena e la sua provincia. Sono a tua
+            disposizione per disegnare il tuo tour su misura, secondo i tuoi
+            gusti e le tue esigenze.
           </p>
           <Cta>get started</Cta>
         </div>

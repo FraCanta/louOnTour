@@ -29,6 +29,26 @@ body {
   overflow-x: hidden;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -507,16 +527,29 @@ h4 {
   margin-left: 0;
 }
 
-.menu_mobile_item li a.active {
-  color: red;
+/* .menu-nav > ul > li > a.active::after {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--primary);
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform 0.5s;
 }
 
+.menu-nav > ul > li > a.active {
+  color: var(--primary);
+  font-weight: var(--font-weight-medium);
+}
 .arrow_icon {
   position: absolute;
   bottom: 50%;
   left: 50%;
   transform: translate(-50%, 50%);
-}
+} */
 
 @media (prefers-color-scheme: dark) {
   html {
