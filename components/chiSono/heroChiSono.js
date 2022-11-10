@@ -9,7 +9,7 @@ const HeroChiSono = () => {
         <div className="w-full h-screen xl:w-4/5 bg-[#232F37]  p-8 xl:hero_left">
           <div className="flex flex-col justify-center h-full">
             <h4 className="text-[#E3494D]">About me</h4>
-            <h2 className="text-4xl 2xl:text-[64px] xl:text-[45px] font-medium md:leading-none lg:leading-none text-white ">
+            <h2 className="text-5xl 2xl:text-[64px] xl:text-[45px] font-medium md:leading-none lg:leading-none text-white ">
               Ciao! Mi Presento sono Luisa Quaglia!
             </h2>
             <p className="text-base sm:text-lg fxl:text-2xl mt-4 sm:mt-8 mb-8 text-white leading-6 2xl:leading-9 xl:w-4/5">
