@@ -27,7 +27,7 @@ const HeroChiSono = () => {
           <div className="w-full h-full p-8 relative">
             <Image
               src={LouAvatar}
-              className=" rounded-lg shadow-2xl w-[400px] h-[500px] absolute -left-20 top-20"
+              className=" rounded-lg shadow-2xl 2xl:w-[400px] 2xl:h-[500px] absolute -left-20 top-20"
               alt="lou_avatar"
             />
             <svg viewbox="0 0 100 100" className="absolute top-0 -left-20">
