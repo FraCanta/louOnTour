@@ -7,7 +7,6 @@ import translation from "../../public/locales/it/it.json";
 // import { useRouter } from "next/router";
 
 const Menu = ({ exact, href }) => {
-  console.log(translation);
   // const { pathname } = useRouter();
 
   // const isActive = exact ? pathname === href : pathname.startsWith(href);
