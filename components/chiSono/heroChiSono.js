@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import LouAvatar from "../../public/assets/lou-avatar.webp";
+import CurvedText from "./curvedText";
 
 const HeroChiSono = () => {
   return (
@@ -30,19 +31,7 @@ const HeroChiSono = () => {
               className=" rounded-lg shadow-2xl 2xl:w-[400px] 2xl:h-[500px] absolute -left-20 top-20"
               alt="lou_avatar"
             />
-            <svg viewbox="0 0 100 100" className="absolute top-0 -left-20">
-              <path
-                d="M 25, 50
-    a 25,25 0 1,1 50,0
-    a 25,25 0 1,1 -50,0 "
-                id="curve"
-              />
-              <text x="1" fill="#000">
-                {/* <textPath xlink:href="#curve">
-                  Look at this awesome circled text
-                </textPath> */}
-              </text>
-            </svg>
+            <CurvedText />
           </div>
         </div>
       </div>

@@ -22,6 +22,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Oswald", sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -522,7 +523,7 @@ h4 {
     color-scheme: dark;
   }
   body {
-    color: #0d0d0d;
+    /* color: #0d0d0d; */
     background: rgb(255, 255, 255);
   }
 }

@@ -261,3 +261,13 @@
 }
 
 /*  ABOUT ME PAGE */
+
+.rotate_text svg {
+  animation: spin 5s infinite linear;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

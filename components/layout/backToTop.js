@@ -13,7 +13,7 @@ const BackToTop = () => {
       document.documentElement.scrollTop > 20
     ) {
       setButtonState(
-        "fixed inline-block p-3 bg-yellow text-[#6257ff] font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#6257ff] hover:text-white hover:shadow-lg focus:bg-[#6257ff] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#6257ff] active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5"
+        "fixed inline-block p-3 bg-white text-[#E3494D] font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#E3494D] hover:text-white hover:shadow-lg focus:bg-[#E3494D] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#E3494D] active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5"
       );
     } else {
       setButtonState("hidden");
