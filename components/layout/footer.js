@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import FooterLogo from "../../public/assets/logo4.png";
+import FooterLogo from "../../public/assets/logo_mobile2.png";
 import { useRouter } from "next/router";
 
 const Footer = ({ translation }) => {
@@ -19,14 +19,12 @@ const Footer = ({ translation }) => {
                     <Image
                       src={FooterLogo}
                       alt="LouLogo"
-                      width={250}
-                      height={120}
-                      className="mr-4"
+                      className="mr-4 w-[100px] h-[100px]"
                     />
                   </Link>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-indigo ml-1 text-sm">
+                  <span className="text-indigo ml-1 text-sm w-4/5">
                     {" "}
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                     Doloremque ea ad facilis possimus consectetur neque quia
@@ -47,7 +45,7 @@ const Footer = ({ translation }) => {
 
               <div className="grid grid-rows-4 grid-flow-col gap-4 pt-6">
                 <div className="font-semibold">Tours</div>
-                <Link href="/how" className="font-normal">
+                <Link href="/tours" className="font-normal">
                   Tour da non perdere!
                 </Link>
                 <Link href="/how" className="font-normal">
@@ -74,7 +72,7 @@ const Footer = ({ translation }) => {
           </div>
         </div>
       </div>
-      <div className="border border-black-300"></div>
+      <div className="w-full h-[1px] bg-gray-200"></div>
       <div className="py-2 text-[#232f37] flex justify-center items-center text-sm font-extralight">
         <Icon icon="bi:c-circle" color="#232f37" width="12" height="12" />
         <p className="ml-1">Copyright Ubiquity 2022</p>

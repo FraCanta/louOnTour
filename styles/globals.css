@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .hero_left {
+    -webkit-clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
+    border-radius: 10px;
+  }
+}
+
 html,
 body {
   padding: 0;

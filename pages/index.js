@@ -12,10 +12,11 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Luisa Quaglia - Guida Turistica</title>
+        <title>Lou On Tour - Guida Turistica</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Hero />
       <Mission />
       <Map translation={translationIT?.home?.map} />

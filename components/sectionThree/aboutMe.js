@@ -12,6 +12,7 @@ import Lou2 from "../../public/assets/foto2.jpg";
 import Lou3 from "../../public/assets/foto3.jpg";
 import Lou4 from "../../public/assets/foto4.jpg";
 import Image from "next/image";
+import Script from "next/script";
 
 const AboutMe = () => {
   return (
@@ -35,7 +36,7 @@ const AboutMe = () => {
           <Button>scopri di più</Button>
         </div>
         <div className="pt-20 2xl:pt-0 flex items-center">
-          <div className="blog-slider ">
+          {/* <div className="blog-slider ">
             <div className="blog-slider__wrp swiper-wrapper">
               <div className="blog-slider__item swiper-slide">
                 <div className="blog-slider__img"></div>
@@ -58,6 +59,23 @@ const AboutMe = () => {
               </div>
             </div>
             <div className="blog-slider__pagination"></div>
+          </div> */}
+
+          <div
+            className="airbnb-embed-frame w-[410px] h-[300px] mx-auto"
+            data-id="3583595"
+            data-view="experience"
+            // style="width:410px;height:300px;margin:auto"
+          >
+            <a href="https://www.airbnb.it/experiences/3583595?guests=1&amp;adults=1&amp;s=66&amp;source=embed_widget">
+              Visto su Airbnb
+            </a>
+            <a
+              href="https://www.airbnb.it/experiences/3583595?guests=1&amp;adults=1&amp;s=66&amp;source=embed_widget"
+              rel="nofollow"
+            >
+              Tour Privato a Siena con una Guida Turistica Abilitata
+            </a>
           </div>
         </div>
       </div>

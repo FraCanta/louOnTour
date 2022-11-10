@@ -206,7 +206,7 @@ function Menu_mobile() {
               </li>
               <li onClick={handleBurgerClose}>
                 <Link
-                  href="/how"
+                  href="/chiSono"
                   className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] !pb-4 md:!pb-8 link_menu"
                 >
                   Chi sono
@@ -214,7 +214,7 @@ function Menu_mobile() {
               </li>
               <li onClick={handleBurgerClose}>
                 <Link
-                  href="/pricing"
+                  href="/contact"
                   className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] link_menu"
                 >
                   Contatti

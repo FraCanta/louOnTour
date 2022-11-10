@@ -58,13 +58,13 @@ const Menu = () => {
               </li>
               {/* </li> */}
               <li>
-                <Link href="/how" className="2xl:text-base fxl:text-[18px]">
+                <Link href="/chiSono" className="2xl:text-base fxl:text-[18px]">
                   Chi sono
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pricing"
+                  href="/contact"
                   className="2xl:text-l[12px] fxl:text-[18px]"
                 >
                   Contatti

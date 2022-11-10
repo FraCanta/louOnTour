@@ -13,7 +13,7 @@ const Masonry = () => {
           <Image
             src={Lou}
             alt="lou"
-            objectFit="cover"
+            // objectFit="cover"
 
             // className="md:w-[400px] mdl:h-[400px]  rounded-md mr-20px"
           />
@@ -40,7 +40,7 @@ const Masonry = () => {
           <Image
             src={Lou2}
             alt="lou"
-            objectFit="cover"
+            // objectFit="cover"
             // width={300}
             // height={300}
             // className="md:w-[400px] md:h-[200px] rounded-md"
@@ -69,7 +69,7 @@ const Masonry = () => {
           <Image
             src={Lou3}
             alt="lou"
-            objectFit="cover"
+            // objectFit="cover"
             // width={300}
             // height={300}
             // className="md:w-[400px] md:h-[200px] 2xl:w-full  rounded-md"
@@ -97,7 +97,7 @@ const Masonry = () => {
           <Image
             src={Lou4}
             alt="lou"
-            objectFit="cover"
+            // objectFit="cover"
             // width={300}
             // height={300}
             // className="md:w-[400px] md:h-[400px] 2xl:w-full  rounded-md"

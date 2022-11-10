@@ -32,7 +32,7 @@ const Map = ({ translation }) => {
         });
   };
   return (
-    <div className="min-h-[70vh] container mx-auto w-full lg:w-4/5">
+    <div className="min-h-[100vh] container mx-auto w-full lg:w-4/5">
       <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible">
         <div className="p-8 2xl:p-0 ">
           <h4 className="text-[#E3494D]">Tours</h4>
@@ -68,39 +68,37 @@ const Map = ({ translation }) => {
           />
           <Modal handleModal={handleModal} showModal={showModal} />
           {translation?.markers?.map((el, i) => (
-            <>
-              <div
-                className="flex flex-col justify-center absolute items-center"
-                style={
-                  el?.marker?.top > 0
-                    ? {
-                        top: `${el?.marker?.top}px`,
-                        right: `${el?.marker?.right}px`,
-                        color: "#e3494d",
-                      }
-                    : {
-                        bottom: `${el?.marker?.bottom}px`,
-                        right: `${el?.marker?.right}px`,
-                        color: "#e3494d",
-                      }
-                }
-              >
-                <Icon
-                  key={i}
-                  icon="fontisto:map-marker-alt"
-                  width="32"
-                  className={` hover:animate-bounce cursor-pointer`}
-                  alt={el?.title}
-                  id={el?.id}
-                  onClick={() => handleModal(el?.title, el?.video, el?.link)}
-                />
-                <div className="bg-[#232F37] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 "></div>
+            <div
+              key={i}
+              className="flex flex-col justify-center absolute items-center"
+              style={
+                el?.marker?.top > 0
+                  ? {
+                      top: `${el?.marker?.top}px`,
+                      right: `${el?.marker?.right}px`,
+                      color: "#e3494d",
+                    }
+                  : {
+                      bottom: `${el?.marker?.bottom}px`,
+                      right: `${el?.marker?.right}px`,
+                      color: "#e3494d",
+                    }
+              }
+            >
+              <Icon
+                icon="fontisto:map-marker-alt"
+                width="32"
+                className={` hover:animate-bounce cursor-pointer`}
+                alt={el?.title}
+                id={el?.id}
+                onClick={() => handleModal(el?.title, el?.video, el?.link)}
+              />
+              <div className="bg-[#232F37] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 "></div>
 
-                <p className="uppercase text-[0.8rem] text-[#232F37] font-medium py-2">
-                  {el?.title}
-                </p>
-              </div>
-            </>
+              <p className="uppercase text-[0.8rem] text-[#232F37] font-medium py-2">
+                {el?.title}
+              </p>
+            </div>
           ))}
         </div>
       </div>

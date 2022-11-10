@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -32,6 +33,10 @@ export default function Document() {
       </Head>
 
       <body>
+        <Script
+          src="https://www.airbnb.it/embeddable/airbnb_jssdk"
+          strategy="lazyOnload"
+        />
         <Main />
         <NextScript />
       </body>
