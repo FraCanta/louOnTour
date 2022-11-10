@@ -8,6 +8,13 @@
     clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
     border-radius: 10px;
   }
+  .bgImage {
+    background-image: url(../public/assets/lou.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    border-radius: 10px;
+  }
 }
 
 html,

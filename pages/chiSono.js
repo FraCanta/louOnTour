@@ -2,6 +2,7 @@ import React from "react";
 import HeroChiSono from "../components/chiSono/heroChiSono";
 import Head from "next/head";
 import Text from "../components/chiSono/text";
+import BgImage from "../components/chiSono/bgImage";
 
 const ChiSono = () => {
   return (
@@ -13,6 +14,7 @@ const ChiSono = () => {
       </Head>
       <HeroChiSono />
       <Text />
+      <BgImage />
     </>
   );
 };

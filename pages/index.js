@@ -6,7 +6,6 @@ import Mission from "../components/sectionOne/mission";
 import AboutMe from "../components/sectionThree/aboutMe";
 import Map from "../components/sectionTwo/map";
 import translationIT from "../public/locales/it/it.json";
-import Banner from "../components/sectionFive/banner";
 
 export default function Home() {
   return (
@@ -22,7 +21,6 @@ export default function Home() {
       <Map translation={translationIT?.home?.map} />
       <AboutMe />
       <Insta />
-      <Banner />
     </div>
   );
 }
