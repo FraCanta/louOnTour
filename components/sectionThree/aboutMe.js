@@ -36,7 +36,7 @@ const AboutMe = () => {
           <Button>scopri di più</Button>
         </div>
         <div className="pt-20 2xl:pt-0 flex items-center">
-          {/* <div className="blog-slider ">
+          <div className="blog-slider ">
             <div className="blog-slider__wrp swiper-wrapper">
               <div className="blog-slider__item swiper-slide">
                 <div className="blog-slider__img"></div>
@@ -59,9 +59,9 @@ const AboutMe = () => {
               </div>
             </div>
             <div className="blog-slider__pagination"></div>
-          </div> */}
+          </div>
 
-          <div
+          {/* <div
             className="airbnb-embed-frame w-[410px] h-[300px] mx-auto"
             data-id="3583595"
             data-view="experience"
@@ -76,7 +76,7 @@ const AboutMe = () => {
             >
               Tour Privato a Siena con una Guida Turistica Abilitata
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
