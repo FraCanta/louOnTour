@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-pdf/renderer": "^3.0.1",
     "daisyui": "^2.38.1",
     "gsap": "^3.11.3",
     "next": "13.0.0",

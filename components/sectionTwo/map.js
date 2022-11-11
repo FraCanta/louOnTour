@@ -76,12 +76,12 @@ const Map = ({ translation }) => {
                   ? {
                       top: `${el?.marker?.top}px`,
                       right: `${el?.marker?.right}px`,
-                      color: "#e3494d",
+                      color: "#FE6847",
                     }
                   : {
                       bottom: `${el?.marker?.bottom}px`,
                       right: `${el?.marker?.right}px`,
-                      color: "#e3494d",
+                      color: "#FE6847",
                     }
               }
             >
@@ -93,7 +93,7 @@ const Map = ({ translation }) => {
                 id={el?.id}
                 onClick={() => handleModal(el?.title, el?.video, el?.link)}
               />
-              <div className="bg-[#232F37] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 "></div>
+              <div className="bg-[#FE6847] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 "></div>
 
               <p className="uppercase text-[0.8rem] text-[#232F37] font-medium py-2">
                 {el?.title}
