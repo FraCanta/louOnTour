@@ -15,6 +15,13 @@
     height: 70vh;
     border-radius: 10px;
   }
+
+  @media screen and (max-width: 768px) {
+    .bgImage {
+      height: 30vh;
+      border-radius: 0;
+    }
+  }
 }
 
 html,

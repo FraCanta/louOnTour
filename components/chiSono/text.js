@@ -3,7 +3,7 @@ import React from "react";
 const Text = () => {
   return (
     <div className="min-h-[50vh] text-left 2xl:text-center pt-10 2xl:pt-10 flex items-center justify-center">
-      <div className="container w-4/5 md:w-4/5 mx-auto pt-12 md:pt-2 xl:h-full ">
+      <div className="container w-4/5 md:w-4/5 mx-auto pt-0 xl:pt-12 md:pt-2 xl:h-full ">
         <div className="mx-auto relative z-1">
           <div>
             <h3 className="text-4xl md:text-[40px] font-medium mt-2 leading-10 text-[#232F37]">

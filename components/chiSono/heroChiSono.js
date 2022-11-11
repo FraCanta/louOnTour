@@ -14,7 +14,7 @@ const HeroChiSono = () => {
               <div> Ciao! </div>
               <div>Mi presento:</div> <div>sono Luisa Quaglia</div>
             </h2>
-            <p className="text-base sm:text-lg fxl:text-2xl mt-4 sm:mt-8 mb-8 text-white leading-6 2xl:leading-9 xl:w-4/5">
+            <p className="text-base sm:text-lg fxl:text-2xl mt-8 mb-8 text-white leading-6 2xl:leading-9 xl:w-4/5">
               Vivo vicino Volterra, in un agriturismo con mio marito Luigi, la
               nostra piccola Alice e due gatti perennemente affamati, Angus e
               Marla. Sono laureata in archeologia a Siena e ho lavorato in
