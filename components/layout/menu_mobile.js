@@ -190,13 +190,13 @@ function Menu_mobile() {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content min-h-[300px] md:min-h-[380px] !p-4 shadow rounded-box w-52 md:w-60"
+                  className="dropdown-content min-h-[300px] md:min-h-[380px] !p-4 shadow rounded-box w-52 md:w-60 text-[#232F37]"
                 >
                   {translation?.home?.map?.markers?.map((el, i) => (
                     <li key={i} className="py-1.5" onClick={handleBurgerClose}>
                       <Link
                         className="hover:underline text-sm md:text-xl"
-                        href="/tours"
+                        href={`/locations/${el?.title}`}
                       >
                         {el?.title}
                       </Link>

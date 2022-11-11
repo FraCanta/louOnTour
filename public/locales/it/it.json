@@ -3,28 +3,24 @@
     "map": {
       "markers": [
         {
-          "id": "fi",
           "title": "Firenze",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
           "marker": { "top": 213, "right": 240 }
         },
         {
-          "id": "sgim",
           "title": "San Gimignano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
           "marker": { "top": 245, "right": 285 }
         },
         {
-          "id": "vol",
           "title": "Volterra",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
           "marker": { "bottom": 238, "right": 337 }
         },
         {
-          "id": "mont",
           "title": "Monteriggioni",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
@@ -38,15 +34,13 @@
           "marker": { "bottom": 231, "right": 207 }
         },
         {
-          "id": "sangalg",
           "title": "San Galgano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
           "marker": { "bottom": 160, "right": 256 }
         },
         {
-          "id": "valdo",
-          "title": "Valdorcia",
+          "title": "Val d'Orcia",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
           "marker": { "bottom": 165, "right": 154 }

@@ -56,7 +56,7 @@ const Menu = ({ exact, href }) => {
                       <li key={i} className="py-1.5">
                         <Link
                           className="hover:underline text-sm !ml-2"
-                          href="/tours"
+                          href={`/locations/${el?.title}`}
                         >
                           {el?.title}
                         </Link>

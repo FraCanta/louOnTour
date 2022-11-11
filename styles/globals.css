@@ -16,9 +16,9 @@
     border-radius: 10px;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (min-width: 300px) and (max-width: 920px) {
     .bgImage {
-      height: 30vh;
+      height: 38vh;
       border-radius: 0;
     }
   }
