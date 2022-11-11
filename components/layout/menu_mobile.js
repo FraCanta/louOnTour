@@ -226,7 +226,7 @@ function Menu_mobile() {
                 <Link href="/contact" className="link_menu">
                   <Icon
                     icon="entypo-social:facebook"
-                    color="#e3494d"
+                    color="#FE6847"
                     width="25"
                   />
                 </Link>
@@ -235,7 +235,7 @@ function Menu_mobile() {
                 <Link href="/contact" className="link_menu">
                   <Icon
                     icon="akar-icons:instagram-fill"
-                    color="#e3494d"
+                    color="#FE6847"
                     width="25"
                   />
                 </Link>
@@ -244,7 +244,7 @@ function Menu_mobile() {
                 <Link href="/contact" className="link_menu">
                   <Icon
                     icon="entypo-social:youtube"
-                    color="#e3494d"
+                    color="#FE6847"
                     width="25"
                   />{" "}
                 </Link>

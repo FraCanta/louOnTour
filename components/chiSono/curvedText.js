@@ -12,7 +12,7 @@ const CurvedText = () => {
         rx={100}
         ry={100}
         text="Lou On Tour . Lou On Tour . Lou On Tour . Lou On Tour . Lou On Tour .  "
-        textProps={{ style: { fontSize: 25, fill: "#E3494D" } }}
+        textProps={{ style: { fontSize: 25, fill: "#FE6847" } }}
       />
     </div>
   );

@@ -46,7 +46,7 @@ const Insta = () => {
           </div>
         </div>
         <div className=" 2xl:p-0 w-4/5 flex flex-col items-start justify-center">
-          <h4 className="text-[#E3494D]">Social</h4>
+          <h4 className="text-[#FE6847]">Social</h4>
           <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Lou On Tour Instagram
           </h2>

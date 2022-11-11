@@ -16,6 +16,12 @@
     border-radius: 10px;
   }
 
+  .bgCities {
+    background-image: url(../public/assets/florence.png);
+    background-size: cover;
+    background-position: center;
+  }
+
   @media screen and (min-width: 300px) and (max-width: 920px) {
     .bgImage {
       height: 38vh;
@@ -132,27 +138,27 @@ h4 {
     #75bed6
   ); */
 
-  background: hsla(186, 66%, 40%, 1);
+  background: hsla(205, 100%, 67%, 1);
 
   background: linear-gradient(
     90deg,
-    hsla(186, 66%, 40%, 1) 0%,
-    hsla(188, 78%, 69%, 1) 100%
+    hsla(204, 68%, 41%, 1) 0%,
+    hsla(205, 100%, 67%, 1) 100%
   );
 
   background: -moz-linear-gradient(
     90deg,
-    hsla(186, 66%, 40%, 1) 0%,
-    hsla(188, 78%, 69%, 1) 100%
+    hsla(204, 68%, 41%, 1) 0%,
+    hsla(205, 100%, 67%, 1) 100%
   );
 
   background: -webkit-linear-gradient(
     90deg,
-    hsla(186, 66%, 40%, 1) 0%,
-    hsla(188, 78%, 69%, 1) 100%
+    hsla(204, 68%, 41%, 1) 0%,
+    hsla(205, 100%, 67%, 1) 100%
   );
 
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#239EAB", endColorstr="#74DEEE", GradientType=1 );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#57b8ff", endColorstr="#2176ae", GradientType=1 );
   overflow-x: hidden;
 }
 

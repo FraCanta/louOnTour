@@ -35,7 +35,7 @@ const Map = ({ translation }) => {
     <div className="min-h-[100vh] container mx-auto w-full lg:w-4/5">
       <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible">
         <div className="p-8 2xl:p-0 ">
-          <h4 className="text-[#E3494D]">Tours</h4>
+          <h4 className="text-[#FE6847]">Tours</h4>
           <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Disegnamo insieme il Tuo Tour
           </h2>

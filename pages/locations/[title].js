@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Driving from "../../components/pdf/driving";
+import HeroCities from "../../components/UI/heroCities";
 import locations from "../../public/locales/it/it.json";
 
 export default function Tours({ city }) {
@@ -11,7 +13,7 @@ export default function Tours({ city }) {
         <div className="w-full xl:w-1/2 p-8">
           <h6 className="text-[#E3494D] text-bold">Destinations</h6>
           <h2 className="text-4xl sm:text-6xl font-bold font-medium mt-2 leading-10 text-[#232F37]">
-            Cosa possiamo vedere e fare insieme a Siena!
+            Consigli Utili
           </h2>
         </div>
         <div className="w-full xl:w-1/2 p-8">
@@ -29,8 +31,10 @@ export default function Tours({ city }) {
               utili.
             </p>
           </div>
+          <Driving />
         </div>
       </div>
+      <HeroCities />
     </>
   );
 }

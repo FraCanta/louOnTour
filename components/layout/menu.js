@@ -83,17 +83,17 @@ const Menu = ({ exact, href }) => {
           </nav>
           <div className="flex">
             <Link href="/contact" className="mr-4">
-              <Icon icon="entypo-social:facebook" color="#E3494D" width="25" />
+              <Icon icon="entypo-social:facebook" color="#FE6847" width="25" />
             </Link>
             <Link href="/contact" className="mr-4">
               <Icon
                 icon="akar-icons:instagram-fill"
-                color="#E3494D"
+                color="#FE6847"
                 width="25"
               />
             </Link>
             <Link href="/contact" className="">
-              <Icon icon="entypo-social:youtube" color="#E3494D" width="25" />{" "}
+              <Icon icon="entypo-social:youtube" color="#FE6847" width="25" />{" "}
             </Link>
           </div>
         </div>

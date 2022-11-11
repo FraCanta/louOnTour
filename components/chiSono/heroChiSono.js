@@ -9,7 +9,7 @@ const HeroChiSono = () => {
       <div className="flex h-full w-full flex-col xl:flex-row ">
         <div className="w-full h-screen xl:w-[65%] bg-[#232F37]  p-8 xl:hero_left">
           <div className="flex flex-col justify-center h-full">
-            <h4 className="text-[#E3494D]">About me</h4>
+            <h4 className="text-[#FE6847]">About me</h4>
             <h2 className="text-[3rem] md:text-[6rem] 2xl:text-[70px] xl:text-[45px] 3xl:text-[120px] font-medium leading-[1.1] md:leading-none lg:leading-none text-white ">
               <div> Ciao! </div>
               <div>Mi presento:</div> <div>sono Luisa Quaglia</div>

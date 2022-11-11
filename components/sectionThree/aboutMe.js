@@ -19,7 +19,7 @@ const AboutMe = () => {
     <div className="about_me min-h-[100vh] py-8  w-full bg-[#232F37] mt-20 text-white flex items-center relative">
       <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center w-4/5 mx-auto h-full">
         <div>
-          <h4 className="text-[#E3494D]">About me</h4>
+          <h4 className="text-[#FE6847]">About me</h4>
           <h2 className="text-4xl md:text-[64px] font-medium  md:leading-none lg:leading-none mb-10">
             Che dicono di me!
           </h2>
