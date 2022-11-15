@@ -11,6 +11,7 @@
   "dependencies": {
     "daisyui": "^2.38.1",
     "gsap": "^3.11.3",
+    "i18next": "^22.0.5",
     "next": "13.0.0",
     "react": "18.2.0",
     "react-curved-text": "^1.0.0",

@@ -4,6 +4,7 @@ import HeroCities from "../../components/UI/heroCities";
 import locations from "../../public/locales/it/it.json";
 
 export default function Tours({ city }) {
+  console.log(locations);
   return (
     <>
       <Head>
@@ -29,15 +30,6 @@ export default function Tours({ city }) {
             sono frequenti. Mentre per Firenze e Siena ci sono diverse opzioni
             utili.
           </p>
-          <a
-            href="../pdf/pdf.pdf"
-            target="_black"
-            className="btn "
-            rel="noopener noreferrer"
-            download="Guida Toscana"
-          >
-            Download Guida
-          </a>{" "}
         </div>
       </div>
       <HeroCities />
@@ -47,11 +39,7 @@ export default function Tours({ city }) {
 
 export async function getStaticProps(context) {
   const { params } = context;
-
-  let targetObj = locations?.home?.map?.markers?.find(
-    (obj) => obj?.title === params.title
-  );
-  console.log(targetObj);
+  let targetObj = locations?.tours?.["Firenze"];
 
   return {
     props: {
@@ -61,13 +49,45 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const cities = locations?.home?.map?.markers;
+  const cities = locations?.tours;
+  const arr = Object.keys(cities); // Array dei tours
+  const paths = arr?.map((el) => {
+    return {
+      params: {
+        title: el,
+      },
+    };
+  });
 
-  const paths = cities?.map((city) => ({
-    params: { title: city?.title },
-  }));
   return {
     paths,
     fallback: false,
   };
 }
+
+// export async function getStaticProps(context) {
+//   const { params } = context;
+
+//   let targetObj = locations?.home?.map?.markers?.find(
+//     (obj) => obj?.title === params.title
+//   );
+//   console.log(targetObj);
+
+//   return {
+//     props: {
+//       city: targetObj,
+//     },
+//   };
+// }
+
+// export async function getStaticPaths() {
+//   const cities = locations?.home?.map?.markers;
+
+//   const paths = cities?.map((city) => ({
+//     params: { title: city?.title },
+//   }));
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
