@@ -6,44 +6,51 @@
           "title": "Firenze",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "top": 213, "right": 240 }
+          "marker": { "top": 213, "right": 240 },
+          "desc": true
         },
         {
           "title": "San Gimignano",
           "link": "locations/San%20Gimignano",
           "video": "../assets/florence.mp4",
-          "marker": { "top": 245, "right": 285 }
+          "marker": { "top": 245, "right": 285 },
+          "desc": true
         },
         {
           "title": "Volterra",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 238, "right": 337 }
+          "marker": { "bottom": 238, "right": 337 },
+          "desc": true
         },
         {
           "title": "Monteriggioni",
           "link": "",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 258, "right": 236 }
+          "marker": { "bottom": 258, "right": 236 },
+          "desc": false
         },
         {
           "id": "si",
           "title": "Siena",
           "link": "Scopri",
           "video": "../assets/siena.mp4",
-          "marker": { "bottom": 231, "right": 207 }
+          "marker": { "bottom": 231, "right": 207 },
+          "desc": true
         },
         {
           "title": "San Galgano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 178, "right": 266 }
+          "marker": { "bottom": 178, "right": 266 },
+          "desc": true
         },
         {
           "title": "Montepulciano e Val d'Orcia",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 147, "right": 112 }
+          "marker": { "bottom": 147, "right": 112 },
+          "desc": true
         }
       ]
     }

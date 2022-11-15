@@ -4,7 +4,6 @@ import HeroCities from "../../components/UI/heroCities";
 import locations from "../../public/locales/it/it.json";
 
 export default function Tours({ city }) {
-  console.log(city);
   return (
     <>
       <Head>
