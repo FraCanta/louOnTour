@@ -28,12 +28,14 @@ const Modal = ({ handleModal, showModal }) => {
             {showModal?.title}
           </h3>
 
-          <Link
-            href="/tours"
-            className="text-bold text-white uppercase text-xl  2xl:text-2xl underline z-[999]"
-          >
-            {showModal?.link}
-          </Link>
+          {showModal?.link.length > 0 && (
+            <Link
+              href={showModal?.link}
+              className="text-bold text-white uppercase text-xl  2xl:text-2xl underline z-[999]"
+            >
+              Scopri
+            </Link>
+          )}
         </div>
       </div>
     </>

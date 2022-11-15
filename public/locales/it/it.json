@@ -10,7 +10,7 @@
         },
         {
           "title": "San Gimignano",
-          "link": "Scopri",
+          "link": "locations/San%20Gimignano",
           "video": "../assets/florence.mp4",
           "marker": { "top": 245, "right": 285 }
         },
@@ -22,7 +22,7 @@
         },
         {
           "title": "Monteriggioni",
-          "link": "Scopri",
+          "link": "",
           "video": "../assets/florence.mp4",
           "marker": { "bottom": 258, "right": 236 }
         },
@@ -37,13 +37,13 @@
           "title": "San Galgano",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 160, "right": 256 }
+          "marker": { "bottom": 178, "right": 266 }
         },
         {
           "title": "Montepulciano e Val d'Orcia",
           "link": "Scopri",
           "video": "../assets/florence.mp4",
-          "marker": { "bottom": 165, "right": 154 }
+          "marker": { "bottom": 147, "right": 112 }
         }
       ]
     }

@@ -4,7 +4,7 @@ import HeroCities from "../../components/UI/heroCities";
 import locations from "../../public/locales/it/it.json";
 
 export default function Tours({ city }) {
-  console.log(locations);
+  console.log(city);
   return (
     <>
       <Head>
@@ -39,7 +39,7 @@ export default function Tours({ city }) {
 
 export async function getStaticProps(context) {
   const { params } = context;
-  let targetObj = locations?.tours?.["Firenze"];
+  let targetObj = locations?.tours?.[params?.title];
 
   return {
     props: {
@@ -51,6 +51,7 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   const cities = locations?.tours;
   const arr = Object.keys(cities); // Array dei tours
+
   const paths = arr?.map((el) => {
     return {
       params: {
