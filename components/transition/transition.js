@@ -7,13 +7,13 @@ function Transition() {
   useEffect(() => {
     var tl = gsap.timeline({ repeatDelay: 1 });
     tl.to(trans.current, {
-      duration: 1.2,
+      duration: 1,
       width: "100%",
       left: "0%",
       ease: Expo.easeInOut,
     });
     tl.to(trans.current, {
-      duration: 1,
+      duration: 0.8,
       width: "100%",
       left: "100%",
       ease: Expo.easeInOut,
