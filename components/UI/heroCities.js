@@ -39,6 +39,7 @@ const HeroCities = ({ city }) => {
         <Icon
           icon="material-symbols:arrow-drop-down"
           width="60"
+          color="#FE6847"
           className={`absolute bottom-0 left-1/2 -translate-x-1/2 --translate-y-1/2 ${expand.arrow}`}
         />
 

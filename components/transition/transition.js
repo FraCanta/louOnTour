@@ -23,8 +23,8 @@ function Transition() {
   });
   return (
     <div>
-      <div className="bg-[#57b9ff] transition-effect " ref={trans}></div>
-      ciao
+      <div className="bg-[#FE6847] transition-effect " ref={trans}></div>
+      Page
     </div>
   );
 }

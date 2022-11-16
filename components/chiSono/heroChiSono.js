@@ -28,8 +28,9 @@ const HeroChiSono = () => {
         <div className="rounded-lg shadow-2xl hidden xl:block w-[50vh] h-[65%] p-8 absolute left-[59%] top-[20%]">
           <Image
             src={LouAvatar}
-            className="absolute inset-0"
             alt="lou_avatar"
+            fill
+            className="min-h-full h-full object-cover w-full absolute inset-0 rounded-lg"
           />
         </div>
         <CurvedText />
