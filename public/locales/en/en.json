@@ -1,0 +1,148 @@
+{
+  "home": {
+    "hero": {
+      "name": "Lou On Tour",
+      "paragraph": "Tourist Guide licensed in Italian and English. I offer guided tours in Florence, Volterra, Siena and its province. I am at your disposal to design your tailor-made tour, according to your tastes and needs. "
+    },
+    "map": {
+      "markers": [
+        {
+          "title": "Florence",
+          "link": "Scopri",
+          "video": "../assets/florence.mp4",
+          "marker": { "top": 213, "right": 240 },
+          "desc": true
+        },
+        {
+          "title": "San Gimignano",
+          "link": "locations/San%20Gimignano",
+          "video": "../assets/florence.mp4",
+          "marker": { "top": 245, "right": 285 },
+          "desc": true
+        },
+        {
+          "title": "Volterra",
+          "link": "Scopri",
+          "video": "../assets/florence.mp4",
+          "marker": { "bottom": 238, "right": 337 },
+          "desc": true
+        },
+        {
+          "title": "Monteriggioni",
+          "link": "",
+          "video": "../assets/florence.mp4",
+          "marker": { "bottom": 258, "right": 236 },
+          "desc": false
+        },
+        {
+          "id": "si",
+          "title": "Siena",
+          "link": "Scopri",
+          "video": "../assets/siena.mp4",
+          "marker": { "bottom": 231, "right": 207 },
+          "desc": true
+        },
+        {
+          "title": "San Galgano",
+          "link": "Scopri",
+          "video": "../assets/florence.mp4",
+          "marker": { "bottom": 178, "right": 266 },
+          "desc": true
+        },
+        {
+          "title": "Montepulciano e Val d'Orcia",
+          "link": "Scopri",
+          "video": "../assets/florence.mp4",
+          "marker": { "bottom": 147, "right": 112 },
+          "desc": true
+        }
+      ]
+    }
+  },
+  "tours": {
+    "Firenze": {
+      "img": "../assets/florence.png",
+      "titleImg": "Firenze",
+      "title": "Tours Firenze",
+      "descrizione": "Ammirata per la sua bellezza da milioni di visitatori da tutto il mondo, Firenze non è solo una città d’arte ma una vera e propria fonte di ispirazione per chiunque la visiti che sia la prima o la millesima volta! E’ la città che ha rotto con il Medioevo e ha introdotto in Europa il concetto di uomo moderno.",
+      "elenco": [
+        "Prima volta a Firenze?: allora non puoi perderti i luoghi simbolici della città come Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce… sono circa 3 ore di tour ma vedrai come vola il tempo!",
+        "Firenze +: dopo aver conosciuto la città non manca altro che visitare almeno uno dei due più famosi musei di Firenze perché mai sia che lasci Firenze senza aver visto un’opera di Michelangelo o Leonardo o Botticelli, Donatello…insomma di certo qui artisti non ne mancano!."
+      ],
+      "links": [
+        "https://www.uffizi.it/",
+        "https://www.galleriaaccademiafirenze.it/",
+        "https://www.bargellomusei.beniculturali.it/"
+      ]
+    },
+    "Siena": {
+      "img": "../assets/florence.png",
+      "titleImg": "Siena",
+      "title": "Tours Siena",
+      "descrizione": "Questa città posizionata in cima ad una collina è famosa per il suo centro storico tutelato dall’Unesco visto che ancora mantiene buona parte dell’assetto urbano medievale; è famosa per lo sfarzo artistico e architettonico soprattutto in epoca medievale; è la città del Palio, corsa di cavallo più famosa d’Italia. Qui è anche nata Santa Caterina ed è stata fondata la banca più longeva al mondo. ",
+      "elenco": [
+        "Siena per “principianti”: saremo in giro circa 2 ore per conoscere i luoghi principali, i personaggi, gli aneddoti e gli eventi che hanno reso famosa questa città. ",
+        "Siena Insolita: 3 ore circa di tour che ti permetteranno di conoscere i luoghi emblematici della città ma anche i luoghi meno frequentati dai visitatori. Se decidi di visitare la sede di una contrada potrai immergerti nella realtà senese, avere contatto con la gente del posto. Ma un altro modo per immergerti nel tessuto locale è senz’altro attraverso  suoi prodotti locali: organizziamo un assaggio?",
+        "A Siena con arte: abbiamo 3 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in un museo a tua scelta. Qui di seguito hai i link dei principali musei senesi:"
+      ],
+      "links": [
+        "https://operaduomo.siena.it/",
+        "https://www.comune.siena.it/node/478",
+        "https://www.santamariadellascala.com/",
+        "https://pinacotecanazionale.siena.it/"
+      ]
+    },
+    "Volterra": {
+      "img": "../assets/florence.png",
+      "titleImg": "Volterra",
+      "title": "Tours Volterra",
+      "descrizione": "Una delle città etrusche per eccellenza. Conserva ancora molte testimonianze di questo periodo come di quello romano e medievale: porta all’Arco e l’acropoli etrusca, il teatro romano, la Piazza dei Priori, la cattedrale con il battistero, e case-torri. Volterra custodisce un tesoro immenso tra arte, archeologia e artigianato, infatti è famosa per la lavorazione dell’alabastro, un sapere che viene tramandato da generazioni. Volterra è stata costruita su un’altura che se un tempo garantiva sicurezza oggi permette di godere di un vastissimo e suggestivo panorama. ",
+      "elenco": [
+        "Volterra autentica: fortunatamente Volterra è conosciuta si, ma non è turistica come alcuni borghi toscani dove nei momenti di alta stagione ci si ritrova ammassati. Volterra è un paese ancora autentico: il borgo è vivo perché la gente del posto ancora ci vive e ci lavora. Infatti vedrai molte botteghe o laboratori di artigiani e di artisti che lavorano l’alabastro. Noi dopo una passeggiata alla coperta del borgo andremo a visitare uno di questi laboratori. Il tutto in 2 ore.  Che te ne pare?  ",
+        "Volterra archeologica: 3 ore di tour che parte dagli etruschi, poi la parte Romana per terminare nel Medioevo. Sono laureata in archeologia e Volterra è uno dei miei siti preferiti perché Volterra non è altro che un sito archeologico ancora “attivo”. A completamento vi porterò al museo Etrusco dove troverete tante curiosità archeologiche che vi piaceranno, ne sono certa!",
+        "A Siena con arte: abbiamo 3 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in un museo a tua scelta. Qui di seguito hai i link dei principali musei senesi:"
+      ],
+      "links": [
+        "https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci",
+        "https://www.comune.volterra.pi.it/Pinacoteca_civica",
+        "https://www.comune.volterra.pi.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/73"
+      ]
+    },
+    "San Gimignano": {
+      "img": "../assets/florence.png",
+      "titleImg": "San Giminignano",
+      "title": "Tours San Gimignano",
+      "descrizione": "La “Città delle Belle Torri” è stata dichiarata patrimonio dell’umanità poiché il suo aspetto rimanda ancora a quello due-trecentesco, un raro esempio in Europa di organizzazione urbana d’età comunale: praticamente un sogno medievale. Qui puoi immedesimarti nella vita di un ricco mercante con la sua inespugnabile casa-torre che dominava sul tratto cittadino della via Francigena. All’epoca, a San Gimignano, avresti visto ben 72 torri (oggi circa 15). ",
+      "elenco": [
+        "A caccia di torri medievali: impiegheremo circa 2 ore per visitare il borgo medievale. Ripercorreremo la strada principale che non è altro che un tratto dell’antica Francigena. Ci soffermeremo davanti alcune chiese e nelle piazze principali senza tralasciare punti panoramici che vi faranno immedesimare in un quadro di Leonardo da Vinci",
+        "Non solo torri: Molte delle testimonianze di questo periodo sono custodite, oltre che nella Collegiata, anche in alcuni musei tra cui quello Civico. Da qui, salendo in cima alla Torre Grossa, si può ammirare un panorama unico. Che ne dici se dopo un passeggiata nel borgo andiamo a dargli un’occhiata?"
+      ],
+      "links": [
+        "http://www.duomosangimignano.it/",
+        "http://www.sangimignanomusei.it/"
+      ]
+    },
+    "Montepulciano e Val d'Orcia": {
+      "img": "../assets/florence.png",
+      "titleImg": "Montepulciano e Val d'Orcia",
+      "title": "Tours Montepulciano e Val d'Orcia",
+      "descrizione": "Paesaggio unico e meraviglioso: colline versi e sinuose, campi dorati, viali con i cipressi, lussureggianti vigneti ed oliveti. La maggior parte delle foto che hai visto sul paesaggio toscano sono state scattate proprio in questa area! La Valle è attraversata dal fiume Orcia da cui prende il nome. Qui la protagonista assoluta è la natura tanto che oggi è un parco protetto ed è stato riconosciuto Patrimonio dell’Umanità dall’ UNESCO. Disseminati in questo paesaggio troviamo castelli medievali, borghi antichi, abbazie ciascuno con la propria storia e particolarità. La Val d’Orcia è anche terra di ottimi vini come il più famoso Brunello di Montalcino o il Rosso d’Orcia e molti altri. Per il nostro tour (6 ore circa) ti propongo di visitare insieme questi borghi di cui sono certa te ne innamorerai: ",
+      "elenco": [
+        "Pienza: gioiello architettonico riconosciuto come “città ideale” rinascimentale e famosa per la produzione di formaggio pecorino.",
+        "San Quirico d’Orcia + Cappella di Vitaleta: borgo carinissimo con la sua splendida Collegiata e gli Horti Leonini, bellissimo giardino all’italiana. Lungo la strada faremo una sosta per ammirare la Cappella della Madonna di Vitaleta.",
+        "Bagno Vignoni: unico paese in Italia dove troverai una piscina al posto della piazza centrale! La piscina rinascimentale sorge proprio sopra la fonte originale di acqua calda termale. Questa sorgente era già frequentata dai Romani e altri personaggi illustri Papa Pio II, Santa Caterina da Siena e Lorenzo il Magnifico.",
+        "Montalcino + Abbazia di Sant’Antimo: borgo medievale cinto da una possente cinta muraria e dominato dalla rocca del XIV secolo dalla quale si gode un panorama unico.  Montalcino è famoso in tutto il mondo per la produzione del prezioso Brunello di Montalcino. Infine potrai ammirare la bellissima e suggestiva Abbazia di Sant' Antimo, uno dei migliori esempi di architettura monastica medievale.",
+        "Montepulciano + Tempio di San Biagio: qui non siamo più in Val d’Orcia ma precisamente al suo confine ma Montepulciano è una cittadina così bella che merita essere visitata. Lungo le strade principale si affacciano eleganti palazzi rinascimentali, Piazza Grande, scorci caratteristici e punti panoramici su cui si gode la vista sulla Val d’Orcia e in particolare sui vigneti che producono il famoso Nobile. Più a valle si trova il Tempio di San Biagio, luogo di culto ed esempio dell'architettura rinascimentale toscana del XVI secolo progettato da Antonio da San Gallo il Vecchio."
+      ]
+    },
+    "San Galgano": {
+      "img": "../assets/florence.png",
+      "titleImg": "San Galgano",
+      "title": "Tours San Galgano",
+      "descrizione": "Nel 1180 Galgano Guidotti edificò una chiesa a Montesiepi. La struttura della chiesa è molto originale, singolare nell’ambito romanico senese. L’interno è suggestivo per la singolare volta e perché al centro dell’ambiente vi è il masso in cui San Galgano ha conficcato la spada. Annessa alla chiesa la cappella trecentesca con gli affreschi attribuiti ad Ambrogio Lorenzetti. Cinquanta anni dopo, più a valle, venne costruita dai cistercensi l’abbazia intitolata a San Galgano. Il primo esempio di architettura gotica in Toscana e uno dei luoghi più suggestivi della campagna senese. Dell’abbazia ne rimane lo scheletro che testimonia la potenza e la ricchezza della comunità monastica. Un rudere completamente immerso nei contrasti di colore del cielo e della natura circostante, una visione di solitaria e drammatica bellezza. ",
+      "links": [
+        "https://www.comune.chiusdino.siena.it/it/page/visita-abbazia-di-san-galgano-orari-di-apertura-e-p"
+      ]
+    }
+  }
+}

@@ -9,7 +9,7 @@ const Masonry = () => {
   return (
     <div className="hidden md:block pt-0 whitespace-nowrap overflow-x-auto overflow-y-hidden w-4/5 mx-auto lg:w-full">
       <div className="columns-2">
-        <div className="w-[100%] h-[500px] first-pic relative mb-4 before:content-[''] before:rounded-md before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
+        <div className="w-[100%] h-[500px] first-pic relative mb-4 before:content-[''] before:rounded-md before:absolute before:inset-0 before:bg-black before:bg-opacity-20 masonry_img">
           <Image
             src={Lou}
             alt="lou"
@@ -36,7 +36,7 @@ const Masonry = () => {
             </div>
           </div>
         </div>
-        <div className="w-[100%] h-[300px] second-pic relative mb-4 before:content-[''] before:rounded-md before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
+        <div className="masonry_img w-[100%] h-[300px] second-pic relative mb-4 before:content-[''] before:rounded-md before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
           <Image
             src={Lou2}
             alt="lou"
@@ -65,7 +65,7 @@ const Masonry = () => {
             </div>
           </div>
         </div>
-        <div className="w-[100%] h-[300px] third-pic relative mb-4 before:content-[''] before:rounded-md before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
+        <div className="masonry_img w-[100%] h-[300px] third-pic relative mb-4 before:content-[''] before:rounded-md before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
           <Image
             src={Lou3}
             alt="lou"
@@ -93,7 +93,7 @@ const Masonry = () => {
             </div>
           </div>
         </div>
-        <div className="w-[100%] h-[500px] fourth-pic relative mb-4 before:content-[''] before:rounded-md before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
+        <div className="masonry_img w-[100%] h-[500px] fourth-pic relative mb-4 before:content-[''] before:rounded-md before:absolute before:inset-0 before:bg-black before:bg-opacity-20">
           <Image
             src={Lou4}
             alt="lou"

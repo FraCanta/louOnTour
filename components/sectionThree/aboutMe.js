@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Icon } from "@iconify/react";
-import Button from "../button/button";
 import Modal from "../modal/modal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Pagination, Mousewheel } from "swiper";
@@ -13,6 +12,8 @@ import Lou3 from "../../public/assets/foto3.jpg";
 import Lou4 from "../../public/assets/foto4.jpg";
 import Image from "next/image";
 import Script from "next/script";
+import Cta from "../button/button";
+import Link from "next/link";
 
 const AboutMe = () => {
   return (
@@ -32,8 +33,9 @@ const AboutMe = () => {
             durante il nostro tour, dai un’occhiata qui e leggi cosa dicono di
             me.
           </p>
-
-          <Button>scopri di più</Button>
+          <Link href="/chiSono">
+            <Cta>scopri di più</Cta>
+          </Link>
         </div>
         <div className="pt-20 2xl:pt-0 flex items-center">
           <div className="blog-slider ">

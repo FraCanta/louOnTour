@@ -17,7 +17,6 @@
   }
 
   .bgCities {
-    background-image: url(../public/assets/florence.png);
     background-size: cover;
     background-position: center;
   }
@@ -27,6 +26,27 @@
       height: 38vh;
       border-radius: 0;
     }
+  }
+
+  .bgTour {
+    height: 50vh;
+    transition: all 0.8s;
+  }
+
+  .bgExpand {
+    height: 70vh;
+  }
+
+  .bgText {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .arrow {
+    transition: all 0.5s;
+  }
+
+  .arrowRotate {
+    transform: translateX(-50%) rotate(180deg);
   }
 }
 

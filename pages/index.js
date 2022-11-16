@@ -6,8 +6,11 @@ import Mission from "../components/sectionOne/mission";
 import AboutMe from "../components/sectionThree/aboutMe";
 import Map from "../components/sectionTwo/map";
 import translationIT from "../public/locales/it/it.json";
+import translationEN from "../public/locales/en/en.json";
+import { useRouter } from "next/router";
 
-export default function Home() {
+export default function Home({ translation }) {
+  const { locale } = useRouter();
   return (
     <div>
       <Head>
@@ -16,11 +19,33 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Hero />
+      <Hero translation={translation?.home?.hero} />
       <Mission />
-      <Map translation={translationIT?.home?.map} />
+      <Map translation={translation?.home?.map} />
       <AboutMe />
       <Insta />
     </div>
   );
+}
+export async function getStaticProps(locale) {
+  let obj;
+  switch (locale.locale) {
+    case "it":
+      obj = translationIT;
+      break;
+
+    case "en":
+      obj = translationEN;
+      break;
+    default:
+      obj = translationIT;
+      break;
+  }
+
+  return {
+    props: {
+      translation: obj,
+    },
+    revalidate: 60,
+  };
 }

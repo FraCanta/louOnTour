@@ -7,7 +7,7 @@ export default function Tours({ city }) {
   return (
     <>
       <Head>
-        <title>{`Lou On Tour - Locations - ${city?.title}`}</title>
+        <title>{`Lou On Tour - ${city?.title}`}</title>
       </Head>
       <div className="w-full xl:w-4/5 min-h-[30vh] container mx-auto flex flex-col xl:flex-row xl:py-8">
         <div className="w-full xl:w-1/2 p-8">
@@ -31,7 +31,7 @@ export default function Tours({ city }) {
           </p>
         </div>
       </div>
-      <HeroCities />
+      <HeroCities city={city} />
     </>
   );
 }
@@ -64,30 +64,3 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
-// export async function getStaticProps(context) {
-//   const { params } = context;
-
-//   let targetObj = locations?.home?.map?.markers?.find(
-//     (obj) => obj?.title === params.title
-//   );
-//   console.log(targetObj);
-
-//   return {
-//     props: {
-//       city: targetObj,
-//     },
-//   };
-// }
-
-// export async function getStaticPaths() {
-//   const cities = locations?.home?.map?.markers;
-
-//   const paths = cities?.map((city) => ({
-//     params: { title: city?.title },
-//   }));
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }

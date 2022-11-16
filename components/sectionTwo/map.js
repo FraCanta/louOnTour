@@ -3,9 +3,9 @@ import Image from "next/image";
 import Toscana from "../../public/assets/toscana.svg";
 import Choose from "../../public/assets/choose.svg";
 import { Icon } from "@iconify/react";
-import Button from "../button/button";
 import Modal from "../modal/modal";
-
+import Cta from "../button/button";
+import Link from "next/link";
 const Map = ({ translation }) => {
   const [showModal, setShowModal] = useState({
     isOpen: "hide",
@@ -47,7 +47,9 @@ const Map = ({ translation }) => {
             contattatami e proveremo insieme a creare il tour che meglio
             soddisfi i tuoi gusti e le tue esigenze.
           </p>
-          <Button>Contattami</Button>
+          <Link href="/contact">
+            <Cta>Contattami</Cta>
+          </Link>
         </div>
 
         <div className="pt-0 w-[650px] height-[697.359px] relative ">
