@@ -23,7 +23,7 @@ const HeroCities = ({ city }) => {
   return (
     <>
       <div
-        className={`container mx-auto w-full xl:w-4/5 ${expand.background} rounded-none xl:rounded-xl text-5xl mb-10 text-white relative hand-pointer overflow-hidden`}
+        className={`container mx-auto w-full xl:w-4/5 ${expand.background} rounded-none xl:rounded-xl text-[1.5rem] xl:text-5xl mb-10 text-white relative hand-pointer overflow-hidden`}
         onClick={handleExpand}
       >
         <div className="h-full absolute w-full top-0 left-0 before:content-[''] before:rounded-none  xl:before:rounded-xl before:absolute before:inset-0 before:bg-black before:bg-opacity-50">
@@ -40,10 +40,12 @@ const HeroCities = ({ city }) => {
           icon="material-symbols:arrow-drop-down"
           width="60"
           color="#FE6847"
-          className={`absolute bottom-0 left-1/2 -translate-x-1/2 --translate-y-1/2 ${expand.arrow}`}
+          className={`absolute right-0 bottom-0 xl:left-1/2  xl:-translate-x-1/2 xl:-translate-y-1/2 ${expand.arrow}`}
         />
 
-        <div className={`absolute bottom-10 left-10 bgText ${expand.text}`}>
+        <div
+          className={`absolute bottom-[1.5rem] xl:bottom-10 left-10 bgText ${expand.text}`}
+        >
           {city?.titleImg}
         </div>
       </div>
