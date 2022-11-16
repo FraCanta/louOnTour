@@ -220,7 +220,7 @@ function Menu_mobile() {
               </li>
               <li onClick={handleBurgerClose}>
                 <Link
-                  href="/contact"
+                  href="/contatti"
                   className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] link_menu"
                 >
                   Contatti

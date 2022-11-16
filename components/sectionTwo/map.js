@@ -47,7 +47,7 @@ const Map = ({ translation }) => {
             contattatami e proveremo insieme a creare il tour che meglio
             soddisfi i tuoi gusti e le tue esigenze.
           </p>
-          <Link href="/contact">
+          <Link href="/contatti">
             <Cta>Contattami</Cta>
           </Link>
         </div>

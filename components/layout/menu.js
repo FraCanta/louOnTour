@@ -75,7 +75,7 @@ const Menu = ({ exact, href }) => {
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href="/contatti"
                   className="2xl:text-l[12px] fxl:text-[18px]"
                 >
                   Contatti

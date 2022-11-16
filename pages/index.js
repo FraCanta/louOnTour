@@ -9,7 +9,6 @@ import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import { useRouter } from "next/router";
 import gsap from "gsap";
-
 import Transition from "../components/transition/transition";
 
 export default function Home({ translation }) {
