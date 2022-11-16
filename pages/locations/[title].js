@@ -2,8 +2,12 @@ import Head from "next/head";
 import Link from "next/link";
 import HeroCities from "../../components/UI/heroCities";
 import locations from "../../public/locales/it/it.json";
+import Transition from "../../components/transition/transition";
+import gsap from "gsap";
 
 export default function Tours({ city }) {
+  const tours = gsap.timeline(); // prima timeline per transition della pagina
+
   return (
     <>
       <Head>
@@ -32,6 +36,7 @@ export default function Tours({ city }) {
         </div>
       </div>
       <HeroCities city={city} />
+      <Transition timeline={tours} />
     </>
   );
 }

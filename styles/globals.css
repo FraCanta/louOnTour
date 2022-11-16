@@ -48,6 +48,10 @@
   .arrowRotate {
     transform: translateX(-50%) rotate(180deg);
   }
+
+  .hand-pointer {
+    cursor: url("../public/assets/hand-cursor.png"), auto;
+  }
 }
 
 html,
@@ -102,6 +106,16 @@ h4 {
 
 * {
   box-sizing: border-box;
+}
+
+/* transition page animation */
+
+.transition-effect {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  width: 100%;
+  height: 100vh;
 }
 
 .menu_container {

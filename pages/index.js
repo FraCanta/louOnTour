@@ -8,8 +8,13 @@ import Map from "../components/sectionTwo/map";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import { useRouter } from "next/router";
+import gsap from "gsap";
+
+import Transition from "../components/transition/transition";
 
 export default function Home({ translation }) {
+  const home = gsap.timeline(); // prima timeline per transition della pagina
+
   const { locale } = useRouter();
   return (
     <div>
@@ -24,6 +29,7 @@ export default function Home({ translation }) {
       <Map translation={translation?.home?.map} />
       <AboutMe />
       <Insta />
+      <Transition timeline={home} />
     </div>
   );
 }
