@@ -9,6 +9,7 @@ function Transition() {
 
   useEffect(() => {
     var tl = gsap.timeline({ repeatDelay: 1 });
+    tl.set(trans.current, { left: "-100%" });
     tl.to(trans.current, {
       duration: 1,
       width: "100%",
