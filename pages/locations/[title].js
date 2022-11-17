@@ -22,7 +22,7 @@ export default function Tours({ city }) {
           </h2>
         </div>
         <div className="w-full xl:w-1/2 p-8">
-          <p className="text-base sm:text-lg text-slate-blue mt-0 sm:mt-8 mb-4 text-white text-black">
+          <p className="text-base sm:text-xl  mt-0 sm:mt-8 mb-4 text-[#232F37]">
             {city?.descrizione}
           </p>
         </div>
@@ -40,7 +40,10 @@ export default function Tours({ city }) {
               </h3>
               <ul className="text-xl md:text-lg font-medium mt-2 leading-10 text-[#232F37] pb-8 elenco_tours">
                 {city?.elenco?.map((el, i) => (
-                  <li key={i} className="pb-8">
+                  <li
+                    key={i}
+                    className="text-base sm:text-xl  mt-0 sm:mt-8 text-[#232F37] pb-8"
+                  >
                     <div dangerouslySetInnerHTML={{ __html: el }}></div>
                   </li>
                 ))}
