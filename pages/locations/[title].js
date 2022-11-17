@@ -52,12 +52,12 @@ export default function Tours({ city }) {
               {!!city?.ticket && (
                 <div className="text-xl md:text-lg font-medium mt-2 leading-10  pb-8 ticket">
                   <Link href={city?.ticket} target="_blank" rel="noreferrer">
-                    Biglietto qui
+                    Info
                   </Link>
                 </div>
               )}
             </div>
-            <div className="w-full xl:w-1/2 px-8 xl:p-4">
+            <div className="w-full xl:w-1/2 px-8 xl:p-4 pt-8 xl:pt-0">
               <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#232F37] pb-8">
                 {city?.full}
               </h3>
