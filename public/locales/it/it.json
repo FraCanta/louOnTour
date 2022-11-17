@@ -63,76 +63,93 @@
     "Firenze": {
       "img": "/assets/locationTour/florence_duomo.jpg",
       "titleImg": "Firenze",
-      "title": "Tours Firenze",
-      "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
+      "half": "Tours Firenze (mezza giornata)",
+      "full": "Tours Firenze (giornata intera)",
+      "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
       "descrizione": "Ammirata per la sua bellezza da milioni di visitatori da tutto il mondo, Firenze non è solo una città d’arte ma una vera e propria fonte di ispirazione per chiunque la visiti che sia la prima o la millesima volta! E’ la città che ha rotto con il Medioevo e ha introdotto in Europa il concetto di uomo moderno.",
-      "elenco": [
-        "<p ><b class='bold_text'>Prima volta a Firenze?:</b> allora non puoi perderti i luoghi simbolici della città come Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce… sono circa 3 ore di tour ma vedrai come vola il tempo!</p>",
-        "<p><b class='bold_text'>Firenze +: </b>dopo aver conosciuto la città non manca altro che visitare almeno uno dei due più famosi musei di Firenze perché mai sia che lasci Firenze senza aver visto un’opera di Michelangelo o Leonardo o Botticelli, Donatello…insomma di certo qui artisti non ne mancano!.</p>"
+      "half_elenco": [
+        "<p ><b class='bold_text'>Tra le vie di Firenze:</b> allora non puoi perderti i luoghi simbolici della città come Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce… sono circa 3 ore di tour ma vedrai come vola il tempo!</p>",
+        "<p>Visita alla <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Galleria degli Uffizi</b></a></p>",
+        "<p>Visita alla <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Galleria dell'Accademia</b></a></p>",
+        "<p>Visita al <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo nazionale del Bargello</b></a></p>"
       ],
-      "links": [
-        "https://www.uffizi.it/",
-        "https://www.galleriaaccademiafirenze.it/",
-        "https://www.bargellomusei.beniculturali.it/"
+      "full_elenco": [
+        "<p><b class='bold_text'>Un Giorno a Firenze: </b>dopo aver conosciuto la città non manca altro che visitare almeno uno dei due più famosi musei di Firenze perché mai sia che lasci Firenze senza aver visto un’opera di Michelangelo o Leonardo o Botticelli, Donatello…insomma di certo qui artisti non ne mancano!.</p>",
+        "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Siena</b></p>",
+        "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+        "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Volterra</b></p>"
       ]
     },
     "Siena": {
       "img": "/assets/locationTour/siena.jpg",
       "titleImg": "Siena",
-      "title": "Tours Siena",
+      "half": "Tours Siena (mezza giornata)",
+      "full": "Tours Siena (giornata intera)",
       "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
       "descrizione": "Questa città posizionata in cima ad una collina è famosa per il suo centro storico tutelato dall’Unesco visto che ancora mantiene buona parte dell’assetto urbano medievale; è famosa per lo sfarzo artistico e architettonico soprattutto in epoca medievale; è la città del Palio, corsa di cavallo più famosa d’Italia. Qui è anche nata Santa Caterina ed è stata fondata la banca più longeva al mondo. ",
-      "elenco": [
+      "half_elenco": [
         "<p><b class='bold_text'>Siena per “principianti”: </b>saremo in giro circa 2 ore per conoscere i luoghi principali, i personaggi, gli aneddoti e gli eventi che hanno reso famosa questa città.</p> ",
         "<p><b class='bold_text'>Siena Insolita: </b>3 ore circa di tour che ti permetteranno di conoscere i luoghi emblematici della città ma anche i luoghi meno frequentati dai visitatori. Se decidi di visitare la sede di una contrada potrai immergerti nella realtà senese, avere contatto con la gente del posto. Ma un altro modo per immergerti nel tessuto locale è senz’altro attraverso  suoi prodotti locali: organizziamo un assaggio?</p>",
-        "<p><b class='bold_text'>A Siena con arte: </b> abbiamo 3 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in un museo a tua scelta. Qui di seguito hai i link dei principali musei senesi:</p>"
+        "<p>Visita alla <a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cattedrale + complesso del Duomo</b></a></p>",
+        "<p>Visita al <a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico</b></a></p>",
+        "<p>Visita all' <a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Ex Ospedale Santa Maria della Scala + Museo Archeologico</b></a></p>",
+        "<p>Visita alla <a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca Nazionale</b></a></p>"
       ],
-      "links": [
-        "https://operaduomo.siena.it/",
-        "https://www.comune.siena.it/node/478",
-        "https://www.santamariadellascala.com/",
-        "https://pinacotecanazionale.siena.it/"
+      "full_elenco": [
+        "<p><b class='bold_text'>A Siena con arte: </b> abbiamo 3 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in un museo a tua scelta. Qui di seguito hai i link dei principali musei senesi:</p>",
+        "<p><b class='bold_text'>Siena</b> +  <b class='bold_text'>Firenze </b></p>",
+        "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+        "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+        "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>San Galgano</b> </p>",
+        "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Val d'Orcia</b> (uno o due località)</p>"
       ]
     },
     "Volterra": {
       "img": "/assets/locationTour/volterra.jpeg",
       "titleImg": "Volterra",
-      "title": "Tours Volterra",
-      "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
+      "title": "",
+      "half": "Tours Volterra (mezza giornata)",
+      "full": "Tours Volterra (giornata intera)",
+      "citazione": "[…] Volterra si mostra con un fascino arcano che promana dalle case addossate, dalle torri mozzate, dalle strade percorse da ombre inquietanti, lastricate nel tempo di sudore e di assurdo che attraversano la storia e la leggenda scavando solchi senza fine nella mente suggestionata degli uomini. (Franco Porretti)",
       "descrizione": "Una delle città etrusche per eccellenza. Conserva ancora molte testimonianze di questo periodo come di quello romano e medievale: porta all’Arco e l’acropoli etrusca, il teatro romano, la Piazza dei Priori, la cattedrale con il battistero, e case-torri. Volterra custodisce un tesoro immenso tra arte, archeologia e artigianato, infatti è famosa per la lavorazione dell’alabastro, un sapere che viene tramandato da generazioni. Volterra è stata costruita su un’altura che se un tempo garantiva sicurezza oggi permette di godere di un vastissimo e suggestivo panorama. ",
-      "elenco": [
-        "<p><b class='bold_text'> Volterra autentica: </b>fortunatamente Volterra è conosciuta si, ma non è turistica come alcuni borghi toscani dove nei momenti di alta stagione ci si ritrova ammassati. Volterra è un paese ancora autentico: il borgo è vivo perché la gente del posto ancora ci vive e ci lavora. Infatti vedrai molte botteghe o laboratori di artigiani e di artisti che lavorano l’alabastro. Noi dopo una passeggiata alla coperta del borgo andremo a visitare uno di questi laboratori. Il tutto in 2 ore.  Che te ne pare?  </p>",
-        "<p><b class='bold_text'> Volterra archeologica: </b>3 ore di tour che parte dagli etruschi, poi la parte Romana per terminare nel Medioevo. Sono laureata in archeologia e Volterra è uno dei miei siti preferiti perché Volterra non è altro che un sito archeologico ancora “attivo”. A completamento vi porterò al museo Etrusco dove troverete tante curiosità archeologiche che vi piaceranno, ne sono certa!</p>",
-        "<p><b class='bold_text'> A Siena con arte: </b>abbiamo 3 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in un museo a tua scelta. Qui di seguito hai i link dei principali musei senesi:</p>"
+      "half_elenco": [
+        "<p><b class='bold_text'>Volterra autentica: </b>fortunatamente Volterra è conosciuta si, ma non è turistica come alcuni borghi toscani dove nei momenti di alta stagione ci si ritrova ammassati. Volterra è un paese ancora autentico: il borgo è vivo perché la gente del posto ancora ci vive e ci lavora. Infatti vedrai molte botteghe o laboratori di artigiani e di artisti che lavorano l’alabastro. Noi dopo una passeggiata alla coperta del borgo andremo a visitare uno di questi laboratori. Il tutto in 2 ore.  Che te ne pare? </p>",
+        "<p>Visita al <a href='https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Museo Etrusco Guarnacci</b></a></p>",
+        "<p>Visita alla <a href='https://www.comune.volterra.pi.it/Pinacoteca_civica' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca</b></a></p>",
+        "<p>Visita alla <a href='https://www.comune.volterra.pi.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/73' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Cattedrale + Battistero</b></a></p>"
       ],
-      "links": [
-        "https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci",
-        "https://www.comune.volterra.pi.it/Pinacoteca_civica",
-        "https://www.comune.volterra.pi.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/73"
+      "full_elenco": [
+        "<p><b class='bold_text'>Volterra archeologica:  </b> 3 ore di tour che parte dagli etruschi, poi la parte Romana per terminare nel Medioevo. Sono laureata in archeologia e Volterra è uno dei miei siti preferiti perché Volterra non è altro che un sito archeologico ancora “attivo”. A completamento vi porterò al <a href='https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo Etrusco Guarnacci</b></a> dove troverete tante curiosità archeologiche che vi piaceranno, e potremmo visitare un laboratorio d’alabastro, che te ne pare?</p>",
+        "<p><b class='bold_text'>Volterra</b> +  <b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+        "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena </b></p>",
+        "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Firenze</b> </p>"
       ]
     },
     "San Gimignano": {
       "img": "/assets/locationTour/san_gimignano.jpg",
       "titleImg": "San Giminignano",
-      "title": "Tours San Gimignano",
-      "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
+      "half": "Tours San Gimignano (mezza giornata)",
+      "full": "Tours San Gimignano (giornata intera)",
+      "citazione": "San Gimignano dalle belle torri e dalle belle campane… (Proverbio fiorentino)",
       "descrizione": "La “Città delle Belle Torri” è stata dichiarata patrimonio dell’umanità poiché il suo aspetto rimanda ancora a quello due-trecentesco, un raro esempio in Europa di organizzazione urbana d’età comunale: praticamente un sogno medievale. Qui puoi immedesimarti nella vita di un ricco mercante con la sua inespugnabile casa-torre che dominava sul tratto cittadino della via Francigena. All’epoca, a San Gimignano, avresti visto ben 72 torri (oggi circa 15). ",
-      "elenco": [
-        "<p><b class='bold_text'>A caccia di torri medievali:</b> impiegheremo circa 2 ore per visitare il borgo medievale. Ripercorreremo la strada principale che non è altro che un tratto dell’antica Francigena. Ci soffermeremo davanti alcune chiese e nelle piazze principali senza tralasciare punti panoramici che vi faranno immedesimare in un quadro di Leonardo da Vinci </p>",
-        "<p><b class='bold_text'>Non solo torri: </b>Molte delle testimonianze di questo periodo sono custodite, oltre che nella Collegiata, anche in alcuni musei tra cui quello Civico. Da qui, salendo in cima alla Torre Grossa, si può ammirare un panorama unico. Che ne dici se dopo un passeggiata nel borgo andiamo a dargli un’occhiata?</p>"
+      "half_elenco": [
+        "<p><b class='bold_text'>A caccia di torri medievali: </b>impiegheremo circa 2 ore per visitare il borgo medievale. Ripercorreremo la strada principale che non è altro che un tratto dell’antica Francigena. Ci soffermeremo davanti alcune chiese e nelle piazze principali senza tralasciare punti panoramici che vi faranno immedesimare in un quadro di Leonardo da Vinci. </p>",
+        "<div><p><b class='bold_text'>Non solo torri: </b> Molte delle testimonianze di questo periodo sono custodite, oltre che nella Collegiata, anche in alcuni musei tra cui quello Civico. Da qui, salendo in cima alla Torre Grossa, si può ammirare un panorama unico. Quindi ti propongo una passeggiata per ammirare il borgo e una visita a uno di questi musei:</p> <ul><li> <a href='http://www.duomosangimignano.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Collegiata</b></a></li><li> <a href='http://www.sangimignanomusei.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico + Torre Grossa</b></a></li></ul></div>"
       ],
-      "links": [
-        "http://www.duomosangimignano.it/",
-        "http://www.sangimignanomusei.it/"
+      "full_elenco": [
+        "<p><b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Volterra</b></p>",
+        "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Firenze</b></p>",
+        "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena</b></p>"
       ]
     },
     "Montepulciano e Val d'Orcia": {
       "img": "/assets/locationTour/valdorcia.jpg",
       "titleImg": "Montepulciano e Val d'Orcia",
-      "title": "Tours Montepulciano e Val d'Orcia",
-      "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
+      "half": "Tours Montepulciano e Val d'Orcia (mezza giornata)",
+      "full": "Tours Montepulciano e Val d'Orcia (giornata intera)",
+      "citazione": "Lorem ipsum",
       "descrizione": "Paesaggio unico e meraviglioso: colline versi e sinuose, campi dorati, viali con i cipressi, lussureggianti vigneti ed oliveti. La maggior parte delle foto che hai visto sul paesaggio toscano sono state scattate proprio in questa area! La Valle è attraversata dal fiume Orcia da cui prende il nome. Qui la protagonista assoluta è la natura tanto che oggi è un parco protetto ed è stato riconosciuto Patrimonio dell’Umanità dall’ UNESCO. Disseminati in questo paesaggio troviamo castelli medievali, borghi antichi, abbazie ciascuno con la propria storia e particolarità. La Val d’Orcia è anche terra di ottimi vini come il più famoso Brunello di Montalcino o il Rosso d’Orcia e molti altri. Per il nostro tour (6 ore circa) ti propongo di visitare insieme questi borghi di cui sono certa te ne innamorerai: ",
-      "elenco": [
+      "half_elenco": [
         "<p><b class='bold_text'> Pienza: </b>gioiello architettonico riconosciuto come “città ideale” rinascimentale e famosa per la produzione di formaggio pecorino.</p>",
         "<p><b class='bold_text'> San Quirico d’Orcia + Cappella di Vitaleta: </b>borgo carinissimo con la sua splendida Collegiata e gli Horti Leonini, bellissimo giardino all’italiana. Lungo la strada faremo una sosta per ammirare la Cappella della Madonna di Vitaleta.</p>",
         "<p><b class='bold_text'> Bagno Vignoni: </b>unico paese in Italia dove troverai una piscina al posto della piazza centrale! La piscina rinascimentale sorge proprio sopra la fonte originale di acqua calda termale. Questa sorgente era già frequentata dai Romani e altri personaggi illustri Papa Pio II, Santa Caterina da Siena e Lorenzo il Magnifico.</p>",
@@ -143,10 +160,17 @@
     "San Galgano": {
       "img": "/assets/locationTour/abbazia_sangalgano.jpg",
       "titleImg": "San Galgano",
-      "title": "Tour San Galgano",
+      "title": "",
+      "half": "Tour San Galgano (mezza giornata)",
+      "full": "Tour San Galgano (giornata intera)",
       "citazione": "“per tetto un manto di stelle”",
       "descrizione": "Nel 1180 Galgano Guidotti edificò una chiesa a Montesiepi. La struttura della chiesa è molto originale, singolare nell’ambito romanico senese. L’interno è suggestivo per la singolare volta e perché al centro dell’ambiente vi è il masso in cui San Galgano ha conficcato la spada. Annessa alla chiesa la cappella trecentesca con gli affreschi attribuiti ad Ambrogio Lorenzetti. Cinquanta anni dopo, più a valle, venne costruita dai cistercensi l’abbazia intitolata a San Galgano. Il primo esempio di architettura gotica in Toscana e uno dei luoghi più suggestivi della campagna senese. Dell’abbazia ne rimane lo scheletro che testimonia la potenza e la ricchezza della comunità monastica. Un rudere completamente immerso nei contrasti di colore del cielo e della natura circostante, una visione di solitaria e drammatica bellezza. ",
-      "ticket": "https://www.comune.chiusdino.siena.it/it/page/visita-abbazia-di-san-galgano-orari-di-apertura-e-p"
+      "half_elenco": [
+        "<p>Info biglietti <a href='https://www.comune.chiusdino.siena.it/it/page/visita-abbazia-di-san-galgano-orari-di-apertura-e-p' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>qui</b></a></p>"
+      ],
+      "full_elenco": [
+        "<p>Proposto insieme a <b class='bold_text'>Siena</b>  per un FULL DAY</p>"
+      ]
     }
   }
 }
