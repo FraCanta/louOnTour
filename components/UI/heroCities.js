@@ -26,7 +26,7 @@ const HeroCities = ({ city }) => {
         className={`container mx-auto w-full xl:w-4/5 ${expand.background} rounded-none xl:rounded-xl text-[1.5rem] xl:text-5xl mb-10 text-white relative hand-pointer overflow-hidden`}
         onClick={handleExpand}
       >
-        <div className="h-full absolute w-full top-0 left-0 before:content-[''] before:rounded-none  xl:before:rounded-xl before:absolute before:inset-0 before:bg-black before:bg-opacity-50">
+        <div className="h-full absolute w-full top-0 left-0 ">
           <Image
             src={city?.img}
             alt={city?.titleImg}
@@ -46,7 +46,7 @@ const HeroCities = ({ city }) => {
         <div
           className={`absolute bottom-[1.5rem] xl:bottom-10 left-10 bgText ${expand.text}`}
         >
-          {city?.titleImg}
+          <cite>{city?.citazione}</cite>
         </div>
       </div>
     </>

@@ -50,8 +50,31 @@
   }
 
   .hand-pointer {
-    cursor: url("../public/assets/mano1_worka.png"), auto;
+    cursor: url("../public/assets/hand-cursor_small.png"), auto;
   }
+
+  .elenco_tours {
+    list-style: none;
+    padding: 0;
+  }
+
+  .elenco_tours li {
+    padding-left: 1.3em;
+    display: flex;
+  }
+
+  .elenco_tours li::before {
+    content: "\f0a4"; /* FontAwesome Unicode */
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: -1.3em;
+    margin-right: 10px; /* same as padding-left set on li */
+    width: 1.3em; /* same as padding-left set on li */
+  }
+}
+
+.bold_text {
+  color: #fe6847;
 }
 
 html,

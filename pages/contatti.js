@@ -1,11 +1,11 @@
 import React from "react";
 import ContactForm from "../components/contactPage/contactForm";
 import Head from "next/head";
-import Transition from "../components/transition/transition";
-import gsap from "gsap";
+// import Transition from "../components/transition/transition";
+// import gsap from "gsap";
 
 const Contact = () => {
-  const contact = gsap.timeline(); // prima timeline per transition della pagina
+  // const contact = gsap.timeline(); // prima timeline per transition della pagina
 
   return (
     <>
@@ -15,7 +15,7 @@ const Contact = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ContactForm />
-      <Transition timeline={contact} />
+      {/* <Transition timeline={contact} /> */}
     </>
   );
 };

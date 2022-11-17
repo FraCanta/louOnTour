@@ -3,11 +3,11 @@ import HeroChiSono from "../components/chiSono/heroChiSono";
 import Head from "next/head";
 import Text from "../components/chiSono/text";
 import BgImage from "../components/chiSono/bgImage";
-import Transition from "../components/transition/transition";
-import gsap from "gsap";
+// import Transition from "../components/transition/transition";
+// import gsap from "gsap";
 
 const ChiSono = () => {
-  const me = gsap.timeline(); // prima timeline per transition della pagina
+  // const me = gsap.timeline(); // prima timeline per transition della pagina
 
   return (
     <>
@@ -19,7 +19,7 @@ const ChiSono = () => {
       <HeroChiSono />
       <Text />
       <BgImage />
-      <Transition timeline={me} />
+      {/* <Transition timeline={me} /> */}
     </>
   );
 };
