@@ -16,13 +16,13 @@ export default function Tours({ city }) {
         <title>{`Lou On Tour - ${city?.titleImg}`}</title>
       </Head>
       <div className="w-full xl:w-4/5 min-h-[30vh] container mx-auto flex flex-col lg:flex-row xl:py-8">
-        <div className="w-full lg:w-1/2 p-8">
+        <div className="w-full lg:w-1/2 p-4 lg:p-8">
           <h6 className="text-[#FE6847]">Destinations</h6>
           <h2 className="text-4xl sm:text-6xl font-bold font-medium mt-2 leading-10 text-[#232F37]">
             {city?.titleImg}
           </h2>
         </div>
-        <div className="w-full lg:w-1/2 p-8">
+        <div className="w-full lg:w-1/2 p-4 lg:p-8">
           <p className="text-base sm:text-xl  mt-0 sm:mt-8 mb-4 text-[#232F37]">
             {city?.descrizione}
           </p>
@@ -33,9 +33,9 @@ export default function Tours({ city }) {
       {/* <p className="text-lg text-black">{city?.descrizione}</p> */}
       {/* </div> */}
       <div className="min-h-[50vh] py-4 ">
-        <div className="container w-full xl:w-4/5 mx-auto xl:h-full ">
+        <div className="container w-11/12 xl:w-4/5 mx-auto xl:h-full ">
           <div className="flex flex-col lg:flex-row w-full justify-between">
-            <div className="w-full lg:w-1/2 px-8 lg:p-4">
+            <div className="w-full lg:w-1/2 lg:px-8 lg:p-4">
               <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#232F37] pb-8">
                 {city?.half}
               </h3>
@@ -57,7 +57,7 @@ export default function Tours({ city }) {
                 </div>
               )}
             </div>
-            <div className="w-full lg:w-1/2 px-8 lg:p-4 pt-8 xl:pt-0">
+            <div className="w-full lg:w-1/2 lg:px-8 lg:p-4 pt-8 xl:pt-0">
               <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#232F37] pb-8">
                 {city?.full}
               </h3>
