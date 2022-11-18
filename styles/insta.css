@@ -23,11 +23,3 @@ main {
 .item-b {
   grid-column: 2/ 5;
 }
-
-/* .item-c {
-  grid-row: 2/ 4;
-} */
-
-/* .item-d {
-  grid-column: 3 / 5;
-} */

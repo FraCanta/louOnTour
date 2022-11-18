@@ -19,28 +19,28 @@ const Insta = () => {
           <div className="carousel-item">
             <Image
               src={Lou}
-              className="rounded-box  w-[300px] h-[300px]"
+              className="rounded-box  !w-[300px] !h-[300px]"
               alt=""
             />
           </div>
           <div className="carousel-item">
             <Image
               src={Lou2}
-              className="rounded-box w-[300px] h-[300px]"
+              className="rounded-box !w-[300px] !h-[300px]"
               alt=""
             />
           </div>
           <div className="carousel-item">
             <Image
               src={Lou3}
-              className="rounded-box w-[300px] h-[300px]"
+              className="rounded-box !w-[300px] !h-[300px]"
               alt=""
             />
           </div>
           <div className="carousel-item">
             <Image
               src={Lou4}
-              className="rounded-box w-[300px] h-[300px]"
+              className="rounded-box !w-[300px] !h-[300px]"
               alt=""
             />
           </div>
