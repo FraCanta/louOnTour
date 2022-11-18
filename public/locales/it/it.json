@@ -8,7 +8,7 @@
       "markers": [
         {
           "title": "Firenze",
-          "link": "Scopri",
+          "link": "locations/Firenze",
           "video": "../assets/florence.mp4",
           "marker": { "top": 213, "right": 240 },
           "desc": true
@@ -22,7 +22,7 @@
         },
         {
           "title": "Volterra",
-          "link": "Scopri",
+          "link": "locations/Volterra",
           "video": "../assets/florence.mp4",
           "marker": { "bottom": 238, "right": 337 },
           "desc": true
@@ -37,21 +37,21 @@
         {
           "id": "si",
           "title": "Siena",
-          "link": "Scopri",
+          "link": "locations/Siena",
           "video": "../assets/siena.mp4",
           "marker": { "bottom": 231, "right": 207 },
           "desc": true
         },
         {
           "title": "San Galgano",
-          "link": "Scopri",
+          "link": "locations/San%20Galgano",
           "video": "../assets/florence.mp4",
           "marker": { "bottom": 178, "right": 266 },
           "desc": true
         },
         {
           "title": "Montepulciano e Val d'Orcia",
-          "link": "Scopri",
+          "link": "locations/Montepulciano%20e%20Val%20d'Orcia",
           "video": "../assets/florence.mp4",
           "marker": { "bottom": 147, "right": 112 },
           "desc": true

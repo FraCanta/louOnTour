@@ -16,7 +16,7 @@ const HeroCities = ({ city }) => {
             text: "bgText",
             arrow: "arrow arrowRotate",
             before:
-              "before:content-[''] before:rounded-none  xl:before:rounded-xl before:absolute before:z-20 before:inset-0 before:bg-[#6F4403] before:bg-opacity-40",
+              "before:content-[''] before:rounded-none  xl:before:rounded-xl before:absolute before:z-20 before:inset-0 before:bg-black before:bg-opacity-50",
           }
         : { background: "bgTour", text: "bgText hide", arrow: "arrow" }
     );
