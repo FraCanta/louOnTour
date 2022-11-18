@@ -17,8 +17,8 @@ export default function Tours({ city }) {
       </Head>
       <div className="w-full xl:w-4/5 min-h-[30vh] container mx-auto flex flex-col lg:flex-row xl:py-8">
         <div className="w-full lg:w-1/2 p-4 lg:p-8">
-          <h6 className="text-[#FE6847]">Destinations</h6>
-          <h2 className="text-4xl sm:text-6xl font-bold font-medium mt-2 leading-10 text-[#232F37]">
+          <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Destinations</h4>
+          <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-10 text-[#232F37]">
             {city?.titleImg}
           </h2>
         </div>
@@ -32,7 +32,7 @@ export default function Tours({ city }) {
       {/* <div className="w-4/5  container mx-auto flex flex-col xl:flex-row xl:py-8 "> */}
       {/* <p className="text-lg text-black">{city?.descrizione}</p> */}
       {/* </div> */}
-      <div className="min-h-[50vh] py-4 ">
+      <div className="min-h-[50vh] py-0 lg:py-4 ">
         <div className="container w-11/12 xl:w-4/5 mx-auto xl:h-full ">
           <div className="flex flex-col lg:flex-row w-full justify-between">
             <div className="w-full lg:w-1/2 lg:px-8 lg:p-4">
