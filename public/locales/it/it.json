@@ -78,7 +78,8 @@
         "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Siena</b></p>",
         "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
         "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Volterra</b></p>"
-      ]
+      ],
+      "day": true
     },
     "Siena": {
       "img": "/assets/locationTour/siena.jpg",
@@ -102,7 +103,8 @@
         "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
         "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Galgano</b> </p>",
         "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Val d'Orcia</b> (uno o due località)</p>"
-      ]
+      ],
+      "day": true
     },
     "Volterra": {
       "img": "/assets/locationTour/volterra.jpeg",
@@ -123,7 +125,8 @@
         "<p><b class='bold_text'>Volterra</b> +  <b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
         "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena </b></p>",
         "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Firenze</b> </p>"
-      ]
+      ],
+      "day": true
     },
     "San Gimignano": {
       "img": "/assets/locationTour/san_gimignano.jpg",
@@ -140,7 +143,8 @@
         "<p><b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Volterra</b></p>",
         "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Firenze</b></p>",
         "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena</b></p>"
-      ]
+      ],
+      "day": true
     },
     "Montepulciano e Val d'Orcia": {
       "img": "/assets/locationTour/valdorcia.jpg",
@@ -155,7 +159,8 @@
         "<p><b class='bold_text'> Bagno Vignoni: </b>unico paese in Italia dove troverai una piscina al posto della piazza centrale! La piscina rinascimentale sorge proprio sopra la fonte originale di acqua calda termale. Questa sorgente era già frequentata dai Romani e altri personaggi illustri Papa Pio II, Santa Caterina da Siena e Lorenzo il Magnifico.</p>",
         "<p><b class='bold_text'> Montalcino + Abbazia di Sant’Antimo: </b>borgo medievale cinto da una possente cinta muraria e dominato dalla rocca del XIV secolo dalla quale si gode un panorama unico.  Montalcino è famoso in tutto il mondo per la produzione del prezioso Brunello di Montalcino. Infine potrai ammirare la bellissima e suggestiva Abbazia di Sant' Antimo, uno dei migliori esempi di architettura monastica medievale.</p>",
         "<p><b class='bold_text'> Montepulciano + Tempio di San Biagio: </b>qui non siamo più in Val d’Orcia ma precisamente al suo confine ma Montepulciano è una cittadina così bella che merita essere visitata. Lungo le strade principale si affacciano eleganti palazzi rinascimentali, Piazza Grande, scorci caratteristici e punti panoramici su cui si gode la vista sulla Val d’Orcia e in particolare sui vigneti che producono il famoso Nobile. Più a valle si trova il Tempio di San Biagio, luogo di culto ed esempio dell'architettura rinascimentale toscana del XVI secolo progettato da Antonio da San Gallo il Vecchio.</p>"
-      ]
+      ],
+      "day": true
     },
     "San Galgano": {
       "img": "/assets/locationTour/abbazia_sangalgano.jpg",
@@ -170,7 +175,8 @@
       ],
       "full_elenco": [
         "<p>Proposto insieme a <b class='bold_text'>Siena</b>  per un FULL DAY</p>"
-      ]
+      ],
+      "day": false
     }
   }
 }
