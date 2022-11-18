@@ -18,13 +18,15 @@ import Link from "next/link";
 const AboutMe = () => {
   return (
     <div className="about_me min-h-[100vh] py-8  w-full bg-[#232F37] mt-20 text-white flex items-center relative">
-      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center w-4/5 mx-auto h-full">
+      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center w-11/12 lg:w-4/5 mx-auto h-full">
         <div>
-          <h4 className="text-[#FE6847]">About me</h4>
-          <h2 className="text-4xl md:text-[64px] font-medium  md:leading-none lg:leading-none mb-10">
+          <h4 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
+            About me
+          </h4>
+          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium  md:leading-none lg:leading-none mb-10">
             Che dicono di me!
           </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl  mb-8 text-white">
+          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl   mb-8 text-white">
             Il fatto che tu stia cercando un tour per conoscere meglio un luogo
             fa di te una persona curiosa e questo, a me, piace moltissimo! Ma
             dal tuo punto di vista però, è anche vero che è importante trovare

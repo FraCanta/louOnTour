@@ -32,14 +32,16 @@ const Map = ({ translation }) => {
         });
   };
   return (
-    <div className="min-h-[100vh] container mx-auto w-full lg:w-4/5">
-      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible">
-        <div className="p-8 2xl:p-0 ">
-          <h4 className="text-[#FE6847]">Tours</h4>
-          <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
+    <div className="min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh]  container mx-auto w-11/12 lg:w-4/5">
+      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible">
+        <div className="p-0 ">
+          <h4 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
+            Tours
+          </h4>
+          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-[4rem] 3xl:leading-[5.5rem] text-[#232F37]">
             Disegnamo insieme il Tuo Tour
           </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl mt-4 sm:mt-16 mb-8 text-[#515151] leading-6 2xl:leading-9">
+          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20 mb-8 text-[#515151] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
             Qui troverai alcuni tra i tour più popolari, che sono piaciuti a
             molti e che io amo spesso fare! Scegli una location sulla mappa qui
             accanto e dai un’occhiata alle mie proposte di tour: ce ne sono per

@@ -2,15 +2,17 @@ import React from "react";
 
 const Mission = () => {
   return (
-    <div className="min-h-[100vh] text-left 2xl:text-center pt-2 2xl:pt-0 flex items-center justify-center">
-      <div className="container w-4/5 md:w-4/5 mx-auto pt-12 md:pt-2 xl:h-full ">
+    <div className="min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh] text-left lg:text-center pt-2 2xl:pt-0 flex items-center justify-center">
+      <div className="container w-11/12 lg:w-4/5 mx-auto pt-12 lg:pt-2 xl:h-full ">
         <div className="mx-auto relative z-1">
           <div>
-            <h4 className="text-[#FE6847] text-bold">Mission</h4>
-            <h2 className="text-4xl md:text-[64px] font-medium mt-2 leading-10 text-[#232F37]">
+            <h4 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
+              Mission
+            </h4>
+            <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#232F37]">
               Welcome to Lou On Tour
             </h2>
-            <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl   mt-4 sm:mt-16 mb-8 text-[#515151] leading-6 2xl:leading-9  mx-auto">
+            <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20 mb-8 text-[#515151] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
               Se sei approdato su questo sito molto probabilmente stai cercando
               un’esperienza da vivere qui in Toscana assieme al tuo partner, ai
               tuoi amici o alla tua famiglia. Allora sei nel sito giusto perché

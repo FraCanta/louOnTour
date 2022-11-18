@@ -28,7 +28,9 @@ const HeroCities = ({ city }) => {
         className={`container mx-auto w-full xl:w-4/5 ${expand.background} rounded-none xl:rounded-xl text-[1.5rem] xl:text-5xl mb-10 text-white relative hand-pointer overflow-hidden`}
         onClick={handleExpand}
       >
-        <div className={`h-full absolute w-full top-0 left-0 ${expand.before}`}>
+        <div
+          className={`h-full absolute w-full top-0 left-0 ${expand.before} `}
+        >
           <Image
             src={city?.img}
             alt={city?.titleImg}
@@ -42,7 +44,7 @@ const HeroCities = ({ city }) => {
           icon="material-symbols:arrow-drop-down"
           width="60"
           color="#FE6847"
-          className={`block xl:hidden absolute right-0 bottom-0 ${expand.arrow}`}
+          className={`block xl:hidden absolute right-0 bottom-0 ${expand.arrow} z-50`}
         />
 
         <div

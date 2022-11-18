@@ -10,8 +10,8 @@ import Masonry from "./masonry";
 
 const Insta = () => {
   return (
-    <div className="min-h-[100vh] w-full 2xl:p-8 ">
-      <div className="grid gap-4 md:gap-32 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-0 lg:pt-8 py-8">
+    <div className="min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh]  w-full 2xl:p-8 ">
+      <div className="grid gap-4 md:gap-8 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-0 lg:pt-8 py-8">
         <div className="pt-0 h-full whitespace-nowrap overflow-x-auto overflow-y-hidden w-full">
           <Masonry />
         </div>
@@ -45,7 +45,7 @@ const Insta = () => {
             />
           </div>
         </div>
-        <div className=" 2xl:p-0 w-4/5 flex flex-col items-start justify-center">
+        <div className=" 2xl:p-0 w-11/12 lg:w-4/5 flex flex-col items-start justify-center">
           <h4 className="text-[#FE6847]">Social</h4>
           <h2 className="text-4xl md:text-[64px] font-medium md:leading-none lg:leading-none text-[#232F37]">
             Lou On Tour Instagram
