@@ -5,7 +5,7 @@ import locations from "../../public/locales/it/it.json";
 import Transition from "../../components/transition/transition";
 // import gsap from "gsap";
 import { Icon } from "@iconify/react";
-// import GalleryTours from "../../components/UI/galleryTours";
+import GalleryTours from "../../components/UI/galleryTours";
 
 export default function Tours({ city }) {
   // const tours = gsap.timeline(); // prima timeline per transition della pagina
@@ -29,9 +29,6 @@ export default function Tours({ city }) {
         </div>
       </div>
       <HeroCities city={city} />
-      {/* <div className="w-4/5  container mx-auto flex flex-col xl:flex-row xl:py-8 "> */}
-      {/* <p className="text-lg text-black">{city?.descrizione}</p> */}
-      {/* </div> */}
       <div className="min-h-[50vh] py-0 lg:py-4 ">
         <div className="container w-11/12 xl:w-4/5 mx-auto xl:h-full ">
           <div className="flex flex-col lg:flex-row w-full justify-between">
@@ -76,7 +73,7 @@ export default function Tours({ city }) {
         </div>
       </div>
 
-      {/* <GalleryTours /> */}
+      <GalleryTours />
 
       {/* <Transition timeline={tours} /> */}
     </>

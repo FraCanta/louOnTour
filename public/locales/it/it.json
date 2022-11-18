@@ -149,11 +149,12 @@
     "Montepulciano e Val d'Orcia": {
       "img": "/assets/locationTour/valdorcia.jpg",
       "titleImg": "Montepulciano e Val d'Orcia",
-      "half": "Tours Montepulciano e Val d'Orcia (mezza giornata)",
+      "half": "",
       "full": "Tours Montepulciano e Val d'Orcia (giornata intera)",
       "citazione": "Lorem ipsum",
       "descrizione": "Paesaggio unico e meraviglioso: colline versi e sinuose, campi dorati, viali con i cipressi, lussureggianti vigneti ed oliveti. La maggior parte delle foto che hai visto sul paesaggio toscano sono state scattate proprio in questa area! La Valle è attraversata dal fiume Orcia da cui prende il nome. Qui la protagonista assoluta è la natura tanto che oggi è un parco protetto ed è stato riconosciuto Patrimonio dell’Umanità dall’ UNESCO. Disseminati in questo paesaggio troviamo castelli medievali, borghi antichi, abbazie ciascuno con la propria storia e particolarità. La Val d’Orcia è anche terra di ottimi vini come il più famoso Brunello di Montalcino o il Rosso d’Orcia e molti altri. Per il nostro tour (6 ore circa) ti propongo di visitare insieme questi borghi di cui sono certa te ne innamorerai: ",
-      "half_elenco": [
+      "half_elenco": [],
+      "full_elenco": [
         "<p><b class='bold_text'> Pienza: </b>gioiello architettonico riconosciuto come “città ideale” rinascimentale e famosa per la produzione di formaggio pecorino.</p>",
         "<p><b class='bold_text'> San Quirico d’Orcia + Cappella di Vitaleta: </b>borgo carinissimo con la sua splendida Collegiata e gli Horti Leonini, bellissimo giardino all’italiana. Lungo la strada faremo una sosta per ammirare la Cappella della Madonna di Vitaleta.</p>",
         "<p><b class='bold_text'> Bagno Vignoni: </b>unico paese in Italia dove troverai una piscina al posto della piazza centrale! La piscina rinascimentale sorge proprio sopra la fonte originale di acqua calda termale. Questa sorgente era già frequentata dai Romani e altri personaggi illustri Papa Pio II, Santa Caterina da Siena e Lorenzo il Magnifico.</p>",
