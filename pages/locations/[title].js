@@ -73,7 +73,7 @@ export default function Tours({ city }) {
         </div>
       </div>
 
-      <GalleryTours />
+      <GalleryTours city={city} />
 
       {/* <Transition timeline={tours} /> */}
     </>
