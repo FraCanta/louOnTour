@@ -6,8 +6,9 @@ import Transition from "../../components/transition/transition";
 // import gsap from "gsap";
 import { Icon } from "@iconify/react";
 import GalleryTours from "../../components/UI/galleryTours";
+import Correlati from "../../components/UI/correlati";
 
-export default function Tours({ city }) {
+export default function Tours({ city, others }) {
   // const tours = gsap.timeline(); // prima timeline per transition della pagina
 
   return (
@@ -74,6 +75,7 @@ export default function Tours({ city }) {
       </div>
 
       <GalleryTours city={city} />
+      <Correlati city={city} others={others} />
 
       {/* <Transition timeline={tours} /> */}
     </>
@@ -83,10 +85,20 @@ export default function Tours({ city }) {
 export async function getStaticProps(context) {
   const { params } = context;
   let targetObj = locations?.tours?.[params?.title];
+  const arr = Object.keys(locations?.tours);
+
+  const others = arr?.map((el) => {
+    return {
+      title: el,
+      img: locations?.tours?.[el]?.img,
+      link: `/locations/${el}`,
+    };
+  });
 
   return {
     props: {
       city: targetObj,
+      others: others,
     },
   };
 }
