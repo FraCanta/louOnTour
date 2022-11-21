@@ -6,11 +6,13 @@ import Link from "next/link";
 const Correlati = ({ city, others }) => {
   return (
     <>
-      <div className="container w-11/12 xl:w-4/5 mx-auto">
+      <div className="container w-11/12 xl:w-4/5 mx-auto pt-10">
         <h3 className="text-3xl md:text-[40px] font-medium mt-2 leading-10 text-[#232F37] lg:text-center pb-8 ">
           Ecco per te altre proposte
         </h3>
+        <div className="w-full h-[1px] bg-black bg-opacity-20"></div>
       </div>
+
       <div className=" min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh]  w-full 2xl:p-8 hidden xl:flex">
         <div
           className={`container mx-auto w-full xl:w-4/5 text-[1.5rem] xl:text-5xl mb-10 text-white overflow-hidden flex `}
@@ -27,11 +29,11 @@ const Correlati = ({ city, others }) => {
                       // width={1200}
                       // height={800}
                       fill
-                      className="min-h-full h-full object-cover w-full absolute p-4 !rounded-[1.5rem] "
+                      className="min-h-full h-full object-cover w-full absolute z-2 p-4 !rounded-[1.5rem] gallery-image"
                     />
                   </Link>
                   <div
-                    className={`absolute bottom-[1.5rem] xl:bottom-8 left-10 bgText  z-20 text-base xl:text-2xl w-3/5 `}
+                    className={`absolute bottom-[1.5rem] xl:bottom-8 left-10 bgText text-base xl:text-2xl w-3/5 `}
                   >
                     <p className="leading-4 text-xl">{el?.title}</p>
                   </div>
@@ -40,7 +42,7 @@ const Correlati = ({ city, others }) => {
             ))}
         </div>
       </div>
-      <div className="min-h-[38vh] w-full 2xl:p-8 lg:hidden ">
+      <div className="min-h-[20vh] w-full 2xl:p-8 lg:hidden ">
         <div className=" carousel carousel-center p-4 space-x-4 ">
           {others
             ?.filter((el) => el?.title !== city?.titleImg)
@@ -56,7 +58,7 @@ const Correlati = ({ city, others }) => {
                     />
                   </Link>
                   <div
-                    className={`absolute bottom-[1rem]  left-[1rem] bgText  z-20 text-base xl:text-2xl w-3/5 text-white`}
+                    className={`absolute bottom-[1rem]  left-[1rem] bgText text-base xl:text-2xl w-3/5 text-white`}
                   >
                     <p className="leading-4 text-xl">{el?.title}</p>
                   </div>

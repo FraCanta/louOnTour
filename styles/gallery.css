@@ -17,12 +17,12 @@
 
 .gallery-image {
   display: block;
-  /* width: 100%;
-  height: 100%; */
+  width: 100%;
+  /* height: 100%; */
   object-fit: cover;
   transition: transform 400ms ease-out;
-  height: 350px;
-  width: 350px;
+  height: 124px;
+  /* width: 368px; */
   border-radius: 10px;
 }
 
@@ -41,7 +41,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 @supports (display: grid) {
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
     grid-gap: 1rem;
   }
 

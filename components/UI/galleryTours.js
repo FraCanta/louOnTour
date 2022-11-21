@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import ModalGallery from "./modalGallery";
 
 const GalleryTours = ({ city }) => {
-  console.log(city?.gallery);
+  const [showModal, setShowModal] = useState({
+    isOpen: "hide",
+    scale: "",
+    img: "",
+  });
+  const handleModal = (img) => {
+    showModal.isOpen === "hide"
+      ? setShowModal({
+          isOpen: "",
+          scale: "scale-modal",
+          img: img,
+        })
+      : setShowModal({
+          isOpen: "hide",
+          scale: "",
+          img: img,
+        });
+  };
+
   return (
     <div className="min-h-[50vh] ">
       <div className="container mx-auto w-11/12 lg:w-4/5 py-10">
@@ -22,7 +41,9 @@ const GalleryTours = ({ city }) => {
                   priority
                   width={900}
                   height={900}
+                  onClick={() => handleModal(el)}
                 />
+                <ModalGallery handleModal={handleModal} showModal={showModal} />
               </div>
             </>
           ))}
