@@ -11,9 +11,9 @@ const Correlati = ({ city, others }) => {
           Ecco per te altre proposte
         </h3>
       </div>
-      <div className=" min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh]  w-full 2xl:p-8 ">
+      <div className=" min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh]  w-full 2xl:p-8 hidden xl:flex">
         <div
-          className={`container mx-auto w-full xl:w-4/5 text-[1.5rem] xl:text-5xl mb-10 text-white overflow-hidden hidden xl:flex `}
+          className={`container mx-auto w-full xl:w-4/5 text-[1.5rem] xl:text-5xl mb-10 text-white overflow-hidden flex `}
         >
           {others
             ?.filter((el) => el?.title !== city?.titleImg)
@@ -27,7 +27,7 @@ const Correlati = ({ city, others }) => {
                       // width={1200}
                       // height={800}
                       fill
-                      className="min-h-full h-full object-cover w-full absolute p-4 !rounded-[1.5rem] backdrop-contrast-50"
+                      className="min-h-full h-full object-cover w-full absolute p-4 !rounded-[1.5rem] "
                     />
                   </Link>
                   <div
