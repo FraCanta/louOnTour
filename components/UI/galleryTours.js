@@ -15,10 +15,8 @@ const GalleryTours = ({ imageArray }) => {
           scale: "scale-modal",
           img: img,
         })
-      : setShowModal({
-          isOpen: "hide",
-          scale: "",
-          img: img,
+      : setShowModal((prevData) => {
+          return { ...prevData, isOpen: "hide", scale: "" };
         });
   };
 
@@ -46,10 +44,12 @@ const GalleryTours = ({ imageArray }) => {
                 src={el}
                 alt={el?.titleImg}
                 priority
-                width={1000}
-                height={1000}
+                width={2000}
+                height={2000}
                 onClick={() => handleModal(el)}
-                onLoadingComplete={() => console.log(i + " completa")}
+                onLoadingComplete={() =>
+                  console.log("Immagine" + i + " completa")
+                }
               />
             </div>
           ))}

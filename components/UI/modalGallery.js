@@ -4,7 +4,7 @@ import Image from "next/image";
 const ModalCorrelati = ({ handleModal, showModal }) => {
   return (
     <div
-      className={`flex items-center justify-center w-screen h-screen fixed top-0 left-0 bottom-0 right-0 z-20 bg-black bg-opacity-20 overlay ${showModal?.isOpen} `}
+      className={`flex items-center justify-center w-screen h-screen fixed top-0 left-0 bottom-0 right-0 z-20 bg-black bg-opacity-40 overlay ${showModal?.isOpen} `}
       onClick={() => handleModal(showModal?.img)}
     >
       <div
@@ -16,8 +16,8 @@ const ModalCorrelati = ({ handleModal, showModal }) => {
           // objectFit="contain"
           // fill
           priority="true"
-          width={700}
-          height={700}
+          width={2000}
+          height={2000}
           className="max-h-[80%] max-w-[80%]"
         />
       </div>
