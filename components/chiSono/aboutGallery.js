@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 
 const AboutGallery = ({ aboutme }) => {
-  console.log(aboutme);
   return (
     <div className="min-h-[50vh] ">
       <div className="container mx-auto w-11/12 lg:w-4/5 py-10">

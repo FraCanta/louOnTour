@@ -20,25 +20,23 @@ const Correlati = ({ city, others }) => {
           {others
             ?.filter((el) => el?.title !== city?.titleImg)
             .map((el, i) => (
-              <>
-                <div className={`  w-[25%]  relative aspect-square `} key={i}>
-                  <Link href={el?.link} className=" hand-pointer">
-                    <Image
-                      src={el?.img}
-                      alt={el?.titleImg}
-                      // width={1200}
-                      // height={800}
-                      fill
-                      className="min-h-full h-full object-cover w-full absolute z-2 p-4 !rounded-[1.5rem] gallery-image"
-                    />
-                  </Link>
-                  <div
-                    className={`absolute bottom-[1.5rem] xl:bottom-8 left-10 bgText text-base xl:text-2xl w-3/5 `}
-                  >
-                    <p className="leading-4 text-xl">{el?.title}</p>
-                  </div>
+              <div className={`  w-[25%]  relative aspect-square `} key={i}>
+                <Link href={el?.link} className=" hand-pointer">
+                  <Image
+                    src={el?.img}
+                    alt={el?.titleImg}
+                    // width={1200}
+                    // height={800}
+                    fill
+                    className="min-h-full h-full object-cover w-full absolute z-2 p-4 !rounded-[1.5rem] gallery-image"
+                  />
+                </Link>
+                <div
+                  className={`absolute bottom-[1.5rem] xl:bottom-8 left-10 bgText text-base xl:text-2xl w-3/5 `}
+                >
+                  <p className="leading-4 text-xl">{el?.title}</p>
                 </div>
-              </>
+              </div>
             ))}
         </div>
       </div>
@@ -47,7 +45,7 @@ const Correlati = ({ city, others }) => {
           {others
             ?.filter((el) => el?.title !== city?.titleImg)
             .map((el, i) => (
-              <>
+              <div key={i}>
                 <div className="carousel-item w-[180px] h-[180px] relative">
                   <Link href={el?.link}>
                     <Image
@@ -63,7 +61,7 @@ const Correlati = ({ city, others }) => {
                     <p className="leading-4 text-xl">{el?.title}</p>
                   </div>
                 </div>
-              </>
+              </div>
             ))}
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import ModalGallery from "./modalGallery";
 
-const GalleryTours = ({ city }) => {
+const GalleryTours = ({ imageArray }) => {
   const [showModal, setShowModal] = useState({
     isOpen: "hide",
     scale: "",
@@ -31,22 +31,28 @@ const GalleryTours = ({ city }) => {
         <div className="w-full h-[1px] bg-black bg-opacity-20"></div>
 
         <div className="gallery pt-8">
-          {city?.gallery?.map((el, i) => (
-            <>
-              <div class="gallery-item" key={i}>
-                <Image
-                  className="gallery-image"
-                  src={el}
-                  alt={el?.titleImg}
-                  priority
-                  width={900}
-                  height={900}
-                  onClick={() => handleModal(el)}
-                />
-                <ModalGallery handleModal={handleModal} showModal={showModal} />
-              </div>
-            </>
+          {imageArray?.map((el, i) => (
+            <div className="gallery-item" key={i}>
+              <Image
+                className="gallery-image"
+                src={el}
+                alt="foto"
+                width={200}
+                height={200}
+                onClick={() => handleModal(el)}
+              />
+              <Image
+                className="hidden"
+                src={el}
+                alt={el?.titleImg}
+                priority
+                width={1000}
+                height={1000}
+                onClick={() => handleModal(el)}
+              />
+            </div>
           ))}
+          <ModalGallery handleModal={handleModal} showModal={showModal} />
         </div>
       </div>
     </div>

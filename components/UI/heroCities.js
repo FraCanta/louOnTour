@@ -36,6 +36,7 @@ const HeroCities = ({ city }) => {
             alt={city?.titleImg}
             // width={1200}
             // height={800}
+            priority
             fill
             className="min-h-full h-full object-cover w-full"
           />

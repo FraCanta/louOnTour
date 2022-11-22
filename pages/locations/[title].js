@@ -80,7 +80,7 @@ export default function Tours({ city, others }) {
         </div>
       </div>
 
-      <GalleryTours city={city} />
+      <GalleryTours imageArray={city?.gallery} />
       <Correlati city={city} others={others} />
 
       {/* <Transition timeline={tours} /> */}
