@@ -49,6 +49,7 @@ const GalleryTours = ({ imageArray }) => {
                 width={1000}
                 height={1000}
                 onClick={() => handleModal(el)}
+                onLoadingComplete={() => console.log(i + " completa")}
               />
             </div>
           ))}
