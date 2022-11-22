@@ -6,14 +6,14 @@ const GalleryTours = ({ imageArray }) => {
   const [showModal, setShowModal] = useState({
     isOpen: "hide",
     scale: "",
-    img: "",
+    img: null,
   });
-  const handleModal = (img) => {
+  const handleModal = (imgToShow) => {
     showModal.isOpen === "hide"
       ? setShowModal({
           isOpen: "",
           scale: "scale-modal",
-          img: img,
+          img: imgToShow,
         })
       : setShowModal((prevData) => {
           return { ...prevData, isOpen: "hide", scale: "" };
@@ -37,22 +37,16 @@ const GalleryTours = ({ imageArray }) => {
                 alt="foto"
                 width={200}
                 height={200}
-                onClick={() => handleModal(el)}
-              />
-              <Image
-                className="hidden"
-                src={el}
-                alt={el?.titleImg}
-                priority
-                width={1000}
-                height={1000}
-                onLoadingComplete={() =>
-                  console.log("Immagine" + i + " completa")
-                }
+                onClick={() => handleModal(i)}
+                loading="lazy"
               />
             </div>
           ))}
-          <ModalGallery handleModal={handleModal} showModal={showModal} />
+          <ModalGallery
+            handleModal={handleModal}
+            showModal={showModal}
+            imageArray={imageArray}
+          />
         </div>
       </div>
     </div>

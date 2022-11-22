@@ -25,9 +25,10 @@ const Correlati = ({ city, others }) => {
                   <Image
                     src={el?.img}
                     alt={el?.titleImg}
-                    // width={1200}
-                    // height={800}
-                    fill
+                    width={500}
+                    height={500}
+                    style={{ width: "auto", height: "auto" }}
+                    layout="fixed"
                     className="min-h-full h-full object-cover w-full absolute z-2 p-4 !rounded-[1.5rem] gallery-image"
                   />
                 </Link>
