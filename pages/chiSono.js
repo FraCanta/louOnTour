@@ -3,10 +3,14 @@ import HeroChiSono from "../components/chiSono/heroChiSono";
 import Head from "next/head";
 import Text from "../components/chiSono/text";
 import BgImage from "../components/chiSono/bgImage";
-// import Transition from "../components/transition/transition";
-// import gsap from "gsap";
+import AboutGallery from "../components/chiSono/aboutGallery";
+import translationIT from "../public/locales/it/it.json";
+import translationEN from "../public/locales/en/en.json";
+import { useRouter } from "next/router";
 
-const ChiSono = () => {
+const ChiSono = ({ translation }) => {
+  const { locale } = useRouter();
+
   // const me = gsap.timeline(); // prima timeline per transition della pagina
 
   return (
@@ -19,9 +23,32 @@ const ChiSono = () => {
       <HeroChiSono />
       <Text />
       <BgImage />
-      {/* <Transition timeline={me} /> */}
+      <AboutGallery aboutme={translation?.about?.galleria} />
     </>
   );
 };
 
 export default ChiSono;
+
+export async function getStaticProps(locale) {
+  let obj;
+  switch (locale.locale) {
+    case "it":
+      obj = translationIT;
+      break;
+
+    case "en":
+      obj = translationEN;
+      break;
+    default:
+      obj = translationIT;
+      break;
+  }
+
+  return {
+    props: {
+      translation: obj,
+    },
+    revalidate: 60,
+  };
+}

@@ -279,5 +279,47 @@
         "/assets/locationTour/sangalgano/sangalgano16.jpg"
       ]
     }
+  },
+  "about": {
+    "galleria": [
+      "/assets/aboutLou/lou1.jpg",
+      "/assets/aboutLou/lou2.jpg",
+      "/assets/aboutLou/lou3.jpg",
+      "/assets/aboutLou/lou4.jpg",
+      "/assets/aboutLou/lou5.jpg",
+      "/assets/aboutLou/lou6.jpg",
+      "/assets/aboutLou/lou7.jpg",
+      "/assets/aboutLou/lou8.jpg",
+      "/assets/aboutLou/lou9.jpg",
+      "/assets/aboutLou/lou10.jpg",
+      "/assets/aboutLou/lou11.jpg",
+      "/assets/aboutLou/lou12.jpg",
+      "/assets/aboutLou/lou13.jpg",
+      "/assets/aboutLou/lou14.jpg",
+      "/assets/aboutLou/lou15.jpg",
+      "/assets/aboutLou/lou16.JPG",
+      "/assets/aboutLou/lou17.JPG",
+      "/assets/aboutLou/lou18.JPG",
+      "/assets/aboutLou/lou19.jpg",
+      "/assets/aboutLou/lou20.jpg",
+      "/assets/aboutLou/lou21.jpg",
+      "/assets/aboutLou/lou22.jpg",
+      "/assets/aboutLou/lou23.jpg",
+      "/assets/aboutLou/lou24.jpg",
+      "/assets/aboutLou/lou25.jpg",
+      "/assets/aboutLou/lou26.jpg",
+      "/assets/aboutLou/lou27.JPG",
+      "/assets/aboutLou/lou28.JPG",
+      "/assets/aboutLou/lou29.jpg",
+      "/assets/aboutLou/lou30.JPG",
+      "/assets/aboutLou/lou31.JPeG",
+      "/assets/aboutLou/lou32.JPG",
+      "/assets/aboutLou/lou33.JPG",
+      "/assets/aboutLou/lou34.JPG",
+      "/assets/aboutLou/lou35.JPG",
+      "/assets/aboutLou/lou36.jpg",
+      "/assets/aboutLou/lou37.jpg",
+      "/assets/aboutLou/lou38.png"
+    ]
   }
 }

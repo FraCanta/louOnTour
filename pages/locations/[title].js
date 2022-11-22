@@ -33,7 +33,10 @@ export default function Tours({ city, others }) {
       <div className="min-h-[50vh] py-0 lg:py-4 ">
         <div className="container w-11/12 xl:w-4/5 mx-auto xl:h-full ">
           <div className="flex flex-col lg:flex-row w-full justify-between">
-            <div className="w-full lg:w-1/2  lg:px-8 lg:p-4 pt-8 xl:pt-0">
+            <div
+              className="w-full lg:w-1/2  lg:px-8 lg:p-4 pt-8 xl:pt-0"
+              style={city?.half_elenco?.length === 0 ? { display: "none" } : {}}
+            >
               <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#232F37] pb-8">
                 {city?.half}
               </h3>
@@ -55,7 +58,10 @@ export default function Tours({ city, others }) {
                 </div>
               )}
             </div>
-            <div className="w-full lg:w-1/2 lg:px-8 lg:p-4 pt-8 xl:pt-0">
+            <div
+              className="w-full lg:w-1/2  lg:px-8 lg:p-4 pt-8 xl:pt-0"
+              style={city?.half_elenco?.length === 0 ? { width: "100%" } : {}}
+            >
               <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#232F37] pb-8">
                 {city?.full}
               </h3>
