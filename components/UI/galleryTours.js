@@ -44,9 +44,8 @@ const GalleryTours = ({ imageArray }) => {
                 src={el}
                 alt={el?.titleImg}
                 priority
-                width={2000}
-                height={2000}
-                onClick={() => handleModal(el)}
+                width={1000}
+                height={1000}
                 onLoadingComplete={() =>
                   console.log("Immagine" + i + " completa")
                 }

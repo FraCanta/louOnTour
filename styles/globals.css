@@ -101,6 +101,83 @@
     width: 1.3em; /* same as padding-left set on li */
     color: #232f37;
   }
+
+  .bgForm {
+    background-color: #d9d9d9;
+    display: flex;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .layerForm1 {
+    background: url(../public/assets/form/mask1.png) 0 100% no-repeat;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 441px;
+    height: 220px;
+    background-size: auto 220px;
+    opacity: 0.5;
+  }
+  .layerForm2 {
+    background: url(../public/assets/form/mask3.png) 0 100% no-repeat;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 270px;
+    height: 312px;
+    background-size: auto 312px;
+    opacity: 0.8;
+  }
+
+  .layerForm3 {
+    background: url(../public/assets/form/mezzoviso.png) 0 100% no-repeat;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 493px;
+    height: 501px;
+    background-size: auto 501px;
+    opacity: 0.2;
+  }
+
+  .layerForm4 {
+    background: url(../public/assets/form/viso.png) 0 100% no-repeat;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 50%;
+    width: 610px;
+    height: 698px;
+    background-size: auto 698px;
+    opacity: 0.2;
+  }
+  .layerForm5 {
+    background: url(../public/assets/form/mask2.png) 0 100% no-repeat;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 441px;
+    height: 400px;
+    background-size: auto 400px;
+    opacity: 0.5;
+  }
+
+  .layerForm6 {
+    background: url(../public/assets/form/scritta.png) 0 100% no-repeat;
+    z-index: 3;
+    position: absolute;
+    top: 156px;
+    left: 90px;
+    width: 444px;
+    height: 160px;
+    background-size: auto 200px;
+  }
 }
 
 .bold_text {
@@ -207,26 +284,6 @@ h4 {
   position: relative;
   top: 0;
   left: 0;
-  /* background: linear-gradient(
-    -51.479deg,
-    rgb(149, 180, 201),
-    rgb(83, 111, 127)
-  ); */
-
-  /* background-color: #e0cba8; */
-  /* background: linear-gradient(
-    135deg,
-    rgba(224, 178, 98, 1) 0%,
-    rgba(219, 123, 166, 1) 100%
-  ); */
-
-  /* background-image: linear-gradient(
-    rgba(224, 178, 98, 1),
-    rgba(224, 178, 98, 1) 10%,
-    #75bed6 40%,
-    #75bed6
-  ); */
-
   background: hsla(205, 100%, 67%, 1);
 
   background: linear-gradient(
@@ -250,17 +307,6 @@ h4 {
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#57b8ff", endColorstr="#2176ae", GradientType=1 );
   overflow-x: hidden;
 }
-
-/* .hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(39, 39, 39, 0.164);
-  z-index: 3;
-} */
 
 .layer-1a {
   background: url(../public/assets/bird.png) 0 100% no-repeat;

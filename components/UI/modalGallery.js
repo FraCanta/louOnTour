@@ -13,11 +13,11 @@ const ModalCorrelati = ({ handleModal, showModal }) => {
         <Image
           src={showModal?.img}
           alt="foto"
-          // objectFit="contain"
+          objectFit="contain"
           // fill
-          priority="true"
-          width={2000}
-          height={2000}
+          // priority="true"
+          width={1000}
+          height={1000}
           className="max-h-[80%] max-w-[80%]"
         />
       </div>
