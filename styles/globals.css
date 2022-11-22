@@ -101,83 +101,6 @@
     width: 1.3em; /* same as padding-left set on li */
     color: #232f37;
   }
-
-  .bgForm {
-    background-color: #d9d9d9;
-    display: flex;
-    position: relative;
-    top: 0;
-    left: 0;
-  }
-
-  .layerForm1 {
-    background: url(../public/assets/form/mask1.png) 0 100% no-repeat;
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 441px;
-    height: 220px;
-    background-size: auto 220px;
-    opacity: 0.5;
-  }
-  .layerForm2 {
-    background: url(../public/assets/form/mask3.png) 0 100% no-repeat;
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 270px;
-    height: 312px;
-    background-size: auto 312px;
-    opacity: 0.8;
-  }
-
-  .layerForm3 {
-    background: url(../public/assets/form/mezzoviso.png) 0 100% no-repeat;
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 493px;
-    height: 501px;
-    background-size: auto 501px;
-    opacity: 0.2;
-  }
-
-  .layerForm4 {
-    background: url(../public/assets/form/viso.png) 0 100% no-repeat;
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    right: 50%;
-    width: 610px;
-    height: 698px;
-    background-size: auto 698px;
-    opacity: 0.2;
-  }
-  .layerForm5 {
-    background: url(../public/assets/form/mask2.png) 0 100% no-repeat;
-    z-index: 1;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 441px;
-    height: 400px;
-    background-size: auto 400px;
-    opacity: 0.5;
-  }
-
-  .layerForm6 {
-    background: url(../public/assets/form/scritta.png) 0 100% no-repeat;
-    z-index: 3;
-    position: absolute;
-    top: 156px;
-    left: 90px;
-    width: 444px;
-    height: 160px;
-    background-size: auto 200px;
-  }
 }
 
 .bold_text {
@@ -406,19 +329,6 @@ h4 {
   height: 53px;
   background-size: auto 33px;
 }
-/* .layer-1 {
-  -webkit-animation: parallax_fg linear 20s infinite both;
-  animation: parallax_fg linear 20s infinite both;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/1.png) 0
-    100% repeat-x;
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: auto 136px;
-} */
 
 .layer-2 {
   -webkit-animation: parallax_fg linear 30s infinite both;

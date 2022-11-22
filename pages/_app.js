@@ -4,6 +4,7 @@ import "../styles/aboutMe.css";
 import "../styles/insta.css";
 import "../styles/banner.css";
 import "../styles/gallery.css";
+import "../styles/form.css";
 
 import Layout from "../components/layout/layout";
 import Head from "next/head";

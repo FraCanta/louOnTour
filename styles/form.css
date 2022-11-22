@@ -1,0 +1,278 @@
+.bgForm {
+  background-color: #d9d9d9;
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.layerForm1 {
+  background: url(../public/assets/form/mask1.png) 0 100% no-repeat;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 441px;
+  height: 220px;
+  background-size: auto 220px;
+  opacity: 0.5;
+}
+.layerForm2 {
+  background: url(../public/assets/form/mask3.png) 0 100% no-repeat;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 270px;
+  height: 312px;
+  background-size: auto 312px;
+  opacity: 0.8;
+}
+
+.layerForm3 {
+  background: url(../public/assets/form/mezzoviso.png) 0 100% no-repeat;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 493px;
+  height: 501px;
+  background-size: auto 501px;
+  opacity: 0.2;
+}
+
+.layerForm4 {
+  background: url(../public/assets/form/viso.png) 0 100% no-repeat;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 610px;
+  height: 698px;
+  background-size: auto 698px;
+  opacity: 0.2;
+}
+.layerForm5 {
+  background: url(../public/assets/form/mask2.png) 0 100% no-repeat;
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 441px;
+  height: 400px;
+  background-size: auto 400px;
+  opacity: 0.5;
+}
+
+.layerForm6 {
+  background: url(../public/assets/form/scritta.png) 0 100% no-repeat;
+  z-index: 4;
+  position: absolute;
+  top: 75px;
+  left: 90px;
+  width: 444px;
+  height: 160px;
+  background-size: auto 200px;
+}
+.layerForm7 {
+  background: url(../public/assets/form/davidebubble.png) 0 100% no-repeat;
+  z-index: 4;
+  position: absolute;
+  top: 245px;
+  left: 162px;
+  width: 267px;
+  height: 265px;
+  background-size: auto 265px;
+  background-color: #7b61ff;
+  border-radius: 50%;
+}
+
+.layerForm8 {
+  z-index: 3;
+  position: absolute;
+  top: 212px;
+  left: 115px;
+  width: 150px;
+  height: 150px;
+  background-size: auto 150px;
+  background-color: #ffff;
+  border-radius: 50%;
+}
+.layerForm9 {
+  z-index: 5;
+  position: absolute;
+  bottom: 114px;
+  left: 307px;
+  width: 120px;
+  height: 120px;
+  background-size: auto 120px;
+  background-color: #d93280;
+  border-radius: 50%;
+}
+
+.layerForm10 {
+  background: url(../public/assets/form/scritta2.png) 0 100% no-repeat;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1219px;
+  height: 359px;
+  background-size: auto 359px;
+  opacity: 0.6;
+}
+.layerForm11 {
+  background: url(../public/assets/form/scritta3.png) 0 100% no-repeat;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1219px;
+  height: 247px;
+  background-size: auto 247px;
+  opacity: 0.6;
+}
+.layerForm12 {
+  background: url(../public/assets/form/mano1.png) 0 100% no-repeat;
+  z-index: 11;
+  position: absolute;
+  top: 206px;
+  left: 356px;
+  width: 254px;
+  height: 216px;
+  background-size: auto 253px;
+  transform: rotate(352deg);
+}
+.layerForm13 {
+  background: url(../public/assets/form/mano2.png) 0 100% no-repeat;
+  z-index: 5;
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 260px;
+  height: 184px;
+  background-size: auto 196px;
+  transform: rotate(352deg);
+}
+.layerForm14 {
+  background: url(../public/assets/form/scritta1.png) 0 100% no-repeat;
+  z-index: 3;
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  width: 1316px;
+  height: 359px;
+  background-size: auto 410px;
+  opacity: 0.6;
+}
+.layerForm15 {
+  background: url(../public/assets/form/mask4.png) 0 100% no-repeat;
+  z-index: 3;
+  position: absolute;
+  bottom: 44px;
+  right: 83px;
+  width: 567px;
+  height: 360px;
+  background-size: auto 360px;
+  opacity: 0.7;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background: none;
+  outline: none;
+  resize: none;
+  border: 0;
+  transition: all 0.3s;
+  border-bottom: 2px solid #bebed2;
+}
+input:focus {
+  border-bottom: 2px solid #78788c;
+}
+p:before {
+  content: attr(type);
+  display: block;
+  margin: 28px 0 0;
+  font-size: 14px;
+  color: #5a5a5a;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background: none;
+  outline: none;
+  resize: none;
+  border: 0;
+  transition: all 0.3s;
+  border-bottom: 2px solid #bebed2;
+}
+
+@media (max-width: 700px) {
+  .layerForm1,
+  .layerForm2,
+  .layerForm3,
+  .layerForm4,
+  .layerForm5,
+  .layerForm6,
+  .layerForm7,
+  .layerForm8,
+  .layerForm9,
+  .layerForm12,
+  .layerForm13 {
+    display: none;
+  }
+
+  .layerForm10 {
+    width: 350px;
+    height: 111px;
+    background-size: auto 111px;
+  }
+  .layerForm11 {
+    width: 350px;
+    height: 76px;
+    background-size: auto 76px;
+  }
+
+  .layerForm14 {
+    width: 350px;
+    height: 127px;
+    background-size: auto 127px;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 900) {
+  .layerForm1,
+  .layerForm2,
+  .layerForm3,
+  .layerForm4,
+  .layerForm5,
+  .layerForm6,
+  .layerForm7,
+  .layerForm8,
+  .layerForm9,
+  .layerForm12,
+  .layerForm13 {
+    display: none;
+  }
+
+  .layerForm10 {
+    width: 766px;
+    height: 232px;
+    background-size: auto 225px;
+  }
+  .layerForm11 {
+    width: 766px;
+    height: 232px;
+    background-size: auto 225px;
+  }
+
+  .layerForm14 {
+    width: 766px;
+    height: 232px;
+    background-size: auto 225px;
+  }
+}
