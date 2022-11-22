@@ -16,7 +16,6 @@ const ModalCorrelati = ({ handleModal, showModal, imageArray }) => {
             key={i}
             src={el}
             alt="foto"
-            priority
             layout="fixed"
             width={1000}
             height={1000}

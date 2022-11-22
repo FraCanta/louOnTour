@@ -29,10 +29,10 @@ const ContactForm = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
               voluptate mollitia sequi amet neque exercitationem.
             </p>
-            <p type="Name:">
+            <p type="Name:" className="input_name">
               <input placeholder="Write your name here.."></input>
             </p>
-            <p type="Email:">
+            <p type="Email:" className="input_name">
               <input placeholder="Let us know how to contact you back.."></input>
             </p>
 
