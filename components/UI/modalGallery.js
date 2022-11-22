@@ -21,7 +21,7 @@ const ModalCorrelati = ({ handleModal, showModal, imageArray }) => {
             height={1000}
             style={
               showModal?.img === i
-                ? { width: "auto", height: "90%" }
+                ? { width: "auto", height: "90%", objectFit: "cover" }
                 : { display: "none" }
             }
             onLoadingComplete={() => {
