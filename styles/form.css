@@ -244,7 +244,7 @@ textarea {
   }
 }
 
-@media (min-width: 701px) and (max-width: 900) {
+@media (max-width: 990px) {
   .layerForm1,
   .layerForm2,
   .layerForm3,
