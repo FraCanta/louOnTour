@@ -212,6 +212,9 @@ textarea {
 }
 
 @media (max-width: 700px) {
+  .bgForm {
+    overflow-x: hidden;
+  }
   .layerForm1,
   .layerForm2,
   .layerForm3,
@@ -245,6 +248,10 @@ textarea {
 }
 
 @media (max-width: 990px) {
+  .bgForm {
+    overflow-x: hidden;
+  }
+
   .layerForm1,
   .layerForm2,
   .layerForm3,
