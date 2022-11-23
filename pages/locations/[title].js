@@ -2,8 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import HeroCities from "../../components/UI/heroCities";
 import locations from "../../public/locales/it/it.json";
-import Transition from "../../components/transition/transition";
-// import gsap from "gsap";
 import { Icon } from "@iconify/react";
 import GalleryTours from "../../components/UI/galleryTours";
 import Correlati from "../../components/UI/correlati";
@@ -82,8 +80,6 @@ export default function Tours({ city, others }) {
 
       <GalleryTours imageArray={city?.gallery} />
       <Correlati city={city} others={others} />
-
-      {/* <Transition timeline={tours} /> */}
     </>
   );
 }

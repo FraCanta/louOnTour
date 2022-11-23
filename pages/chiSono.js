@@ -11,8 +11,6 @@ import { useRouter } from "next/router";
 const ChiSono = ({ translation }) => {
   const { locale } = useRouter();
 
-  // const me = gsap.timeline(); // prima timeline per transition della pagina
-
   return (
     <>
       <Head>
