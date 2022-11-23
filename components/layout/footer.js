@@ -58,7 +58,7 @@ const Footer = ({ translation }) => {
 
               <div className="grid grid-rows-4 grid-flow-col gap-4 pt-6">
                 <div className="font-semibold">Social & Co.</div>
-                <Link href="/contact" className="font-normal">
+                <Link href="/contatti" className="font-normal">
                   Contact
                 </Link>
                 <Link href="/how" className="font-normal">

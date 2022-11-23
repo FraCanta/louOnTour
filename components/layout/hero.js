@@ -35,7 +35,7 @@ const Hero = ({ translation }) => {
           <p className="w-11/12 2xl:w-[68%] mx-auto text-white text-basemd:text-[1.2rem] 2xl:text-[1.5rem] lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2rem] 3xl:text-[2.5rem] leading-6 2xl:leading-9 3xl:leading-[3.5rem] mb-5 font-bold">
             {translation?.paragraph}
           </p>
-          <Link href="/contact">
+          <Link href="/contatti">
             <Cta>get started</Cta>
           </Link>
         </div>
