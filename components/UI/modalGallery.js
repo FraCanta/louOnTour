@@ -10,7 +10,7 @@ const ModalGallery = ({ handleModal, showModal, imageArray }) => {
         className="right-[30px] top-[30px] absolute text-2xl z-50 text-white cursor-pointer"
         onClick={() => handleModal(showModal?.img)}
       >
-        <Icon icon="material-symbols:close" color="white" width="40" />
+        <Icon icon="material-symbols:close" color="white" width="40" />{" "}
       </div>
       <div
         className={`w-full h-full rounded-[10px] text-black flex flex-col justify-center  items-center border-none   bg-clip-padding text-current bg-modal ${showModal?.scale} bold`}
