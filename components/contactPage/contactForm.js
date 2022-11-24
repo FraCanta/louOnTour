@@ -23,14 +23,7 @@ const ContactForm = () => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
-    if (
-      inputs.name &&
-      inputs.surname &&
-      inputs.email &&
-      inputs.phone &&
-      inputs.project_type &&
-      inputs.message
-    ) {
+    if (inputs.name && inputs.email && inputs.message) {
       setForm({ state: "loading" });
       try {
         const res = await fetch(`api/contact`, {
@@ -94,7 +87,10 @@ const ContactForm = () => {
 
         <div className="flex-none lg:flex-1"></div>
         <div className="flex-none w-11/12 mx-auto lg:flex-1 flex items-center">
-          <form className=" w-full xl:w-[580px] xl:h-[565px] border border-[#FE6847] bg-white z-10 p-10 ">
+          <form
+            className=" w-full xl:w-[580px] xl:h-[565px] border border-[#FE6847] bg-white z-10 p-10 "
+            onSubmit={(e) => onSubmitForm(e)}
+          >
             <p className="ml-20 text-[#232F37] font-bold">
               Scrivimi quale tour hai scelto e ti contatterò presto!
             </p>

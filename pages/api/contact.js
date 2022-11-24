@@ -21,9 +21,7 @@ export default async function mailer(req, res) {
       subject: `You've got a LouMessage da ${name} ${surname} `,
       html: `<p>Hai una richiesta di informazioni da ${name} ${surname}</p><br>
         <p><strong>Email: </strong> ${email}</p><br>
-        <p><strong>Tipo di progetto: </strong> ${project_type}</p><br>
         <p><strong>Messaggio: </strong> ${message}</p><br>
-        <p><strong>Cellulare: </strong> ${phone}</p><br>        
       `,
     });
   } catch (error) {
