@@ -19,7 +19,7 @@ export default async function mailer(req, res) {
       from: "automotive_demo@email.it",
       to: ["eddironz@hotmail.com", "fcantale14@gmail.com"],
       subject: `UbiquityMessage da ${name} ${surname} `,
-      html: `<p>Hai una richieda di informazioni da ${name} ${surname}</p><br>
+      html: `<p>Hai una richiesta di informazioni da ${name} ${surname}</p><br>
         <p><strong>Email: </strong> ${email}</p><br>
         <p><strong>Tipo di progetto: </strong> ${project_type}</p><br>
         <p><strong>Messaggio: </strong> ${message}</p><br>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReactCurvedText from "react-curved-text";
-import Cta from "../button/button";
 
 const ContactForm = () => {
   const [inputs, setInputs] = useState({
@@ -141,7 +140,7 @@ const ContactForm = () => {
 
             <input
               type="submit"
-              className="bg-[#FE6847] p-3 mt-4 text-white border border-[#FE6847] rounded-xl hover:scale-110"
+              className="bg-[#FE6847] p-3 mt-4 text-white border border-[#FE6847] rounded-xl hover:scale-105"
             />
             {form.state === "loading" ? (
               <div>Invio in corso....</div>
