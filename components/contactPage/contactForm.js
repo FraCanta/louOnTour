@@ -4,10 +4,7 @@ import ReactCurvedText from "react-curved-text";
 const ContactForm = () => {
   const [inputs, setInputs] = useState({
     name: "",
-    surname: "",
     email: "",
-    phone: "",
-    project_type: "Non Specificato",
     message: "",
   });
 
@@ -52,10 +49,6 @@ const ContactForm = () => {
         setInputs({
           name: "",
           email: "",
-          message: "",
-          surname: "",
-          phone: "",
-          project_type: "",
           message: "",
         });
       } catch (error) {
