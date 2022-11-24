@@ -10,7 +10,6 @@ function Layout({ children }) {
       <Menu_mobile />
       <Menu />
       {children}
-      <Banner />
       <BackToTop />
       <Footer />
     </>

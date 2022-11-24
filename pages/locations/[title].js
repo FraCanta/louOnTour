@@ -5,6 +5,7 @@ import locations from "../../public/locales/it/it.json";
 import { Icon } from "@iconify/react";
 import GalleryTours from "../../components/UI/galleryTours";
 import Correlati from "../../components/UI/correlati";
+import Banner from "../../components/sectionFive/banner";
 
 export default function Tours({ city, others }) {
   // const tours = gsap.timeline(); // prima timeline per transition della pagina
@@ -80,6 +81,7 @@ export default function Tours({ city, others }) {
 
       <GalleryTours imageArray={city?.gallery} />
       <Correlati city={city} others={others} />
+      <Banner />
     </>
   );
 }

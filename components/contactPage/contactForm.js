@@ -1,10 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactCurvedText from "react-curved-text";
 import Cta from "../button/button";
 
 const ContactForm = () => {
+  const [inputs, setInputs] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    phone: "",
+    project_type: "Non Specificato",
+    message: "",
+  });
+
+  const [form, setForm] = useState("");
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+
+    if (
+      inputs.name &&
+      inputs.surname &&
+      inputs.email &&
+      inputs.phone &&
+      inputs.project_type &&
+      inputs.message
+    ) {
+      setForm({ state: "loading" });
+      try {
+        const res = await fetch(`api/contact`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(inputs),
+        });
+
+        const { error } = await res.json();
+
+        if (error) {
+          setForm({
+            state: "error",
+            message: error,
+          });
+          return;
+        }
+
+        setForm({
+          state: "Fatto",
+          message:
+            "Il tuo messaggio è stato inviato. Grazie per averci contattato!",
+        });
+        setInputs({
+          name: "",
+          email: "",
+          message: "",
+          surname: "",
+          phone: "",
+          project_type: "",
+          message: "",
+        });
+      } catch (error) {
+        setForm({
+          state: "Errore ",
+          message: "Qualcosa è andato storto",
+        });
+      }
+    }
+  };
   return (
-    <div className="w-full lg:w-4/5 container mx-auto py-10">
+    <div className="w-full xl:w-4/5 container mx-auto py-10">
       <div className="h-[700px] w-full bgForm">
         <div className="layerForm1"></div>
         <div className="layerForm2"></div>
@@ -29,24 +100,48 @@ const ContactForm = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
               voluptate mollitia sequi amet neque exercitationem.
             </p>
-            <p type="Name:" className="input_name">
-              <input placeholder="Write your name here.."></input>
-            </p>
-            <p type="Email:" className="input_name">
-              <input placeholder="Let us know how to contact you back.."></input>
-            </p>
-
+            <label htmlFor="name" className="input_name">
+              Nome
+            </label>
+            <input
+              id="name"
+              type="text"
+              value={inputs.name}
+              onChange={handleChange}
+              className="inputField w-full p-3 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block"
+              placeholder="write your name"
+              required
+            />{" "}
+            <label htmlFor="email">E-mail </label>
+            <input
+              id="email"
+              type="email"
+              value={inputs.email}
+              onChange={handleChange}
+              className="inputField w-full p-3 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block"
+              placeholder="esempio@email.com"
+              required
+            />
+            <label htmlFor="message">Scrivi qui</label>
             <textarea
-              rows="4"
-              cols="50"
-              name="comment"
-              form="usrform"
-              type="Message..."
-              className="mb-6"
-            >
-              Write here
-            </textarea>
-            <Cta>Send Message</Cta>
+              id="message"
+              type="text"
+              value={inputs.message}
+              onChange={handleChange}
+              className="inputField p-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block"
+              rows="5"
+              required
+            />
+            <input type="submit" className="button p-3" />
+            {form.state === "loading" ? (
+              <div>Invio in corso....</div>
+            ) : form.state === "error" ? (
+              <div>{form.message}</div>
+            ) : (
+              form.state === "success" && (
+                <div>Inviato correttamente, grazie per averci contattato.</div>
+              )
+            )}
           </form>
           <div className="block absolute left-[0] lg:left-[52%] top-[14%] -translate-x-1/2  -translate-y-1/2 rotate_text z-10">
             <ReactCurvedText

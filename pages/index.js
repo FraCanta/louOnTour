@@ -8,7 +8,7 @@ import Map from "../components/sectionTwo/map";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import { useRouter } from "next/router";
-
+import Banner from "../components/sectionFive/banner";
 export default function Home({ translation }) {
   const { locale } = useRouter();
   return (
@@ -24,6 +24,7 @@ export default function Home({ translation }) {
       <Map translation={translation?.home?.map} />
       <AboutMe />
       <Insta />
+      <Banner />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import AboutGallery from "../components/chiSono/aboutGallery";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import { useRouter } from "next/router";
+import Banner from "../components/sectionFive/banner";
 
 const ChiSono = ({ translation }) => {
   const { locale } = useRouter();
@@ -22,6 +23,7 @@ const ChiSono = ({ translation }) => {
       <Text />
       <BgImage />
       <AboutGallery aboutme={translation?.about?.galleria} />
+      <Banner />
     </>
   );
 };
