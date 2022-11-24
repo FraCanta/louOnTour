@@ -1,5 +1,5 @@
 .bgForm {
-  background-color: #d9d9d9;
+  background-color: #dfdede;
   display: flex;
   position: relative;
   top: 0;
@@ -83,7 +83,7 @@
   width: 267px;
   height: 265px;
   background-size: auto 265px;
-  background-color: #7b61ff;
+  background-color: #4bbfdc;
   border-radius: 50%;
 }
 
@@ -106,7 +106,7 @@
   width: 120px;
   height: 120px;
   background-size: auto 120px;
-  background-color: #d93280;
+  background-color: #fe6847;
   border-radius: 50%;
 }
 

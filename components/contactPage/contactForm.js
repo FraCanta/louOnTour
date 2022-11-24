@@ -95,44 +95,54 @@ const ContactForm = () => {
 
         <div className="flex-none lg:flex-1"></div>
         <div className="flex-none w-11/12 mx-auto lg:flex-1 flex items-center">
-          <form className="lg:w-[580px] lg:h-[565px] border border-red-700 bg-white z-10 p-10">
+          <form className="lg:w-[580px] lg:h-[565px] border border-[#FE6847] bg-white z-10 p-10">
             <p className="ml-20 text-[#232F37]">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
               voluptate mollitia sequi amet neque exercitationem.
             </p>
-            <label htmlFor="name" className="input_name">
-              Nome
-            </label>
+            <div className="mt-4">
+              <label htmlFor="name" className="input_name mb-2 ">
+                Nome
+              </label>
+              <input
+                id="name"
+                type="text"
+                value={inputs.name}
+                onChange={handleChange}
+                className="inputField w-full p-3 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block mt-2"
+                placeholder="write your name"
+                required
+              />{" "}
+            </div>
+            <div className="mt-4">
+              <label htmlFor="email">E-mail </label>
+              <input
+                id="email"
+                type="email"
+                value={inputs.email}
+                onChange={handleChange}
+                className="inputField w-full p-3 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block mt-2"
+                placeholder="esempio@email.com"
+                required
+              />
+            </div>
+            <div className="mt-4">
+              <label htmlFor="message">Messaggio</label>
+              <textarea
+                id="message"
+                type="text"
+                value={inputs.message}
+                onChange={handleChange}
+                className="inputField p-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block mt-2"
+                rows="5"
+                required
+              />
+            </div>
+
             <input
-              id="name"
-              type="text"
-              value={inputs.name}
-              onChange={handleChange}
-              className="inputField w-full p-3 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block"
-              placeholder="write your name"
-              required
-            />{" "}
-            <label htmlFor="email">E-mail </label>
-            <input
-              id="email"
-              type="email"
-              value={inputs.email}
-              onChange={handleChange}
-              className="inputField w-full p-3 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block"
-              placeholder="esempio@email.com"
-              required
+              type="submit"
+              className="bg-[#FE6847] p-3 mt-4 text-white border border-[#FE6847] rounded-xl hover:scale-110"
             />
-            <label htmlFor="message">Scrivi qui</label>
-            <textarea
-              id="message"
-              type="text"
-              value={inputs.message}
-              onChange={handleChange}
-              className="inputField p-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block"
-              rows="5"
-              required
-            />
-            <input type="submit" className="button p-3" />
             {form.state === "loading" ? (
               <div>Invio in corso....</div>
             ) : form.state === "error" ? (
