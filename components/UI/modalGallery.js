@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import autoprefixer from "autoprefixer";
-
+import { Icon } from "@iconify/react";
 const ModalGallery = ({ handleModal, showModal, imageArray }) => {
   return (
     <div
       className={`flex items-center justify-center w-screen h-screen fixed top-0 left-0 bottom-0 right-0 z-20 bg-black bg-opacity-40 overlay ${showModal?.isOpen} `}
     >
-      <div className="right-0 top-0 text-xl">X</div>
+      <div
+        className="right-[30px] top-[30px] absolute text-2xl z-50 text-white cursor-pointer"
+        onClick={() => handleModal(showModal?.img)}
+      >
+        <Icon icon="material-symbols:close" color="white" width="40" />
+      </div>
       <div
         className={`w-full h-full rounded-[10px] text-black flex flex-col justify-center  items-center border-none   bg-clip-padding text-current bg-modal ${showModal?.scale} bold`}
       >
