@@ -131,7 +131,7 @@ const ContactForm = () => {
                 type="text"
                 value={inputs.message}
                 onChange={handleChange}
-                className="inputField p-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block mt-2"
+                className="inputField w-full p-3 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block mt-2"
                 rows="5"
                 required
               />
@@ -151,12 +151,12 @@ const ContactForm = () => {
               )
             )}
           </form>
-          <div className="block absolute left-[0] lg:left-[52%] top-[14%] -translate-x-1/2  -translate-y-1/2 rotate_text z-10">
+          <div className="block absolute -left-[60px] lg:left-[42%] top-[0%] rotate_text z-10">
             <ReactCurvedText
-              width={250}
-              height={250}
-              cx={120}
-              cy={120}
+              width={180}
+              height={180}
+              cx={90}
+              cy={90}
               rx={80}
               ry={80}
               text="Lou On Tour . Lou On Tour . Lou On Tour . Lou On Tour.  "

@@ -253,12 +253,20 @@
 
 /*  ABOUT ME PAGE */
 
-.rotate_text svg {
+.rotate_text {
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
   animation: spin 5s infinite linear;
 }
 
 @keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
   100% {
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
