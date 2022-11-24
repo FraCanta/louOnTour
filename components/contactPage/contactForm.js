@@ -74,8 +74,8 @@ const ContactForm = () => {
     }
   };
   return (
-    <div className="w-full xl:w-4/5 container mx-auto py-10">
-      <div className="h-[700px] w-full bgForm">
+    <div className="w-full 2xl:w-4/5 container mx-auto py-10">
+      <div className="h-[700px] w-full bgForm overflow-x-hidden">
         <div className="layerForm1"></div>
         <div className="layerForm2"></div>
         <div className="layerForm3"></div>
@@ -94,10 +94,9 @@ const ContactForm = () => {
 
         <div className="flex-none lg:flex-1"></div>
         <div className="flex-none w-11/12 mx-auto lg:flex-1 flex items-center">
-          <form className="lg:w-[580px] lg:h-[565px] border border-[#FE6847] bg-white z-10 p-10">
-            <p className="ml-20 text-[#232F37]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-              voluptate mollitia sequi amet neque exercitationem.
+          <form className=" w-full xl:w-[580px] xl:h-[565px] border border-[#FE6847] bg-white z-10 p-10 ">
+            <p className="ml-20 text-[#232F37] font-bold">
+              Scrivimi quale tour hai scelto e ti contatterò presto!
             </p>
             <div className="mt-4">
               <label htmlFor="name" className="input_name mb-2 ">
