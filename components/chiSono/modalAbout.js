@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import autoprefixer from "autoprefixer";
 
-const ModalGallery = ({ handleModal, showModal, imageArray }) => {
+const ModalAbout = ({ handleModal, showModal, aboutme }) => {
   return (
     <div
       className={`flex items-center justify-center w-screen h-screen fixed top-0 left-0 bottom-0 right-0 z-20 bg-black bg-opacity-40 overlay ${showModal?.isOpen} `}
@@ -11,7 +11,7 @@ const ModalGallery = ({ handleModal, showModal, imageArray }) => {
       <div
         className={`w-full h-full rounded-[10px] text-black flex flex-col justify-center  items-center border-none   bg-clip-padding text-current bg-modal ${showModal?.scale} bold`}
       >
-        {imageArray?.map((el, i) => (
+        {aboutme?.map((el, i) => (
           <Image
             key={i}
             src={el}
@@ -47,4 +47,4 @@ const ModalGallery = ({ handleModal, showModal, imageArray }) => {
   );
 };
 
-export default ModalGallery;
+export default ModalAbout;

@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import ModalAbout from "./modalAbout";
 
 const AboutGallery = ({ aboutme }) => {
+  const [showModal, setShowModal] = useState({
+    isOpen: "hide",
+    scale: "",
+    img: null,
+  });
+  const handleModal = (imgToShow) => {
+    showModal.isOpen === "hide"
+      ? setShowModal({
+          isOpen: "",
+          scale: "scale-modal",
+          img: imgToShow,
+        })
+      : setShowModal((prevData) => {
+          return { ...prevData, isOpen: "hide", scale: "" };
+        });
+  };
+
   return (
     <div className="min-h-[50vh] pb-20">
       <div className="container mx-auto w-11/12 lg:w-4/5 ">
@@ -12,21 +30,23 @@ const AboutGallery = ({ aboutme }) => {
 
         <div className="gallery pt-8">
           {aboutme?.map((el, i) => (
-            <>
-              <div class="gallery-item" key={i}>
-                <Image
-                  className="gallery-image"
-                  src={el}
-                  alt={el?.titleImg}
-                  priority
-                  width={900}
-                  height={900}
-                  //   onClick={() => handleModal(el)}
-                />
-                {/* <ModalGallery handleModal={handleModal} showModal={showModal} /> */}
-              </div>
-            </>
+            <div class="gallery-item" key={i}>
+              <Image
+                className="gallery-image"
+                src={el}
+                alt="foto"
+                width={200}
+                height={200}
+                onClick={() => handleModal(i)}
+                loading="lazy"
+              />
+            </div>
           ))}
+          <ModalAbout
+            handleModal={handleModal}
+            showModal={showModal}
+            aboutme={aboutme}
+          />
         </div>
       </div>
     </div>
