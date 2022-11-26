@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Modal from "../modal/modal";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Pagination, Mousewheel } from "swiper";
+import { EffectFade, Pagination, Mousewheel, Autoplay } from "swiper";
 import "swiper/css/bundle";
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
@@ -16,8 +16,8 @@ import Link from "next/link";
 
 const AboutMe = () => {
   return (
-    <div className="about_me min-h-[100vh] py-8  w-full bg-[#232F37] mt-20 text-white flex items-center relative">
-      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 lg:grid-cols-2 justify-items-center content-center w-11/12 lg:w-4/5 mx-auto h-full">
+    <div className="about_me min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  py-8  w-full bg-[#232F37] mt-20 text-white flex items-center relative">
+      <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 xl:grid-cols-2 justify-items-center content-center w-11/12 xl:w-4/5 mx-auto h-full">
         <div>
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl text-bold">
             About me
@@ -38,7 +38,7 @@ const AboutMe = () => {
             <Cta>scopri di più</Cta>
           </Link>
         </div>
-        <div className="pt-20 2xl:pt-0 flex items-center ">
+        <div className="pt-40  xl:pt-[3rem]  flex items-center ">
           <Swiper
             className="blog-slider"
             spaceBetween={30}
@@ -47,7 +47,12 @@ const AboutMe = () => {
               el: ".blog-slider__pagination",
               clickable: true,
             }}
-            modules={[EffectFade, Pagination, Mousewheel]}
+            modules={[EffectFade, Pagination, Mousewheel, Autoplay]}
+            loop={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
           >
             <div className="blog-slider__wrp swiper-wrapper">
               <SwiperSlide className="blog-slider__item swiper-slide">
