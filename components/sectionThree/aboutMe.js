@@ -4,14 +4,13 @@ import Modal from "../modal/modal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Pagination, Mousewheel } from "swiper";
 import "swiper/css/bundle";
-import "swiper/css/free-mode";
+import "swiper/css/effect-cube";
 import "swiper/css/pagination";
 import Lou from "../../public/assets/foto1.jpg";
 import Lou2 from "../../public/assets/foto2.jpg";
 import Lou3 from "../../public/assets/foto3.jpg";
 import Lou4 from "../../public/assets/foto4.jpg";
 import Image from "next/image";
-import Script from "next/script";
 import Cta from "../button/button";
 import Link from "next/link";
 
@@ -39,18 +38,23 @@ const AboutMe = () => {
             <Cta>scopri di più</Cta>
           </Link>
         </div>
-        <div className="pt-20 2xl:pt-0 flex items-center">
-          <div className="blog-slider ">
+        <div className="pt-20 2xl:pt-0 flex items-center ">
+          <Swiper
+            className="blog-slider"
+            spaceBetween={30}
+            effect={"fade"}
+            pagination={{
+              el: ".blog-slider__pagination",
+              clickable: true,
+            }}
+            modules={[EffectFade, Pagination, Mousewheel]}
+          >
             <div className="blog-slider__wrp swiper-wrapper">
-              <div className="blog-slider__item swiper-slide">
-                <div className="blog-slider__img"></div>
-                <div className="flex flex-col-reverse lg:flex-col">
-                  <div className="flex  w-full text-black justify-end items-center mb-4">
-                    <h6 className="mx-2 text-[0.8rem] text-[#707070]">
-                      posted on
-                    </h6>
-                    <Icon icon="logos:airbnb" width="73" />
-                  </div>
+              <SwiperSlide className="blog-slider__item swiper-slide">
+                <div className="blog-slider__img">
+                  <Image src={Lou} alt="lou" />
+                </div>
+                <div className="flex flex-col lg:flex-col">
                   <div>
                     <span className="blog-slider__code">26 December 2019</span>
                     <div className="blog-slider__title">Lorem Ipsum Dolor</div>
@@ -60,27 +64,41 @@ const AboutMe = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
+              <SwiperSlide className="blog-slider__item swiper-slide">
+                <div className="blog-slider__img">
+                  <Image src={Lou2} alt="lou" />
+                </div>
+                <div className="flex flex-col lg:flex-col">
+                  <div>
+                    <span className="blog-slider__code">26 December 2019</span>
+                    <div className="blog-slider__title">Lorem Ipsum Dolor</div>
+                    <div className="blog-slider__text">
+                      {" "}
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Recusandae voluptate repellendus magni illo ea animi?{" "}
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="blog-slider__item swiper-slide">
+                <div className="blog-slider__img">
+                  <Image src={Lou3} alt="lou" />
+                </div>
+                <div className="flex flex-col lg:flex-col">
+                  <div>
+                    <span className="blog-slider__code">26 December 2019</span>
+                    <div className="blog-slider__title">Lorem Ipsum Dolor</div>
+                    <div className="blog-slider__text">
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Recusandae voluptate repellendus magni illo ea animi?{" "}
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
             </div>
             <div className="blog-slider__pagination"></div>
-          </div>
-
-          {/* <div
-            className="airbnb-embed-frame w-[410px] h-[300px] mx-auto"
-            data-id="3583595"
-            data-view="experience"
-            // style="width:410px;height:300px;margin:auto"
-          >
-            <a href="https://www.airbnb.it/experiences/3583595?guests=1&amp;adults=1&amp;s=66&amp;source=embed_widget">
-              Visto su Airbnb
-            </a>
-            <a
-              href="https://www.airbnb.it/experiences/3583595?guests=1&amp;adults=1&amp;s=66&amp;source=embed_widget"
-              rel="nofollow"
-            >
-              Tour Privato a Siena con una Guida Turistica Abilitata
-            </a>
-          </div> */}
+          </Swiper>
         </div>
       </div>
     </div>
