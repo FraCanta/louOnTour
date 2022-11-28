@@ -6,15 +6,12 @@ import { EffectFade, Pagination, Mousewheel, Autoplay } from "swiper";
 import "swiper/css/bundle";
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
-import Lou from "../../public/assets/foto1.jpg";
-import Lou2 from "../../public/assets/foto2.jpg";
-import Lou3 from "../../public/assets/foto3.jpg";
-import Lou4 from "../../public/assets/foto4.jpg";
 import Image from "next/image";
 import Cta from "../button/button";
 import Link from "next/link";
 
-const AboutMe = () => {
+const AboutMe = ({ translation }) => {
+  console.log(translation);
   return (
     <div className="about_me min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  py-8  w-full bg-[#232F37] mt-20 text-white flex items-center relative">
       <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 xl:grid-cols-2 justify-items-center content-center w-11/12 xl:w-4/5 mx-auto h-full">
@@ -55,54 +52,40 @@ const AboutMe = () => {
             }}
           >
             <div className="blog-slider__wrp swiper-wrapper">
-              <SwiperSlide className="blog-slider__item swiper-slide">
-                <div className="blog-slider__img">
-                  <Image src={Lou} alt="lou" />
-                </div>
-                <div className="flex flex-col lg:flex-col">
-                  <div>
-                    <span className="blog-slider__code">26 December 2019</span>
-                    <div className="blog-slider__title">Lorem Ipsum Dolor</div>
-                    <div className="blog-slider__text">
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Recusandae voluptate repellendus magni illo ea animi?{" "}
+              {translation
+                ?.filter((el, i) => i === 15)
+                .map((el, i) => (
+                  <SwiperSlide
+                    className="blog-slider__item swiper-slide"
+                    key={i}
+                  >
+                    <div className="blog-slider__img">
+                      <Image
+                        src={el?.img_reviews}
+                        alt="lou"
+                        width={500}
+                        height={500}
+                      />
                     </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="blog-slider__item swiper-slide">
-                <div className="blog-slider__img">
-                  <Image src={Lou2} alt="lou" />
-                </div>
-                <div className="flex flex-col lg:flex-col">
-                  <div>
-                    <span className="blog-slider__code">26 December 2019</span>
-                    <div className="blog-slider__title">Lorem Ipsum Dolor</div>
-                    <div className="blog-slider__text">
-                      {" "}
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Recusandae voluptate repellendus magni illo ea animi?{" "}
+                    <div className="flex flex-col lg:flex-col">
+                      <span className="blog-slider__code">{el?.date}</span>
+                      <div className="blog-slider__title flex items-center">
+                        <div className="avatar placeholder mr-2">
+                          <div className="w-8 rounded-full ring ring-[#fe6847] ">
+                            <span className="text-xs">{el?.avatar}</span>
+                          </div>
+                        </div>
+                        {el?.name}
+                      </div>
+                      <div className="blog-slider__text">
+                        {el?.reviews_desc}
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="blog-slider__item swiper-slide">
-                <div className="blog-slider__img">
-                  <Image src={Lou3} alt="lou" />
-                </div>
-                <div className="flex flex-col lg:flex-col">
-                  <div>
-                    <span className="blog-slider__code">26 December 2019</span>
-                    <div className="blog-slider__title">Lorem Ipsum Dolor</div>
-                    <div className="blog-slider__text">
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Recusandae voluptate repellendus magni illo ea animi?{" "}
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
+                  </SwiperSlide>
+                ))}
             </div>
-            <div className="blog-slider__pagination"></div>
+
+            {/* <div className="blog-slider__pagination"></div> */}
           </Swiper>
         </div>
       </div>

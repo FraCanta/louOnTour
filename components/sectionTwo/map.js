@@ -33,7 +33,7 @@ const Map = ({ translation }) => {
   };
   return (
     <div className="min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  container mx-auto w-11/12 lg:w-4/5">
-      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-8  overflow-x-hidden lg:overflow-visible">
+      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-12 2xl:pt-10  overflow-x-hidden lg:overflow-visible">
         <div className="p-0 ">
           <h4 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
             Tours

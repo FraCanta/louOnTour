@@ -22,7 +22,7 @@ export default function Home({ translation }) {
       <Hero translation={translation?.home?.hero} />
       <Mission />
       <Map translation={translation?.home?.map} />
-      <AboutMe />
+      <AboutMe translation={translation?.home?.reviews} />
       <Insta />
       <Banner />
     </div>
