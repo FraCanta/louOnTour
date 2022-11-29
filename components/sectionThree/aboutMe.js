@@ -47,42 +47,39 @@ const AboutMe = ({ translation }) => {
             modules={[EffectFade, Pagination, Mousewheel, Autoplay]}
             loop={true}
             autoplay={{
-              delay: 2500,
+              delay: 5000,
               disableOnInteraction: false,
             }}
+            autoHeight={true}
           >
             <div className="blog-slider__wrp swiper-wrapper">
-              {translation
-                ?.filter((el, i) => i === 15)
-                .map((el, i) => (
-                  <SwiperSlide
-                    className="blog-slider__item swiper-slide"
-                    key={i}
-                  >
-                    <div className="blog-slider__img">
-                      <Image
-                        src={el?.img_reviews}
-                        alt="lou"
-                        width={500}
-                        height={500}
-                      />
-                    </div>
-                    <div className="flex flex-col lg:flex-col">
-                      <span className="blog-slider__code">{el?.date}</span>
-                      <div className="blog-slider__title flex items-center">
-                        <div className="avatar placeholder mr-2">
-                          <div className="w-8 rounded-full ring ring-[#fe6847] ">
-                            <span className="text-xs">{el?.avatar}</span>
-                          </div>
+              {translation?.map((el, i) => (
+                <SwiperSlide className="blog-slider__item swiper-slide" key={i}>
+                  <div className="blog-slider__img aspect-square">
+                    <Image
+                      src={el?.img_reviews}
+                      alt="lou"
+                      // width={300}
+                      // height={300}
+                      fill
+                    />
+                  </div>
+                  <div className="blog-slider__content">
+                    <span className="blog-slider__code">{el?.date}</span>
+                    <div className="blog-slider__title flex items-center justify-center xl:justify-start">
+                      <div className="avatar placeholder mr-2">
+                        <div className="w-8 rounded-full ring ring-[#fe6847] ">
+                          <span className="text-xs">{el?.avatar}</span>
                         </div>
-                        {el?.name}
                       </div>
-                      <div className="blog-slider__text">
-                        {el?.reviews_desc}
-                      </div>
+                      {el?.name}
                     </div>
-                  </SwiperSlide>
-                ))}
+                    <div className="blog-slider__text ">
+                      <p className="line-clamp">{el?.reviews_desc}</p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
             </div>
 
             {/* <div className="blog-slider__pagination"></div> */}
