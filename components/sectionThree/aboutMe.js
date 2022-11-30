@@ -82,7 +82,7 @@ const AboutMe = ({ translation }) => {
               ))}
             </div>
 
-            {/* <div className="blog-slider__pagination"></div> */}
+            <div className="blog-slider__pagination"></div>
           </Swiper>
         </div>
       </div>
