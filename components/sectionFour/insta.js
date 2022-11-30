@@ -2,11 +2,12 @@ import React from "react";
 import Cta from "../button/button";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
-import Lou from "../../public/assets/foto1.jpg";
+import Lou from "../../public/assets/foto7.jpg";
 import Lou2 from "../../public/assets/foto2.jpg";
-import Lou3 from "../../public/assets/foto3.jpg";
-import Lou4 from "../../public/assets/foto4.jpg";
+import Lou3 from "../../public/assets/foto8.jpg";
+import Lou4 from "../../public/assets/foto17.jpg";
 import Masonry from "./masonry";
+import Link from "next/link";
 
 const Insta = () => {
   return (
@@ -61,9 +62,15 @@ const Insta = () => {
             curiosità e aneddoti proprio sui posti che hai visitato o che hai
             intenzione di conoscere qui in Toscana. Ti aspetto qui allora!
           </p>
-          <Cta>
-            Follow me <Icon icon="ant-design:instagram-filled" color="white" />
-          </Cta>
+          <Link
+            href="https://www.instagram.com/luisatourguide__/"
+            target="_blank"
+          >
+            <Cta>
+              Follow me{" "}
+              <Icon icon="ant-design:instagram-filled" color="white" />
+            </Cta>
+          </Link>
         </div>
       </div>
     </div>
