@@ -67,7 +67,7 @@ const Insta = () => {
             target="_blank"
           >
             <Cta>
-              Follow me{" "}
+              Follow me
               <Icon icon="ant-design:instagram-filled" color="white" />
             </Cta>
           </Link>
