@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.0.5",
     "daisyui": "^2.38.1",
     "gsap": "^3.11.3",
     "i18next": "^22.0.5",

@@ -1,19 +1,19 @@
-import Footer from "./footer";
-import Menu from "./menu";
-import Menu_mobile from "./menu_mobile";
-import Banner from "../sectionFive/banner";
-import BackToTop from "./backToTop";
-import Whatsapp from "./whatsApp";
+import dynamic from "next/dynamic";
+const DynamicFooter = dynamic(() => import("./footer"));
+const DynamicMenu = dynamic(() => import("./menu"));
+const DynamicMenu_mobile = dynamic(() => import("./menu_mobile"));
+const DynamicBackToTop = dynamic(() => import("./backToTop"));
+const DynamicWhatsapp = dynamic(() => import("./whatsApp"));
 
 function Layout({ children }) {
   return (
     <>
-      <Menu_mobile />
-      <Menu />
+      <DynamicMenu_mobile />
+      <DynamicMenu />
       {children}
-      <BackToTop />
-      <Whatsapp />
-      <Footer />
+      <DynamicBackToTop />
+      <DynamicWhatsapp />
+      <DynamicFooter />
     </>
   );
 }

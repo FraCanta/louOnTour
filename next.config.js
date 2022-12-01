@@ -32,6 +32,10 @@ const securityHeaders = [
     value: ContentSecurityPolicy.replace(/\s{2,}/g, " ").trim(),
   },
 ];
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: true,
+  openAnalyzer: true,
+});
 
 module.exports = withPlugins([
   nextConfig,
@@ -54,4 +58,5 @@ module.exports = withPlugins([
       ];
     },
   },
+  // withBundleAnalyzer,
 ]);

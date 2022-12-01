@@ -5,8 +5,8 @@ import "../styles/insta.css";
 import "../styles/banner.css";
 import "../styles/gallery.css";
 import "../styles/form.css";
-
-import Layout from "../components/layout/layout";
+import dynamic from "next/dynamic";
+const DynamicLayout = dynamic(() => import("../components/layout/layout"));
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
@@ -18,9 +18,9 @@ function MyApp({ Component, pageProps }) {
           content="width=device-width, initial-scale=1.0"
         ></meta>
       </Head>
-      <Layout>
+      <DynamicLayout>
         <Component {...pageProps} />
-      </Layout>
+      </DynamicLayout>
     </>
   );
 }
