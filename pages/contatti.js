@@ -1,6 +1,9 @@
 import React from "react";
-import ContactForm from "../components/contactPage/contactForm";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+const DynamicContactForm = dynamic(() =>
+  import("../components/contactPage/contactForm")
+);
 
 const Contact = () => {
   return (
@@ -24,7 +27,7 @@ const Contact = () => {
           </p>
         </div> */}
       </div>
-      <ContactForm />
+      <DynamicContactForm />
     </>
   );
 };

@@ -59,9 +59,8 @@ const AboutMe = ({ translation }) => {
                     <Image
                       src={el?.img_reviews}
                       alt="lou"
-                      // width={300}
-                      // height={300}
-                      fill
+                      width={300}
+                      height={300}
                     />
                   </div>
                   <div className="blog-slider__content">

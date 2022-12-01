@@ -1,13 +1,18 @@
 import React from "react";
-import HeroChiSono from "../components/chiSono/heroChiSono";
+import dynamic from "next/dynamic";
+const DynamicHeroChiSono = dynamic(() =>
+  import("../components/chiSono/heroChiSono")
+);
+const DynamicText = dynamic(() => import("../components/chiSono/text"));
+const DynamicBgImage = dynamic(() => import("../components/chiSono/bgImage"));
+const DynamicAboutGallery = dynamic(() =>
+  import("../components/chiSono/aboutGallery")
+);
+const DynamicBanner = dynamic(() => import("../components/sectionFive/banner"));
 import Head from "next/head";
-import Text from "../components/chiSono/text";
-import BgImage from "../components/chiSono/bgImage";
-import AboutGallery from "../components/chiSono/aboutGallery";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import { useRouter } from "next/router";
-import Banner from "../components/sectionFive/banner";
 
 const ChiSono = ({ translation }) => {
   const { locale } = useRouter();
@@ -19,11 +24,11 @@ const ChiSono = ({ translation }) => {
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HeroChiSono />
-      <Text />
-      <BgImage />
-      <AboutGallery aboutme={translation?.about?.galleria} />
-      <Banner />
+      <DynamicHeroChiSono />
+      <DynamicText />
+      <DynamicBgImage />
+      <DynamicAboutGallery aboutme={translation?.about?.galleria} />
+      <DynamicBanner />
     </>
   );
 };

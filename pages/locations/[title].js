@@ -1,11 +1,18 @@
 import Head from "next/head";
 import Link from "next/link";
-import HeroCities from "../../components/UI/heroCities";
+import dynamic from "next/dynamic";
+const DynamicHeroCities = dynamic(() =>
+  import("../../components/UI/heroCities")
+);
 import locations from "../../public/locales/it/it.json";
 import { Icon } from "@iconify/react";
-import GalleryTours from "../../components/UI/galleryTours";
-import Correlati from "../../components/UI/correlati";
-import Banner from "../../components/sectionFive/banner";
+const DynamicGalleryTours = dynamic(() =>
+  import("../../components/UI/galleryTours")
+);
+const DynamicCorrelati = dynamic(() => import("../../components/UI/correlati"));
+const DynamicBanner = dynamic(() =>
+  import("../../components/sectionFive/banner")
+);
 
 export default function Tours({ city, others }) {
   // const tours = gsap.timeline(); // prima timeline per transition della pagina
@@ -28,7 +35,7 @@ export default function Tours({ city, others }) {
           </p>
         </div>
       </div>
-      <HeroCities city={city} />
+      <DynamicHeroCities city={city} />
       <div className="min-h-[50vh] py-0 lg:py-4 ">
         <div className="container w-11/12 xl:w-4/5 mx-auto xl:h-full ">
           <div className="flex flex-col lg:flex-row w-full justify-between">
@@ -79,9 +86,9 @@ export default function Tours({ city, others }) {
         </div>
       </div>
 
-      <GalleryTours imageArray={city?.gallery} />
-      <Correlati city={city} others={others} />
-      <Banner />
+      <DynamicGalleryTours imageArray={city?.gallery} />
+      <DynamicCorrelati city={city} others={others} />
+      <DynamicBanner />
     </>
   );
 }

@@ -1,14 +1,19 @@
 import Head from "next/head";
-import Image from "next/image";
-import Hero from "../components/layout/hero";
-import Insta from "../components/sectionFour/insta";
-import Mission from "../components/sectionOne/mission";
-import AboutMe from "../components/sectionThree/aboutMe";
-import Map from "../components/sectionTwo/map";
+import dynamic from "next/dynamic";
+const DynamicHero = dynamic(() => import("../components/layout/hero"));
+const DynamicMission = dynamic(() =>
+  import("../components/sectionOne/mission")
+);
+const DynamicAboutMe = dynamic(() =>
+  import("../components/sectionThree/aboutMe")
+);
+const DynamicMap = dynamic(() => import("../components/sectionTwo/map"));
+const DynamicInsta = dynamic(() => import("../components/sectionFour/insta"));
+const DynamicBanner = dynamic(() => import("../components/sectionFive/banner"));
+
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import { useRouter } from "next/router";
-import Banner from "../components/sectionFive/banner";
 export default function Home({ translation }) {
   const { locale } = useRouter();
   return (
@@ -19,12 +24,12 @@ export default function Home({ translation }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Hero translation={translation?.home?.hero} />
-      <Mission />
-      <Map translation={translation?.home?.map} />
-      <AboutMe translation={translation?.home?.reviews} />
-      <Insta />
-      <Banner />
+      <DynamicHero translation={translation?.home?.hero} />
+      <DynamicMission />
+      <DynamicMap translation={translation?.home?.map} />
+      <DynamicAboutMe translation={translation?.home?.reviews} />
+      <DynamicInsta />
+      <DynamicBanner />
     </div>
   );
 }

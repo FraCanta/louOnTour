@@ -35,8 +35,8 @@ const GalleryTours = ({ imageArray }) => {
                 className="gallery-image"
                 src={el}
                 alt="foto"
-                width={200}
-                height={200}
+                width={150}
+                height={150}
                 onClick={() => handleModal(i)}
                 loading="lazy"
               />

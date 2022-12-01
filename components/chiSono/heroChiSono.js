@@ -29,7 +29,8 @@ const HeroChiSono = () => {
           <Image
             src={LouAvatar}
             alt="lou_avatar"
-            fill
+            width={550}
+            height={688}
             className="min-h-full h-full object-cover w-full absolute inset-0 rounded-lg"
           />
         </div>

@@ -52,7 +52,9 @@ const Correlati = ({ city, others }) => {
                     <Image
                       src={el?.img}
                       alt={el?.titleImg}
-                      fill
+                      // fill
+                      width={300}
+                      height={300}
                       className="rounded-box  h-full w-full absolute"
                     />
                   </Link>
