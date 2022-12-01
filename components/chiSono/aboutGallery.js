@@ -30,7 +30,7 @@ const AboutGallery = ({ aboutme }) => {
 
         <div className="gallery pt-8">
           {aboutme?.map((el, i) => (
-            <div class="gallery-item" key={i}>
+            <div className="gallery-item" key={i}>
               <Image
                 className="gallery-image"
                 src={el}

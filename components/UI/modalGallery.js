@@ -34,19 +34,6 @@ const ModalGallery = ({ handleModal, showModal, imageArray }) => {
             onClick={() => handleModal(showModal?.img)}
           />
         ))}
-        {/* <Image
-          src={showModal?.img}
-          alt="foto"
-          layout="fixed"
-          width={1000}
-          height={1000}
-          style={{ width: "auto", height: "90%" }}
-          // priority="true"
-          // className="max-h-[80%] max-w-[80%]"
-          onLoadingComplete={() => {
-            console.log("ciao");
-          }}
-        /> */}
       </div>
     </div>
   );

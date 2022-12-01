@@ -24,7 +24,7 @@ const Correlati = ({ city, others }) => {
                 <Link href={el?.link} className=" hand-pointer">
                   <Image
                     src={el?.img}
-                    alt={el?.titleImg}
+                    alt={el?.title}
                     width={500}
                     height={500}
                     style={{ width: "auto", height: "auto" }}
@@ -51,7 +51,7 @@ const Correlati = ({ city, others }) => {
                   <Link href={el?.link}>
                     <Image
                       src={el?.img}
-                      alt={el?.titleImg}
+                      alt={el?.title}
                       // fill
                       width={300}
                       height={300}

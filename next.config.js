@@ -9,7 +9,7 @@ const ContentSecurityPolicy = `
   default-src 'self' https://api.iconify.design/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css;
   script-src 'self' https://storage.googleapis.com 'unsafe-inline' 'unsafe-eval';
   child-src 'self' http://localhost:3000/ https://lou-eight.vercel.app/;
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css data:;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css  data:;
   font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ 'unsafe-inline' data:;
   img-src 'self' data: blob:;
   

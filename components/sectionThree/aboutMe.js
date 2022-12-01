@@ -11,7 +11,6 @@ import Cta from "../button/button";
 import Link from "next/link";
 
 const AboutMe = ({ translation }) => {
-  console.log(translation);
   return (
     <div className="about_me min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  py-8  w-full bg-[#232F37] mt-20 text-white flex items-center relative">
       <div className="grid gap-14 md:gap-14 xl:gap-28 grid-cols-1 xl:grid-cols-2 justify-items-center content-center w-11/12 xl:w-4/5 mx-auto h-full">

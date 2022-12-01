@@ -31,6 +31,7 @@ const HeroChiSono = () => {
             alt="lou_avatar"
             width={550}
             height={688}
+            priority
             className="min-h-full h-full object-cover w-full absolute inset-0 rounded-lg"
           />
         </div>
