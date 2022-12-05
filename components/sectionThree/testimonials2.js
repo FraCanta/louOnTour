@@ -22,7 +22,7 @@ const Testimonials2 = ({ translation }) => {
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
         }}
-        autoplay={true}
+        // autoplay={true}
         pagination={{
           el: "swiper-pagination",
         }}
@@ -32,30 +32,45 @@ const Testimonials2 = ({ translation }) => {
             <SwiperSlide key={i}>
               <div className="content-wrapper">
                 <div className="content">
-                  <div className="flex items-center">
-                    <div className="avatar placeholder mr-2">
-                      <div className="w-8 rounded-full ring ring-[#fe6847] ">
-                        <span className="text-xs">{el?.avatar}</span>
+                  <div className="flex items-center w-full justify-between py-4 px-4">
+                    <div className="flex items-center">
+                      <div className="avatar placeholder mr-2">
+                        <div className="w-8 rounded-full ring ring-[#fe6847] ">
+                          <span className="text-xs text-[#fe6847]">
+                            <Image
+                              src={el?.img_reviews}
+                              width={20}
+                              height={20}
+                              alt="avatar"
+                            />
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-md text-[#fe6847] font-bold ml-2 flex flex-col items-start">
+                        {el?.name}
+                        <div className="flex">
+                          {starsArray(el?.rating).map((star, i) => (
+                            <a key={i}>
+                              <Icon
+                                icon="ant-design:star-filled"
+                                color="#ffe600"
+                                width="15"
+                                key={star}
+                              />
+                            </a>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                    <p className="ml-2"> {el?.name} </p>
+
+                    <span className="text-[#232F37] text-xs py-4 px-4 font-bold">
+                      {el?.date}
+                    </span>
                   </div>
 
-                  <div className="flex items-center">
-                    {starsArray(translation.rating).map((star, i) => (
-                      <a key={i}>
-                        <Icon
-                          icon="ant-design:star-filled"
-                          color="#ffe600"
-                          width="20"
-                          key={star}
-                        />
-                      </a>
-                    ))}
-                    <span className=" py-4 px-4">{el?.date}</span>
-                  </div>
-
-                  <p className="line-clamp">{el?.reviews_desc}</p>
+                  <span className="line-clamp text-[#232F37] text-[0.9rem] ">
+                    {el?.reviews_desc}
+                  </span>
                 </div>
               </div>
             </SwiperSlide>
