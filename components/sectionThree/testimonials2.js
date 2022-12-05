@@ -22,7 +22,7 @@ const Testimonials2 = ({ translation }) => {
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
         }}
-        // autoplay={true}
+        autoplay={true}
         pagination={{
           el: "swiper-pagination",
         }}
