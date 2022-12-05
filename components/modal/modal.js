@@ -3,10 +3,6 @@ import React, { useRef, useEffect, useState } from "react";
 // import Florence from "../../public/assets/florence.mp4";
 import { Icon } from "@iconify/react";
 const Modal = ({ handleModal, showModal }) => {
-  // useEffect(() => {
-  //   document.body.classList.add("stop-scrolling");
-  // }, []);
-
   return (
     <>
       <div

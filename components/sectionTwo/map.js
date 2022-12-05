@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Toscana from "../../public/assets/toscana.svg";
-import Choose from "../../public/assets/choose.svg";
 import { Icon } from "@iconify/react";
 import Modal from "../modal/modal";
 import Cta from "../button/button";
@@ -55,13 +54,6 @@ const Map = ({ translation }) => {
         </div>
 
         <div className="pt-0 w-[650px] height-[697.359px] relative ">
-          {/* <div className="flex flex-col items-center  absolute -top-10 lg:right-10 right-40">
-            <Image src={Choose} alt="brand" className="w-[120px] " />
-
-            <h3 className="uppercase font-medium pt-2 text-lg  text-[0.7rem] 2xl:text-[1rem] text-[#232F37] ">
-              Scegli la tua destinazione
-            </h3>
-          </div> */}
           <Image
             src={Toscana}
             priority

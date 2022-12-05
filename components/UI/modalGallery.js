@@ -29,7 +29,7 @@ const ModalGallery = ({ handleModal, showModal, imageArray }) => {
                 : { display: "none" }
             }
             onLoadingComplete={() => {
-              console.log("preload" + el + " completato");
+              console.log("preload " + el + " completato");
             }}
             onClick={() => handleModal(showModal?.img)}
           />
