@@ -86,7 +86,9 @@ export default function Tours({ city, others }) {
         </div>
       </div>
 
-      <DynamicGalleryTours imageArray={city?.gallery} />
+      {city.gallery.length > 0 && (
+        <DynamicGalleryTours imageArray={city?.gallery} />
+      )}
       <DynamicCorrelati city={city} others={others} />
       <DynamicBanner />
     </>

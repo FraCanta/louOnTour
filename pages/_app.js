@@ -5,6 +5,8 @@ import "../styles/insta.css";
 import "../styles/banner.css";
 import "../styles/gallery.css";
 import "../styles/form.css";
+import "../styles/testimonials.css";
+
 import dynamic from "next/dynamic";
 const DynamicLayout = dynamic(() => import("../components/layout/layout"));
 import Head from "next/head";

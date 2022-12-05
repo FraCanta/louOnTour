@@ -58,5 +58,10 @@ module.exports = withPlugins([
       ];
     },
   },
+  {
+    images: {
+      formats: ["image/avif", "image/webp"],
+    },
+  },
   // withBundleAnalyzer,
 ]);

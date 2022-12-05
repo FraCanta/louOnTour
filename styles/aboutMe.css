@@ -1,6 +1,6 @@
 .blog-slider {
   position: relative;
-  max-width: 550px !important;
+  max-width: 350px !important;
   margin: auto;
   background: #fff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
@@ -39,12 +39,13 @@
 .blog-slider__item {
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .blog-slider__item {
     flex-direction: column;
   }
-}
+} */
 .blog-slider__item.swiper-slide-active .blog-slider__img img {
   opacity: 1;
   transition-delay: 0.3s;
@@ -111,14 +112,14 @@
   transition-delay: 2.1s;
 }
 .blog-slider__img {
-  width: 250px !important;
+  width: 100px !important;
   flex-shrink: 0 !important;
-  height: 250px !important;
-  /* background: white; */
-  /* box-shadow: 4px 13px 30px 1px rgba(0, 0, 0, 0.25); */
+  height: 100px !important;
   border-radius: 20px;
-  transform: translateX(-80px);
+  transform: translateY(-40%);
+
   overflow: hidden;
+  border-radius: 50%;
 }
 
 .blog-slider__img img {
@@ -135,35 +136,34 @@
 @media screen and (max-width: 768px) {
   .blog-slider__img {
     transform: translateY(-50%);
-    width: 200px;
   }
 }
-@media screen and (max-width: 576px) {
+/* @media screen and (max-width: 576px) {
   .blog-slider__img {
     width: 200px;
     height: 220px;
   }
-}
-@media screen and (max-height: 500px) and (min-width: 992px) {
+} */
+/* @media screen and (max-height: 500px) and (min-width: 992px) {
   .blog-slider__img {
     height: 220px;
   }
 }
 .blog-slider__content {
   padding-right: 25px;
-}
-@media screen and (max-width: 768px) {
+} */
+/* @media screen and (max-width: 768px) {
   .blog-slider__content {
     margin-top: -80px;
     text-align: center;
     padding: 0 30px;
   }
-}
-@media screen and (max-width: 576px) {
+} */
+/* @media screen and (max-width: 576px) {
   .blog-slider__content {
     padding: 0;
   }
-}
+} */
 .blog-slider__content > * {
   opacity: 0;
   transform: translateY(25px);
@@ -175,6 +175,7 @@
   display: block;
   font-weight: 100;
   font-size: 14px;
+  text-align: center;
 }
 .blog-slider__title {
   font-size: 24px;
@@ -186,6 +187,7 @@
   color: #232f37;
   margin-bottom: 30px;
   line-height: 1.5em;
+  text-align: center;
 }
 .line-clamp {
   overflow: hidden;

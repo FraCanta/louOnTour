@@ -38,7 +38,9 @@ const GalleryTours = ({ imageArray }) => {
                 width={150}
                 height={150}
                 onClick={() => handleModal(i)}
-                loading="lazy"
+                // loading="lazy"
+                placeholder="blur"
+                blurDataURL={el}
               />
             </div>
           ))}
