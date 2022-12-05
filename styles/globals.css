@@ -162,17 +162,7 @@ h4 {
   box-sizing: border-box;
 }
 
-/* transition page animation */
-
-.transition-effect {
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-}
+/*  Menu  */
 
 .menu_container {
   height: 100px;
@@ -201,6 +191,10 @@ h4 {
   text-transform: uppercase;
   transition: 0.5s;
 }
+
+/*  Fine Menu */
+
+/*  Hero and Animation */
 
 .hero {
   width: 100%;
@@ -233,7 +227,7 @@ h4 {
 }
 
 .layer-1a {
-  background: url(../public/assets/bird.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/bird.webp) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 147px;
@@ -244,7 +238,7 @@ h4 {
 }
 
 .layer-2a {
-  background: url(../public/assets/bird.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/bird.webp) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 181px;
@@ -255,7 +249,7 @@ h4 {
 }
 
 .layer-2ab {
-  background: url(../public/assets/bird.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/bird.webp) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 281px;
@@ -266,7 +260,7 @@ h4 {
 }
 
 .layer-3a {
-  background: url(../public/assets/bird.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/bird.webp) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 114px;
@@ -277,7 +271,7 @@ h4 {
 }
 
 .layer-3ab {
-  background: url(../public/assets/bird.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/bird.webp) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 214px;
@@ -288,7 +282,7 @@ h4 {
 }
 
 .layer-4a {
-  background: url(../public/assets/cloud_small.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/cloud_small.webp) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
   top: 154px;
@@ -299,7 +293,7 @@ h4 {
 }
 
 .layer-5a {
-  background: url(../public/assets/cloud_big.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/cloud_big.webp) 0 100% no-repeat;
   z-index: 2;
   position: absolute;
   top: 108px;
@@ -310,7 +304,7 @@ h4 {
 }
 
 .layer-6a {
-  background: url(../public/assets/cloud_big.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/cloud_big.webp) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
   top: 118px;
@@ -321,7 +315,7 @@ h4 {
 }
 
 .layer-7a {
-  background: url(../public/assets/cloud_small.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/cloud_small.webp) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
   top: 154px;
@@ -334,7 +328,7 @@ h4 {
 .layer-2 {
   -webkit-animation: parallax_fg linear 30s infinite both;
   animation: parallax_fg linear 30s infinite both;
-  background: url(../public/assets/erba_lou_l2.png) 0 100% repeat-x;
+  background: url(../public/assets/hero/erba_lou_l2.webp) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
@@ -345,7 +339,7 @@ h4 {
 }
 
 .layer-3 {
-  background: url(../public/assets/erba_lou_l3.png) 0 100% repeat-x;
+  background: url(../public/assets/hero/erba_lou_l3.webp) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
@@ -358,7 +352,7 @@ h4 {
 .layer-4 {
   -webkit-animation: parallax_fg linear 75s infinite both;
   animation: parallax_fg linear 75s infinite both;
-  background: url(../public/assets/building_lou.png) 0 100% repeat-x;
+  background: url(../public/assets/hero/building_lou.webp) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
@@ -371,7 +365,7 @@ h4 {
 .layer-5 {
   -webkit-animation: parallax_fg linear 95s infinite both;
   animation: parallax_fg linear 95s infinite both;
-  background: url(../public/assets/build_2.png) 0 100% repeat-x;
+  background: url(../public/assets/hero/build_2.webp) 0 100% repeat-x;
   z-index: 1;
   position: absolute;
   bottom: 0;
@@ -384,7 +378,7 @@ h4 {
 .bike-1,
 .bike-2,
 .bike-3 {
-  background: url(../public/assets/cavallo.png) 0 100% no-repeat;
+  background: url(../public/assets/hero/cavallo.webp) 0 100% no-repeat;
   z-index: 1;
   position: absolute;
   bottom: 10px;

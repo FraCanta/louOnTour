@@ -5,7 +5,16 @@
   text-align: center;
   color: rgb(109, 127, 179);
   padding: 1.5em;
-  /* overflow: hidden; */
+}
+
+.swiper {
+  overflow: visible !important;
+  width: auto !important;
+  height: auto !important;
+  left: 0 !important;
+  top: 0 !important;
+  margin-top: 0 !important;
+  padding: 1.5em;
 }
 
 .line-clamp {
@@ -15,9 +24,6 @@
   -webkit-box-orient: vertical;
 }
 
-.swiper {
-  padding: 1.5em;
-}
 .swiper .content-wrapper {
   position: relative;
   display: grid;
