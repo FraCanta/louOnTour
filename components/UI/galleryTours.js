@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import ModalGallery from "./modalGallery";
+import Spinner from "./spinner";
 
 const GalleryTours = ({ imageArray }) => {
   const [showModal, setShowModal] = useState({
@@ -11,7 +12,8 @@ const GalleryTours = ({ imageArray }) => {
   const [imgSpinner, setImgSpinner] = useState({});
 
   useEffect(() => {
-    setImgSpinner({ 1: true, 2: true });
+    const arr = new Array(imageArray.length).fill(true);
+    setImgSpinner({ ...arr });
   }, []);
   const handleModal = (imgToShow) => {
     showModal.isOpen === "hide"
@@ -36,13 +38,14 @@ const GalleryTours = ({ imageArray }) => {
         <div className="gallery pt-8">
           {imageArray?.map((el, i) => (
             <div className="gallery-item" key={i}>
-              <p
+              <div
+                className={`spinner-overlay h-full w-full relative `}
                 style={
                   imgSpinner[i] ? { display: "block" } : { display: "none" }
                 }
               >
-                rwtgery45rtyrtutyuytutyutyu
-              </p>
+                <Spinner />
+              </div>
               <Image
                 className={`gallery-image `}
                 src={el}
