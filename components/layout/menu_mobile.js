@@ -220,6 +220,14 @@ function Menu_mobile() {
               </li>
               <li onClick={handleBurgerClose}>
                 <Link
+                  href="/chiSono"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] !pb-4 md:!pb-8 link_menu"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li onClick={handleBurgerClose}>
+                <Link
                   href="/contatti"
                   className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] link_menu"
                 >
@@ -229,7 +237,11 @@ function Menu_mobile() {
             </ul>
             <div className="socials w-4/5">
               <button className="lg:text-lg 3xl:text-2xl ">
-                <Link href="/contact" className="link_menu">
+                <Link
+                  href="https://www.facebook.com/luisa.quaglia.tourguide"
+                  className="link_menu"
+                  target="_blank"
+                >
                   <Icon
                     icon="entypo-social:facebook"
                     color="#FE6847"
@@ -238,7 +250,11 @@ function Menu_mobile() {
                 </Link>
               </button>
               <button className=" llinks">
-                <Link href="/contact" className="link_menu">
+                <Link
+                  href="https://www.instagram.com/luisatourguide__/"
+                  className="link_menu"
+                  target="_blank"
+                >
                   <Icon
                     icon="akar-icons:instagram-fill"
                     color="#FE6847"
@@ -247,7 +263,11 @@ function Menu_mobile() {
                 </Link>
               </button>
               <button className="lg:text-lg 3xl:text-2xl">
-                <Link href="/contact" className="link_menu">
+                <Link
+                  href="https://www.tiktok.com/@luisatourguide?is_from_webapp=1&sender_device=pc"
+                  className="link_menu"
+                  target="_blank"
+                >
                   <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />
                 </Link>
               </button>

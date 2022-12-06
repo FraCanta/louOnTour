@@ -2,34 +2,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Toscana from "../../public/assets/toscana.svg";
 import { Icon } from "@iconify/react";
-import Modal from "../modal/modal";
 import Cta from "../button/button";
 import Link from "next/link";
 const Map = ({ translation }) => {
-  const [showModal, setShowModal] = useState({
-    isOpen: "hide",
-    scale: "",
-    title: "",
-    video: "",
-    link: "",
-  });
-  const handleModal = (title, video, link) => {
-    showModal.isOpen === "hide"
-      ? setShowModal({
-          isOpen: "",
-          scale: "scale-modal",
-          title: title,
-          video: video,
-          link: link,
-        })
-      : setShowModal({
-          isOpen: "hide",
-          scale: "",
-          title: title,
-          video: video,
-          link: link,
-        });
-  };
   return (
     <div className="min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  container mx-auto w-11/12 lg:w-4/5">
       <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-12 2xl:pt-10  overflow-x-hidden lg:overflow-visible">
@@ -62,7 +37,6 @@ const Map = ({ translation }) => {
             height="auto"
             className="opacity-50"
           />
-          {/* <Modal handleModal={handleModal} showModal={showModal} /> */}
           {translation?.markers?.map((el, i) => (
             <div
               key={i}
@@ -81,17 +55,20 @@ const Map = ({ translation }) => {
                     }
               }
             >
-              <Link href={`/locations/${el?.title}`}>
-                <Icon
-                  icon="fontisto:map-marker-alt"
-                  width="32"
-                  className={` animate-bounce cursor-pointer`}
-                  alt={el?.title}
-                  id={el?.id}
-                  // onClick={() => handleModal(el?.title, el?.video, el?.link)}
-                />
-              </Link>
-              <div className="bg-[#FE6847] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+              {el?.link?.length > 0 && (
+                <Link href={`/locations/${el?.title}`}>
+                  <Icon
+                    icon="fontisto:map-marker-alt"
+                    width="32"
+                    className={` animate-bounce cursor-pointer`}
+                    alt={el?.title}
+                    id={el?.id}
+                  />
+                </Link>
+              )}
+              {el?.link?.length > 0 && (
+                <div className="bg-[#FE6847] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+              )}
 
               <p className="uppercase text-[0.8rem] text-[#232F37] font-medium py-2">
                 {el?.title}

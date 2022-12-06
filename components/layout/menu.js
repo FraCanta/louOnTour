@@ -4,18 +4,8 @@ import React from "react";
 import Lou from "../../public/assets/logo4.png";
 import { Icon } from "@iconify/react";
 import translation from "../../public/locales/it/it.json";
-// import { useRouter } from "next/router";
 
 const Menu = ({ exact, href }) => {
-  // const { pathname } = useRouter();
-
-  // const isActive = exact ? pathname === href : pathname.startsWith(href);
-
-  // if (isActive) {
-  //   props.className !== undefined
-  //     ? (props.className += " active")
-  //     : (props.className = "active");
-  // }
   return (
     <div className="hidden xl:flex justify-center items-center w-full bg-white border-b border-black-500 z-20 menu_container">
       <div className="container mx-auto w-4/5">
@@ -67,10 +57,17 @@ const Menu = ({ exact, href }) => {
                   </ul>
                 </>
               </li>
-              {/* </li> */}
               <li>
                 <Link href="/chiSono" className="2xl:text-base fxl:text-[18px]">
                   Chi sono
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contatti"
+                  className="2xl:text-l[12px] fxl:text-[18px]"
+                >
+                  Blog
                 </Link>
               </li>
               <li>
@@ -84,17 +81,29 @@ const Menu = ({ exact, href }) => {
             </ul>
           </nav>
           <div className="flex">
-            <Link href="/contact" className="mr-4">
+            <Link
+              href="https://www.facebook.com/luisa.quaglia.tourguide"
+              className="mr-4"
+              target="_blank"
+            >
               <Icon icon="entypo-social:facebook" color="#FE6847" width="25" />
             </Link>
-            <Link href="/contact" className="mr-4">
+            <Link
+              href="https://www.instagram.com/luisatourguide__/"
+              className="mr-4"
+              target="_blank"
+            >
               <Icon
                 icon="akar-icons:instagram-fill"
                 color="#FE6847"
                 width="25"
               />
             </Link>
-            <Link href="/contact" className="">
+            <Link
+              href="https://www.tiktok.com/@luisatourguide?is_from_webapp=1&sender_device=pc"
+              className=""
+              target="_blank"
+            >
               <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />{" "}
             </Link>
           </div>

@@ -25,6 +25,7 @@ const Correlati = ({ city, others }) => {
                   <Image
                     src={el?.img}
                     alt={el?.title}
+                    priority
                     width={500}
                     height={500}
                     style={{ width: "auto", height: "auto" }}
@@ -41,7 +42,7 @@ const Correlati = ({ city, others }) => {
             ))}
         </div>
       </div>
-      <div className="min-h-[20vh] w-full 2xl:p-8 lg:hidden ">
+      <div className="min-h-[20vh] w-full 2xl:p-8 xl:hidden ">
         <div className=" carousel carousel-center p-4 space-x-4 ">
           {others
             ?.filter((el) => el?.title !== city?.titleImg)

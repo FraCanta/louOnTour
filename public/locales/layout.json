@@ -1,0 +1,87 @@
+{
+  "menu": {
+    "it": {
+      "home": "home",
+      "about": "chi siamo",
+      "how": "come lavoriamo",
+      "pricing": "pricing",
+      "contact": "CONTATTI"
+    },
+    "en": {
+      "home": "home",
+      "about": "about",
+      "how": "how we work",
+      "pricing": "pricing",
+      "contact": "CONTACTS"
+    },
+    "es": {
+      "home": "home",
+      "about": "quienes somos",
+      "how": "cómo trabajamos",
+      "pricing": "tarifas",
+      "contact": "CONTACTOS"
+    }
+  },
+  "footer": {
+    "it": {
+      "Col1": { "title": "Ubiquity", "location": "Europe" },
+      "Col2": {
+        "title": "Ubiquity",
+        "row1": "About",
+        "row2": "Privacy Policy"
+      },
+      "Col3": {
+        "title": "Aree Tematiche",
+        "row1": "Come Lavoriamo",
+        "row2": "Brand Identity",
+        "row3": "UX/UI"
+      },
+      "Col4": {
+        "title": "Contatti",
+        "row1": "Contact Us",
+        "row2": "Linkedin",
+        "row3": "Facebook"
+      }
+    },
+    "en": {
+      "Col1": { "title": "Ubiquity", "location": "Europe" },
+      "Col2": {
+        "title": "Ubiquity",
+        "row1": "About",
+        "row2": "Privacy Policy"
+      },
+      "Col3": {
+        "title": "Thematic areas",
+        "row1": "How We Work",
+        "row2": "Brand Identity",
+        "row3": "UX/UI"
+      },
+      "Col4": {
+        "title": "Contacts",
+        "row1": "Contact Us",
+        "row2": "Linkedin",
+        "row3": "Facebook"
+      }
+    },
+    "es": {
+      "Col1": { "title": "Ubiquity", "location": "Europe" },
+      "Col2": {
+        "title": "Ubiquity",
+        "row1": "Quienes Somos",
+        "row2": "Política de Privacidad"
+      },
+      "Col3": {
+        "title": "Áreas temáticas",
+        "row1": "Cómo trabajamos",
+        "row2": "Brand Identity",
+        "row3": "UX/UI"
+      },
+      "Col4": {
+        "title": "Contactos",
+        "row1": "Contáctenos",
+        "row2": "Linkedin",
+        "row3": "Facebook"
+      }
+    }
+  }
+}

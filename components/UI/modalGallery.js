@@ -21,6 +21,7 @@ const ModalGallery = ({ handleModal, showModal, imageArray }) => {
             src={el}
             alt="foto"
             layout="fixed"
+            priority
             width={1000}
             height={1000}
             style={

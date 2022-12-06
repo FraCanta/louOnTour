@@ -24,6 +24,23 @@
   -webkit-box-orient: vertical;
 }
 
+.box-folded__trigger {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+  color: #cb8607;
+}
+
+.box-folded--expanded .box-folded__content {
+  max-height: 100%;
+}
+.box-folded--expanded .box-folded__content::before,
+.box-folded--expanded .box-folded__trigger {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .swiper .content-wrapper {
   position: relative;
   display: grid;

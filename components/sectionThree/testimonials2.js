@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "../../public/assets/avatar/donnaAvatar.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper";
@@ -10,7 +10,14 @@ import { Icon } from "@iconify/react";
 
 const Testimonials2 = ({ translation }) => {
   const starsArray = (rating) => new Array(rating).fill(1); //trasformo il numero in array per mapparlo
-
+  const [expandText, setExpandText] = useState("line-clamp");
+  const handleReadMore = () => {
+    if (expandText === "line-clamp") {
+      setExpandText("box-folded--expanded ");
+    } else {
+      setExpandText("line-clamp");
+    }
+  };
   return (
     <div className="wrapper">
       <Swiper
@@ -22,7 +29,7 @@ const Testimonials2 = ({ translation }) => {
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
         }}
-        autoplay={true}
+        // autoplay={true}
         pagination={{
           el: "swiper-pagination",
         }}
@@ -67,9 +74,15 @@ const Testimonials2 = ({ translation }) => {
                       {el?.date}
                     </span>
                   </div>
-
-                  <span className="line-clamp text-[#232F37] text-[0.9rem] ">
-                    {el?.reviews_desc}
+                  <div>
+                    <span
+                      className={`${expandText} text-[#232F37] text-[0.9rem]`}
+                    >
+                      {el?.reviews_desc}
+                    </span>
+                  </div>
+                  <span class="box-folded__trigger" onClick={handleReadMore}>
+                    + read more
                   </span>
                 </div>
               </div>
