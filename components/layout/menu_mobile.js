@@ -248,11 +248,7 @@ function Menu_mobile() {
               </button>
               <button className="lg:text-lg 3xl:text-2xl">
                 <Link href="/contact" className="link_menu">
-                  <Icon
-                    icon="entypo-social:youtube"
-                    color="#FE6847"
-                    width="25"
-                  />{" "}
+                  <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />
                 </Link>
               </button>
             </div>

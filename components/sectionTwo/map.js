@@ -62,7 +62,7 @@ const Map = ({ translation }) => {
             height="auto"
             className="opacity-50"
           />
-          <Modal handleModal={handleModal} showModal={showModal} />
+          {/* <Modal handleModal={handleModal} showModal={showModal} /> */}
           {translation?.markers?.map((el, i) => (
             <div
               key={i}
@@ -81,14 +81,16 @@ const Map = ({ translation }) => {
                     }
               }
             >
-              <Icon
-                icon="fontisto:map-marker-alt"
-                width="32"
-                className={` animate-bounce cursor-pointer`}
-                alt={el?.title}
-                id={el?.id}
-                onClick={() => handleModal(el?.title, el?.video, el?.link)}
-              />
+              <Link href={`/locations/${el?.title}`}>
+                <Icon
+                  icon="fontisto:map-marker-alt"
+                  width="32"
+                  className={` animate-bounce cursor-pointer`}
+                  alt={el?.title}
+                  id={el?.id}
+                  // onClick={() => handleModal(el?.title, el?.video, el?.link)}
+                />
+              </Link>
               <div className="bg-[#FE6847] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
 
               <p className="uppercase text-[0.8rem] text-[#232F37] font-medium py-2">

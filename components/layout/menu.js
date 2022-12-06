@@ -95,7 +95,7 @@ const Menu = ({ exact, href }) => {
               />
             </Link>
             <Link href="/contact" className="">
-              <Icon icon="entypo-social:youtube" color="#FE6847" width="25" />{" "}
+              <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />{" "}
             </Link>
           </div>
         </div>
