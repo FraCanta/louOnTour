@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import translation from "../../public/locales/it/it.json";
 
 const Footer = () => {
-  console.log(translation);
+  // console.log(translation);
   const { locale } = useRouter();
   return (
     <>

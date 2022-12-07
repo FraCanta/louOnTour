@@ -63,10 +63,7 @@ const Menu = ({ exact, href }) => {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/contatti"
-                  className="2xl:text-l[12px] fxl:text-[18px]"
-                >
+                <Link href="/blog" className="2xl:text-l[12px] fxl:text-[18px]">
                   Blog
                 </Link>
               </li>

@@ -65,6 +65,7 @@ module.exports = withPlugins([
   {
     images: {
       formats: ["image/avif", "image/webp"],
+      domains: ["louontour.it"],
     },
   },
   // withBundleAnalyzer,
