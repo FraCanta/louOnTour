@@ -27,7 +27,7 @@ const Blog = ({ post, category, media, tags }) => {
       <div className="py-8 text-4xl text-center text-black">
         <h1>Blog</h1>
       </div>
-      <div className="container mx-auto pt-5 p-8">
+      <div className="container mx-auto pt-5 p-2 xl:p-8">
         <div className="grid grid-cols-1 xl:grid-cols-3  gap-14 md:gap-14 xl:gap-18">
           {jsxPosts}
         </div>

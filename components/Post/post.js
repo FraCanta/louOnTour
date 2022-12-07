@@ -7,7 +7,7 @@ import { getDate } from "../../utils/utils";
 
 export default function Post({ post, featuredMedia }) {
   return (
-    <div className="card w-96 ">
+    <div className="card w-full lg:w-96 ">
       <div>
         <div>
           <Link href={`/posts/${post.slug}`}>
