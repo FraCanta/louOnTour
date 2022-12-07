@@ -4,6 +4,7 @@ import { getPost, getSlugs } from "../../utils/wordpress";
 import Head from "next/head";
 
 export default function PostPage({ post }) {
+  console.log(post);
   return (
     <>
       <Head>
