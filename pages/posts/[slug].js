@@ -10,7 +10,10 @@ export default function PostPage({ post }) {
         <title>{`Lou On Tour - ${post.title.rendered}`}</title>
       </Head>
       <div className="container mx-auto pt-5">
-        <h1 className="text-center pb-5">{post.title.rendered}</h1>
+        <h1
+          className="text-center pb-5"
+          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+        ></h1>
         <div
           className="card-text pb-5"
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}

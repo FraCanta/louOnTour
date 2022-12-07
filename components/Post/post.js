@@ -24,7 +24,10 @@ export default function Post({ post, featuredMedia }) {
           </Link>
         </div>
         <div className="card-body">
-          <h5 className="card-title">{post.title.rendered}</h5>
+          <h5
+            className="card-title"
+            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+          ></h5>
           <div
             className="card-text"
             dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
