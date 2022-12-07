@@ -1,17 +1,23 @@
 import Link from "next/link";
 
 import { getPost, getSlugs } from "../../utils/wordpress";
+import Head from "next/head";
 
 export default function PostPage({ post }) {
   return (
-    <div className="container mx-auto pt-5">
-      <h1 className="text-center pb-5">{post.title.rendered}</h1>
-      <div
-        className="card-text pb-5"
-        dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-      ></div>
-      <Link href="/blog">Back to Home</Link>
-    </div>
+    <>
+      <Head>
+        <title>{`Lou On Tour - ${post.title.rendered}`}</title>
+      </Head>
+      <div className="container mx-auto pt-5">
+        <h1 className="text-center pb-5">{post.title.rendered}</h1>
+        <div
+          className="card-text pb-5"
+          dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+        ></div>
+        <Link href="/blog">Back to Home</Link>
+      </div>
+    </>
   );
 }
 

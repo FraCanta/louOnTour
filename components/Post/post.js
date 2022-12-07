@@ -7,30 +7,32 @@ import { getDate } from "../../utils/utils";
 
 export default function Post({ post, featuredMedia }) {
   return (
-    <div className="card mb-3" style={{ maxWidth: "540px" }}>
-      <div className="row g-0">
-        <div className="col-md-4">
-          {/* <Link href={`/posts/${post.slug}`}>
-            <Image
-              src={featuredMedia["media_details"].sizes.medium["source_url"]}
-              width={180}
-              height={120}
-              alt={featuredMedia["alt_text"]}
-            />
-          </Link> */}
+    <div className="card w-96 ">
+      <div>
+        <div>
+          <Link href={`/posts/${post.slug}`}>
+            <figure>
+              <Image
+                src={
+                  featuredMedia?.["media_details"]?.sizes.medium?.["source_url"]
+                }
+                width={250}
+                height={250}
+                alt={featuredMedia?.["alt_text"]}
+              />
+            </figure>
+          </Link>
         </div>
-        <div className="col-md-8">
-          <div className="card-body">
-            <h5 className="card-title">{post.title.rendered}</h5>
-            <div
-              className="card-text"
-              dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-            ></div>
-            <p className="card-text">
-              <small className="text-muted">On {getDate(post.modified)}</small>
-            </p>
-            <Link href={`/posts/${post.slug}`}>See more</Link>
-          </div>
+        <div className="card-body">
+          <h5 className="card-title">{post.title.rendered}</h5>
+          <div
+            className="card-text"
+            dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+          ></div>
+          <p className="card-text">
+            <small className="text-muted">On {getDate(post.modified)}</small>
+          </p>
+          <Link href={`/posts/${post.slug}`}>See more</Link>
         </div>
       </div>
     </div>

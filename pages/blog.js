@@ -1,14 +1,22 @@
 import React from "react";
-import { getPosts, getCategories } from "../utils/wordpress";
+import { getPosts, getCategories, getMedia, getTags } from "../utils/wordpress";
 import Head from "next/head";
 import Post from "../components/Post/post";
+import { useRouter } from "next/router";
 
-const Blog = ({ post, category }) => {
-  console.log(post?.title);
-  const jsxPosts = post.map((p) => {
-    const featuredMedia = p["_embedded"]["wp:featuredmedia"][0];
-    return <Post post={p} featuredMedia={featuredMedia} key={p.id} />;
-  });
+const Blog = ({ post, category, media, tags }) => {
+  const { locale } = useRouter();
+  const idLocale = (tags?.filter((el) => el.name === locale))[0].id;
+
+  console.log("posts", post);
+
+  const jsxPosts = post
+    .filter((p) => p?.tags?.includes(idLocale))
+    .map((p) => {
+      const featuredMedia = p?.["_embedded"]?.["wp:featuredmedia"][0];
+      return <Post post={p} featuredMedia={featuredMedia} key={p.id} />;
+    });
+
   return (
     <div>
       <Head>
@@ -33,8 +41,11 @@ export default Blog;
 export async function getStaticProps() {
   const post = await getPosts();
   const category = await getCategories();
+  const media = await getMedia();
+  const tags = await getTags();
+
   return {
-    props: { post: post, category: category },
+    props: { post: post, category: category, media: media, tags: tags },
     revalidate: 10,
   };
 }

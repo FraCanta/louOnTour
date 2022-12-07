@@ -1,9 +1,18 @@
 const BASE_URL = "https://louontour.it/wp-json/wp/v2";
 
 export async function getPosts() {
-  const postsRes = await fetch(BASE_URL + "/posts?_embed");
+  //   const postsRes = await fetch(BASE_URL + "/posts?page=" + page);
+  const postsRes = await fetch(BASE_URL + "/posts?_embed&per_page=40");
+
   const posts = await postsRes.json();
   return posts;
+}
+export async function getTags() {
+  //   const postsRes = await fetch(BASE_URL + "/posts?page=" + page);
+  const tagsRes = await fetch(BASE_URL + "/tags?per_page=100");
+
+  const tags = await tagsRes.json();
+  return tags;
 }
 
 export async function getPost(slug) {
@@ -11,6 +20,13 @@ export async function getPost(slug) {
   const postArray = posts.filter((post) => post.slug == slug);
   const post = postArray.length > 0 ? postArray[0] : null;
   return post;
+}
+
+export async function getMedia() {
+  const mediaRes = await fetch(BASE_URL + "/media");
+
+  const media = await mediaRes.json();
+  return media;
 }
 
 // /wp/v2/categories per le categorie
