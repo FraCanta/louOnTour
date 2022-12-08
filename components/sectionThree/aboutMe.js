@@ -20,7 +20,7 @@ const AboutMe = ({ translation }) => {
           </p>
 
           <Link href="/chiSono">
-            <button className="flex items-center justify-between px-4 w-[9.875rem] h-[3.375rem] rounded-lg relative text-[#FE6847]  font-[600] shadow-3xl border border-[#FE6847] hover:transition-all hover:bg-white hover:border-white uppercase">
+            <button className="flex items-center justify-between px-4 w-[9.875rem] h-[3.375rem] rounded-lg relative text-[#FE6847]  font-[600] shadow-3xl border border-[#FE6847] hover:transition-all hover:bg-white hover:border-white hover:scale-110 uppercase">
               {translation?.button}
               <Icon icon="bi:arrow-right" />
             </button>

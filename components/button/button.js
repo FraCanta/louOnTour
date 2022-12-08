@@ -3,10 +3,11 @@ import { Icon } from "@iconify/react";
 
 function Cta({ children }) {
   return (
-    <button className="border-2 px-6 py-3 md:px-8 md:py-[1.2rem] fxl:px-[3rem] 2xl:py-[1.5rem] fxl:py-[1rem] text-white 2xl:text-[1.2rem] fxl:text-[1.5rem] font-bold uppercase bg-[#FE6847] border-[#FE6847] rounded-2xl flex justify-between items-center min-w-[170px] md:min-w-[200px] 2xl:min-w-[220px] fxl:min-w-[280px] rotated:py-[1rem] rotated:px-[1.8rem] rotated:min-w-[170px]">
+    <button className="flex items-center justify-between px-4 w-[9.875rem] h-[3.375rem] rounded-lg relative text-white  font-[600] shadow-3xl border  bg-[#FE6847] border-[#FE6847]  hover:scale-110 uppercase">
       {children} <Icon icon="bi:arrow-right" />
     </button>
   );
 }
 
 export default Cta;
+// className="flex items-center justify-between px-4 w-[9.875rem] h-[3.375rem] rounded-lg relative text-[#FE6847]  font-[600] shadow-3xl border  bg-[#FE6847] border-[#FE6847]  hover:transition-all hover:bg-white hover:border-white uppercase

@@ -13,7 +13,7 @@ const ModalGallery = ({ handleModal, showModal, imageArray }) => {
         <Icon icon="material-symbols:close" color="white" width="40" />{" "}
       </div>
       <div
-        className={`w-full h-full rounded-[10px] text-black flex flex-col justify-center  items-center border-none   bg-clip-padding text-current bg-modal ${showModal?.scale} bold`}
+        className={`w-[98%] h-full rounded-[10px] text-black flex flex-col justify-center  items-center border-none   bg-clip-padding text-current bg-modal ${showModal?.scale} bold`}
       >
         {imageArray?.map((el, i) => (
           <Image
