@@ -19,22 +19,23 @@ export default function Home({ translation }) {
   return (
     <div>
       <Head>
-        <title>{translation?.home?.head?.title}</title>
+        <title>{translation?.head?.title}</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <DynamicHero translation={translation?.home?.hero} />
-      <DynamicMission translation={translation?.home?.mission} />
-      <DynamicMap translation={translation?.home?.map} />
-      <DynamicAboutMe translation={translation?.home?.about} />
-      <DynamicInsta translation={translation?.home?.socialLou} />
-      <DynamicBanner translation={translation?.home?.banner} />
+      <DynamicHero translation={translation?.hero} />
+      <DynamicMission translation={translation?.mission} />
+      <DynamicMap translation={translation?.map} />
+      <DynamicAboutMe translation={translation?.about} />
+      <DynamicInsta translation={translation?.socialLou} />
+      <DynamicBanner translation={translation?.banner} />
     </div>
   );
 }
 export async function getStaticProps(locale) {
   let obj;
+
   switch (locale.locale) {
     case "it":
       obj = translationIT;
@@ -50,7 +51,7 @@ export async function getStaticProps(locale) {
 
   return {
     props: {
-      translation: obj,
+      translation: obj?.home,
     },
     revalidate: 60,
   };

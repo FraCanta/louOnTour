@@ -5,7 +5,6 @@ const DynamicHeroCities = dynamic(() =>
   import("../../components/UI/heroCities")
 );
 import locations from "../../public/locales/it/it.json";
-import { Icon } from "@iconify/react";
 const DynamicGalleryTours = dynamic(() =>
   import("../../components/UI/galleryTours")
 );
@@ -13,10 +12,11 @@ const DynamicCorrelati = dynamic(() => import("../../components/UI/correlati"));
 const DynamicBanner = dynamic(() =>
   import("../../components/sectionFive/banner")
 );
+import translationIT from "../../public/locales/it/it.json";
+import translationEN from "../../public/locales/en/en.json";
 
-export default function Tours({ city, others }) {
-  // const tours = gsap.timeline(); // prima timeline per transition della pagina
-
+export default function Tours({ city, others, banner }) {
+  console.log(city);
   return (
     <>
       <Head>
@@ -87,19 +87,36 @@ export default function Tours({ city, others }) {
         </div>
       </div>
 
-      {city.gallery.length > 0 && (
+      {city?.gallery?.length > 0 && (
         <DynamicGalleryTours imageArray={city?.gallery} />
       )}
       <DynamicCorrelati city={city} others={others} />
-      <DynamicBanner />
+      <DynamicBanner translation={banner} />
     </>
   );
 }
 
 export async function getStaticProps(context) {
-  const { params } = context;
-  let targetObj = locations?.tours?.[params?.title];
-  const arr = Object.keys(locations?.tours);
+  const { params, locale } = context;
+  console.log(locale);
+  let obj;
+
+  switch (locale) {
+    case "it":
+      obj = translationIT;
+      break;
+
+    case "en":
+      obj = translationEN;
+      break;
+    default:
+      obj = translationIT;
+      break;
+  }
+
+  let targetObj = obj?.tours?.[params?.title];
+  const banner = obj?.home?.banner;
+  const arr = Object.keys(obj?.tours);
 
   const others = arr?.map((el) => {
     return {
@@ -113,6 +130,7 @@ export async function getStaticProps(context) {
     props: {
       city: targetObj,
       others: others,
+      banner: banner,
     },
   };
 }

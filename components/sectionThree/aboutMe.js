@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import Testimonials from "./testimonials";
 import Testimonials2 from "./testimonials2";
 
 const AboutMe = ({ translation }) => {

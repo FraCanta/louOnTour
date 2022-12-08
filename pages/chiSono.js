@@ -14,21 +14,21 @@ import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import { useRouter } from "next/router";
 
-const ChiSono = ({ translation }) => {
+const ChiSono = ({ translation, home }) => {
   const { locale } = useRouter();
 
   return (
     <>
       <Head>
-        <title>{translation?.who?.head?.title}</title>
+        <title>{translation?.head?.title}</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <DynamicHeroChiSono translation={translation?.who?.hero} />
-      <DynamicText translation={translation?.who?.hero} />
-      <DynamicBgImage translation={translation?.who?.hero} />
-      <DynamicAboutGallery translation={translation?.who} />
-      <DynamicBanner translation={translation?.home?.banner} />
+      <DynamicHeroChiSono translation={translation?.hero} />
+      <DynamicText translation={translation?.hero} />
+      <DynamicBgImage translation={translation?.hero} />
+      <DynamicAboutGallery translation={translation} />
+      <DynamicBanner translation={home?.banner} />
     </>
   );
 };
@@ -52,7 +52,8 @@ export async function getStaticProps(locale) {
 
   return {
     props: {
-      translation: obj,
+      translation: obj?.who,
+      home: obj?.home,
     },
     revalidate: 60,
   };

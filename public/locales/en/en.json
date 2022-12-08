@@ -255,13 +255,13 @@
   "tours": {
     "Firenze": {
       "img": "/assets/locationTour/florence_duomo.jpg",
-      "titleImg": "Firenze",
+      "titleImg": "Florence",
       "half": "Tours Firenze (mezza giornata)",
       "full": "Tours Firenze (giornata intera)",
       "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
-      "descrizione": "Ammirata per la sua bellezza da milioni di visitatori da tutto il mondo, Firenze non è solo una città d’arte ma una vera e propria fonte di ispirazione per chiunque la visiti che sia la prima o la millesima volta! E’ la città che ha rotto con il Medioevo e ha introdotto in Europa il concetto di uomo moderno.",
+      "descrizione": "Admired for its beauty by millions of visitors from all over the world, Florence is not only a city of art but a true source of inspiration for anyone who visits it whether it is the first or the thousandth time! It is the city that broke with the Middle Ages and introduced the concept of modern man to Europe.",
       "half_elenco": [
-        "<p ><b class='bold_text'>Tra le vie di Firenze:</b> allora non puoi perderti i luoghi simbolici della città come Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce… sono circa 3 ore di tour ma vedrai come vola il tempo!</p>",
+        "<p ><b class='bold_text'>Among the streets of Florence: </b> then you can't miss the city's iconic places such as Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce... it's about a 3-hour tour but you'll see how time flies by!</p>",
         "<p>Visita alla <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Galleria degli Uffizi</b></a></p>",
         "<p>Visita alla <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Galleria dell'Accademia</b></a></p>",
         "<p>Visita al <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo nazionale del Bargello</b></a></p>"

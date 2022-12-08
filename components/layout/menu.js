@@ -45,18 +45,16 @@ const Menu = ({ translation }) => {
                     tabIndex={0}
                     className="dropdown-content  shadow p-2 bg-white rounded-box w-48 !top-[2rem]"
                   >
-                    {translation?.home?.map?.markers
-                      ?.filter((el) => el?.desc)
-                      .map((el, i) => (
-                        <li key={i} className="py-1.5">
-                          <Link
-                            className="hover:underline text-sm !ml-2"
-                            href={`/locations/${el?.title}`}
-                          >
-                            {el?.title}
-                          </Link>
-                        </li>
-                      ))}
+                    {translation?.[locale]?.map?.markers.map((el, i) => (
+                      <li key={i} className="py-1.5">
+                        <Link
+                          className="hover:underline text-sm !ml-2"
+                          href={`/locations/${el?.title}`}
+                        >
+                          {el?.title}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </>
               </li>
