@@ -35,7 +35,7 @@ const Testimonials2 = ({ translation }) => {
         }}
       >
         <div className="swiper-wrapper">
-          {translation?.map((el, i) => (
+          {translation?.reviews?.map((el, i) => (
             <SwiperSlide key={i}>
               <div className="content-wrapper">
                 <div className="content">

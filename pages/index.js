@@ -19,17 +19,17 @@ export default function Home({ translation }) {
   return (
     <div>
       <Head>
-        <title>Lou On Tour - Guida Turistica</title>
+        <title>{translation?.home?.head?.title}</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <DynamicHero translation={translation?.home?.hero} />
-      <DynamicMission />
+      <DynamicMission translation={translation?.home?.mission} />
       <DynamicMap translation={translation?.home?.map} />
-      <DynamicAboutMe translation={translation?.home?.reviews} />
-      <DynamicInsta />
-      <DynamicBanner />
+      <DynamicAboutMe translation={translation?.home?.about} />
+      <DynamicInsta translation={translation?.home?.socialLou} />
+      <DynamicBanner translation={translation?.home?.banner} />
     </div>
   );
 }

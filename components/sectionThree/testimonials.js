@@ -25,7 +25,7 @@ const Testimonials = ({ translation }) => {
       autoHeight={true}
     >
       <div className="blog-slider__wrp swiper-wrapper">
-        {translation?.map((el, i) => (
+        {translation?.reviews.map((el, i) => (
           <SwiperSlide className="blog-slider__item swiper-slide" key={i}>
             <div className="blog-slider__img aspect-square">
               <Image src={el?.img_reviews} alt="lou" width={300} height={300} />

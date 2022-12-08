@@ -1,148 +1,537 @@
 {
   "home": {
+    "head": {
+      "title": "Lou On Tour - Tour Guide"
+    },
     "hero": {
       "name": "Lou On Tour",
-      "paragraph": "Tourist Guide licensed in Italian and English. I offer guided tours in Florence, Volterra, Siena and its province. I am at your disposal to design your tailor-made tour, according to your tastes and needs. "
+      "paragraph": " Licensed tour guide in Italian and English. I offer guided tours to Florence, Volterra, Siena and its province. I am at your disposal to design your tailor-made tour according to your tastes and needs."
+    },
+    "mission": {
+      "subTitle": "Mission",
+      "title": "Welcome to Lou On Tour",
+      "paragraph": "If you have landed on this site most likely you are looking for an experience to live here in Tuscany together with your partner, friends or family. Then you are on the right place because 'I'm gonna make you an offer you can't refuse!'. Joking aside, I am Luisa, a tour guide and archaeologist and I am here to guide you to discover this beautiful Italian region. But this is also the right site for those who want to enjoy their trip to the fullest, who are looking for the essence of the place, through a quaint glimpse or a work of art; through the story of a famous person, or the skilled hands of a proud local artisan; not to mention the discovery of new flavors and ancient traditions. And all at your own pace! What do you think, is it right for you? Then take a peek at my tours."
     },
     "map": {
+      "subTitle": "Tours",
+      "title": "Which city or hill town would you like to visit?",
+      "paragraph": "Here you will find some of the most popular tours, which many people have enjoyed and which I often love to do! Choose a location on the map next here, and take a look at my tour suggestions-there's something for everyone! But if you're looking for something that's more your thing, contact me and we'll try together to create the tour that best meets your tastes and needs.",
+      "button": "contact me",
       "markers": [
         {
           "title": "Florence",
-          "link": "Scopri",
-          "video": "../assets/florence.mp4",
+          "link": "locations/Firenze",
           "marker": { "top": 213, "right": 240 },
           "desc": true
         },
         {
           "title": "San Gimignano",
           "link": "locations/San%20Gimignano",
-          "video": "../assets/florence.mp4",
           "marker": { "top": 245, "right": 285 },
           "desc": true
         },
         {
           "title": "Volterra",
-          "link": "Scopri",
-          "video": "../assets/florence.mp4",
+          "link": "locations/Volterra",
           "marker": { "bottom": 238, "right": 337 },
           "desc": true
         },
         {
           "title": "Monteriggioni",
           "link": "",
-          "video": "../assets/florence.mp4",
           "marker": { "bottom": 258, "right": 236 },
           "desc": false
         },
         {
           "id": "si",
           "title": "Siena",
-          "link": "Scopri",
-          "video": "../assets/siena.mp4",
+          "link": "locations/Siena",
           "marker": { "bottom": 231, "right": 207 },
           "desc": true
         },
         {
           "title": "San Galgano",
-          "link": "Scopri",
-          "video": "../assets/florence.mp4",
+          "link": "locations/San%20Galgano",
           "marker": { "bottom": 178, "right": 266 },
           "desc": true
         },
         {
           "title": "Montepulciano e Val d'Orcia",
-          "link": "Scopri",
-          "video": "../assets/florence.mp4",
+          "link": "locations/Montepulciano%20e%20Val%20d'Orcia",
           "marker": { "bottom": 147, "right": 112 },
           "desc": true
         }
       ]
+    },
+    "about": {
+      "subTitle": "About me",
+      "title": "Say about me",
+      "paragraph": "The fact that you are looking for a tour to learn more about a place makes you a curious person and I love that! But from your point of view, however, it is also true that it is important to find the right guide with whom you can connect and better appreciate the experience. Let's do this: while waiting to get to know each other better on our tour, take a look here and read what clients said about me.",
+      "button": "discover more",
+
+      "reviews": [
+        {
+          "avatar": "M",
+          "name": "Mara",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We thoroughly enjoyed our tour with Luisa. She was extremely knowledgeable and personable. We were only in Siena for 24 hours, but she left us wanting more and we can’t wait to go back. We learned and laughed a lot, as Luisa walked us through an amazing city and contextualized architecture, art, theology, and other aspects for us. We highly recommend it!"
+        },
+        {
+          "avatar": "Mk",
+          "name": "Mark",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Such an excellent tour. Luisa was fascinating and helpful. She structured the tour to our needs, explaining all the wonders of the Palio and surrounding buildings.She answered all of our questions and kept our eight year old entertained and interested for the full duration of the trip.I would highly recommend Luisa to bring Siena to life.She is both knowledgeable and kind and the perfect guide for such a beautiful city."
+        },
+        {
+          "avatar": "T",
+          "name": "Tim",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "We loved this tour. Lots of history to be learned as we made our way around the Siena.I'd definitely recommend this tour with Luisa!"
+        },
+        {
+          "avatar": "G",
+          "name": "Guy",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was a wonderful host. We enjoyed learning about the history of Siena and she was extremely knowledgeable.The 3 hours flew by. Luisa was amenable to changing her usual tour if we had special requests.I would recommend this tour and Luisa to my friends and family."
+        },
+        {
+          "avatar": "Bn",
+          "name": "Brandon",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "What an amazing tour guide! Super detailed explanations and extremely knowledgeable about everything (she’s an archaeologist and it shows). I recommend this tour highly!"
+        },
+        {
+          "avatar": "Dh",
+          "name": "Deborah",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was truly fantastic - knowledgeable, friendly, patient, and fun! She varied pace and topic according to our interests and familiarity.We had a mixed private group of an Italian, Americans, bilingual, English-speaking only, very familiar with Italian history, and no familiarity at all. She was so gracious and engaging, making sure that all of us understood and answering all of our questions. Our tour with her was the first full day of our trip, and it really informed us for the rest of our trip. She provided such helpful historical context, we were able to identify and put together like a puzzle the places, family crests, contradas, and other historical and cultural markers we came across in our sightseeing. Highly recommended!"
+        },
+        {
+          "avatar": "R",
+          "name": "Ron",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa is extremely knowledgable and shared that knowledge with great stories and personal insights.Our group of 7 all highly recommend Luisa. It is obvious she knows and loves Siena, and that meant a lot to us."
+        },
+        {
+          "avatar": "Sh",
+          "name": "Shelley",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was very knowledgeable about her city and we enjoyed learning all about Siena! Go Owl district!"
+        },
+        {
+          "avatar": "V",
+          "name": "Vania",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Interessante e appassionata spiegazione della città! Molto soddisfatti di questo pomeriggio insieme! Grazie Luisa"
+        },
+        {
+          "avatar": "A",
+          "name": "Amy",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "We learned so much today during our tour! It was so fun and educational! I highly recommend Luisa🌟"
+        },
+        {
+          "avatar": "J",
+          "name": "Jessie",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was amazing! We brought our three kids (11, 9, 5) on the tour, and she was great with them. She answered all my sons questions… all 5000 of them. She was fun, kind, and very personable. We loved learning about Sienna from her. I highly recommend her tour."
+        },
+        {
+          "avatar": "Rd",
+          "name": "Richard",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was extremely accommodating of our delay, and dealt with some atrocious weather really well.She clearly knows Siena inside out, and took us to some wonderful locations we would otherwise have never seen."
+        },
+        {
+          "avatar": "Bt",
+          "name": "Benedetta",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was the perfect guide for our private tour in Siena, she gave a personal touch to the experience and was very flexible and patient since we had our dog with us.She told us the history of Siena, took us to see the city highlights and finally got many good recommendations.Totally recommend the tour with Luisa!"
+        },
+        {
+          "avatar": "Y",
+          "name": "Yuan",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Thoughtful and wonderful experience for learning history of Siena! Luisa was very patient with our 7 and 8 years old, they were asking lots of questions. We all have learned so much about the intrigues and different connections from the history of Siena and Italy, thanks to Luisa makes it also interesting for the kids!Furthermore we have exceeded the time slot, Luisa was very kind to us!We would highly recommend to anyone who wants to have a pleasant tour about Siena!"
+        },
+        {
+          "avatar": "E",
+          "name": "Eric",
+          "date": "Luglio 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa has been the best guide we hired in Italy so far and that is after spending a week in Florence!!! We had a blast listening to the history of Siena and the thoughtfulness of her particular way of telling it!"
+        },
+        {
+          "avatar": "L",
+          "name": "Lisa",
+          "date": "Luglio 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was knowledgeable without being textbook-like. She wove storytelling into the history, and supplemented with pictures.She is an archeologist, so this is her passion. As hot as it was the day of our tour, she did her best to keep us comforts."
+        },
+        {
+          "avatar": "Bn",
+          "name": "Brian",
+          "date": "Luglio 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa is so knowledgeable and fantastic thank you!!!"
+        },
+        {
+          "avatar": "Br",
+          "name": "Brandi",
+          "date": "Giugno 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa gave my family of 9 kids and 5 adults a tour of the main sights of Siena.It was very easy going and everyone learned a lot. Luisa is a pleasure to be around and we had a great time!"
+        },
+        {
+          "avatar": "De",
+          "name": "Debora",
+          "date": "Maggio 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "the best privat tour ever, louisa knows everything about the history of this beautiful city!"
+        }
+      ]
+    },
+    "socialLou": {
+      "subTitle": "Social",
+      "title": "Lou On Tour Instagram",
+      "paragraph": "The aspect I love most about my job is that it allows me to meet people with whom I share the same interests. But the tour ends and we often lose touch, and that's a shame! So how about staying in touch? You can find me every day on Instagram, Facebook and Tik Tok. Here I post trivia and anecdotes about the very places you have visited or plan to get to know here in Tuscany. I'll be waiting for you here then!",
+      "button": "Follow me"
+    },
+    "banner": {
+      "text": "Customize your tour experience: Art, History, Archaeology, Folklore and Culinary Tradition...which aspects interest you most? ",
+      "button": "contact me"
     }
   },
   "tours": {
     "Firenze": {
-      "img": "../assets/florence.png",
+      "img": "/assets/locationTour/florence_duomo.jpg",
       "titleImg": "Firenze",
-      "title": "Tours Firenze",
+      "half": "Tours Firenze (mezza giornata)",
+      "full": "Tours Firenze (giornata intera)",
+      "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
       "descrizione": "Ammirata per la sua bellezza da milioni di visitatori da tutto il mondo, Firenze non è solo una città d’arte ma una vera e propria fonte di ispirazione per chiunque la visiti che sia la prima o la millesima volta! E’ la città che ha rotto con il Medioevo e ha introdotto in Europa il concetto di uomo moderno.",
-      "elenco": [
-        "Prima volta a Firenze?: allora non puoi perderti i luoghi simbolici della città come Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce… sono circa 3 ore di tour ma vedrai come vola il tempo!",
-        "Firenze +: dopo aver conosciuto la città non manca altro che visitare almeno uno dei due più famosi musei di Firenze perché mai sia che lasci Firenze senza aver visto un’opera di Michelangelo o Leonardo o Botticelli, Donatello…insomma di certo qui artisti non ne mancano!."
+      "half_elenco": [
+        "<p ><b class='bold_text'>Tra le vie di Firenze:</b> allora non puoi perderti i luoghi simbolici della città come Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce… sono circa 3 ore di tour ma vedrai come vola il tempo!</p>",
+        "<p>Visita alla <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Galleria degli Uffizi</b></a></p>",
+        "<p>Visita alla <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Galleria dell'Accademia</b></a></p>",
+        "<p>Visita al <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo nazionale del Bargello</b></a></p>"
       ],
-      "links": [
-        "https://www.uffizi.it/",
-        "https://www.galleriaaccademiafirenze.it/",
-        "https://www.bargellomusei.beniculturali.it/"
-      ]
+      "full_elenco": [
+        "<p><b class='bold_text'>Un Giorno a Firenze: </b>dopo aver conosciuto la città non manca altro che visitare almeno uno dei due più famosi musei di Firenze perché mai sia che lasci Firenze senza aver visto un’opera di Michelangelo o Leonardo o Botticelli, Donatello…insomma di certo qui artisti non ne mancano!.</p>",
+        "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Siena</b></p>",
+        "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+        "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Volterra</b></p>"
+      ],
+      "gallery": []
     },
     "Siena": {
-      "img": "../assets/florence.png",
+      "img": "/assets/locationTour/siena.jpg",
       "titleImg": "Siena",
-      "title": "Tours Siena",
+      "half": "Tours Siena (mezza giornata)",
+      "full": "Tours Siena (giornata intera)",
+      "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
       "descrizione": "Questa città posizionata in cima ad una collina è famosa per il suo centro storico tutelato dall’Unesco visto che ancora mantiene buona parte dell’assetto urbano medievale; è famosa per lo sfarzo artistico e architettonico soprattutto in epoca medievale; è la città del Palio, corsa di cavallo più famosa d’Italia. Qui è anche nata Santa Caterina ed è stata fondata la banca più longeva al mondo. ",
-      "elenco": [
-        "Siena per “principianti”: saremo in giro circa 2 ore per conoscere i luoghi principali, i personaggi, gli aneddoti e gli eventi che hanno reso famosa questa città. ",
-        "Siena Insolita: 3 ore circa di tour che ti permetteranno di conoscere i luoghi emblematici della città ma anche i luoghi meno frequentati dai visitatori. Se decidi di visitare la sede di una contrada potrai immergerti nella realtà senese, avere contatto con la gente del posto. Ma un altro modo per immergerti nel tessuto locale è senz’altro attraverso  suoi prodotti locali: organizziamo un assaggio?",
-        "A Siena con arte: abbiamo 3 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in un museo a tua scelta. Qui di seguito hai i link dei principali musei senesi:"
+      "half_elenco": [
+        "<p><b class='bold_text'>Siena per “principianti”: </b>saremo in giro circa 2 ore per conoscere i luoghi principali, i personaggi, gli aneddoti e gli eventi che hanno reso famosa questa città.</p> ",
+        "<p><b class='bold_text'>Siena Insolita: </b>3 ore circa di tour che ti permetteranno di conoscere i luoghi emblematici della città ma anche i luoghi meno frequentati dai visitatori. Se decidi di visitare la sede di una contrada potrai immergerti nella realtà senese, avere contatto con la gente del posto. Ma un altro modo per immergerti nel tessuto locale è senz’altro attraverso  suoi prodotti locali.</p>"
       ],
-      "links": [
-        "https://operaduomo.siena.it/",
-        "https://www.comune.siena.it/node/478",
-        "https://www.santamariadellascala.com/",
-        "https://pinacotecanazionale.siena.it/"
+      "full_elenco": [
+        "<div><p><b class='bold_text'>A Siena con arte: </b> abbiamo 5/6 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in uno o più musei a tua scelta. Qui di seguito hai i link dei principali musei senesi:</p> <ul><li><a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cattedrale + complesso del Duomo</b></a></li><li><a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico</b></a></li><li><a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Ex Ospedale Santa Maria della Scala + Museo Archeologico</b></a></li><li><a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca Nazionale</b></a></li></ul></div>",
+        "<p><b class='bold_text'>Siena</b> +  <b class='bold_text'>Firenze </b></p>",
+        "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+        "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+        "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Galgano</b> </p>",
+        "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Val d'Orcia</b> (uno o due località)</p>"
+      ],
+      "gallery": [
+        "/assets/locationTour/siena/siena1.jpg",
+        "/assets/locationTour/siena/siena2.jpg",
+        "/assets/locationTour/siena/siena3.jpg",
+        "/assets/locationTour/siena/siena4.jpg",
+        "/assets/locationTour/siena/siena5.jpg",
+        "/assets/locationTour/siena/siena6.jpeg",
+        "/assets/locationTour/siena/siena7.jpeg",
+        "/assets/locationTour/siena/siena8.jpeg",
+        "/assets/locationTour/siena/siena9.jpg",
+        "/assets/locationTour/siena/siena10.jpg",
+        "/assets/locationTour/siena/siena11.jpg",
+        "/assets/locationTour/siena/siena12.jpg",
+        "/assets/locationTour/siena/siena13.jpg",
+        "/assets/locationTour/siena/siena14.jpg",
+        "/assets/locationTour/siena/siena15.jpg",
+        "/assets/locationTour/siena/siena16.jpeg",
+        "/assets/locationTour/siena/siena17.jpeg",
+        "/assets/locationTour/siena/siena20.jpg",
+        "/assets/locationTour/siena/siena21.jpg",
+        "/assets/locationTour/siena/siena22.jpg",
+        "/assets/locationTour/siena/siena23.jpeg",
+        "/assets/locationTour/siena/siena24.jpg",
+        "/assets/locationTour/siena/siena25.jpg",
+        "/assets/locationTour/siena/siena26.jpeg"
       ]
     },
     "Volterra": {
-      "img": "../assets/florence.png",
+      "img": "/assets/locationTour/volterra.jpeg",
       "titleImg": "Volterra",
-      "title": "Tours Volterra",
+      "title": "",
+      "half": "Tours Volterra (mezza giornata)",
+      "full": "Tours Volterra (giornata intera)",
+      "citazione": "[…] Volterra si mostra con un fascino arcano che promana dalle case addossate, dalle torri mozzate, dalle strade percorse da ombre inquietanti, lastricate nel tempo di sudore e di assurdo che attraversano la storia e la leggenda scavando solchi senza fine nella mente suggestionata degli uomini. (Franco Porretti)",
       "descrizione": "Una delle città etrusche per eccellenza. Conserva ancora molte testimonianze di questo periodo come di quello romano e medievale: porta all’Arco e l’acropoli etrusca, il teatro romano, la Piazza dei Priori, la cattedrale con il battistero, e case-torri. Volterra custodisce un tesoro immenso tra arte, archeologia e artigianato, infatti è famosa per la lavorazione dell’alabastro, un sapere che viene tramandato da generazioni. Volterra è stata costruita su un’altura che se un tempo garantiva sicurezza oggi permette di godere di un vastissimo e suggestivo panorama. ",
-      "elenco": [
-        "Volterra autentica: fortunatamente Volterra è conosciuta si, ma non è turistica come alcuni borghi toscani dove nei momenti di alta stagione ci si ritrova ammassati. Volterra è un paese ancora autentico: il borgo è vivo perché la gente del posto ancora ci vive e ci lavora. Infatti vedrai molte botteghe o laboratori di artigiani e di artisti che lavorano l’alabastro. Noi dopo una passeggiata alla coperta del borgo andremo a visitare uno di questi laboratori. Il tutto in 2 ore.  Che te ne pare?  ",
-        "Volterra archeologica: 3 ore di tour che parte dagli etruschi, poi la parte Romana per terminare nel Medioevo. Sono laureata in archeologia e Volterra è uno dei miei siti preferiti perché Volterra non è altro che un sito archeologico ancora “attivo”. A completamento vi porterò al museo Etrusco dove troverete tante curiosità archeologiche che vi piaceranno, ne sono certa!",
-        "A Siena con arte: abbiamo 3 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in un museo a tua scelta. Qui di seguito hai i link dei principali musei senesi:"
+      "half_elenco": [
+        "<p><b class='bold_text'>Volterra autentica: </b>fortunatamente Volterra è conosciuta si, ma non è turistica come alcuni borghi toscani dove nei momenti di alta stagione ci si ritrova ammassati. Volterra è un paese ancora autentico: il borgo è vivo perché la gente del posto ancora ci vive e ci lavora. Infatti vedrai molte botteghe o laboratori di artigiani e di artisti che lavorano l’alabastro. Noi dopo una passeggiata alla coperta del borgo andremo a visitare uno di questi laboratori. Il tutto in 2 ore.  Che te ne pare? </p>",
+        "<p>Visita al <a href='https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Museo Etrusco Guarnacci</b></a></p>",
+        "<p>Visita alla <a href='https://www.comune.volterra.pi.it/Pinacoteca_civica' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca</b></a></p>",
+        "<p>Visita alla <a href='https://www.comune.volterra.pi.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/73' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Cattedrale + Battistero</b></a></p>"
       ],
-      "links": [
-        "https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci",
-        "https://www.comune.volterra.pi.it/Pinacoteca_civica",
-        "https://www.comune.volterra.pi.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/73"
+      "full_elenco": [
+        "<p><b class='bold_text'>Volterra archeologica:  </b> 3 ore di tour che parte dagli etruschi, poi la parte Romana per terminare nel Medioevo. Sono laureata in archeologia e Volterra è uno dei miei siti preferiti perché Volterra non è altro che un sito archeologico ancora “attivo”. A completamento vi porterò al <a href='https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo Etrusco Guarnacci</b></a> dove troverete tante curiosità archeologiche che vi piaceranno, e potremmo visitare un laboratorio d’alabastro, che te ne pare?</p>",
+        "<p><b class='bold_text'>Volterra</b> +  <b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+        "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena </b></p>",
+        "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Firenze</b> </p>"
+      ],
+      "gallery": [
+        "/assets/locationTour/volterra/volterra1.jpg",
+        "/assets/locationTour/volterra/volterra2.jpeg",
+        "/assets/locationTour/volterra/volterra3.jpeg",
+        "/assets/locationTour/volterra/volterra4.jpg",
+        "/assets/locationTour/volterra/volterra5.jpg",
+        "/assets/locationTour/volterra/volterra6.jpeg",
+        "/assets/locationTour/volterra/volterra7.jpeg",
+        "/assets/locationTour/volterra/volterra8.jpg",
+        "/assets/locationTour/volterra/volterra9.jpeg",
+        "/assets/locationTour/volterra/volterra10.jpg",
+        "/assets/locationTour/volterra/volterra11.jpg",
+        "/assets/locationTour/volterra/volterra12.jpeg",
+        "/assets/locationTour/volterra/volterra13.jpeg",
+        "/assets/locationTour/volterra/volterra15.jpg",
+        "/assets/locationTour/volterra/volterra16.jpg",
+        "/assets/locationTour/volterra/volterra17.jpg",
+        "/assets/locationTour/volterra/volterra18.jpg",
+        "/assets/locationTour/volterra/volterra19.jpg",
+        "/assets/locationTour/volterra/volterra20.jpg",
+        "/assets/locationTour/volterra/volterra21.jpg",
+        "/assets/locationTour/volterra/volterra22.jpeg",
+        "/assets/locationTour/volterra/volterra23.jpg",
+        "/assets/locationTour/volterra/volterra24.jpg",
+        "/assets/locationTour/volterra/volterra25.jpg",
+        "/assets/locationTour/volterra/volterra26.jpg",
+        "/assets/locationTour/volterra/volterra27.jpg",
+        "/assets/locationTour/volterra/volterra28.jpg",
+        "/assets/locationTour/volterra/volterra29.jpg"
       ]
     },
     "San Gimignano": {
-      "img": "../assets/florence.png",
-      "titleImg": "San Giminignano",
-      "title": "Tours San Gimignano",
+      "img": "/assets/locationTour/san_gimignano.jpg",
+      "titleImg": "San Gimignano",
+      "half": "Tours San Gimignano (mezza giornata)",
+      "full": "Tours San Gimignano (giornata intera)",
+      "citazione": "San Gimignano dalle belle torri e dalle belle campane… (Proverbio fiorentino)",
       "descrizione": "La “Città delle Belle Torri” è stata dichiarata patrimonio dell’umanità poiché il suo aspetto rimanda ancora a quello due-trecentesco, un raro esempio in Europa di organizzazione urbana d’età comunale: praticamente un sogno medievale. Qui puoi immedesimarti nella vita di un ricco mercante con la sua inespugnabile casa-torre che dominava sul tratto cittadino della via Francigena. All’epoca, a San Gimignano, avresti visto ben 72 torri (oggi circa 15). ",
-      "elenco": [
-        "A caccia di torri medievali: impiegheremo circa 2 ore per visitare il borgo medievale. Ripercorreremo la strada principale che non è altro che un tratto dell’antica Francigena. Ci soffermeremo davanti alcune chiese e nelle piazze principali senza tralasciare punti panoramici che vi faranno immedesimare in un quadro di Leonardo da Vinci",
-        "Non solo torri: Molte delle testimonianze di questo periodo sono custodite, oltre che nella Collegiata, anche in alcuni musei tra cui quello Civico. Da qui, salendo in cima alla Torre Grossa, si può ammirare un panorama unico. Che ne dici se dopo un passeggiata nel borgo andiamo a dargli un’occhiata?"
+      "half_elenco": [
+        "<p><b class='bold_text'>A caccia di torri medievali: </b>impiegheremo circa 2 ore per visitare il borgo medievale. Ripercorreremo la strada principale che non è altro che un tratto dell’antica Francigena. Ci soffermeremo davanti alcune chiese e nelle piazze principali senza tralasciare punti panoramici che vi faranno immedesimare in un quadro di Leonardo da Vinci. </p>",
+        "<div><p><b class='bold_text'>Non solo torri: </b> Molte delle testimonianze di questo periodo sono custodite, oltre che nella Collegiata, anche in alcuni musei tra cui quello Civico. Da qui, salendo in cima alla Torre Grossa, si può ammirare un panorama unico. Quindi ti propongo una passeggiata per ammirare il borgo e una visita a uno di questi musei:</p> <ul><li> <a href='http://www.duomosangimignano.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Collegiata</b></a></li><li> <a href='http://www.sangimignanomusei.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico + Torre Grossa</b></a></li></ul></div>"
       ],
-      "links": [
-        "http://www.duomosangimignano.it/",
-        "http://www.sangimignanomusei.it/"
+      "full_elenco": [
+        "<p><b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Volterra</b></p>",
+        "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Firenze</b></p>",
+        "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena</b></p>"
+      ],
+      "gallery": [
+        "/assets/locationTour/sangimignano/sangimi1.JPG",
+        "/assets/locationTour/sangimignano/sangimi2.JPG",
+        "/assets/locationTour/sangimignano/sangimi4.jpg",
+        "/assets/locationTour/sangimignano/sangimi6.jpg",
+        "/assets/locationTour/sangimignano/sangimi7.jpg",
+        "/assets/locationTour/sangimignano/sangimi8.jpg",
+        "/assets/locationTour/sangimignano/sangimi9.jpg",
+        "/assets/locationTour/sangimignano/sangimi10.jpg",
+        "/assets/locationTour/sangimignano/sangimi11.jpg",
+        "/assets/locationTour/sangimignano/sangimi12.jpg",
+        "/assets/locationTour/sangimignano/sangimi13.jpg",
+        "/assets/locationTour/sangimignano/sangimi14.jpg",
+        "/assets/locationTour/sangimignano/sangimi15.jpg",
+        "/assets/locationTour/sangimignano/sangimi16.jpeg",
+        "/assets/locationTour/sangimignano/sangimi17.jpg",
+        "/assets/locationTour/sangimignano/sangimi18.jpg",
+        "/assets/locationTour/sangimignano/sangimi19.jpg",
+        "/assets/locationTour/sangimignano/sangimi20.jpg",
+        "/assets/locationTour/sangimignano/sangimi21.jpg",
+        "/assets/locationTour/sangimignano/sangimi22.jpg",
+        "/assets/locationTour/sangimignano/sangimi23.jpg",
+        "/assets/locationTour/sangimignano/sangimi24.jpg",
+        "/assets/locationTour/sangimignano/sangimi25.jpg",
+        "/assets/locationTour/sangimignano/sangimi26.jpeg",
+        "/assets/locationTour/sangimignano/sangimi27.jpg",
+        "/assets/locationTour/sangimignano/sangimi28.jpg",
+        "/assets/locationTour/sangimignano/sangimi29.jpg",
+        "/assets/locationTour/sangimignano/sangimi30.jpg",
+        "/assets/locationTour/sangimignano/sangimi31.jpg"
       ]
     },
     "Montepulciano e Val d'Orcia": {
-      "img": "../assets/florence.png",
+      "img": "/assets/locationTour/valdorcia.jpg",
       "titleImg": "Montepulciano e Val d'Orcia",
-      "title": "Tours Montepulciano e Val d'Orcia",
+      "half": "",
+      "full": "Tours Montepulciano e Val d'Orcia (giornata intera)",
+      "citazione": "Lorem ipsum",
       "descrizione": "Paesaggio unico e meraviglioso: colline versi e sinuose, campi dorati, viali con i cipressi, lussureggianti vigneti ed oliveti. La maggior parte delle foto che hai visto sul paesaggio toscano sono state scattate proprio in questa area! La Valle è attraversata dal fiume Orcia da cui prende il nome. Qui la protagonista assoluta è la natura tanto che oggi è un parco protetto ed è stato riconosciuto Patrimonio dell’Umanità dall’ UNESCO. Disseminati in questo paesaggio troviamo castelli medievali, borghi antichi, abbazie ciascuno con la propria storia e particolarità. La Val d’Orcia è anche terra di ottimi vini come il più famoso Brunello di Montalcino o il Rosso d’Orcia e molti altri. Per il nostro tour (6 ore circa) ti propongo di visitare insieme questi borghi di cui sono certa te ne innamorerai: ",
-      "elenco": [
-        "Pienza: gioiello architettonico riconosciuto come “città ideale” rinascimentale e famosa per la produzione di formaggio pecorino.",
-        "San Quirico d’Orcia + Cappella di Vitaleta: borgo carinissimo con la sua splendida Collegiata e gli Horti Leonini, bellissimo giardino all’italiana. Lungo la strada faremo una sosta per ammirare la Cappella della Madonna di Vitaleta.",
-        "Bagno Vignoni: unico paese in Italia dove troverai una piscina al posto della piazza centrale! La piscina rinascimentale sorge proprio sopra la fonte originale di acqua calda termale. Questa sorgente era già frequentata dai Romani e altri personaggi illustri Papa Pio II, Santa Caterina da Siena e Lorenzo il Magnifico.",
-        "Montalcino + Abbazia di Sant’Antimo: borgo medievale cinto da una possente cinta muraria e dominato dalla rocca del XIV secolo dalla quale si gode un panorama unico.  Montalcino è famoso in tutto il mondo per la produzione del prezioso Brunello di Montalcino. Infine potrai ammirare la bellissima e suggestiva Abbazia di Sant' Antimo, uno dei migliori esempi di architettura monastica medievale.",
-        "Montepulciano + Tempio di San Biagio: qui non siamo più in Val d’Orcia ma precisamente al suo confine ma Montepulciano è una cittadina così bella che merita essere visitata. Lungo le strade principale si affacciano eleganti palazzi rinascimentali, Piazza Grande, scorci caratteristici e punti panoramici su cui si gode la vista sulla Val d’Orcia e in particolare sui vigneti che producono il famoso Nobile. Più a valle si trova il Tempio di San Biagio, luogo di culto ed esempio dell'architettura rinascimentale toscana del XVI secolo progettato da Antonio da San Gallo il Vecchio."
-      ]
+      "half_elenco": [],
+      "full_elenco": [
+        "<p><b class='bold_text'> Pienza: </b>gioiello architettonico riconosciuto come “città ideale” rinascimentale e famosa per la produzione di formaggio pecorino.</p>",
+        "<p><b class='bold_text'> San Quirico d’Orcia + Cappella di Vitaleta: </b>borgo carinissimo con la sua splendida Collegiata e gli Horti Leonini, bellissimo giardino all’italiana. Lungo la strada faremo una sosta per ammirare la Cappella della Madonna di Vitaleta.</p>",
+        "<p><b class='bold_text'> Bagno Vignoni: </b>unico paese in Italia dove troverai una piscina al posto della piazza centrale! La piscina rinascimentale sorge proprio sopra la fonte originale di acqua calda termale. Questa sorgente era già frequentata dai Romani e altri personaggi illustri Papa Pio II, Santa Caterina da Siena e Lorenzo il Magnifico.</p>",
+        "<p><b class='bold_text'> Montalcino + Abbazia di Sant’Antimo: </b>borgo medievale cinto da una possente cinta muraria e dominato dalla rocca del XIV secolo dalla quale si gode un panorama unico.  Montalcino è famoso in tutto il mondo per la produzione del prezioso Brunello di Montalcino. Infine potrai ammirare la bellissima e suggestiva Abbazia di Sant' Antimo, uno dei migliori esempi di architettura monastica medievale.</p>",
+        "<p><b class='bold_text'> Montepulciano + Tempio di San Biagio: </b>qui non siamo più in Val d’Orcia ma precisamente al suo confine ma Montepulciano è una cittadina così bella che merita essere visitata. Lungo le strade principale si affacciano eleganti palazzi rinascimentali, Piazza Grande, scorci caratteristici e punti panoramici su cui si gode la vista sulla Val d’Orcia e in particolare sui vigneti che producono il famoso Nobile. Più a valle si trova il Tempio di San Biagio, luogo di culto ed esempio dell'architettura rinascimentale toscana del XVI secolo progettato da Antonio da San Gallo il Vecchio.</p>"
+      ],
+      "gallery": []
     },
     "San Galgano": {
-      "img": "../assets/florence.png",
+      "img": "/assets/locationTour/abbazia_sangalgano.jpg",
       "titleImg": "San Galgano",
-      "title": "Tours San Galgano",
+      "title": "",
+      "half": "Tour San Galgano (mezza giornata)",
+      "full": "Tour San Galgano (giornata intera)",
+      "citazione": "“per tetto un manto di stelle”",
       "descrizione": "Nel 1180 Galgano Guidotti edificò una chiesa a Montesiepi. La struttura della chiesa è molto originale, singolare nell’ambito romanico senese. L’interno è suggestivo per la singolare volta e perché al centro dell’ambiente vi è il masso in cui San Galgano ha conficcato la spada. Annessa alla chiesa la cappella trecentesca con gli affreschi attribuiti ad Ambrogio Lorenzetti. Cinquanta anni dopo, più a valle, venne costruita dai cistercensi l’abbazia intitolata a San Galgano. Il primo esempio di architettura gotica in Toscana e uno dei luoghi più suggestivi della campagna senese. Dell’abbazia ne rimane lo scheletro che testimonia la potenza e la ricchezza della comunità monastica. Un rudere completamente immerso nei contrasti di colore del cielo e della natura circostante, una visione di solitaria e drammatica bellezza. ",
-      "links": [
-        "https://www.comune.chiusdino.siena.it/it/page/visita-abbazia-di-san-galgano-orari-di-apertura-e-p"
+      "half_elenco": [
+        "<p>Info biglietti <a href='https://www.comune.chiusdino.siena.it/it/page/visita-abbazia-di-san-galgano-orari-di-apertura-e-p' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>qui</b></a></p>"
+      ],
+      "full_elenco": [
+        "<p>Proposto insieme a <b class='bold_text'>Siena</b>  per un FULL DAY</p>"
+      ],
+      "gallery": [
+        "/assets/locationTour/sangalgano/sangalgano1.jpg",
+        "/assets/locationTour/sangalgano/sangalgano3.jpg",
+        "/assets/locationTour/sangalgano/sangalgano4.jpg",
+        "/assets/locationTour/sangalgano/sangalgano5.jpg",
+        "/assets/locationTour/sangalgano/sangalgano6.jpg",
+        "/assets/locationTour/sangalgano/sangalgano7.jpg",
+        "/assets/locationTour/sangalgano/sangalgano8.jpg",
+        "/assets/locationTour/sangalgano/sangalgano9.jpg",
+        "/assets/locationTour/sangalgano/sangalgano10.jpg",
+        "/assets/locationTour/sangalgano/sangalgano11.jpg",
+        "/assets/locationTour/sangalgano/sangalgano12.jpg",
+        "/assets/locationTour/sangalgano/sangalgano13.jpg",
+        "/assets/locationTour/sangalgano/sangalgano14.jpg",
+        "/assets/locationTour/sangalgano/sangalgano15.jpg",
+        "/assets/locationTour/sangalgano/sangalgano16.jpg"
       ]
+    }
+  },
+  "who": {
+    "head": {
+      "title": "Lou On Tour - Who I am"
+    },
+    "hero": {
+      "subTitle": "About me",
+      "title": {
+        "primo": "Hi!",
+        "secondo": "I am Luisa Quaglia, ",
+        "terzo": "a tour guide and archaeologist."
+      },
+      "paragraph": "I live near Volterra on a farm with my husband Luigi, our little Alice and two perpetually hungry cats, Angus and Marla. I have a degree in archaeology from Siena and have worked in different areas both in Italy and abroad. When I returned I worked in the archaeological museum in Volterra as a guide for school students and then co-managed an archaeological park on Elba Island.",
+      "secondTitle": "I made my passion my job",
+      "secondPa": "These last experiences made me appreciate outreach, so I decided to become a tour guide-the best choice of my life! I love meeting new people and sharing my passion for history and art with them. I meet people from all over Italy and abroad: this is an opportunity for me to learn about other histories and cultures, a kind of endless journey, fantastic!",
+      "finalP": "I love this job and I love doing it in Tuscany, a region where art, history, nature and traditions are perfectly balanced. In fact, with my husband, who is an environmental guide, we also organize some nature walks. If you'd like to stay updated on our outings sign up for the mailing list! I hope to meet you soon in Tuscany. In the meantime, you can find me every day on social. See you soon, Luisa.",
+      "galleryTitle": "Beautiful memories"
+    },
+
+    "galleria": [
+      "/assets/aboutLou/lou1.jpg",
+      "/assets/aboutLou/lou2.jpg",
+      "/assets/aboutLou/lou3.jpg",
+      "/assets/aboutLou/lou4.jpg",
+      "/assets/aboutLou/lou5.jpg",
+      "/assets/aboutLou/lou6.jpg",
+      "/assets/aboutLou/lou7.jpg",
+      "/assets/aboutLou/lou8.jpg",
+      "/assets/aboutLou/lou9.jpg",
+      "/assets/aboutLou/lou10.jpg",
+      "/assets/aboutLou/lou11.jpg",
+      "/assets/aboutLou/lou12.jpg",
+      "/assets/aboutLou/lou13.jpg",
+      "/assets/aboutLou/lou14.jpg",
+      "/assets/aboutLou/lou15.jpg",
+      "/assets/aboutLou/lou16.JPG",
+      "/assets/aboutLou/lou17.JPG",
+      "/assets/aboutLou/lou18.JPG",
+      "/assets/aboutLou/lou19.jpg",
+      "/assets/aboutLou/lou20.jpg",
+      "/assets/aboutLou/lou21.jpg",
+      "/assets/aboutLou/lou22.jpg",
+      "/assets/aboutLou/lou23.jpg",
+      "/assets/aboutLou/lou24.jpg",
+      "/assets/aboutLou/lou25.jpg",
+      "/assets/aboutLou/lou26.jpg",
+      "/assets/aboutLou/lou27.JPG",
+      "/assets/aboutLou/lou28.JPG",
+      "/assets/aboutLou/lou29.jpg",
+      "/assets/aboutLou/lou30.JPG",
+      "/assets/aboutLou/lou31.JPEG",
+      "/assets/aboutLou/lou32.JPG",
+      "/assets/aboutLou/lou33.JPG",
+      "/assets/aboutLou/lou34.JPG",
+      "/assets/aboutLou/lou35.JPG",
+      "/assets/aboutLou/lou36.jpg",
+      "/assets/aboutLou/lou37.jpg",
+      "/assets/aboutLou/lou38.png",
+      "/assets/aboutLou/lou39.jpg"
+    ]
+  },
+  "contatti": {
+    "head": {
+      "title": "Lou On Tour - Contacts"
     }
   }
 }

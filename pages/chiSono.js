@@ -20,15 +20,15 @@ const ChiSono = ({ translation }) => {
   return (
     <>
       <Head>
-        <title>Lou On Tour - Chi Sono</title>
+        <title>{translation?.who?.head?.title}</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <DynamicHeroChiSono />
-      <DynamicText />
-      <DynamicBgImage />
-      <DynamicAboutGallery aboutme={translation?.about?.galleria} />
-      <DynamicBanner />
+      <DynamicHeroChiSono translation={translation?.who?.hero} />
+      <DynamicText translation={translation?.who?.hero} />
+      <DynamicBgImage translation={translation?.who?.hero} />
+      <DynamicAboutGallery translation={translation?.who} />
+      <DynamicBanner translation={translation?.home?.banner} />
     </>
   );
 };

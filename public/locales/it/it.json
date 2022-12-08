@@ -1,10 +1,22 @@
 {
   "home": {
+    "head": {
+      "title": "Lou On Tour - Guida Turistica"
+    },
     "hero": {
       "name": "Lou On Tour",
       "paragraph": " Guida Turistica abilitata in italiano e in inglese. Propongo tour guidati a Firenze, Volterra, Siena e la sua provincia. Sono a tua disposizione per disegnare il tuo tour su misura, secondo i tuoi gusti e le tue esigenze."
     },
+    "mission": {
+      "subTitle": "Mission",
+      "title": "Welcome to Lou On Tour",
+      "paragraph": "Se sei approdato su questo sito molto probabilmente stai cercando un’esperienza da vivere qui in Toscana assieme al tuo partner, ai tuoi amici o alla tua famiglia. Allora sei nel sito giusto perché “ho un’offerta che non potrai rifiutare!”. Scherzi a parte, io sono Luisa, guida turistica e archeologa e sono qui per guidarti alla scoperta di questa splendida regione italiana. Ma questo è anche il sito giusto per chi vuole godersi appieno il suo viaggio, che cerca l’essenza del luogo, attraverso uno scorcio caratteristico o un’opera d’arte; attraverso la storia di un personaggio famoso, o le mani esperte di un orgoglioso artigiano locale; per non parlare della scoperta di nuovi sapori e di antiche tradizioni. E tutto al tuo passo! Che ne pensi, fa al caso tuo? Allora dai una sbirciata ai miei tour."
+    },
     "map": {
+      "subTitle": "Tours",
+      "title": "Quale città o borgo ti piacerebbe visitare?",
+      "paragraph": "Qui troverai alcuni tra i tour più popolari, che sono piaciuti a molti e che io amo spesso fare! Scegli una location sulla mappa qui accanto e dai un’occhiata alle mie proposte di tour: ce ne sono per tutti i gusti! Ma se cerchi qualcosa che faccia più al caso tuo, contattatami e proveremo insieme a creare il tour che meglio soddisfi i tuoi gusti e le tue esigenze.",
+      "button": "contattami",
       "markers": [
         {
           "title": "Firenze",
@@ -51,178 +63,196 @@
         }
       ]
     },
-    "reviews": [
-      {
-        "avatar": "M",
-        "name": "Mara",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
-        "reviews_desc": "We thoroughly enjoyed our tour with Luisa. She was extremely knowledgeable and personable. We were only in Siena for 24 hours, but she left us wanting more and we can’t wait to go back. We learned and laughed a lot, as Luisa walked us through an amazing city and contextualized architecture, art, theology, and other aspects for us. We highly recommend it!"
-      },
-      {
-        "avatar": "Mk",
-        "name": "Mark",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/uomoAvatar.png",
-        "rating": 5,
+    "about": {
+      "subTitle": "About me",
+      "title": "Dicono di me",
+      "paragraph": "Il fatto che tu stia cercando un tour per conoscere meglio un luogo fa di te una persona curiosa e questo, a me, piace moltissimo! Ma dal tuo punto di vista però, è anche vero che è importante trovare la guida giusta, con cui poter entrare in sintonia e apprezzare meglio l’esperienza. Facciamo così: nell’attesa di conoscerci meglio durante il nostro tour, dai un’occhiata qui e leggi cosa dicono di me.",
+      "button": "scopri di più",
 
-        "reviews_desc": "Such an excellent tour. Luisa was fascinating and helpful. She structured the tour to our needs, explaining all the wonders of the Palio and surrounding buildings.She answered all of our questions and kept our eight year old entertained and interested for the full duration of the trip.I would highly recommend Luisa to bring Siena to life.She is both knowledgeable and kind and the perfect guide for such a beautiful city."
-      },
-      {
-        "avatar": "T",
-        "name": "Tim",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/uomoAvatar.png",
-        "rating": 5,
+      "reviews": [
+        {
+          "avatar": "M",
+          "name": "Mara",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We thoroughly enjoyed our tour with Luisa. She was extremely knowledgeable and personable. We were only in Siena for 24 hours, but she left us wanting more and we can’t wait to go back. We learned and laughed a lot, as Luisa walked us through an amazing city and contextualized architecture, art, theology, and other aspects for us. We highly recommend it!"
+        },
+        {
+          "avatar": "Mk",
+          "name": "Mark",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "We loved this tour. Lots of history to be learned as we made our way around the Siena.I'd definitely recommend this tour with Luisa!"
-      },
-      {
-        "avatar": "G",
-        "name": "Guy",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/uomoAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Such an excellent tour. Luisa was fascinating and helpful. She structured the tour to our needs, explaining all the wonders of the Palio and surrounding buildings.She answered all of our questions and kept our eight year old entertained and interested for the full duration of the trip.I would highly recommend Luisa to bring Siena to life.She is both knowledgeable and kind and the perfect guide for such a beautiful city."
+        },
+        {
+          "avatar": "T",
+          "name": "Tim",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa was a wonderful host. We enjoyed learning about the history of Siena and she was extremely knowledgeable.The 3 hours flew by. Luisa was amenable to changing her usual tour if we had special requests.I would recommend this tour and Luisa to my friends and family."
-      },
-      {
-        "avatar": "Bn",
-        "name": "Brandon",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/uomoAvatar.png",
-        "rating": 5,
+          "reviews_desc": "We loved this tour. Lots of history to be learned as we made our way around the Siena.I'd definitely recommend this tour with Luisa!"
+        },
+        {
+          "avatar": "G",
+          "name": "Guy",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "What an amazing tour guide! Super detailed explanations and extremely knowledgeable about everything (she’s an archaeologist and it shows). I recommend this tour highly!"
-      },
-      {
-        "avatar": "Dh",
-        "name": "Deborah",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Luisa was a wonderful host. We enjoyed learning about the history of Siena and she was extremely knowledgeable.The 3 hours flew by. Luisa was amenable to changing her usual tour if we had special requests.I would recommend this tour and Luisa to my friends and family."
+        },
+        {
+          "avatar": "Bn",
+          "name": "Brandon",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa was truly fantastic - knowledgeable, friendly, patient, and fun! She varied pace and topic according to our interests and familiarity.We had a mixed private group of an Italian, Americans, bilingual, English-speaking only, very familiar with Italian history, and no familiarity at all. She was so gracious and engaging, making sure that all of us understood and answering all of our questions. Our tour with her was the first full day of our trip, and it really informed us for the rest of our trip. She provided such helpful historical context, we were able to identify and put together like a puzzle the places, family crests, contradas, and other historical and cultural markers we came across in our sightseeing. Highly recommended!"
-      },
-      {
-        "avatar": "R",
-        "name": "Ron",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/uomoAvatar.png",
-        "rating": 5,
+          "reviews_desc": "What an amazing tour guide! Super detailed explanations and extremely knowledgeable about everything (she’s an archaeologist and it shows). I recommend this tour highly!"
+        },
+        {
+          "avatar": "Dh",
+          "name": "Deborah",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa is extremely knowledgable and shared that knowledge with great stories and personal insights.Our group of 7 all highly recommend Luisa. It is obvious she knows and loves Siena, and that meant a lot to us."
-      },
-      {
-        "avatar": "Sh",
-        "name": "Shelley",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Luisa was truly fantastic - knowledgeable, friendly, patient, and fun! She varied pace and topic according to our interests and familiarity.We had a mixed private group of an Italian, Americans, bilingual, English-speaking only, very familiar with Italian history, and no familiarity at all. She was so gracious and engaging, making sure that all of us understood and answering all of our questions. Our tour with her was the first full day of our trip, and it really informed us for the rest of our trip. She provided such helpful historical context, we were able to identify and put together like a puzzle the places, family crests, contradas, and other historical and cultural markers we came across in our sightseeing. Highly recommended!"
+        },
+        {
+          "avatar": "R",
+          "name": "Ron",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa was very knowledgeable about her city and we enjoyed learning all about Siena! Go Owl district!"
-      },
-      {
-        "avatar": "V",
-        "name": "Vania",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Luisa is extremely knowledgable and shared that knowledge with great stories and personal insights.Our group of 7 all highly recommend Luisa. It is obvious she knows and loves Siena, and that meant a lot to us."
+        },
+        {
+          "avatar": "Sh",
+          "name": "Shelley",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Interessante e appassionata spiegazione della città! Molto soddisfatti di questo pomeriggio insieme! Grazie Luisa"
-      },
-      {
-        "avatar": "A",
-        "name": "Amy",
-        "date": "Ottobre 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Luisa was very knowledgeable about her city and we enjoyed learning all about Siena! Go Owl district!"
+        },
+        {
+          "avatar": "V",
+          "name": "Vania",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "We learned so much today during our tour! It was so fun and educational! I highly recommend Luisa🌟"
-      },
-      {
-        "avatar": "J",
-        "name": "Jessie",
-        "date": "Agosto 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Interessante e appassionata spiegazione della città! Molto soddisfatti di questo pomeriggio insieme! Grazie Luisa"
+        },
+        {
+          "avatar": "A",
+          "name": "Amy",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa was amazing! We brought our three kids (11, 9, 5) on the tour, and she was great with them. She answered all my sons questions… all 5000 of them. She was fun, kind, and very personable. We loved learning about Sienna from her. I highly recommend her tour."
-      },
-      {
-        "avatar": "Rd",
-        "name": "Richard",
-        "date": "Agosto 2022",
-        "img_reviews": "/assets/avatar/uomoAvatar.png",
-        "rating": 5,
+          "reviews_desc": "We learned so much today during our tour! It was so fun and educational! I highly recommend Luisa🌟"
+        },
+        {
+          "avatar": "J",
+          "name": "Jessie",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa was extremely accommodating of our delay, and dealt with some atrocious weather really well.She clearly knows Siena inside out, and took us to some wonderful locations we would otherwise have never seen."
-      },
-      {
-        "avatar": "Bt",
-        "name": "Benedetta",
-        "date": "Agosto 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Luisa was amazing! We brought our three kids (11, 9, 5) on the tour, and she was great with them. She answered all my sons questions… all 5000 of them. She was fun, kind, and very personable. We loved learning about Sienna from her. I highly recommend her tour."
+        },
+        {
+          "avatar": "Rd",
+          "name": "Richard",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa was the perfect guide for our private tour in Siena, she gave a personal touch to the experience and was very flexible and patient since we had our dog with us.She told us the history of Siena, took us to see the city highlights and finally got many good recommendations.Totally recommend the tour with Luisa!"
-      },
-      {
-        "avatar": "Y",
-        "name": "Yuan",
-        "date": "Agosto 2022",
-        "img_reviews": "/assets/avatar/uomoAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Luisa was extremely accommodating of our delay, and dealt with some atrocious weather really well.She clearly knows Siena inside out, and took us to some wonderful locations we would otherwise have never seen."
+        },
+        {
+          "avatar": "Bt",
+          "name": "Benedetta",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Thoughtful and wonderful experience for learning history of Siena! Luisa was very patient with our 7 and 8 years old, they were asking lots of questions. We all have learned so much about the intrigues and different connections from the history of Siena and Italy, thanks to Luisa makes it also interesting for the kids!Furthermore we have exceeded the time slot, Luisa was very kind to us!We would highly recommend to anyone who wants to have a pleasant tour about Siena!"
-      },
-      {
-        "avatar": "E",
-        "name": "Eric",
-        "date": "Luglio 2022",
-        "img_reviews": "/assets/avatar/uomoAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Luisa was the perfect guide for our private tour in Siena, she gave a personal touch to the experience and was very flexible and patient since we had our dog with us.She told us the history of Siena, took us to see the city highlights and finally got many good recommendations.Totally recommend the tour with Luisa!"
+        },
+        {
+          "avatar": "Y",
+          "name": "Yuan",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa has been the best guide we hired in Italy so far and that is after spending a week in Florence!!! We had a blast listening to the history of Siena and the thoughtfulness of her particular way of telling it!"
-      },
-      {
-        "avatar": "L",
-        "name": "Lisa",
-        "date": "Luglio 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Thoughtful and wonderful experience for learning history of Siena! Luisa was very patient with our 7 and 8 years old, they were asking lots of questions. We all have learned so much about the intrigues and different connections from the history of Siena and Italy, thanks to Luisa makes it also interesting for the kids!Furthermore we have exceeded the time slot, Luisa was very kind to us!We would highly recommend to anyone who wants to have a pleasant tour about Siena!"
+        },
+        {
+          "avatar": "E",
+          "name": "Eric",
+          "date": "Luglio 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa was knowledgeable without being textbook-like. She wove storytelling into the history, and supplemented with pictures.She is an archeologist, so this is her passion. As hot as it was the day of our tour, she did her best to keep us comforts."
-      },
-      {
-        "avatar": "Bn",
-        "name": "Brian",
-        "date": "Luglio 2022",
-        "img_reviews": "/assets/avatar/uomoAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Luisa has been the best guide we hired in Italy so far and that is after spending a week in Florence!!! We had a blast listening to the history of Siena and the thoughtfulness of her particular way of telling it!"
+        },
+        {
+          "avatar": "L",
+          "name": "Lisa",
+          "date": "Luglio 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "Luisa is so knowledgeable and fantastic thank you!!!"
-      },
-      {
-        "avatar": "Br",
-        "name": "Brandi",
-        "date": "Giugno 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
-        "reviews_desc": "Luisa gave my family of 9 kids and 5 adults a tour of the main sights of Siena.It was very easy going and everyone learned a lot. Luisa is a pleasure to be around and we had a great time!"
-      },
-      {
-        "avatar": "De",
-        "name": "Debora",
-        "date": "Maggio 2022",
-        "img_reviews": "/assets/avatar/donnaAvatar.png",
-        "rating": 5,
+          "reviews_desc": "Luisa was knowledgeable without being textbook-like. She wove storytelling into the history, and supplemented with pictures.She is an archeologist, so this is her passion. As hot as it was the day of our tour, she did her best to keep us comforts."
+        },
+        {
+          "avatar": "Bn",
+          "name": "Brian",
+          "date": "Luglio 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
 
-        "reviews_desc": "the best privat tour ever, louisa knows everything about the history of this beautiful city!"
-      }
-    ]
+          "reviews_desc": "Luisa is so knowledgeable and fantastic thank you!!!"
+        },
+        {
+          "avatar": "Br",
+          "name": "Brandi",
+          "date": "Giugno 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa gave my family of 9 kids and 5 adults a tour of the main sights of Siena.It was very easy going and everyone learned a lot. Luisa is a pleasure to be around and we had a great time!"
+        },
+        {
+          "avatar": "De",
+          "name": "Debora",
+          "date": "Maggio 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "the best privat tour ever, louisa knows everything about the history of this beautiful city!"
+        }
+      ]
+    },
+    "socialLou": {
+      "subTitle": "Social",
+      "title": "Lou On Tour Instagram",
+      "paragraph": "L’aspetto che più adoro del mio lavoro è che mi permette di conoscere gente con cui condivido i miei stessi interessi. Ma il tour finisce e spesso ci si perde di vista, ed è un peccato! Quindi, che ne dici di rimanere in contatto? Mi trovi tutti i giorni su Instagram, Facebook e Tik Tok. Qui pubblico curiosità e aneddoti proprio sui posti che hai visitato o che hai intenzione di conoscere qui in Toscana. Ti aspetto qui allora!",
+      "button": "Seguimi su"
+    },
+    "banner": {
+      "text": "Personalizza la tua esperienza di tour: Arte, Storia, Archeologia, Folklore e tradizione culinaria...quali aspetti ti interessano di più? ",
+      "button": "contattami"
+    }
   },
+
   "tours": {
     "Firenze": {
       "img": "/assets/locationTour/florence_duomo.jpg",
@@ -254,14 +284,10 @@
       "descrizione": "Questa città posizionata in cima ad una collina è famosa per il suo centro storico tutelato dall’Unesco visto che ancora mantiene buona parte dell’assetto urbano medievale; è famosa per lo sfarzo artistico e architettonico soprattutto in epoca medievale; è la città del Palio, corsa di cavallo più famosa d’Italia. Qui è anche nata Santa Caterina ed è stata fondata la banca più longeva al mondo. ",
       "half_elenco": [
         "<p><b class='bold_text'>Siena per “principianti”: </b>saremo in giro circa 2 ore per conoscere i luoghi principali, i personaggi, gli aneddoti e gli eventi che hanno reso famosa questa città.</p> ",
-        "<p><b class='bold_text'>Siena Insolita: </b>3 ore circa di tour che ti permetteranno di conoscere i luoghi emblematici della città ma anche i luoghi meno frequentati dai visitatori. Se decidi di visitare la sede di una contrada potrai immergerti nella realtà senese, avere contatto con la gente del posto. Ma un altro modo per immergerti nel tessuto locale è senz’altro attraverso  suoi prodotti locali: organizziamo un assaggio?</p>",
-        "<p>Visita alla <a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cattedrale + complesso del Duomo</b></a></p>",
-        "<p>Visita al <a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico</b></a></p>",
-        "<p>Visita all' <a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Ex Ospedale Santa Maria della Scala + Museo Archeologico</b></a></p>",
-        "<p>Visita alla <a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca Nazionale</b></a></p>"
+        "<p><b class='bold_text'>Siena Insolita: </b>3 ore circa di tour che ti permetteranno di conoscere i luoghi emblematici della città ma anche i luoghi meno frequentati dai visitatori. Se decidi di visitare la sede di una contrada potrai immergerti nella realtà senese, avere contatto con la gente del posto. Ma un altro modo per immergerti nel tessuto locale è senz’altro attraverso  suoi prodotti locali.</p>"
       ],
       "full_elenco": [
-        "<p><b class='bold_text'>A Siena con arte: </b> abbiamo 3 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in un museo a tua scelta. Qui di seguito hai i link dei principali musei senesi:</p>",
+        "<div><p><b class='bold_text'>A Siena con arte: </b> abbiamo 5/6 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in uno o più musei a tua scelta. Qui di seguito hai i link dei principali musei senesi:</p> <ul><li><a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cattedrale + complesso del Duomo</b></a></li><li><a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico</b></a></li><li><a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Ex Ospedale Santa Maria della Scala + Museo Archeologico</b></a></li><li><a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca Nazionale</b></a></li></ul></div>",
         "<p><b class='bold_text'>Siena</b> +  <b class='bold_text'>Firenze </b></p>",
         "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
         "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
@@ -444,7 +470,23 @@
       ]
     }
   },
-  "about": {
+  "who": {
+    "head": {
+      "title": "Lou On Tour - Chi Sono"
+    },
+    "hero": {
+      "subTitle": "About me",
+      "title": {
+        "primo": "Ciao!",
+        "secondo": "Sono Luisa Quaglia,",
+        "terzo": "guida turistica ed archeologa."
+      },
+      "paragraph": "Vivo vicino Volterra, in un agriturismo con mio marito Luigi, la nostra piccola Alice e due gatti perennemente affamati, Angus e Marla. Sono laureata in archeologia a Siena e ho lavorato in diverse zone sia in Italia che all’estero. Quando sono tornata ho lavorato nel museo archeologico di Volterra come guida per studenti delle scuole e poi ho co- gestito un parco archeologico all’Isola d’Elba.",
+      "secondTitle": "Ho fatto della mia passione il mio lavoro",
+      "secondPa": "Queste ultime esperienze mi hanno fatto apprezzare la divulgazione, quindi ho deciso di diventare una guida turistica: la scelta migliore della mia vita! Amo incontrare persone nuove e condividere con loro la mia passione per la storia e l’arte. Incontro persone che vengono da tutta Italia e dall’estero: un’occasione questa per me, per conoscere altre storie e culture, una sorta di viaggio senza fine, fantastico!",
+      "finalP": "Amo questo lavoro e amo farlo in Toscana, una Regione dove arte, storia, natura e tradizioni sono perfettamente bilanciate. Infatti, con mio marito, che è una guida ambientale, organizziamo anche qualche camminata in natura. Se ti va di rimanere aggiornato sulle nostre uscite iscriviti alla mailing list! Spero di conoscerti presto in Toscana. Nell’attesa mi trovi tutti i giorni sui social. A presto, Luisa.",
+      "galleryTitle": "Ricordi belli"
+    },
     "galleria": [
       "/assets/aboutLou/lou1.jpg",
       "/assets/aboutLou/lou2.jpg",
@@ -486,5 +528,10 @@
       "/assets/aboutLou/lou38.png",
       "/assets/aboutLou/lou39.jpg"
     ]
+  },
+  "contatti": {
+    "head": {
+      "title": "Lou On Tour - Contatti"
+    }
   }
 }

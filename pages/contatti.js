@@ -4,12 +4,14 @@ import dynamic from "next/dynamic";
 const DynamicContactForm = dynamic(() =>
   import("../components/contactPage/contactForm")
 );
+import translationIT from "../public/locales/it/it.json";
+import translationEN from "../public/locales/en/en.json";
 
-const Contact = () => {
+const Contact = ({ translation }) => {
   return (
     <>
       <Head>
-        <title>Lou On Tour - Contact</title>
+        <title>{translation?.contatti?.head?.title}</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -33,3 +35,26 @@ const Contact = () => {
 };
 
 export default Contact;
+
+export async function getStaticProps(locale) {
+  let obj;
+  switch (locale.locale) {
+    case "it":
+      obj = translationIT;
+      break;
+
+    case "en":
+      obj = translationEN;
+      break;
+    default:
+      obj = translationIT;
+      break;
+  }
+
+  return {
+    props: {
+      translation: obj,
+    },
+    revalidate: 60,
+  };
+}

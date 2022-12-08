@@ -6,25 +6,20 @@ import Cta from "../button/button";
 import Link from "next/link";
 const Map = ({ translation }) => {
   return (
-    <div className="min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  container mx-auto w-11/12 lg:w-4/5">
+    <div className="min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  container mx-auto w-11/12 2xl:w-4/5">
       <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-12 2xl:pt-10  overflow-x-hidden lg:overflow-visible">
         <div className="p-0 ">
           <h4 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
-            Tours
+            {translation?.subTitle}
           </h4>
           <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 lg:leading-[4rem] 3xl:leading-[5.5rem] text-[#232F37]">
-            Disegnamo insieme il Tuo Tour
+            {translation?.title}
           </h2>
           <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20 mb-8 text-[#515151] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
-            Qui troverai alcuni tra i tour più popolari, che sono piaciuti a
-            molti e che io amo spesso fare! Scegli una location sulla mappa qui
-            accanto e dai un’occhiata alle mie proposte di tour: ce ne sono per
-            tutti i gusti! Ma se cerchi qualcosa che faccia più al caso tuo,
-            contattatami e proveremo insieme a creare il tour che meglio
-            soddisfi i tuoi gusti e le tue esigenze.
+            {translation?.paragraph}
           </p>
           <Link href="/contatti">
-            <Cta>Contattami</Cta>
+            <Cta> {translation?.button}</Cta>
           </Link>
         </div>
 

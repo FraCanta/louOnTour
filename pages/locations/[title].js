@@ -56,6 +56,7 @@ export default function Tours({ city, others }) {
                   </li>
                 ))}
               </ul>
+
               {!!city?.ticket && (
                 <div className="text-xl md:text-lg font-medium mt-2 leading-10  pb-8 ticket">
                   <Link href={city?.ticket} target="_blank" rel="noreferrer">

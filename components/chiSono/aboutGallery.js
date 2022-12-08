@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import ModalAbout from "./modalAbout";
 
-const AboutGallery = ({ aboutme }) => {
+const AboutGallery = ({ translation }) => {
   const [showModal, setShowModal] = useState({
     isOpen: "hide",
     scale: "",
@@ -24,12 +24,12 @@ const AboutGallery = ({ aboutme }) => {
     <div className="min-h-[50vh] pb-20">
       <div className="container mx-auto w-11/12 lg:w-4/5 ">
         <h3 className="text-3xl md:text-[40px] font-medium mt-2 leading-10 text-[#232F37] lg:text-center pb-4">
-          Foto di me, fatte da voi
+          {translation?.hero?.galleryTitle}
         </h3>
         <div className="w-full h-[1px] bg-black bg-opacity-20"></div>
 
         <div className="gallery pt-8">
-          {aboutme?.map((el, i) => (
+          {translation?.galleria?.map((el, i) => (
             <div className="gallery-item" key={i}>
               <Image
                 className="gallery-image"
@@ -45,7 +45,7 @@ const AboutGallery = ({ aboutme }) => {
           <ModalAbout
             handleModal={handleModal}
             showModal={showModal}
-            aboutme={aboutme}
+            translation={translation}
           />
         </div>
       </div>
