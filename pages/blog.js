@@ -8,7 +8,7 @@ const Blog = ({ post, category, media, tags }) => {
   const { locale } = useRouter();
   const idLocale = (tags?.filter((el) => el.name === locale))[0].id;
 
-  console.log("posts", post);
+  // console.log("posts", post);
 
   const jsxPosts = post
     .filter((p) => p?.tags?.includes(idLocale))
@@ -46,6 +46,12 @@ const Blog = ({ post, category, media, tags }) => {
           </div> */}
         </div>
       </div>
+      <iframe
+        src="https://www.youtube.com/embed/E7wJTI-1dvQ"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        title="video"
+      />
     </div>
   );
 };

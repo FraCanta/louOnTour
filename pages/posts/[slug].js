@@ -3,8 +3,8 @@ import Link from "next/link";
 import { getPost, getSlugs } from "../../utils/wordpress";
 import Head from "next/head";
 
-export default function PostPage({ post }) {
-  console.log(post);
+export default function PostPage({ post, modifiedContent }) {
+  console.log(modifiedContent);
   return (
     <>
       <Head>
@@ -36,7 +36,7 @@ export default function PostPage({ post }) {
         ></h1>
         <div
           className="text-black"
-          dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+          dangerouslySetInnerHTML={{ __html: modifiedContent }}
         ></div>
       </div>
     </>
@@ -58,10 +58,12 @@ export async function getStaticPaths() {
 //access the router, get the id, and get the data for that post
 export async function getStaticProps({ params }) {
   const post = await getPost(params.slug);
+  const modifiedContent = post?.content?.rendered?.replace("data-src", "src");
 
   return {
     props: {
       post,
+      modifiedContent: modifiedContent,
     },
     revalidate: 10, // In seconds
   };

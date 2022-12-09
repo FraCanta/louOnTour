@@ -54,11 +54,11 @@ module.exports = withPlugins([
   {
     async headers() {
       return [
-        {
-          // Apply these headers to all routes in your application.
-          source: "/:path*",
-          headers: securityHeaders,
-        },
+        // {
+        //   // Apply these headers to all routes in your application.
+        //   source: "/:path*",
+        //   headers: securityHeaders,
+        // },
       ];
     },
   },
@@ -67,6 +67,9 @@ module.exports = withPlugins([
       formats: ["image/avif", "image/webp"],
       domains: ["louontour.it"],
     },
+    // video: {
+    //   domains: ["youtube.com/embed"],
+    // },
   },
   // withBundleAnalyzer,
 ]);
