@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getPost, getSlugs } from "../../utils/wordpress";
 import Head from "next/head";
 import Image from "next/image";
+import Script from "next/script";
 
 export default function PostPage({ post, modifiedContent, featuredMedia }) {
   console.log(modifiedContent);
@@ -55,6 +56,29 @@ export default function PostPage({ post, modifiedContent, featuredMedia }) {
   );
 }
 
+{
+  /* <Script>
+  {
+
+  if ('loading' in HTMLIFrameElement.prototype) {
+    const iframes = document.querySelectorAll('iframe[loading="lazy"]');
+
+    iframes.forEach(iframe => {
+      iframe.src = iframe.dataset.src;
+    });
+
+  } else {
+    // Dynamically import the LazySizes library
+    const script = document.createElement('script');
+    script.src =
+      'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js';
+    document.body.appendChild(script);
+  }}
+
+
+</Script> */
+}
+
 //hey Next, these are the possible slugs
 export async function getStaticPaths() {
   const paths = await getSlugs("posts");
@@ -70,7 +94,10 @@ export async function getStaticPaths() {
 //access the router, get the id, and get the data for that post
 export async function getStaticProps({ params }) {
   const post = await getPost(params.slug);
-  const modifiedContent = post?.content?.rendered?.replace("data-src", "src");
+  const modifiedContent = post?.content?.rendered?.replace(
+    "data-src-fg",
+    "src"
+  );
   const featuredMedia = post?.["_embedded"]?.["wp:featuredmedia"][0];
   return {
     props: {
