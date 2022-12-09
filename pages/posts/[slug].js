@@ -10,16 +10,34 @@ export default function PostPage({ post }) {
       <Head>
         <title>{`Lou On Tour - ${post.title.rendered}`}</title>
       </Head>
-      <div className="container mx-auto pt-5">
+
+      <div className="container mx-auto pt-5 w-11/12 2xl:w-4/5 text-black">
+        <div className="text-sm breadcrumbs">
+          <ul>
+            <li>
+              <Link href="/" className="text-black">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog" className="text-black">
+                Blog
+              </Link>
+            </li>
+            <li
+              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+              className="font-bold"
+            ></li>
+          </ul>
+        </div>
         <h1
-          className="text-center pb-5"
+          className="text-center py-8 text-3xl 2xl:text-5xl text-black"
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         ></h1>
         <div
-          className="card-text pb-5"
+          className="text-black"
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
         ></div>
-        <Link href="/blog">Back to Home</Link>
       </div>
     </>
   );
