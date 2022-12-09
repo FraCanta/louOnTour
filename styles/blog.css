@@ -4,3 +4,20 @@ iframe {
   margin-bottom: 20px;
   border-radius: 10px;
 }
+
+h3 {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.Embed {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

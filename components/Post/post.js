@@ -13,27 +13,30 @@ export default function Post({ post, featuredMedia }) {
         <figure>
           <Image
             src={featuredMedia?.["media_details"]?.sizes.medium?.["source_url"]}
-            width={250}
+            width={240}
             height={250}
             alt={featuredMedia?.["alt_text"]}
-            className="w-full h-[250px] object-cover rounded-t-lg"
+            className="w-auto h-[250px] object-contain rounded-t-lg"
             priority
           />
         </figure>
       </Link>
 
       <div className="card-body">
-        <h5
-          className="card-title text-black"
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        ></h5>
+        <div className="py-2">
+          <small className="badge badge-info badge-lg text-white">
+            {getDate(post.date)}
+          </small>
+        </div>
+        <Link href={`/posts/${post.slug}`}>
+          <h5
+            className="card-title text-black pb-2 hover:underline"
+            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+          ></h5>
+        </Link>
         <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}></p>
-        <p>
-          <small className="text-muted">On {getDate(post.modified)}</small>
-        </p>
         <div className="card-actions justify-end">
           <Link href={`/posts/${post.slug}`}>
-            {" "}
             <Cta>See more</Cta>
           </Link>
         </div>

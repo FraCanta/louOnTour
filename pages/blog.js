@@ -46,12 +46,6 @@ const Blog = ({ post, category, media, tags }) => {
           </div> */}
         </div>
       </div>
-      <iframe
-        src="https://www.youtube.com/embed/E7wJTI-1dvQ"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        title="video"
-      />
     </div>
   );
 };
