@@ -14,7 +14,10 @@ const DynamicBanner = dynamic(() => import("../components/sectionFive/banner"));
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import { useRouter } from "next/router";
-export default function Home({ translation }) {
+import BlogSection from "../components/blogSection/blogSection";
+import { getPosts, getCategories, getMedia, getTags } from "../utils/wordpress";
+
+export default function Home({ translation, post, category, tags }) {
   const { locale } = useRouter();
   return (
     <div>
@@ -29,11 +32,17 @@ export default function Home({ translation }) {
       <DynamicMap translation={translation?.map} />
       <DynamicAboutMe translation={translation?.about} />
       <DynamicInsta translation={translation?.socialLou} />
+      <BlogSection post={post} />
+
       <DynamicBanner translation={translation?.banner} />
     </div>
   );
 }
 export async function getStaticProps(locale) {
+  const post = await getPosts();
+  const category = await getCategories();
+  const media = await getMedia();
+  const tags = await getTags();
   let obj;
 
   switch (locale.locale) {
@@ -52,6 +61,10 @@ export async function getStaticProps(locale) {
   return {
     props: {
       translation: obj?.home,
+      post: post,
+      category: category,
+      media: media,
+      tags: tags,
     },
     revalidate: 60,
   };
