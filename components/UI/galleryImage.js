@@ -4,9 +4,9 @@ import Image from "next/image";
 
 const GalleryImage = ({ url, item, handleModal }) => {
   const [imgSpinner, setImgSpinner] = useState(true);
-  useEffect(() => {
-    console.log(url, imgSpinner);
-  }, [imgSpinner]);
+  // useEffect(() => {
+  //   console.log(url, imgSpinner);
+  // }, [imgSpinner]);
   return (
     <div className="gallery-item">
       <div
@@ -24,7 +24,7 @@ const GalleryImage = ({ url, item, handleModal }) => {
         height={150}
         onClick={() => handleModal(item)}
         onLoadingComplete={() => {
-          console.log("Lo sto settando coglione!");
+          // console.log("Lo sto settando coglione!");
           setImgSpinner(false);
         }}
       />

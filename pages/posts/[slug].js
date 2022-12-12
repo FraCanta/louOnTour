@@ -6,7 +6,6 @@ import Image from "next/image";
 import Script from "next/script";
 
 export default function PostPage({ post, modifiedContent, featuredMedia }) {
-  console.log(modifiedContent);
   return (
     <>
       <Head>

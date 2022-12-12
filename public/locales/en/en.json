@@ -255,7 +255,8 @@
   "tours": {
     "Firenze": {
       "img": "/assets/locationTour/florence_duomo.jpg",
-      "titleImg": "Florence",
+      "titleImg": "Firenze",
+      "translatedTitle": "Florence",
       "half": "Tours Firenze (mezza giornata)",
       "full": "Tours Firenze (giornata intera)",
       "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
@@ -280,13 +281,13 @@
       "half": "Tours Siena (mezza giornata)",
       "full": "Tours Siena (giornata intera)",
       "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
-      "descrizione": "Questa città posizionata in cima ad una collina è famosa per il suo centro storico tutelato dall’Unesco visto che ancora mantiene buona parte dell’assetto urbano medievale; è famosa per lo sfarzo artistico e architettonico soprattutto in epoca medievale; è la città del Palio, corsa di cavallo più famosa d’Italia. Qui è anche nata Santa Caterina ed è stata fondata la banca più longeva al mondo. ",
+      "descrizione": "This city positioned on a hilltop is famous for its UNESCO-protected historic center since it still retains much of the medieval urban layout; it is famous for artistic and architectural pageantry especially in the medieval period; and it is the city of the Palio, Italy's most famous horse race. St. Catherine was also born here and the world's longest-living bank was founded here.",
       "half_elenco": [
-        "<p><b class='bold_text'>Siena per “principianti”: </b>saremo in giro circa 2 ore per conoscere i luoghi principali, i personaggi, gli aneddoti e gli eventi che hanno reso famosa questa città.</p> ",
-        "<p><b class='bold_text'>Siena Insolita: </b>3 ore circa di tour che ti permetteranno di conoscere i luoghi emblematici della città ma anche i luoghi meno frequentati dai visitatori. Se decidi di visitare la sede di una contrada potrai immergerti nella realtà senese, avere contatto con la gente del posto. Ma un altro modo per immergerti nel tessuto locale è senz’altro attraverso  suoi prodotti locali.</p>"
+        "<p><b class='bold_text'>Siena for 'beginners':  </b>we will be around about 2 hours to learn about the main places, characters, anecdotes and events that have made this city famous.</p> ",
+        "<p><b class='bold_text'>Unusual Siena:  </b>about 3 hours of tour that will allow you to get to know the emblematic places of the city but also the places less frequented by visitors. If you decide to visit the headquarters of a contrada you will be able to immerse yourself in the reality of Siena, have contact with the locals. But another way to immerse yourself in the local fabric is undoubtedly through its local products.</p>"
       ],
       "full_elenco": [
-        "<div><p><b class='bold_text'>A Siena con arte: </b> abbiamo 5/6 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in uno o più musei a tua scelta. Qui di seguito hai i link dei principali musei senesi:</p> <ul><li><a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cattedrale + complesso del Duomo</b></a></li><li><a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico</b></a></li><li><a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Ex Ospedale Santa Maria della Scala + Museo Archeologico</b></a></li><li><a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca Nazionale</b></a></li></ul></div>",
+        "<div><p><b class='bold_text'>In Siena with art:  </b>we have 5/6 hours for a walk to learn about the highlights of the city and an in-depth look at one or more museums of your choice. Below you have links to Siena's major museums:</p> <ul><li><a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cattedrale + complesso del Duomo</b></a></li><li><a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico</b></a></li><li><a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Ex Ospedale Santa Maria della Scala + Museo Archeologico</b></a></li><li><a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca Nazionale</b></a></li></ul></div>",
         "<p><b class='bold_text'>Siena</b> +  <b class='bold_text'>Firenze </b></p>",
         "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
         "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",

@@ -16,7 +16,6 @@ import translationIT from "../../public/locales/it/it.json";
 import translationEN from "../../public/locales/en/en.json";
 
 export default function Tours({ city, others, banner }) {
-  console.log(city);
   return (
     <>
       <Head>
@@ -26,7 +25,7 @@ export default function Tours({ city, others, banner }) {
         <div className="w-full lg:w-1/2 p-4 lg:p-8">
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Destinations</h4>
           <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#232F37]">
-            {city?.titleImg}
+            {!!city.translatedTitle ? city.translatedTitle : city?.titleImg}
           </h2>
         </div>
         <div className="w-full lg:w-1/2 p-4 lg:p-8">
@@ -98,7 +97,6 @@ export default function Tours({ city, others, banner }) {
 
 export async function getStaticProps(context) {
   const { params, locale } = context;
-  console.log(locale);
   let obj;
 
   switch (locale) {
@@ -135,17 +133,27 @@ export async function getStaticProps(context) {
   };
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const cities = locations?.tours;
   const arr = Object.keys(cities); // Array dei tours
 
-  const paths = arr?.map((el) => {
+  const pathEn = arr?.map((el) => {
     return {
       params: {
         title: el,
       },
+      locale: "en",
     };
   });
+  const pathIt = arr?.map((el) => {
+    return {
+      params: {
+        title: el,
+      },
+      locale: "it",
+    };
+  });
+  const paths = pathIt.concat(pathEn);
 
   return {
     paths,
