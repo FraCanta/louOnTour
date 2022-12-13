@@ -112,14 +112,14 @@ export async function getStaticProps(context) {
       break;
   }
 
-  let targetObj = obj?.tours?.[params?.title];
+  let targetObj = obj?.tours?.locationTours?.[params?.title];
   const banner = obj?.home?.banner;
-  const arr = Object.keys(obj?.tours);
+  const arr = Object.keys(obj?.tours?.locationTours);
 
   const others = arr?.map((el) => {
     return {
       title: el,
-      img: locations?.tours?.[el]?.img,
+      img: locations?.tours?.locationTours?.[el]?.img,
       link: `/locations/${el}`,
     };
   });
@@ -134,7 +134,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths({ locales }) {
-  const cities = locations?.tours;
+  const cities = locations?.tours?.locationTours;
   const arr = Object.keys(cities); // Array dei tours
 
   const pathEn = arr?.map((el) => {

@@ -49,7 +49,7 @@ const Menu = ({ translation }) => {
                       <li key={i} className="py-1.5">
                         <Link
                           className="hover:underline text-sm !ml-2"
-                          href={`/locations/${el?.title}`}
+                          href={`/locations/${el?.link}`}
                         >
                           {el?.title}
                         </Link>

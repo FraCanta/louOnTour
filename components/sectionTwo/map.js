@@ -51,7 +51,7 @@ const Map = ({ translation }) => {
               }
             >
               {el?.link?.length > 0 && (
-                <Link href={`/locations/${el?.title}`}>
+                <Link href={`/locations/${el?.link}`}>
                   <Icon
                     icon="fontisto:map-marker-alt"
                     width="32"

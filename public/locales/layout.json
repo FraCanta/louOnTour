@@ -10,29 +10,29 @@
         "markers": [
           {
             "title": "Firenze",
-            "link": "locations/Firenze"
+            "link": "Firenze"
           },
           {
             "title": "San Gimignano",
-            "link": "locations/San%20Gimignano"
+            "link": "San%20Gimignano"
           },
           {
             "title": "Volterra",
-            "link": "locations/Volterra"
+            "link": "Volterra"
           },
 
           {
             "id": "si",
             "title": "Siena",
-            "link": "locations/Siena"
+            "link": "Siena"
           },
           {
             "title": "San Galgano",
-            "link": "locations/San%20Galgano"
+            "link": "San%20Galgano"
           },
           {
             "title": "Montepulciano e Val d'Orcia",
-            "link": "locations/Montepulciano%20e%20Val%20d'Orcia"
+            "link": "Montepulciano%20e%20Val%20d'Orcia"
           }
         ]
       }
@@ -47,29 +47,29 @@
         "markers": [
           {
             "title": "Florence",
-            "link": "locations/Firenze"
+            "link": "Firenze"
           },
           {
             "title": "San Gimignano",
-            "link": "locations/San%20Gimignano"
+            "link": "San%20Gimignano"
           },
           {
             "title": "Volterra",
-            "link": "locations/Volterra"
+            "link": "Volterra"
           },
 
           {
             "id": "si",
             "title": "Siena",
-            "link": "locations/Siena"
+            "link": "Siena"
           },
           {
             "title": "San Galgano",
-            "link": "locations/San%20Galgano"
+            "link": "San%20Galgano"
           },
           {
             "title": "Montepulciano and Val d'Orcia",
-            "link": "locations/Montepulciano%20e%20Val%20d'Orcia"
+            "link": "Montepulciano%20e%20Val%20d'Orcia"
           }
         ]
       }
