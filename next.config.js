@@ -13,7 +13,7 @@ const ContentSecurityPolicy = `
   child-src 'self' http://localhost:3000/ https://lou-eight.vercel.app/ https://www.youtube.com/;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css  data:;
   font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ 'unsafe-inline' data:;
-  img-src 'self' https://louontour.it data: blob:;
+  img-src 'self' https://louontour.it https://s.w.org/ data: blob:;
   
 `;
 const securityHeaders = [
