@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import ModalGallery from "./modalGallery";
-import Spinner from "./spinner";
 import GalleryImage from "./galleryImage";
 
 const GalleryTours = ({ imageArray }) => {
@@ -10,12 +8,7 @@ const GalleryTours = ({ imageArray }) => {
     scale: "",
     img: null,
   });
-  // const [imgSpinner, setImgSpinner] = useState({});
 
-  // useEffect(() => {
-  //   const arr = new Array(imageArray.length).fill(true);
-  //   setImgSpinner({ ...arr });
-  // }, []);
   const handleModal = (imgToShow) => {
     showModal.isOpen === "hide"
       ? setShowModal({

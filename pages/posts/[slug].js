@@ -36,16 +36,7 @@ export default function PostPage({ post, modifiedContent, featuredMedia }) {
           className="text-center py-8 text-3xl 2xl:text-5xl text-black"
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         ></h1>
-        {/* <figure>
-          <Image
-            src={featuredMedia?.["media_details"]?.sizes.medium?.["source_url"]}
-            width={800}
-            height={250}
-            alt={featuredMedia?.["alt_text"]}
-            className="w-full h-[350px] object-contain rounded-t-lg"
-            priority
-          />
-        </figure> */}
+
         <div
           className="text-black"
           dangerouslySetInnerHTML={{ __html: modifiedContent }}
@@ -53,29 +44,6 @@ export default function PostPage({ post, modifiedContent, featuredMedia }) {
       </div>
     </>
   );
-}
-
-{
-  /* <Script>
-  {
-
-  if ('loading' in HTMLIFrameElement.prototype) {
-    const iframes = document.querySelectorAll('iframe[loading="lazy"]');
-
-    iframes.forEach(iframe => {
-      iframe.src = iframe.dataset.src;
-    });
-
-  } else {
-    // Dynamically import the LazySizes library
-    const script = document.createElement('script');
-    script.src =
-      'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js';
-    document.body.appendChild(script);
-  }}
-
-
-</Script> */
 }
 
 //hey Next, these are the possible slugs

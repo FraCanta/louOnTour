@@ -21,8 +21,6 @@ export default function Document() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
         ></link>
 
-        {/* <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" /> */}
-
         <meta name="application-name" content="Lou On Tour - Guida Turistica" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

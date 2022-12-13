@@ -40,9 +40,11 @@ export default function Home({ translation, post, category, tags }) {
 }
 export async function getStaticProps(locale) {
   const post = await getPosts();
+  const tags = await getTags();
+  const idLocale = (tags?.filter((el) => el.name === locale.locale))[0].id;
   const category = await getCategories();
   const media = await getMedia();
-  const tags = await getTags();
+
   let obj;
 
   switch (locale.locale) {
@@ -61,7 +63,10 @@ export async function getStaticProps(locale) {
   return {
     props: {
       translation: obj?.home,
-      post: post,
+      post: post
+        .sort((a, b) => a?.date > b?.date)
+        .filter((p) => p?.tags?.includes(idLocale))
+        .filter((el, i) => i < 4),
       category: category,
       media: media,
       tags: tags,

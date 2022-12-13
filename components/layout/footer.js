@@ -46,23 +46,8 @@ const Footer = () => {
           <Link href="/chiSono" className="link link-hover">
             News{" "}
           </Link>
-          {/* <Link href="/contatti" className="link link-hover">
-            Contatti
-          </Link>
-          <Link
-            href="/contatti"
-            className="link link-hover text-white  bg-[#FE6847] p-[0.3rem]"
-          >
-            Collaborazioni
-          </Link> */}
         </div>
         <div></div>
-        {/* <div>
-          <h6 className="footer-title text-black">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
-        </div> */}
       </footer>
       <footer className="footer px-10 py-4 border-t bg-white text-[#232f37]  text-base-content border-base-300">
         <div className="items-center grid-flow-col">

@@ -27,7 +27,6 @@ const BackToTop = () => {
 
   return (
     <div
-      // type="button"
       data-mdb-ripple="true"
       data-mdb-ripple-color="light"
       className={buttonState}

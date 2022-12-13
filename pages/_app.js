@@ -26,7 +26,6 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </DynamicLayout>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" />
-      ;
     </>
   );
 }

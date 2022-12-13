@@ -1,4 +1,6 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const withPlugins = require("next-compose-plugins");
 
 const nextConfig = {
@@ -7,11 +9,11 @@ const nextConfig = {
 };
 const ContentSecurityPolicy = `
   default-src 'self' https://api.iconify.design/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css;
-  script-src 'self' https://storage.googleapis.com 'unsafe-inline' 'unsafe-eval';
+  script-src 'self' https://storage.googleapis.com https://cdnjs.cloudflare.com/ 'unsafe-inline' 'unsafe-eval';
   child-src 'self' http://localhost:3000/ https://lou-eight.vercel.app/;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css  data:;
   font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ 'unsafe-inline' data:;
-  img-src 'self' data: blob:;
+  img-src 'self' https://louontour.it data: blob:;
   
 `;
 const securityHeaders = [
@@ -36,10 +38,10 @@ const securityHeaders = [
     value: "on",
   },
 ];
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: true,
-  openAnalyzer: true,
-});
+// const withBundleAnalyzer = require("@next/bundle-analyzer")({
+//   enabled: true,
+//   openAnalyzer: true,
+// });
 
 module.exports = withPlugins([
   nextConfig,
@@ -54,11 +56,11 @@ module.exports = withPlugins([
   {
     async headers() {
       return [
-        // {
-        //   // Apply these headers to all routes in your application.
-        //   source: "/:path*",
-        //   headers: securityHeaders,
-        // },
+        {
+          // Apply these headers to all routes in your application.
+          source: "/:path*",
+          headers: securityHeaders,
+        },
       ];
     },
   },
@@ -67,9 +69,6 @@ module.exports = withPlugins([
       formats: ["image/avif", "image/webp"],
       domains: ["louontour.it"],
     },
-    // video: {
-    //   domains: ["youtube.com/embed"],
-    // },
   },
   // withBundleAnalyzer,
 ]);

@@ -5,8 +5,6 @@
 }
 
 .bg-modal {
-  /* background-image: url(../public/assets/florence.png);
-  background-size: cover; */
   transform: scale(0.05);
   transition: 1s all;
   transition-delay: 300ms;
@@ -23,14 +21,6 @@
   border-radius: 10px;
 }
 
-/* #myVideo::after {
-  content: "";
-  background: red;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-} */
 
 .scale-modal {
   transform: scale(1);

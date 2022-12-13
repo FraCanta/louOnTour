@@ -22,12 +22,6 @@ const Contact = ({ translation }) => {
             Parliamo insieme del Tour che ti piacerebbe fare con me!
           </h2>
         </div>
-        {/* <div className="w-full lg:w-1/2 p-4 lg:p-8">
-          <p className="text-base sm:text-xl  mt-0 sm:mt-8 mb-4 text-[#232F37]">
-            Disegnamo insieme il Tour su misura per Te! Puoi contattarmi
-            direttamente tramite:
-          </p>
-        </div> */}
       </div>
       <DynamicContactForm />
     </>

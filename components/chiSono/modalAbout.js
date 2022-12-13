@@ -24,9 +24,9 @@ const ModalAbout = ({ handleModal, showModal, translation }) => {
                 ? { width: "auto", height: "90%", objectFit: "cover" }
                 : { display: "none" }
             }
-            onLoadingComplete={() => {
-              console.log(el + " completato");
-            }}
+            // onLoadingComplete={() => {
+            //   console.log(el + " completato");
+            // }}
           />
         ))}
       </div>

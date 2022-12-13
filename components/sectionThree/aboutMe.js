@@ -26,7 +26,6 @@ const AboutMe = ({ translation }) => {
           </Link>
         </div>
         <div>
-          {/* <Testimonials translation={translation} /> */}
           <Testimonials2 translation={translation} />
         </div>
       </div>

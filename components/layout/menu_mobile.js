@@ -202,7 +202,7 @@ function Menu_mobile() {
                       >
                         <Link
                           className="hover:underline text-sm md:text-xl"
-                          href={`/locations/${el?.title}`}
+                          href={`/locations/${el?.link}`}
                         >
                           {el?.title}
                         </Link>

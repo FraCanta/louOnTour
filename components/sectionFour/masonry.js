@@ -13,13 +13,7 @@ const Masonry = () => {
           <Image src={Lou} alt="lou" width={500} height={625} />
         </div>
         <div className="masonry_img w-[100%] h-[300px] second-pic relative mb-4 ">
-          <Image
-            src={Lou2}
-            alt="lou"
-            // objectFit="cover"
-            width={500}
-            height={625}
-          />
+          <Image src={Lou2} alt="lou" width={500} height={625} />
         </div>
         <div className="masonry_img w-[100%] h-[300px] third-pic relative mb-4 ">
           <Image src={Lou3} alt="lou" width={500} height={625} />
