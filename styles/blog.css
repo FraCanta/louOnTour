@@ -17,3 +17,12 @@ h2 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+/* blog section */
+.hero h2,
+.hero p {
+  text-shadow: none;
+}
+.card-body p {
+  text-shadow: none;
+}
