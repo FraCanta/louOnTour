@@ -81,7 +81,10 @@ const Testimonials2 = ({ translation }) => {
                       {el?.reviews_desc}
                     </span>
                   </div>
-                  <span class="box-folded__trigger" onClick={handleReadMore}>
+                  <span
+                    className="box-folded__trigger"
+                    onClick={handleReadMore}
+                  >
                     + read more
                   </span>
                 </div>

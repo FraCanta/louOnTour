@@ -10,12 +10,12 @@ const GalleryTours = ({ imageArray }) => {
     scale: "",
     img: null,
   });
-  const [imgSpinner, setImgSpinner] = useState({});
+  // const [imgSpinner, setImgSpinner] = useState({});
 
-  useEffect(() => {
-    const arr = new Array(imageArray.length).fill(true);
-    setImgSpinner({ ...arr });
-  }, []);
+  // useEffect(() => {
+  //   const arr = new Array(imageArray.length).fill(true);
+  //   setImgSpinner({ ...arr });
+  // }, []);
   const handleModal = (imgToShow) => {
     showModal.isOpen === "hide"
       ? setShowModal({

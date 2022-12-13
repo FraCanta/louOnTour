@@ -4,9 +4,7 @@ import Image from "next/image";
 
 const GalleryImage = ({ url, item, handleModal }) => {
   const [imgSpinner, setImgSpinner] = useState(true);
-  useEffect(() => {
-    console.log(imgSpinner);
-  }, [imgSpinner]);
+
   return (
     <div className="gallery-item">
       <div

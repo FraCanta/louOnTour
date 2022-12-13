@@ -26,7 +26,6 @@ const Map = ({ translation }) => {
         <div className="pt-0 w-[650px] height-[697.359px] relative ">
           <Image
             src={Toscana}
-            priority
             alt="map"
             width="auto"
             height="auto"
