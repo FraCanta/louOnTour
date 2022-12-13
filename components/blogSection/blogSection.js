@@ -31,7 +31,7 @@ const BlogSection = ({ post, featuredMedia, tags }) => {
         <div className="flex w-full flex-col lg:flex-row">{jsxPosts}</div>
         <Link href="/blog">
           <div>
-            <Cta>Leggi</Cta>
+            <Cta>Leggi altri</Cta>
           </div>
         </Link>
       </div>

@@ -39,7 +39,7 @@ const Testimonials2 = ({ translation }) => {
             <SwiperSlide key={i}>
               <div className="content-wrapper">
                 <div className="content">
-                  <div className="flex items-center w-full justify-between py-4 px-4">
+                  <div className="flex items-center w-full justify-between py-2 px-4">
                     <div className="flex items-center">
                       <div className="avatar placeholder mr-2">
                         <div className="w-8 rounded-full ring ring-[#fe6847] ">

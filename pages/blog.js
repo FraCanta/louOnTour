@@ -32,8 +32,9 @@ const Blog = ({ post, category, media, tags }) => {
         </div>
       </div>
       <div className="container mx-auto pt-5 p-2 xl:p-8">
-        <div className="grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-3 justify-items-center content-center pt-12 2xl:pt-10">
-          {jsxPosts}
+        <div className="grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-12 2xl:pt-10">
+          <div>{jsxPosts}</div>
+          <div>Categorie</div>
         </div>
       </div>
     </div>
