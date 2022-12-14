@@ -10,16 +10,16 @@ import Cta from "../button/button";
 export default function Post({ post, featuredMedia }) {
   console.log(post);
   return (
-    <div className="card w-full lg:w-96  shadow-xl">
+    <div className="card w-full lg:w-96  shadow-xl mb-4 lg:mb-0">
       <Link href={`/posts/${post?.slug}`}>
         <figure>
           <Image
             src={
-              featuredMedia?.["media_details"]?.sizes?.medium?.["source_url"] ||
+              featuredMedia?.["media_details"]?.sizes?.full?.["source_url"] ||
               Siena
             }
-            width={1000}
-            height={1000}
+            width={461}
+            height={420}
             alt={featuredMedia?.["alt_text"] || "LouOnTour image"}
             className="w-full h-[350px] object-cover rounded-t-lg"
             priority
@@ -39,7 +39,9 @@ export default function Post({ post, featuredMedia }) {
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           ></h5>
         </Link>
-        <p dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}></p>
+        <div
+          dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
+        ></div>
         <div className="card-actions justify-end">
           <Link href={`/posts/${post?.slug}`}>
             <Cta>See more</Cta>

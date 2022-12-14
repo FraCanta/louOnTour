@@ -15,9 +15,14 @@ import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import { useRouter } from "next/router";
 import BlogSection from "../components/blogSection/blogSection";
-import { getPosts, getCategories, getMedia, getTags } from "../utils/wordpress";
+import {
+  getPosts,
+  getCategories,
+  getMedia,
+  getTagId,
+} from "../utils/wordpress";
 
-export default function Home({ translation, post, category, tags }) {
+export default function Home({ translation, post, category }) {
   const { locale } = useRouter();
   return (
     <div>
@@ -38,10 +43,9 @@ export default function Home({ translation, post, category, tags }) {
     </div>
   );
 }
-export async function getStaticProps(locale) {
-  const post = await getPosts();
-  const tags = await getTags();
-  const idLocale = (tags?.filter((el) => el.name === locale.locale))[0].id;
+export async function getStaticProps({ locale }) {
+  const idLocale = await getTagId(locale); // recupera id della lingua attuale
+  const post = await getPosts(idLocale); //recupera post nella lingua attuale
   const category = await getCategories();
   const media = await getMedia();
 
@@ -63,13 +67,9 @@ export async function getStaticProps(locale) {
   return {
     props: {
       translation: obj?.home,
-      post: post
-        .sort((a, b) => a?.date > b?.date)
-        .filter((p) => p?.tags?.includes(idLocale))
-        .filter((el, i) => i < 4),
+      post: post.sort((a, b) => a?.date > b?.date).filter((el, i) => i < 4),
       category: category,
       media: media,
-      tags: tags,
     },
     revalidate: 60,
   };

@@ -9,7 +9,9 @@ import PostSection from "./postSection";
 const BlogSection = ({ post, featuredMedia, tags }) => {
   const jsxPosts = post.map((p, i) => {
     const featuredMedia = p?.["_embedded"]?.["wp:featuredmedia"][0];
-    return <PostSection post={p} featuredMedia={featuredMedia} key={p.id} />;
+    return (
+      <PostSection post={p} featuredMedia={featuredMedia} key={i} id={p?.id} />
+    );
   });
   return (
     <div className="hero min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full bg-[#232F37]  text-white flex items-center  overflow-x-hidden py-20 ">

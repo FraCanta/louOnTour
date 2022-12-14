@@ -1,18 +1,46 @@
 const BASE_URL = "https://louontour.it/wp-json/wp/v2";
 
-export async function getPosts() {
+export async function getPosts(lang) {
   //   const postsRes = await fetch(BASE_URL + "/posts?page=" + page);
-  const postsRes = await fetch(BASE_URL + "/posts?_embed&per_page=40");
-
+  const postsRes = await fetch(BASE_URL + "/posts?_embed&per_page=100");
   const posts = await postsRes.json();
-  return posts;
+  const lngPost = posts.filter((p) => {
+    if (!!lang) {
+      return p?.tags?.includes(lang);
+    } else {
+      return p;
+    }
+  });
+  const mainKeys = lngPost?.map((el) => {
+    return {
+      categories: el?.categories,
+      content: { rendered: el?.content?.rendered },
+      date: el?.date,
+      excerpt: { rendered: el?.excerpt?.rendered },
+      featured_media: el?.featured_media,
+      _embedded: el["_embedded"],
+      slug: el?.slug,
+      title: { rendered: el?.title?.rendered },
+      tags: el?.tags,
+    };
+  });
+  return mainKeys;
 }
+// array di tutti i tags presenti
 export async function getTags() {
   //   const postsRes = await fetch(BASE_URL + "/posts?page=" + page);
   const tagsRes = await fetch(BASE_URL + "/tags?per_page=100");
-
   const tags = await tagsRes.json();
   return tags;
+}
+
+// ricerca codice di un tag
+export async function getTagId(tag) {
+  //   const postsRes = await fetch(BASE_URL + "/posts?page=" + page);
+  const tagsRes = await fetch(BASE_URL + "/tags?per_page=100");
+  const tags = await tagsRes.json();
+  const idLocale = (tags?.filter((el) => el?.name === tag))[0].id; //prendo l'id che corrisponde ad it nel database di wp
+  return idLocale;
 }
 
 export async function getPost(slug) {
@@ -30,10 +58,23 @@ export async function getMedia() {
 }
 
 // /wp/v2/categories per le categorie
-export async function getCategories() {
+export async function getCategories(lang, onlyFull = true) {
   const categoriesRes = await fetch(BASE_URL + "/categories");
   const categories = await categoriesRes.json();
-  return categories;
+  const filteredCategories = categories?.filter(
+    (el) => el?.description === lang
+  );
+  const fullCategories = onlyFull
+    ? filteredCategories?.filter((el) => el?.count > 0)
+    : filteredCategories;
+
+  if (!!lang) {
+    lang === "it" && fullCategories.splice(0, 0, { id: 0, name: "Tutte" });
+    lang === "en" && fullCategories.splice(0, 0, { id: 0, name: "All" });
+    return fullCategories;
+  } else {
+    return categories;
+  }
 }
 
 // export async function getEvents() {

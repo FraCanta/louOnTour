@@ -9,7 +9,7 @@ import { getDate } from "../../utils/utils";
 import Cta from "../button/button";
 
 export default function PostSection({ post, featuredMedia }) {
-  console.log(post);
+  // console.log(post);
   return (
     <div className="card w-full lg:w-50 lg:h-[20rem]  shadow-xl mb-6 lg:mb-2 mr-4 bg-white text-black ">
       {/* <Link href={`/posts/${post?.slug}`}>
@@ -40,10 +40,10 @@ export default function PostSection({ post, featuredMedia }) {
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           ></h5>
         </Link>
-        <p
+        <div
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
           className="text-sm"
-        ></p>
+        ></div>
         <div className="card-actions justify-end">
           <Link href={`/posts/${post?.slug}`} className="link">
             See more
