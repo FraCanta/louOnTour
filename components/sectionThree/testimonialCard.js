@@ -1,27 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import "swiper/css/bundle";
 
-const TestimonialCard = ({ review }) => {
+const TestimonialCard = ({ review, i }) => {
+  let timeOut = useRef(null);
   const starsArray = (rating) => new Array(rating).fill(1); //trasformo il numero in array per mapparlo
   const [expandText, setExpandText] = useState({
     expanded: false,
     clamp: "line-clamp",
+    button: "+ read more",
   });
 
   const handleReadMore = () => {
     if (expandText.expanded) {
-      setExpandText({ expanded: false, clamp: "line-clamp" });
+      setExpandText({
+        expanded: false,
+        clamp: "line-clamp",
+        button: "+ read more",
+      });
     } else {
-      setExpandText({ expanded: true, clamp: "box-folded--expanded" });
+      setExpandText({
+        expanded: true,
+        clamp: "",
+        button: "- read less",
+      });
     }
   };
 
   return (
     <SwiperSlide>
-      <div className="content-wrapper">
+      <div
+        className="content-wrapper"
+        onMouseOut={() => {
+          expandText.expanded &&
+            !timeOut.current &&
+            (timeOut.current = setTimeout(() => handleReadMore(), 8000));
+        }}
+      >
         <div className="content">
           <div className="flex items-center w-full justify-between py-2 px-4">
             <div className="flex items-center">
@@ -67,7 +84,7 @@ const TestimonialCard = ({ review }) => {
           </div>
           {review?.reviews_desc?.length > 220 && (
             <span className="box-folded__trigger" onClick={handleReadMore}>
-              + read more
+              {expandText.button}
             </span>
           )}
         </div>
