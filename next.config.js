@@ -10,10 +10,10 @@ const nextConfig = {
 const ContentSecurityPolicy = `
   default-src 'self' https://api.iconify.design/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css;
   script-src 'self' https://storage.googleapis.com http://www.instagram.com/embed.js https://cdnjs.cloudflare.com/ 'unsafe-inline' 'unsafe-eval';
-  child-src 'self' http://localhost:3000/ https://lou-eight.vercel.app/ https://www.youtube-nocookie.com/ https://www.google.com/ https://www.youtube.com/;
+  child-src 'self' http://localhost:3000/ https://lou-eight.vercel.app/ https://www.instagram.com/ https://www.youtube-nocookie.com/ https://www.google.com/ https://www.youtube.com/;
   style-src 'self' 'unsafe-inline'  https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css  data:;
   font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ 'unsafe-inline' data:;
-  img-src 'self' https://louontour.it https://s.w.org/ data: blob:;
+  img-src 'self' https://louontour.it https://s.w.org/ http://louontour.it/wp-content/uploads/ data: blob:;
   
 `;
 const securityHeaders = [

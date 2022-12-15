@@ -12,22 +12,6 @@ export default function PostSection({ post, featuredMedia }) {
   // console.log(post);
   return (
     <div className="card w-full lg:w-50 lg:h-[20rem]  shadow-xl mb-6 lg:mb-2 mr-4 bg-white text-black ">
-      {/* <Link href={`/posts/${post?.slug}`}>
-        <figure>
-          <Image
-            src={
-              featuredMedia?.["media_details"]?.sizes?.medium?.["source_url"] ||
-              Siena
-            }
-            width={1000}
-            height={1000}
-            alt={featuredMedia?.["alt_text"] || "LouOnTour image"}
-            className="w-full h-[250px] object-cover rounded-t-lg"
-            priority
-          />
-        </figure>
-      </Link> */}
-
       <div className="card-body !p-4">
         <div>
           <small className="badge badge-info badge-lg text-white text-xs">
@@ -42,7 +26,7 @@ export default function PostSection({ post, featuredMedia }) {
         </Link>
         <div
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
-          className="text-sm"
+          className="xl:text-sm lg:text-xs"
         ></div>
         <div className="card-actions justify-end">
           <Link href={`/posts/${post?.slug}`} className="link">

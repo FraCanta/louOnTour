@@ -69,8 +69,10 @@ export async function getCategories(lang, onlyFull = true) {
     : filteredCategories;
 
   if (!!lang) {
-    lang === "it" && fullCategories.splice(0, 0, { id: 0, name: "Tutte" });
-    lang === "en" && fullCategories.splice(0, 0, { id: 0, name: "All" });
+    lang === "it" &&
+      fullCategories.splice(0, 0, { id: 0, name: "Tutte le categorie" });
+    lang === "en" &&
+      fullCategories.splice(0, 0, { id: 0, name: "All categories" });
     return fullCategories;
   } else {
     return categories;

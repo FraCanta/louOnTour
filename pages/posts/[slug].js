@@ -12,7 +12,7 @@ export default function PostPage({ post, modifiedContent, featuredMedia }) {
         <title>{`Lou On Tour - ${post.title.rendered}`}</title>
       </Head>
 
-      <div className="container mx-auto pt-5 w-11/12 2xl:w-4/5 text-black">
+      <div className="container mx-auto pt-5 w-11/12 2xl:w-4/5 text-black l-article">
         <div className="text-sm breadcrumbs">
           <ul>
             <li>
@@ -33,12 +33,12 @@ export default function PostPage({ post, modifiedContent, featuredMedia }) {
         </div>
 
         <h1
-          className="text-center py-8 text-3xl 2xl:text-5xl text-black"
+          className="text-center py-8 text-3xl 2xl:text-5xl text-black "
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         ></h1>
 
         <div
-          className="text-black"
+          className="text-black text-base lg:text-xl "
           dangerouslySetInnerHTML={{ __html: modifiedContent }}
         ></div>
       </div>

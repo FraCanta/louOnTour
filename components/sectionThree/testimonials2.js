@@ -1,26 +1,17 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import Avatar from "../../public/assets/avatar/donnaAvatar.png";
+import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper";
 import "swiper/css/bundle";
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
-import { Icon } from "@iconify/react";
+import TestimonialCard from "./testimonialCard";
 
 const Testimonials2 = ({ translation }) => {
-  const starsArray = (rating) => new Array(rating).fill(1); //trasformo il numero in array per mapparlo
-  const [expandText, setExpandText] = useState("line-clamp");
-  const handleReadMore = () => {
-    if (expandText === "line-clamp") {
-      setExpandText("box-folded--expanded ");
-    } else {
-      setExpandText("line-clamp");
-    }
-  };
+  const swiperRef = useRef();
   return (
     <div className="wrapper">
       <Swiper
+        ref={swiperRef}
         spaceBetween={30}
         loop={true}
         autoHeight={false}
@@ -29,69 +20,21 @@ const Testimonials2 = ({ translation }) => {
           prevEl: ".swiper-button-prev",
           nextEl: ".swiper-button-next",
         }}
-        autoplay={true}
+        autoplay={{
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
         pagination={{
           el: "swiper-pagination",
         }}
       >
         <div className="swiper-wrapper">
           {translation?.reviews?.map((el, i) => (
-            <SwiperSlide key={i}>
-              <div className="content-wrapper">
-                <div className="content">
-                  <div className="flex items-center w-full justify-between py-2 px-4">
-                    <div className="flex items-center">
-                      <div className="avatar placeholder mr-2">
-                        <div className="w-8 rounded-full ring ring-[#fe6847] ">
-                          <span className="text-xs text-[#fe6847]">
-                            <Image
-                              src={el?.img_reviews}
-                              width={20}
-                              height={20}
-                              alt="avatar"
-                            />
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-md text-[#fe6847] font-bold ml-2 flex flex-col items-start">
-                        {el?.name}
-                        <div className="flex">
-                          {starsArray(el?.rating).map((star, i) => (
-                            <a key={i}>
-                              <Icon
-                                icon="ant-design:star-filled"
-                                color="#ffe600"
-                                width="15"
-                                key={star}
-                              />
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <span className="text-[#232F37] text-xs py-4 px-4 font-bold">
-                      {el?.date}
-                    </span>
-                  </div>
-                  <div>
-                    <span
-                      className={`${expandText} text-[#232F37] text-[0.9rem]`}
-                    >
-                      {el?.reviews_desc}
-                    </span>
-                  </div>
-                  {el?.reviews_desc?.length > 220 && (
-                    <span
-                      className="box-folded__trigger"
-                      onClick={handleReadMore}
-                    >
-                      + read more
-                    </span>
-                  )}
-                </div>
-              </div>
-            </SwiperSlide>
+            <TestimonialCard
+              // onMouseLeave={() => swiperRef.current.swiper.autoplay.start()}
+              review={el}
+              key={i}
+            />
           ))}
         </div>
 

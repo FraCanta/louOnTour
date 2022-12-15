@@ -5,9 +5,11 @@ import Lou from "../../public/assets/logo_mobile2.png";
 import gsap from "gsap";
 import { Power1, Power2 } from "gsap";
 import { Icon } from "@iconify/react";
-import translation from "../../public/locales/it/it.json";
+import { useRouter } from "next/router";
 
-function Menu_mobile() {
+function Menu_mobile({ translation }) {
+  const { locale } = useRouter();
+
   const [mobileMenu, setMobileMenu] = useState({
     isOpen: false,
     fastClose: false,
@@ -166,21 +168,21 @@ function Menu_mobile() {
       <div className="menu_mobile_content ">
         <div className="menu_mobile_body">
           <div className="menu-nav menu_mobile_item">
-            <ul className="w-4/5  ">
+            <ul className="w-11/12  ">
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/"
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] !pb-4 md:!pb-8 link_menu"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
                 >
-                  Inizi da qui!
+                  {translation?.[locale]?.home}
                 </Link>
               </li>
               <li className="dropdown dropdown-right">
                 <label
                   tabIndex={0}
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] font-normal !pl-0  !pr-8 md:!pr-20 flex items-center uppercase !pb-4 md:!pb-8 link_menu"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] font-normal !pl-0  !pr-8 md:!pr-20 flex items-center uppercase !pb-4 md:!pb-4 link_menu"
                 >
-                  Tours
+                  {translation?.[locale]?.tours}
                   <Icon
                     icon="bxs:down-arrow"
                     color="#232F37"
@@ -192,85 +194,75 @@ function Menu_mobile() {
                   tabIndex={0}
                   className="dropdown-content min-h-[300px] md:min-h-[380px] !p-4 shadow rounded-box w-52 md:w-60 text-[#232F37]"
                 >
-                  {translation?.home?.map?.markers
-                    ?.filter((el) => el?.desc)
-                    .map((el, i) => (
-                      <li
-                        key={i}
-                        className="py-1.5"
-                        onClick={handleBurgerClose}
+                  {translation?.[locale]?.map?.markers.map((el, i) => (
+                    <li key={i} className="py-1.5" onClick={handleBurgerClose}>
+                      <Link
+                        className="hover:underline text-sm md:text-xl"
+                        href={`/locations/${el?.link}`}
                       >
-                        <Link
-                          className="hover:underline text-sm md:text-xl"
-                          href={`/locations/${el?.link}`}
-                        >
-                          {el?.title}
-                        </Link>
-                      </li>
-                    ))}
+                        {el?.title}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </li>
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/chiSono"
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] !pb-4 md:!pb-8 link_menu"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
                 >
-                  Chi sono
+                  {translation?.[locale]?.about}
                 </Link>
               </li>
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/blog"
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] !pb-4 md:!pb-8 link_menu"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
                 >
-                  Blog
+                  {translation?.[locale]?.blog}
                 </Link>
               </li>
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/contatti"
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[50px] link_menu"
+                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] link_menu"
                 >
-                  Contatti
+                  {translation?.[locale]?.contact}
                 </Link>
               </li>
             </ul>
-            <div className="socials w-4/5">
-              <button className="lg:text-lg 3xl:text-2xl ">
-                <Link
-                  href="https://www.facebook.com/luisa.quaglia.tourguide"
-                  className="link_menu"
-                  target="_blank"
-                >
-                  <Icon
-                    icon="entypo-social:facebook"
-                    color="#FE6847"
-                    width="25"
-                  />
-                </Link>
-              </button>
-              <button className=" llinks">
-                <Link
-                  href="https://www.instagram.com/luisatourguide__/"
-                  className="link_menu"
-                  target="_blank"
-                >
-                  <Icon
-                    icon="akar-icons:instagram-fill"
-                    color="#FE6847"
-                    width="25"
-                  />
-                </Link>
-              </button>
-              <button className="lg:text-lg 3xl:text-2xl">
-                <Link
-                  href="https://www.tiktok.com/@luisatourguide?is_from_webapp=1&sender_device=pc"
-                  className="link_menu"
-                  target="_blank"
-                >
-                  <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />
-                </Link>
-              </button>
+            <div className="socials w-11/12">
+              <Link
+                href="https://www.facebook.com/luisa.quaglia.tourguide"
+                className="link_menu"
+                target="_blank"
+              >
+                <Icon
+                  icon="entypo-social:facebook"
+                  color="#FE6847"
+                  width="25"
+                />
+              </Link>
+
+              <Link
+                href="https://www.instagram.com/luisatourguide__/"
+                className="link_menu"
+                target="_blank"
+              >
+                <Icon
+                  icon="akar-icons:instagram-fill"
+                  color="#FE6847"
+                  width="25"
+                />
+              </Link>
+
+              <Link
+                href="https://www.tiktok.com/@luisatourguide?is_from_webapp=1&sender_device=pc"
+                className="link_menu"
+                target="_blank"
+              >
+                <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />
+              </Link>
             </div>
           </div>
         </div>
