@@ -21,6 +21,7 @@ const Testimonials2 = ({ translation }) => {
           nextEl: ".swiper-button-next",
         }}
         autoplay={{
+          delay: 5000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
@@ -30,11 +31,7 @@ const Testimonials2 = ({ translation }) => {
       >
         <div className="swiper-wrapper">
           {translation?.reviews?.map((el, i) => (
-            <TestimonialCard
-              // onMouseLeave={() => swiperRef.current.swiper.autoplay.start()}
-              review={el}
-              key={i}
-            />
+            <TestimonialCard i={i} review={el} key={i} />
           ))}
         </div>
 
