@@ -6,31 +6,65 @@ iframe {
   border-radius: 10px;
 }
 
-h3 {
-  font-size: 30px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.l-article {
+  font-family: "Yrsa", serif;
 }
 
-h2 {
-  font-size: 30px;
-  margin-top: 20px;
+.l-article h1 {
+  line-height: 1.2;
+  font-family: "Oswald", sans-serif;
   margin-bottom: 20px;
 }
 
 .l-article h2 {
   line-height: 1.2;
+  font-family: "Oswald", sans-serif;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
+.l-article h3 {
+  line-height: 1.2;
+  font-weight: bold;
+  font-family: "Oswald", sans-serif;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 .l-article iframe {
   margin-top: 30px !important;
   margin-bottom: 30px !important;
 }
 
+.l-article figure {
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
+  width: 100% !important;
+}
+
 .l-article img {
   margin-top: 30px !important;
   margin-bottom: 30px !important;
-  width: 350px;
+  width: 450px;
+}
+
+.l-article li {
+  margin-left: 28px;
+  line-height: 1.5;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-family: "Yrsa", serif;
+}
+
+.l-article li::before {
+  content: "\f0a4"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  display: inline-block;
+  /* margin-left: -1.3em; */
+  margin-right: 10px; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
 }
 /* blog section */
 .hero h2,
