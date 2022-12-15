@@ -8,7 +8,6 @@ import { getDate } from "../../utils/utils";
 import Cta from "../button/button";
 
 export default function Post({ post, featuredMedia }) {
-  console.log(post);
   return (
     <div className="card w-full lg:w-96  shadow-xl mb-4 lg:mb-0">
       <Link href={`/posts/${post?.slug}`}>
