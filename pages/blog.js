@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from "react";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 
-import {
-  getPosts,
-  getCategories,
-  getMedia,
-  getTags,
-  getTagId,
-} from "../utils/wordpress";
+import { getPosts, getCategories, getTagId } from "../utils/wordpress";
 import Head from "next/head";
 import Post from "../components/Post/post";
 
 const Blog = ({ post, category, pages, currentP }) => {
-  console.log(currentP);
-  const [categoriesFilter, setCategoriesFilter] = useState(0);
+  const myRouter = useRouter();
+  // const [categoriesFilter, setCategoriesFilter] = useState(0);
   const [jsxPosts, setJsxPosts] = useState([]);
-  const [pageNumbers, setPageNumbers] = useState([1]);
-  const [currentPage, setCurrentPage] = useState(currentP);
+  const [filterObj, setFilterObj] = useState({});
 
   const handlePagination = (page) => {
     router.push(
@@ -24,11 +17,23 @@ const Blog = ({ post, category, pages, currentP }) => {
         pathname: "/blog",
         query: {
           page: page,
+          categories: filterObj?.categories || 0,
         },
       }
       // { shallow: true }
     );
   };
+  useEffect(() => {
+    console.log("brutto pirla sto leggendo le chiavi");
+    setFilterObj({
+      currentPage: parseInt(myRouter?.query?.page) || 1,
+      categories: parseInt(myRouter?.query?.categories) || 0,
+    });
+  }, []); // aggiorna i filtri correnti dalla querystring
+
+  useEffect(() => {
+    console.log(filterObj);
+  }, [filterObj]);
 
   useEffect(() => {
     setJsxPosts(
@@ -39,13 +44,20 @@ const Blog = ({ post, category, pages, currentP }) => {
         );
       })
     );
-  }, [post]);
+  }, [post]); // aggiorna le cards
+
   useEffect(() => {
-    setPageNumbers(new Array(pages).fill(1));
-  }, [pages]);
-  useEffect(() => {
-    setCurrentPage(currentP);
-  }, [currentP]);
+    setFilterObj((prevData) => {
+      return { ...prevData, paginationArray: new Array(pages).fill(1) };
+    });
+  }, [pages]); // al variare delle pagine totali genero i bottoni delle pagine
+
+  // useEffect(() => {
+  //   setFilterObj((prevData) => {
+  //     return { ...prevData, currentPage: parseInt(currentP) };
+  //   });
+  //   // setCurrentPage(currentP);
+  // }, [currentP]);
 
   return (
     <div>
@@ -69,7 +81,7 @@ const Blog = ({ post, category, pages, currentP }) => {
             <a
               key={i}
               style={
-                categoriesFilter === el?.id
+                filterObj?.categories === el?.id
                   ? {
                       background:
                         "linear-gradient(90deg,  hsla(204, 68%, 41%, 1) 0%, hsla(205, 100%, 67%, 1) 100%  )",
@@ -78,21 +90,24 @@ const Blog = ({ post, category, pages, currentP }) => {
                   : {}
               } // coloro quelli selezionati
               onClick={() => {
-                setCategoriesFilter((prevData) =>
-                  prevData === el?.id ? 0 : el?.id
-                );
+                setFilterObj((prevData) => {
+                  if (prevData?.categories === el?.id)
+                    return { ...prevData, categories: 0 };
+                  else return { ...prevData, categories: el?.id };
+                });
                 router.push(
                   {
                     pathname: "/blog",
                     query: {
                       categories: el?.id,
+                      page: filterObj?.currentPage,
                     },
                   }
                   // { shallow: true }
                 );
               }}
               className={`${
-                categoriesFilter !== el?.id
+                filterObj?.categories !== el?.id
                   ? "tab tab-xs lg:tab-lg tab-lifted "
                   : "tav tab-lg tab-lifted tab-active"
               }  `}
@@ -113,7 +128,7 @@ const Blog = ({ post, category, pages, currentP }) => {
                     key={i}
                     className="text-2xl mb-4 text-black"
                     style={
-                      categoriesFilter === el?.id
+                      filterObj?.categories === el?.id
                         ? {
                             background:
                               "linear-gradient(90deg,  hsla(204, 68%, 41%, 1) 0%, hsla(205, 100%, 67%, 1) 100%  )",
@@ -122,14 +137,18 @@ const Blog = ({ post, category, pages, currentP }) => {
                         : {}
                     } // coloro quelli selezionati
                     onClick={() => {
-                      setCategoriesFilter((prevData) =>
-                        prevData === el?.id ? 0 : el?.id
-                      );
+                      setFilterObj((prevData) => {
+                        if (prevData?.categories === el?.id)
+                          return { ...prevData, categories: 0 };
+                        else return { ...prevData, categories: el?.id };
+                      });
+
                       router.push(
                         {
                           pathname: "/blog",
                           query: {
                             categories: el?.id,
+                            page: filterObj?.currentPage,
                           },
                         }
                         // { shallow: true }
@@ -144,27 +163,27 @@ const Blog = ({ post, category, pages, currentP }) => {
           </div>
         </div>
       </div>
-      {pageNumbers?.length > 1 && (
+      {filterObj?.paginationArray?.length > 1 && (
         <div className="flex justify-center mb-8">
           <div className="btn-group">
             <button
               className="btn "
               style={
-                parseInt(currentPage) - 1 === 0
+                parseInt(currentP) - 1 === 0
                   ? {
                       opacity: 0.6,
                       pointerEvents: "none",
                     }
                   : {}
               }
-              onClick={() => handlePagination(currentPage - 1)}
+              onClick={() => handlePagination(currentP - 1)}
             >
               «
             </button>
-            {pageNumbers?.map((el, i) => (
+            {filterObj?.paginationArray?.map((el, i) => (
               <button
                 className={`btn ${
-                  parseInt(currentPage) - i === el && "btn-active"
+                  parseInt(currentP) - i === el && "btn-active"
                 }`}
                 key={i}
                 onClick={() => handlePagination(el + i)}
@@ -176,7 +195,7 @@ const Blog = ({ post, category, pages, currentP }) => {
             <button
               className="btn"
               style={
-                parseInt(currentPage) + 1 > pages
+                parseInt(currentP) + 1 > pages
                   ? {
                       opacity: 0.6,
                       pointerEvents: "none",
@@ -184,7 +203,7 @@ const Blog = ({ post, category, pages, currentP }) => {
                   : {}
               }
               // disabled={parseInt(currentPage) + 1 > pages}
-              onClick={() => handlePagination(parseInt(currentPage) + 1)}
+              onClick={() => handlePagination(parseInt(currentP) + 1)}
             >
               »
             </button>
@@ -208,7 +227,7 @@ export async function getServerSideProps(context) {
   categories === undefined && (categories = 0);
   const itemPerPage = 6;
 
-  const tags = await getTags();
+  // const tags = await getTags();
   const idLocale = await getTagId(locale); // recupera id della lingua attuale
   const post = await getPosts(idLocale);
   const filteredPosts = post.filter((el) => {
@@ -223,15 +242,15 @@ export async function getServerSideProps(context) {
     itemPerPage * page
   );
   const category = await getCategories(locale); //categorie nella lingua attuale
-  const media = await getMedia();
+  // const media = await getMedia();
 
   return {
     props: {
       post: paginationTrim,
       pages: Math.ceil(filteredPosts.length / itemPerPage),
-      category: category,
-      media: media,
-      tags: tags,
+      category: category, //array delle categorie presenti
+      // media: media,
+      // tags: tags,
       currentP: page,
     },
   };

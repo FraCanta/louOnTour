@@ -32,7 +32,7 @@ export default function Post({ post, featuredMedia }) {
             {getDate(post?.date)}
           </small>
         </div>
-        <Link href={`/posts/${post?.slug}`}>
+        <Link href={`/posts/${post?.slug}`} target="_blank">
           <h5
             className="card-title text-black pb-2 hover:underline"
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
@@ -42,7 +42,7 @@ export default function Post({ post, featuredMedia }) {
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
         ></div>
         <div className="card-actions justify-end">
-          <Link href={`/posts/${post?.slug}`}>
+          <Link href={`/posts/${post?.slug}`} target="_blank">
             <Cta>See more</Cta>
           </Link>
         </div>
