@@ -15,7 +15,10 @@ export default function PostPage({
     <>
       <Head>
         <title>{`Lou On Tour - ${post.title.rendered}`}</title>
-        <meta property="og:image" content={post?.featuredMedia} />
+        <meta
+          property="og:image"
+          content={post?.yoast_head_json?.og_image?.url}
+        />
       </Head>
 
       <div className="container mx-auto pt-5 w-11/12 2xl:w-4/5 text-black ">
