@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getPost, getSlugs, getTags } from "../../utils/wordpress";
 import Head from "next/head";
 import Image from "next/image";
-import Script from "next/script";
+import Siena from "../../public/assets/locationTour/siena/siena2.jpg";
 
 export default function PostPage({
   post,
@@ -15,6 +15,7 @@ export default function PostPage({
     <>
       <Head>
         <title>{`Lou On Tour - ${post.title.rendered}`}</title>
+        <meta property="og:image" content={featuredMedia} />
       </Head>
 
       <div className="container mx-auto pt-5 w-11/12 2xl:w-4/5 text-black ">
