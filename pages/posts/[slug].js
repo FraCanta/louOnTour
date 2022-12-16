@@ -17,7 +17,7 @@ export default function PostPage({
         <title>{`Lou On Tour - ${post.title.rendered}`}</title>
         <meta
           property="og:image"
-          content={`https://lou-eight.vercel.app/${featuredMedia}`}
+          content={`https://lou-eight.vercel.app/${post?.featured_media}`}
         />
       </Head>
 
