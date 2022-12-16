@@ -198,7 +198,11 @@ const Blog = ({ post, category, pages, currentP }) => {
 export default Blog;
 
 export async function getServerSideProps(context) {
-  const { locale, query } = context;
+  const { locale, query, req, res } = context;
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
   let { page, categories } = query;
   page === undefined && (page = 1);
   categories === undefined && (categories = 0);
