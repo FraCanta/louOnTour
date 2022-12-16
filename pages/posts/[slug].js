@@ -19,6 +19,10 @@ export default function PostPage({
           property="og:image"
           content={post?.yoast_head_json?.og_image?.url}
         />
+        <meta
+          property="og:description"
+          content={post?.yoast_head_json?.description}
+        />
       </Head>
 
       <div className="container mx-auto pt-5 w-11/12 2xl:w-4/5 text-black ">
