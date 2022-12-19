@@ -20,7 +20,7 @@ const GalleryImage = ({ url, item, handleModal }) => {
         alt="foto"
         width={150}
         height={150}
-        onClick={() => handleModal(item)}
+        // onClick={() => handleModal(item)}
         onLoadingComplete={() => {
           setImgSpinner(false);
         }}

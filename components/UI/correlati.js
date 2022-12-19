@@ -3,12 +3,12 @@ import Image from "next/image";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 
-const Correlati = ({ city, others }) => {
+const Correlati = ({ city, others, correlati }) => {
   return (
     <>
       <div className="container w-11/12 xl:w-4/5 mx-auto pt-10">
         <h3 className="text-3xl md:text-[40px] font-medium mt-2 leading-10 text-[#232F37] lg:text-center pb-8 ">
-          Ecco per te altre proposte
+          {correlati?.title}
         </h3>
         <div className="w-full h-[1px] bg-black bg-opacity-20"></div>
       </div>

@@ -5,8 +5,11 @@ const DynamicHeroCities = dynamic(() =>
   import("../../components/UI/heroCities")
 );
 import locations from "../../public/locales/it/it.json";
-const DynamicGalleryTours = dynamic(() =>
-  import("../../components/UI/galleryTours")
+// const DynamicGalleryTours = dynamic(() =>
+//   import("../../components/UI/galleryTours")
+// );
+const DynamicSimpleGallery = dynamic(() =>
+  import("../../components/UI/simpleGallery")
 );
 const DynamicCorrelati = dynamic(() => import("../../components/UI/correlati"));
 const DynamicBanner = dynamic(() =>
@@ -15,7 +18,7 @@ const DynamicBanner = dynamic(() =>
 import translationIT from "../../public/locales/it/it.json";
 import translationEN from "../../public/locales/en/en.json";
 
-export default function Tours({ city, others, banner }) {
+export default function Tours({ city, others, banner, correlati }) {
   return (
     <>
       <Head>
@@ -87,9 +90,13 @@ export default function Tours({ city, others, banner }) {
       </div>
 
       {city?.gallery?.length > 0 && (
-        <DynamicGalleryTours imageArray={city?.gallery} />
+        // <DynamicGalleryTours imageArray={city?.gallery} />
+        <DynamicSimpleGallery
+          imageArray={city?.gallery}
+          id="#gallery--click-to-next"
+        />
       )}
-      <DynamicCorrelati city={city} others={others} />
+      <DynamicCorrelati city={city} others={others} correlati={correlati} />
       <DynamicBanner translation={banner} />
     </>
   );
@@ -115,7 +122,6 @@ export async function getStaticProps(context) {
   let targetObj = obj?.tours?.locationTours?.[params?.title];
   const banner = obj?.home?.banner;
   const arr = Object.keys(obj?.tours?.locationTours);
-
   const others = arr?.map((el) => {
     return {
       title: el,
@@ -123,12 +129,14 @@ export async function getStaticProps(context) {
       link: `/locations/${el}`,
     };
   });
+  const correlati = obj?.tours?.corr;
 
   return {
     props: {
       city: targetObj,
       others: others,
       banner: banner,
+      correlati: correlati,
     },
   };
 }

@@ -31,13 +31,13 @@ const GalleryTours = ({ imageArray }) => {
 
         <div className="gallery pt-8">
           {imageArray?.map((el, i) => (
-            <GalleryImage url={el} handleModal={handleModal} key={i} item={i} />
+            <GalleryImage url={el} key={i} item={i} />
           ))}
-          <ModalGallery
+          {/* <ModalGallery
             handleModal={handleModal}
             showModal={showModal}
             imageArray={imageArray}
-          />
+          /> */}
         </div>
       </div>
     </div>

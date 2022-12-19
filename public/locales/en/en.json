@@ -256,31 +256,31 @@
     "locationTours": {
       "Firenze": {
         "img": "/assets/locationTour/florence_duomo.jpg",
-        "titleImg": "Firenze",
+        "titleImg": "Florence",
         "translatedTitle": "Florence",
-        "half": "Tours Firenze (mezza giornata)",
-        "full": "Tours Firenze (giornata intera)",
+        "half": "Tours Florence (Half Day)",
+        "full": "Tours Florence (Full Day)",
         "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
         "descrizione": "Admired for its beauty by millions of visitors from all over the world, Florence is not only a city of art but a true source of inspiration for anyone who visits it whether it is the first or the thousandth time! It is the city that broke with the Middle Ages and introduced the concept of modern man to Europe.",
         "half_elenco": [
           "<p ><b class='bold_text'>Among the streets of Florence: </b> then you can't miss the city's iconic places such as Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce... it's about a 3-hour tour but you'll see how time flies by!</p>",
-          "<p>Visita alla <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Galleria degli Uffizi</b></a></p>",
-          "<p>Visita alla <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Galleria dell'Accademia</b></a></p>",
-          "<p>Visita al <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo nazionale del Bargello</b></a></p>"
+          "<p>Visit to the <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Uffizi Gallery</b></a></p>",
+          "<p>Visit to the <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Accademia Gallery</b></a></p>",
+          "<p>Visit to the <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>DynamicSimpleGallery</b></a></p>"
         ],
         "full_elenco": [
-          "<p><b class='bold_text'>Un Giorno a Firenze: </b>dopo aver conosciuto la città non manca altro che visitare almeno uno dei due più famosi musei di Firenze perché mai sia che lasci Firenze senza aver visto un’opera di Michelangelo o Leonardo o Botticelli, Donatello…insomma di certo qui artisti non ne mancano!.</p>",
-          "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Siena</b></p>",
-          "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
-          "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Volterra</b></p>"
+          "<p><b class='bold_text'>One day in Florence: </b>after getting to know the city, all you need to do is visit at least one of the two most famous museums in Florence because you never leave Florence without having seen a work by Michelangelo or Leonardo or Botticelli, Donatello… in short, certainly artists here there is no shortage of them!</p>",
+          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>Siena</b></p>",
+          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
+          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>Volterra</b></p>"
         ],
         "gallery": []
       },
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
         "titleImg": "Siena",
-        "half": "Tours Siena (mezza giornata)",
-        "full": "Tours Siena (giornata intera)",
+        "half": "Tours Siena (Half Day)",
+        "full": "Tours Siena (Full Day)",
         "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
         "descrizione": "This city positioned on a hilltop is famous for its UNESCO-protected historic center since it still retains much of the medieval urban layout; it is famous for artistic and architectural pageantry especially in the medieval period; and it is the city of the Palio, Italy's most famous horse race. St. Catherine was also born here and the world's longest-living bank was founded here.",
         "half_elenco": [
@@ -288,12 +288,12 @@
           "<p><b class='bold_text'>Unusual Siena:  </b>about 3 hours of tour that will allow you to get to know the emblematic places of the city but also the places less frequented by visitors. If you decide to visit the headquarters of a contrada you will be able to immerse yourself in the reality of Siena, have contact with the locals. But another way to immerse yourself in the local fabric is undoubtedly through its local products.</p>"
         ],
         "full_elenco": [
-          "<div><p><b class='bold_text'>In Siena with art:  </b>we have 5/6 hours for a walk to learn about the highlights of the city and an in-depth look at one or more museums of your choice. Below you have links to Siena's major museums:</p> <ul><li><a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cattedrale + complesso del Duomo</b></a></li><li><a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico</b></a></li><li><a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Ex Ospedale Santa Maria della Scala + Museo Archeologico</b></a></li><li><a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca Nazionale</b></a></li></ul></div>",
-          "<p><b class='bold_text'>Siena</b> +  <b class='bold_text'>Firenze </b></p>",
-          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
-          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+          "<div><p><b class='bold_text'>In Siena with art:  </b>we have 5/6 hours for a walk to learn about the highlights of the city and an in-depth look at one or more museums of your choice. Below you have links to Siena's major museums:</p> <ul><li><a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cathedral + cathedral complex</b></a></li><li><a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Civic Museum</b></a></li><li><a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Former Hospital Santa Maria della Scala + Archaeological Museum</b></a></li><li><a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>National Picture Gallery</b></a></li></ul></div>",
+          "<p><b class='bold_text'>Siena</b> +  <b class='bold_text'>Florence </b></p>",
+          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
+          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (optiona)</p>",
           "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Galgano</b> </p>",
-          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Val d'Orcia</b> (uno o due località)</p>"
+          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Val d'Orcia</b> (one or two locations)</p>"
         ],
         "gallery": [
           "/assets/locationTour/siena/siena1.jpg",
@@ -326,21 +326,21 @@
         "img": "/assets/locationTour/volterra.jpeg",
         "titleImg": "Volterra",
         "title": "",
-        "half": "Tours Volterra (mezza giornata)",
-        "full": "Tours Volterra (giornata intera)",
+        "half": "Tours Volterra (Half Day)",
+        "full": "Tours Volterra (Full Day)",
         "citazione": "[…] Volterra si mostra con un fascino arcano che promana dalle case addossate, dalle torri mozzate, dalle strade percorse da ombre inquietanti, lastricate nel tempo di sudore e di assurdo che attraversano la storia e la leggenda scavando solchi senza fine nella mente suggestionata degli uomini. (Franco Porretti)",
-        "descrizione": "Una delle città etrusche per eccellenza. Conserva ancora molte testimonianze di questo periodo come di quello romano e medievale: porta all’Arco e l’acropoli etrusca, il teatro romano, la Piazza dei Priori, la cattedrale con il battistero, e case-torri. Volterra custodisce un tesoro immenso tra arte, archeologia e artigianato, infatti è famosa per la lavorazione dell’alabastro, un sapere che viene tramandato da generazioni. Volterra è stata costruita su un’altura che se un tempo garantiva sicurezza oggi permette di godere di un vastissimo e suggestivo panorama. ",
+        "descrizione": "One of the Etruscan cities par excellence. It still preserves many vestiges of this period as well as the Roman and medieval ones: the Porta all'Arco, the Etruscan city gate, and the Etruscan acropolis, the Roman theater, the Piazza dei Priori, the cathedral with the baptistery, and tower-houses. Volterra holds an immense treasure trove of art, archaeology, and craftsmanship; in fact, it is famous for alabaster work, a knowledge that has been handed down for generations. Volterra was built on a hill that if it once provided security today allows one to enjoy a vast and evocative panorama.",
         "half_elenco": [
-          "<p><b class='bold_text'>Volterra autentica: </b>fortunatamente Volterra è conosciuta si, ma non è turistica come alcuni borghi toscani dove nei momenti di alta stagione ci si ritrova ammassati. Volterra è un paese ancora autentico: il borgo è vivo perché la gente del posto ancora ci vive e ci lavora. Infatti vedrai molte botteghe o laboratori di artigiani e di artisti che lavorano l’alabastro. Noi dopo una passeggiata alla coperta del borgo andremo a visitare uno di questi laboratori. Il tutto in 2 ore.  Che te ne pare? </p>",
-          "<p>Visita al <a href='https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Museo Etrusco Guarnacci</b></a></p>",
-          "<p>Visita alla <a href='https://www.comune.volterra.pi.it/Pinacoteca_civica' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca</b></a></p>",
-          "<p>Visita alla <a href='https://www.comune.volterra.pi.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/73' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Cattedrale + Battistero</b></a></p>"
+          "<p><b class='bold_text'>Authentic Volterra: </b>fortunately Volterra is known indeed, but it is not as touristy as some Tuscan villages where in peak season we are crowded together. Volterra is still an authentic village: the borgo is alive because the locals still live and work there. In fact you will see many workshops or laboratories of artisans and artists working with alabaster. We after a walk to the village deck will visit one of these workshops. All in 2 hours. How does that sound?</p>",
+          "<p>Visit to the <a href='https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Guarnacci Etruscan Museum</b></a></p>",
+          "<p>Visit to the <a href='https://www.comune.volterra.pi.it/Pinacoteca_civica' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca</b></a></p>",
+          "<p>Visit to the <a href='https://www.comune.volterra.pi.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/73' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Cathedral + Baptistery</b></a></p>"
         ],
         "full_elenco": [
-          "<p><b class='bold_text'>Volterra archeologica:  </b> 3 ore di tour che parte dagli etruschi, poi la parte Romana per terminare nel Medioevo. Sono laureata in archeologia e Volterra è uno dei miei siti preferiti perché Volterra non è altro che un sito archeologico ancora “attivo”. A completamento vi porterò al <a href='https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo Etrusco Guarnacci</b></a> dove troverete tante curiosità archeologiche che vi piaceranno, e potremmo visitare un laboratorio d’alabastro, che te ne pare?</p>",
-          "<p><b class='bold_text'>Volterra</b> +  <b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
-          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena </b></p>",
-          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Firenze</b> </p>"
+          "<p><b class='bold_text'>Archaeological Volterra: </b> 3-hour tour starting with the Etruscans, then the Roman part and ending in the Middle Ages. I have a degree in archaeology and Volterra is one of my favorite sites because Volterra is nothing but an archaeological site that is still 'active.' On completion I will take you to the Guarnacci Etruscan Museum where you will find many archaeological curiosities that you will enjoy, and we could visit an alabaster workshop.</p>",
+          "<p><b class='bold_text'>Volterra</b> +  <b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
+          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Siena </b></p>",
+          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Florence</b> </p>"
         ],
         "gallery": [
           "/assets/locationTour/volterra/volterra1.jpg",
@@ -376,18 +376,18 @@
       "San Gimignano": {
         "img": "/assets/locationTour/san_gimignano.jpg",
         "titleImg": "San Gimignano",
-        "half": "Tours San Gimignano (mezza giornata)",
-        "full": "Tours San Gimignano (giornata intera)",
+        "half": "Tours San Gimignano (Half Day)",
+        "full": "Tours San Gimignano (Full Day)",
         "citazione": "San Gimignano dalle belle torri e dalle belle campane… (Proverbio fiorentino)",
-        "descrizione": "La “Città delle Belle Torri” è stata dichiarata patrimonio dell’umanità poiché il suo aspetto rimanda ancora a quello due-trecentesco, un raro esempio in Europa di organizzazione urbana d’età comunale: praticamente un sogno medievale. Qui puoi immedesimarti nella vita di un ricco mercante con la sua inespugnabile casa-torre che dominava sul tratto cittadino della via Francigena. All’epoca, a San Gimignano, avresti visto ben 72 torri (oggi circa 15). ",
+        "descrizione": "The 'City of the Beautiful Towers' has been declared a World Heritage Site because its appearance still harks back to the thirteenth and fourteenth centuries, a rare example in Europe of urban organization of the communal age: practically a medieval dream. Here you can immerse yourself in the life of a wealthy merchant with his impregnable tower-house that dominated the town's stretch of the Via Francigena. At that time, you would have seen as many as 72 towers in San Gimignano (today about 15). ",
         "half_elenco": [
-          "<p><b class='bold_text'>A caccia di torri medievali: </b>impiegheremo circa 2 ore per visitare il borgo medievale. Ripercorreremo la strada principale che non è altro che un tratto dell’antica Francigena. Ci soffermeremo davanti alcune chiese e nelle piazze principali senza tralasciare punti panoramici che vi faranno immedesimare in un quadro di Leonardo da Vinci. </p>",
-          "<div><p><b class='bold_text'>Non solo torri: </b> Molte delle testimonianze di questo periodo sono custodite, oltre che nella Collegiata, anche in alcuni musei tra cui quello Civico. Da qui, salendo in cima alla Torre Grossa, si può ammirare un panorama unico. Quindi ti propongo una passeggiata per ammirare il borgo e una visita a uno di questi musei:</p> <ul><li> <a href='http://www.duomosangimignano.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Collegiata</b></a></li><li> <a href='http://www.sangimignanomusei.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico + Torre Grossa</b></a></li></ul></div>"
+          "<p><b class='bold_text'>Hunting for medieval towers: </b>we will take about 2 hours to visit the medieval village. We will retrace the main road that is nothing more than a stretch of the ancient Francigena. We will linger in front of some of the churches and in the main squares without neglecting viewpoints that will make you identify with a painting by Leonardo da Vinci.</p>",
+          "<div><p><b class='bold_text'>Not only towers: </b> Many of the testimonies of this period are kept not only in the Collegiate but also in some museums including the Civic Museum. From here, climbing to the top of the Torre Grossa, you can admire a unique panorama. So I suggest a walk to admire the village and a visit to one of these museums:</p> <ul><li> <a href='http://www.duomosangimignano.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Collegiate Church</b></a></li><li> <a href='http://www.sangimignanomusei.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Civic Museum + Torre Grossa</b></a></li></ul></div>"
         ],
         "full_elenco": [
-          "<p><b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Volterra</b></p>",
-          "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Firenze</b></p>",
-          "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena</b></p>"
+          "<p><b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Volterra</b></p>",
+          "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Florence</b></p>",
+          "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Siena</b></p>"
         ],
         "gallery": [
           "/assets/locationTour/sangimignano/sangimi1.JPG",
@@ -423,18 +423,18 @@
       },
       "Montepulciano e Val d'Orcia": {
         "img": "/assets/locationTour/valdorcia.jpg",
-        "titleImg": "Montepulciano e Val d'Orcia",
+        "titleImg": "Montepulciano and Val d'Orcia",
         "half": "",
-        "full": "Tours Montepulciano e Val d'Orcia (giornata intera)",
+        "full": "Tours Montepulciano and Val d'Orcia (Full Day)",
         "citazione": "Lorem ipsum",
-        "descrizione": "Paesaggio unico e meraviglioso: colline versi e sinuose, campi dorati, viali con i cipressi, lussureggianti vigneti ed oliveti. La maggior parte delle foto che hai visto sul paesaggio toscano sono state scattate proprio in questa area! La Valle è attraversata dal fiume Orcia da cui prende il nome. Qui la protagonista assoluta è la natura tanto che oggi è un parco protetto ed è stato riconosciuto Patrimonio dell’Umanità dall’ UNESCO. Disseminati in questo paesaggio troviamo castelli medievali, borghi antichi, abbazie ciascuno con la propria storia e particolarità. La Val d’Orcia è anche terra di ottimi vini come il più famoso Brunello di Montalcino o il Rosso d’Orcia e molti altri. Per il nostro tour (6 ore circa) ti propongo di visitare insieme questi borghi di cui sono certa te ne innamorerai: ",
+        "descrizione": "Unique and beautiful landscape: verse and sinuous hills, golden fields, avenues with cypresses, lush vineyards and olive groves. Most of the photos you have seen of the Tuscan landscape were taken in this very area! The valley is crossed by the Orcia River from which it takes its name. Here the absolute protagonist is nature so much so that today it is a protected park and has been recognized as a UNESCO World Heritage Site. Scattered in this landscape we find medieval castles, ancient villages, abbeys each with its own history and particularity. Val d'Orcia is also a land of excellent wines such as the most famous Brunello di Montalcino or Rosso d'Orcia and many others. For our tour (about 6 hours) I propose you to visit together these villages that I am sure you will fall in love with:",
         "half_elenco": [],
         "full_elenco": [
-          "<p><b class='bold_text'> Pienza: </b>gioiello architettonico riconosciuto come “città ideale” rinascimentale e famosa per la produzione di formaggio pecorino.</p>",
-          "<p><b class='bold_text'> San Quirico d’Orcia + Cappella di Vitaleta: </b>borgo carinissimo con la sua splendida Collegiata e gli Horti Leonini, bellissimo giardino all’italiana. Lungo la strada faremo una sosta per ammirare la Cappella della Madonna di Vitaleta.</p>",
-          "<p><b class='bold_text'> Bagno Vignoni: </b>unico paese in Italia dove troverai una piscina al posto della piazza centrale! La piscina rinascimentale sorge proprio sopra la fonte originale di acqua calda termale. Questa sorgente era già frequentata dai Romani e altri personaggi illustri Papa Pio II, Santa Caterina da Siena e Lorenzo il Magnifico.</p>",
-          "<p><b class='bold_text'> Montalcino + Abbazia di Sant’Antimo: </b>borgo medievale cinto da una possente cinta muraria e dominato dalla rocca del XIV secolo dalla quale si gode un panorama unico.  Montalcino è famoso in tutto il mondo per la produzione del prezioso Brunello di Montalcino. Infine potrai ammirare la bellissima e suggestiva Abbazia di Sant' Antimo, uno dei migliori esempi di architettura monastica medievale.</p>",
-          "<p><b class='bold_text'> Montepulciano + Tempio di San Biagio: </b>qui non siamo più in Val d’Orcia ma precisamente al suo confine ma Montepulciano è una cittadina così bella che merita essere visitata. Lungo le strade principale si affacciano eleganti palazzi rinascimentali, Piazza Grande, scorci caratteristici e punti panoramici su cui si gode la vista sulla Val d’Orcia e in particolare sui vigneti che producono il famoso Nobile. Più a valle si trova il Tempio di San Biagio, luogo di culto ed esempio dell'architettura rinascimentale toscana del XVI secolo progettato da Antonio da San Gallo il Vecchio.</p>"
+          "<p><b class='bold_text'> Pienza: </b>architectural jewel recognized as a Renaissance 'ideal city' and famous for pecorino cheese production.</p>",
+          "<p><b class='bold_text'> San Quirico d’Orcia + Chapel of Vitaleta: </b>very pretty village with its splendid Collegiate Church and the Horti Leonini, beautiful Italian garden. Along the way we will stop to admire the Chapel of the Madonna di Vitaleta</p>",
+          "<p><b class='bold_text'> Bagno Vignoni: </b>the only town in Italy where you will find a swimming pool instead of the central square! The Renaissance pool rises right above the original hot spring of thermal water. This spring was already frequented by the Romans and other famous people Pope Pius II, St. Catherine of Siena and Lorenzo the Magnificent.</p>",
+          "<p><b class='bold_text'> Montalcino + Sant'Antimo Abbey: </b>a medieval village surrounded by a mighty wall and dominated by the 14th-century fortress from which there is a unique panorama. Montalcino is world famous for the production of the precious Brunello di Montalcino. Finally you can admire the beautiful and evocative Abbey of Sant' Antimo, one of the best examples of medieval monastic architecture.</p>",
+          "<p><b class='bold_text'> Montepulciano + Temple of San Biagio: </b>here we are no longer in the Val d'Orcia but precisely on its border, but Montepulciano is such a beautiful town that it is worth a visit. Along the main streets are elegant Renaissance palaces, Piazza Grande, characteristic views and vantage points overlooking the Val d'Orcia and in particular the vineyards that produce the famous Nobile. Further down the valley is the Temple of San Biagio, a place of worship and example of 16th-century Tuscan Renaissance architecture designed by Antonio da San Gallo the Elder.</p>"
         ],
         "gallery": []
       },
@@ -442,15 +442,15 @@
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
         "titleImg": "San Galgano",
         "title": "",
-        "half": "Tour San Galgano (mezza giornata)",
-        "full": "Tour San Galgano (giornata intera)",
+        "half": "Tour San Galgano (Half Day)",
+        "full": "Tour San Galgano (Full Day)",
         "citazione": "“per tetto un manto di stelle”",
-        "descrizione": "Nel 1180 Galgano Guidotti edificò una chiesa a Montesiepi. La struttura della chiesa è molto originale, singolare nell’ambito romanico senese. L’interno è suggestivo per la singolare volta e perché al centro dell’ambiente vi è il masso in cui San Galgano ha conficcato la spada. Annessa alla chiesa la cappella trecentesca con gli affreschi attribuiti ad Ambrogio Lorenzetti. Cinquanta anni dopo, più a valle, venne costruita dai cistercensi l’abbazia intitolata a San Galgano. Il primo esempio di architettura gotica in Toscana e uno dei luoghi più suggestivi della campagna senese. Dell’abbazia ne rimane lo scheletro che testimonia la potenza e la ricchezza della comunità monastica. Un rudere completamente immerso nei contrasti di colore del cielo e della natura circostante, una visione di solitaria e drammatica bellezza. ",
+        "descrizione": "In 1180 Galgano Guidotti built a church in Montesiepi. The structure of the church is very original, singular in the Romanesque context of Siena. The interior is striking because of the singular vault and because in the center of the room is the rock in which Saint Galgano thrust his sword. Attached to the church is the 14th-century chapel with frescoes attributed to Ambrogio Lorenzetti. Fifty years later, further down the valley, the abbey named after St. Galgano was built by the Cistercians. The earliest example of Gothic architecture in Tuscany and one of the most evocative places in the Sienese countryside. The skeleton of the abbey remains, testifying to the power and wealth of the monastic community. A ruin completely immersed in the contrasting colors of the sky and the surrounding nature, a vision of solitary and dramatic beauty. ",
         "half_elenco": [
-          "<p>Info biglietti <a href='https://www.comune.chiusdino.siena.it/it/page/visita-abbazia-di-san-galgano-orari-di-apertura-e-p' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>qui</b></a></p>"
+          "<p>Ticket info  <a href='https://www.comune.chiusdino.siena.it/it/page/visita-abbazia-di-san-galgano-orari-di-apertura-e-p' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>here</b></a></p>"
         ],
         "full_elenco": [
-          "<p>Proposto insieme a <b class='bold_text'>Siena</b>  per un FULL DAY</p>"
+          "<p>Proposed together with <b class='bold_text'>Siena</b>  for a FULL DAY</p>"
         ],
         "gallery": [
           "/assets/locationTour/sangalgano/sangalgano1.jpg",
@@ -472,7 +472,7 @@
       }
     },
     "corr": {
-      "title": "Cacca"
+      "title": "You might also be interested in…"
     }
   },
   "who": {
