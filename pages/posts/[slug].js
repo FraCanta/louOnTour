@@ -90,7 +90,7 @@ export default function PostPage({
               ></div>
             </Link>
           ) : (
-            "Questo è l'articolo più recente"
+            "Questo è già l'articolo più recente"
           )}
         </button>
 
