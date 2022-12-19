@@ -92,15 +92,15 @@ const Blog = ({ post, category, pages, currentP }) => {
               onClick={() => {
                 setFilterObj((prevData) => {
                   if (prevData?.categories === el?.id)
-                    return { ...prevData, categories: 0 };
-                  else return { ...prevData, categories: el?.id };
+                    return { currenPage: 1, categories: 0 };
+                  else return { currenPage: 1, categories: el?.id };
                 });
                 router.push(
                   {
                     pathname: "/blog",
                     query: {
                       categories: el?.id,
-                      page: filterObj?.currentPage,
+                      page: 1,
                     },
                   }
                   // { shallow: true }
@@ -139,8 +139,8 @@ const Blog = ({ post, category, pages, currentP }) => {
                     onClick={() => {
                       setFilterObj((prevData) => {
                         if (prevData?.categories === el?.id)
-                          return { ...prevData, categories: 0 };
-                        else return { ...prevData, categories: el?.id };
+                          return { currenPage: 1, categories: 0 };
+                        else return { currenPage: 1, categories: el?.id };
                       });
 
                       router.push(
@@ -148,7 +148,7 @@ const Blog = ({ post, category, pages, currentP }) => {
                           pathname: "/blog",
                           query: {
                             categories: el?.id,
-                            page: filterObj?.currentPage,
+                            page: 1,
                           },
                         }
                         // { shallow: true }

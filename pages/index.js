@@ -51,7 +51,7 @@ export async function getStaticProps({ locale }) {
 
   let obj;
 
-  switch (locale.locale) {
+  switch (locale) {
     case "it":
       obj = translationIT;
       break;
