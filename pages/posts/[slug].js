@@ -1,6 +1,13 @@
 import Link from "next/link";
 
-import { getPost, getSlugs, getTags } from "../../utils/wordpress";
+import {
+  getPost,
+  getPosts,
+  getSlugs,
+  getTags,
+  getTagId,
+  getTagNameList,
+} from "../../utils/wordpress";
 import Head from "next/head";
 import Image from "next/image";
 import Siena from "../../public/assets/locationTour/siena/siena2.jpg";
@@ -10,6 +17,7 @@ export default function PostPage({
   modifiedContent,
   featuredMedia,
   tags,
+  nextPrevPost,
 }) {
   return (
     <>
@@ -43,7 +51,7 @@ export default function PostPage({
             </li>
             <li
               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-              className="font-bold"
+              className="font-bold underline "
             ></li>
           </ul>
         </div>
@@ -71,11 +79,36 @@ export default function PostPage({
           dangerouslySetInnerHTML={{ __html: modifiedContent }}
         ></div>
       </div>
+      <div className="btn-group grid grid-cols-2 mt-8">
+        <button className="btn btn-outline flex flex-col ">
+          {!!nextPrevPost?.prevSlug ? (
+            <Link href={`/posts/${nextPrevPost?.prevSlug}`}>
+              <div className="mb-2 capitalize">Articolo Precedente</div>
+              <div
+                className="text-[#252525]"
+                dangerouslySetInnerHTML={{ __html: nextPrevPost?.prevTitle }}
+              ></div>
+            </Link>
+          ) : (
+            "Questo è l'articolo più recente"
+          )}
+        </button>
+
+        <button className="btn btn-outline  flex flex-col">
+          <Link href={`/posts/${nextPrevPost?.nextSlug}`}>
+            <div className="mb-2 capitalize">Articolo Successivo</div>
+            <div
+              className="text-[#252525]"
+              dangerouslySetInnerHTML={{ __html: nextPrevPost?.nexTitle }}
+            ></div>
+          </Link>
+        </button>
+      </div>
       <div className="w-11/12 lg:w-4/5 mx-auto py-12">
         <h6>Tags</h6>
         {tags.map((el, i) => (
           <div className="badge badge-warning mr-2 text-white" key={i}>
-            {el?.name}
+            {el}
           </div>
         ))}
       </div>
@@ -96,21 +129,32 @@ export async function getStaticPaths() {
 }
 
 //access the router, get the id, and get the data for that post
-export async function getStaticProps({ params }) {
-  const post = await getPost(params.slug);
+export async function getStaticProps({ params, locale }) {
+  const post = await getPost(params?.slug);
+  const idLocale = await getTagId(locale); // recupera id della lingua attuale
+  const allPosts = await getPosts(idLocale);
+  const postArrayIndex = allPosts?.findIndex((el) => el.id === post?.id);
+  const nextPrevPost = {
+    prevTitle: allPosts[postArrayIndex - 1]?.title?.rendered || null,
+    nexTitle: allPosts[postArrayIndex + 1]?.title?.rendered || null,
+    prevSlug: allPosts[postArrayIndex - 1]?.slug || null,
+    nextSlug: allPosts[postArrayIndex + 1]?.slug || null,
+  };
+
   const modifiedContent = post?.content?.rendered?.replace(
     "data-src-fg",
     "src"
   );
   const featuredMedia = post?.["_embedded"]?.["wp:featuredmedia"][0];
-  const tags = await getTags();
-  const filteredTags = tags?.filter((el) => el);
+  const tags = await getTagNameList(post?.tags);
+
   return {
     props: {
       post,
       modifiedContent: modifiedContent,
       featuredMedia: featuredMedia,
-      tags: filteredTags,
+      tags: tags,
+      nextPrevPost: nextPrevPost,
     },
     revalidate: 10, // In seconds
   };

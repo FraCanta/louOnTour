@@ -6,7 +6,7 @@ iframe {
   border-radius: 10px;
 }
 
-.l-article {
+.l-article p {
   font-family: "Yrsa", serif;
 }
 
@@ -48,8 +48,6 @@ iframe {
   margin-bottom: 10px !important;
 }
 
-
-
 .l-article li {
   margin-left: 28px;
   line-height: 1.5;
@@ -66,6 +64,10 @@ iframe {
   /* margin-left: -1.3em; */
   margin-right: 10px; /* same as padding-left set on li */
   width: 1.3em; /* same as padding-left set on li */
+}
+
+.l-article li a {
+  text-decoration: underline;
 }
 /* blog section */
 .hero h2,

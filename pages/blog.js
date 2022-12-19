@@ -24,16 +24,15 @@ const Blog = ({ post, category, pages, currentP }) => {
     );
   };
   useEffect(() => {
-    console.log("brutto pirla sto leggendo le chiavi");
     setFilterObj({
       currentPage: parseInt(myRouter?.query?.page) || 1,
       categories: parseInt(myRouter?.query?.categories) || 0,
     });
   }, []); // aggiorna i filtri correnti dalla querystring
 
-  useEffect(() => {
-    console.log(filterObj);
-  }, [filterObj]);
+  // useEffect(() => {
+  //   console.log(filterObj);
+  // }, [filterObj]);
 
   useEffect(() => {
     setJsxPosts(
@@ -230,6 +229,7 @@ export async function getServerSideProps(context) {
   // const tags = await getTags();
   const idLocale = await getTagId(locale); // recupera id della lingua attuale
   const post = await getPosts(idLocale);
+
   const filteredPosts = post.filter((el) => {
     const filterParams =
       parseInt(categories) !== 0

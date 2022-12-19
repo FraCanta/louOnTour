@@ -22,6 +22,7 @@ export async function getPosts(lang) {
       slug: el?.slug,
       title: { rendered: el?.title?.rendered },
       tags: el?.tags,
+      id: el?.id,
     };
   });
   return mainKeys;
@@ -41,6 +42,15 @@ export async function getTagId(tag) {
   const tags = await tagsRes.json();
   const idLocale = (tags?.filter((el) => el?.name === tag))[0].id; //prendo l'id che corrisponde ad it nel database di wp
   return idLocale;
+}
+
+// Restituisce un array con tutti i tags relativi ad un post
+export async function getTagNameList(array) {
+  const tagsRes = await fetch(BASE_URL + "/tags?per_page=100");
+  const tags = await tagsRes.json();
+  const objList = tags?.filter((el) => array?.includes(el?.id));
+  const nameList = objList?.map((el) => el?.name);
+  return nameList;
 }
 
 export async function getPost(slug) {
