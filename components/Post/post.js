@@ -9,7 +9,7 @@ import Cta from "../button/button";
 
 export default function Post({ post, featuredMedia }) {
   return (
-    <div className="card w-full lg:w-96  shadow-xl mb-4 lg:mb-0">
+    <div className="card w-11/12 lg:w-96  shadow-xl mb-4 lg:mb-0 !pt-0">
       <Link href={`/posts/${post?.slug}`}>
         <figure>
           <Image
@@ -20,13 +20,13 @@ export default function Post({ post, featuredMedia }) {
             width={461}
             height={420}
             alt={featuredMedia?.["alt_text"] || "LouOnTour image"}
-            className="w-full h-[350px] object-cover rounded-t-lg"
+            className="w-full h-[250px] object-cover rounded-t-lg object-top "
             priority
           />
         </figure>
       </Link>
 
-      <div className="card-body">
+      <div className="card-body justify-between">
         <div className="py-2">
           <small className="badge badge-info badge-lg text-white">
             {getDate(post?.date)}
@@ -40,6 +40,7 @@ export default function Post({ post, featuredMedia }) {
         </Link>
         <div
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
+          className="line-clamp"
         ></div>
         <div className="card-actions justify-end">
           <Link href={`/posts/${post?.slug}`} target="_blank">

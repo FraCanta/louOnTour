@@ -93,9 +93,10 @@ export default function Tours({ city, others, banner, correlati }) {
         // <DynamicGalleryTours imageArray={city?.gallery} />
         <DynamicSimpleGallery
           imageArray={city?.gallery}
-          id="#gallery--click-to-next"
+          galleryID="gallery--click-to-next"
         />
       )}
+
       <DynamicCorrelati city={city} others={others} correlati={correlati} />
       <DynamicBanner translation={banner} />
     </>

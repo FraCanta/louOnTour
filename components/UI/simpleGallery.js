@@ -3,17 +3,18 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import GalleryImage from "./galleryImage";
 
-export default function SimpleGallery({ imageArray }) {
+export default function SimpleGallery({ imageArray, galleryID }) {
   useEffect(() => {
     let lightbox = new PhotoSwipeLightbox({
-      gallery: "#gallery--click-to-next",
+      gallery: "#" + galleryID,
       children: "a",
-
+      showHideAnimationType: "fade",
       imageClickAction: "next",
       tapAction: "next",
       pswpModule: () => import("photoswipe"),
-      escKey: false,
-      arrowKeys: false,
+      escKey: true,
+      arrowKeys: true,
+      loop: true,
     });
 
     lightbox.init();
@@ -32,14 +33,14 @@ export default function SimpleGallery({ imageArray }) {
         </h3>
         <div className="w-full h-[1px] bg-black bg-opacity-20"></div>
 
-        <div className="gallery pt-8 pswp-gallery">
+        <div className="gallery pt-8 pswp-gallery " id={galleryID}>
           {imageArray?.map((el, i) => (
             <a
               href={el}
               data-pswp-width={1500}
               data-pswp-height={2000}
-              key={i}
-              target="_blank"
+              key={el.galleryID + "-" + i}
+              // target="_blank"
               rel="noreferrer"
             >
               <GalleryImage url={el} key={i} item={i} />

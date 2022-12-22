@@ -30,8 +30,6 @@
   transform: scale(1.15);
 }
 
-
-
 @supports (display: grid) {
   .gallery {
     display: grid;

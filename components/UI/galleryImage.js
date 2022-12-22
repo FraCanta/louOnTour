@@ -14,7 +14,7 @@ const GalleryImage = ({ url, item, handleModal }) => {
         <Spinner />
       </div>
       <Image
-        className={`gallery-image `}
+        className="gallery-image "
         priority
         src={url}
         alt="foto"

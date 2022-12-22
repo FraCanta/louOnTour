@@ -65,13 +65,25 @@ const Blog = ({ post, category, pages, currentP }) => {
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <div className="hero !min-h-[400px] text-white ">
+      <div className="w-11/12 min-h-[30vh] container mx-auto flex flex-col lg:flex-row py-6 xl:py-8">
+        {/* <div className="hero !min-h-[400px] text-white ">
           <div className="hero-content w-11/12 2xl:w-4/5  p-0 2xl:text-center">
             <div>
               <h1 className="text-8xl font-bold">Blog</h1>
             </div>
           </div>
+        </div> */}
+        <div className="w-full ">
+          <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Blog</h4>
+          <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#232F37]">
+            Curiosità nel mondo dell&apos;archeologia, arte e tanto altro
+          </h2>
+          <p className="text-base sm:text-xl   mt-8 mb-4 text-[#232F37]">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
+            nihil excepturi quibusdam itaque corrupti accusamus in, facilis
+            incidunt. Esse sed magni natus ex, excepturi corporis blanditiis
+            explicabo non mollitia officia.
+          </p>
         </div>
       </div>
       <div className="container mx-auto pt-5 p-2 xl:p-8">
@@ -116,7 +128,7 @@ const Blog = ({ post, category, pages, currentP }) => {
           ))}
         </div>
 
-        <div className="grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 justify-items-center content-center pt-12 2xl:pt-10">
+        <div className="grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 justify-items-center content-center pt-0 2xl:pt-10">
           {jsxPosts}
           <div className="w-11/12">
             <div className="block lg:hidden">

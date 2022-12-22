@@ -6,14 +6,14 @@ const DynamicHeroChiSono = dynamic(() =>
 const DynamicText = dynamic(() => import("../components/chiSono/text"));
 const DynamicBgImage = dynamic(() => import("../components/chiSono/bgImage"));
 const DynamicGalleryTours = dynamic(() =>
-  import("../components/UI/galleryTours")
+  import("../components/UI/simpleGallery")
 );
 const DynamicBanner = dynamic(() => import("../components/sectionFive/banner"));
 import Head from "next/head";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 
-const ChiSono = ({ translation, home }) => {
+const ChiSono = ({ translation, home, galleryID }) => {
   return (
     <>
       <Head>
@@ -24,7 +24,10 @@ const ChiSono = ({ translation, home }) => {
       <DynamicHeroChiSono translation={translation?.hero} />
       <DynamicText translation={translation?.hero} />
       <DynamicBgImage translation={translation?.hero} />
-      <DynamicGalleryTours imageArray={translation?.galleria} />
+      <DynamicGalleryTours
+        imageArray={translation?.galleria}
+        galleryID="gallery--click-to-next"
+      />
       <DynamicBanner translation={home?.banner} />
     </>
   );
