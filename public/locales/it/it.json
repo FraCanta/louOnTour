@@ -295,30 +295,126 @@
           "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Val d'Orcia</b> (uno o due località)</p>"
         ],
         "gallery": [
-          "/assets/locationTour/siena/siena1.jpg",
-          "/assets/locationTour/siena/siena2.jpg",
-          "/assets/locationTour/siena/siena3.jpg",
-          "/assets/locationTour/siena/siena4.jpg",
-          "/assets/locationTour/siena/siena5.jpg",
-          "/assets/locationTour/siena/siena6.jpeg",
-          "/assets/locationTour/siena/siena7.jpeg",
-          "/assets/locationTour/siena/siena8.jpeg",
-          "/assets/locationTour/siena/siena9.jpg",
-          "/assets/locationTour/siena/siena10.jpg",
-          "/assets/locationTour/siena/siena11.jpg",
-          "/assets/locationTour/siena/siena12.jpg",
-          "/assets/locationTour/siena/siena13.jpg",
-          "/assets/locationTour/siena/siena14.jpg",
-          "/assets/locationTour/siena/siena15.jpg",
-          "/assets/locationTour/siena/siena16.jpeg",
-          "/assets/locationTour/siena/siena17.jpeg",
-          "/assets/locationTour/siena/siena20.jpg",
-          "/assets/locationTour/siena/siena21.jpg",
-          "/assets/locationTour/siena/siena22.jpg",
-          "/assets/locationTour/siena/siena23.jpeg",
-          "/assets/locationTour/siena/siena24.jpg",
-          "/assets/locationTour/siena/siena25.jpg",
-          "/assets/locationTour/siena/siena26.jpeg"
+          {
+            "src": "/assets/locationTour/siena/siena1.jpg",
+            "width": 1799,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena2.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena3.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena4.jpg",
+            "width": 1807,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena5.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena6.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena7.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena8.jpg",
+            "width": 1680,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena9.jpg",
+            "width": 1920,
+            "height": 660
+          },
+          {
+            "src": "/assets/locationTour/siena/siena10.jpg",
+            "width": 1799,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena11.jpg",
+            "width": 900,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena12.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena13.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena14.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena15.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena16.jpg",
+            "width": 1714,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena17.jpg",
+            "width": 1920,
+            "height": 1166
+          },
+          {
+            "src": "/assets/locationTour/siena/siena20.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena21.jpg",
+            "width": 1920,
+            "height": 834
+          },
+          {
+            "src": "/assets/locationTour/siena/siena22.jpg",
+            "width": 1788,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena23.jpg",
+            "width": 971,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena24.jpg",
+            "width": 1920,
+            "height": 1151
+          },
+          {
+            "src": "/assets/locationTour/siena/siena25.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/siena/siena26.jpg",
+            "width": 1920,
+            "height": 591
+          }
         ]
       },
       "Volterra": {
@@ -342,34 +438,146 @@
           "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Firenze</b> </p>"
         ],
         "gallery": [
-          "/assets/locationTour/volterra/volterra1.jpg",
-          "/assets/locationTour/volterra/volterra2.jpeg",
-          "/assets/locationTour/volterra/volterra3.jpeg",
-          "/assets/locationTour/volterra/volterra4.jpg",
-          "/assets/locationTour/volterra/volterra5.jpg",
-          "/assets/locationTour/volterra/volterra6.jpeg",
-          "/assets/locationTour/volterra/volterra7.jpeg",
-          "/assets/locationTour/volterra/volterra8.jpg",
-          "/assets/locationTour/volterra/volterra9.jpeg",
-          "/assets/locationTour/volterra/volterra10.jpg",
-          "/assets/locationTour/volterra/volterra11.jpg",
-          "/assets/locationTour/volterra/volterra12.jpeg",
-          "/assets/locationTour/volterra/volterra13.jpeg",
-          "/assets/locationTour/volterra/volterra15.jpg",
-          "/assets/locationTour/volterra/volterra16.jpg",
-          "/assets/locationTour/volterra/volterra17.jpg",
-          "/assets/locationTour/volterra/volterra18.jpg",
-          "/assets/locationTour/volterra/volterra19.jpg",
-          "/assets/locationTour/volterra/volterra20.jpg",
-          "/assets/locationTour/volterra/volterra21.jpg",
-          "/assets/locationTour/volterra/volterra22.jpeg",
-          "/assets/locationTour/volterra/volterra23.jpg",
-          "/assets/locationTour/volterra/volterra24.jpg",
-          "/assets/locationTour/volterra/volterra25.jpg",
-          "/assets/locationTour/volterra/volterra26.jpg",
-          "/assets/locationTour/volterra/volterra27.jpg",
-          "/assets/locationTour/volterra/volterra28.jpg",
-          "/assets/locationTour/volterra/volterra29.jpg"
+          {
+            "src": "/assets/locationTour/volterra/volterra1.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra2.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra3.jpg",
+            "width": 1812,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra4.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra5.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra6.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra7.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra8.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra9.jpg",
+            "width": 1807,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra10.jpg",
+            "width": 1728,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra11.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra12.jpg",
+            "width": 1803,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra13.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra15.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra16.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra17.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra18.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra19.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra20.jpg",
+            "width": 900,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra21.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra22.jpg",
+            "width": 1807,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra23.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra24.jpg",
+            "width": 1920,
+            "height": 534
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra25.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra26.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra27.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra28.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/volterra/volterra29.jpg",
+            "width": 1800,
+            "height": 1200
+          }
         ]
       },
       "San Gimignano": {
@@ -389,35 +597,151 @@
           "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena</b></p>"
         ],
         "gallery": [
-          "/assets/locationTour/sangimignano/sangimi1.JPG",
-          "/assets/locationTour/sangimignano/sangimi2.JPG",
-          "/assets/locationTour/sangimignano/sangimi4.jpg",
-          "/assets/locationTour/sangimignano/sangimi6.jpg",
-          "/assets/locationTour/sangimignano/sangimi7.jpg",
-          "/assets/locationTour/sangimignano/sangimi8.jpg",
-          "/assets/locationTour/sangimignano/sangimi9.jpg",
-          "/assets/locationTour/sangimignano/sangimi10.jpg",
-          "/assets/locationTour/sangimignano/sangimi11.jpg",
-          "/assets/locationTour/sangimignano/sangimi12.jpg",
-          "/assets/locationTour/sangimignano/sangimi13.jpg",
-          "/assets/locationTour/sangimignano/sangimi14.jpg",
-          "/assets/locationTour/sangimignano/sangimi15.jpg",
-          "/assets/locationTour/sangimignano/sangimi16.jpeg",
-          "/assets/locationTour/sangimignano/sangimi17.jpg",
-          "/assets/locationTour/sangimignano/sangimi18.jpg",
-          "/assets/locationTour/sangimignano/sangimi19.jpg",
-          "/assets/locationTour/sangimignano/sangimi20.jpg",
-          "/assets/locationTour/sangimignano/sangimi21.jpg",
-          "/assets/locationTour/sangimignano/sangimi22.jpg",
-          "/assets/locationTour/sangimignano/sangimi23.jpg",
-          "/assets/locationTour/sangimignano/sangimi24.jpg",
-          "/assets/locationTour/sangimignano/sangimi25.jpg",
-          "/assets/locationTour/sangimignano/sangimi26.jpeg",
-          "/assets/locationTour/sangimignano/sangimi27.jpg",
-          "/assets/locationTour/sangimignano/sangimi28.jpg",
-          "/assets/locationTour/sangimignano/sangimi29.jpg",
-          "/assets/locationTour/sangimignano/sangimi30.jpg",
-          "/assets/locationTour/sangimignano/sangimi31.jpg"
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi1.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi2.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi4.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi6.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi7.jpg",
+            "width": 1747,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi8.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi9.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi10.jpg",
+            "width": 1601,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi11.jpg",
+            "width": 899,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi12.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi13.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi14.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi15.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi16.jpg",
+            "width": 1768,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi17.jpg",
+            "width": 800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi18.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi19.jpg",
+            "width": 900,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi20.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi21.jpg",
+            "width": 900,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi22.jpg",
+            "width": 899,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi23.jpg",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi24.jpg",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi25.jpg",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi26.jpg",
+            "width": 1920,
+            "height": 1071
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi27.jpg",
+            "width": 675,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi28.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi29.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi30.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGimi/sangimi31.jpg",
+            "width": 1600,
+            "height": 1200
+          }
         ]
       },
       "Montepulciano e Val d'Orcia": {
@@ -452,21 +776,81 @@
           "<p>Proposto insieme a <b class='bold_text'>Siena</b>  per un FULL DAY</p>"
         ],
         "gallery": [
-          "/assets/locationTour/sangalgano/sangalgano1.jpg",
-          "/assets/locationTour/sangalgano/sangalgano3.jpg",
-          "/assets/locationTour/sangalgano/sangalgano4.jpg",
-          "/assets/locationTour/sangalgano/sangalgano5.jpg",
-          "/assets/locationTour/sangalgano/sangalgano6.jpg",
-          "/assets/locationTour/sangalgano/sangalgano7.jpg",
-          "/assets/locationTour/sangalgano/sangalgano8.jpg",
-          "/assets/locationTour/sangalgano/sangalgano9.jpg",
-          "/assets/locationTour/sangalgano/sangalgano10.jpg",
-          "/assets/locationTour/sangalgano/sangalgano11.jpg",
-          "/assets/locationTour/sangalgano/sangalgano12.jpg",
-          "/assets/locationTour/sangalgano/sangalgano13.jpg",
-          "/assets/locationTour/sangalgano/sangalgano14.jpg",
-          "/assets/locationTour/sangalgano/sangalgano15.jpg",
-          "/assets/locationTour/sangalgano/sangalgano16.jpg"
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano1.jpg",
+            "width": 1918,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano3.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano4.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano5.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano6.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano7.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano8.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano9.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano10.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano11.jpg",
+            "width": 1601,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano12.jpg",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano13.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano14.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano15.jpg",
+            "width": 1800,
+            "height": 1200
+          },
+          {
+            "src": "/assets/locationTour/sanGalg/sangalgano16.jpg",
+            "width": 1800,
+            "height": 1200
+          }
         ]
       }
     },
@@ -492,45 +876,45 @@
       "galleryTitle": "Ricordi belli"
     },
     "galleria": [
-      "/assets/aboutLou/lou1.jpg",
-      "/assets/aboutLou/lou2.jpg",
-      "/assets/aboutLou/lou3.jpg",
-      "/assets/aboutLou/lou4.jpg",
-      "/assets/aboutLou/lou5.jpg",
-      "/assets/aboutLou/lou6.jpg",
-      "/assets/aboutLou/lou7.jpg",
-      "/assets/aboutLou/lou8.jpg",
-      "/assets/aboutLou/lou9.jpg",
-      "/assets/aboutLou/lou10.jpg",
-      "/assets/aboutLou/lou11.jpg",
-      "/assets/aboutLou/lou12.jpg",
-      "/assets/aboutLou/lou13.jpg",
-      "/assets/aboutLou/lou14.jpg",
-      "/assets/aboutLou/lou15.jpg",
-      "/assets/aboutLou/lou16.JPG",
-      "/assets/aboutLou/lou17.JPG",
-      "/assets/aboutLou/lou18.JPG",
-      "/assets/aboutLou/lou19.jpg",
-      "/assets/aboutLou/lou20.jpg",
-      "/assets/aboutLou/lou21.jpg",
-      "/assets/aboutLou/lou22.jpg",
-      "/assets/aboutLou/lou23.jpg",
-      "/assets/aboutLou/lou24.jpg",
-      "/assets/aboutLou/lou25.jpg",
-      "/assets/aboutLou/lou26.jpg",
-      "/assets/aboutLou/lou27.JPG",
-      "/assets/aboutLou/lou28.JPG",
-      "/assets/aboutLou/lou29.jpg",
-      "/assets/aboutLou/lou30.JPG",
-      "/assets/aboutLou/lou31.JPEG",
-      "/assets/aboutLou/lou32.JPG",
-      "/assets/aboutLou/lou33.JPG",
-      "/assets/aboutLou/lou34.JPG",
-      "/assets/aboutLou/lou35.JPG",
-      "/assets/aboutLou/lou36.jpg",
-      "/assets/aboutLou/lou37.jpg",
-      "/assets/aboutLou/lou38.png",
-      "/assets/aboutLou/lou39.jpg"
+      { "src": "/assets/aboutLou/lou1.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou2.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou3.jpg", "width": 1073, "height": 1200 },
+      { "src": "/assets/aboutLou/lou4.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou5.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou6.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou7.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou8.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou9.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou10.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou11.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou12.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou13.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou14.jpg", "width": 960, "height": 1200 },
+      { "src": "/assets/aboutLou/lou15.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou16.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou17.jpg", "width": 1920, "height": 1080 },
+      { "src": "/assets/aboutLou/lou18.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou19.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou20.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou21.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou22.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou23.jpg", "width": 901, "height": 1200 },
+      { "src": "/assets/aboutLou/lou24.jpg", "width": 901, "height": 1200 },
+      { "src": "/assets/aboutLou/lou25.jpg", "width": 901, "height": 1200 },
+      { "src": "/assets/aboutLou/lou26.jpg", "width": 1599, "height": 1200 },
+      { "src": "/assets/aboutLou/lou27.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou28.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou29.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou30.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou31.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou32.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou33.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou34.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou35.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou36.jpg", "width": 900, "height": 1200 },
+      { "src": "/assets/aboutLou/lou37.jpg", "width": 1600, "height": 1200 },
+      { "src": "/assets/aboutLou/lou38.jpg", "width": 1920, "height": 1080 },
+      { "src": "/assets/aboutLou/lou39.jpg", "width": 900, "height": 1200 }
     ]
   }
 }

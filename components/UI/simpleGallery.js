@@ -36,9 +36,9 @@ export default function SimpleGallery({ imageArray, galleryID }) {
         <div className="gallery pt-8 pswp-gallery " id={galleryID}>
           {imageArray?.map((el, i) => (
             <a
-              href={el}
-              data-pswp-width={1500}
-              data-pswp-height={2000}
+              href={el?.src}
+              data-pswp-width={el?.width}
+              data-pswp-height={el?.height}
               key={el.galleryID + "-" + i}
               // target="_blank"
               rel="noreferrer"
