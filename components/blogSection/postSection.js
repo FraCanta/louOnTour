@@ -12,7 +12,7 @@ export default function PostSection({ post, featuredMedia }) {
   // console.log(post);
   return (
     <div className="card w-full lg:w-50 lg:h-[20rem]  shadow-xl mb-6 lg:mb-2 mr-4 bg-white text-black ">
-      <div className="card-body !p-4">
+      <div className="card-body !p-4  justify-between">
         <div>
           <small className="badge badge-info badge-lg text-white text-xs">
             {getDate(post?.date)}
@@ -20,7 +20,7 @@ export default function PostSection({ post, featuredMedia }) {
         </div>
         <Link href={`/posts/${post?.slug}`}>
           <h5
-            className="card-title text-black pb-2 hover:underline text-base"
+            className="card-title text-[#2C395B] pb-2 hover:underline text-base"
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           ></h5>
         </Link>

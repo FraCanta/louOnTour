@@ -7,10 +7,10 @@ const Correlati = ({ city, others, correlati }) => {
   return (
     <>
       <div className="container w-11/12 xl:w-4/5 mx-auto pt-10">
-        <h3 className="text-3xl md:text-[40px] font-medium mt-2 leading-10 text-[#232F37] lg:text-center pb-8 ">
+        <h3 className="text-3xl md:text-[40px] font-medium mt-2 leading-10 text-[#2C395B] lg:text-center pb-8 ">
           {correlati?.title}
         </h3>
-        <div className="w-full h-[1px] bg-black bg-opacity-20"></div>
+        <div className="w-full h-[1px] bg-[#2C395B] bg-opacity-20"></div>
       </div>
 
       <div className=" min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh]  w-full 2xl:p-8 hidden xl:flex">

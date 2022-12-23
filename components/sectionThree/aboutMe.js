@@ -5,7 +5,7 @@ import Testimonials2 from "./testimonials2";
 
 const AboutMe = ({ translation }) => {
   return (
-    <div className="about_me min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full bg-[#232F37] mt-20 text-white flex items-center  overflow-x-hidden">
+    <div className="grain about_me min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full bg-[#2C395B] mt-20 text-white flex items-center  overflow-x-hidden">
       <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1  justify-items-center content-center w-11/12 2xl:w-4/5 mx-auto h-full pt-10">
         <div>
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl text-bold">

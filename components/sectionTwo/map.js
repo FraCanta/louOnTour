@@ -12,10 +12,10 @@ const Map = ({ translation }) => {
           <h4 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
             {translation?.subTitle}
           </h4>
-          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 lg:leading-[4rem] 3xl:leading-[5.5rem] text-[#232F37]">
+          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 lg:leading-[4rem] 3xl:leading-[5.5rem] text-[#2C395B]">
             {translation?.title}
           </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20 mb-8 text-[#515151] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
+          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20 mb-8 text-[#2C395B] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
             {translation?.paragraph}
           </p>
           <Link href="/contatti">
@@ -29,7 +29,7 @@ const Map = ({ translation }) => {
             alt="map"
             width="auto"
             height="auto"
-            className="opacity-50"
+            className="opacity-80"
           />
           {translation?.markers?.map((el, i) => (
             <div
@@ -64,7 +64,7 @@ const Map = ({ translation }) => {
                 <div className="bg-[#FE6847] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
               )}
 
-              <p className="uppercase text-[0.8rem] text-[#232F37] font-medium py-2">
+              <p className="uppercase text-[0.8rem] text-[#2C395B] font-medium py-2">
                 {el?.title}
               </p>
             </div>

@@ -1,10 +1,11 @@
 .section4 {
   height: 45vh;
-  background-color: #232f37;
+  --tw-bg-opacity: 0.4;
+  background-color: rgb(44 57 91 / var(--tw-bg-opacity));
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #2c395b;
   text-align: center;
 }
 

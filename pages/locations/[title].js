@@ -27,12 +27,12 @@ export default function Tours({ city, others, banner, correlati }) {
       <div className="w-full xl:w-4/5 min-h-[30vh] container mx-auto flex flex-col lg:flex-row py-4 xl:py-8">
         <div className="w-full lg:w-1/2 p-4 lg:p-8">
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Destinations</h4>
-          <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#232F37]">
+          <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#2C395B]">
             {!!city.translatedTitle ? city.translatedTitle : city?.titleImg}
           </h2>
         </div>
         <div className="w-full lg:w-1/2 p-4 lg:p-8">
-          <p className="text-base sm:text-xl  mt-0 sm:mt-8 mb-4 text-[#232F37]">
+          <p className="text-base sm:text-xl  mt-0 sm:mt-8 mb-4 text-[#2C395B]">
             {city?.descrizione}
           </p>
         </div>
@@ -45,14 +45,14 @@ export default function Tours({ city, others, banner, correlati }) {
               className="w-full lg:w-1/2  lg:px-8 lg:p-4 pt-8 xl:pt-0"
               style={city?.half_elenco?.length === 0 ? { display: "none" } : {}}
             >
-              <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#232F37] pb-8">
+              <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
                 {city?.half}
               </h3>
-              <ul className="text-xl md:text-lg font-medium mt-2 leading-10  text-[#232F37] pb-10 elenco_tours">
+              <ul className="text-xl md:text-lg font-medium mt-2 leading-10  text-[#2C395B] pb-10 elenco_tours">
                 {city?.half_elenco?.map((el, i) => (
                   <li
                     key={i}
-                    className="text-base sm:text-xl  mt-4 sm:mt-8 text-[#232F37] "
+                    className="text-base sm:text-xl  mt-4 sm:mt-8 text-[#2C395B]"
                   >
                     <div dangerouslySetInnerHTML={{ __html: el }}></div>
                   </li>
@@ -71,14 +71,14 @@ export default function Tours({ city, others, banner, correlati }) {
               className="w-full lg:w-1/2  lg:px-8 lg:p-4 pt-8 xl:pt-0"
               style={city?.half_elenco?.length === 0 ? { width: "100%" } : {}}
             >
-              <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#232F37] pb-8">
+              <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
                 {city?.full}
               </h3>
-              <ul className="text-xl md:text-lg font-medium mt-2 leading-10 text-[#232F37] pb-8 elenco_tours">
+              <ul className="text-xl md:text-lg font-medium mt-2 leading-10 text-[#2C395B] pb-8 elenco_tours">
                 {city?.full_elenco?.map((el, i) => (
                   <li
                     key={i}
-                    className="text-base sm:text-xl  mt-0 sm:mt-8 text-[#232F37] pb-2"
+                    className="text-base sm:text-xl  mt-0 sm:mt-8 text-[#2C395B] pb-2"
                   >
                     <div dangerouslySetInnerHTML={{ __html: el }}></div>
                   </li>

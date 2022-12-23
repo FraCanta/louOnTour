@@ -84,7 +84,7 @@ const ContactForm = () => {
             className=" w-full xl:w-[580px] xl:h-[565px] border border-[#FE6847] bg-white z-10 p-10 "
             onSubmit={(e) => onSubmitForm(e)}
           >
-            <p className="ml-20 text-[#232F37] font-bold">
+            <p className="ml-20 text-[#2C395B] font-bold">
               Scrivimi quale tour hai scelto e ti contatterò presto!
             </p>
             <div className="mt-4">
@@ -149,7 +149,7 @@ const ContactForm = () => {
               rx={80}
               ry={80}
               text="Lou On Tour . Lou On Tour . Lou On Tour . Lou On Tour.  "
-              textProps={{ style: { fontSize: 25, fill: "#232F37" } }}
+              textProps={{ style: { fontSize: 25, fill: "#2C395B" } }}
             />
           </div>
         </div>

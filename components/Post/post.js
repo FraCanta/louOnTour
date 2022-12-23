@@ -9,7 +9,7 @@ import Cta from "../button/button";
 
 export default function Post({ post, featuredMedia }) {
   return (
-    <div className="card w-11/12 lg:w-96  shadow-xl mb-4 lg:mb-0 !pt-0">
+    <div className="card w-11/12 lg:w-96  shadow-xl mb-4 lg:mb-0 !pt-0 bg-white">
       <Link href={`/posts/${post?.slug}`}>
         <figure>
           <Image

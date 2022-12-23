@@ -36,28 +36,28 @@ export default function PostPage({
         />
       </Head>
 
-      <div className="container mx-auto pt-5 w-11/12 2xl:w-4/5 text-black ">
+      <div className="container mx-auto pt-5 w-11/12 2xl:w-4/5 text-[#2C395B]">
         <div className="text-sm breadcrumbs">
           <ul>
             <li>
-              <Link href="/" className="text-black">
+              <Link href="/" className="text-[#2C395B]">
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/blog" className="text-black">
+              <Link href="/blog" className="text-[#2C395B]">
                 Blog
               </Link>
             </li>
             <li
               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-              className="font-bold underline "
+              className="font-bold underline text-[#2C395B]"
             ></li>
           </ul>
         </div>
 
         <h1
-          className="text-center py-8 text-3xl 2xl:text-5xl text-black l-article"
+          className="text-center py-8 text-3xl 2xl:text-5xl text-[#2C395B] l-article"
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         ></h1>
         <figure>
@@ -66,16 +66,16 @@ export default function PostPage({
               featuredMedia?.["media_details"]?.sizes?.full?.["source_url"] ||
               Siena
             }
-            width={800}
-            height={800}
+            width={1000}
+            height={1000}
             alt={featuredMedia?.["alt_text"] || "LouOnTour image"}
-            className="w-full h-[550px] object-cover rounded-lg py-8"
+            className="w-full h-[550px] object-cover rounded-lg py-8 object-top"
             priority
           />
         </figure>
 
         <div
-          className="text-black text-base lg:text-xl l-article"
+          className="text-[#2C395B] text-base lg:text-xl l-article"
           dangerouslySetInnerHTML={{ __html: modifiedContent }}
         ></div>
       </div>
@@ -85,7 +85,7 @@ export default function PostPage({
             <Link href={`/posts/${nextPrevPost?.prevSlug}`}>
               <div className="mb-2 capitalize">Articolo Precedente</div>
               <div
-                className="text-[#252525]"
+                className="text-[#2C395B]"
                 dangerouslySetInnerHTML={{ __html: nextPrevPost?.prevTitle }}
               ></div>
             </Link>
@@ -98,7 +98,7 @@ export default function PostPage({
           <Link href={`/posts/${nextPrevPost?.nextSlug}`}>
             <div className="mb-2 capitalize">Articolo Successivo</div>
             <div
-              className="text-[#252525]"
+              className="text-[#2C395B]"
               dangerouslySetInnerHTML={{ __html: nextPrevPost?.nexTitle }}
             ></div>
           </Link>

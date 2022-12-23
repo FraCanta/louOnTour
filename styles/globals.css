@@ -21,6 +21,10 @@
     background-position: center;
   }
 
+  .grain {
+    background-image: url(../public/assets/noise.7f2f5230.png);
+  }
+
   @media screen and (min-width: 300px) and (max-width: 920px) {
     .bgImage {
       height: 38vh;
@@ -117,6 +121,9 @@ body {
 
 body {
   overflow-x: hidden;
+  background-image: url(../public/assets/noise.7f2f5230.png);
+  background-size: 1440px auto;
+  background-color: white;
 }
 
 /* width */
@@ -203,7 +210,6 @@ h4 {
   top: 0;
   left: 0;
   background: hsla(205, 100%, 67%, 1);
-
   background: linear-gradient(
     90deg,
     hsla(204, 68%, 41%, 1) 0%,
@@ -582,16 +588,6 @@ h4 {
 }
 
 /* Fine menu mobile */
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    /* color: #0d0d0d; */
-    background: rgb(255, 255, 255);
-  }
-}
 
 .stop-scrolling {
   height: 100%;

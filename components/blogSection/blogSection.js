@@ -14,10 +14,10 @@ const BlogSection = ({ post, featuredMedia, tags }) => {
     );
   });
   return (
-    <div className="hero min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full bg-[#232F37]  text-white flex items-center  overflow-x-hidden py-20 ">
+    <div className="hero min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full   text-[#f1f1f1] flex items-center  overflow-x-hidden py-20 !grain !bg-[#2C395B]">
       <div className="grid  md:gap-14 xl:gap-18 grid-cols-1  justify-items-center content-center w-11/12 2xl:w-4/5 mx-auto h-full ">
         <div className="text-center">
-          <h4 className="text-[#232F37] text-xl 3xl:text-4xl font-bold">
+          <h4 className="text-[#FE6847] text-xl 3xl:text-4xl font-bold">
             Blog
           </h4>
           <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium  md:leading-none lg:leading-none mb-10">

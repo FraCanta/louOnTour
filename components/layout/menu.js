@@ -17,7 +17,7 @@ const Menu = ({ translation }) => {
               <Image src={Lou} alt="Lou Logo" className="w-[250px]" />
             </Link>
           </div>
-          <nav className="menu-nav text-[#232F37]">
+          <nav className="menu-nav text-[#2C395B]">
             <ul className="links">
               <li>
                 <Link href="/" className="2xl:text-base fxl:text-[18px]">
@@ -28,13 +28,13 @@ const Menu = ({ translation }) => {
               <li className="dropdown dropdown-hover">
                 <label
                   tabIndex={0}
-                  className="font-normal 2xl:text-base fxl:text-[18px] flex items-center uppercase !mr-[40px] !ml-[40px]"
+                  className="font-normal 2xl:text-base fxl:text-[18px] flex items-center uppercase !mr-[40px] !ml-[40px] text-[#2C395B]"
                 >
                   {translation?.[locale]?.tours}
 
                   <Icon
                     icon="bxs:down-arrow"
-                    color="#232F37"
+                    color="#2C395B"
                     width="10"
                     className="ml-2"
                   />
@@ -48,7 +48,7 @@ const Menu = ({ translation }) => {
                     {translation?.[locale]?.map?.markers.map((el, i) => (
                       <li key={i} className="py-1.5">
                         <Link
-                          className="hover:underline text-sm !ml-2"
+                          className="hover:underline text-sm !ml-2 text-[#2C395B]"
                           href={`/locations/${el?.link}`}
                         >
                           {el?.title}
@@ -59,19 +59,25 @@ const Menu = ({ translation }) => {
                 </>
               </li>
               <li>
-                <Link href="/chiSono" className="2xl:text-base fxl:text-[18px]">
+                <Link
+                  href="/chiSono"
+                  className="2xl:text-base fxl:text-[18px] text-[#2C395B]"
+                >
                   {translation?.[locale]?.about}
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="2xl:text-l[12px] fxl:text-[18px]">
+                <Link
+                  href="/blog"
+                  className="2xl:text-l[12px] fxl:text-[18px] text-[#2C395B]"
+                >
                   {translation?.[locale]?.blog}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contatti"
-                  className="2xl:text-l[12px] fxl:text-[18px]"
+                  className="2xl:text-l[12px] fxl:text-[18px] text-[#2C395B]"
                 >
                   {translation?.[locale]?.contact}
                 </Link>
