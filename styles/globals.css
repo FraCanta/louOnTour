@@ -121,7 +121,7 @@ body {
 
 body {
   overflow-x: hidden;
-  background-image: url(../public/assets/noise.7f2f5230.png);
+  /* background-image: url(../public/assets/noise.7f2f5230.png); */
   background-size: 1440px auto;
   background-color: white;
 }

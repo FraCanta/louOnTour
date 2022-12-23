@@ -1,12 +1,13 @@
 .section4 {
   height: 45vh;
-  --tw-bg-opacity: 0.4;
-  background-color: rgb(44 57 91 / var(--tw-bg-opacity));
+  /* --tw-bg-opacity: 0.4;
+  background-color: rgb(44 57 91 / var(--tw-bg-opacity)); */
   display: flex;
   align-items: center;
   justify-content: center;
   color: #2c395b;
   text-align: center;
+  background: white;
 }
 
 .section_container {
