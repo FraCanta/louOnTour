@@ -69,6 +69,18 @@ iframe {
 .l-article li a {
   text-decoration: underline;
 }
+
+.btn {
+  border-color: none !important;
+  background-color: transparent !important;
+  border-width: none !important;
+  border-radius: 10px !important;
+}
+
+.btn-active {
+  background-color: #fe6847 !important;
+}
+
 /* blog section */
 .hero h2,
 .hero p {

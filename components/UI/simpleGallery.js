@@ -15,7 +15,7 @@ export default function SimpleGallery({ imageArray, galleryID }) {
       escKey: true,
       arrowKeys: true,
       loop: true,
-      padding: { top: 20, bottom: 20, left: 50, right: 50 },
+      padding: { top: 20, bottom: 20, left: 10, right: 10 },
     });
 
     lightbox.init();
