@@ -73,7 +73,7 @@ iframe {
 .btn {
   border-color: none !important;
   background-color: transparent !important;
-  border-width: none !important;
+  border-width: 0px !important;
   border-radius: 10px !important;
 }
 
