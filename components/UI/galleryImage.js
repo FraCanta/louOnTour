@@ -18,8 +18,8 @@ const GalleryImage = ({ url, item, handleModal }) => {
         priority
         src={url}
         alt="foto"
-        width={150}
-        height={150}
+        width={160}
+        height={160}
         // onClick={() => handleModal(item)}
         onLoadingComplete={() => {
           setImgSpinner(false);
