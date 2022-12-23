@@ -172,7 +172,7 @@ function Menu_mobile({ translation }) {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/"
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
+                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
                 >
                   {translation?.[locale]?.home}
                 </Link>
@@ -180,24 +180,24 @@ function Menu_mobile({ translation }) {
               <li className="dropdown dropdown-right">
                 <label
                   tabIndex={0}
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] font-normal !pl-0  !pr-8 md:!pr-20 flex items-center uppercase !pb-4 md:!pb-4 link_menu"
+                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] font-normal !pl-0  !pr-8 md:!pr-20 flex items-center uppercase !pb-4 md:!pb-4 link_menu"
                 >
                   {translation?.[locale]?.tours}
                   <Icon
                     icon="bxs:down-arrow"
-                    color="#232F37"
+                    color="#2C395B"
                     width="10"
                     className="ml-2"
                   />
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content min-h-[300px] md:min-h-[380px] !p-4 shadow rounded-box w-52 md:w-60 text-[#232F37]"
+                  className="dropdown-content min-h-[300px] md:min-h-[380px] !p-4 shadow rounded-box w-52 md:w-60 text-[#2C395B]"
                 >
                   {translation?.[locale]?.map?.markers.map((el, i) => (
                     <li key={i} className="py-1.5" onClick={handleBurgerClose}>
                       <Link
-                        className="hover:underline text-sm md:text-xl"
+                        className="hover:underline text-sm md:text-xl "
                         href={`/locations/${el?.link}`}
                       >
                         {el?.title}
@@ -209,7 +209,7 @@ function Menu_mobile({ translation }) {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/chiSono"
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
+                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
                 >
                   {translation?.[locale]?.about}
                 </Link>
@@ -217,7 +217,7 @@ function Menu_mobile({ translation }) {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/blog"
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
+                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
                 >
                   {translation?.[locale]?.blog}
                 </Link>
@@ -225,7 +225,7 @@ function Menu_mobile({ translation }) {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/contatti"
-                  className="text-[#232F37] text-[40px] md:text-[70px] lg:text-[40px] link_menu"
+                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] link_menu"
                 >
                   {translation?.[locale]?.contact}
                 </Link>

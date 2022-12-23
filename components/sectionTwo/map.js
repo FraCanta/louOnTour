@@ -64,9 +64,9 @@ const Map = ({ translation }) => {
                 <div className="bg-[#FE6847] w-[6px] h-[6px] absolute rounded-[50%] top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
               )}
 
-              <p className="uppercase text-[0.8rem] text-[#2C395B] font-medium py-2">
+              <h4 className="uppercase text-[0.7rem] text-[#2C395B] font-bold py-2">
                 {el?.title}
-              </p>
+              </h4>
             </div>
           ))}
         </div>

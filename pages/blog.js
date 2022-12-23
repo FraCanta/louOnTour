@@ -75,10 +75,10 @@ const Blog = ({ post, category, pages, currentP }) => {
         </div> */}
         <div className="w-full ">
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Blog</h4>
-          <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#232F37]">
+          <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#2c395b]">
             Curiosità nel mondo dell&apos;archeologia, arte e tanto altro
           </h2>
-          <p className="text-base sm:text-xl   mt-8 mb-4 text-[#232F37]">
+          <p className="text-base sm:text-xl   mt-8 mb-4 text-[#2c395b]">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
             nihil excepturi quibusdam itaque corrupti accusamus in, facilis
             incidunt. Esse sed magni natus ex, excepturi corporis blanditiis
@@ -95,7 +95,8 @@ const Blog = ({ post, category, pages, currentP }) => {
                 filterObj?.categories === el?.id
                   ? {
                       background:
-                        "linear-gradient(90deg,  hsla(204, 68%, 41%, 1) 0%, hsla(205, 100%, 67%, 1) 100%  )",
+                        // "linear-gradient(90deg,  hsla(204, 68%, 41%, 1) 0%, hsla(205, 100%, 67%, 1) 100%  )",
+                        "#2c395b",
                       color: "white",
                     }
                   : {}
