@@ -7,15 +7,6 @@ import { useRouter } from "next/router";
 import translation from "../../public/locales/it/it.json";
 
 const Footer = ({ post }) => {
-  console.log(post);
-  // const jsxPosts = post.map((p, i) => {
-  //   return (
-  //     <p
-  //       dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
-  //       key={i}
-  //     ></p>
-  //   );
-  // });
   const { locale } = useRouter();
   return (
     <>
@@ -37,16 +28,16 @@ const Footer = ({ post }) => {
             Lou On Tour
           </h6>
           <Link href="/chiSono" className="link link-hover">
-            <p>Chi Sono</p>
+            Chi Sono
           </Link>
           <Link href="/contatti" className="link link-hover">
-            <p>Contatti</p>
+            Contatti
           </Link>
           <Link
             href="/contatti"
             className="link link-hover text-white  bg-[#FE6847] p-[0.3rem]"
           >
-            <p>Collaborazioni</p>
+            Collaborazioni
           </Link>
         </div>
         <div>
@@ -59,17 +50,15 @@ const Footer = ({ post }) => {
                 href={`/locations/${el?.title}`}
                 key={i}
               >
-                <p> {el?.title}</p>
+                {el?.title}
               </Link>
             ))}
         </div>
         <div>
           <h6 className="footer-title text-[#2c395b] !opacity-100">Blog</h6>
-          <Link href="/chiSono" className="link link-hover ">
-            <Link href={`/posts/${post?.slug}`}>
-              {/* <p>{jsxPosts}</p> */}
-              <p>Articoli</p>
-            </Link>
+          <Link href="/blog">
+            {/* <p>{jsxPosts}</p> */}
+            Ultime News
           </Link>
         </div>
         <div>

@@ -3,7 +3,7 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import GalleryImage from "./galleryImage";
 
-export default function SimpleGallery({ imageArray, galleryID }) {
+export default function SimpleGallery({ imageArray, galleryID, galleryTitle }) {
   useEffect(() => {
     const backEasing = {
       in: "cubic-bezier(0.6, -0.28, 0.7, 1)",
@@ -49,7 +49,7 @@ export default function SimpleGallery({ imageArray, galleryID }) {
     <div className="min-h-[50vh] ">
       <div className="container mx-auto w-11/12 lg:w-4/5 py-10">
         <h3 className="text-3xl md:text-[40px] font-medium mt-2 leading-10 text-[#2C395B] lg:text-center pb-4">
-          Gallery
+          {galleryTitle}
         </h3>
         <div className="w-full h-[1px] bg-black bg-opacity-20"></div>
 

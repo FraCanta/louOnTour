@@ -94,6 +94,7 @@ export default function Tours({ city, others, banner, correlati }) {
         <DynamicSimpleGallery
           imageArray={city?.gallery}
           galleryID="gallery--click-to-next"
+          galleryTitle={"Gallery"}
         />
       )}
 
