@@ -34,13 +34,13 @@ export default function Post({ post, featuredMedia }) {
         </div>
         <Link href={`/posts/${post?.slug}`} target="_blank">
           <h5
-            className="card-title text-black pb-2 hover:underline"
+            className="card-title text-[#2c395b] pb-2 hover:underline"
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           ></h5>
         </Link>
         <div
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
-          className="line-clamp"
+          className="line-clamp text-[#2c395b]"
         ></div>
         <div className="card-actions justify-end">
           <Link href={`/posts/${post?.slug}`} target="_blank">

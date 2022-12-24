@@ -26,7 +26,7 @@ export default function PostSection({ post, featuredMedia }) {
         </Link>
         <div
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
-          className="xl:text-sm lg:text-xs"
+          className="xl:text-[0.85rem] lg:text-xs"
         ></div>
         <div className="card-actions justify-end">
           <Link href={`/posts/${post?.slug}`} className="link">

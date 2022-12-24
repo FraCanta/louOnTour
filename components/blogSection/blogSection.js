@@ -1,9 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import Post from "../Post/post";
-import Cta from "../button/button";
-import { useRouter } from "next/router";
 import PostSection from "./postSection";
 
 const BlogSection = ({ post, featuredMedia, tags }) => {

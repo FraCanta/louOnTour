@@ -66,13 +66,6 @@ const Blog = ({ post, category, pages, currentP }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-11/12 min-h-[30vh] container mx-auto flex flex-col lg:flex-row py-6 xl:py-8">
-        {/* <div className="hero !min-h-[400px] text-white ">
-          <div className="hero-content w-11/12 2xl:w-4/5  p-0 2xl:text-center">
-            <div>
-              <h1 className="text-8xl font-bold">Blog</h1>
-            </div>
-          </div>
-        </div> */}
         <div className="w-full ">
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Blog</h4>
           <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#2c395b]">
@@ -128,100 +121,101 @@ const Blog = ({ post, category, pages, currentP }) => {
             </a>
           ))}
         </div>
+      </div>
 
-        <div className="grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 justify-items-center content-center pt-0 2xl:pt-10">
-          {jsxPosts}
-          <div className="w-11/12">
-            <div className="block lg:hidden">
-              <h3 className="text-black">Categorie</h3>
-              <ul>
-                {category.map((el, i) => (
-                  <li
-                    key={i}
-                    className="text-2xl mb-4 text-black"
-                    style={
-                      filterObj?.categories === el?.id
-                        ? {
-                            background:
-                              "linear-gradient(90deg,  hsla(204, 68%, 41%, 1) 0%, hsla(205, 100%, 67%, 1) 100%  )",
-                            color: "white",
-                          }
-                        : {}
-                    } // coloro quelli selezionati
-                    onClick={() => {
-                      setFilterObj((prevData) => {
-                        if (prevData?.categories === el?.id)
-                          return { currenPage: 1, categories: 0 };
-                        else return { currenPage: 1, categories: el?.id };
-                      });
-
-                      router.push(
-                        {
-                          pathname: "/blog",
-                          query: {
-                            categories: el?.id,
-                            page: 1,
-                          },
+      <div className="grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 justify-items-center content-center pt-0 2xl:pt-10 2xl:pb-20">
+        {jsxPosts}
+        <div className="container w-screen mx-auto flex justify-center">
+          {filterObj?.paginationArray?.length > 1 && (
+            <div className="flex justify-center mb-8 ">
+              <div className="btn-group">
+                <button
+                  className="btn "
+                  style={
+                    parseInt(currentP) - 1 === 0
+                      ? {
+                          opacity: 0.6,
+                          pointerEvents: "none",
                         }
-                        // { shallow: true }
-                      );
-                    }}
+                      : {}
+                  }
+                  onClick={() => handlePagination(currentP - 1)}
+                >
+                  «
+                </button>
+                {filterObj?.paginationArray?.map((el, i) => (
+                  <button
+                    className={`btn ${
+                      parseInt(currentP) - i === el && "btn-active"
+                    }`}
+                    key={i}
+                    onClick={() => handlePagination(el + i)}
                   >
-                    {el?.name}
-                  </li>
+                    {el + i}
+                  </button>
                 ))}
-              </ul>
+
+                <button
+                  className="btn"
+                  style={
+                    parseInt(currentP) + 1 > pages
+                      ? {
+                          opacity: 0.6,
+                          pointerEvents: "none",
+                        }
+                      : {}
+                  }
+                  // disabled={parseInt(currentPage) + 1 > pages}
+                  onClick={() => handlePagination(parseInt(currentP) + 1)}
+                >
+                  »
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
-      {filterObj?.paginationArray?.length > 1 && (
-        <div className="flex justify-center mb-8">
-          <div className="btn-group">
-            <button
-              className="btn "
-              style={
-                parseInt(currentP) - 1 === 0
-                  ? {
-                      opacity: 0.6,
-                      pointerEvents: "none",
-                    }
-                  : {}
-              }
-              onClick={() => handlePagination(currentP - 1)}
-            >
-              «
-            </button>
-            {filterObj?.paginationArray?.map((el, i) => (
-              <button
-                className={`btn ${
-                  parseInt(currentP) - i === el && "btn-active"
-                }`}
+      <div className="w-11/12 mx-4">
+        <div className="block lg:hidden">
+          <ul>
+            {category.map((el, i) => (
+              <li
                 key={i}
-                onClick={() => handlePagination(el + i)}
-              >
-                {el + i}
-              </button>
-            ))}
+                className="text-2xl text-[ #2c395b] mb-4 text-black"
+                style={
+                  filterObj?.categories === el?.id
+                    ? {
+                        background: "#2c395b",
+                        width: "50%",
+                        color: "white",
+                      }
+                    : {}
+                } // coloro quelli selezionati
+                onClick={() => {
+                  setFilterObj((prevData) => {
+                    if (prevData?.categories === el?.id)
+                      return { currenPage: 1, categories: 0 };
+                    else return { currenPage: 1, categories: el?.id };
+                  });
 
-            <button
-              className="btn"
-              style={
-                parseInt(currentP) + 1 > pages
-                  ? {
-                      opacity: 0.6,
-                      pointerEvents: "none",
+                  router.push(
+                    {
+                      pathname: "/blog",
+                      query: {
+                        categories: el?.id,
+                        page: 1,
+                      },
                     }
-                  : {}
-              }
-              // disabled={parseInt(currentPage) + 1 > pages}
-              onClick={() => handlePagination(parseInt(currentP) + 1)}
-            >
-              »
-            </button>
-          </div>
+                    // { shallow: true }
+                  );
+                }}
+              >
+                {el?.name}
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
+      </div>
     </div>
   );
 };

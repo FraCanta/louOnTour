@@ -42,3 +42,7 @@
     margin: 0;
   }
 }
+
+.pswp--custom-bg {
+  background-color: rgba(112, 121, 191, 0.3);
+}

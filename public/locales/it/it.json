@@ -257,8 +257,8 @@
       "Firenze": {
         "img": "/assets/locationTour/florence_duomo.jpg",
         "titleImg": "Firenze",
-        "half": "Tours Firenze (mezza giornata)",
-        "full": "Tours Firenze (giornata intera)",
+        "half": "Tours Firenze (Mezza Giornata)",
+        "full": "Tours Firenze (Giornata Intera)",
         "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
         "descrizione": "Ammirata per la sua bellezza da milioni di visitatori da tutto il mondo, Firenze non è solo una città d’arte ma una vera e propria fonte di ispirazione per chiunque la visiti che sia la prima o la millesima volta! E’ la città che ha rotto con il Medioevo e ha introdotto in Europa il concetto di uomo moderno.",
         "half_elenco": [
@@ -278,8 +278,8 @@
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
         "titleImg": "Siena",
-        "half": "Tours Siena (mezza giornata)",
-        "full": "Tours Siena (giornata intera)",
+        "half": "Tours Siena (Mezza Giornata)",
+        "full": "Tours Siena (Giornata Intera)",
         "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
         "descrizione": "Questa città posizionata in cima ad una collina è famosa per il suo centro storico tutelato dall’Unesco visto che ancora mantiene buona parte dell’assetto urbano medievale; è famosa per lo sfarzo artistico e architettonico soprattutto in epoca medievale; è la città del Palio, corsa di cavallo più famosa d’Italia. Qui è anche nata Santa Caterina ed è stata fondata la banca più longeva al mondo. ",
         "half_elenco": [
@@ -421,8 +421,8 @@
         "img": "/assets/locationTour/volterra.jpeg",
         "titleImg": "Volterra",
         "title": "",
-        "half": "Tours Volterra (mezza giornata)",
-        "full": "Tours Volterra (giornata intera)",
+        "half": "Tours Volterra (Mezza Giornata)",
+        "full": "Tours Volterra (Giornata Intera)",
         "citazione": "[…] Volterra si mostra con un fascino arcano che promana dalle case addossate, dalle torri mozzate, dalle strade percorse da ombre inquietanti, lastricate nel tempo di sudore e di assurdo che attraversano la storia e la leggenda scavando solchi senza fine nella mente suggestionata degli uomini. (Franco Porretti)",
         "descrizione": "Una delle città etrusche per eccellenza. Conserva ancora molte testimonianze di questo periodo come di quello romano e medievale: porta all’Arco e l’acropoli etrusca, il teatro romano, la Piazza dei Priori, la cattedrale con il battistero, e case-torri. Volterra custodisce un tesoro immenso tra arte, archeologia e artigianato, infatti è famosa per la lavorazione dell’alabastro, un sapere che viene tramandato da generazioni. Volterra è stata costruita su un’altura che se un tempo garantiva sicurezza oggi permette di godere di un vastissimo e suggestivo panorama. ",
         "half_elenco": [
@@ -583,8 +583,8 @@
       "San Gimignano": {
         "img": "/assets/locationTour/san_gimignano.jpg",
         "titleImg": "San Gimignano",
-        "half": "Tours San Gimignano (mezza giornata)",
-        "full": "Tours San Gimignano (giornata intera)",
+        "half": "Tours San Gimignano (Mezza Giornata)",
+        "full": "Tours San Gimignano (Giornata Intera)",
         "citazione": "San Gimignano dalle belle torri e dalle belle campane… (Proverbio fiorentino)",
         "descrizione": "La “Città delle Belle Torri” è stata dichiarata patrimonio dell’umanità poiché il suo aspetto rimanda ancora a quello due-trecentesco, un raro esempio in Europa di organizzazione urbana d’età comunale: praticamente un sogno medievale. Qui puoi immedesimarti nella vita di un ricco mercante con la sua inespugnabile casa-torre che dominava sul tratto cittadino della via Francigena. All’epoca, a San Gimignano, avresti visto ben 72 torri (oggi circa 15). ",
         "half_elenco": [
@@ -748,7 +748,7 @@
         "img": "/assets/locationTour/valdorcia.jpg",
         "titleImg": "Montepulciano e Val d'Orcia",
         "half": "",
-        "full": "Tours Montepulciano e Val d'Orcia (giornata intera)",
+        "full": "Tours Montepulciano e Val d'Orcia (Giornata Intera)",
         "citazione": "Lorem ipsum",
         "descrizione": "Paesaggio unico e meraviglioso: colline versi e sinuose, campi dorati, viali con i cipressi, lussureggianti vigneti ed oliveti. La maggior parte delle foto che hai visto sul paesaggio toscano sono state scattate proprio in questa area! La Valle è attraversata dal fiume Orcia da cui prende il nome. Qui la protagonista assoluta è la natura tanto che oggi è un parco protetto ed è stato riconosciuto Patrimonio dell’Umanità dall’ UNESCO. Disseminati in questo paesaggio troviamo castelli medievali, borghi antichi, abbazie ciascuno con la propria storia e particolarità. La Val d’Orcia è anche terra di ottimi vini come il più famoso Brunello di Montalcino o il Rosso d’Orcia e molti altri. Per il nostro tour (6 ore circa) ti propongo di visitare insieme questi borghi di cui sono certa te ne innamorerai: ",
         "half_elenco": [],
@@ -765,8 +765,8 @@
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
         "titleImg": "San Galgano",
         "title": "",
-        "half": "Tour San Galgano (mezza giornata)",
-        "full": "Tour San Galgano (giornata intera)",
+        "half": "Tour San Galgano (Mezza Giornata)",
+        "full": "Tour San Galgano (Giornata Intera)",
         "citazione": "“per tetto un manto di stelle”",
         "descrizione": "Nel 1180 Galgano Guidotti edificò una chiesa a Montesiepi. La struttura della chiesa è molto originale, singolare nell’ambito romanico senese. L’interno è suggestivo per la singolare volta e perché al centro dell’ambiente vi è il masso in cui San Galgano ha conficcato la spada. Annessa alla chiesa la cappella trecentesca con gli affreschi attribuiti ad Ambrogio Lorenzetti. Cinquanta anni dopo, più a valle, venne costruita dai cistercensi l’abbazia intitolata a San Galgano. Il primo esempio di architettura gotica in Toscana e uno dei luoghi più suggestivi della campagna senese. Dell’abbazia ne rimane lo scheletro che testimonia la potenza e la ricchezza della comunità monastica. Un rudere completamente immerso nei contrasti di colore del cielo e della natura circostante, una visione di solitaria e drammatica bellezza. ",
         "half_elenco": [
