@@ -5,15 +5,15 @@ export default function Spinner() {
         className="animate-spin h-5 w-5 mr-3 bg-red-400 "
         viewBox="0 0 24 24"
       ></svg> */}
-      <svg class="spinner" viewBox="0 0 50 50">
+      <svg className="spinner" viewBox="0 0 50 50">
         <circle
-          class="path"
+          className="path"
           cx="25"
           cy="25"
           r="20"
           fill="none"
-          stroke-width="5"
-          className="animate-spin h-5 w-5 mr-3 bg-red-400 "
+          strokeWidth="5"
+          // className="animate-spin h-5 w-5 mr-3 bg-red-400 "
         ></circle>
       </svg>
     </span>
