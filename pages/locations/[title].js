@@ -129,6 +129,8 @@ export async function getStaticProps(context) {
       title: el,
       img: locations?.tours?.locationTours?.[el]?.img,
       link: `/locations/${el}`,
+      // translatedTitle:
+      //   locations?.tours?.locationTours?.[el]?.translatedTitle || null,
     };
   });
   const correlati = obj?.tours?.corr;

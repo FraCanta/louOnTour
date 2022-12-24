@@ -14,7 +14,7 @@ function Layout({ children }) {
       {children}
       <DynamicBackToTop />
       <DynamicWhatsapp />
-      <DynamicFooter translation={LayoutTranslation?.footer} />
+      <DynamicFooter translation={LayoutTranslation} />
     </>
   );
 }

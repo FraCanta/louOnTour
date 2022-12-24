@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import router, { useRouter } from "next/router";
+import translationIT from "../public/locales/it/it.json";
+import translationEN from "../public/locales/en/en.json";
 
 import { getPosts, getCategories, getTagId } from "../utils/wordpress";
 import Head from "next/head";
 import Post from "../components/Post/post";
 
-const Blog = ({ post, category, pages, currentP }) => {
+const Blog = ({ post, category, pages, currentP, blog }) => {
   const myRouter = useRouter();
-  // const [categoriesFilter, setCategoriesFilter] = useState(0);
   const [jsxPosts, setJsxPosts] = useState([]);
   const [filterObj, setFilterObj] = useState({});
 
@@ -30,10 +31,6 @@ const Blog = ({ post, category, pages, currentP }) => {
     });
   }, []); // aggiorna i filtri correnti dalla querystring
 
-  // useEffect(() => {
-  //   console.log(filterObj);
-  // }, [filterObj]);
-
   useEffect(() => {
     setJsxPosts(
       post.map((p, i) => {
@@ -51,13 +48,6 @@ const Blog = ({ post, category, pages, currentP }) => {
     });
   }, [pages]); // al variare delle pagine totali genero i bottoni delle pagine
 
-  // useEffect(() => {
-  //   setFilterObj((prevData) => {
-  //     return { ...prevData, currentPage: parseInt(currentP) };
-  //   });
-  //   // setCurrentPage(currentP);
-  // }, [currentP]);
-
   return (
     <div>
       <Head>
@@ -69,13 +59,10 @@ const Blog = ({ post, category, pages, currentP }) => {
         <div className="w-full ">
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Blog</h4>
           <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#2c395b]">
-            Curiosità nel mondo dell&apos;archeologia, arte e tanto altro
+            {blog?.title}
           </h2>
           <p className="text-base sm:text-xl   mt-8 mb-4 text-[#2c395b]">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
-            nihil excepturi quibusdam itaque corrupti accusamus in, facilis
-            incidunt. Esse sed magni natus ex, excepturi corporis blanditiis
-            explicabo non mollitia officia.
+            {blog?.paragraph}
           </p>
         </div>
       </div>
@@ -87,9 +74,7 @@ const Blog = ({ post, category, pages, currentP }) => {
               style={
                 filterObj?.categories === el?.id
                   ? {
-                      background:
-                        // "linear-gradient(90deg,  hsla(204, 68%, 41%, 1) 0%, hsla(205, 100%, 67%, 1) 100%  )",
-                        "#2c395b",
+                      background: "#2c395b",
                       color: "white",
                     }
                   : {}
@@ -100,16 +85,13 @@ const Blog = ({ post, category, pages, currentP }) => {
                     return { currenPage: 1, categories: 0 };
                   else return { currenPage: 1, categories: el?.id };
                 });
-                router.push(
-                  {
-                    pathname: "/blog",
-                    query: {
-                      categories: el?.id,
-                      page: 1,
-                    },
-                  }
-                  // { shallow: true }
-                );
+                router.push({
+                  pathname: "/blog",
+                  query: {
+                    categories: el?.id,
+                    page: 1,
+                  },
+                });
               }}
               className={`${
                 filterObj?.categories !== el?.id
@@ -165,7 +147,6 @@ const Blog = ({ post, category, pages, currentP }) => {
                         }
                       : {}
                   }
-                  // disabled={parseInt(currentPage) + 1 > pages}
                   onClick={() => handlePagination(parseInt(currentP) + 1)}
                 >
                   »
@@ -198,16 +179,13 @@ const Blog = ({ post, category, pages, currentP }) => {
                     else return { currenPage: 1, categories: el?.id };
                   });
 
-                  router.push(
-                    {
-                      pathname: "/blog",
-                      query: {
-                        categories: el?.id,
-                        page: 1,
-                      },
-                    }
-                    // { shallow: true }
-                  );
+                  router.push({
+                    pathname: "/blog",
+                    query: {
+                      categories: el?.id,
+                      page: 1,
+                    },
+                  });
                 }}
               >
                 {el?.name}
@@ -251,6 +229,20 @@ export async function getServerSideProps(context) {
   const category = await getCategories(locale); //categorie nella lingua attuale
   // const media = await getMedia();
 
+  let obj;
+  switch (locale) {
+    case "it":
+      obj = translationIT;
+      break;
+
+    case "en":
+      obj = translationEN;
+      break;
+    default:
+      obj = translationIT;
+      break;
+  }
+
   return {
     props: {
       post: paginationTrim,
@@ -259,6 +251,7 @@ export async function getServerSideProps(context) {
       // media: media,
       // tags: tags,
       currentP: page,
+      blog: obj?.blog,
     },
   };
 }

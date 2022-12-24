@@ -6,7 +6,7 @@ import FooterLogo from "../../public/assets/logo_mobile2.png";
 import { useRouter } from "next/router";
 import translation from "../../public/locales/it/it.json";
 
-const Footer = ({ post }) => {
+const Footer = ({ translation }) => {
   const { locale } = useRouter();
   return (
     <>
@@ -18,52 +18,51 @@ const Footer = ({ post }) => {
             className="mr-4 w-[100px] h-[100px]"
           />
           <span>
-            Licensed Tour Guide in English
+            {translation?.footer?.[locale]?.Col1?.title}
             <br />
             P.Iva: 02436070508
           </span>
         </div>
         <div>
           <h6 className="footer-title text-[#2c395b] !opacity-100">
-            Lou On Tour
+            {translation?.footer?.[locale]?.Col2?.title}
           </h6>
           <Link href="/chiSono" className="link link-hover">
-            Chi Sono
+            {translation?.footer?.[locale]?.Col2?.row1}
           </Link>
           <Link href="/contatti" className="link link-hover">
-            Contatti
+            {translation?.footer?.[locale]?.Col2?.row2}
           </Link>
           <Link
             href="/contatti"
             className="link link-hover text-white  bg-[#FE6847] p-[0.3rem]"
           >
-            Collaborazioni
-          </Link>
-        </div>
-        <div>
-          <h6 className="footer-title text-[#2c395b] !opacity-100">Tours</h6>
-          {translation?.home?.map?.markers
-            ?.filter((el) => el?.desc)
-            .map((el, i) => (
-              <Link
-                className="hover:underline text-sm"
-                href={`/locations/${el?.title}`}
-                key={i}
-              >
-                {el?.title}
-              </Link>
-            ))}
-        </div>
-        <div>
-          <h6 className="footer-title text-[#2c395b] !opacity-100">Blog</h6>
-          <Link href="/blog">
-            {/* <p>{jsxPosts}</p> */}
-            Ultime News
+            {translation?.footer?.[locale]?.Col2?.row3}
           </Link>
         </div>
         <div>
           <h6 className="footer-title text-[#2c395b] !opacity-100">
-            Seguimi su
+            {translation?.footer?.[locale]?.Col3?.title}
+          </h6>
+          {translation?.menu?.[locale]?.map?.markers.map((el, i) => (
+            <Link
+              className="hover:underline text-sm"
+              href={`/locations/${el?.link}`}
+              key={i}
+            >
+              {el?.title}
+            </Link>
+          ))}
+        </div>
+        <div>
+          <h6 className="footer-title text-[#2c395b] !opacity-100">
+            {translation?.footer?.[locale]?.Col4?.title}
+          </h6>
+          <Link href="/blog"> {translation?.footer?.[locale]?.Col4?.row1}</Link>
+        </div>
+        <div>
+          <h6 className="footer-title text-[#2c395b] !opacity-100">
+            {translation?.footer?.[locale]?.Col5?.title}
           </h6>
           <div className="flex">
             <Link

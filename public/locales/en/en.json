@@ -918,5 +918,9 @@
       { "src": "/assets/aboutLou/lou38.jpg", "width": 1920, "height": 1080 },
       { "src": "/assets/aboutLou/lou39.jpg", "width": 900, "height": 1200 }
     ]
+  },
+  "blog": {
+    "title": "Curiosity in the world of archeology, art and much more",
+    "paragraph": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas nihil excepturi quibusdam itaque corrupti accusamus in, facilis incidunt. Esse sed magni natus ex, excepturi corporis blanditiis explicabo non mollitia officia."
   }
 }

@@ -77,43 +77,41 @@
   },
   "footer": {
     "it": {
-      "Col1": { "title": "Ubiquity", "location": "Europe" },
+      "Col1": { "title": " Licenza Guida Turistica in Inglese" },
       "Col2": {
-        "title": "Ubiquity",
-        "row1": "About",
-        "row2": "Privacy Policy"
+        "title": "Lou On Tour",
+        "row1": "Chi Siamo",
+        "row2": "Contatti",
+        "row3": "Collaborazioni"
       },
       "Col3": {
-        "title": "Aree Tematiche",
-        "row1": "Come Lavoriamo",
-        "row2": "Brand Identity",
-        "row3": "UX/UI"
+        "title": "Tours"
       },
       "Col4": {
-        "title": "Contatti",
-        "row1": "Contact Us",
-        "row2": "Linkedin",
-        "row3": "Facebook"
+        "title": "Blog",
+        "row1": "Ultime Notize"
+      },
+      "Col5": {
+        "title": "Seguimi su"
       }
     },
     "en": {
-      "Col1": { "title": "Ubiquity", "location": "Europe" },
+      "Col1": { "title": " Licensed Tour Guide in English" },
       "Col2": {
-        "title": "Ubiquity",
+        "title": "Lou On Tour",
         "row1": "About",
-        "row2": "Privacy Policy"
+        "row2": "Contacts",
+        "row3": "Collaborations"
       },
       "Col3": {
-        "title": "Thematic areas",
-        "row1": "How We Work",
-        "row2": "Brand Identity",
-        "row3": "UX/UI"
+        "title": "Tours"
       },
       "Col4": {
-        "title": "Contacts",
-        "row1": "Contact Us",
-        "row2": "Linkedin",
-        "row3": "Facebook"
+        "title": "Blog",
+        "row1": "Last News"
+      },
+      "Col5": {
+        "title": "Follow me on"
       }
     }
   }
