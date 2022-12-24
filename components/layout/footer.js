@@ -77,17 +77,28 @@ const Footer = ({ post }) => {
             Seguimi su
           </h6>
           <div className="flex">
-            <Link href="/contact" className="mr-4">
+            <Link
+              href="https://www.facebook.com/luisa.quaglia.tourguide"
+              target="_blank"
+              className="mr-4"
+            >
               <Icon icon="entypo-social:facebook" color="#FE6847" width="25" />
             </Link>
-            <Link href="/contact" className="mr-4">
+            <Link
+              href="https://www.instagram.com/luisatourguide__/"
+              target="_blank"
+              className="mr-4"
+            >
               <Icon
                 icon="akar-icons:instagram-fill"
                 color="#FE6847"
                 width="25"
               />
             </Link>
-            <Link href="/contact" className="">
+            <Link
+              href="https://www.tiktok.com/@luisatourguide?is_from_webapp=1&sender_device=pc"
+              target="_blank"
+            >
               <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />
             </Link>
           </div>
