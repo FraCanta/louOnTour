@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Spinner from "./spinner";
 import Image from "next/image";
 
@@ -20,7 +20,6 @@ const GalleryImage = ({ url, item, handleModal }) => {
         alt="foto"
         width={150}
         height={150}
-        // onClick={() => handleModal(item)}
         onLoadingComplete={() => {
           setImgSpinner(false);
         }}
