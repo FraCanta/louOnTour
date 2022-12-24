@@ -9,11 +9,11 @@ const BackToTop = () => {
 
   function scrollFunction() {
     if (
-      document.body.scrollTop > 20 ||
-      document.documentElement.scrollTop > 20
+      document.body.scrollTop > 200 ||
+      document.documentElement.scrollTop > 200
     ) {
       setButtonState(
-        "fixed z-10 inline-block p-3 bg-white text-[#E3494D] font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#E3494D] hover:text-white hover:shadow-lg focus:bg-[#E3494D] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#E3494D] active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5"
+        "fixed z-10 inline-block p-3 bg-white text-[#E3494D] font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#FE6847] hover:text-white hover:shadow-lg focus:bg-[#FE6847] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#E3494D] active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5"
       );
     } else {
       setButtonState("hidden");
@@ -50,5 +50,4 @@ const BackToTop = () => {
     </div>
   );
 };
-BackToTop.layout = "L1";
 export default BackToTop;
