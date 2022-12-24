@@ -1,6 +1,6 @@
 export default function Spinner() {
   return (
-    <span className="spinner-wrapper h-full w-full flex justify-center items-center absolute inset-0">
+    <span className="spinner h-full w-full flex justify-center items-center absolute inset-0">
       {/* <svg
         className="animate-spin h-5 w-5 mr-3 bg-red-400 "
         viewBox="0 0 24 24"

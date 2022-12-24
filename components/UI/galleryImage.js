@@ -6,15 +6,15 @@ const GalleryImage = ({ url, item, handleModal }) => {
   const [imgSpinner, setImgSpinner] = useState(true);
 
   return (
-    <div className="gallery-item">
+    <div className="gallery-item relative">
       <div
-        className={`spinner-overlay h-full w-full relative `}
+        className="h-full w-full"
         style={imgSpinner ? {} : { display: "none" }}
       >
         <Spinner />
       </div>
       <Image
-        className="gallery-image "
+        className="gallery-image"
         priority
         src={url}
         alt="foto"

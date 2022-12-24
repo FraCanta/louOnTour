@@ -140,7 +140,7 @@ body {
   height: 50px;
 }
 .spinner .path {
-  stroke: #2c395b;
+  stroke: #a5a7ad;
   stroke-linecap: round;
   -webkit-animation: dash 1.5s ease-in-out infinite;
   animation: dash 1.5s ease-in-out infinite;
