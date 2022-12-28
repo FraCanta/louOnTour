@@ -24,13 +24,12 @@
   -webkit-box-orient: vertical;
 }
 
-
 .box-folded__trigger {
   display: block;
   position: absolute;
   bottom: 0;
   cursor: pointer;
-  color: #cb8607;
+  color: #fe6847;
 }
 
 .box-folded--expanded .box-folded__content {
