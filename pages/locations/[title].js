@@ -32,7 +32,7 @@ export default function Tours({ city, others, banner, correlati }) {
           </h2>
         </div>
         <div className="w-full lg:w-1/2 p-4 lg:p-8">
-          <p className="text-base sm:text-xl  mt-0 sm:mt-8 mb-4 text-[#2C395B]">
+          <p className="text-base sm:text-lg  mt-0 sm:mt-8 mb-4 text-[#2C395B]">
             {city?.descrizione}
           </p>
         </div>
@@ -48,11 +48,11 @@ export default function Tours({ city, others, banner, correlati }) {
               <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
                 {city?.half}
               </h3>
-              <ul className="text-xl md:text-lg font-medium mt-2 leading-10  text-[#2C395B] pb-10 elenco_tours">
+              <ul className="text-xl md:text-base font-medium mt-2 leading-10  text-[#2C395B] pb-10 elenco_tours">
                 {city?.half_elenco?.map((el, i) => (
                   <li
                     key={i}
-                    className="text-base sm:text-xl  mt-4 sm:mt-8 text-[#2C395B]"
+                    className="text-base sm:text-[1.05rem]  mt-4 sm:mt-8 text-[#2C395B]"
                   >
                     <div dangerouslySetInnerHTML={{ __html: el }}></div>
                   </li>
@@ -74,11 +74,11 @@ export default function Tours({ city, others, banner, correlati }) {
               <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
                 {city?.full}
               </h3>
-              <ul className="text-xl md:text-lg font-medium mt-2 leading-10 text-[#2C395B] pb-8 elenco_tours">
+              <ul className="text-xl md:text-base font-medium mt-2 leading-10 text-[#2C395B] pb-8 elenco_tours">
                 {city?.full_elenco?.map((el, i) => (
                   <li
                     key={i}
-                    className="text-base sm:text-xl  mt-0 sm:mt-8 text-[#2C395B] pb-2"
+                    className="text-base sm:text-[1.05rem]  mt-0 sm:mt-8 text-[#2C395B] pb-2"
                   >
                     <div dangerouslySetInnerHTML={{ __html: el }}></div>
                   </li>

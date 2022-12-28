@@ -26,6 +26,13 @@
     background-size: cover;
   }
 
+  .line-clamp2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+  }
+
   @media screen and (min-width: 300px) and (max-width: 920px) {
     .bgImage {
       height: 38vh;

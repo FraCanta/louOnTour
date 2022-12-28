@@ -12,12 +12,14 @@ const Footer = ({ translation }) => {
     <>
       <footer className="footer p-4 xl:p-10  bg-white text-[#232f37]  text-base-content border-t-2 border-b-2 border-b-[#2c395b]">
         <div>
-          <Image
-            src={FooterLogo}
-            alt="LouLogo"
-            className="mr-4 w-[100px] h-[100px]"
-          />
-          <span>
+          <Link href="/">
+            <Image
+              src={FooterLogo}
+              alt="LouLogo"
+              className="mr-4 w-[100px] h-[100px]"
+            />
+          </Link>
+          <span className="text-[#232f37] font-regular">
             {translation?.footer?.[locale]?.Col1?.title}
             <br />
             P.Iva: 02436070508
@@ -27,10 +29,10 @@ const Footer = ({ translation }) => {
           <h6 className="footer-title text-[#2c395b] !opacity-100">
             {translation?.footer?.[locale]?.Col2?.title}
           </h6>
-          <Link href="/chiSono" className="link link-hover">
+          <Link href="/chiSono" className="link link-hover text-[#898989]">
             {translation?.footer?.[locale]?.Col2?.row1}
           </Link>
-          <Link href="/contatti" className="link link-hover">
+          <Link href="/contatti" className="link link-hover text-[#898989]">
             {translation?.footer?.[locale]?.Col2?.row2}
           </Link>
           <Link
@@ -46,7 +48,7 @@ const Footer = ({ translation }) => {
           </h6>
           {translation?.menu?.[locale]?.map?.markers.map((el, i) => (
             <Link
-              className="hover:underline text-sm"
+              className="hover:underline text-sm text-[#898989]"
               href={`/locations/${el?.link}`}
               key={i}
             >
@@ -58,7 +60,10 @@ const Footer = ({ translation }) => {
           <h6 className="footer-title text-[#2c395b] !opacity-100">
             {translation?.footer?.[locale]?.Col4?.title}
           </h6>
-          <Link href="/blog"> {translation?.footer?.[locale]?.Col4?.row1}</Link>
+          <Link href="/blog" className="text-[#898989]">
+            {" "}
+            {translation?.footer?.[locale]?.Col4?.row1}
+          </Link>
         </div>
         <div>
           <h6 className="footer-title text-[#2c395b] !opacity-100">
