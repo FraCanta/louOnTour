@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 const DynamicHeroCities = dynamic(() =>
   import("../../components/UI/heroCities")
 );
-import locations from "../../public/locales/it/it.json";
+// import locations from "../../public/locales/it/it.json"; ???????
 // const DynamicGalleryTours = dynamic(() =>
 //   import("../../components/UI/galleryTours")
 // );
@@ -127,10 +127,9 @@ export async function getStaticProps(context) {
   const others = arr?.map((el) => {
     return {
       title: el,
-      img: locations?.tours?.locationTours?.[el]?.img,
+      img: obj?.tours?.locationTours?.[el]?.img,
       link: `/locations/${el}`,
-      // translatedTitle:
-      //   locations?.tours?.locationTours?.[el]?.translatedTitle || null,
+      translatedTitle: obj?.tours?.locationTours?.[el]?.translatedTitle || null,
     };
   });
   const correlati = obj?.tours?.corr;
@@ -145,8 +144,22 @@ export async function getStaticProps(context) {
   };
 }
 
-export async function getStaticPaths({ locales }) {
-  const cities = locations?.tours?.locationTours;
+export async function getStaticPaths({ locale }) {
+  let obj;
+
+  switch (locale) {
+    case "it":
+      obj = translationIT;
+      break;
+
+    case "en":
+      obj = translationEN;
+      break;
+    default:
+      obj = translationIT;
+      break;
+  }
+  const cities = obj?.tours?.locationTours;
   const arr = Object.keys(cities); // Array dei tours
 
   const pathEn = arr?.map((el) => {

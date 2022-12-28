@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Lou from "../../public/assets/logo4.png";
+import Lou from "../../public/assets/logo4_small_2.webp";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 

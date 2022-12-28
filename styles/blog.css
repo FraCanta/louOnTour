@@ -71,7 +71,8 @@ iframe {
 }
 
 .btn {
-  border-color: none !important;
+  border-color: transparent !important;
+  color: #2c395b;
   background-color: transparent !important;
   border-width: 0px !important;
   border-radius: 10px !important;

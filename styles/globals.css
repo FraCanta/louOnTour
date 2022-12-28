@@ -22,7 +22,8 @@
   }
 
   .grain {
-    background-image: url(../public/assets/noise.7f2f5230.png);
+    background-image: url(../public/assets/noise_2.webp);
+    background-size: cover;
   }
 
   @media screen and (min-width: 300px) and (max-width: 920px) {
