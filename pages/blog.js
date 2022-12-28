@@ -67,7 +67,7 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
         </div>
       </div>
       <div className="container mx-auto pt-5 p-2 xl:p-8">
-        <div className="tabs !justify-center hidden lg:flex py-8">
+        <div className="tabs !justify-center  hidden lg:flex py-8">
           {category.map((el, i) => (
             <a
               key={i}
@@ -95,8 +95,8 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
               }}
               className={`${
                 filterObj?.categories !== el?.id
-                  ? "tab tab-xs lg:tab-lg tab-lifted "
-                  : "tav tab-lg tab-lifted tab-active"
+                  ? "tab tab-xs lg:tab-lg tab-lifted text-[#2c395b] "
+                  : "tab tab-lg tab-lifted tab-active"
               }  `}
             >
               {el?.name}

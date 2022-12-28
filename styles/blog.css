@@ -82,6 +82,13 @@ iframe {
   background-color: #fe6847 !important;
 }
 
+.tab-lifted.tab-active {
+  border-left-color: #2c395b !important;
+  border-top-color: #2c395b !important;
+  border-right-color: #2c395b !important;
+  border-bottom-color: #2c395b !important;
+}
+
 /* blog section */
 .hero h2,
 .hero p {
