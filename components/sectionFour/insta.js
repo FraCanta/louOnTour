@@ -22,6 +22,7 @@ const Insta = ({ translation }) => {
               src={Lou}
               className="rounded-box  !w-[300px] !h-[300px]"
               alt=""
+              quality={70}
             />
           </div>
           <div className="carousel-item">
@@ -29,6 +30,7 @@ const Insta = ({ translation }) => {
               src={Lou2}
               className="rounded-box !w-[300px] !h-[300px]"
               alt=""
+              quality={70}
             />
           </div>
           <div className="carousel-item">
@@ -36,6 +38,7 @@ const Insta = ({ translation }) => {
               src={Lou3}
               className="rounded-box !w-[300px] !h-[300px]"
               alt=""
+              quality={70}
             />
           </div>
           <div className="carousel-item">
@@ -43,6 +46,7 @@ const Insta = ({ translation }) => {
               src={Lou4}
               className="rounded-box !w-[300px] !h-[300px]"
               alt=""
+              quality={70}
             />
           </div>
         </div>

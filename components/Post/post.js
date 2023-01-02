@@ -22,6 +22,7 @@ export default function Post({ post, featuredMedia }) {
             alt={featuredMedia?.["alt_text"] || "LouOnTour image"}
             className="w-full h-[250px] object-cover rounded-t-lg object-top "
             priority
+            quality={70}
           />
         </figure>
       </Link>
