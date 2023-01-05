@@ -100,7 +100,10 @@ const Footer = ({ translation }) => {
       <footer className="footer footer-center  p-2 !bg-[#2c395b]  grain text-base-content ">
         <div>
           <p className=" text-white  !opacity-100">
-            Copyright © 2022 - All rights reserved by Lou On Tour
+            Copyright © 2023 - All rights reserved by Lou On Tour - Powered by{" "}
+            <Link href="/" target="_blank" className="underline">
+              Ubiquity - web creative lab
+            </Link>
           </p>
         </div>
       </footer>
