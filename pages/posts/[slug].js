@@ -60,7 +60,7 @@ export default function PostPage({
           className="text-center py-8 text-3xl 2xl:text-5xl text-[#2C395B] l-article"
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         ></h1>
-        <figure>
+        {/* <figure>
           <Image
             src={
               featuredMedia?.["media_details"]?.sizes?.full?.["source_url"] ||
@@ -72,7 +72,7 @@ export default function PostPage({
             className="w-full h-[550px] object-cover rounded-lg py-8 object-top"
             priority
           />
-        </figure>
+        </figure> */}
 
         <div
           className="text-[#2C395B] text-base lg:text-xl l-article"
