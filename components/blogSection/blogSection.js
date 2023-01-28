@@ -20,12 +20,12 @@ const BlogSection = ({ post, featuredMedia, tags }) => {
           <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium  md:leading-none lg:leading-none mb-10">
             Ultime News
           </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl   mb-8 ">
+          {/* <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl   mb-8 ">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci
             eligendi, aspernatur aperiam itaque perspiciatis vero consectetur
             rerum quae, illum ducimus quos ipsum placeat saepe illo laboriosam
             modi laborum nobis facere.{" "}
-          </p>
+          </p> */}
         </div>
         <div className="flex w-full flex-col lg:flex-row">{jsxPosts}</div>
         <Link href="/blog">
