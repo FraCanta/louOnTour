@@ -250,6 +250,11 @@
     "banner": {
       "text": "Customize your tour experience: Art, History, Archaeology, Folklore and Culinary Tradition...which aspects interest you most? ",
       "button": "contact me"
+    },
+    "blogSection": {
+      "subTitle": "Blog",
+      "title": "Last News",
+      "button": "Read more"
     }
   },
   "tours": {
@@ -916,7 +921,6 @@
     ]
   },
   "blog": {
-    "title": "Curiosity in the world of archeology, art and much more",
-    "paragraph": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas nihil excepturi quibusdam itaque corrupti accusamus in, facilis incidunt. Esse sed magni natus ex, excepturi corporis blanditiis explicabo non mollitia officia."
+    "title": "News"
   }
 }

@@ -37,7 +37,7 @@ export default function Home({ translation, post, category }) {
       <DynamicMap translation={translation?.map} />
       <DynamicAboutMe translation={translation?.about} />
       <DynamicInsta translation={translation?.socialLou} />
-      <BlogSection post={post} />
+      <BlogSection post={post} translation={translation?.blogSection} />
 
       <DynamicBanner translation={translation?.banner} />
     </div>

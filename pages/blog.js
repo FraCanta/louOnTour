@@ -61,9 +61,6 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
           <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#2c395b]">
             {blog?.title}
           </h2>
-          <p className="text-base sm:text-xl   mt-8 mb-4 text-[#2c395b]">
-            {blog?.paragraph}
-          </p>
         </div>
       </div>
       <div className="container mx-auto pt-5 p-2 xl:p-8">

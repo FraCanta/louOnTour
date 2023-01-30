@@ -101,7 +101,11 @@ const Footer = ({ translation }) => {
         <div>
           <p className=" text-white  !opacity-100">
             Copyright © 2023 - All rights reserved by Lou On Tour - Powered by{" "}
-            <Link href="/" target="_blank" className="underline">
+            <Link
+              href="https://ubiquity.vercel.app/"
+              target="_blank"
+              className="underline"
+            >
               Ubiquity - web creative lab
             </Link>
           </p>
