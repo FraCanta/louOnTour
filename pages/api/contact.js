@@ -3,9 +3,9 @@ import nodemailer from "nodemailer";
 export default async function mailer(req, res) {
   const { name, email, message } = req.body;
   const transporter = nodemailer.createTransport({
-    host: "smtp.louontour.it",
-    port: 25,
-    secure: false,
+    host: "smtp.ionos.it",
+    port: 993,
+    secure: true,
     auth: {
       user: "info@louontour.it",
       pass: "Mailweb.lq_79!",
