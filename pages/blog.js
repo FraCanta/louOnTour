@@ -55,14 +55,14 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-11/12 min-h-[30vh] container mx-auto flex flex-col lg:flex-row py-6 xl:py-8">
-        {/* <div className="w-full ">
+      {/* <div className="w-11/12 min-h-[30vh] container mx-auto flex flex-col lg:flex-row py-6 xl:py-8">
+        <div className="w-full ">
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Blog</h4>
           <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#2c395b]">
             {blog?.title}
           </h2>
-        </div> */}
-      </div>
+        </div>
+      </div> */}
       <div className="container mx-auto pt-5 p-2 xl:p-8">
         <div className="tabs !justify-center  hidden lg:flex py-8">
           {category.map((el, i) => (
