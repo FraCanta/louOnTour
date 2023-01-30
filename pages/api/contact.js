@@ -4,7 +4,7 @@ export default async function mailer(req, res) {
   const { name, email, message } = req.body;
   const transporter = nodemailer.createTransport({
     host: "smtp.ionos.it",
-    port: 993,
+    port: 587,
     secure: true,
     auth: {
       user: "info@louontour.it",
