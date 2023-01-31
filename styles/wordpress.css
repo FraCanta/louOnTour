@@ -7,6 +7,10 @@
   .image-div {
     flex-direction: column;
   }
+
+  .image-div img {
+    width: 100%;
+  }
   .image {
     width: 100%;
   }
