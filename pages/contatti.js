@@ -19,7 +19,7 @@ const Contact = ({ translation }) => {
         <div className="w-full ">
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Contact</h4>
           <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#2C395B]">
-            Parliamo insieme del Tour che ti piacerebbe fare con me!
+            {translation?.title}
           </h2>
         </div>
       </div>
