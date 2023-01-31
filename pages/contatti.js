@@ -47,7 +47,7 @@ export async function getStaticProps(locale) {
 
   return {
     props: {
-      translation: obj,
+      translation: obj?.contatti,
     },
     revalidate: 60,
   };
