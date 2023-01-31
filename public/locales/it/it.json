@@ -921,6 +921,12 @@
   },
   "contatti": {
     "title": "Parliamo insieme del Tour che ti piacerebbe fare con me!",
+    "form": "Scrivimi quale tour hai scelto e ti contatterò presto!",
+    "formTitles": {
+      "nome": "Nome",
+      "email": "E-mail",
+      "txt": "Messaggio"
+    },
     "head": {
       "title": "Lou On Tour - Contatti"
     }

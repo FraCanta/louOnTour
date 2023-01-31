@@ -23,7 +23,7 @@ const Contact = ({ translation }) => {
           </h2>
         </div>
       </div>
-      <DynamicContactForm />
+      <DynamicContactForm translation={translation} />
     </>
   );
 };

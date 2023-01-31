@@ -925,6 +925,12 @@
   },
   "contatti": {
     "title": "Let's talk together about the Tour you would like to do with me!",
+    "form": "Write me which tour you have chosen and I will contact you soon!",
+    "formTitles": {
+      "nome": "Name",
+      "email": "E-mail",
+      "txt": "Message"
+    },
     "head": {
       "title": "Lou On Tour - Contacts"
     }

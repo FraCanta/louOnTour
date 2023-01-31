@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactCurvedText from "react-curved-text";
 
-const ContactForm = () => {
+const ContactForm = ({ translation }) => {
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
@@ -85,11 +85,11 @@ const ContactForm = () => {
             onSubmit={(e) => onSubmitForm(e)}
           >
             <p className="ml-20 text-[#2C395B] font-bold">
-              Scrivimi quale tour hai scelto e ti contatterò presto!
+              {translation?.form}
             </p>
             <div className="mt-4">
               <label htmlFor="name" className="input_name mb-2 ">
-                Nome
+                {translation?.formTitles?.nome}
               </label>
               <input
                 id="name"
@@ -102,7 +102,7 @@ const ContactForm = () => {
               />{" "}
             </div>
             <div className="mt-4">
-              <label htmlFor="email">E-mail </label>
+              <label htmlFor="email"> {translation?.formTitles?.email}</label>
               <input
                 id="email"
                 type="email"
@@ -114,7 +114,7 @@ const ContactForm = () => {
               />
             </div>
             <div className="mt-4">
-              <label htmlFor="message">Messaggio</label>
+              <label htmlFor="message"> {translation?.formTitles?.txt}</label>
               <textarea
                 id="message"
                 type="text"
