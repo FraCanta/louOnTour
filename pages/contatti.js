@@ -11,7 +11,7 @@ const Contact = ({ translation }) => {
   return (
     <>
       <Head>
-        <title>{translation?.contatti?.head?.title}</title>
+        <title>{translation?.head?.title}</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
