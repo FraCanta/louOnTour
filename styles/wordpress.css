@@ -1,0 +1,13 @@
+.image-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .image-div {
+    flex-direction: column;
+  }
+  .image {
+    width: 100%;
+  }
+}

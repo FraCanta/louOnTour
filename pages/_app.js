@@ -7,6 +7,7 @@ import "../styles/gallery.css";
 import "../styles/form.css";
 import "../styles/testimonials.css";
 import "../styles/blog.css";
+import "../styles/wordpress.css";
 
 import dynamic from "next/dynamic";
 const DynamicLayout = dynamic(() => import("../components/layout/layout"));
