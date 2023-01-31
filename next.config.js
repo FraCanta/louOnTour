@@ -66,7 +66,7 @@ module.exports = withPlugins([
   },
   {
     images: {
-      formats: ["image/avif", "image/webp"],
+      formats: ["image/avif", "image/webp", "image/jpg"],
       domains: ["loublog.louontour.it"],
     },
   },
