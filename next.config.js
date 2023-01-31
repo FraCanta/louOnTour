@@ -13,7 +13,7 @@ const ContentSecurityPolicy = `
   child-src 'self' https://louontour.it https://www.instagram.com/ https://www.youtube-nocookie.com/ https://www.google.com/ https://www.youtube.com/;
   style-src 'self' 'unsafe-inline'  https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css  data:;
   font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ 'unsafe-inline' data:;
-  img-src 'self' https://s.w.org/ https://loublog.louontour.it/wp-content/uploads/ https://static.xx.fbcdn.net/ data: blob:;
+  img-src 'self' https://louontour.it https://s.w.org/ https://loublog.louontour.it/wp-content/uploads/ https://static.xx.fbcdn.net/ data: blob:;
   
 `;
 const securityHeaders = [
