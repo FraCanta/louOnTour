@@ -922,5 +922,10 @@
   },
   "blog": {
     "title": "News"
+  },
+  "contatti": {
+    "head": {
+      "title": "Lou On Tour - Contacts"
+    }
   }
 }
