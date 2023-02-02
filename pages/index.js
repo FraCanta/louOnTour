@@ -35,6 +35,10 @@ export default function Home({ translation, post, category }) {
         <meta property="og:url" content="https://www.louontour.it/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Lou On Tour - Guida Turistica" />
+        <meta
+          property="og:description"
+          content="Guida Turistica abilitata in italiano e in inglese. Propongo tour guidati a Firenze, Volterra, Siena e la sua provincia. Sono a tua disposizione per disegnare il tuo tour su misura, secondo i tuoi gusti e le tue esigenze."
+        />
 
         <meta
           property="og:image"
