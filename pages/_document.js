@@ -21,23 +21,25 @@ export default function Document() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
         ></link>
 
-        <meta name="application-name" content="Lou On Tour - Guida Turistica" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta
-          name="apple-mobile-web-app-title"
-          content="Lou On Tour - Guida Turistica"
-        />
-        <meta name="description" content="Lou On Tour - Guida Turistica" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-config" content="/icons/browserconfig.xml" />
-        <meta name="msapplication-TileColor" content="#2B5797" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="theme-color" content="#ffff" />
+        <title>Lou On Tour - Guida Turistica</title>
+        <meta name="description" content="Guida Turistica" />
+
+        <meta property="og:url" content="https://www.louontour.it/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Lou On Tour - Guida Turistica" />
+        <meta property="og:description" content="Guida Turistica" />
         <meta
           property="og:image"
-          // content="https://ubiquity.vercel.app/home.png"
+          content="https://louontour.it/assets/preview-05.png"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="louontour.it" />
+        <meta property="twitter:url" content="https://www.louontour.it/" />
+        <meta name="twitter:title" content="Lou On Tour - Guida Turistica" />
+        <meta name="twitter:description" content="Guida Turistica" />
+        <meta
+          name="twitter:image"
           content="https://louontour.it/assets/preview-05.png"
         />
       </Head>
