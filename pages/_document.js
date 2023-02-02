@@ -35,6 +35,11 @@ export default function Document() {
         <meta name="msapplication-TileColor" content="#2B5797" />
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#ffff" />
+        <meta
+          property="og:image"
+          // content="https://ubiquity.vercel.app/home.png"
+          content="https://louontour.it/assets/preview-05.png"
+        />
       </Head>
 
       <body>
