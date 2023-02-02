@@ -19,7 +19,7 @@ export default function Document() {
 
         <meta
           property="og:image"
-          content="https://louontour.it/assets/preview-05.png"
+          content="https://louontour.it/assets/og-img.png"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -32,7 +32,7 @@ export default function Document() {
         />
         <meta
           name="twitter:image"
-          content="https://louontour.it/assets/preview-05.png"
+          content="https://louontour.it/assets/og-img.png"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
