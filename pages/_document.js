@@ -27,7 +27,10 @@ export default function Document() {
         <meta property="og:url" content="https://www.louontour.it/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Lou On Tour - Guida Turistica" />
-        <meta property="og:description" content="Guida Turistica" />
+        <meta
+          property="og:description"
+          content="Guida Turistica abilitata in italiano e in inglese. Propongo tour guidati a Firenze, Volterra, Siena e la sua provincia. Sono a tua disposizione per disegnare il tuo tour su misura, secondo i tuoi gusti e le tue esigenze."
+        />
         <meta
           property="og:image"
           content="https://louontour.it/assets/preview-05.png"
@@ -37,7 +40,10 @@ export default function Document() {
         <meta property="twitter:domain" content="louontour.it" />
         <meta property="twitter:url" content="https://www.louontour.it/" />
         <meta name="twitter:title" content="Lou On Tour - Guida Turistica" />
-        <meta name="twitter:description" content="Guida Turistica" />
+        <meta
+          name="twitter:description"
+          content="Guida Turistica abilitata in italiano e in inglese. Propongo tour guidati a Firenze, Volterra, Siena e la sua provincia. Sono a tua disposizione per disegnare il tuo tour su misura, secondo i tuoi gusti e le tue esigenze."
+        />
         <meta
           name="twitter:image"
           content="https://louontour.it/assets/preview-05.png"
