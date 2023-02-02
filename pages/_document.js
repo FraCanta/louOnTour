@@ -40,7 +40,7 @@ export default function Document() {
         <meta name="twitter:description" content="Guida Turistica" />
         <meta
           name="twitter:image"
-          content="https://louontour.it/assets/preview-05.png"
+          content="https://louontour.it/assets/og-img.png"
         />
       </Head>
 
