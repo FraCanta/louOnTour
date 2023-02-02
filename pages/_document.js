@@ -30,7 +30,7 @@ export default function Document() {
         <meta property="og:description" content="Guida Turistica" />
         <meta
           property="og:image"
-          content="https://louontour.it/assets/preview-05.png"
+          content="https://louontour.it/assets/og-img.png"
         />
 
         <meta name="twitter:card" content="summary_large_image" />
