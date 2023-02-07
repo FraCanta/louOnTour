@@ -16,7 +16,7 @@ const Whatsapp = () => {
       document.documentElement.scrollTop > 20
     ) {
       setButtonState(
-        "fixed z-10 inline-block p-3 bg-[#4BBFDC] text-[#6257ff] font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#E3494D] hover:text-white hover:shadow-lg focus:bg-[#6257ff] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#6257ff] active:shadow-lg transition duration-150 ease-in-out bottom-5 left-5"
+        "fixed z-10 inline-block p-3 bg-[#4BBFDC] text-[#6257ff] font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[#E3494D] hover:text-white hover:shadow-lg focus:bg-[#6257ff] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#6257ff] active:shadow-lg transition duration-150 ease-in-out bottom-16 left-2"
       );
       clearTimeout(timer.current); //resetto il vecchio timeout se ho già scrollato
       timer.current = setTimeout(() => {
