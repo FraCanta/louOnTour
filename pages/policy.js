@@ -11,7 +11,9 @@ const Policy = () => {
     <>
       {locale === "it" ? (
         <div className="container mx-auto pt-5 p-2 xl:p-8 text-black">
-          <h1>Informativa sulla privacy</h1>
+          <h1 className="text-3xl md:text-[52px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-6">
+            Informativa sulla privacy
+          </h1>
           <p>Data di entrata in vigore: 07-02-2023</p>
           <p>Ultimo aggiornamento: 07-02-2023</p>
           <p>
@@ -46,8 +48,12 @@ const Policy = () => {
             sito web https://www.louontour.it/.
           </p>
 
-          <h3>Raccolta e utilizzo delle tue informazioni personali</h3>
-          <h4>Informazioni raccolte</h4>
+          <h3 className="text-3xl md:text-[32px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] ">
+            Raccolta e utilizzo delle tue informazioni personali
+          </h3>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B]">
+            Informazioni raccolte
+          </h4>
           <p>
             Quando utilizzi il nostro Servizio, ti verrà richiesto di fornirci
             delle informazioni personali utilizzate per contattarti o
@@ -73,7 +79,9 @@ const Policy = () => {
             <li>Ora e data di accesso</li>
           </ul>
 
-          <h4>Come raccogliamo le informazioni</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Come raccogliamo le informazioni
+          </h4>
           <p>
             https://www.louontour.it/ raccoglie e riceve informazioni da parte
             tua nelle seguenti modalità:{" "}
@@ -93,7 +101,9 @@ const Policy = () => {
             conservate a tempo indeterminato.{" "}
           </p>
 
-          <h4>Come usiamo le tue informazioni</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Come usiamo le tue informazioni
+          </h4>
           <p>
             https://www.louontour.it/ può utilizzare le tue informazioni per i
             seguenti scopi:{" "}
@@ -113,7 +123,9 @@ const Policy = () => {
             </li>
           </ul>
 
-          <h4>Come condividiamo le tue informazioni</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-45">
+            Come condividiamo le tue informazioni
+          </h4>
           <p>
             Luisa condividerà le tue informazioni, se del caso, nelle seguenti
             situazioni:{" "}
@@ -125,7 +137,9 @@ const Policy = () => {
             </li>
           </ul>
 
-          <h4>Condivisione con terze parti</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Condivisione con terze parti
+          </h4>
           <p>
             Qualsiasi terza parte con cui condividiamo le tue informazioni deve
             rivelare lo scopo per cui intende utilizzare le tue informazioni.
@@ -168,7 +182,9 @@ const Policy = () => {
             </li>
           </ul>
 
-          <h4>Cookie</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Cookie
+          </h4>
           <p>
             I cookie sono piccoli file di testo che vengono collocati sul tuo
             computer dai siti web che visiti. I siti web utilizzano i cookie per
@@ -192,16 +208,18 @@ const Policy = () => {
             <p data-cookiereport="true">
               Puoi modificare il tuo consenso all&apos;uso dei cookie qui sotto.{" "}
             </p>
-            <Script
+            {/* <Script
               type="text/javascript"
               charset="UTF-8"
               data-cookiescriptreport="report"
               data-cs-lang="it"
               src="//report.cookie-script.com/r/952906ba33559231ca8c72a6268c0ddb.js"
-            />
+            /> */}
           </div>
 
-          <h4>Sicurezza</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Sicurezza
+          </h4>
           <p>
             La sicurezza delle tue informazioni è importante per noi.
             https://www.louontour.it/ utilizza una serie di misure di sicurezza
@@ -219,7 +237,9 @@ const Policy = () => {
             l&apos;adeguatezza di tali pratiche.{" "}
           </p>
 
-          <h4>Contatti</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Contatti
+          </h4>
           <p>
             Per qualsiasi domanda, puoi contattarci attraverso i seguenti
             canali:
@@ -231,7 +251,9 @@ const Policy = () => {
         </div>
       ) : (
         <div className="container mx-auto pt-5 p-2 xl:p-8 text-black">
-          <h1>Privacy Policy</h1>
+          <h1 className="text-3xl md:text-[52px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-6">
+            Privacy Policy
+          </h1>
           <p>Effective date: 2023-02-07</p>
           <p>Updated on: 2023-02-07</p>
           <p>
@@ -264,8 +286,12 @@ const Policy = () => {
             https://www.louontour.it/ website
           </p>
 
-          <h3>Collection and Use of Your Personal Information</h3>
-          <h4>Information We Collect</h4>
+          <h3 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Collection and Use of Your Personal Information
+          </h3>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Information We Collect
+          </h4>
           <p>
             When using our Service, you will be prompted to provide us with
             personal information used to contact or identify you.
@@ -289,7 +315,9 @@ const Policy = () => {
             <li>Time and date of access</li>
           </ul>
 
-          <h4>How We Collect Information</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            How We Collect Information
+          </h4>
           <p>
             https://www.louontour.it/ collects and receives information from you
             in the following manner:{" "}
@@ -308,7 +336,9 @@ const Policy = () => {
             you personally may be stored indefinitely.{" "}
           </p>
 
-          <h4>How We Use Your Information</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            How We Use Your Information
+          </h4>
           <p>
             https://www.louontour.it/ may use your information for the following
             purposes:{" "}
@@ -327,7 +357,9 @@ const Policy = () => {
             </li>
           </ul>
 
-          <h4>How We Share Your Information</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            How We Share Your Information
+          </h4>
           <p>
             Luisa will share your information, when applicable, in the following
             situations:{" "}
@@ -339,7 +371,9 @@ const Policy = () => {
             </li>
           </ul>
 
-          <h4>Third-party Sharing</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Third-party Sharing
+          </h4>
           <p>
             Any third party we share your information with must disclose the
             purpose for which they intend to use your information. They must
@@ -378,7 +412,9 @@ const Policy = () => {
             </li>
           </ul>
 
-          <h4>Cookies</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Cookies
+          </h4>
           <p>
             Cookies are small text files that are placed on your computer by
             websites that you visit. Websites use cookies to help users navigate
@@ -400,16 +436,18 @@ const Policy = () => {
             <p data-cookiereport="true">
               You can change your consent to cookie usage below.{" "}
             </p>
-            <Script
+            {/* <Script
               type="text/javascript"
               charset="UTF-8"
               data-cookiescriptreport="report"
               data-cs-lang="en"
               src="//report.cookie-script.com/r/952906ba33559231ca8c72a6268c0ddb.js"
-            />
+            /> */}
           </div>
 
-          <h4>Security</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Security
+          </h4>
           <p>
             Your information’s security is important to us.
             https://www.louontour.it/ utilizes a range of security measures to
@@ -426,7 +464,9 @@ const Policy = () => {
             practices.{" "}
           </p>
 
-          <h4>Contact Us</h4>
+          <h4 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
+            Contact Us
+          </h4>
           <p>
             For any questions, please contact us through the following methods:
           </p>
