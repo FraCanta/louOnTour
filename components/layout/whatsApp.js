@@ -37,7 +37,7 @@ const Whatsapp = () => {
           <Icon
             icon="bi:chat-dots-fill"
             color="white"
-            className="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px]  bg-blue "
+            className="w-[18px] h-[18px] lg:w-[28px] lg:h-[28px]  bg-blue "
           />
         </div>
       </Link>
