@@ -1,8 +1,10 @@
 const BASE_URL = "http://loublog.louontour.it/wp-json/wp/v2";
 
 export async function getPosts(lang) {
-  //   const postsRes = await fetch(BASE_URL + "/posts?page=" + page);
-  const postsRes = await fetch(BASE_URL + "/posts?_embed&per_page=100");
+  const postsRes = await fetch(BASE_URL + "/posts?_embed&per_page=100", {
+    cache: "force-cache",
+    revalidate: 900,
+  });
   const posts = await postsRes.json();
   const lngPost = posts.filter((p) => {
     if (!!lang) {
@@ -29,16 +31,20 @@ export async function getPosts(lang) {
 }
 // array di tutti i tags presenti
 export async function getTags() {
-  //   const postsRes = await fetch(BASE_URL + "/posts?page=" + page);
-  const tagsRes = await fetch(BASE_URL + "/tags?per_page=100");
+  const tagsRes = await fetch(BASE_URL + "/tags?per_page=100", {
+    cache: "force-cache",
+    revalidate: 900,
+  });
   const tags = await tagsRes.json();
   return tags;
 }
 
 // ricerca codice di un tag
 export async function getTagId(tag) {
-  //   const postsRes = await fetch(BASE_URL + "/posts?page=" + page);
-  const tagsRes = await fetch(BASE_URL + "/tags?per_page=100");
+  const tagsRes = await fetch(BASE_URL + "/tags?per_page=100", {
+    cache: "force-cache",
+    revalidate: 900,
+  });
   const tags = await tagsRes.json();
   const idLocale = (tags?.filter((el) => el?.name === tag))[0].id; //prendo l'id che corrisponde ad it nel database di wp
   return idLocale;
@@ -46,7 +52,10 @@ export async function getTagId(tag) {
 
 // Restituisce un array con tutti i tags relativi ad un post
 export async function getTagNameList(array) {
-  const tagsRes = await fetch(BASE_URL + "/tags?per_page=100");
+  const tagsRes = await fetch(BASE_URL + "/tags?per_page=100", {
+    cache: "force-cache",
+    revalidate: 900,
+  });
   const tags = await tagsRes.json();
   const objList = tags?.filter((el) => array?.includes(el?.id));
   const nameList = objList?.map((el) => el?.name);
@@ -61,7 +70,10 @@ export async function getPost(slug) {
 }
 
 export async function getMedia() {
-  const mediaRes = await fetch(BASE_URL + "/media");
+  const mediaRes = await fetch(BASE_URL + "/media", {
+    cache: "force-cache",
+    revalidate: 900,
+  });
 
   const media = await mediaRes.json();
   return media;
@@ -69,7 +81,10 @@ export async function getMedia() {
 
 // /wp/v2/categories per le categorie
 export async function getCategories(lang, onlyFull = true) {
-  const categoriesRes = await fetch(BASE_URL + "/categories");
+  const categoriesRes = await fetch(BASE_URL + "/categories", {
+    cache: "force-cache",
+    revalidate: 900,
+  });
   const categories = await categoriesRes.json();
   const filteredCategories = categories?.filter(
     (el) => el?.description === lang
@@ -89,29 +104,9 @@ export async function getCategories(lang, onlyFull = true) {
   }
 }
 
-// export async function getEvents() {
-//   const eventsRes = await fetch(BASE_URL + "/categories");
-//   const events = await eventsRes.json();
-//   return events;
-// }
-
-// export async function getEvent(slug) {
-//   const events = await getEvents();
-//   const eventArray = events.filter((event) => event.slug == slug);
-//   const event = eventArray.length > 0 ? eventArray[0] : null;
-//   return event;
-// }
-
 export async function getSlugs(type) {
   let elements = [];
-  //   switch (type) {
-  //     case "posts":
   elements = await getPosts();
-  //       break;
-  //     case "events":
-  //       elements = await getEvents();
-  //       break;
-  //   }
   const elementsIds = elements.map((element) => {
     return {
       params: {
