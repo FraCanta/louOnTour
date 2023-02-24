@@ -35,15 +35,13 @@ function MyApp({ Component, pageProps }) {
 
       {/* Global site tag (gtag.js) - Google Analytics */}
 
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?iid=G-FJ2J5B3EPX"
-        strategy="afterInteractive"
-      />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-FJ2J5B3EPX" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
+          function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+
 
           gtag('config', 'G-FJ2J5B3EPX');
         `}
