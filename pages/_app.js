@@ -32,6 +32,22 @@ function MyApp({ Component, pageProps }) {
         src="//cdn.cookie-script.com/s/952906ba33559231ca8c72a6268c0ddb.js"
       />
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" />
+
+      {/* Global site tag (gtag.js) - Google Analytics */}
+
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?iid=G-FJ2J5B3EPX"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-FJ2J5B3EPX');
+        `}
+      </Script>
     </>
   );
 }
