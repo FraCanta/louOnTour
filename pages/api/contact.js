@@ -8,7 +8,7 @@ export default async function mailer(req, res) {
     secure: true,
     auth: {
       user: "info@louontour.it",
-      pass: "Mailweb.lq_79!",
+      pass: "LouSwipe.webmail_79?",
     },
   });
 
