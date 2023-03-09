@@ -71,6 +71,46 @@
 
       "reviews": [
         {
+          "avatar": "A",
+          "name": "Andra",
+          "date": "Gennaio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We loved our tour. Luisa was good incredibly flexible with us (it was a private tour) and provided valuable insight that in all ways enriched our time in Siena."
+        },
+        {
+          "avatar": "A",
+          "name": "Amanda",
+          "date": "Gennaio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a delight! She drew us in with her stories of the Palio and the history of the city. We definitely used the knowledge she gave us during the rest of our time in Siena. She personized our experience as we were a small group and even gave us the option to visit a shop for some local treats. At the end of the tour, she gave us several ideas for restaurants and how we should spend our time during the rest of our visit. She is a big reason as to why we all fell in love with Siena!"
+        },
+        {
+          "avatar": "M",
+          "name": "Molly",
+          "date": "Gennaio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "A great experience. Way better value than one of those large group tours you have to wear a headset for. I will 💯 book this tour again the next time. Luisa has a very vast knowledge of the Siena area and gave us some amazing recommendations when the tour was over. Tasting the Siena treats at the end was a nice touch. Don’t hesitate to book!"
+        },
+        {
+          "avatar": "E",
+          "name": "Erica",
+          "date": "Dicembre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Great tour to explore Siena and understand some history of the city. Luisa was very friendly and adjusted the tour to fit our interests. Would highly recommend."
+        },
+        {
+          "avatar": "A",
+          "name": "Alex",
+          "date": "Dicembre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was absolutely amazing and so knowledgeable. Siena is a beautiful place to visit itself, but she made it that much better. Highly recommend for everyone, but especially if you love European history."
+        },
+        {
           "avatar": "M",
           "name": "Mara",
           "date": "Ottobre 2022",
