@@ -15,12 +15,12 @@ export default async function mailer(req, res) {
   try {
     await transporter.sendMail({
       from: "info@louontour.it",
-      to: ["fcantale14@gmail.com"],
+      to: ["fcantale14@gmail.com", "luisaquaglia.tourguide@gmail.com"],
       subject: `You've got a LouMessage da ${name}  `,
       // html: `<p>Hai una richiesta di informazioni da ${name} </p><br>
       //   <p><strong>Email: </strong> ${email}</p><br>
       //   <p><strong>Messaggio: </strong> ${message}</p><br>
-      // "luisaquaglia.tourguide@gmail.com"
+      //
       // `,
       html: ` <div></div><div style="background: linear-gradient(
     90deg,
