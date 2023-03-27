@@ -6,6 +6,11 @@ iframe {
   border-radius: 10px;
 }
 
+.insta {
+  display: flex;
+  justify-content: center;
+}
+
 .l-article h1 {
   line-height: 1.2;
   font-family: "Oswald", sans-serif;
