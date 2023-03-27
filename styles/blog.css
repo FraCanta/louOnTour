@@ -6,10 +6,6 @@ iframe {
   border-radius: 10px;
 }
 
-/* .l-article p {
-  font-family: "Yrsa", serif;
-} */
-
 .l-article h1 {
   line-height: 1.2;
   font-family: "Oswald", sans-serif;
@@ -41,11 +37,18 @@ iframe {
   margin-top: 30px !important;
   margin-bottom: 30px !important;
   width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-direction: column !important;
 }
 
 .l-article img {
   margin-top: 10px !important;
   margin-bottom: 10px !important;
+  width: 75%;
+  display: flex !important;
+  align-items: center !important;
+  flex-direction: column !important;
 }
 
 .l-article li {

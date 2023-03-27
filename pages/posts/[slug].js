@@ -36,7 +36,7 @@ export default function PostPage({
         />
       </Head>
 
-      <div className="container mx-auto pt-5 w-11/12 2xl:w-4/5 text-[#2C395B]">
+      <div className="container mx-auto pt-5 w-11/12 2xl:w-[60%] text-[#2C395B]">
         <div className="text-sm breadcrumbs">
           <ul>
             <li>
