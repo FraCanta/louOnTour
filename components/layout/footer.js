@@ -102,11 +102,11 @@ const Footer = ({ translation }) => {
           <p className=" text-white  !opacity-100">
             Copyright © 2023 - All rights reserved by Lou On Tour - Powered by{" "}
             <Link
-              href="https://www.thallion-dev.it/"
+              href="https://ubiquity.vercel.app/"
               target="_blank"
               className="underline"
             >
-              thalliondev.
+              Ubiquity - web creative lab
             </Link>
           </p>
         </div>
