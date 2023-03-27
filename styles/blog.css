@@ -49,6 +49,7 @@ iframe {
   display: flex !important;
   align-items: center !important;
   flex-direction: column !important;
+  border-radius: 5px;
 }
 
 .l-article li {
