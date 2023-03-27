@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-between;
 }
+.image-div img {
+  width: 33%;
+}
 
 @media screen and (max-width: 768px) {
   .image-div {
