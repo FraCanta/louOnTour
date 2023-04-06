@@ -116,3 +116,16 @@ export async function getSlugs(type) {
   });
   return elementsIds;
 }
+
+export async function getPostsByLanguageAndBlogOwner() {
+  const resObj = {};
+
+  resObj.it = await getTagId("it");
+  resObj.en = await getTagId("en");
+  const ownerPosts = await getPosts(); // tutti i posts in tutte lingue
+  return {
+    ...resObj,
+    it: ownerPosts.filter((el) => el?.tags?.includes(resObj.it)),
+    en: ownerPosts.filter((el) => el?.tags?.includes(resObj.en)),
+  };
+}
