@@ -30,6 +30,10 @@ export default function Home({ translation, post, category }) {
         <title>{translation?.head?.title}</title>
 
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="google-site-verification"
+          content="A8ZnvhuSVmJCOMm45EmOyXMjn1ZMITvQJ-ixpxR8bWI"
+        />
       </Head>
 
       <DynamicHero translation={translation?.hero} />
