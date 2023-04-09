@@ -38,26 +38,20 @@ function generateSiteMap(posts) {
        </url>
 
 ${LayoutTranslation?.menu?.it?.map?.markers
-  .map((el, i, date) => {
+  .map((el, i) => {
     return `
             <url>
              <loc>${`${headlessSite}/locations/${el?.title}`}</loc>
-              <lastmod>${`${date}`}</lastmod>
-             <changefreq>weekly</changefreq>
-             <priority>0.5</priority>
-         </url>
+            </url>
            `;
   })
   .join("")}
 
   ${LayoutTranslation?.menu?.en?.map?.markers
-    .map((el, i, date) => {
+    .map((el, i) => {
       return `
             <url>
              <loc>${`${headlessSite}/en/locations/${el?.title}`}</loc>
-              <lastmod>${`${date}`}</lastmod>
-             <changefreq>weekly</changefreq>
-             <priority>0.5</priority>
          </url>
            `;
     })
