@@ -9,6 +9,7 @@ import {
 } from "../utils/wordpress";
 
 function generateSiteMap(posts) {
+  console.log(posts);
   return `<?xml version="1.0" encoding="UTF-8"?>
      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">       
        <url>
@@ -38,12 +39,10 @@ function generateSiteMap(posts) {
 
 ${LayoutTranslation?.menu?.it?.map?.markers
   .map((el, i, date) => {
-    const receivedDate = new Date(date);
-    const isoDate = receivedDate.toISOString();
     return `
             <url>
              <loc>${`${headlessSite}/locations/${el?.title}`}</loc>
-              <lastmod>${`${isoDate}`}</lastmod>
+              <lastmod>${`${date}`}</lastmod>
              <changefreq>weekly</changefreq>
              <priority>0.5</priority>
          </url>
@@ -53,12 +52,10 @@ ${LayoutTranslation?.menu?.it?.map?.markers
 
   ${LayoutTranslation?.menu?.en?.map?.markers
     .map((el, i, date) => {
-      const receivedDate = new Date(date);
-      const isoDate = receivedDate.toISOString();
       return `
             <url>
              <loc>${`${headlessSite}/en/locations/${el?.title}`}</loc>
-              <lastmod>${`${isoDate}`}</lastmod>
+              <lastmod>${`${date}`}</lastmod>
              <changefreq>weekly</changefreq>
              <priority>0.5</priority>
          </url>
