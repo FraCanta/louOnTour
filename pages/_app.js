@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }) {
       <DynamicLayout>
         <Component {...pageProps} />
       </DynamicLayout>
+
       <Script
         type="text/javascript"
         charset="UTF-8"

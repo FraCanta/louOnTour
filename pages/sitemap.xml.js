@@ -37,20 +37,30 @@ function generateSiteMap(posts) {
        </url>
 
 ${LayoutTranslation?.menu?.it?.map?.markers
-  .map((el, i) => {
+  .map((el, i, date) => {
+    const receivedDate = new Date(date);
+    const isoDate = receivedDate.toISOString();
     return `
             <url>
              <loc>${`${headlessSite}/locations/${el?.title}`}</loc>
+              <lastmod>${`${isoDate}`}</lastmod>
+             <changefreq>weekly</changefreq>
+             <priority>0.5</priority>
          </url>
            `;
   })
   .join("")}
 
   ${LayoutTranslation?.menu?.en?.map?.markers
-    .map((el, i) => {
+    .map((el, i, date) => {
+      const receivedDate = new Date(date);
+      const isoDate = receivedDate.toISOString();
       return `
             <url>
              <loc>${`${headlessSite}/en/locations/${el?.title}`}</loc>
+              <lastmod>${`${isoDate}`}</lastmod>
+             <changefreq>weekly</changefreq>
+             <priority>0.5</priority>
          </url>
            `;
     })
@@ -58,19 +68,29 @@ ${LayoutTranslation?.menu?.it?.map?.markers
 
        
        ${posts?.it
-         .map(({ id, slug, tags }) => {
+         .map((slug, date) => {
+           const receivedDate = new Date(date);
+           const isoDate = receivedDate.toISOString();
            return `
          <url>
              <loc>${`${headlessSite}/posts/${slug}`}</loc>
+              <lastmod>${`${isoDate}`}</lastmod>
+             <changefreq>weekly</changefreq>
+             <priority>0.5</priority>
          </url>
        `;
          })
          .join("")}
          ${posts?.en
-           .map(({ id, slug, tags }) => {
+           .map((slug, date) => {
+             const receivedDate = new Date(date);
+             const isoDate = receivedDate.toISOString();
              return `
           <url>
               <loc>${`${headlessSite}/en/posts/${slug}`}</loc>
+               <lastmod>${`${isoDate}`}</lastmod>
+             <changefreq>weekly</changefreq>
+             <priority>0.5</priority>
           </url>
         `;
            })
