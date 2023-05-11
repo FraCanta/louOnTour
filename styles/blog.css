@@ -1,9 +1,8 @@
 iframe {
   width: 100% !important;
-  height: 600px !important;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  /* height: 700px !important; */
   border-radius: 10px;
+  margin: 0 auto !important;
 }
 
 .insta {
