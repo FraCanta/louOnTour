@@ -5,9 +5,9 @@ iframe {
   margin: 0 auto !important;
 }
 
-.insta {
-  display: flex;
-  justify-content: center;
+.youtube > div > iframe {
+  width: 100%;
+  height: 450px;
 }
 
 .l-article h1 {
@@ -31,10 +31,6 @@ iframe {
   font-size: 30px;
   margin-top: 20px;
   margin-bottom: 20px;
-}
-.l-article iframe {
-  margin-top: 30px !important;
-  margin-bottom: 30px !important;
 }
 
 /* .l-article figure {
