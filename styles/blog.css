@@ -176,6 +176,10 @@ iframe {
   border-radius: 5px;
 }
 
+.list-style a {
+  font-weight: bold;
+}
+
 .btn {
   border-color: transparent !important;
   color: #2c395b;
