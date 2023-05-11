@@ -208,7 +208,8 @@ iframe {
   .l-article img {
     width: 100%;
   }
-  .gallery-img {
+  .gallery-img,
+  .gallery-img2 {
     display: grid !important;
     grid-template-columns: repeat(1, 1fr) !important;
     gap: 10px;
