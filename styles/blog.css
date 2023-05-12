@@ -76,7 +76,7 @@ iframe {
 
 .img-full img {
   /* width: 100% !important; */
-  max-width: 900px;
+  max-width: 97%;
   max-height: 815.625px;
   min-width: 35.5556px;
   min-height: 20px;
@@ -214,13 +214,17 @@ iframe {
 }
 
 @media screen and (max-width: 768px) {
-  /* .l-article img {
-    width: 100%;
-  } */
   .gallery-img,
   .gallery-img2 {
     display: grid !important;
     grid-template-columns: repeat(1, 1fr) !important;
     gap: 20px;
+  }
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1600px) {
+  .gallery-img > figure > figcaption,
+  .gallery-img2 > figure > figcaption {
+    font-size: 16px;
   }
 }
