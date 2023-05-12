@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import React from "react";
 import {
   getPost,
   getPosts,
@@ -9,8 +9,7 @@ import {
   getTagNameList,
 } from "../../utils/wordpress";
 import Head from "next/head";
-import Image from "next/image";
-import Siena from "../../public/assets/locationTour/siena/siena2.jpg";
+import { parse } from "dom-parser-react";
 
 export default function PostPage({
   post,
@@ -19,10 +18,14 @@ export default function PostPage({
   tags,
   nextPrevPost,
 }) {
+  const contents = parse(post.title.rendered, {
+    createElement: React.createElement,
+    Fragment: React.Fragment,
+  });
   return (
     <>
       <Head>
-        <title>{`Lou On Tour - ${post.title.rendered}`}</title>
+        <title>Lou On Tour - {contents}</title>
         <meta
           property="og:image"
           content={post?.yoast_head_json?.og_image?.url}
@@ -60,19 +63,6 @@ export default function PostPage({
           className="text-center py-8 text-3xl 2xl:text-5xl text-[#2C395B] l-article"
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         ></h1>
-        {/* <figure>
-          <Image
-            src={
-              featuredMedia?.["media_details"]?.sizes?.full?.["source_url"] ||
-              Siena
-            }
-            width={1000}
-            height={1000}
-            alt={featuredMedia?.["alt_text"] || "LouOnTour image"}
-            className="w-full h-[550px] object-cover rounded-lg py-8 object-top"
-            priority
-          />
-        </figure> */}
 
         <div
           className="text-[#2C395B] text-base lg:text-xl l-article"

@@ -214,9 +214,9 @@ iframe {
 }
 
 @media screen and (max-width: 768px) {
-  .l-article img {
+  /* .l-article img {
     width: 100%;
-  }
+  } */
   .gallery-img,
   .gallery-img2 {
     display: grid !important;
