@@ -111,7 +111,7 @@ iframe {
 .gallery-img {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
-  gap: 10px;
+  gap: 25px;
 }
 
 .gallery-img > figure {
@@ -150,7 +150,7 @@ iframe {
 .gallery-img2 {
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important;
-  gap: 20px;
+  gap: 25px;
   padding: 20px 0;
 }
 
