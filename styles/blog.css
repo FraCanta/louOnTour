@@ -184,6 +184,10 @@ iframe {
   font-weight: bold;
 }
 
+.list-disc ul {
+  list-style-type: disc;
+}
+
 .btn {
   border-color: transparent !important;
   color: #2c395b;
