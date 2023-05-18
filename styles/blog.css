@@ -184,8 +184,9 @@ iframe {
   font-weight: bold;
 }
 
-.list-disc ul {
-  list-style-type: disc;
+.list-disc {
+  list-style: disc;
+  list-style-type: disc !important;
 }
 
 .btn {

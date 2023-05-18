@@ -219,7 +219,8 @@ a {
   text-decoration: none;
 }
 
-p {
+p,
+li {
   font-family: "Nunito", serif;
   font-weight: 400;
 }
