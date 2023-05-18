@@ -10,7 +10,9 @@ import {
 } from "../../utils/wordpress";
 import Head from "next/head";
 import { parse } from "dom-parser-react";
-
+import parseHTML from "html-react-parser";
+import CarouselParser from "../../components/carouselParser/carouselParser";
+import Script from "next/script";
 export default function PostPage({
   post,
   modifiedContent,
@@ -38,7 +40,7 @@ export default function PostPage({
           content={post?.yoast_head_json?.description}
         />
       </Head>
-
+      {/* <Script src="//www.instagram.com/embed.js" /> */}
       <div className="container mx-auto pt-5 w-11/12 2xl:w-[55%] text-[#2C395B]">
         <div className="text-sm breadcrumbs">
           <ul>
@@ -64,10 +66,11 @@ export default function PostPage({
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         ></h1>
 
-        <div
+        {/* <div
           className="text-[#2C395B] text-base lg:text-xl l-article"
           dangerouslySetInnerHTML={{ __html: modifiedContent }}
-        ></div>
+        ></div> */}
+        <CarouselParser post={modifiedContent} />
       </div>
       <div className="btn-group grid grid-cols-2 mt-8">
         <button className="btn btn-outline flex flex-col ">
@@ -80,7 +83,7 @@ export default function PostPage({
               ></div>
             </Link>
           ) : (
-            "Questo è già l'articolo più recente"
+            ""
           )}
         </button>
 
