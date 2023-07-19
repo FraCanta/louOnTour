@@ -225,11 +225,26 @@ function Menu_mobile({ translation }) {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/contatti"
-                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] link_menu"
+                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px]   !pb-4 md:!pb-4 link_menu"
                 >
                   {translation?.[locale]?.contact}
                 </Link>
               </li>
+              {/* <li onClick={handleBurgerClose}>
+                <div className="flex items-center ">
+                  <Link
+                    href="/newsletter"
+                    className="flex items-center justify-center px-[80px] h-[40px] leading-[20px] min-w-[40px] rounded-sm relative text-white  font-[600] shadow-md border border-2  bg-[#FE6847] border-[#FE6847] ring-2 ring-[#FE6847] hover:scale-110 uppercase font-extrabold grain text-[14px]  link_menu"
+                  >
+                    <Icon
+                      icon="heroicons:plus-20-solid"
+                      width="20"
+                      className="mr-2"
+                    />{" "}
+                    Iscriviti
+                  </Link>
+                </div>
+              </li> */}
             </ul>
             <div className="socials w-11/12">
               <Link

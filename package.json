@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^13.0.5",
+    "axios": "^1.4.0",
     "daisyui": "^2.38.1",
     "dom-parser-react": "^0.3.0",
     "gsap": "^3.11.3",

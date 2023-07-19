@@ -4,12 +4,13 @@ import React from "react";
 import Lou from "../../public/assets/logo4_small_2.webp";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
+import Button from "../button/button";
 
 const Menu = ({ translation }) => {
   const { locale } = useRouter();
 
   return (
-    <div className="hidden xl:flex justify-center items-center w-full bg-white border-b border-black-500 z-20 menu_container">
+    <div className="hidden xl:flex justify-center items-center w-full bg-white border-b border-black-500 z-20 menu_container h-[70px]">
       <div className="container mx-auto w-11/12 2xl:w-4/5">
         <div className="flex  mx-auto justify-between items-center px-0 ">
           <div className="flex items-center justify-center">
@@ -84,8 +85,22 @@ const Menu = ({ translation }) => {
               </li>
             </ul>
           </nav>
-          <div className="flex">
-            <Link
+          <div className="flex items-center ">
+            {/* <div className="mr-6">
+              <Link
+                href="/newsletter"
+                className="flex items-center justify-center px-[20px] h-[40px] leading-[20px] min-w-[40px] rounded-sm relative text-white  font-[600] shadow-md border border-2  bg-[#FE6847] border-[#FE6847] ring-2 ring-[#FE6847] hover:scale-110 uppercase font-extrabold grain text-[14px]"
+              >
+                <Icon
+                  icon="heroicons:plus-20-solid"
+                  width="20"
+                  className="mr-2"
+                />{" "}
+                Iscriviti
+              </Link>
+            </div> */}
+
+            {/* <Link
               href="https://www.facebook.com/luisa.quaglia.tourguide"
               className="mr-4"
               target="_blank"
@@ -109,7 +124,7 @@ const Menu = ({ translation }) => {
               target="_blank"
             >
               <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />{" "}
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

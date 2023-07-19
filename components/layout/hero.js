@@ -6,7 +6,7 @@ import Link from "next/link";
 const Hero = ({ translation }) => {
   return (
     <>
-      <div className="hero flex flex-col items-center justify-center ">
+      <div className="hero flex flex-col items-center justify-center">
         <div className="parallax-layer layer-1a"></div>
         <div className="parallax-layer layer-2a"></div>
         <div className="parallax-layer layer-2ab"></div>

@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import FooterLogo from "../../public/assets/logo_mobile2.png";
 import { useRouter } from "next/router";
 import translation from "../../public/locales/it/it.json";
+import Subscribe from "../Subscribe/subscribe";
 
 const Footer = ({ translation }) => {
   const { locale } = useRouter();
@@ -25,6 +26,7 @@ const Footer = ({ translation }) => {
             P.Iva: 02436070508
           </span>
         </div>
+
         <div>
           <h6 className="footer-title text-[#2c395b] !opacity-100">
             {translation?.footer?.[locale]?.Col2?.title}
