@@ -5,7 +5,6 @@ import { Icon } from "@iconify/react";
 import FooterLogo from "../../public/assets/logo_mobile2.png";
 import { useRouter } from "next/router";
 import translation from "../../public/locales/it/it.json";
-import Subscribe from "../Subscribe/subscribe";
 
 const Footer = ({ translation }) => {
   const { locale } = useRouter();

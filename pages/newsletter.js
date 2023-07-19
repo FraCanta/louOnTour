@@ -1,5 +1,5 @@
 import React from "react";
-import Subscribe from "../components/Subscribe/subscribe";
+import Subscribe from "../components/subscribe/subscribe";
 
 const Newsletter = () => {
   return (
