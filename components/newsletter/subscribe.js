@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Subscribe = () => {
+const Subscribe = ({ translation }) => {
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle");
   const [errorMsg, setErrorMsg] = useState(null);
@@ -36,10 +36,7 @@ const Subscribe = () => {
   return (
     <div className="max-w-sm bg-white border border-white p-6 text-[#2c395b]">
       <h4 className="text-3xl font-bold mb-4">What&apos;s your email?</h4>
-      <p className="mb-6 text-base">
-        Get notified about quality articles on frontend development and more
-        sent to your inbox. I&apos;ll send you an email once a month, no spam.
-      </p>
+      <p className="mb-6 text-base">{translation?.paragrafo}</p>
       <form onSubmit={subscribe} className="flex flex-wrap">
         <div className="w-full md:w-3/4 mb-4 md:mr-2">
           <input
@@ -47,7 +44,7 @@ const Subscribe = () => {
             id="email-input"
             name="email"
             type="email"
-            placeholder="nome@email.it"
+            placeholder="name@email.it"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded"

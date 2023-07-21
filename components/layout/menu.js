@@ -86,7 +86,7 @@ const Menu = ({ translation }) => {
             </ul>
           </nav>
           <div className="flex items-center ">
-            {/* <div className="mr-6">
+            <div className="mr-6">
               <Link
                 href="/newsletter"
                 className="flex items-center justify-center px-[20px] h-[40px] leading-[20px] min-w-[40px] rounded-sm relative text-white  font-[600] shadow-md border border-2  bg-[#FE6847] border-[#FE6847] ring-2 ring-[#FE6847] hover:scale-110 uppercase font-extrabold grain text-[14px]"
@@ -96,9 +96,9 @@ const Menu = ({ translation }) => {
                   width="20"
                   className="mr-2"
                 />{" "}
-                Iscriviti
+                {translation?.[locale]?.iscriviti}
               </Link>
-            </div> */}
+            </div>
 
             {/* <Link
               href="https://www.facebook.com/luisa.quaglia.tourguide"

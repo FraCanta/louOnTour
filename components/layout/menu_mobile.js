@@ -230,7 +230,7 @@ function Menu_mobile({ translation }) {
                   {translation?.[locale]?.contact}
                 </Link>
               </li>
-              {/* <li onClick={handleBurgerClose}>
+              <li onClick={handleBurgerClose}>
                 <div className="flex items-center ">
                   <Link
                     href="/newsletter"
@@ -241,10 +241,10 @@ function Menu_mobile({ translation }) {
                       width="20"
                       className="mr-2"
                     />{" "}
-                    Iscriviti
+                    {translation?.[locale]?.iscriviti}
                   </Link>
                 </div>
-              </li> */}
+              </li>
             </ul>
             <div className="socials w-11/12">
               <Link
