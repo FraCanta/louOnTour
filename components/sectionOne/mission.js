@@ -13,7 +13,19 @@ const Mission = ({ translation }) => {
               {translation?.title}
             </h2>
             <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20  text-[#2C395B] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
-              {translation?.paragraph}
+              {translation?.paragraph1}
+            </p>
+            <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20  text-[#2C395B] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
+              {translation?.paragraph2}
+            </p>
+            <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20  text-[#2C395B] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
+              {translation?.paragraph3}
+            </p>
+            <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20  text-[#2C395B] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
+              {translation?.paragraph4}
+            </p>
+            <p className="font-bold text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20  text-[#2C395B] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
+              {translation?.paragraph5}
             </p>
           </div>
         </div>
