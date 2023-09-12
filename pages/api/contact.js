@@ -3,18 +3,18 @@ import nodemailer from "nodemailer";
 export default async function mailer(req, res) {
   const { name, email, message } = req.body;
   const transporter = nodemailer.createTransport({
-    host: "smtp.ionos.it",
+    host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
-      user: "info@louontour.it",
-      pass: "LouSwipe.webmail_79?",
+      user: "luisaquaglia.tourguide@gmail.com",
+      pass: "fhkwglfgukyhewug",
     },
   });
 
   try {
     await transporter.sendMail({
-      from: "info@louontour.it",
+      from: "luisaquaglia.tourguide@gmail.com",
       to: ["luisaquaglia.tourguide@gmail.com"],
       subject: `You've got a LouMessage da ${name}  `,
       // html: `<p>Hai una richiesta di informazioni da ${name} </p><br>
