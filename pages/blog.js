@@ -102,7 +102,7 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
         </div>
       </div>
 
-      <div className="w-[90%] mx-auto grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 justify-items-center content-center pt-0 2xl:pt-10 2xl:pb-20">
+      <div className="w-full md:w-[90%] mx-auto grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 justify-items-center content-center pt-0 2xl:pt-10 2xl:pb-20">
         {jsxPosts}
       </div>
       <div className="container w-screen mx-auto flex justify-center">
