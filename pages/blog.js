@@ -225,7 +225,6 @@ export async function getServerSideProps(context) {
   );
   const category = await getCategories(locale); //categorie nella lingua attuale
   // const media = await getMedia();
-
   let obj;
   switch (locale) {
     case "it":
