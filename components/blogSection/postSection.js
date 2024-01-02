@@ -27,11 +27,11 @@ export default function PostSection({ post, featuredMedia }) {
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
           className="xl:text-[0.85rem] text-xs line-clamp2"
         ></div>
-        <div className="card-actions justify-end">
+        {/* <div className="card-actions justify-end">
           <Link href={`/posts/${post?.slug}`} className="link">
             See more
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

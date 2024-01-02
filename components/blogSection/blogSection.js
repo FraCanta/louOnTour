@@ -2,12 +2,14 @@ import React from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import PostSection from "./postSection";
+import Post from "../Post/post";
 
 const BlogSection = ({ post, featuredMedia, tags, translation }) => {
   const jsxPosts = post.map((p, i) => {
     const featuredMedia = p?.["_embedded"]?.["wp:featuredmedia"][0];
     return (
-      <PostSection post={p} featuredMedia={featuredMedia} key={i} id={p?.id} />
+      // <PostSection post={p} featuredMedia={featuredMedia} key={i} id={p?.id} />
+      <Post post={p} featuredMedia={featuredMedia} key={i} id={p?.id} />
     );
   });
   return (
@@ -21,7 +23,7 @@ const BlogSection = ({ post, featuredMedia, tags, translation }) => {
             {translation?.title}
           </h2>
         </div>
-        <div className="flex w-full flex-col lg:flex-row">{jsxPosts}</div>
+        <div className="grid grid-cols-1  lg:grid-cols-3 gap-6">{jsxPosts}</div>
         <Link
           href="/blog"
           className="flex items-center justify-between px-4 w-[9.875rem] h-[3.375rem] rounded-lg relative text-[#FE6847]  font-[600] shadow-3xl border border-2 border-[#FE6847] hover:transition-all hover:bg-white hover:border-white hover:scale-110 uppercase"

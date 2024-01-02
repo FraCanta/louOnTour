@@ -10,7 +10,7 @@ import Cta from "../button/button";
 export default function Post({ post, featuredMedia }) {
   // console.log(featuredMedia?.["media_details"]?.sizes?.full?.["source_url"]);
   return (
-    <div className="card w-11/12 lg:w-96  shadow-xl mb-4 lg:mb-0 !pt-0 bg-white">
+    <div className="card w-full lg:w-96  shadow-xl mb-4 lg:mb-0 !pt-0 bg-white">
       <Link href={`/posts/${post?.slug}`}>
         <figure>
           <Image
@@ -21,7 +21,7 @@ export default function Post({ post, featuredMedia }) {
             width={461}
             height={420}
             alt={featuredMedia?.["alt_text"] || "LouOnTour image"}
-            className="w-full h-[250px] object-cover rounded-t-lg object-top "
+            className="w-full h-auto md:h-[450px] lg:h-[300px] object-cover rounded-t-lg object-top "
             priority
             quality={70}
           />
