@@ -28,7 +28,7 @@ export default function Post({ post, featuredMedia }) {
         </figure>
       </Link>
 
-      <div className="card-body justify-between">
+      <div className="card-body justify-between !p-[1.5rem]">
         <div className="py-2">
           <small className="badge badge-info badge-lg text-white">
             {getDate(post?.date)}
@@ -44,11 +44,11 @@ export default function Post({ post, featuredMedia }) {
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
           className="line-clamp text-[#2c395b]"
         ></div>
-        <div className="card-actions justify-end">
+        {/* <div className="card-actions justify-end">
           <Link href={`/posts/${post?.slug}`} target="_blank">
             <Cta>See more</Cta>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

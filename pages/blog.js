@@ -102,56 +102,56 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
         </div>
       </div>
 
-      <div className="grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 justify-items-center content-center pt-0 2xl:pt-10 2xl:pb-20">
+      <div className="w-[90%] mx-auto grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 justify-items-center content-center pt-0 2xl:pt-10 2xl:pb-20">
         {jsxPosts}
-        <div className="container w-screen mx-auto flex justify-center">
-          {filterObj?.paginationArray?.length > 1 && (
-            <div className="flex justify-center mb-8 ">
-              <div className="btn-group">
+      </div>
+      <div className="container w-screen mx-auto flex justify-center">
+        {filterObj?.paginationArray?.length > 1 && (
+          <div className="flex justify-center mb-8 ">
+            <div className="btn-group">
+              <button
+                className="btn "
+                style={
+                  parseInt(currentP) - 1 === 0
+                    ? {
+                        opacity: 0.6,
+                        pointerEvents: "none",
+                      }
+                    : {}
+                }
+                onClick={() => handlePagination(currentP - 1)}
+              >
+                «
+              </button>
+              {filterObj?.paginationArray?.map((el, i) => (
                 <button
-                  className="btn "
-                  style={
-                    parseInt(currentP) - 1 === 0
-                      ? {
-                          opacity: 0.6,
-                          pointerEvents: "none",
-                        }
-                      : {}
-                  }
-                  onClick={() => handlePagination(currentP - 1)}
+                  className={`btn ${
+                    parseInt(currentP) - i === el && "btn-active"
+                  }`}
+                  key={i}
+                  onClick={() => handlePagination(el + i)}
                 >
-                  «
+                  {el + i}
                 </button>
-                {filterObj?.paginationArray?.map((el, i) => (
-                  <button
-                    className={`btn ${
-                      parseInt(currentP) - i === el && "btn-active"
-                    }`}
-                    key={i}
-                    onClick={() => handlePagination(el + i)}
-                  >
-                    {el + i}
-                  </button>
-                ))}
+              ))}
 
-                <button
-                  className="btn"
-                  style={
-                    parseInt(currentP) + 1 > pages
-                      ? {
-                          opacity: 0.6,
-                          pointerEvents: "none",
-                        }
-                      : {}
-                  }
-                  onClick={() => handlePagination(parseInt(currentP) + 1)}
-                >
-                  »
-                </button>
-              </div>
+              <button
+                className="btn"
+                style={
+                  parseInt(currentP) + 1 > pages
+                    ? {
+                        opacity: 0.6,
+                        pointerEvents: "none",
+                      }
+                    : {}
+                }
+                onClick={() => handlePagination(parseInt(currentP) + 1)}
+              >
+                »
+              </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
       <div className="w-11/12 mx-4">
         <div className="block lg:hidden">
