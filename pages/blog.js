@@ -201,7 +201,7 @@ export async function getServerSideProps(context) {
   const { locale, query, req, res } = context;
   res.setHeader(
     "Cache-Control",
-    "public, s-maxage=10, stale-while-revalidate=59"
+    "public, s-maxage=3600, stale-while-revalidate"
   );
   let { page, categories } = query;
   page === undefined && (page = 1);
