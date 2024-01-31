@@ -28,7 +28,7 @@ const ChiSono = ({ translation, home }) => {
         />
 
         <meta
-          property="og:site_name"
+          property="og:image"
           content="https://louontour.it/assets/lou-avatar.webp"
         />
 
