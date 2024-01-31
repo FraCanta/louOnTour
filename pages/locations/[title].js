@@ -31,7 +31,7 @@ export default function Tours({ city, others, banner, correlati }) {
 
         <meta
           property="og:image"
-          content={`https://louontour.it/${city?.img}`}
+          content={`https://louontour.it${city?.img}`}
         />
 
         <meta name="twitter:card" content="summary_large_image" />
