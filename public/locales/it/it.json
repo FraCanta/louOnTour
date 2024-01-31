@@ -1,7 +1,7 @@
 {
   "home": {
     "head": {
-      "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata",
+      "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour ",
       "description": "Visita guidata di Siena con Cattedrale, Campo, Palazzo Pubblico e il Palio. San Domenico, Santa Caterina e le Contrade."
     },
     "hero": {
@@ -300,7 +300,7 @@
     "locationTours": {
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
-        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Siena",
+        "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Siena",
         "titleImg": "Siena",
         "half": "Tours Siena (Mezza Giornata)",
         "full": "Tours Siena (Giornata Intera)",
@@ -442,7 +442,7 @@
       },
       "Volterra": {
         "img": "/assets/locationTour/volterra.jpg",
-        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Volterra",
+        "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Volterra",
 
         "titleImg": "Volterra",
         "half": "Tours Volterra (Mezza Giornata)",
@@ -606,7 +606,7 @@
       "San Gimignano": {
         "img": "/assets/locationTour/san_gimignano.jpg",
         "titleImg": "San Gimignano",
-        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | San Gimignano",
+        "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| San Gimignano",
 
         "half": "Tours San Gimignano (Mezza Giornata)",
         "full": "Tours San Gimignano (Giornata Intera)",
@@ -771,7 +771,7 @@
       "Montepulciano e Val d'Orcia": {
         "img": "/assets/locationTour/valdorcia.jpg",
         "titleImg": "Montepulciano e Val d'Orcia",
-        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Montepulciano e Val d'Orcia",
+        "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Montepulciano e Val d'Orcia",
 
         "half": "",
         "full": "Tours Montepulciano e Val d'Orcia (Giornata Intera)",
@@ -790,7 +790,7 @@
       "San Galgano": {
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
         "titleImg": "San Galgano",
-        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | San Galgano",
+        "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| San Galgano",
 
         "half": "Tour San Galgano (Mezza Giornata)",
         "full": "Tour San Galgano (Giornata Intera)",
@@ -887,7 +887,7 @@
   },
   "who": {
     "head": {
-      "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Siena"
+      "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour | Chi Sono"
     },
     "hero": {
       "subTitle": "About me",
@@ -939,7 +939,7 @@
     ]
   },
   "blog": {
-    "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Blog"
+    "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Blog"
   },
   "contatti": {
     "title": "Parliamo insieme del Tour che ti piacerebbe fare con me!",
@@ -950,11 +950,11 @@
       "txt": "Messaggio"
     },
     "head": {
-      "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Contatti"
+      "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Contatti"
     }
   },
   "newsletter": {
-    "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Iscriviti alla Newsletter",
+    "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Iscriviti alla Newsletter",
 
     "paragrafo": "Iscriviti alla newsletter per partecipare ai tour esclusivi dedicati alla mia community più affezionata!"
   }

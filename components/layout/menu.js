@@ -14,7 +14,7 @@ const Menu = ({ translation }) => {
       <div className="container mx-auto w-11/12 2xl:w-4/5">
         <div className="flex  mx-auto justify-between items-center px-0 ">
           <div className="flex items-center justify-center">
-            <Link href="/">
+            <Link href="/" title="Lou On Tour">
               <Image src={Lou} alt="Lou Logo" className="w-[250px]" />
             </Link>
           </div>

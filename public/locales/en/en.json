@@ -1,7 +1,7 @@
 {
   "home": {
     "head": {
-      "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide",
+      "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour",
       "description": "Guided tour of Siena with Cathedral, Campo, Palazzo Pubblico, and the Palio. San Domenico, Santa Caterina, and the Contrade."
     },
     "hero": {
@@ -301,7 +301,7 @@
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
         "titleImg": "Siena",
-        "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide | Siena",
+        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Siena",
 
         "half": "Tours Siena (Half Day)",
         "full": "Tours Siena (Full Day)",
@@ -444,7 +444,7 @@
       "Volterra": {
         "img": "/assets/locationTour/volterra.jpg",
         "titleImg": "Volterra",
-        "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide | Volterra",
+        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Volterra",
         "half": "Tours Volterra (Half Day)",
         "full": "Tours Volterra (Full Day)",
         "citazione": "[…] Volterra si mostra con un fascino arcano che promana dalle case addossate, dalle torri mozzate, dalle strade percorse da ombre inquietanti, lastricate nel tempo di sudore e di assurdo che attraversano la storia e la leggenda scavando solchi senza fine nella mente suggestionata degli uomini. (Franco Porretti)",
@@ -606,7 +606,7 @@
       "San Gimignano": {
         "img": "/assets/locationTour/san_gimignano.jpg",
         "titleImg": "San Gimignano",
-        "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide | San Gimignano",
+        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | San Gimignano",
 
         "half": "Tours San Gimignano (Half Day)",
         "full": "Tours San Gimignano (Full Day)",
@@ -772,7 +772,7 @@
         "img": "/assets/locationTour/valdorcia.jpg",
         "titleImg": "Montepulciano and Val d'Orcia",
         "translatedTitle": "Montepulciano and Val d'Orcia",
-        "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide | Montepulciano e Vald d'Orcia",
+        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Montepulciano e Vald d'Orcia",
 
         "half": "",
         "full": "Tours Montepulciano and Val d'Orcia (Full Day)",
@@ -791,7 +791,7 @@
       "San Galgano": {
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
         "titleImg": "San Galgano",
-        "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide | San Galgano",
+        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | San Galgano",
         "half": "Tour San Galgano (Half Day)",
         "full": "Tour San Galgano (Full Day)",
         "citazione": "“per tetto un manto di stelle”",
@@ -887,7 +887,7 @@
   },
   "who": {
     "head": {
-      "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide"
+      "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Who I Am"
     },
     "hero": {
       "subTitle": "About me",
@@ -940,7 +940,7 @@
     ]
   },
   "blog": {
-    "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide | Blog"
+    "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Blog"
   },
   "contatti": {
     "title": "Let's talk together about the Tour you would like to do with me!",
@@ -951,11 +951,11 @@
       "txt": "Message"
     },
     "head": {
-      "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide | Contact"
+      "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Contact"
     }
   },
   "newsletter": {
-    "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide | Subscribe Newsletter",
+    "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Subscribe Newsletter",
 
     "paragrafo": "Subscribe to the newsletter to participate in exclusive tours dedicated to my most loyal community!"
   }
