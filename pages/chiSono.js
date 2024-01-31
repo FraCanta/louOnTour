@@ -18,7 +18,33 @@ const ChiSono = ({ translation, home }) => {
     <>
       <Head>
         <title>{translation?.head?.title}</title>
-        <meta name="description" content="Guida Turistica" />
+        <meta name="description" content={translation?.hero?.paragraph} />
+        <meta property="og:url" content="https://www.louontour.it/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={translation?.head?.title} />
+        <meta
+          property="og:description"
+          content={translation?.hero?.paragraph}
+        />
+
+        <meta
+          property="og:image"
+          content="https://louontour.it/assets/lou-avatar.webp"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="louontour.it" />
+        <meta property="twitter:url" content="https://www.louontour.it/" />
+        <meta name="twitter:title" content={translation?.head?.title} />
+        <meta
+          name="twitter:description"
+          content={translation?.hero?.paragraph}
+        />
+        <meta
+          name="twitter:image"
+          content="https://louontour.it/assets/lou-avatar.webp"
+        />
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DynamicHeroChiSono translation={translation?.hero} />

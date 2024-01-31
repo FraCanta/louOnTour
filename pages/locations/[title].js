@@ -22,7 +22,21 @@ export default function Tours({ city, others, banner, correlati }) {
   return (
     <>
       <Head>
-        <title>{`Lou On Tour - ${city?.titleImg}`}</title>
+        <title>{city?.title}</title>
+        <meta name="description" content={city?.descrizione} />
+        <meta property="og:url" content="https://www.louontour.it/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={city?.title} />
+        <meta property="og:description" content={city?.descrizione} />
+
+        <meta property="og:image" content={city?.img} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="louontour.it" />
+        <meta property="twitter:url" content="https://www.louontour.it/" />
+        <meta name="twitter:title" content={city?.title} />
+        <meta name="twitter:description" content={city?.descrizione} />
+        <meta name="twitter:image" content={city?.img} />
       </Head>
       <div className="w-full xl:w-4/5 min-h-[30vh] container mx-auto flex flex-col lg:flex-row py-4 xl:py-8">
         <div className="w-full lg:w-1/2 p-4 lg:p-8">

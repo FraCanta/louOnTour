@@ -300,6 +300,7 @@
     "locationTours": {
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
+        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Siena",
         "titleImg": "Siena",
         "half": "Tours Siena (Mezza Giornata)",
         "full": "Tours Siena (Giornata Intera)",
@@ -441,8 +442,9 @@
       },
       "Volterra": {
         "img": "/assets/locationTour/volterra.jpg",
+        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Volterra",
+
         "titleImg": "Volterra",
-        "title": "",
         "half": "Tours Volterra (Mezza Giornata)",
         "full": "Tours Volterra (Giornata Intera)",
         "citazione": "[…] Volterra si mostra con un fascino arcano che promana dalle case addossate, dalle torri mozzate, dalle strade percorse da ombre inquietanti, lastricate nel tempo di sudore e di assurdo che attraversano la storia e la leggenda scavando solchi senza fine nella mente suggestionata degli uomini. (Franco Porretti)",
@@ -604,6 +606,8 @@
       "San Gimignano": {
         "img": "/assets/locationTour/san_gimignano.jpg",
         "titleImg": "San Gimignano",
+        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | San Gimignano",
+
         "half": "Tours San Gimignano (Mezza Giornata)",
         "full": "Tours San Gimignano (Giornata Intera)",
         "citazione": "San Gimignano dalle belle torri e dalle belle campane… (Proverbio fiorentino)",
@@ -767,6 +771,8 @@
       "Montepulciano e Val d'Orcia": {
         "img": "/assets/locationTour/valdorcia.jpg",
         "titleImg": "Montepulciano e Val d'Orcia",
+        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Montepulciano e Val d'Orcia",
+
         "half": "",
         "full": "Tours Montepulciano e Val d'Orcia (Giornata Intera)",
         "citazione": "Lorem ipsum",
@@ -784,7 +790,8 @@
       "San Galgano": {
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
         "titleImg": "San Galgano",
-        "title": "",
+        "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | San Galgano",
+
         "half": "Tour San Galgano (Mezza Giornata)",
         "full": "Tour San Galgano (Giornata Intera)",
         "citazione": "“per tetto un manto di stelle”",
@@ -880,7 +887,7 @@
   },
   "who": {
     "head": {
-      "title": "Lou On Tour - Chi Sono"
+      "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Siena"
     },
     "hero": {
       "subTitle": "About me",
@@ -932,7 +939,7 @@
     ]
   },
   "blog": {
-    "title": "News"
+    "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Blog"
   },
   "contatti": {
     "title": "Parliamo insieme del Tour che ti piacerebbe fare con me!",
@@ -943,10 +950,12 @@
       "txt": "Messaggio"
     },
     "head": {
-      "title": "Lou On Tour - Contatti"
+      "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Contatti"
     }
   },
   "newsletter": {
+    "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata | Iscriviti alla Newsletter",
+
     "paragrafo": "Iscriviti alla newsletter per partecipare ai tour esclusivi dedicati alla mia community più affezionata!"
   }
 }
