@@ -1,11 +1,12 @@
 {
   "home": {
     "head": {
-      "title": "Lou On Tour - Tour Guide"
+      "title": "Guided Tour of Siena and Province | Lou on Tour | Certified Tour Guide",
+      "description": "Guided tour of Siena with Cathedral, Campo, Palazzo Pubblico, and the Palio. San Domenico, Santa Caterina, and the Contrade."
     },
     "hero": {
       "name": "Lou On Tour",
-      "paragraph": " Licensed tour guide in Italian and English. I offer guided tours to Florence, Volterra, Siena and its province. I am at your disposal to design your tailor-made tour according to your tastes and needs."
+      "paragraph": "Licensed tour guide in Italian and English. I offer guided tours to Siena and its province and Volterra. I am at your disposal to design your tailor-made tour according to your tastes and needs."
     },
     "mission": {
       "subTitle": "Mission",
@@ -22,12 +23,6 @@
       "paragraph": "Here you will find some of the most popular tours, which many people have enjoyed and which I often love to do! Choose a location on the map next here, and take a look at my tour suggestions-there's something for everyone! But if you're looking for something that's more your thing, contact me and we'll try together to create the tour that best meets your tastes and needs.",
       "button": "contact me",
       "markers": [
-        {
-          "title": "Florence",
-          "link": "Firenze",
-          "marker": { "top": 213, "right": 240 },
-          "desc": true
-        },
         {
           "title": "San Gimignano",
           "link": "San%20Gimignano",
@@ -303,28 +298,6 @@
   },
   "tours": {
     "locationTours": {
-      "Firenze": {
-        "img": "/assets/locationTour/florence_duomo.jpg",
-        "titleImg": "Florence",
-        "translatedTitle": "Florence",
-        "half": "Tours Florence (Half Day)",
-        "full": "Tours Florence (Full Day)",
-        "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
-        "descrizione": "Admired for its beauty by millions of visitors from all over the world, Florence is not only a city of art but a true source of inspiration for anyone who visits it whether it is the first or the thousandth time! It is the city that broke with the Middle Ages and introduced the concept of modern man to Europe.",
-        "half_elenco": [
-          "<p ><b class='bold_text'>Among the streets of Florence: </b> then you can't miss the city's iconic places such as Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce... it's about a 3-hour tour but you'll see how time flies by!</p>",
-          "<p>Visit to the <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Uffizi Gallery</b></a></p>",
-          "<p>Visit to the <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Accademia Gallery</b></a></p>",
-          "<p>Visit to the <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>DynamicSimpleGallery</b></a></p>"
-        ],
-        "full_elenco": [
-          "<p><b class='bold_text'>One day in Florence: </b>after getting to know the city, all you need to do is visit at least one of the two most famous museums in Florence because you never leave Florence without having seen a work by Michelangelo or Leonardo or Botticelli, Donatello… in short, certainly artists here there is no shortage of them!</p>",
-          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>Siena</b></p>",
-          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
-          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>Volterra</b></p>"
-        ],
-        "gallery": []
-      },
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
         "titleImg": "Siena",
@@ -338,7 +311,6 @@
         ],
         "full_elenco": [
           "<div><p><b class='bold_text'>In Siena with art:  </b>we have 5/6 hours for a walk to learn about the highlights of the city and an in-depth look at one or more museums of your choice. Below you have links to Siena's major museums:</p> <ul><li><a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cathedral + cathedral complex</b></a></li><li><a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Civic Museum</b></a></li><li><a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Former Hospital Santa Maria della Scala + Archaeological Museum</b></a></li><li><a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>National Picture Gallery</b></a></li></ul></div>",
-          "<p><b class='bold_text'>Siena</b> +  <b class='bold_text'>Florence </b></p>",
           "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
           "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (optiona)</p>",
           "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Galgano</b> </p>",
@@ -484,8 +456,7 @@
         "full_elenco": [
           "<p><b class='bold_text'>Archaeological Volterra: </b> 3-hour tour starting with the Etruscans, then the Roman part and ending in the Middle Ages. I have a degree in archaeology and Volterra is one of my favorite sites because Volterra is nothing but an archaeological site that is still 'active.' On completion I will take you to the Guarnacci Etruscan Museum where you will find many archaeological curiosities that you will enjoy, and we could visit an alabaster workshop.</p>",
           "<p><b class='bold_text'>Volterra</b> +  <b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
-          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Siena </b></p>",
-          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Florence</b> </p>"
+          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Siena </b></p>"
         ],
         "gallery": [
           {
@@ -643,7 +614,6 @@
         ],
         "full_elenco": [
           "<p><b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Volterra</b></p>",
-          "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Florence</b></p>",
           "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Siena</b></p>"
         ],
         "gallery": [

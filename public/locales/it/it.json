@@ -1,11 +1,12 @@
 {
   "home": {
     "head": {
-      "title": "Lou On Tour - Guida Turistica"
+      "title": "Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata",
+      "description": "Visita guidata di Siena con Cattedrale, Campo, Palazzo Pubblico e il Palio. San Domenico, Santa Caterina e le Contrade."
     },
     "hero": {
       "name": "Lou On Tour",
-      "paragraph": " Guida Turistica abilitata in italiano e in inglese. Propongo tour guidati a Firenze, Volterra, Siena e la sua provincia. Sono a tua disposizione per disegnare il tuo tour su misura, secondo i tuoi gusti e le tue esigenze."
+      "paragraph": "Guida Turistica abilitata in italiano e in inglese. Propongo tour guidati a Siena e la sua provincia e Volterra. Sono a tua disposizione per disegnare il tuo tour su misura, secondo i tuoi gusti e le tue esigenze."
     },
     "mission": {
       "subTitle": "Mission",
@@ -22,12 +23,6 @@
       "paragraph": "Qui troverai alcuni tra i tour più popolari, che sono piaciuti a molti e che io amo spesso fare! Scegli una location sulla mappa qui accanto e dai un’occhiata alle mie proposte di tour: ce ne sono per tutti i gusti! Ma se cerchi qualcosa che faccia più al caso tuo, contattatami e proveremo insieme a creare il tour che meglio soddisfi i tuoi gusti e le tue esigenze.",
       "button": "contattami",
       "markers": [
-        {
-          "title": "Firenze",
-          "link": "Firenze",
-          "marker": { "top": 213, "right": 240 },
-          "desc": true
-        },
         {
           "title": "San Gimignano",
           "link": "San%20Gimignano",
@@ -303,27 +298,6 @@
   },
   "tours": {
     "locationTours": {
-      "Firenze": {
-        "img": "/assets/locationTour/florence_duomo.jpg",
-        "titleImg": "Firenze",
-        "half": "Tours Firenze (Mezza Giornata)",
-        "full": "Tours Firenze (Giornata Intera)",
-        "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
-        "descrizione": "Ammirata per la sua bellezza da milioni di visitatori da tutto il mondo, Firenze non è solo una città d’arte ma una vera e propria fonte di ispirazione per chiunque la visiti che sia la prima o la millesima volta! E’ la città che ha rotto con il Medioevo e ha introdotto in Europa il concetto di uomo moderno.",
-        "half_elenco": [
-          "<p ><b class='bold_text'>Tra le vie di Firenze:</b> allora non puoi perderti i luoghi simbolici della città come Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce… sono circa 3 ore di tour ma vedrai come vola il tempo!</p>",
-          "<p>Visita alla <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Galleria degli Uffizi</b></a></p>",
-          "<p>Visita alla <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Galleria dell'Accademia</b></a></p>",
-          "<p>Visita al <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo nazionale del Bargello</b></a></p>"
-        ],
-        "full_elenco": [
-          "<p><b class='bold_text'>Un Giorno a Firenze: </b>dopo aver conosciuto la città non manca altro che visitare almeno uno dei due più famosi musei di Firenze perché mai sia che lasci Firenze senza aver visto un’opera di Michelangelo o Leonardo o Botticelli, Donatello…insomma di certo qui artisti non ne mancano!.</p>",
-          "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Siena</b></p>",
-          "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
-          "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Volterra</b></p>"
-        ],
-        "gallery": []
-      },
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
         "titleImg": "Siena",
@@ -337,7 +311,6 @@
         ],
         "full_elenco": [
           "<div><p><b class='bold_text'>A Siena con arte: </b> abbiamo 5/6 ore a disposizione per una passeggiata per conoscere i punti salienti della città e un approfondimento in uno o più musei a tua scelta. Qui di seguito hai i link dei principali musei senesi:</p> <ul><li><a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cattedrale + complesso del Duomo</b></a></li><li><a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo civico</b></a></li><li><a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Ex Ospedale Santa Maria della Scala + Museo Archeologico</b></a></li><li><a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca Nazionale</b></a></li></ul></div>",
-          "<p><b class='bold_text'>Siena</b> +  <b class='bold_text'>Firenze </b></p>",
           "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
           "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
           "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Galgano</b> </p>",
@@ -483,8 +456,7 @@
         "full_elenco": [
           "<p><b class='bold_text'>Volterra archeologica:  </b> 3 ore di tour che parte dagli etruschi, poi la parte Romana per terminare nel Medioevo. Sono laureata in archeologia e Volterra è uno dei miei siti preferiti perché Volterra non è altro che un sito archeologico ancora “attivo”. A completamento vi porterò al <a href='https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo Etrusco Guarnacci</b></a> dove troverete tante curiosità archeologiche che vi piaceranno, e potremmo visitare un laboratorio d’alabastro, che te ne pare?</p>",
           "<p><b class='bold_text'>Volterra</b> +  <b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
-          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena </b></p>",
-          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Firenze</b> </p>"
+          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena </b></p>"
         ],
         "gallery": [
           {
@@ -642,7 +614,6 @@
         ],
         "full_elenco": [
           "<p><b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Volterra</b></p>",
-          "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Firenze</b></p>",
           "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Monteriggioni</b> (opzionale) + <b class='bold_text'>Siena</b></p>"
         ],
         "gallery": [

@@ -10,10 +10,6 @@
       "map": {
         "markers": [
           {
-            "title": "Firenze",
-            "link": "Firenze"
-          },
-          {
             "title": "San Gimignano",
             "link": "San%20Gimignano"
           },
@@ -47,10 +43,6 @@
       "iscriviti": "subscribe",
       "map": {
         "markers": [
-          {
-            "title": "Florence",
-            "link": "Firenze"
-          },
           {
             "title": "San Gimignano",
             "link": "San%20Gimignano"

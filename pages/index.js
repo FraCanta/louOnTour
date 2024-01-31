@@ -28,8 +28,39 @@ export default function Home({ translation, post, category }) {
     <div>
       <Head>
         <title>{translation?.head?.title}</title>
-
+        <meta name="description" content={translation?.head?.description} />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:url" content="https://www.louontour.it/" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata"
+        />
+        <meta
+          property="og:description"
+          content="Visita guidata di Siena con Cattedrale, Campo, Palazzo Pubblico e il Palio. San Domenico, Santa Caterina e le Contrade."
+        />
+
+        <meta
+          property="og:image"
+          content="https://louontour.it/assets/og-img.png"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="louontour.it" />
+        <meta property="twitter:url" content="https://www.louontour.it/" />
+        <meta
+          name="twitter:title"
+          content="Visita Guidata di Siena e provincia | Lou on Tour | Guida Turistica Abilitata"
+        />
+        <meta
+          name="twitter:description"
+          content="Visita guidata di Siena con Cattedrale, Campo, Palazzo Pubblico e il Palio. San Domenico, Santa Caterina e le Contrade."
+        />
+        <meta
+          name="twitter:image"
+          content="https://louontour.it/assets/og-img.png"
+        />
         <meta
           name="google-site-verification"
           content="A8ZnvhuSVmJCOMm45EmOyXMjn1ZMITvQJ-ixpxR8bWI"

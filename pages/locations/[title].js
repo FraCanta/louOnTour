@@ -19,7 +19,6 @@ import translationIT from "../../public/locales/it/it.json";
 import translationEN from "../../public/locales/en/en.json";
 
 export default function Tours({ city, others, banner, correlati }) {
-  console.log(city?.gallery);
   return (
     <>
       <Head>
