@@ -36,6 +36,12 @@ function generateSiteMap(posts) {
          <url>
          <loc>https://louontour.it/en/contatti</loc>
        </url>
+       <url>
+       <loc>https://louontour.it/tours</loc>
+     </url>
+       <url>
+       <loc>https://louontour.it/en/tours</loc>
+     </url>
 
 ${LayoutTranslation?.menu?.it?.map?.markers
   .map((el, i) => {
