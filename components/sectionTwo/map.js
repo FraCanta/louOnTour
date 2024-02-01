@@ -12,10 +12,10 @@ const Map = ({ translation }) => {
           <h3 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
             {translation?.subTitle}
           </h3>
-          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 lg:leading-[4rem] 3xl:leading-[5.5rem] text-[#2C395B]">
+          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-regular mt-2 3xl:mt-12 leading-10 lg:leading-[4rem] 3xl:leading-[5.5rem] text-[#2C395B]">
             {translation?.title}
           </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-16 3xl:mt-20 mb-8 text-[#2C395B] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
+          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-8 3xl:mt-20 mb-8 text-[#2C395B] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
             {translation?.paragraph}
           </p>
           <Link

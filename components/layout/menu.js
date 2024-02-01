@@ -25,7 +25,7 @@ const Menu = ({ translation }) => {
                 </Link>
               </li>
 
-              {/* <li className="dropdown dropdown-hover">
+              <li className="dropdown dropdown-hover">
                 <label
                   tabIndex={0}
                   className="font-normal 2xl:text-[19px] flex items-center  !mr-[20px] !ml-[20px] "
@@ -57,13 +57,12 @@ const Menu = ({ translation }) => {
                     ))}
                   </ul>
                 </>
-              </li> */}
-              <li>
+              </li>
+              {/* <li>
                 <Link href="/tour" className="2xl:text-[18px] ">
-                  {/* {translation?.[locale]?.about} */}
                   Tour
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/chiSono" className="2xl:text-[18px] ">
                   {translation?.[locale]?.about}

@@ -180,7 +180,7 @@ function Menu_mobile({ translation }) {
               <li className="dropdown dropdown-right">
                 <label
                   tabIndex={0}
-                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] font-normal !pl-0  !pr-8 md:!pr-20 flex items-center uppercase !pb-4 md:!pb-4 link_menu"
+                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] font-normal !pl-0  !pr-8 md:!pr-20 flex items-center  !pb-4 md:!pb-4 link_menu"
                 >
                   {translation?.[locale]?.tours}
                   <Icon
@@ -192,12 +192,12 @@ function Menu_mobile({ translation }) {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content min-h-[300px] md:min-h-[380px] !p-4 shadow rounded-box w-52 md:w-60 text-[#2C395B]"
+                  className="dropdown-content min-h-[300px] md:min-h-[380px] !p-4 shadow rounded-box w-52 md:w-60 text-[#2C395B] z-[9999]"
                 >
                   {translation?.[locale]?.map?.markers.map((el, i) => (
                     <li key={i} className="py-1.5" onClick={handleBurgerClose}>
                       <Link
-                        className="hover:underline text-sm md:text-xl "
+                        className="hover:underline text-xl md:text-xl "
                         href={`/locations/${el?.link}`}
                       >
                         {el?.title}
@@ -209,7 +209,7 @@ function Menu_mobile({ translation }) {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/chiSono"
-                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
+                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu capitalize"
                 >
                   {translation?.[locale]?.about}
                 </Link>
@@ -217,15 +217,15 @@ function Menu_mobile({ translation }) {
               <li onClick={handleBurgerClose}>
                 <Link
                   href="/blog"
-                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu"
+                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px] !pb-4 md:!pb-4 link_menu capitalize"
                 >
                   {translation?.[locale]?.blog}
                 </Link>
               </li>
-              <li onClick={handleBurgerClose}>
+              <li onClick={handleBurgerClose} className="pb-6">
                 <Link
                   href="/contatti"
-                  className="text-[#2C395B] text-[40px] md:text-[70px] lg:text-[40px]   !pb-4 md:!pb-4 link_menu"
+                  className="text-[30px] md:text-[70px] lg:text-[40px] px-[30px] border border-[#FE6847] py-2 rounded-md border-2 max-w-max capitalize"
                 >
                   {translation?.[locale]?.contact}
                 </Link>
@@ -234,7 +234,7 @@ function Menu_mobile({ translation }) {
                 <div className="flex items-center ">
                   <Link
                     href="/newsletter"
-                    className="flex items-center justify-center px-[80px] h-[40px] leading-[20px] min-w-[40px] rounded-sm relative text-white  font-[600] shadow-md border border-2  bg-[#FE6847] border-[#FE6847] ring-2 ring-[#FE6847] hover:scale-110 uppercase font-extrabold grain text-[14px]  link_menu"
+                    className="text-[30px] md:text-[70px] lg:text-[40px] px-[30px] border border-[#FE6847] bg-[#FE6847] py-2 rounded-md border-2 max-w-max text-white capitalize"
                   >
                     <Icon
                       icon="heroicons:plus-20-solid"
