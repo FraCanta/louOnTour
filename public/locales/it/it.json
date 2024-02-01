@@ -298,6 +298,33 @@
     }
   },
   "tours": {
+    "tourItem": [
+      {
+        "img": "/assets/locationTour/siena.jpg",
+        "link": "/locations/Siena",
+        "name": "Siena"
+      },
+      {
+        "img": "/assets/locationTour/volterra.jpg",
+        "link": "/locations/Volterra",
+        "name": "Volterra"
+      },
+      {
+        "img": "/assets/locationTour/san_gimignano.jpg",
+        "link": "/locations/San%20Gimignano",
+        "name": "San Giminiano"
+      },
+      {
+        "img": "/assets/locationTour/valdorcia.jpg",
+        "link": "/locations/Montepulciano%20e%20Val%20d'Orcia",
+        "name": "Montepulciano e Val d'Orcia"
+      },
+      {
+        "img": "/assets/locationTour/abbazia_sangalgano.jpg",
+        "link": "/locations/San%20Galgano",
+        "name": "San Galgano"
+      }
+    ],
     "locationTours": {
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",

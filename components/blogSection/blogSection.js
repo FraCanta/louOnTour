@@ -16,9 +16,9 @@ const BlogSection = ({ post, featuredMedia, tags, translation }) => {
     <div className="hero min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full   text-[#f1f1f1] flex items-center  overflow-x-hidden py-20 !grain !bg-[#2C395B]">
       <div className="grid  md:gap-14 xl:gap-18 grid-cols-1  justify-items-center content-center w-11/12 2xl:w-4/5 mx-auto h-full ">
         <div className="text-center">
-          <h4 className="text-[#FE6847] text-xl 3xl:text-4xl font-bold">
+          <h3 className="text-[#FE6847] text-xl 3xl:text-4xl font-bold">
             {translation?.subTitle}
-          </h4>
+          </h3>
           <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium  md:leading-none lg:leading-none mb-10 text-white">
             {translation?.title}
           </h2>
@@ -26,7 +26,7 @@ const BlogSection = ({ post, featuredMedia, tags, translation }) => {
         <div className="grid grid-cols-1  lg:grid-cols-3 gap-6">{jsxPosts}</div>
         <Link
           href="/blog"
-          className="flex items-center justify-between px-4 w-[9.875rem] h-[3.375rem] rounded-lg relative text-[#FE6847]  font-[600] shadow-3xl border border-2 border-[#FE6847] hover:transition-all hover:bg-white hover:border-white hover:scale-110 uppercase"
+          className="flex gap-2 items-center max-w-max text-center text-[#2c395b] lg:text-[21.57px] font-bold leading-snug py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md border-2 bg-white"
         >
           {translation?.button}
           <Icon icon="bi:arrow-right" />

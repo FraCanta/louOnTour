@@ -51,9 +51,9 @@ const Insta = ({ translation }) => {
           </div>
         </div>
         <div className=" 2xl:p-0 w-11/12 2xl:w-4/5 flex flex-col items-start justify-center">
-          <h4 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
+          <h3 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
             {translation?.subTitle}
-          </h4>
+          </h3>
           <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium md:leading-none lg:leading-none text-[#2C395B]">
             {translation?.title}
           </h2>
@@ -63,7 +63,7 @@ const Insta = ({ translation }) => {
           <Link
             href="https://www.instagram.com/luisatourguide__/"
             target="_blank"
-            className="flex gap-2 items-center max-w-max text-center capitalize font-bold py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md text-main hover:transition-all  bg-[#fe6847] w-full text-white"
+            className="max-w-max flex items-center gap-2 text-center capitalize font-bold py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md text-main hover:transition-all  bg-[#2c395b] w-full text-white"
           >
             {translation?.button}
 

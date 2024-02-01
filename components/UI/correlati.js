@@ -6,83 +6,43 @@ import Link from "next/link";
 const Correlati = ({ city, others, correlati }) => {
   return (
     <>
-      <div className="container w-11/12 xl:w-4/5 mx-auto pt-10">
+      <div className="container w-[90%] xl:w-4/5 mx-auto pt-10">
         <h2 className="text-3xl md:text-[40px] font-medium mt-2 leading-10 text-[#2C395B] lg:text-center pb-8 ">
           {correlati?.title}
         </h2>
         <div className="w-full h-[1px] bg-[#2C395B] bg-opacity-20"></div>
       </div>
       {/* carousel desktop */}
-      <div className=" min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh]  w-full 2xl:p-8 hidden xl:flex">
-        <div
-          className={`container mx-auto w-full xl:w-4/5 text-[1.5rem] xl:text-5xl mb-10 text-white overflow-hidden flex `}
-        >
-          {others
-            ?.filter((el) =>
-              !!el?.translatedTitle
-                ? el?.translatedTitle !== city?.titleImg
-                : el?.title !== city?.titleImg
-            )
-            .map((el, i) => (
-              <div className={`  w-[25%]  relative aspect-square `} key={i}>
-                <Link href={el?.link} className=" hand-pointer">
-                  <Image
-                    src={el?.img}
-                    alt={el?.title}
-                    priority
-                    width={500}
-                    height={500}
-                    style={{ width: "auto", height: "auto" }}
-                    layout="fixed"
-                    className="min-h-full h-full object-cover w-full absolute z-2 p-4 !rounded-[1.5rem] gallery-image"
-                  />
-                </Link>
-                <div
-                  className={`absolute bottom-[1.5rem] xl:bottom-8 left-10 bgText text-base xl:text-2xl w-3/5 `}
-                >
-                  <p className="leading-4 text-xl">
+      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4  w-4/5 mx-auto min-h-[40vh] gap-10 my-10">
+        {others
+          ?.filter((el) =>
+            !!el?.translatedTitle
+              ? el?.translatedTitle !== city?.titleImg
+              : el?.title !== city?.titleImg
+          )
+          .map((el, i) => (
+            <div
+              className="card w-full lg:w-50  shadow-xl mb-4 lg:mb-0 !pt-0 bg-white"
+              key={i}
+            >
+              <Link href={el?.link} className=" hand-pointer ">
+                <Image
+                  src={el?.img}
+                  alt={el?.title}
+                  priority
+                  width={461}
+                  height={420}
+                  className="w-full h-auto md:h-[450px] lg:h-[300px] object-cover rounded-t-lg object-top "
+                />
+                <div className="card-body justify-between !p-[1.5rem]">
+                  <h2 className="card-title text-[#2C395B]  hover:underline text-base">
                     {!!el.translatedTitle ? el.translatedTitle : el?.title}
-                  </p>
+                  </h2>
                 </div>
-              </div>
-            ))}
-        </div>
-      </div>
-
-      {/* carousel mobile */}
-      <div className="min-h-[20vh] w-full 2xl:p-8 xl:hidden ">
-        <div className=" carousel carousel-center p-4 space-x-4 ">
-          {others
-            ?.filter((el) =>
-              !!el?.translatedTitle
-                ? el?.translatedTitle !== city?.titleImg
-                : el?.title !== city?.titleImg
-            )
-            .map((el, i) => (
-              <div key={i}>
-                <div className="carousel-item w-[180px] h-[180px] relative">
-                  <Link href={el?.link}>
-                    <Image
-                      src={el?.img}
-                      alt={el?.title}
-                      // fill
-                      width={300}
-                      height={300}
-                      className="rounded-box  h-full w-full absolute"
-                    />
-                  </Link>
-                  <div
-                    className={`absolute bottom-[1rem]  left-[1rem] bgText text-base xl:text-2xl w-3/5 text-white`}
-                  >
-                    <p className="leading-4 text-xl">
-                      {!!el.translatedTitle ? el.translatedTitle : el?.title}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-        </div>
-      </div>
+              </Link>
+            </div>
+          ))}
+      </section>
     </>
   );
 };

@@ -15,12 +15,12 @@ const Map = ({ translation }) => {
           <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-regular mt-2 3xl:mt-12 leading-10 lg:leading-[4rem] 3xl:leading-[5.5rem] text-[#2C395B]">
             {translation?.title}
           </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-8 3xl:mt-20 mb-8 text-[#2C395B] leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
+          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-8 3xl:mt-20 mb-8 leading-6 2xl:leading-9 3xl:leading-10 mx-auto">
             {translation?.paragraph}
           </p>
           <Link
             href="/contatti"
-            className="text-center capitalize font-bold py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.4rem] fxl:text-2xl 3xl:text-3xl rounded-md text-main hover:transition-all  bg-[#fe6847] w-full text-white"
+            className="text-center capitalize font-bold py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md text-main hover:transition-all  bg-[#2c395b] w-full text-white"
           >
             {translation?.button}
           </Link>

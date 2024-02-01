@@ -1,104 +1,91 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Lou from "../../public/assets/logo4_small_2.webp";
+import Logo from "../../public/assets/logo4_small_2.webp";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
+import Mobile from "./mobile";
 
 const Menu = ({ translation }) => {
-  const { locale } = useRouter();
+  const { locale, pathname } = useRouter();
 
   return (
-    <div className="hidden xl:flex justify-center items-center w-full bg-white border-b border-black-500 z-20 menu_container h-[50px]">
-      <div className="container mx-auto w-11/12 2xl:w-[80%]">
-        <div className="flex  justify-between items-center px-0 w-full">
-          <div className="flex items-center justify-center">
-            <Link href="/" title="Lou On Tour">
-              <Image src={Lou} alt="Lou Logo" className="w-[180px]" />
+    <header className="relative">
+      <nav className="h-[60px] md:h-[100px] lg:h-[70px] xl:h-[100px] 3xl:h-[180px] 4xl:h-[250px] 3xl flex w-full items-center justify-between relative z-[999999] nav-scroll ">
+        <div className="flex w-[90%] mx-auto justify-between items-center ">
+          <div className="flex-1">
+            <Link href={`/`} title="Home Page">
+              <Image
+                src={Logo}
+                alt="logo"
+                className="w-[120px] md:w-[100px] xl:w-[130px] 2xl:w-[180px] fxl:w-[150px] 3xl:w-[200px] 4xl:w-[300px]"
+              />
             </Link>
           </div>
-          <nav className="menu-nav capitalize">
-            <ul className="links">
-              <li>
-                <Link href="/" className="2xl:text-[18px]">
-                  {translation?.[locale]?.home}
-                </Link>
-              </li>
 
-              <li className="dropdown dropdown-hover">
-                <label
-                  tabIndex={0}
-                  className="font-normal 2xl:text-[19px] flex items-center  !mr-[20px] !ml-[20px] "
-                >
-                  {translation?.[locale]?.tours}
+          <div className="lg:flex items-center  hidden capitalize flex-1 text-[#4A4A49]">
+            <div className="w-full flex items-center justify-end">
+              <Link
+                href={`/`}
+                title="Scopri chi sono e cosa posso fare per te"
+                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px] md:text-[1.2rem] xl:text-[1.2rem] fxl:text-[25px]  3xl:text-[35px] 4xl:text-[55px]  text-[#2C395B] capitalize flex items-center ${
+                  pathname === "/" ? "font-bold" : ""
+                }`}
+              >
+                {translation?.[locale]?.home}
+              </Link>
 
-                  <Icon
-                    icon="bxs:down-arrow"
-                    color="#2C395B"
-                    width="10"
-                    className="ml-2"
-                  />
-                </label>
+              <Link
+                href={`/tours`}
+                title="Ecco tutti i miei servizi"
+                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px] md:text-[1.2rem] xl:text-[1.2rem] fxl:text-[25px]  3xl:text-[35px] 4xl:text-[55px]  text-main  capitalize flex items-center ${
+                  pathname === "/tours" ? "font-bold" : ""
+                }`}
+              >
+                {translation?.[locale]?.tours}
+              </Link>
 
-                <>
-                  <ul
-                    tabIndex={0}
-                    className="dropdown-content  shadow p-2 bg-white rounded-box w-48 !top-[2rem]"
-                  >
-                    {translation?.[locale]?.map?.markers.map((el, i) => (
-                      <li key={i} className="py-1.5">
-                        <Link
-                          className="hover:underline text-[18px] !ml-2 "
-                          href={`/locations/${el?.link}`}
-                        >
-                          {el?.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              </li>
-              {/* <li>
-                <Link href="/tour" className="2xl:text-[18px] ">
-                  Tour
-                </Link>
-              </li> */}
-              <li>
-                <Link href="/chiSono" className="2xl:text-[18px] ">
-                  {translation?.[locale]?.about}
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="2xl:text-[18px] ">
-                  {translation?.[locale]?.blog}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contatti"
-                  className="2xl:text-[18px] px-[30px] border border-[#FE6847] py-2 rounded-md border-2"
-                >
-                  {translation?.[locale]?.contact}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/newsletter"
-                  className="flex items-center justify-center px-[20px] h-[40px] leading-[20px] min-w-[40px] rounded-md relative text-white  font-[600] shadow-md border border-2  bg-[#FE6847] border-[#FE6847] ring-2 ring-[#FE6847] hover:scale-110  font-extrabold grain text-[14px]"
-                >
-                  <Icon
-                    icon="heroicons:plus-20-solid"
-                    width="20"
-                    className="mr-2"
-                  />{" "}
-                  {translation?.[locale]?.iscriviti}
-                </Link>
-              </li>
-            </ul>
-          </nav>
+              <Link
+                href={`/chiSono`}
+                title="Guarda tutti i miei casi studio"
+                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px] md:text-[1.2rem] xl:text-[1.2rem] fxl:text-[25px]  3xl:text-[35px] 4xl:text-[55px]  text-main  capitalize flex items-center ${
+                  pathname === "/chiSono" ? "font-bold" : " "
+                }`}
+              >
+                {translation?.[locale]?.about}
+              </Link>
+              <Link
+                href={`/blog`}
+                title="I miei articoli"
+                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px] md:text-[1.2rem] xl:text-[1.2rem] fxl:text-[25px]  3xl:text-[35px] 4xl:text-[55px]  text-main font-regular capitalize flex items-center ${
+                  pathname === "/blog" ? "font-bold" : " "
+                }`}
+              >
+                {translation?.[locale]?.blog}
+              </Link>
+              <Link
+                href={`/contatti`}
+                title="I miei articoli"
+                className="mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px] md:text-[1.2rem] xl:text-[1.2rem] fxl:text-[25px]  3xl:text-[35px] 4xl:text-[55px]  text-main font-regular capitalize flex items-center"
+              >
+                {translation?.[locale]?.contact}
+              </Link>
+              <Link
+                href={`/newsletter`}
+                title="I miei articoli"
+                className="capitalize font-bold py-2.5 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 xl:text-[1rem] 2xl:text-[1.2rem]  fxl:text-2xl 3xl:text-3xl rounded-md shadow  text-white hover:transition-all  bg-[#fe6847]"
+              >
+                {translation?.[locale]?.iscriviti}
+              </Link>
+            </div>
+          </div>
+
+          <div className="text-main flex items-center justify-end py-1 lg:hidden ">
+            <Mobile translation={translation} />
+          </div>
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 

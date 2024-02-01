@@ -13,6 +13,7 @@
     "axios": "^1.4.0",
     "daisyui": "^2.38.1",
     "dom-parser-react": "^0.3.0",
+    "framer-motion": "^11.0.3",
     "gsap": "^3.11.3",
     "html-react-parser": "^3.0.16",
     "jsdom": "^22.0.0",
