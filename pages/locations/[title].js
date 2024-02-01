@@ -64,9 +64,9 @@ export default function Tours({ city, others, banner, correlati }) {
               className="w-full lg:w-1/2  lg:px-8 lg:p-4 pt-8 xl:pt-0"
               style={city?.half_elenco?.length === 0 ? { display: "none" } : {}}
             >
-              <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
+              <h2 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
                 {city?.half}
-              </h3>
+              </h2>
               <ul className="text-xl md:text-base font-medium mt-2 leading-10  text-[#2C395B] pb-10 elenco_tours">
                 {city?.half_elenco?.map((el, i) => (
                   <li
@@ -90,9 +90,9 @@ export default function Tours({ city, others, banner, correlati }) {
               className="w-full lg:w-1/2  lg:px-8 lg:p-4 pt-8 xl:pt-0"
               style={city?.half_elenco?.length === 0 ? { width: "100%" } : {}}
             >
-              <h3 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
+              <h2 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
                 {city?.full}
-              </h3>
+              </h2>
               <ul className="text-xl md:text-base font-medium mt-2 leading-10 text-[#2C395B] pb-8 elenco_tours">
                 {city?.full_elenco?.map((el, i) => (
                   <li

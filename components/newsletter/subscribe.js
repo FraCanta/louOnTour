@@ -35,7 +35,7 @@ const Subscribe = ({ translation }) => {
 
   return (
     <div className="max-w-sm bg-white border border-white p-6 text-[#2c395b]">
-      <h4 className="text-3xl font-bold mb-4">What&apos;s your email?</h4>
+      <h2 className="text-3xl font-bold mb-4">What&apos;s your email?</h2>
       <p className="mb-6 text-base">{translation?.paragrafo}</p>
       <form onSubmit={subscribe} className="flex flex-wrap">
         <div className="w-full md:w-3/4 mb-4 md:mr-2">
@@ -54,7 +54,7 @@ const Subscribe = ({ translation }) => {
           <button
             disabled={state === "Loading"}
             type="submit"
-            className={`w-full p-2 font-bold text-white bg-[#FE6847] border-lg ${
+            className={`w-full p-2 font-bold text-white bg-[#FE6847] border-lg rounded-md ${
               state === "Loading" ? "opacity-60 cursor-not-allowed" : ""
             }`}
           >
