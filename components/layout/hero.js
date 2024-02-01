@@ -8,7 +8,7 @@ const Hero = ({ translation }) => {
   return (
     <div className="hero w-[100%] mx-auto min-h-[calc(100vh_-_80px)] 2xl:min-h-screen  flex flex-col justify-between justify-center items-center gap-10">
       <div className="flex flex-col items-center  justify-center  z-10 title mt-[100px] w-[90%] xl:w-full">
-        <h1 className="text-[4rem] md:text-[8rem] fxl:text-[15.625rem] font-bold tracking-normal md:mb-0 mt-5 rotated:text-[5rem] rotated:mb-5">
+        <h1 className="text-[4rem] md:text-[8rem] fxl:text-[10rem] font-bold tracking-normal md:mb-0 mt-5 rotated:text-[5rem] rotated:mb-5">
           {translation?.name}
         </h1>
         <p className="text-center  w-full 2xl:w-[58%] mx-auto text-base md:text-[1.2rem] 2xl:text-[1.5rem] lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2rem] 3xl:text-[2.5rem] leading-6 2xl:leading-9 3xl:leading-[3.5rem] mb-5 font-regular">
