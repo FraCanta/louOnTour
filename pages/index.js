@@ -63,7 +63,7 @@ export default function Home({ translation, post, category }) {
       </Head>
 
       <DynamicHero translation={translation?.hero} />
-      <DynamicMission translation={translation?.mission} />
+      {/* <DynamicMission translation={translation?.mission} /> */}
       <DynamicMap translation={translation?.map} />
       <DynamicAboutMe translation={translation?.about} />
       <DynamicInsta translation={translation?.socialLou} />

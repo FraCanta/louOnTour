@@ -3,7 +3,7 @@ import Cta from "../button/button";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
-import HeroImg from "../../public/assets/hero_img2.png";
+import HeroImg from "../../public/assets/hero_img2.jpg";
 const Hero = ({ translation }) => {
   return (
     <div className="hero w-[100%] mx-auto min-h-[calc(100vh_-_80px)] 2xl:min-h-screen  flex flex-col justify-between 2xl:justify-center items-center gap-10">
