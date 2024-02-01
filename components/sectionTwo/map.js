@@ -6,12 +6,12 @@ import Cta from "../button/button";
 import Link from "next/link";
 const Map = ({ translation }) => {
   return (
-    <div className="min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  container mx-auto w-11/12 2xl:w-4/5">
-      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 lg:grid-cols-2 justify-items-center content-center pt-12 2xl:pt-10  overflow-x-hidden lg:overflow-visible">
-        <div className="p-0 ">
-          <h4 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
+    <div className="min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  container mx-auto ">
+      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1 lg:grid-cols-2 items-center pt-12 2xl:pt-10  overflow-x-hidden lg:overflow-visible">
+        <div className="p-0 w-[90%] 2xl:w-4/5 mx-auto ">
+          <h3 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
             {translation?.subTitle}
-          </h4>
+          </h3>
           <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 lg:leading-[4rem] 3xl:leading-[5.5rem] text-[#2C395B]">
             {translation?.title}
           </h2>
