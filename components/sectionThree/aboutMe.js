@@ -20,7 +20,7 @@ const AboutMe = ({ translation }) => {
 
           <Link
             href="/chiSono"
-            className="flex gap-2 items-center w-full lg:max-w-max text-center text-white lg:text-[21.57px] font-bold leading-snug py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md border-2 border-[#fe6847]"
+            className="flex gap-2 items-center max-w-max text-center text-[#fe6847] lg:text-[21.57px] font-bold leading-snug py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md border-2 border-[#fe6847]"
           >
             {translation?.button}
             <Icon icon="bi:arrow-right" />
