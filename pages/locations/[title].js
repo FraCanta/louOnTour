@@ -24,6 +24,8 @@ export default function Tours({ city, others, banner, correlati }) {
       <Head>
         <title>{city?.title}</title>
         <meta name="description" content={city?.descrizione} />
+        <meta name="keywords" content={city?.keywords} />
+
         <meta property="og:url" content="https://www.louontour.it/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={city?.title} />

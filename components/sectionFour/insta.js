@@ -2,10 +2,10 @@ import React from "react";
 import Cta from "../button/button";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
-import Lou from "../../public/assets/foto7.jpg";
-import Lou2 from "../../public/assets/foto2.jpg";
-import Lou3 from "../../public/assets/foto8.jpg";
-import Lou4 from "../../public/assets/foto17.jpg";
+import Lou from "../../public/assets/fotoinsta2.jpg";
+import Lou2 from "../../public/assets/fotoinsta4.jpg";
+import Lou3 from "../../public/assets/foto2.jpg";
+import Lou4 from "../../public/assets/fotoinsta.jpg";
 import Masonry from "./masonry";
 import Link from "next/link";
 

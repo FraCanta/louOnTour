@@ -2,7 +2,8 @@
   "home": {
     "head": {
       "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour",
-      "description": "Guided tour of Siena with Cathedral, Campo, Palazzo Pubblico, and the Palio. San Domenico, Santa Caterina, and the Contrade."
+      "description": "Guided tour of Siena with Cathedral, Campo, Palazzo Pubblico, and the Palio. San Domenico, Santa Caterina, and the Contrade.",
+      "keywords": "Tuscany tours, Tuscany italy, Tours of Tuscany, Private tour guide Tuscany, Tuscany tour guide, Tour guide tuscany, Best private tour guide Tuscany, Best Tuscany tour guide, Private tour guide in Tuscany"
     },
     "hero": {
       "name": "Lou On Tour",
@@ -302,6 +303,7 @@
         "img": "/assets/locationTour/siena.jpg",
         "titleImg": "Siena",
         "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Siena",
+        "keywords": "Siena tour guide, Siena private tour guide, Siena Italy tour guide, Tour guide siena and province, Tour guide siena italy, Siena tour, Siena tours, Siena tours Tuscany, Siena tour italy, Siena travel and tour, Siena and san gimignano tour, Siena city tour, Siena cathedral tour, Siena day tour, Siena duomo and city walking tour, Siena walking tour, Siena top sights, Siena guided tour, Siena Italy tour guides",
 
         "half": "Tours Siena (Half Day)",
         "full": "Tours Siena (Full Day)",
@@ -445,6 +447,7 @@
         "img": "/assets/locationTour/volterra.jpg",
         "titleImg": "Volterra",
         "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Volterra",
+        "keywords": "Volterra tour, Volterra tours, Volterra tour guide, Volterra walking tour, Volterra Italy walking tour, Tour Volterra san gimignano, Volterra city tour, Volterra visit guide, Volterra Tuscany Italy, Tours Volterra italy, Visit Volterra Italy, Volterra visit, Private tour Volterra",
         "half": "Tours Volterra (Half Day)",
         "full": "Tours Volterra (Full Day)",
         "citazione": "[…] Volterra si mostra con un fascino arcano che promana dalle case addossate, dalle torri mozzate, dalle strade percorse da ombre inquietanti, lastricate nel tempo di sudore e di assurdo che attraversano la storia e la leggenda scavando solchi senza fine nella mente suggestionata degli uomini. (Franco Porretti)",
@@ -607,7 +610,7 @@
         "img": "/assets/locationTour/san_gimignano.jpg",
         "titleImg": "San Gimignano",
         "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | San Gimignano",
-
+        "keywords": "San Gimignano tour, San Gimignano tour from siena, San Gimignano guided tour, Tour of San Gimignano Italy, San Gimignano Tuscany, San Gimignano walking tour, Walking tour of San Gimignano, Private tour San Gimignano, Siena to San Gimignano tour",
         "half": "Tours San Gimignano (Half Day)",
         "full": "Tours San Gimignano (Full Day)",
         "citazione": "San Gimignano dalle belle torri e dalle belle campane… (Proverbio fiorentino)",
@@ -773,6 +776,7 @@
         "titleImg": "Montepulciano and Val d'Orcia",
         "translatedTitle": "Montepulciano and Val d'Orcia",
         "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Montepulciano e Vald d'Orcia",
+        "keywords": "Montepulciano tour, Montepulciano tour from siena, Montepulciano guided tour, Tour of Montepulciano Italy, Montepulciano Tuscany, Montepulciano walking tour, Walking tour of Montepulciano, Private tour San Gimignano, Siena to San Gimignano tour",
 
         "half": "",
         "full": "Tours Montepulciano and Val d'Orcia (Full Day)",
@@ -792,6 +796,8 @@
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
         "titleImg": "San Galgano",
         "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | San Galgano",
+        "keywords": "San Galgano tour, San Galgano tour from siena, San Galgano guided tour, Tour of San Galgano Italy, San Galgano Tuscany, San Galgano walking tour, Walking tour of San Galgano, Private tour San Galgano, Siena to San Galgano tour",
+
         "half": "Tour San Galgano (Half Day)",
         "full": "Tour San Galgano (Full Day)",
         "citazione": "“per tetto un manto di stelle”",

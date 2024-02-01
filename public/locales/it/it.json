@@ -2,7 +2,8 @@
   "home": {
     "head": {
       "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour ",
-      "description": "Visita guidata di Siena con Cattedrale, Campo, Palazzo Pubblico e il Palio. San Domenico, Santa Caterina e le Contrade."
+      "description": "Visita guidata di Siena con Cattedrale, Campo, Palazzo Pubblico e il Palio. San Domenico, Santa Caterina e le Contrade.",
+      "keywords": "guida turistica toscana, toscana guida turistica, toscana guida, guida turistica in toscana, tour toscana, tour borghi toscana, tour toscana cosa vedere"
     },
     "hero": {
       "name": "Lou On Tour",
@@ -300,6 +301,7 @@
     "locationTours": {
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
+        "keywords": "Siena tour a piedi, Tour a siena, Tour di siena, Tour siena e dintorni, Tour siena e val d’orcia, Duomo di siena tour, siena guida turistica, guida turistica per siena e provincia, guida turistica siena, tour privato siena",
         "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Siena",
         "titleImg": "Siena",
         "half": "Tours Siena (Mezza Giornata)",
@@ -443,6 +445,7 @@
       "Volterra": {
         "img": "/assets/locationTour/volterra.jpg",
         "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Volterra",
+        "keywords": "tour Volterra e dintorni, Tour di Volterra, Tour guidato Volterra, Tour siena San Gimignano Volterra, Tour toscana Volterra San Gimignano, guida turistica volterra, Tour privato Volterra",
 
         "titleImg": "Volterra",
         "half": "Tours Volterra (Mezza Giornata)",
@@ -607,7 +610,7 @@
         "img": "/assets/locationTour/san_gimignano.jpg",
         "titleImg": "San Gimignano",
         "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| San Gimignano",
-
+        "keywords": "Tour a San Gimignano, Tour San Gimignano e dintorni, San Gimignano toscana, Siena San Gimignano e monteriggioni tour, Tour toscana San Gimignano, Guida turistica san gimignano",
         "half": "Tours San Gimignano (Mezza Giornata)",
         "full": "Tours San Gimignano (Giornata Intera)",
         "citazione": "San Gimignano dalle belle torri e dalle belle campane… (Proverbio fiorentino)",
@@ -772,6 +775,7 @@
         "img": "/assets/locationTour/valdorcia.jpg",
         "titleImg": "Montepulciano e Val d'Orcia",
         "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Montepulciano e Val d'Orcia",
+        "keywords": "Tour a Montepulciano, Tour Montepulciano e dintorni, Montepulciano toscana, Siena Montepulciano e monteriggioni tour, Tour toscana Montepulciano, Guida turistica Montepulciano",
 
         "half": "",
         "full": "Tours Montepulciano e Val d'Orcia (Giornata Intera)",
@@ -791,6 +795,7 @@
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
         "titleImg": "San Galgano",
         "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| San Galgano",
+        "keywords": "Tour a San Galgano, Tour San Galgano e dintorni, San Galgano toscana, Siena San Galgano e monteriggioni tour, Tour toscana San Galgano, Guida turistica San Galgano",
 
         "half": "Tour San Galgano (Mezza Giornata)",
         "full": "Tour San Galgano (Giornata Intera)",

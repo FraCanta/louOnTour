@@ -25,10 +25,11 @@ import {
 export default function Home({ translation, post, category }) {
   const { locale } = useRouter();
   return (
-    <div>
+    <>
       <Head>
         <title>{translation?.head?.title}</title>
         <meta name="description" content={translation?.head?.description} />
+        <meta name="keywords" content={translation?.head?.keywords} />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:url" content="https://www.louontour.it/" />
         <meta property="og:type" content="website" />
@@ -69,7 +70,7 @@ export default function Home({ translation, post, category }) {
       <BlogSection post={post} translation={translation?.blogSection} />
 
       <DynamicBanner translation={translation?.banner} />
-    </div>
+    </>
   );
 }
 export async function getStaticProps({ locale }) {
