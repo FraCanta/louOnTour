@@ -19,7 +19,7 @@ const BlogSection = ({ post, featuredMedia, tags, translation }) => {
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl font-bold">
             {translation?.subTitle}
           </h4>
-          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium  md:leading-none lg:leading-none mb-10">
+          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium  md:leading-none lg:leading-none mb-10 text-white">
             {translation?.title}
           </h2>
         </div>
