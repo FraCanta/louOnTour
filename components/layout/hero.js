@@ -42,7 +42,7 @@ const Hero = ({ translation }) => {
         </div>
       </div>
 
-      <div className="relative h-[280px] xl:h-[380px] w-full ">
+      <div className="relative h-[280px] xl:h-[400px] w-full ">
         <Image
           src={HeroImg}
           fill
