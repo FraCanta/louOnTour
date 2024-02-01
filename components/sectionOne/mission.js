@@ -7,9 +7,9 @@ const Mission = ({ translation }) => {
       <div className="container w-11/12 2xl:w-4/5 mx-auto xl:h-full ">
         <div className="mx-auto relative z-1">
           <div className="flex flex-col gap-6">
-            <h4 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
+            <h3 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
               {translation?.subTitle}
-            </h4>
+            </h3>
             <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium  leading-10 text-[#2C395B]">
               {translation?.title}
             </h2>
