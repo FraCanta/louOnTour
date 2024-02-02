@@ -57,7 +57,7 @@ const Insta = ({ translation }) => {
           <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium md:leading-none lg:leading-none text-[#2C395B]">
             {translation?.title}
           </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl  mt-4 sm:mt-10 mb-8 text-[#2C395B]">
+          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl  mt-4 sm:mt-10 mb-8 text-para">
             {translation?.paragraph}
           </p>
           <Link

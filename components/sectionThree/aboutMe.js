@@ -14,7 +14,7 @@ const AboutMe = ({ translation }) => {
           <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium !text-white  md:leading-none lg:leading-none mb-10">
             {translation?.title}
           </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl   mb-8 text-white">
+          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl   mb-8 text-white/90">
             {translation?.paragraph}
           </p>
 
