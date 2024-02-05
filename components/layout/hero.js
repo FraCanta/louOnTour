@@ -10,7 +10,7 @@ const Hero = ({ translation }) => {
           {translation?.name}
         </h1>
         <p className="text-center  w-full 2xl:w-[68%] mx-auto text-[1.2rem] 2xl:text-[1.5rem] lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2rem] 3xl:text-[2.5rem] leading-6 2xl:leading-9 3xl:leading-[3.5rem] mb-5 font-regular">
-          {translation?.paragraph} 🇮🇹 🇺🇸
+          {translation?.paragraph}
         </p>
 
         <div className="justify-center items-center gap-[28.76px] flex flex-col lg:flex-row w-full h-full">
