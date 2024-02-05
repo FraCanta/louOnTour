@@ -6,7 +6,7 @@ const Hero = ({ translation }) => {
   return (
     <div className="hero w-[100%] mx-auto min-h-[calc(100vh_-_80px)] 2xl:min-h-[calc(100vh_-_80px)]  flex flex-col justify-between 2xl:justify-evenly items-center gap-20">
       <div className="flex flex-col items-center  justify-center text-center  w-[90%] xl:w-full gap-2">
-        <h1 className="text-[3rem] md:text-[4.5rem] fxl:text-[10rem] font-bold leading-[1] md:mb-0 mt-20 ">
+        <h1 className="text-[3rem] md:text-[5rem] fxl:text-[10rem] font-bold leading-[1] md:mb-0 mt-20 ">
           {translation?.name}
         </h1>
         <p className="text-center  w-full 2xl:w-[68%] mx-auto text-[1.2rem] 2xl:text-[1.5rem] lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2rem] 3xl:text-[2.5rem] leading-6 2xl:leading-9 3xl:leading-[3.5rem] mb-5 font-regular">
