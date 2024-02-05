@@ -5,6 +5,20 @@
 .image-div img {
   width: 33%;
 }
+p {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+h2 {
+  font-size: 24px;
+  color: var(--primary);
+}
+
+strong {
+  color: var(--primary);
+  opacity: 90%;
+}
 
 @media screen and (max-width: 768px) {
   .image-div {
