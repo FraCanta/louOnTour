@@ -16,7 +16,7 @@ const Hero = ({ translation }) => {
         <div className="justify-center items-center gap-[28.76px] flex flex-col lg:flex-row w-full h-full">
           <div className="w-full lg:w-max h-full flex justify-center">
             <Link
-              href="/contatti"
+              href="/tours"
               className="text-center capitalize font-bold py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md text-main hover:transition-all  bg-[#2c395b] w-full text-white"
             >
               {translation?.cta}
@@ -24,7 +24,7 @@ const Hero = ({ translation }) => {
           </div>
           <div className="w-full lg:w-max h-full flex justify-center">
             <Link
-              href="/tours"
+              href="/contatti"
               className="w-full lg:w-max-content text-center text-[#2c395b] lg:text-[21.57px] font-bold leading-snug py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md border-2 border-[#2c395b]"
             >
               {translation?.tourcta}
