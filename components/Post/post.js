@@ -30,7 +30,7 @@ export default function Post({ post, featuredMedia }) {
 
       <div className="card-body justify-between !p-[1.5rem]">
         <div className="py-2">
-          <small className="badge badge-info badge-lg text-white">
+          <small className="badge bg-second border-transparent badge-lg text-white">
             {getDate(post?.date)}
           </small>
         </div>

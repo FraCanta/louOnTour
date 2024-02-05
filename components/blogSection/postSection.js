@@ -13,13 +13,13 @@ export default function PostSection({ post, featuredMedia }) {
     <div className="card w-full lg:w-50 lg:h-[20rem]  shadow-xl mb-6 lg:mb-2 mr-4 bg-white text-black ">
       <div className="card-body !p-8  !justify-between">
         <div>
-          <small className="badge badge-info badge-lg text-white text-xs">
+          <small className="badge !bg-second badge-lg text-white text-xs">
             {getDate(post?.date)}
           </small>
         </div>
         <Link href={`/posts/${post?.slug}`}>
           <h5
-            className="card-title text-[#2C395B]  hover:underline text-base"
+            className="card-title text-main  hover:underline text-base"
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           ></h5>
         </Link>
