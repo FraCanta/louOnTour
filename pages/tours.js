@@ -42,10 +42,10 @@ const Tours = ({ translation }) => {
       </Head>
       <div className="text-left py-10 2xl:pb-8 flex  w-[90%] mx-auto">
         <h1 className="text-4xl md:text-[60px] font-bold mt-8 leading-10 text-[#2C395B]">
-          Tutti i miei tours
+          {translation?.toursTitle}
         </h1>
       </div>
-      <div className="hero2 relative min-h-[75vh] 2xl:min-h-[65vh] w-11/12">
+      <div className="hero2 relative min-h-[70vh] 2xl:min-h-[65vh] w-11/12">
         <BgAnimation />
       </div>
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  w-[90%] mx-auto min-h-[40vh] gap-10 my-10">

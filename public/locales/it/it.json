@@ -6,8 +6,10 @@
       "keywords": "guida turistica toscana, toscana guida turistica, toscana guida, guida turistica in toscana, tour toscana, tour borghi toscana, tour toscana cosa vedere"
     },
     "hero": {
-      "name": "Lou On Tour",
-      "paragraph": "Guida Turistica abilitata in italiano e in inglese. Propongo tour guidati a Siena e la sua provincia e Volterra. Sono a tua disposizione per disegnare il tuo tour su misura, secondo i tuoi gusti e le tue esigenze."
+      "name": "Customize and Private Tours",
+      "paragraph": "Licensed Tour Guide in Siena, its province and Volterra.  ",
+      "cta": "I Miei Tour",
+      "tourcta": "Customize your tour"
     },
     "mission": {
       "subTitle": "Mission",
@@ -303,6 +305,7 @@
       "description": "Visita guidata di Siena con Cattedrale, Campo, Palazzo Pubblico e il Palio. San Domenico, Santa Caterina e le Contrade.",
       "keywords": "guida turistica toscana, toscana guida turistica, toscana guida, guida turistica in toscana, tour toscana, tour borghi toscana, tour toscana cosa vedere"
     },
+    "toursTitle": "Tutti i miei tour",
     "tourItem": [
       {
         "img": "/assets/locationTour/siena.jpg",
@@ -979,8 +982,7 @@
     "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Blog"
   },
   "contatti": {
-    "title": "Parliamo insieme del Tour che ti piacerebbe fare con me!",
-    "form": "Scrivimi quale tour hai scelto e ti contatterò presto!",
+    "title": "Scrivimi e organizziamo insieme il tuo tour!",
     "formTitles": {
       "nome": "Nome",
       "email": "E-mail",
