@@ -9,7 +9,6 @@ import {
 } from "../utils/wordpress";
 
 function generateSiteMap(posts) {
-  // console.log(posts);
   return `<?xml version="1.0" encoding="UTF-8"?>
      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">       
        <url>
@@ -64,34 +63,34 @@ ${LayoutTranslation?.menu?.it?.map?.markers
     .join("")}
 
        
-       ${posts?.it
-         .map((slug, date) => {
-           const receivedDate = new Date(date);
-           const isoDate = receivedDate.toISOString();
-           return `
-         <url>
-             <loc>${`${headlessSite}/posts/${slug}`}</loc>
-              <lastmod>${`${isoDate}`}</lastmod>
-             <changefreq>weekly</changefreq>
-             <priority>0.5</priority>
-         </url>
-       `;
-         })
-         .join("")}
-         ${posts?.en
-           .map((slug, date) => {
-             const receivedDate = new Date(date);
-             const isoDate = receivedDate.toISOString();
-             return `
-          <url>
-              <loc>${`${headlessSite}/en/posts/${slug}`}</loc>
-               <lastmod>${`${isoDate}`}</lastmod>
-             <changefreq>weekly</changefreq>
-             <priority>0.5</priority>
-          </url>
-        `;
-           })
-           .join("")}
+    ${posts?.it
+      .map(({ id, slug, tags, date }) => {
+        const receivedDate = new Date(date);
+        const isoDate = receivedDate.toISOString();
+        return `
+      <url>
+          <loc>${`${headlessSite}/posts/${slug}`}</loc>
+          <lastmod>${`${isoDate}`}</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.5</priority>
+      </url>
+    `;
+      })
+      .join("")}
+      ${posts?.en
+        .map(({ id, slug, tags, date }) => {
+          const receivedDate = new Date(date);
+          const isoDate = receivedDate.toISOString();
+          return `
+       <url>
+           <loc>${`${headlessSite}/en/posts/${slug}`}</loc>
+           <lastmod>${`${isoDate}`}</lastmod>
+           <changefreq>weekly</changefreq>
+           <priority>0.5</priority>
+       </url>
+     `;
+        })
+        .join("")}
      </urlset>
    `;
 }
@@ -101,9 +100,9 @@ function SiteMap() {
 }
 
 export async function getServerSideProps({ res }) {
-  const resObj = await getPostsByLanguageAndBlogOwner("thalliondev");
+  const resObj = await getPostsByLanguageAndBlogOwner();
   const sitemap = generateSiteMap(resObj);
-
+  console.log(resObj);
   res.setHeader("Content-Type", "text/xml");
   // we send the XML to the browser
   res.write(sitemap);
