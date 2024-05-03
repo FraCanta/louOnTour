@@ -98,11 +98,14 @@ const Footer = ({ translation }) => {
           </div>
         </div>
       </footer>
-      <footer className="footer footer-center  p-2 !bg-[#2c395b]  grain text-base-content ">
+      <footer className="footer footer-center  p-2 !bg-[#2c395b]  grain ">
         <div>
-          <p className=" text-white  !opacity-100">
-            Copyright © 2024 - All rights reserved by Lou On Tour - Made with ❤️
-            by{" "}
+          <p className=" text-white text-sm   !opacity-100">
+            Copyright © 2024 - All rights reserved by Lou On Tour -{" "}
+            <Link href="/policy" target="_blank" className="underline">
+              Privacy Policy
+            </Link>{" "}
+            - Made with ❤️ by{" "}
             <Link
               href="https://www.thallion-dev.it/"
               target="_blank"
