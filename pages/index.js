@@ -31,7 +31,10 @@ export default function Home({ translation, post, category }) {
         <meta name="description" content={translation?.head?.description} />
         <meta name="keywords" content={translation?.head?.keywords} />
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:url" content="https://www.louontour.it/" />
+        <meta
+          property="og:url"
+          content="https://www.luisaquaglia-tourguide.com/"
+        />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={translation?.head?.title} />
         <meta
@@ -41,12 +44,15 @@ export default function Home({ translation, post, category }) {
 
         <meta
           property="og:image"
-          content="https://louontour.it/assets/og-img.png"
+          content="https://luisaquaglia-tourguide.com/assets/og-img.png"
         />
         <meta property="og:site_name" content="Lou On Tour" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="louontour.it" />
-        <meta property="twitter:url" content="https://www.louontour.it/" />
+        <meta property="twitter:domain" content="luisaquaglia-tourguide.com" />
+        <meta
+          property="twitter:url"
+          content="https://www.luisaquaglia-tourguide.com/"
+        />
         <meta name="twitter:title" content={translation?.head?.title} />
         <meta
           name="twitter:description"
@@ -54,7 +60,7 @@ export default function Home({ translation, post, category }) {
         />
         <meta
           name="twitter:image"
-          content="https://louontour.it/assets/og-img.png"
+          content="https://luisaquaglia-tourguide.com/assets/og-img.png"
         />
         <meta
           name="google-site-verification"

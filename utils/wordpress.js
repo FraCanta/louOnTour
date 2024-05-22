@@ -1,4 +1,4 @@
-const BASE_URL = "http://loublog.louontour.it/wp-json/wp/v2";
+const BASE_URL = "http://loublog.luisaquaglia-tourguide.com/wp-json/wp/v2";
 
 export async function getPosts(lang) {
   const postsRes = await fetch(BASE_URL + "/posts?_embed&per_page=100", {

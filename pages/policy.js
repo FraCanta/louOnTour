@@ -19,9 +19,10 @@ const Policy = () => {
           <p>
             La presente Informativa sulla privacy spiega le politiche di Luisa
             sulla raccolta e l&apos;uso delle informazioni che raccogliamo
-            quando accedi a https://www.louontour.it/ (il &apos;Servizio&apos;).
-            La presente Informativa sulla privacy descrive i tuoi diritti e in
-            che maniera sei protetto dalle leggi sulla privacy.
+            quando accedi a https://www.luisaquaglia-tourguide.com/ (il
+            &apos;Servizio&apos;). La presente Informativa sulla privacy
+            descrive i tuoi diritti e in che maniera sei protetto dalle leggi
+            sulla privacy.
           </p>
           <p>
             Utilizzando il nostro Servizio, acconsenti alla raccolta e
@@ -45,7 +46,7 @@ const Policy = () => {
           </p>
           <p>
             Luisa pubblicherà l&apos;Informativa sulla privacy modificata sul
-            sito web https://www.louontour.it/.
+            sito web https://www.luisaquaglia-tourguide.com/.
           </p>
 
           <h3 className="text-3xl md:text-[32px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] ">
@@ -57,8 +58,8 @@ const Policy = () => {
           <p>
             Quando utilizzi il nostro Servizio, ti verrà richiesto di fornirci
             delle informazioni personali utilizzate per contattarti o
-            identificarti. https://www.louontour.it/ raccoglie le seguenti
-            informazioni:{" "}
+            identificarti. https://www.luisaquaglia-tourguide.com/ raccoglie le
+            seguenti informazioni:{" "}
           </p>
 
           <ul>
@@ -83,8 +84,8 @@ const Policy = () => {
             Come raccogliamo le informazioni
           </h4>
           <p>
-            https://www.louontour.it/ raccoglie e riceve informazioni da parte
-            tua nelle seguenti modalità:{" "}
+            https://www.luisaquaglia-tourguide.com/ raccoglie e riceve
+            informazioni da parte tua nelle seguenti modalità:{" "}
           </p>
           <ul>
             <li>
@@ -105,8 +106,8 @@ const Policy = () => {
             Come usiamo le tue informazioni
           </h4>
           <p>
-            https://www.louontour.it/ può utilizzare le tue informazioni per i
-            seguenti scopi:{" "}
+            https://www.luisaquaglia-tourguide.com/ può utilizzare le tue
+            informazioni per i seguenti scopi:{" "}
           </p>
           <ul>
             <li>
@@ -222,12 +223,12 @@ const Policy = () => {
           </h4>
           <p>
             La sicurezza delle tue informazioni è importante per noi.
-            https://www.louontour.it/ utilizza una serie di misure di sicurezza
-            per prevenire l&apos;uso improprio, la perdita o l&apos;alterazione
-            delle informazioni che ci hai fornito. Tuttavia, poiché non possiamo
-            garantire la sicurezza delle informazioni che ci fornisci, stai
-            eseguendo l&apos;accesso al nostro servizio a tuo rischio e
-            pericolo.{" "}
+            https://www.luisaquaglia-tourguide.com/ utilizza una serie di misure
+            di sicurezza per prevenire l&apos;uso improprio, la perdita o
+            l&apos;alterazione delle informazioni che ci hai fornito. Tuttavia,
+            poiché non possiamo garantire la sicurezza delle informazioni che ci
+            fornisci, stai eseguendo l&apos;accesso al nostro servizio a tuo
+            rischio e pericolo.{" "}
           </p>
           <p>
             Luisa non è responsabile delle prestazioni dei siti web gestiti da
@@ -247,7 +248,7 @@ const Policy = () => {
           <p>Nome: Luisa Quaglia</p>
           <p>Indirizzo: via Podere Segarelli 6, 56045 Pomarance (PI)</p>
           <p>E-mail: luisaquaglia.tourguide@gmail.com</p>
-          <p>Sito web: https://www.louontour.it/</p>
+          <p>Sito web: https://www.luisaquaglia-tourguide.com/</p>
         </div>
       ) : (
         <div className="container mx-auto pt-5 p-2 xl:p-8 text-black">
@@ -259,9 +260,9 @@ const Policy = () => {
           <p>
             This Privacy Policy explains the policies of Luisa on the collection
             and use of the information we collect when you access
-            https://www.louontour.it/ (the “Service”). This Privacy Policy
-            describes your privacy rights and how you are protected under
-            privacy laws.
+            https://www.luisaquaglia-tourguide.com/ (the “Service”). This
+            Privacy Policy describes your privacy rights and how you are
+            protected under privacy laws.
           </p>
           <p>
             By using our Service, you are consenting to the collection and use
@@ -283,7 +284,7 @@ const Policy = () => {
           </p>
           <p>
             Luisa will post the revised Privacy Policy on the
-            https://www.louontour.it/ website
+            https://www.luisaquaglia-tourguide.com/ website
           </p>
 
           <h3 className="text-3xl md:text-[28px] 3xl:text-[100px] font-medium mt-2 3xl:mt-12 leading-10 text-[#2C395B] pb-4">
@@ -295,7 +296,8 @@ const Policy = () => {
           <p>
             When using our Service, you will be prompted to provide us with
             personal information used to contact or identify you.
-            https://www.louontour.it/ collects the following information:{" "}
+            https://www.luisaquaglia-tourguide.com/ collects the following
+            information:{" "}
           </p>
 
           <ul>
@@ -319,8 +321,8 @@ const Policy = () => {
             How We Collect Information
           </h4>
           <p>
-            https://www.louontour.it/ collects and receives information from you
-            in the following manner:{" "}
+            https://www.luisaquaglia-tourguide.com/ collects and receives
+            information from you in the following manner:{" "}
           </p>
           <ul>
             <li>
@@ -340,8 +342,8 @@ const Policy = () => {
             How We Use Your Information
           </h4>
           <p>
-            https://www.louontour.it/ may use your information for the following
-            purposes:{" "}
+            https://www.luisaquaglia-tourguide.com/ may use your information for
+            the following purposes:{" "}
           </p>
           <ul>
             <li>
@@ -450,11 +452,11 @@ const Policy = () => {
           </h4>
           <p>
             Your information’s security is important to us.
-            https://www.louontour.it/ utilizes a range of security measures to
-            prevent the misuse, loss, or alteration of the information you have
-            given us. However, because we cannot guarantee the security of the
-            information you provide us, you must access our service at your own
-            risk.{" "}
+            https://www.luisaquaglia-tourguide.com/ utilizes a range of security
+            measures to prevent the misuse, loss, or alteration of the
+            information you have given us. However, because we cannot guarantee
+            the security of the information you provide us, you must access our
+            service at your own risk.{" "}
           </p>
           <p>
             Luisa is not responsible for the performance of websites operated by
@@ -473,7 +475,7 @@ const Policy = () => {
           <p>Name: Luisa Quaglia</p>
           <p>Address: via Podere Segarelli 6, 56045 Pomarance (PI)</p>
           <p>Email: luisaquaglia.tourguide@gmail.com</p>
-          <p>Website: https://www.louontour.it/</p>
+          <p>Website: https://www.luisaquaglia-tourguide.com/</p>
         </div>
       )}
     </>

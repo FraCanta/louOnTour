@@ -1,5 +1,5 @@
 //pages/sitemap.xml.js
-const headlessSite = "https://louontour.it";
+const headlessSite = "https://luisaquaglia-tourguide.com";
 import LayoutTranslation from "../public/locales/layout.json";
 
 import {
@@ -12,34 +12,34 @@ function generateSiteMap(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">       
        <url>
-         <loc>https://louontour.it/</loc>
+         <loc>https://luisaquaglia-tourguide.com/</loc>
        </url>
        <url>
-         <loc>https://louontour.it/en</loc>
+         <loc>https://luisaquaglia-tourguide.com/en</loc>
        </url>
        <url>
-         <loc>https://louontour.it/blog</loc>
+         <loc>https://luisaquaglia-tourguide.com/blog</loc>
        </url>
        <url>
-         <loc>https://louontour.it/blog/en</loc>
+         <loc>https://luisaquaglia-tourguide.com/blog/en</loc>
        </url>
          <url>
-         <loc>https://louontour.it/chiSono</loc>
+         <loc>https://luisaquaglia-tourguide.com/chiSono</loc>
        </url>
         <url>
-         <loc>https://louontour.it/en/chiSono</loc>
+         <loc>https://luisaquaglia-tourguide.com/en/chiSono</loc>
        </url>
          <url>
-         <loc>https://louontour.it/contatti</loc>
+         <loc>https://luisaquaglia-tourguide.com/contatti</loc>
        </url>
          <url>
-         <loc>https://louontour.it/en/contatti</loc>
+         <loc>https://luisaquaglia-tourguide.com/en/contatti</loc>
        </url>
        <url>
-       <loc>https://louontour.it/tours</loc>
+       <loc>https://luisaquaglia-tourguide.com/tours</loc>
      </url>
        <url>
-       <loc>https://louontour.it/en/tours</loc>
+       <loc>https://luisaquaglia-tourguide.com/en/tours</loc>
      </url>
 
 ${LayoutTranslation?.menu?.it?.map?.markers

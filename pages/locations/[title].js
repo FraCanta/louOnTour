@@ -26,19 +26,25 @@ export default function Tours({ city, others, banner, correlati }) {
         <meta name="description" content={city?.descrizione} />
         <meta name="keywords" content={city?.keywords} />
 
-        <meta property="og:url" content="https://www.louontour.it/" />
+        <meta
+          property="og:url"
+          content="https://www.luisaquaglia-tourguide.com/"
+        />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={city?.title} />
         <meta property="og:description" content={city?.descrizione} />
 
         <meta
           property="og:image"
-          content={`https://louontour.it${city?.img}`}
+          content={`https://luisaquaglia-tourguide.com${city?.img}`}
         />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="louontour.it" />
-        <meta property="twitter:url" content="https://www.louontour.it/" />
+        <meta property="twitter:domain" content="luisaquaglia-tourguide.com" />
+        <meta
+          property="twitter:url"
+          content="https://www.luisaquaglia-tourguide.com/"
+        />
         <meta name="twitter:title" content={city?.title} />
         <meta name="twitter:description" content={city?.descrizione} />
         <meta name="twitter:image" content={city?.img} />

@@ -51,7 +51,7 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
   return (
     <div>
       <Head>
-        <title>Lou On Tour - Blog</title>
+        <title>Luisa Quaglia Tour Guide - Blog</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
