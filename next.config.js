@@ -67,7 +67,7 @@ module.exports = withPlugins([
   {
     images: {
       formats: ["image/avif", "image/webp"],
-      domains: ["loublog.luisaquaglia-tourguide.com"],
+      domains: ["loublog.luisaquaglia-tourguide.com", "loublog.louontour.it"],
     },
   },
   // withBundleAnalyzer,
