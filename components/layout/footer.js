@@ -101,7 +101,7 @@ const Footer = ({ translation }) => {
       <footer className="footer footer-center  p-2 !bg-[#2c395b]  grain ">
         <div>
           <p className=" text-white text-sm   !opacity-100">
-            Copyright © 2024 - All rights reserved by Lou On Tour -{" "}
+            Copyright © 2024 - All rights reserved by Luisa Quaglia Tour Guide -{" "}
             <Link href="/policy" target="_blank" className="underline">
               Privacy Policy
             </Link>{" "}
