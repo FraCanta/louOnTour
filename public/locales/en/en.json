@@ -986,6 +986,8 @@
   },
   "contatti": {
     "title": "Write to me, and let's organize your tour together!",
+    "formTitle": "How to contact me",
+
     "formTitles": {
       "nome": "Name",
       "email": "E-mail",
