@@ -81,8 +81,8 @@ const ContactForm = ({ translation }) => {
         <div className="flex-none lg:flex-1"></div>
         <div className="flex-none w-11/12 mx-auto lg:flex-1 flex items-center">
           <div className=" w-full xl:w-[580px] xl:h-[565px] border border-[#FE6847] bg-white z-10 p-10 flex flex-col gap-8">
-            <h2 className="text-4xl">{translation.formTitle}:</h2>
-            <ul className="flex flex-col gap-4 text-xl">
+            <h2 className="xl:text-4xl">{translation.formTitle}:</h2>
+            <ul className="flex flex-col gap-4 text-base xl:text-xl">
               <li>
                 <strong>- Phone:</strong>{" "}
                 <a href="callto:+39320 032 7355">+39 320 032 7355</a>

@@ -10,7 +10,7 @@ const HeroChiSono = ({ translation }) => {
         <div className="w-full h-screen xl:w-[65%] bg-[#2C395B] p-0 2xl:p-8 xl:hero_left grain">
           <div className="flex flex-col justify-center h-full w-11/12 mx-auto">
             <h3 className="text-[#FE6847]">{translation?.subTitle}</h3>
-            <h1 className="text-[3rem] md:text-[6rem] 2xl:text-[70px] xl:text-[45px] 3xl:text-[120px] font-medium leading-[1.1] md:leading-none lg:leading-none text-white ">
+            <h1 className="text-[3rem] md:text-[6rem] 2xl:text-[60px] xl:text-[45px] 3xl:text-[120px] font-medium leading-[1.1] md:leading-none lg:leading-none text-white ">
               <div> {translation?.title?.primo} </div>
               <div>{translation?.title?.secondo} </div>{" "}
               <div>{translation?.title?.terzo} </div>
