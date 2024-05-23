@@ -64,7 +64,7 @@ export default function Home({ translation, post, category }) {
         />
         <meta
           name="google-site-verification"
-          content="A8ZnvhuSVmJCOMm45EmOyXMjn1ZMITvQJ-ixpxR8bWI"
+          content="VugQRoR3pOE9GDvlxY_wCpj-2XvR1kXk"
         />
       </Head>
 
