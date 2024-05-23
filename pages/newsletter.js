@@ -8,7 +8,7 @@ const Newsletter = ({ translation }) => {
   return (
     <>
       <Head>
-        <title>Lou On Tour - Newsletter</title>
+        <title>Luisa Quaglia Tour Guide - Newsletter</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
