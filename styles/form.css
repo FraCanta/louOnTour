@@ -116,9 +116,9 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 1219px;
-  height: 359px;
-  background-size: auto 359px;
+  width: 100%;
+  height: 459px;
+  background-size: auto 459px;
   opacity: 0.6;
 }
 .layerForm11 {
@@ -127,9 +127,9 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 1219px;
-  height: 247px;
-  background-size: auto 247px;
+  width: 100%;
+  height: 347px;
+  background-size: auto 347px;
   opacity: 0.6;
 }
 .layerForm12 {
@@ -215,7 +215,7 @@ textarea {
   .bgForm {
     overflow-x: hidden;
   }
-  .layerForm1,
+  /* .layerForm1,
   .layerForm2,
   .layerForm3,
   .layerForm5,
@@ -226,7 +226,7 @@ textarea {
   .layerForm12,
   .layerForm13 {
     display: none;
-  }
+  } */
 
   .layerForm10 {
     width: 350px;
@@ -251,7 +251,7 @@ textarea {
     overflow-x: hidden;
   }
 
-  .layerForm1,
+  /* .layerForm1,
   .layerForm2,
   .layerForm3,
   .layerForm5,
@@ -262,7 +262,7 @@ textarea {
   .layerForm12,
   .layerForm13 {
     display: none;
-  }
+  } */
 
   .layerForm10 {
     width: 766px;

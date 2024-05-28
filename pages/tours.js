@@ -51,7 +51,7 @@ const Tours = ({ translation }) => {
           {translation?.toursTitle}
         </h1>
       </div>
-      <div className="hero2 relative min-h-[70vh] 2xl:min-h-[65vh] w-11/12">
+      <div className="hero2 relative min-h-[90vh] 2xl:min-h-[90vh] w-full">
         <BgAnimation />
       </div>
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  w-[90%] mx-auto min-h-[40vh] gap-10 my-10">

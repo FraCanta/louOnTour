@@ -27,6 +27,12 @@
       "button": "contattami",
       "markers": [
         {
+          "title": "Firenze",
+          "link": "Firenze",
+          "marker": { "top": 213, "right": 240 },
+          "desc": true
+        },
+        {
           "title": "San Gimignano",
           "link": "San%20Gimignano",
           "marker": { "top": 245, "right": 285 },
@@ -308,6 +314,11 @@
     "toursTitle": "Tutti i miei tour",
     "tourItem": [
       {
+        "img": "/assets/locationTour/florence_duomo.jpg",
+        "link": "/locations/Firenze",
+        "name": "Firenze"
+      },
+      {
         "img": "/assets/locationTour/siena.jpg",
         "link": "/locations/Siena",
         "name": "Siena"
@@ -334,6 +345,27 @@
       }
     ],
     "locationTours": {
+      "Firenze": {
+        "img": "/assets/locationTour/florence_duomo.jpg",
+        "titleImg": "Firenze",
+        "half": "Tours Firenze (Mezza Giornata)",
+        "full": "Tours Firenze (Giornata Intera)",
+        "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
+        "descrizione": "Ammirata per la sua bellezza da milioni di visitatori da tutto il mondo, Firenze non è solo una città d’arte ma una vera e propria fonte di ispirazione per chiunque la visiti che sia la prima o la millesima volta! E’ la città che ha rotto con il Medioevo e ha introdotto in Europa il concetto di uomo moderno.",
+        "half_elenco": [
+          "<p ><b class='bold_text'>Tra le vie di Firenze:</b> allora non puoi perderti i luoghi simbolici della città come Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce… sono circa 3 ore di tour ma vedrai come vola il tempo!</p>",
+          "<p>Visita alla <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Galleria degli Uffizi</b></a></p>",
+          "<p>Visita alla <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Galleria dell'Accademia</b></a></p>",
+          "<p>Visita al <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Museo nazionale del Bargello</b></a></p>"
+        ],
+        "full_elenco": [
+          "<p><b class='bold_text'>Un Giorno a Firenze: </b>dopo aver conosciuto la città non manca altro che visitare almeno uno dei due più famosi musei di Firenze perché mai sia che lasci Firenze senza aver visto un’opera di Michelangelo o Leonardo o Botticelli, Donatello…insomma di certo qui artisti non ne mancano!.</p>",
+          "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Siena</b></p>",
+          "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (opzionale)</p>",
+          "<p><b class='bold_text'>Firenze </b>+ <b class='bold_text'>Volterra</b></p>"
+        ],
+        "gallery": []
+      },
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
         "keywords": "Siena tour a piedi, Guida turistica personale per un'esperienza su misura a Siena, Tour di mezza giornata per esplorare i tesori artistici di Siena, Tour a siena, Tour di siena, Tour siena e dintorni, Tour siena e val d’orcia, Duomo di siena tour, siena guida turistica, guida turistica per siena e provincia, guida turistica siena, tour privato siena",
@@ -982,7 +1014,7 @@
     "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Blog"
   },
   "contatti": {
-    "title": "Scrivimi e organizziamo insieme il tuo tour!",
+    "title": "Organizziamo insieme il tuo tour!",
     "formTitle": "Come contattarmi",
     "formTitles": {
       "nome": "Nome",

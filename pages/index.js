@@ -103,7 +103,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       translation: obj?.home,
-      post: post.sort((a, b) => a?.date > b?.date).filter((el, i) => i < 3),
+      post: post.sort((a, b) => a?.date > b?.date).filter((el, i) => i < 4),
       category: category,
       media: media,
     },

@@ -14,7 +14,7 @@ const BlogSection = ({ post, featuredMedia, tags, translation }) => {
   });
   return (
     <div className="hero min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full   text-[#f1f1f1] flex items-center  overflow-x-hidden py-20 !grain !bg-[#2C395B]">
-      <div className="grid  md:gap-14 xl:gap-18 grid-cols-1  justify-items-center content-center w-11/12 2xl:w-4/5 mx-auto h-full ">
+      <div className="grid   grid-cols-1 gap-6  justify-items-center content-center  h-full ">
         <div className="text-center">
           <h3 className="text-[#FE6847] text-xl 3xl:text-4xl font-bold">
             {translation?.subTitle}
@@ -23,7 +23,9 @@ const BlogSection = ({ post, featuredMedia, tags, translation }) => {
             {translation?.title}
           </h2>
         </div>
-        <div className="grid grid-cols-1  lg:grid-cols-3 gap-6">{jsxPosts}</div>
+        <div className="grid grid-cols-1  lg:grid-cols-4 gap-4 w-11/12  mx-auto">
+          {jsxPosts}
+        </div>
         <Link
           href="/blog"
           className="flex gap-2 items-center max-w-max text-center text-[#2c395b] lg:text-[21.57px] font-bold leading-snug py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md border-2 bg-white"

@@ -49,7 +49,9 @@
         "markers": [
           {
             "title": "Florence",
-            "link": "Firenze"
+            "link": "Firenze",
+            "marker": { "top": 213, "right": 240 },
+            "desc": true
           },
           {
             "title": "San Gimignano",

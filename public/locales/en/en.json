@@ -27,6 +27,13 @@
       "button": "contact me",
       "markers": [
         {
+          "title": "Florence",
+          "link": "Firenze",
+          "marker": { "top": 213, "right": 240 },
+          "desc": true
+        },
+
+        {
           "title": "San Gimignano",
           "link": "San%20Gimignano",
           "marker": { "top": 245, "right": 285 },
@@ -309,6 +316,11 @@
 
     "tourItem": [
       {
+        "img": "/assets/locationTour/florence_duomo.jpg",
+        "link": "/locations/Firenze",
+        "name": "Florence"
+      },
+      {
         "img": "/assets/locationTour/siena.jpg",
         "link": "/locations/Siena",
         "name": "Siena"
@@ -335,6 +347,29 @@
       }
     ],
     "locationTours": {
+      "Firenze": {
+        "img": "/assets/locationTour/florence_duomo.jpg",
+        "titleImg": "Florence",
+        "translatedTitle": "Florence",
+        "half": "Tours Florence (Half Day)",
+        "full": "Tours Florence (Full Day)",
+        "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
+        "descrizione": "Admired for its beauty by millions of visitors from all over the world, Florence is not only a city of art but a true source of inspiration for anyone who visits it whether it is the first or the thousandth time! It is the city that broke with the Middle Ages and introduced the concept of modern man to Europe.",
+        "half_elenco": [
+          "<p ><b class='bold_text'>Among the streets of Florence: </b> then you can't miss the city's iconic places such as Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce... it's about a 3-hour tour but you'll see how time flies by!</p>",
+          "<p>Visit to the <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Uffizi Gallery</b></a></p>",
+          "<p>Visit to the <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Accademia Gallery</b></a></p>",
+          "<p>Visit to the <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>DynamicSimpleGallery</b></a></p>"
+        ],
+        "full_elenco": [
+          "<p><b class='bold_text'>One day in Florence: </b>after getting to know the city, all you need to do is visit at least one of the two most famous museums in Florence because you never leave Florence without having seen a work by Michelangelo or Leonardo or Botticelli, Donatello… in short, certainly artists here there is no shortage of them!</p>",
+          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>Siena</b></p>",
+          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
+          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>Volterra</b></p>"
+        ],
+        "gallery": []
+      },
+
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
         "titleImg": "Siena",
@@ -985,7 +1020,7 @@
     "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Blog"
   },
   "contatti": {
-    "title": "Write to me, and let's organize your tour together!",
+    "title": "Let's organize your tour together!",
     "formTitle": "How to contact me",
 
     "formTitles": {

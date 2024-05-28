@@ -6,8 +6,11 @@ import translationEN from "../public/locales/en/en.json";
 import { getPosts, getCategories, getTagId } from "../utils/wordpress";
 import Head from "next/head";
 import Post from "../components/Post/post";
+import Post2 from "../components/Post/post2";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import LastPost from "../components/Post/lastPost";
 
-const Blog = ({ post, category, pages, currentP, blog }) => {
+const Blog = ({ post, category, pages, currentP, lastPost }) => {
   const myRouter = useRouter();
   const [jsxPosts, setJsxPosts] = useState([]);
   const [filterObj, setFilterObj] = useState({});
@@ -36,7 +39,7 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
       post.map((p, i) => {
         const featuredMedia = p?.["_embedded"]?.["wp:featuredmedia"][0];
         return (
-          <Post post={p} featuredMedia={featuredMedia} key={i} id={p?.id} />
+          <Post2 post={p} featuredMedia={featuredMedia} key={i} id={p?.id} />
         );
       })
     );
@@ -55,56 +58,54 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <div className="w-11/12 min-h-[30vh] container mx-auto flex flex-col lg:flex-row py-6 xl:py-8">
-        <div className="w-full ">
-          <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Blog</h4>
-          <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#2c395b]">
-            {blog?.title}
-          </h2>
+
+      <div className="container w-[90%] mx-auto p-2 xl:p-8">
+        <div className="flex flex-col lg:flex-row  gap-6  w-full mx-auto mt-[50px] lg:mt-10">
+          <div className="grid grid-cols-1  lg:w-[75%] ">
+            <div className="flex flex-col w-full gap-6">
+              <h4>
+                <span className="text-principle text-[8vw] leading-[1.2] md:leading-none  lg:text-[6vw] xl:text-[5vw] 2xl:text-[3vw] 3xl:text-[3.6vw]  font-extrabold capitalize ">
+                  {" "}
+                  Last Post
+                </span>
+              </h4>{" "}
+              <div className="w-full relative">
+                <LastPost lastPost={lastPost} category={category} />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col  lg:w-[25%]">
+            {category?.map((el, i) => (
+              <a
+                key={i}
+                onClick={() => {
+                  setFilterObj((prevData) => {
+                    if (prevData?.categories === el?.id)
+                      return { currenPage: 1, categories: 0 };
+                    else return { currenPage: 1, categories: el?.id };
+                  });
+                  router.push({
+                    pathname: "/blog",
+                    query: {
+                      categories: el?.id,
+                      page: 1,
+                    },
+                  });
+                }}
+                className="flex items-center gap-2 border-solid border-2 rounded-[5px] bg-second border-second text-white font-medium uppercase p-[3vw] xl:p-[0.6vw] mb-2 cursor-pointer  text-[5vw] xl:text-[1.2vw]"
+              >
+                {el?.name}
+                <Icon icon="ri:arrow-right-up-line" className="ml-0" />
+              </a>
+            ))}
+          </div>
         </div>
-      </div> */}
-      <div className="container mx-auto pt-5 p-2 xl:p-8">
-        <div className="tabs !justify-center  hidden lg:flex py-8">
-          {category.map((el, i) => (
-            <a
-              key={i}
-              style={
-                filterObj?.categories === el?.id
-                  ? {
-                      background: "#2c395b",
-                      color: "white",
-                    }
-                  : {}
-              } // coloro quelli selezionati
-              onClick={() => {
-                setFilterObj((prevData) => {
-                  if (prevData?.categories === el?.id)
-                    return { currenPage: 1, categories: 0 };
-                  else return { currenPage: 1, categories: el?.id };
-                });
-                router.push({
-                  pathname: "/blog",
-                  query: {
-                    categories: el?.id,
-                    page: 1,
-                  },
-                });
-              }}
-              className={`${
-                filterObj?.categories !== el?.id
-                  ? "tab tab-xs lg:tab-lg tab-lifted text-[#2c395b] "
-                  : "tab tab-lg tab-lifted tab-active"
-              }  `}
-            >
-              {el?.name}
-            </a>
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-[30px] md:mt-[100px]">
+          {jsxPosts}
         </div>
       </div>
 
-      <div className="w-[90%] mx-auto grid gap-14  xl:gap-20 grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 justify-items-center content-center pt-0 2xl:pt-10 2xl:pb-20">
-        {jsxPosts}
-      </div>
       <div className="container w-screen mx-auto flex justify-center">
         {filterObj?.paginationArray?.length > 1 && (
           <div className="flex justify-center mb-8 ">
@@ -152,44 +153,6 @@ const Blog = ({ post, category, pages, currentP, blog }) => {
             </div>
           </div>
         )}
-      </div>
-      <div className="w-11/12 mx-4">
-        <div className="block lg:hidden">
-          <ul>
-            {category.map((el, i) => (
-              <li
-                key={i}
-                className="text-2xl text-[ #2c395b] mb-4 text-black"
-                style={
-                  filterObj?.categories === el?.id
-                    ? {
-                        background: "#2c395b",
-                        width: "50%",
-                        color: "white",
-                      }
-                    : {}
-                } // coloro quelli selezionati
-                onClick={() => {
-                  setFilterObj((prevData) => {
-                    if (prevData?.categories === el?.id)
-                      return { currenPage: 1, categories: 0 };
-                    else return { currenPage: 1, categories: el?.id };
-                  });
-
-                  router.push({
-                    pathname: "/blog",
-                    query: {
-                      categories: el?.id,
-                      page: 1,
-                    },
-                  });
-                }}
-              >
-                {el?.name}
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
     </div>
   );
@@ -242,6 +205,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       post: paginationTrim,
+      lastPost: post.sort((a, b) => a?.date > b?.date).filter((el, i) => i < 1),
       pages: Math.ceil(filteredPosts.length / itemPerPage),
       category: category, //array delle categorie presenti
       // media: media,

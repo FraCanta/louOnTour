@@ -6,12 +6,12 @@ import Testimonials2 from "./testimonials2";
 const AboutMe = ({ translation }) => {
   return (
     <div className="grain about_me min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full bg-[#2C395B] mt-20 text-white flex items-center  overflow-x-hidden">
-      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1  justify-items-center content-center w-11/12 2xl:w-4/5 mx-auto h-full pt-10">
+      <div className="grid gap-14 md:gap-14 xl:gap-18 grid-cols-1  justify-items-center content-center w-11/12 mx-auto h-full pt-10">
         <div>
-          <h3 className="text-[#FE6847] text-xl 3xl:text-4xl text-bold">
+          <h3 className="text-[#FE6847] text-xl 3xl:text-4xl font-bold">
             {translation?.subTitle}
           </h3>
-          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium !text-white  md:leading-none lg:leading-none mb-10">
+          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-bold !text-white  md:leading-none lg:leading-none mb-10">
             {translation?.title}
           </h2>
           <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl   mb-8 text-white/90">

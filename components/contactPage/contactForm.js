@@ -60,7 +60,7 @@ const ContactForm = ({ translation }) => {
     }
   };
   return (
-    <div className="w-full 2xl:w-4/5 container mx-auto py-10">
+    <div className="w-full  container mx-auto py-10">
       <div className="h-[700px] w-full bgForm overflow-x-hidden">
         <div className="layerForm1"></div>
         <div className="layerForm2"></div>
@@ -76,11 +76,11 @@ const ContactForm = ({ translation }) => {
         <div className="layerForm12"></div>
         <div className="layerForm13"></div>
         <div className="layerForm14"></div>
-        <div className="layerForm15"></div>
+        {/* <div className="layerForm15"></div> */}
 
         <div className="flex-none lg:flex-1"></div>
-        <div className="flex-none w-11/12 mx-auto lg:flex-1 flex items-center">
-          <div className=" w-full xl:w-[580px] xl:h-[565px] border border-[#FE6847] bg-white z-10 p-10 flex flex-col gap-8">
+        <div className="flex-nonew-full mx-auto lg:flex-1 flex items-center">
+          <div className=" w-full border border-[#FE6847] bg-white z-10 p-10 flex flex-col gap-8">
             <h2 className="xl:text-4xl">{translation.formTitle}:</h2>
             <ul className="flex flex-col gap-4 text-base xl:text-xl">
               <li>

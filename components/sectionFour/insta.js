@@ -51,10 +51,10 @@ const Insta = ({ translation }) => {
           </div>
         </div>
         <div className=" 2xl:p-0 w-11/12 2xl:w-4/5 flex flex-col items-start justify-center">
-          <h3 className="text-[#FE6847] text-bold text-xl 3xl:text-4xl">
+          <h3 className="text-[#FE6847] font-bold text-xl 3xl:text-4xl">
             {translation?.subTitle}
           </h3>
-          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-medium md:leading-none lg:leading-none text-[#2C395B]">
+          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-bold md:leading-none lg:leading-none text-[#2C395B]">
             {translation?.title}
           </h2>
           <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl  mt-4 sm:mt-10 mb-8 text-para">

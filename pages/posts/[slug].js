@@ -1,28 +1,58 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   getPost,
   getPosts,
   getSlugs,
-  getTags,
   getTagId,
   getTagNameList,
+  getCategories,
 } from "../../utils/wordpress";
+import { getDate } from "../../utils/utils";
+
 import Head from "next/head";
 import { parse } from "dom-parser-react";
-import parseHTML from "html-react-parser";
 import CarouselParser from "../../components/carouselParser/carouselParser";
-import Script from "next/script";
+import RecentPostCol from "../../components/Post/recentPostCol";
+import { Icon } from "@iconify/react/dist/iconify.js";
 export default function PostPage({
   post,
   modifiedContent,
-  featuredMedia,
+  recent,
   tags,
   nextPrevPost,
+  postCategories,
 }) {
   const contents = parse(post.title.rendered, {
     createElement: React.createElement,
     Fragment: React.Fragment,
+  });
+
+  const [minutiLettura, setMinutiLettura] = useState(0);
+  function calcolaMinutiLettura(testo, velocitaLetturaMedia) {
+    const parole = testo.split(" ");
+    const paroleLette = parole.filter((parola) => parola.trim() !== "").length;
+    const minuti = Math.ceil(paroleLette / velocitaLetturaMedia);
+    return minuti;
+  }
+
+  useEffect(() => {
+    const testoSenzaTag = modifiedContent.replace(/(<([^>]+)>)/gi, ""); // Rimuove i tag HTML dal testo
+    const minuti = calcolaMinutiLettura(testoSenzaTag, 250); // Utilizza la velocità di lettura media di 250 parole al minuto
+    setMinutiLettura(minuti);
+  }, [modifiedContent]);
+
+  const recentPostCol = recent.map((p, i) => {
+    const featuredMedia = p?.["_embedded"]?.["wp:featuredmedia"][0];
+    return (
+      <RecentPostCol
+        post={p}
+        featuredMedia={featuredMedia}
+        key={i}
+        id={p?.id}
+        minutiLettura={minutiLettura}
+      />
+    );
   });
   return (
     <>
@@ -40,47 +70,91 @@ export default function PostPage({
           content={post?.yoast_head_json?.description}
         />
       </Head>
-      {/* <Script src="//www.instagram.com/embed.js" /> */}
-      <div className="container mx-auto pt-5 w-11/12 2xl:w-[55%] text-[#2C395B]">
-        <div className="text-sm breadcrumbs">
-          <ul>
-            <li>
-              <Link href="/" className="text-[#2C395B]">
-                Home
+      <div className="grid grid-cols-1 lg:grid-cols-3 w-11/12 mx-auto gap-6">
+        <div className="pt-5 text-[#2C395B] col-span-2">
+          <div className="text-sm breadcrumbs">
+            <ul>
+              <li>
+                <Link href="/" className="text-[#2C395B]">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-[#2C395B]">
+                  Blog
+                </Link>
+              </li>
+              <li
+                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                className="font-bold underline text-[#2C395B]"
+              ></li>
+            </ul>
+          </div>
+
+          <h2 className=" text-second text-xl md:text-2xl 3xl:text-5xl font-medium   mt-10">
+            {postCategories[0]?.name}
+          </h2>
+
+          <h1
+            className="py-8 text-3xl 2xl:text-5xl text-[#2C395B] l-article"
+            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+          ></h1>
+          <div className="flex flex-col md:flex-row   items-start  md:items-center font-[400] pb-10">
+            {" "}
+            <div className="flex  md:items-center">
+              <Icon
+                icon="fa6-solid:user-pen"
+                className="mr-2 fxl:w-8 fxl:h-8 text-second"
+              />
+              <Link
+                href={post?.["_embedded"].author[0]?.url}
+                className=" text-pink md:text-lg flex fxl:text-2xl"
+              >
+                <p>{post?.["_embedded"].author[0]?.name}</p>
               </Link>
-            </li>
-            <li>
-              <Link href="/blog" className="text-[#2C395B]">
-                Blog
-              </Link>
-            </li>
-            <li
-              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-              className="font-bold underline text-[#2C395B]"
-            ></li>
-          </ul>
+            </div>
+            <div className="flex items-center mt-4 md:mt-0 md:ml-8">
+              <p className=" text-pink md:text-lg fxl:text-2xl flex !font-[400] items-center">
+                {" "}
+                <Icon
+                  icon="clarity:date-line"
+                  className="mr-2 fxl:w-8 fxl:h-8 text-second"
+                />
+                {getDate(post?.date)}
+              </p>
+              <div className=" text-pink md:text-lg flex ml-6 font-[400] items-center">
+                <Icon
+                  icon="tabler:clock-hour-3"
+                  className="mr-2 fxl:w-8 fxl:h-8 text-second"
+                />
+                <p className="fxl:text-2xl">{minutiLettura} min read</p>
+              </div>
+            </div>
+          </div>
+
+          <CarouselParser post={modifiedContent} />
+          <div className="w-full py-12">
+            <h6>Tags</h6>
+            {tags.map((el, i) => (
+              <div className="badge badge-warning mr-2 text-white" key={i}>
+                {el}
+              </div>
+            ))}
+          </div>
         </div>
-
-        <h1
-          className="text-center py-8 text-3xl 2xl:text-5xl text-[#2C395B] l-article"
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        ></h1>
-
-        {/* <div
-          className="text-[#2C395B] text-base lg:text-xl l-article"
-          dangerouslySetInnerHTML={{ __html: modifiedContent }}
-        ></div> */}
-        <CarouselParser post={modifiedContent} />
+        <div className="h-full flex justi flex-col gap-6">
+          <h2 className="text-[26px] fxl:text-4xl font-bold uppercase text-principle underline">
+            Last recents
+          </h2>
+          {recentPostCol}
+        </div>
       </div>
+
       <div className="btn-group grid grid-cols-2 mt-8">
         <button className="btn btn-outline flex flex-col ">
           {!!nextPrevPost?.prevSlug ? (
             <Link href={`/posts/${nextPrevPost?.prevSlug}`}>
-              <div className="mb-2 capitalize">Articolo Precedente</div>
-              <div
-                className="text-[#2C395B]"
-                dangerouslySetInnerHTML={{ __html: nextPrevPost?.prevTitle }}
-              ></div>
+              <div className="mb-2 capitalize">{"< "}prev</div>
             </Link>
           ) : (
             ""
@@ -89,21 +163,9 @@ export default function PostPage({
 
         <button className="btn btn-outline  flex flex-col">
           <Link href={`/posts/${nextPrevPost?.nextSlug}`}>
-            <div className="mb-2 capitalize">Articolo Successivo</div>
-            <div
-              className="text-[#2C395B]"
-              dangerouslySetInnerHTML={{ __html: nextPrevPost?.nexTitle }}
-            ></div>
+            <div className="mb-2 capitalize">next{" >"}</div>
           </Link>
         </button>
-      </div>
-      <div className="w-11/12 lg:w-4/5 mx-auto py-12">
-        <h6>Tags</h6>
-        {tags.map((el, i) => (
-          <div className="badge badge-warning mr-2 text-white" key={i}>
-            {el}
-          </div>
-        ))}
       </div>
     </>
   );
@@ -126,6 +188,7 @@ export async function getStaticProps({ params, locale }) {
   const post = await getPost(params?.slug);
   const idLocale = await getTagId(locale); // recupera id della lingua attuale
   const allPosts = await getPosts(idLocale);
+  const category = await getCategories(locale);
   const postArrayIndex = allPosts?.findIndex((el) => el.id === post?.id);
   const nextPrevPost = {
     prevTitle: allPosts[postArrayIndex - 1]?.title?.rendered || null,
@@ -133,6 +196,10 @@ export async function getStaticProps({ params, locale }) {
     prevSlug: allPosts[postArrayIndex - 1]?.slug || null,
     nextSlug: allPosts[postArrayIndex + 1]?.slug || null,
   };
+
+  const postCategories = category?.filter((el) =>
+    post?.categories?.includes(el?.id)
+  );
 
   const modifiedContent = post?.content?.rendered?.replace(
     "data-src-fg",
@@ -145,9 +212,14 @@ export async function getStaticProps({ params, locale }) {
     props: {
       post,
       modifiedContent: modifiedContent,
+      recent: allPosts
+        ?.filter((el) => el.id !== post.id)
+        .sort((a, b) => a?.date > b?.date)
+        .filter((el, i) => i < 6),
       featuredMedia: featuredMedia,
       tags: tags,
       nextPrevPost: nextPrevPost,
+      postCategories: postCategories,
     },
     revalidate: 10, // In seconds
   };

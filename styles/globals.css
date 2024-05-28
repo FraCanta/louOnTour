@@ -39,7 +39,7 @@ h3 {
 }
 
 p {
-  color: var(--para);
+  /* color: var(--para); */
   font-family: "Nunito", sans-serif;
 }
 
@@ -77,7 +77,7 @@ body {
   .line-clamp2 {
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
   }
 
@@ -292,9 +292,7 @@ a {
 }
 
 .hero2 {
-  width: 90%;
   margin: 0 auto;
-  border-radius: 15px;
   position: relative;
   top: 0;
   left: 0;

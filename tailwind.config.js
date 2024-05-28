@@ -33,7 +33,7 @@ module.exports = {
       // => @media (max-heigh: 3840px) { ... }
     },
     colors: {
-      primary: "#2c395b",
+      principle: "#2c395b",
       second: "#fe6847",
       white: "#ffff",
       para: "#6D7B80",
