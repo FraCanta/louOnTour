@@ -5,7 +5,7 @@ import { getDate } from "../../utils/utils";
 const RecentPostCol = ({ post, featuredMedia }) => {
   return (
     <div className="w-full flex gap-2">
-      <div className="relative w-1/3 aspect-video ">
+      <div className="relative w-1/3 aspect-square lg:aspect-video ">
         <Link href={`/posts/${post?.slug}`}>
           <Image
             src={featuredMedia?.["media_details"]?.sizes?.full?.["source_url"]}
