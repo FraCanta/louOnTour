@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 import { getDate } from "../../utils/utils";
 const LastPost = ({ lastPost, category }) => {
-  console.log(lastPost);
   return (
     <>
       <Link

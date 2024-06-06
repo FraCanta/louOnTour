@@ -14,24 +14,24 @@ const HeroChiSono = ({ translation }) => {
 
             <h1>
               <MaskText>
-                <div className="text-[2.5rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
+                <div className="text-[2.2rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
                   {" "}
                   {translation?.title?.primo}{" "}
                 </div>{" "}
               </MaskText>
               <MaskText>
-                <div className="text-[2.5rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
+                <div className="text-[2.2rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
                   {translation?.title?.secondo}{" "}
                 </div>{" "}
               </MaskText>
               <MaskText>
-                <div className="text-[2.5rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
+                <div className="text-[2.2rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
                   {translation?.title?.terzo}{" "}
                 </div>
               </MaskText>
             </h1>
 
-            <p className="text-base sm:text-lg fxl:text-2xl mt-4 sm:mt-8 mb-8 text-white/90 leading-6 2xl:leading-9 xl:w-4/5">
+            <p className="text-xl sm:text-lg fxl:text-2xl mt-4 sm:mt-8 mb-8 text-white/90  xl:w-4/5">
               {translation?.paragraph}
             </p>
           </div>

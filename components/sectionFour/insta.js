@@ -62,7 +62,7 @@ const Insta = ({ translation }) => {
             </h2>
           </MaskText>
 
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl  mt-4 sm:mt-10 mb-8 text-para">
+          <p className="text-xl sm:text-lg 2xl:text-xl fxl:text-2xl  mt-4 sm:mt-10 mb-8 text-para">
             {translation?.paragraph}
           </p>
           <CtaPrimary

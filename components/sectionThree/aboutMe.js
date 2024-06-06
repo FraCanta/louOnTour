@@ -19,7 +19,7 @@ const AboutMe = ({ translation }) => {
               {translation?.title}
             </h2>
           </MaskText>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl   mb-8 text-white/90 max-w-5xl">
+          <p className="text-xl sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl   mb-8 text-white/90 max-w-5xl">
             {translation?.paragraph}
           </p>
 

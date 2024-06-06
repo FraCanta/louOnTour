@@ -10,7 +10,7 @@ const Hero = ({ translation }) => {
     <div className="hero w-[100%] mx-auto min-h-[calc(100vh_-_80px)] 2xl:min-h-[calc(100vh_-_80px)]  flex flex-col justify-between 2xl:justify-evenly items-center gap-20">
       <div className="flex flex-col items-center  justify-center lg:text-center  w-[90%] xl:w-full gap-4">
         <MaskText>
-          <h1 className="text-[2.5rem] md:text-[3.5rem] fxl:text-[10rem] font-bold leading-[1] md:mb-0 mt-20 ">
+          <h1 className="text-[2.3rem] md:text-[3.5rem] fxl:text-[10rem] font-bold leading-[1] md:mb-0 mt-20 ">
             {translation?.name}
           </h1>
         </MaskText>

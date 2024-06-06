@@ -7,7 +7,6 @@ import ToursItem from "../components/toursItem/toursItem";
 import Banner from "../components/sectionFive/banner";
 
 const Tours = ({ translation }) => {
-  console.log(translation);
   return (
     <>
       <Head>

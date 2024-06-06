@@ -17,7 +17,7 @@ const Map = ({ translation }) => {
               {translation?.title}
             </h2>
           </MaskText>
-          <p className="text-base text-para sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-8 3xl:mt-20 mb-8  mx-auto">
+          <p className="text-xl text-para sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-8 3xl:mt-20 mb-8  mx-auto">
             {translation?.paragraph}
           </p>
           <CtaPrimary link="/contatti">{translation?.button}</CtaPrimary>

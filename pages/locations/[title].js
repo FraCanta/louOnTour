@@ -16,7 +16,6 @@ import CtaPrimary from "../../components/button/CtaPrimary";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function Tours({ city, banner }) {
-  console.log(city);
   return (
     <>
       <Head>
