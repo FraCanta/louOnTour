@@ -1,5 +1,5 @@
 import React from "react";
-import Cta from "../button/button";
+import Cta from "../button/CtaPrimary";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Lou from "../../public/assets/fotoinsta2.jpg";
@@ -8,6 +8,8 @@ import Lou3 from "../../public/assets/foto2.jpg";
 import Lou4 from "../../public/assets/fotoinsta.jpg";
 import Masonry from "./masonry";
 import Link from "next/link";
+import CtaPrimary from "../button/CtaPrimary";
+import { MaskText } from "../UI/MaskText";
 
 const Insta = ({ translation }) => {
   return (
@@ -54,21 +56,21 @@ const Insta = ({ translation }) => {
           <h3 className="text-[#FE6847] font-bold text-xl 3xl:text-4xl">
             {translation?.subTitle}
           </h3>
-          <h2 className="text-4xl md:text-[64px] 3xl:text-[100px] font-bold md:leading-none lg:leading-none text-[#2C395B]">
-            {translation?.title}
-          </h2>
+          <MaskText>
+            <h2 className="text-4xl md:text-6xl 3xl:text-[100px] font-bold  text-[#2C395B]">
+              {translation?.title}
+            </h2>
+          </MaskText>
+
           <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl  mt-4 sm:mt-10 mb-8 text-para">
             {translation?.paragraph}
           </p>
-          <Link
-            href="https://www.instagram.com/luisatourguide__/"
+          <CtaPrimary
+            link="https://www.instagram.com/luisatourguide__/"
             target="_blank"
-            className="max-w-max flex items-center gap-2 text-center capitalize font-bold py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md text-main hover:transition-all  bg-[#2c395b] w-full text-white"
           >
             {translation?.button}
-
-            <Icon icon="ant-design:instagram-filled" color="white" />
-          </Link>
+          </CtaPrimary>
         </div>
       </div>
     </div>

@@ -1,17 +1,25 @@
 import React from "react";
-import BgAnimation from "../components/bgAnimation/bgAnimation";
+import dynamic from "next/dynamic";
+const DynamicHeroChiSono = dynamic(() =>
+  import("../components/chiSono/heroChiSono")
+);
+const DynamicText = dynamic(() => import("../components/chiSono/text"));
+const DynamicBgImage = dynamic(() => import("../components/chiSono/bgImage"));
+const DynamicGalleryTours = dynamic(() =>
+  import("../components/UI/simpleGallery")
+);
+const DynamicBanner = dynamic(() => import("../components/sectionFive/banner"));
 import Head from "next/head";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
-import ToursItem from "../components/toursItem/toursItem";
+import Gallery3d from "../components/UI/Gallery3D";
 
-const Tours = ({ translation }) => {
-  console.log(translation);
+const ChiSono = ({ translation, home }) => {
   return (
     <>
       <Head>
         <title>{translation?.head?.title}</title>
-        <meta name="description" content={translation?.head?.description} />
+        <meta name="description" content={translation?.hero?.paragraph} />
         <meta
           property="og:url"
           content="https://www.luisaquaglia-tourguide.com/"
@@ -20,7 +28,7 @@ const Tours = ({ translation }) => {
         <meta property="og:title" content={translation?.head?.title} />
         <meta
           property="og:description"
-          content={translation?.head?.description}
+          content={translation?.hero?.paragraph}
         />
 
         <meta
@@ -37,7 +45,7 @@ const Tours = ({ translation }) => {
         <meta name="twitter:title" content={translation?.head?.title} />
         <meta
           name="twitter:description"
-          content={translation?.head?.description}
+          content={translation?.hero?.paragraph}
         />
         <meta
           name="twitter:image"
@@ -46,28 +54,26 @@ const Tours = ({ translation }) => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="text-left py-10 2xl:pb-8 flex  w-[90%] mx-auto">
-        <h1 className="text-4xl md:text-[60px] font-bold mt-8 leading-10 text-[#2C395B]">
-          {translation?.toursTitle}
-        </h1>
-      </div>
-      <div className="hero2 relative min-h-[90vh] 2xl:min-h-[90vh] w-full">
-        <BgAnimation />
-      </div>
-      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  w-[90%] mx-auto min-h-[40vh] gap-10 my-10">
-        {translation?.tourItem?.map((el, i) => {
-          return (
-            <ToursItem key={i} img={el?.img} link={el?.link} name={el.name} />
-          );
-        })}
-      </section>
+      <DynamicHeroChiSono translation={translation?.hero} />
+      <DynamicText translation={translation?.hero} />
+      <DynamicBgImage translation={translation?.hero} />
+      {/* <DynamicGalleryTours
+        imageArray={translation?.galleria}
+        galleryID="gallery--click-to-next"
+        galleryTitle={translation?.galleryTitle}
+      /> */}
+      <Gallery3d
+        imageArray={translation?.galleria}
+        galleryTitle={translation?.galleryTitle}
+      />
+      <DynamicBanner translation={home?.banner} />
     </>
   );
 };
 
-export default Tours;
+export default ChiSono;
 
-export async function getStaticProps(locale, context) {
+export async function getStaticProps(locale) {
   let obj;
   switch (locale.locale) {
     case "it":
@@ -84,7 +90,8 @@ export async function getStaticProps(locale, context) {
 
   return {
     props: {
-      translation: obj?.tours,
+      translation: obj?.who,
+      home: obj?.home,
     },
     revalidate: 60,
   };

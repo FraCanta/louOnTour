@@ -3,16 +3,19 @@ import "../styles/modal.css";
 import "../styles/aboutMe.css";
 import "../styles/insta.css";
 import "../styles/banner.css";
-import "../styles/gallery.css";
+import "../styles/gallery3d.css";
 import "../styles/form.css";
 import "../styles/testimonials.css";
 import "../styles/blog.css";
 import "../styles/wordpress.css";
+
 import dynamic from "next/dynamic";
 const DynamicLayout = dynamic(() => import("../components/layout/layout"));
 import Head from "next/head";
 import Script from "next/script";
 import { AnimatePresence, motion, Spring } from "framer-motion";
+import AOS from "aos";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps, router }) {
   const transitionSpringPhysics = {
@@ -22,6 +25,16 @@ function MyApp({ Component, pageProps, router }) {
     damping: 10,
   };
   const transitionColor = "white";
+
+  useEffect(() => {
+    // here you can add your aos options
+    AOS.init({
+      offset: 200,
+      duration: 500,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
   return (
     <>
       <Head>

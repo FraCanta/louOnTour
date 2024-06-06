@@ -8,11 +8,11 @@ const Newsletter = ({ translation }) => {
   return (
     <>
       <Head>
-        <title>Luisa Quaglia Tour Guide - Newsletter</title>
-        <meta name="description" content="Guida Turistica" />
+        <title>{translation.title}</title>
+        <meta name="description" content={translation.paragrafo} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="h-[calc(100vh_-_100px)] flex justify-center items-center">
+      <div className="min-h-[calc(100vh_-_100px)] flex justify-center items-center newsletter w-full">
         <Subscribe translation={translation} />
       </div>
     </>

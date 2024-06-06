@@ -30,10 +30,6 @@
           {
             "title": "San Galgano",
             "link": "San%20Galgano"
-          },
-          {
-            "title": "Montepulciano e Val d'Orcia",
-            "link": "Montepulciano%20e%20Val%20d'Orcia"
           }
         ]
       }
@@ -70,10 +66,6 @@
           {
             "title": "San Galgano",
             "link": "San%20Galgano"
-          },
-          {
-            "title": "Montepulciano and Val d'Orcia",
-            "link": "Montepulciano%20e%20Val%20d'Orcia"
           }
         ]
       }
@@ -83,7 +75,7 @@
     "it": {
       "Col1": { "title": " Licenza Guida Turistica in Inglese" },
       "Col2": {
-        "title": "Lou On Tour",
+        "title": "Quick links",
         "row1": "Chi Sono",
         "row2": "Contatti",
         "row3": "Collaborazioni"
@@ -102,7 +94,7 @@
     "en": {
       "Col1": { "title": " Licensed Tour Guide in English" },
       "Col2": {
-        "title": "Lou On Tour",
+        "title": "Quick links",
         "row1": "About me",
         "row2": "Contacts",
         "row3": "Collaborations"

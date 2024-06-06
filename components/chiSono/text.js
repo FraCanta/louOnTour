@@ -1,14 +1,17 @@
 import React from "react";
+import { MaskText } from "../UI/MaskText";
 
 const Text = ({ translation }) => {
   return (
-    <div className="min-h-[50vh] text-left 2xl:text-center pt-10 2xl:pt-10 flex items-center justify-center">
-      <div className="container w-11/12 md:w-4/5 mx-auto pt-0 xl:pt-12 md:pt-2 xl:h-full ">
-        <div className="mx-auto relative z-1">
-          <h2 className="text-4xl md:text-[40px] font-medium mt-2 leading-10 text-[#2C395B]">
-            {translation?.secondTitle}
-          </h2>
-          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl   mt-4 sm:mt-16 mb-8 text-[#2C395B] leading-6 2xl:leading-9 2xl:w-[80% mx-auto">
+    <div className="text-left 2xl:text-center py-20  flex items-center justify-center ">
+      <div className="container w-11/12 md:w-4/5 mx-auto ">
+        <div className="mx-auto relative flex flex-col gap-4">
+          <MaskText>
+            <h2 className="text-4xl md:text-5xl font-bold   text-principle">
+              {translation?.secondTitle}
+            </h2>
+          </MaskText>
+          <p className="text-base sm:text-lg 2xl:text-xl fxl:text-2xl    text-para  mx-auto">
             {translation?.secondPa}
           </p>
         </div>

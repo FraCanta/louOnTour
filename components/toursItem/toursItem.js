@@ -1,28 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import CtaPrimary from "../button/CtaPrimary";
+import CtaDetails from "../button/CtaDetails";
 
-const ToursItem = ({ img, name, descrizione, link }) => {
+const ToursItem = ({ img, name, descrizione, link, text }) => {
   return (
     <>
-      <div className="card w-full lg:w-50  shadow-xl mb-4 lg:mb-0 !pt-0 bg-white">
-        <Link href={link}>
-          <div className="w-full ">
-            <Image
-              className="w-full h-[250px] md:h-[450px] lg:h-[300px] object-cover rounded-t-lg object-top "
-              src={img}
-              width={461}
-              height={420}
-              alt=""
-            />
-            <div className="card-body justify-between !p-[1.5rem]">
-              <h2 className="card-title text-main  hover:underline text-xl">
-                {name}
-              </h2>
-            </div>
+      <Link href={link}>
+        <div class="max-w-lg h-full  rounded overflow-hidden border border-principle/50">
+          <Image
+            src={img}
+            alt={`${name} tour img`}
+            className="rounded-lg h-[35vh] object-cover w-full p-2"
+            width={500}
+            height={600}
+          />{" "}
+          <div class="px-6 py-4 ">
+            <h2 class="font-bold text-xl mb-2 text-principle"> {name}</h2>
+            <p class="text-para text-base ">{descrizione} </p>
           </div>
-        </Link>
-      </div>
+          <div class="px-6 pt-4 pb-8">
+            <CtaDetails link={link}>{text}</CtaDetails>{" "}
+          </div>
+        </div>
+      </Link>
     </>
   );
 };

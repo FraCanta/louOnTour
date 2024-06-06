@@ -25,7 +25,7 @@ const HeroCities = ({ city }) => {
   return (
     <>
       <div
-        className={`container mx-auto w-full xl:w-4/5 ${expand.background} rounded-none xl:rounded-xl text-[1.5rem] xl:text-5xl mb-10 text-white relative hand-pointer overflow-hidden`}
+        className={`container mx-auto w-full xl:w-11/12 ${expand.background} rounded-none xl:rounded-xl text-[1.5rem] xl:text-5xl mb-10 text-white relative hand-pointer overflow-hidden`}
         onClick={handleExpand}
       >
         <div

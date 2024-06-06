@@ -6,10 +6,10 @@
       "keywords": "Tuscany tours, Tuscany italy, Tours of Tuscany, Private tour guide Tuscany, Tuscany tour guide, Tour guide tuscany, Best private tour guide Tuscany, Best Tuscany tour guide, Private tour guide in Tuscany"
     },
     "hero": {
-      "name": "Customized and Private Tours",
-      "paragraph": "Licensed Tour Guide in Siena, its province and Volterra.  ",
-      "cta": "All My Tours",
-      "tourcta": "Customize Your Tour"
+      "name": "Customized tours for groups and individuals",
+      "paragraph": "Guide enabled in Italian and English",
+      "cta": "discover my tours",
+      "tourcta": "more information"
     },
     "mission": {
       "subTitle": "Mission",
@@ -24,7 +24,7 @@
       "subTitle": "Tours",
       "title": "Which city or hill town would you like to visit?",
       "paragraph": "Here you will find some of the most popular tours, which many people have enjoyed and which I often love to do! Choose a location on the map next here, and take a look at my tour suggestions-there's something for everyone! But if you're looking for something that's more your thing, contact me and we'll try together to create the tour that best meets your tastes and needs.",
-      "button": "contact me",
+      "button": "more information",
       "markers": [
         {
           "title": "Florence",
@@ -76,9 +76,385 @@
       "subTitle": "About me",
       "title": "Say about me",
       "paragraph": "The fact that you are looking for a tour to learn more about a place makes you a curious person and I love that! But from your point of view, however, it is also true that it is important to find the right guide with whom you can connect and better appreciate the experience. Let's do this: while waiting to get to know each other better on our tour, take a look here and read what clients said about me.",
-      "button": "discover more",
+      "button": "read more",
 
       "reviews": [
+        {
+          "avatar": "A",
+          "name": "Maria",
+          "date": "Maggio 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was a wonderful guide! She was so accommodating to us, in meeting us a little later than the usual time due to train schedule. Learned so much about Siena from Luisa, was very happy with the tour. Would recommend her tour to everyone."
+        },
+        {
+          "avatar": "A",
+          "name": "Gabbie",
+          "date": "Maggio 2024",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is knowledgeable and passionate about the City and it’s districts. Saint Catharine history was well covered and valuable. We highly recommend Luisa."
+        },
+        {
+          "avatar": "A",
+          "name": "Patty",
+          "date": "Maggio 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was great! Great presentation of history of Siena and the horse race as well as St Catherine. We enjoyed the 2 hours of information."
+        },
+        {
+          "avatar": "A",
+          "name": "Cathy",
+          "date": "Maggio 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was very knowledgeable and gave a tour specific to our interests. She gave good recommendations for books/ items of interest. Her background in archaeology is a plus. We learned wonderful things about Siena!"
+        },
+        {
+          "avatar": "A",
+          "name": "Ana",
+          "date": "Aprile 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luísa é surpreendente, tem uma vivacidade contagiante e faz a gente querer saber mais e mais. Fez um percurso inteligente e nos mostrou coisas que realmente não encontraríamos em nenhum livro ou pesquisa mais cuidadosa, encontramos nessa guia preparada, inteligente e extraordinária um passeio pela Siena profunda. Muito obrigada Luísa"
+        },
+        {
+          "avatar": "A",
+          "name": "Tasha",
+          "date": "Marzo 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "My husband and I enjoyed our time with Luisa for many reasons: she is knowledgeable (education in archeology), personable, speaks great English, has a good balance between listening and speaking, educated, professional, and kind. Having a private tour with her is an experience we highly recommend."
+        },
+        {
+          "avatar": "A",
+          "name": "Marion",
+          "date": "Novembre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa's tour was presented with knowledge and humour. She was able to give us a wonderful insight into Siena and it's interesting and complex history. Loved it and would highly recommend it to anyone. Thank you Luisa 😄😄."
+        },
+        {
+          "avatar": "A",
+          "name": "Susan",
+          "date": "Ottobre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a passionate storyteller and guide. She almost made us forget the rain! She has a comprehensive knowledge of Sienese history and made the city come alive!"
+        },
+        {
+          "avatar": "A",
+          "name": "Tanya",
+          "date": "Ottobre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is engaging and very knowledgeable about all aspects of Siena as well as the surrounding areas of Italy. We had a private tour and before the tour began, she asked about our interests for our time with her. We wanted to understand the history and significance of Siena and we feel she far exceeded this in our time with her. Luisa’s archeological degree brings interesting insights to her tour, which I feel other tour guides would not know. We felt that Luisa gave us a very important understanding of the 17 districts of Siena and their patron Saint Catherine. Luisa is delightful and engaging as well."
+        },
+        {
+          "avatar": "A",
+          "name": "Mary",
+          "date": "Ottobre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is not only professional but very personable! She was very knowledgeable and we all learned so much about Siena. I was so glad we booked this personal tour (there were 7 of us) rather than one of those huge tours with lots of people. Luisa personalized the tour for us!"
+        },
+        {
+          "avatar": "A",
+          "name": "Gordon",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Fantastic tour. Luisa is a great guide with a deep understanding of Siena. If you’re in Siena for a short stay make sure this is the first thing you do."
+        },
+        {
+          "avatar": "A",
+          "name": "Joseph",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a fantastic guide with real in-depth knowledge of history and art. We learnt so much more than we would have just by walking around or reading about Siena ourselves. We would highly recommend Luisa to anyone looking to learn more about Tuscany."
+        },
+        {
+          "avatar": "A",
+          "name": "Gale",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Absolutely excellent experience! We enjoyed the story-telling and the history of beautiful Siena. Learning about the Palio, the saints of Siena, the different rivalries and architectural history made this tour extra special. We highly recommend. You will feel well hosted with someone who really cares and knows their stuff!"
+        },
+        {
+          "avatar": "A",
+          "name": "Ryan",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a great guide to Siena. She's friendly and knowledgeable. My family and I had a wonderful time with her — don't hesitate to book today."
+        },
+        {
+          "avatar": "A",
+          "name": "Ondra",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We literally just drove in Siena, spent 2.5 hours with Luisa, had a quick dinner and drove off. I’m sure we’ll be back some day, but this was a perfect introduction. Her experience is full of great insights and interesting facts, good choice!"
+        },
+        {
+          "avatar": "A",
+          "name": "Christopher",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is an incredible tour guide and history teacher on Siena, Tuscany, and archeology. She’s passionate and playful, but also laid back and easy to talk to. She offered to cater the tour to our interests and stop whenever we wanted. Highly recommended!"
+        },
+        {
+          "avatar": "A",
+          "name": "Cécile",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa est une excellente guide qui a pris le temps de donner des explications poussées sur les lieux qu’on visitait. Elle a su personnaliser notre visite qu’on voulait axée sur l’archéologie et l’histoire. Vraiment une super matinée pour découvrir cette magnifique ville de Sienne. Je recommande chaudement Luisa."
+        },
+        {
+          "avatar": "A",
+          "name": "Hélène",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Passionnante visite, qui a constitué l’introduction idéale pour notre séjour à Sienne, avec en particulier un focus initial fascinant et très utile sur le « palio »."
+        },
+        {
+          "avatar": "A",
+          "name": "Celine",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Super visite de Sienne grâce à Luisa !! Nous ne sommes restés qu’une journée dans cette ville exceptionnelle et cette visite de 3h était idéale pour découvrir cette ville, comprendre ses traditions et admirer son patrimoine. Luisa est passionnée et passionnante ! Elle s’adapte au groupe. Nous étions avec un adolescent de 17 ans qui a aussi, beaucoup apprécié cette visite !"
+        },
+        {
+          "avatar": "A",
+          "name": "Lindsay",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was a wonderful guide for my family of 5 (grandma, mom, and 3 kids ages 7, 10, 13). She managed to keep the kids engaged and we all learned a lot. Luisa is trained as an archaeologist and has a deep knowledge of Sienese history and culture. We were going to do one of those full day bus tours from Florence, and I’m so glad we decided instead to just take the train to Siena and book our own tour with Luisa. I highly recommend Luisa for any tour of Siena or the nearby areas."
+        },
+        {
+          "avatar": "A",
+          "name": "Juliette",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We had a wonderful time with Luisa in the street of Sienna ! She knows a lot of things and she is really passionate about history. We learned a lot! Thanks again for this afternoon :)"
+        },
+        {
+          "avatar": "A",
+          "name": "Christian",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a wonderful guide who knows the history inside and out, communicates it well, and shares both the legends as well as the facts. Highly recommended! We had a private tour which was perfect because we had 3 kids with us and wanted to pace things accordingly. It worked out very well."
+        },
+        {
+          "avatar": "A",
+          "name": "Sonia",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Agréable visite, adaptée au groupe. L'histoire, les anecdotes, Luisa est une passionnée, elle a su transmettre cette passion pdt sa visite. Mes enfants et nius etions enchantés."
+        },
+        {
+          "avatar": "A",
+          "name": "Cory",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is delightful! She is so smart and passionate, and can answer all of your questions (and if she can’t she will be honest and it). While the description of her tour is an option, she will also happily customize the tour to your specific curiosity. She is not a frantic, frenetic guide with a rehearsed spiel (like many guides). She is calm, kind, considerate, generous, and authentic. She gave us personal recommendations for other things to do (when we asked) and we enjoyed them very much!"
+        },
+        {
+          "avatar": "A",
+          "name": "Lisa",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was a great communicator - her knowledge and love of Siena made the tour special and informative. She shared stories and history - and our group of 6 loved it! Highly recommend seeing Siena with Luisa!!"
+        },
+        {
+          "avatar": "A",
+          "name": "Lisa",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "My family of six adults truly enjoyed hearing about Sienna's interesting history and the intrigue of the Palio. Learning about this town enriched our time there immensely. Highly recommend!"
+        },
+        {
+          "avatar": "A",
+          "name": "Shannon",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was an incredible guide for our first time in Siena! She personalized our tour based on our preferences and even booked us a spot for a delicious lunch. She is so knowledgeable and knew the answers to all of our questions. Super funny, kind, and smart- would definitely recommend!"
+        },
+        {
+          "avatar": "A",
+          "name": "Maria",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Amazing experience with Luisa! Highly recommended! We are a family of 4 including our 8-year-old twins. Luisa is very friendly and sweet, she gave a lot of information about Siena, answered all of our questions and was very patient and accommodating to our needs. She kept our kids interested and showed some pictures of the Palio on her tablet, which got them excited about it! She even arranged for tasting of Sienese desserts (not to be missed!) , and gave us some recommendations of restaurants for lunch at the end of the tour. I don’t think anything can be done better, she’s smart and attentive to details, and will introduce Siena to you in the best way!"
+        },
+        {
+          "avatar": "A",
+          "name": "Dawn",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was great! Very accommodating, knowledgeable and kind. Felt like we came away with a great overview of Sienna in the short time we had!"
+        },
+        {
+          "avatar": "A",
+          "name": "Kayla",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "AMAZING tour guide! Luisa is extremely knowledgeable and was able to answer all of our questions. She is very friendly and also has great recommendations for gelato, bakeries, and restaurants!"
+        },
+        {
+          "avatar": "A",
+          "name": "Anthony",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Unbeatable tour with an incredibly knowledgeable and approachable host. Luisa is a Sienese archaeologist, so she shares advanced knowledge of art, history, local culture and customs etc that others can’t provide. She even offered to personalize our tour according to what we wanted more of - art, food, churches, etc. Thank you for the tour of a lifetime!"
+        },
+        {
+          "avatar": "A",
+          "name": "Daniel",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Amazing private tour! Luisa personalized the experience for us as we had very little knowledge about Siena, and she made all the sights and history so interesting. She is extremely knowledgeable and an interesting story teller."
+        },
+        {
+          "avatar": "A",
+          "name": "Kenneth",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is amazing! Very knowledgeable, kind and a great communicator. We loved walking through beautiful Siena with her and learning about the history of this great city"
+        },
+        {
+          "avatar": "A",
+          "name": "Jonathan",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We had a great experience with Luisa! She is very knowledgeable about the cultural, political, and religious history of Siena and the broader Tuscany region and on top of that is a professional archaeologist. She is engaging, funny, and curious. She thoughtfully adapted our tour to accommodate my parents and we left the tour with a deeper and more nuanced understanding of how Siena has evolved over the millennia. I highly recommend this experience!"
+        },
+        {
+          "avatar": "A",
+          "name": "Kay",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is extremely knowledgeable and personable! She adapted our tour to focus on the palio (horse races) and competition between the 17 contrade. We booked only days before but she managed to get us a tour at the museum of one of them. Fascinating! She is also an art and architecture expert so her tour of the cathedral was amazing. Highly recommend!!"
+        },
+        {
+          "avatar": "A",
+          "name": "Chip",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Such a beautiful location and amazing history! I loved learning about the 17 districts, the rivalries, and historic horse races. Our guide gave many personal insights and advice on phrases, restaurants and more. Brava!! Highly recommend."
+        },
+        {
+          "avatar": "A",
+          "name": "Laura",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Book this tour! Luisa has a deep knowledge and passion for the area Andrew its history and showed us so many things about Siena, I wish we had days to spend with her! She paced the tour nicely, it was not hard to keep up with her in such a hilly town. She even made a reservation for us at a restaurant she recommended and it was delicious! Don’t miss her favorite gelato shop either, Bellisimo. Highly recommend."
+        },
+        {
+          "avatar": "A",
+          "name": "Pamela",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was very knowledgeable and flexible regarding what we wanted to see. She was wonderful explaining the legends and stories of the city."
+        },
+        {
+          "avatar": "A",
+          "name": "Jason",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "This is the best city tour I've ever been on. It's not only an incredible introduction to Siena, but a wonderful way to dig into the fun secrets of the city. The tour is well thought out, though Luisa is open to customizing it based on your interests. We were interested in the culture of Siena and we went deep on that. Would highly recommend!"
+        },
+        {
+          "avatar": "A",
+          "name": "Lori",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Louisa was so knowledgeable she customized the trip to our questions and interest. I learned so much from her which was delivered with humour and professionalism"
+        },
+        {
+          "avatar": "A",
+          "name": "Angela",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "I have been to Siena many times, but I learned so much from Luisa! She was so sweet, knowledgable and wonderful to tour Siena with. She shared so much facinating detail and perspective on the Palio. She used great ipad visuals to accentuate the facts and legends! If you are spending time in Siena, you must book Luisa. :-)"
+        },
+        {
+          "avatar": "A",
+          "name": "Diego",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa’s tour of Siena is perfect! She was happy to customize the tour to what interested me the most and she was very very knowledgeable about this very old and beautiful town. Would highly recommend this tour!"
+        },
+        {
+          "avatar": "A",
+          "name": "Candace",
+          "date": "Aprile 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was wonderful. We had a private tour customized to our interests. Our guided tour started in the Campo with a discussion of the history of Siena, its culture, government structure, and buildings. She did an incredible job of explaining the Palio and its significance. In addition to photos on her laptop, she had video of a race which was fascinating. While in the Campo she also shared information about life in Siena, food treats that we must sample, and her own life experiences. All of this helped us to gain more insight into both the history and current life in the city. From the Campo we went to the Duomo and learned about the initial plans, construction, renovation, and recent discoveries there before entering for a comprehensive tour of the amazing interior. Luisa had an incredible amount of detail to offer about the artwork, its significance, and the stories portrayed within. All of this added to the experience of seeing this amazing church ! Finally, she guided us through the cathedral dedicated to Saint Catherine. Here too, the insight and details of both the church and her life made everything much more meaningful. In addition to her incredible knowledge, Luisa has a warm and engaging personality. She went above and beyond with us in providing details, and generously spent additional time with us to make sure that our interests and the places we wanted to visit were addressed. It was an incredible experience that we highly recommend ! THANK YOU LUISA!!!!"
+        },
+        {
+          "avatar": "A",
+          "name": "Diego",
+          "date": "Aprile 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Se ci fossimo persi l’esperienza vissuta con Luisa, Siena sarebbe stata una delle solite città visitate… invece ….con le informazioni ricevute e i racconti avvincenti siamo entrati nel profondo della cultura e della storia che si ê dipanata nei secoli! È stato un gran piacere condividere con lei i luoghi unici che ha voluto mostrarci! Esperienza consigliata !"
+        },
+        {
+          "avatar": "A",
+          "name": "Krista",
+          "date": "Aprile 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Extremely accommodating to our personal interests. Pleasant and very knowledgeable of history of area, religion influences, and archeological significance. We so enjoyed our tour with Luisa and can’t recommend her enough! If you want to learn more about Siena with an engaging, personable guide, this experience is for you! ❤️"
+        },
+        {
+          "avatar": "A",
+          "name": "Stephen",
+          "date": "Aprile 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was very knowledgeable and informative. She enhanced the experience with visuals on her iPad. Luisa also provided restaurant recommendations and information regarding the surrounding area."
+        },
+        {
+          "avatar": "A",
+          "name": "Dayna",
+          "date": "Marzo 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "I cannot imagine coming to Siena for the first time without such a personal and historical tour with Luisa. She really knows the city as it is now and as it was from the beginning. We really loved seeing the things that other tours don't stop to see, and understanding Siena's beautiful past. Luisa made the city come alive for us. Our children, ages 8, 11, and 15 also really loved it. She also gave us great recommendations for eating lunch, and the best bakery and gelato in town."
+        },
         {
           "avatar": "A",
           "name": "Andra",
@@ -292,104 +668,164 @@
     },
     "socialLou": {
       "subTitle": "Social",
-      "title": "Lou On Tour Instagram",
+      "title": "Stay connected!",
       "paragraph": "The aspect I love most about my job is that it allows me to meet people with whom I share the same interests. But the tour ends and we often lose touch, and that's a shame! So how about staying in touch? You can find me every day on Instagram, Facebook and Tik Tok. Here I post trivia and anecdotes about the very places you have visited or plan to get to know here in Tuscany. I'll be waiting for you here then!",
-      "button": "Follow me"
+      "button": "Follow me on social"
     },
     "banner": {
-      "text": "Customize your tour experience: Art, History, Archaeology, Folklore and Culinary Tradition...which aspects interest you most? ",
-      "button": "contact me"
+      "text": "Customize your own tour experience",
+      "paragrafo": "Art, History, Archaeology, Folklore and Culinary Tradition...which aspects interest you most?",
+      "button": "more information"
     },
     "blogSection": {
       "subTitle": "Blog",
       "title": "Last News",
-      "button": "Read more"
+      "button": "More news from the blog"
     }
   },
   "tours": {
     "head": {
-      "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Tours",
+      "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tours",
       "description": "Guided tour of Siena with Cathedral, Campo, Palazzo Pubblico, and the Palio. San Domenico, Santa Caterina, and the Contrade.",
       "keywords": "Tuscany Tour, Florence Tour Guide, Walking Tours to Uncover Florence's Secrets, Guided Tours in Tuscany to Discover History and Art, Wine Tastings in the Heart of the Tuscan Hills, Val d'Orcia Excursions, Guided Tours of Siena, Tuscan Art Tour, Authentic Tuscan Experiences, Strolls in Medieval Cities, Cultural Itineraries in Siena, Cultural Itineraries in Florence"
     },
-    "toursTitle": "All my tours",
 
+    "toursPreview": [
+      {
+        "p": "<strong>Tuscany</strong> is a land of timeless beauty, where every city and village tell ancient stories and offer breathtaking landscapes. Get ready to embark on a unique journey through <strong>Siena, San Gimignano, San Galgano, and Volterra</strong>. Each destination will envelop you with its unique atmosphere, legends, and artistic treasures, all accompanied by an <strong>expert guide</strong>."
+      },
+      {
+        "p": "<strong>Each tour</strong> is an opportunity to discover a new place but also yourself, immersing yourself in the local culture, considering your own pace and desires. Whether you want a simple stroll or a deep dive into art and history, I'm here to help you <strong>design an unforgettable tour</strong>."
+      }
+    ],
     "tourItem": [
       {
         "img": "/assets/locationTour/florence_duomo.jpg",
         "link": "/locations/Firenze",
-        "name": "Florence"
+        "name": "Florence: Art and History",
+        "descrizione": "Stroll through the fascinating streets of the city known as the 'cradle of the Renaissance'. Marvel at masterpieces like the Duomo, the Ponte Vecchio, and the Uffizi Gallery. Let yourself be enchanted by the history, art, and culture of this timeless city.",
+        "text": "Details"
       },
       {
         "img": "/assets/locationTour/siena.jpg",
         "link": "/locations/Siena",
-        "name": "Siena"
+        "name": "Siena: A Dive into the Middle Ages",
+        "descrizione": "Experience the authentic medieval atmosphere of Siena! Explore the magnificent Duomo and the famous Piazza del Campo, where the renowned Palio takes place, representing the pride and passion of the Sienese people. A journey through time that will make you fall in love with Tuscany.",
+        "text": "Details"
       },
       {
         "img": "/assets/locationTour/volterra.jpg",
         "link": "/locations/Volterra",
-        "name": "Volterra"
+        "name": "Volterra: From the Etruscans to the Middle Ages",
+        "descrizione": "Discover Volterra, the city of alabaster and the Etruscans! Walk along the ancient walls, visit the Roman Theater and the picturesque Palazzo dei Priori. Admire Etruscan artworks in the Guarnacci Museum and enjoy breathtaking views of the Tuscan countryside. A tour that will introduce you to the timeless charm of this ancient city.",
+        "text": "Details"
       },
       {
         "img": "/assets/locationTour/san_gimignano.jpg",
         "link": "/locations/San%20Gimignano",
-        "name": "San Giminiano"
+        "name": "San Gimignano: The Medieval Manhattan",
+        "descrizione": "Admire its imposing towers and enjoy a stroll through its charming alleyways. Discover the history of this enchanting village, a UNESCO World Heritage Site. Wander through its medieval streets, visit Piazza della Cisterna, and admire the Collegiate Church of Santa Maria Assunta. Enjoy local flavors like saffron and Vernaccia wine, produced in the surrounding hills.",
+        "text": "Details"
       },
-      {
-        "img": "/assets/locationTour/valdorcia.jpg",
-        "link": "/locations/Montepulciano%20e%20Val%20d'Orcia",
-        "name": "Montepulciano e Val d'Orcia"
-      },
+
       {
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
         "link": "/locations/San%20Galgano",
-        "name": "San Galgano"
+        "name": "San Galgano: Mystery and Spirituality",
+        "descrizione": "It's a place full of mystery and spirituality. A fascinating place where history and legend intertwine, immersed in the splendid Tuscan countryside. Visit the ruins of the Cistercian abbey and discover the evocative chapel of Montesiepi, for a unique spiritual and cultural experience.",
+        "text": "Details"
       }
     ],
     "locationTours": {
       "Firenze": {
         "img": "/assets/locationTour/florence_duomo.jpg",
-        "titleImg": "Florence",
-        "translatedTitle": "Florence",
-        "half": "Tours Florence (Half Day)",
-        "full": "Tours Florence (Full Day)",
-        "citazione": "Firenze, divisa tra Fiesole e Bellosguardo, giace al centro di una conca di colline armoniose. Il suo corpo è medievale, la sua anima è rinascimentale. (Fabrizio Caramagna)",
-        "descrizione": "Admired for its beauty by millions of visitors from all over the world, Florence is not only a city of art but a true source of inspiration for anyone who visits it whether it is the first or the thousandth time! It is the city that broke with the Middle Ages and introduced the concept of modern man to Europe.",
-        "half_elenco": [
-          "<p ><b class='bold_text'>Among the streets of Florence: </b> then you can't miss the city's iconic places such as Palazzo della Signoria, Piazza Duomo, Ponte vecchio, Piazza Santa Maria Novella, Santa Croce... it's about a 3-hour tour but you'll see how time flies by!</p>",
-          "<p>Visit to the <a href='https://www.uffizi.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Uffizi Gallery</b></a></p>",
-          "<p>Visit to the <a href='https://www.galleriaaccademiafirenze.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Accademia Gallery</b></a></p>",
-          "<p>Visit to the <a href='https://www.bargellomusei.beniculturali.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>DynamicSimpleGallery</b></a></p>"
+        "name": "Florence",
+        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour Florence",
+        "cta": "back to Tour",
+
+        "titleImg": "Florence: Art and History",
+        "citazione": "Florence, divided between Fiesole and Bellosguardo, lies in the middle of a basin of harmonious hills. His body is medieval, his soul is Renaissance. (Fabrizio Caramagna)",
+        "descrizione2": "Admired for its beauty by millions of visitors from all over the world, Florence is not only a city of art but a true source of inspiration for anyone who visits it whether it is the first or the thousandth time! It is the city that broke with the Middle Ages and introduced the concept of modern man to Europe.",
+        "descrizione": [
+          {
+            "p": "Take a stroll through the streets of Florence, where every building has a story to tell. Marvel at the impressive Duomo with its dome designed by Brunelleschi, a masterpiece of engineering and beauty. Walk across the Ponte Vecchio, one of the world's most famous bridges, with its characteristic jeweler shops that make it unique. Discover Piazza della Signoria, the political and social heart of the city, where imposing statues like Michelangelo's David (a copy) will leave you breathless."
+          },
+          {
+            "p": "Listen to the local stories that make Florence alive and vibrant. Learn about the secrets of the Medici family, who shaped the city's destiny. Let yourself be fascinated by the legends and folk tales that add a touch of mystery and magic to your journey. Explore hidden gems, away from the classic tourist paths, where you can immerse yourself in the true Florentine essence."
+          },
+          {
+            "p": "From a simple couple of hours stroll, the tour can transform into a total immersion in art and culture by visiting Florence's most famous museums such as:"
+          }
         ],
-        "full_elenco": [
-          "<p><b class='bold_text'>One day in Florence: </b>after getting to know the city, all you need to do is visit at least one of the two most famous museums in Florence because you never leave Florence without having seen a work by Michelangelo or Leonardo or Botticelli, Donatello… in short, certainly artists here there is no shortage of them!</p>",
-          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>Siena</b></p>",
-          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
-          "<p><b class='bold_text'>Florence </b>+ <b class='bold_text'>Volterra</b></p>"
+        "list": [
+          {
+            "l": {
+              "title": "Uffizi Gallery",
+              "descrizione": "One of the most important museums in the world, the Uffizi Gallery houses masterpieces of Renaissance art. Admire Botticelli's 'Birth of Venus', 'Leonardo da Vinci's Annunciation', and Michelangelo's 'Doni Tondo'. Each room in the museum is a window to the past, allowing you to admire the evolution of art through the centuries."
+            }
+          },
+          {
+            "l": {
+              "title": "Accademia Gallery",
+              "descrizione": "Home to Michelangelo's famous David, a sculpture that represents the perfection of the human form. In addition to David, the Accademia Gallery also houses other works by the great master, along with a collection of ancient paintings and musical instruments."
+            }
+          }
         ],
         "gallery": []
       },
 
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
-        "titleImg": "Siena",
-        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Siena",
+        "name": "Siena",
+        "titleImg": "Siena: A Dive into the Middle Ages",
+        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour Siena",
         "keywords": "Siena Walking Tour, Personal Tour Guide for a Tailored Experience in Siena, Half-Day Tour to Explore the Artistic Treasures of Siena, Siena Tour, Siena Tours, Siena and Surroundings Tour, Siena and Val d'Orcia Tour, Siena Cathedral Tour, Siena Tour Guide, Tour Guide for Siena and Province, Siena Tourist Guide, Private Tour of Siena",
+        "cta": "back to Tour",
 
-        "half": "Tours Siena (Half Day)",
-        "full": "Tours Siena (Full Day)",
         "citazione": "Siena è un concentrato di umane sublimità e di estreme follie… (Mario Luzi)",
-        "descrizione": "This city positioned on a hilltop is famous for its UNESCO-protected historic center since it still retains much of the medieval urban layout; it is famous for artistic and architectural pageantry especially in the medieval period; and it is the city of the Palio, Italy's most famous horse race. St. Catherine was also born here and the world's longest-living bank was founded here.",
-        "half_elenco": [
-          "<p><b class='bold_text'>Siena for 'beginners':  </b>we will be around about 2 hours to learn about the main places, characters, anecdotes and events that have made this city famous.</p> ",
-          "<p><b class='bold_text'>Unusual Siena:  </b>about 3 hours of tour that will allow you to get to know the emblematic places of the city but also the places less frequented by visitors. If you decide to visit the headquarters of a contrada you will be able to immerse yourself in the reality of Siena, have contact with the locals. But another way to immerse yourself in the local fabric is undoubtedly through its local products.</p>"
+        "descrizione2": "This city positioned on a hilltop is famous for its UNESCO-protected historic center since it still retains much of the medieval urban layout; it is famous for artistic and architectural pageantry especially in the medieval period; and it is the city of the Palio, Italy's most famous horse race. St. Catherine was also born here and the world's longest-living bank was founded here.",
+        "descrizione": [
+          {
+            "p": "Take a walk through the fascinating streets of Siena. Every corner of the city tells a story, every building has a secret to reveal. Let yourself be enchanted by the Gothic architecture of the palaces, the magnificence of the churches, and the timeless beauty of Piazza del Campo, the pulsating heart of Siena, famous for its shell shape and for the Palio, the historic horse race. Admire the Public Palace and the Tower of Mangia dominating the square."
+          },
+          {
+            "p": "Siena is home to one of the most beautiful cathedrals in Italy, with its facade in black and white marble and breathtaking interiors decorated with works by artists such as Michelangelo and Donatello. Another place full of great spirituality is the Basilica of San Domenico, which houses the relics of Saint Catherine of Siena, the patron saint of Italy."
+          },
+          {
+            "p": "For a deeper immersion into the local culture and history, dedicate your day also to Siena's museums, offering extraordinary collections that tell centuries of art, history, and tradition:"
+          }
         ],
-        "full_elenco": [
-          "<div><p><b class='bold_text'>In Siena with art:  </b>we have 5/6 hours for a walk to learn about the highlights of the city and an in-depth look at one or more museums of your choice. Below you have links to Siena's major museums:</p> <ul><li><a href='https://operaduomo.siena.it/' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Cathedral + cathedral complex</b></a></li><li><a href='https://www.comune.siena.it/node/478' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Civic Museum</b></a></li><li><a href='https://www.santamariadellascala.com/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Former Hospital Santa Maria della Scala + Archaeological Museum</b></a></li><li><a href='https://pinacotecanazionale.siena.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>National Picture Gallery</b></a></li></ul></div>",
-          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Gimignano</b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
-          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Volterra</b> + <b class='bold_text'>Monteriggioni</b> (optiona)</p>",
-          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>San Galgano</b> </p>",
-          "<p><b class='bold_text'>Siena </b>+ <b class='bold_text'>Val d'Orcia</b> (one or two locations)</p>"
+        "list": [
+          {
+            "l": {
+              "title": "Siena Cathedral.",
+              "descrizione": "Marvel at its stunning façade of black and white marble adorned with sculptures depicting biblical and mythological stories. Discover the unique masterpiece of the marble inlaid floor, depicting sacred and secular scenes crafted by Siena's finest artists. Step into the Piccolomini Library and be amazed by Pinturicchio's vibrant frescoes illustrating the life of Pope Pius II. Admire Donatello's statue of Saint John the Baptist and the magnificent frescoes adorning the chapel."
+            }
+          },
+          {
+            "l": {
+              "title": "Opera del Duomo Museum",
+              "descrizione": "Here you'll encounter masterpieces like Duccio di Buoninsegna's Maestà and Donatello's statue of Saint John the Baptist. Don't miss the panoramic view of the city from the top of the Facciatone."
+            }
+          },
+          {
+            "l": {
+              "title": "Siena National Gallery",
+              "descrizione": "Featuring works from the 12th to the 16th century by artists like Simone Martini, Ambrogio Lorenzetti, and Giovanni di Paolo."
+            }
+          },
+          {
+            "l": {
+              "title": "Civic Museum",
+              "descrizione": "Housed in the Public Palace, delve into frescoes of immense historical and artistic value, including Ambrogio Lorenzetti's famous 'Allegory of Good and Bad Government.'"
+            }
+          },
+          {
+            "l": {
+              "title": "Santa Maria della Scala",
+              "descrizione": "A former hospital transformed into a museum complex narrating Siena's history through archaeological finds, frescoes, and artworks."
+            }
+          }
         ],
         "gallery": [
           {
@@ -516,23 +952,38 @@
       },
       "Volterra": {
         "img": "/assets/locationTour/volterra.jpg",
-        "titleImg": "Volterra",
-        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Volterra",
+        "name": "Volterra",
+        "cta": "back to Tour",
+
+        "titleImg": "Volterra: From the Etruscans to the Middle Ages",
+        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour Volterra",
         "keywords": "Volterra tour, Volterra tours, Volterra tour guide, Volterra walking tour, Volterra Italy walking tour, Tour Volterra san gimignano, Volterra city tour, Volterra visit guide, Volterra Tuscany Italy, Tours Volterra italy, Visit Volterra Italy, Volterra visit, Private tour Volterra",
-        "half": "Tours Volterra (Half Day)",
-        "full": "Tours Volterra (Full Day)",
-        "citazione": "[…] Volterra si mostra con un fascino arcano che promana dalle case addossate, dalle torri mozzate, dalle strade percorse da ombre inquietanti, lastricate nel tempo di sudore e di assurdo che attraversano la storia e la leggenda scavando solchi senza fine nella mente suggestionata degli uomini. (Franco Porretti)",
-        "descrizione": "One of the Etruscan cities par excellence. It still preserves many vestiges of this period as well as the Roman and medieval ones: the Porta all'Arco, the Etruscan city gate, and the Etruscan acropolis, the Roman theater, the Piazza dei Priori, the cathedral with the baptistery, and tower-houses. Volterra holds an immense treasure trove of art, archaeology, and craftsmanship; in fact, it is famous for alabaster work, a knowledge that has been handed down for generations. Volterra was built on a hill that if it once provided security today allows one to enjoy a vast and evocative panorama.",
-        "half_elenco": [
-          "<p><b class='bold_text'>Authentic Volterra: </b>fortunately Volterra is known indeed, but it is not as touristy as some Tuscan villages where in peak season we are crowded together. Volterra is still an authentic village: the borgo is alive because the locals still live and work there. In fact you will see many workshops or laboratories of artisans and artists working with alabaster. We after a walk to the village deck will visit one of these workshops. All in 2 hours. How does that sound?</p>",
-          "<p>Visit to the <a href='https://www.comune.volterra.pi.it/musei/museo-etrusco-guarnacci' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>Guarnacci Etruscan Museum</b></a></p>",
-          "<p>Visit to the <a href='https://www.comune.volterra.pi.it/Pinacoteca_civica' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Pinacoteca</b></a></p>",
-          "<p>Visit to the <a href='https://www.comune.volterra.pi.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/73' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Cathedral + Baptistery</b></a></p>"
+        "citazione": "[…] Volterra shows itself with an arcane charm that emanates from the leaning houses, from the severed towers, from the streets crossed by disturbing shadows, paved in time of sweat and absurdity that cross history and legend digging endless grooves in the mind of men. (Franco Porretti)",
+        "descrizione2": "A hidden gem in the heart of Tuscany where every step takes you through centuries of history, from the Etruscan era to the Middle Ages, to the Renaissance. Admire the imposing Etruscan walls, which still protect the city like a timeless embrace. As you stroll through the historic center, let yourself be fascinated by the grandeur of the Palazzo dei Priori, the oldest municipal building in Tuscany, and lose yourself among the charming artisan shops where alabaster, the local stone, comes to life in unique artistic creations. If you want to fully immerse yourself in Volterra's culture, spend a day exploring some of the must-visit places:",
+        "descrizione": [
+          {
+            "p": "Take a stroll through the streets of Florence, where every building has a story to tell. Marvel at the impressive Duomo with its dome designed by Brunelleschi, a masterpiece of engineering and beauty. Walk across the Ponte Vecchio, one of the world's most famous bridges, with its characteristic jeweler shops that make it unique. Discover Piazza della Signoria, the political and social heart of the city, where imposing statues like Michelangelo's David (a copy) will leave you breathless."
+          }
         ],
-        "full_elenco": [
-          "<p><b class='bold_text'>Archaeological Volterra: </b> 3-hour tour starting with the Etruscans, then the Roman part and ending in the Middle Ages. I have a degree in archaeology and Volterra is one of my favorite sites because Volterra is nothing but an archaeological site that is still 'active.' On completion I will take you to the Guarnacci Etruscan Museum where you will find many archaeological curiosities that you will enjoy, and we could visit an alabaster workshop.</p>",
-          "<p><b class='bold_text'>Volterra</b> +  <b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (optional)</p>",
-          "<p><b class='bold_text'>Volterra </b>+ <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Siena </b></p>"
+        "list": [
+          {
+            "l": {
+              "title": "Etruscan Museum Guarnacci:",
+              "descrizione": "One of the oldest museums in Europe, where you can admire an extraordinary collection of Etruscan funerary urns, archaeological finds, and the famous Shadow of the Evening, an enigmatic Etruscan statue that has fascinated generations of visitors."
+            }
+          },
+          {
+            "l": {
+              "title": "Art Gallery and Civic Museum:",
+              "descrizione": "It hosts a vast collection of artworks from the Middle Ages to the Renaissance, including masterpieces by Luca Signorelli and Rosso Fiorentino. A journey through the evolution of Italian art that will leave you breathless."
+            }
+          },
+          {
+            "l": {
+              "title": "Cathedral of Santa Maria Assunta:",
+              "descrizione": "It houses wonderful works inside, including paintings by the most famous Mannerist painters and more."
+            }
+          }
         ],
         "gallery": [
           {
@@ -679,20 +1130,38 @@
       },
       "San Gimignano": {
         "img": "/assets/locationTour/san_gimignano.jpg",
-        "titleImg": "San Gimignano",
-        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | San Gimignano",
+        "name": "San Gimignano",
+        "cta": "back to Tour",
+
+        "titleImg": "San Gimignano: The Medieval Manhattan",
+        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour San Gimignano",
         "keywords": "San Gimignano tour, San Gimignano tour from siena, San Gimignano guided tour, Tour of San Gimignano Italy, San Gimignano Tuscany, San Gimignano walking tour, Walking tour of San Gimignano, Private tour San Gimignano, Siena to San Gimignano tour",
-        "half": "Tours San Gimignano (Half Day)",
-        "full": "Tours San Gimignano (Full Day)",
-        "citazione": "San Gimignano dalle belle torri e dalle belle campane… (Proverbio fiorentino)",
-        "descrizione": "The 'City of the Beautiful Towers' has been declared a World Heritage Site because its appearance still harks back to the thirteenth and fourteenth centuries, a rare example in Europe of urban organization of the communal age: practically a medieval dream. Here you can immerse yourself in the life of a wealthy merchant with his impregnable tower-house that dominated the town's stretch of the Via Francigena. At that time, you would have seen as many as 72 towers in San Gimignano (today about 15). ",
-        "half_elenco": [
-          "<p><b class='bold_text'>Hunting for medieval towers: </b>we will take about 2 hours to visit the medieval village. We will retrace the main road that is nothing more than a stretch of the ancient Francigena. We will linger in front of some of the churches and in the main squares without neglecting viewpoints that will make you identify with a painting by Leonardo da Vinci.</p>",
-          "<div><p><b class='bold_text'>Not only towers: </b> Many of the testimonies of this period are kept not only in the Collegiate but also in some museums including the Civic Museum. From here, climbing to the top of the Torre Grossa, you can admire a unique panorama. So I suggest a walk to admire the village and a visit to one of these museums:</p> <ul><li> <a href='http://www.duomosangimignano.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Collegiate Church</b></a></li><li> <a href='http://www.sangimignanomusei.it/' class='bold_text underline hand-pointer' target='_blank' rel='noreferrer'><b class='bold_text'>Civic Museum + Torre Grossa</b></a></li></ul></div>"
+        "citazione": "San Gimignano with its beautiful towers and beautiful bells... (Florentine proverb)",
+        "descrizione2": "The 'City of the Beautiful Towers' has been declared a World Heritage Site because its appearance still harks back to the thirteenth and fourteenth centuries, a rare example in Europe of urban organization of the communal age: practically a medieval dream. Here you can immerse yourself in the life of a wealthy merchant with his impregnable tower-house that dominated the town's stretch of the Via Francigena. At that time, you would have seen as many as 72 towers in San Gimignano (today about 15). ",
+        "descrizione": [
+          {
+            "p": "Picture strolling slowly through the narrow, winding streets of San Gimignano in the crisp morning air. Every corner of this village tells a story. The stone houses, ancient churches, and imposing towers are vivid reminders of an important past. San Gimignano is famous for its medieval towers, each with its own tale, symbolizing the power and wealth of the families that built them. As you walk through Piazza della Cisterna, the city's bustling heart, you'll be surrounded by historic buildings and noble palaces. The grandeur of the Collegiate Church of Santa Maria Assunta, with its Renaissance frescoes, will leave you breathless. To fully soak in San Gimignano's atmosphere, explore not only its streets and squares but also its most fascinating museums and churches."
+          }
         ],
-        "full_elenco": [
-          "<p><b class='bold_text'>San Gimignano </b> + <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Volterra</b></p>",
-          "<p><b class='bold_text'>San Gimignano </b>+ <b class='bold_text'>Monteriggioni</b> (optional) + <b class='bold_text'>Siena</b></p>"
+        "list": [
+          {
+            "l": {
+              "title": "Collegiate Church:",
+              "descrizione": "A treasure trove of art and history nestled in the heart of the medieval village. Inside, you'll be greeted by splendid Renaissance frescoes depicting biblical tales with vivid details and breathtaking colors. You can admire the works of masters like Benozzo Gozzoli and Domenico Ghirlandaio, making this place a true museum."
+            }
+          },
+          {
+            "l": {
+              "title": "Civic Museum and Art Gallery:",
+              "descrizione": "Located within the People's Palace, this museum houses an extensive collection of medieval and Renaissance artworks. Plus, you can climb to the top of the Great Tower, the tallest of San Gimignano's towers, from where you can enjoy a breathtaking view of the Tuscan countryside and the other towers of the village."
+            }
+          },
+          {
+            "l": {
+              "title": "San Gimignano Vernaccia Wine Museum:",
+              "descrizione": "For wine enthusiasts, this museum is a must-visit. Situated inside the Rocca di Montestaffoli, it offers tastings and insights into the history and production of the famous Vernaccia wine."
+            }
+          }
         ],
         "gallery": [
           {
@@ -842,42 +1311,48 @@
           }
         ]
       },
-      "Montepulciano e Val d'Orcia": {
-        "img": "/assets/locationTour/valdorcia.jpg",
-        "titleImg": "Montepulciano and Val d'Orcia",
-        "translatedTitle": "Montepulciano and Val d'Orcia",
-        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Montepulciano e Vald d'Orcia",
-        "keywords": "Montepulciano Tour, Excursions in the Unspoiled Nature of Val d'Orcia, Montepulciano and Surroundings Tour, Montepulciano Tuscany, Siena Montepulciano and Monteriggioni Tour, Tuscany Tour to Montepulciano, Montepulciano Tour Guide",
 
-        "half": "",
-        "full": "Tours Montepulciano and Val d'Orcia (Full Day)",
-        "citazione": "Lorem ipsum",
-        "descrizione": "Unique and beautiful landscape: verse and sinuous hills, golden fields, avenues with cypresses, lush vineyards and olive groves. Most of the photos you have seen of the Tuscan landscape were taken in this very area! The valley is crossed by the Orcia River from which it takes its name. Here the absolute protagonist is nature so much so that today it is a protected park and has been recognized as a UNESCO World Heritage Site. Scattered in this landscape we find medieval castles, ancient villages, abbeys each with its own history and particularity. Val d'Orcia is also a land of excellent wines such as the most famous Brunello di Montalcino or Rosso d'Orcia and many others. For our tour (about 6 hours) I propose you to visit together these villages that I am sure you will fall in love with:",
-        "half_elenco": [],
-        "full_elenco": [
-          "<p><b class='bold_text'> Pienza: </b>architectural jewel recognized as a Renaissance 'ideal city' and famous for pecorino cheese production.</p>",
-          "<p><b class='bold_text'> San Quirico d’Orcia + Chapel of Vitaleta: </b>very pretty village with its splendid Collegiate Church and the Horti Leonini, beautiful Italian garden. Along the way we will stop to admire the Chapel of the Madonna di Vitaleta</p>",
-          "<p><b class='bold_text'> Bagno Vignoni: </b>the only town in Italy where you will find a swimming pool instead of the central square! The Renaissance pool rises right above the original hot spring of thermal water. This spring was already frequented by the Romans and other famous people Pope Pius II, St. Catherine of Siena and Lorenzo the Magnificent.</p>",
-          "<p><b class='bold_text'> Montalcino + Sant'Antimo Abbey: </b>a medieval village surrounded by a mighty wall and dominated by the 14th-century fortress from which there is a unique panorama. Montalcino is world famous for the production of the precious Brunello di Montalcino. Finally you can admire the beautiful and evocative Abbey of Sant' Antimo, one of the best examples of medieval monastic architecture.</p>",
-          "<p><b class='bold_text'> Montepulciano + Temple of San Biagio: </b>here we are no longer in the Val d'Orcia but precisely on its border, but Montepulciano is such a beautiful town that it is worth a visit. Along the main streets are elegant Renaissance palaces, Piazza Grande, characteristic views and vantage points overlooking the Val d'Orcia and in particular the vineyards that produce the famous Nobile. Further down the valley is the Temple of San Biagio, a place of worship and example of 16th-century Tuscan Renaissance architecture designed by Antonio da San Gallo the Elder.</p>"
-        ],
-        "gallery": []
-      },
       "San Galgano": {
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
-        "titleImg": "San Galgano",
-        "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | San Galgano",
+        "name": "San Galgano",
+        "titleImg": "San Galgano: Mystery and Spirituality",
+        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour San Galgano",
         "keywords": "San Galgano tour, San Galgano tour from siena, San Galgano guided tour, Tour of San Galgano Italy, San Galgano Tuscany, San Galgano walking tour, Walking tour of San Galgano, Private tour San Galgano, Siena to San Galgano tour",
+        "cta": "back to Tour",
 
         "half": "Tour San Galgano (Half Day)",
         "full": "Tour San Galgano (Full Day)",
-        "citazione": "“per tetto un manto di stelle”",
-        "descrizione": "In 1180 Galgano Guidotti built a church in Montesiepi. The structure of the church is very original, singular in the Romanesque context of Siena. The interior is striking because of the singular vault and because in the center of the room is the rock in which Saint Galgano thrust his sword. Attached to the church is the 14th-century chapel with frescoes attributed to Ambrogio Lorenzetti. Fifty years later, further down the valley, the abbey named after St. Galgano was built by the Cistercians. The earliest example of Gothic architecture in Tuscany and one of the most evocative places in the Sienese countryside. The skeleton of the abbey remains, testifying to the power and wealth of the monastic community. A ruin completely immersed in the contrasting colors of the sky and the surrounding nature, a vision of solitary and dramatic beauty. ",
-        "half_elenco": [
-          "<p>Ticket info  <a href='https://www.comune.chiusdino.siena.it/it/page/visita-abbazia-di-san-galgano-orari-di-apertura-e-p' class='bold_text underline hand-pointer ' target='_blank' rel='noreferrer'><b>here</b></a></p>"
+        "citazione": "“for roof a mantle of stars”",
+        "descrizione2": "In 1180 Galgano Guidotti built a church in Montesiepi. The structure of the church is very original, singular in the Romanesque context of Siena. The interior is striking because of the singular vault and because in the center of the room is the rock in which Saint Galgano thrust his sword. Attached to the church is the 14th-century chapel with frescoes attributed to Ambrogio Lorenzetti. Fifty years later, further down the valley, the abbey named after St. Galgano was built by the Cistercians. The earliest example of Gothic architecture in Tuscany and one of the most evocative places in the Sienese countryside. The skeleton of the abbey remains, testifying to the power and wealth of the monastic community. A ruin completely immersed in the contrasting colors of the sky and the surrounding nature, a vision of solitary and dramatic beauty. ",
+        "descrizione": [
+          {
+            "p": "Imagine yourself in a place where time seems to stand still, where history and legend intertwine, and where every stone tells an ancient tale. Welcome to San Galgano, a gem nestled in the heart of the Tuscan countryside. The San Galgano tour will take you on a journey beyond a simple sightseeing visit. Prepare to be enveloped by an aura of peace and mystery as you step into the Cistercian abbey, an impressive roofless building that opens up to the blue sky and bright stars, creating an almost surreal atmosphere. The sword in the stone, preserved in the nearby Chapel of Montesiepi, adds a touch of magic to your journey. The legend of San Galgano, the knight who gave up worldly life to embrace a hermit's life, will make you feel part of a timeless story."
+          },
+          {
+            "p": "To make your tour even more complete and immersive, I recommend visiting the nearby village of Chiusdino. This charming medieval village where you can:"
+          }
         ],
-        "full_elenco": [
-          "<p>Proposed together with <b class='bold_text'>Siena</b>  for a FULL DAY</p>"
+        "list": [
+          {
+            "l": {
+              "descrizione": "Stroll through narrow cobblestone streets, amidst stone houses and flowered balconies, and be enchanted by the ancient charm of the village."
+            }
+          },
+          {
+            "l": {
+              "descrizione": "Visit the House of San Galgano: a small museum preserving objects and testimonies of his life."
+            }
+          },
+          {
+            "l": {
+              "descrizione": "Admire the Church of San Michele Arcangelo: an architectural gem with frescoed interiors and a panoramic view that will leave you speechless."
+            }
+          },
+          {
+            "l": {
+              "descrizione": "Taste the authentic flavors of Tuscan cuisine in one of the village's typical restaurants, where tradition and quality blend into unforgettable dishes."
+            }
+          }
         ],
         "gallery": [
           {
@@ -960,11 +1435,16 @@
     },
     "corr": {
       "title": "You might also be interested in…"
+    },
+    "banner": {
+      "text": "Customize your own tour experience",
+      "paragrafo": "Art, History, Archaeology, Folklore and Culinary Tradition...which aspects interest you most?",
+      "button": "more information"
     }
   },
   "who": {
     "head": {
-      "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Who I Am"
+      "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Who I Am"
     },
     "hero": {
       "subTitle": "About me",
@@ -1029,11 +1509,11 @@
       "txt": "Message"
     },
     "head": {
-      "title": "Luisa Quaglia Tour Guide | Tourist Guide of Siena and Province and Volterra | Contact"
+      "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Contact"
     }
   },
   "newsletter": {
-    "title": "Luisa Quaglia Tour Guide | Tourist Guide of Siena and Province and Volterra | Subscribe Newsletter",
+    "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Subscribe Newsletter",
 
     "paragrafo": "Subscribe to the newsletter to participate in exclusive tours dedicated to my most loyal community!"
   }

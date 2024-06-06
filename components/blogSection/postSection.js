@@ -5,7 +5,7 @@ import Link from "next/link";
 import Siena from "../../public/assets/locationTour/siena/siena2.jpg";
 
 import { getDate } from "../../utils/utils";
-import Cta from "../button/button";
+import Cta from "../button/CtaPrimary";
 
 export default function PostSection({ post, featuredMedia }) {
   // console.log(post);

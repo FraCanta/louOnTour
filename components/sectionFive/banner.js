@@ -1,19 +1,23 @@
-import Link from "next/link";
 import React from "react";
-import Cta from "../button/button";
-import { Icon } from "@iconify/react";
+import CtaPrimary from "../button/CtaPrimary";
+import { MaskText } from "../UI/MaskText";
 
 const Banner = ({ translation }) => {
   return (
-    <section className="section4">
-      <div className="section_container w-11/12 2xl:w-4/5">
-        <h2>{translation?.text}</h2>
-        <Link
-          href="/contatti"
-          className="capitalize flex gap-2 items-center max-w-max text-center text-white lg:text-[21.57px] font-bold leading-snug py-4 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 2xl:text-[1.2rem] fxl:text-2xl 3xl:text-3xl rounded-md border-2 bg-[#2c395b]"
-        >
-          {translation?.button}
-        </Link>
+    <section className="flex flex-col items-center min-h-[50vh] justify-center">
+      <div className="flex flex-col items-center justify-center w-11/12 2xl:w-4/5 gap-4">
+        <div className="flex flex-col gap-2 text-center">
+          <MaskText>
+            <h2 className="text-4xl md:text-5xl fxl:text-[10rem] font-bold leading-[1] md:mb-0 ">
+              {translation?.text}
+            </h2>
+          </MaskText>
+          <p className="lg:text-center max-w-3xl text-para  mx-auto text-xl 2xl:text-2xl lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2rem] 3xl:text-[2.5rem] leading-6 2xl:leading-9 3xl:leading-[3.5rem] mb-5 font-regular">
+            {translation?.paragrafo}
+          </p>
+        </div>
+
+        <CtaPrimary link="/contatti">{translation?.button}</CtaPrimary>
       </div>
     </section>
   );

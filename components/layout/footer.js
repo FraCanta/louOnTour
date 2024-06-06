@@ -2,24 +2,23 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import FooterLogo from "../../public/assets/logo_mobile2.png";
+import FooterLogo from "../../public/logo-2024.png";
 import { useRouter } from "next/router";
-import translation from "../../public/locales/it/it.json";
 
 const Footer = ({ translation }) => {
   const { locale } = useRouter();
   return (
     <>
-      <footer className="footer p-4 xl:p-10  bg-white text-[#232f37]  text-base-content border-t-2 border-b-2 border-b-[#2c395b]">
+      <footer className="footer p-4 xl:p-10  bg-white text-[#232f37]  border-t-[1px] border-b-[1px] border-t-principle/30 border-b-principle/30">
         <div>
           <Link href="/">
             <Image
               src={FooterLogo}
               alt="LouLogo"
-              className="mr-4 w-[100px] h-[100px]"
+              className="mr-4 w-[180px] object-cover mb-4"
             />
           </Link>
-          <span className="text-[#232f37] font-regular">
+          <span className="text-principle/70 font-regular italic">
             {translation?.footer?.[locale]?.Col1?.title}
             <br />
             P.Iva: 02436070508
@@ -98,18 +97,22 @@ const Footer = ({ translation }) => {
           </div>
         </div>
       </footer>
-      <footer className="footer footer-center  p-2 !bg-[#2c395b]  grain ">
+      <footer className="footer footer-center  p-2 ">
         <div>
-          <p className=" text-white text-sm   !opacity-100">
+          <p className=" text-para text-sm   !opacity-100">
             Copyright © 2024 - All rights reserved by Luisa Quaglia Tour Guide -{" "}
-            <Link href="/policy" target="_blank" className="underline">
+            <Link
+              href="/policy"
+              target="_blank"
+              className="underline font-bold"
+            >
               Privacy Policy
             </Link>{" "}
             - Made with ❤️ by{" "}
             <Link
               href="https://www.thallion-dev.it/"
               target="_blank"
-              className="underline"
+              className="underline font-bold"
             >
               thallion+dev - creative designer
             </Link>

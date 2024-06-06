@@ -9,6 +9,7 @@ import Post from "../components/Post/post";
 import Post2 from "../components/Post/post2";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import LastPost from "../components/Post/lastPost";
+import { MaskText } from "../components/UI/MaskText";
 
 const Blog = ({ post, category, pages, currentP, lastPost }) => {
   const myRouter = useRouter();
@@ -54,7 +55,7 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
   return (
     <div>
       <Head>
-        <title>Luisa Quaglia Tour Guide - Blog</title>
+        <title>Luisa Quaglia Tour Guide | Tuscany Experience | Blog</title>
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -63,12 +64,11 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
         <div className="flex flex-col lg:flex-row  gap-6  w-full mx-auto mt-[50px] lg:mt-10">
           <div className="grid grid-cols-1  lg:w-[75%] ">
             <div className="flex flex-col w-full gap-6">
-              <h4>
-                <span className="text-principle text-[8vw] leading-[1.2] md:leading-none  lg:text-[6vw] xl:text-[5vw] 2xl:text-[3vw] 3xl:text-[3.6vw]  font-extrabold capitalize ">
-                  {" "}
+              <MaskText>
+                <h4 className="text-principle text-[8vw] leading-[1.2] md:leading-none  lg:text-[6vw] xl:text-[5vw] 2xl:text-[3vw] 3xl:text-[3.6vw]  font-extrabold capitalize ">
                   Last Post
-                </span>
-              </h4>{" "}
+                </h4>{" "}
+              </MaskText>
               <div className="w-full relative">
                 <LastPost lastPost={lastPost} category={category} />
               </div>

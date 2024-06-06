@@ -41,13 +41,13 @@ export default function Post({ post, featuredMedia, translation }) {
       <div className="flex flex-col justify-between mt-4">
         <Link href={`/posts/${post?.slug}`} title={`${post?.title?.rendered}`}>
           <p
-            className="font-bold !text-white pb-2 hover:text-second capitalize text-[5vw] md:text-[4vw] 2xl:text-[1.2vw] fxl:text-[25px] 3xl:pb-6 3xl:text-3xl"
+            className="font-bold !text-white pb-2  text-[5vw] md:text-[4vw] 2xl:text-[1.125rem] fxl:text-[25px] 3xl:pb-6 3xl:text-3xl"
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           ></p>
         </Link>
         <div
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
-          className="line-clamp2 !text-white text-[4vw] 2xl:text-[1vw] mb-4 fxl:text-[20px] 3xl:text-[25px]"
+          className="line-clamp2 !text-white  mb-4 "
         ></div>
         <div className="w-full h-[1px] bg-white/30 "></div>
         <div className="py-2 flex w-full justify-between items-center">

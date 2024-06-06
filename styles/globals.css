@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+html::-webkit-scrollbar {
+  display: none;
+}
+
 html,
 body {
   padding: 0;
@@ -35,7 +39,7 @@ h2 {
 
 h3 {
   color: var(--second);
-  font-family: "Snippet", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 p {
@@ -50,7 +54,26 @@ body {
   background-color: white;
 }
 
+.body {
+  font-size: 2vw;
+}
+
+.linemask {
+  overflow: hidden;
+}
+
+.linemask .text {
+  margin: 3px;
+  font-weight: 700;
+}
+
 @layer utilities {
+  .newsletter {
+    background-image: url("/public/assets/newsletter.jpg");
+    background-size: cover;
+    height: 70vh;
+    width: 100%;
+  }
   .hero_left {
     -webkit-clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
     clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
@@ -225,26 +248,6 @@ body {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -124;
   }
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }
 
 a {

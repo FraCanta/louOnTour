@@ -11,7 +11,7 @@ const CurvedText = () => {
         cy={90}
         rx={80}
         ry={80}
-        text="Lou On Tour . Lou On Tour . Lou On Tour . Lou On Tour .  "
+        text="Tuscany Tour . Tuscany Tour . Tuscany Tour .   "
         textProps={{ style: { fontSize: 25, fill: "#FE6847" } }}
       />
     </div>

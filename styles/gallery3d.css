@@ -1,0 +1,35 @@
+.swiper-container {
+  width: 750px !important;
+  padding: 0 0 50px !important;
+}
+.swiper_slide {
+  width: 450px !important;
+  height: 450px !important;
+  opacity: 1 !important;
+}
+.swiper_slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 360px) and (max-width: 768px) {
+  .swiper_slide {
+    width: 275px !important;
+    height: 275px !important;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 840px) {
+  .swiper_slide {
+    width: 375px !important;
+    height: 375px !important;
+  }
+}
+
+@media screen and (min-width: 1270px) and (max-width: 1280px) {
+  .swiper_slide {
+    width: 450px !important;
+    height: 450px !important;
+  }
+}

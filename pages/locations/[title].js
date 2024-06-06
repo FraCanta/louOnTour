@@ -4,26 +4,24 @@ import dynamic from "next/dynamic";
 const DynamicHeroCities = dynamic(() =>
   import("../../components/UI/heroCities")
 );
-// import locations from "../../public/locales/it/it.json"; ???????
-// const DynamicGalleryTours = dynamic(() =>
-//   import("../../components/UI/galleryTours")
-// );
-const DynamicSimpleGallery = dynamic(() =>
-  import("../../components/UI/simpleGallery")
-);
-const DynamicCorrelati = dynamic(() => import("../../components/UI/correlati"));
+
 const DynamicBanner = dynamic(() =>
   import("../../components/sectionFive/banner")
 );
 import translationIT from "../../public/locales/it/it.json";
 import translationEN from "../../public/locales/en/en.json";
+import Gallery3d2 from "../../components/UI/Gallery3D2";
+import { MaskText } from "../../components/UI/MaskText";
+import CtaPrimary from "../../components/button/CtaPrimary";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
-export default function Tours({ city, others, banner, correlati }) {
+export default function Tours({ city, banner }) {
+  console.log(city);
   return (
     <>
       <Head>
         <title>{city?.title}</title>
-        <meta name="description" content={city?.descrizione} />
+        <meta name="description" content={city?.descrizione2} />
         <meta name="keywords" content={city?.keywords} />
 
         <meta
@@ -32,7 +30,7 @@ export default function Tours({ city, others, banner, correlati }) {
         />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={city?.title} />
-        <meta property="og:description" content={city?.descrizione} />
+        <meta property="og:description" content={city?.descrizione2} />
 
         <meta
           property="og:image"
@@ -46,84 +44,58 @@ export default function Tours({ city, others, banner, correlati }) {
           content="https://www.luisaquaglia-tourguide.com/"
         />
         <meta name="twitter:title" content={city?.title} />
-        <meta name="twitter:description" content={city?.descrizione} />
+        <meta name="twitter:description" content={city?.descrizione2} />
         <meta name="twitter:image" content={city?.img} />
       </Head>
-      <div className="w-full xl:w-4/5 min-h-[30vh] container mx-auto flex flex-col lg:flex-row py-4 xl:py-8">
-        <div className="w-full lg:w-1/2 p-4 lg:p-8">
-          <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Destinations</h4>
-          <h2 className="text-5xl md:text-[64px] 3xl:text-[100px] font-medium mt-2 leading-[3.2rem] lg:leading-[3.5rem] text-[#2C395B]">
-            {!!city.translatedTitle ? city.translatedTitle : city?.titleImg}
-          </h2>
-        </div>
-        <div className="w-full lg:w-1/2 p-4 lg:p-8">
-          <p className="text-base sm:text-lg  mt-0 sm:mt-8 mb-4 text-[#2C395B]">
-            {city?.descrizione}
-          </p>
+      <div className="w-11/12  container mx-auto flex flex-col lg:flex-row py-4 xl:py-8">
+        <div className="w-full ">
+          <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">
+            Tour {city?.name}
+          </h4>
+          <MaskText>
+            <h1 className="text-4xl md:text-5xl 3xl:text-[100px] font-bold mt-2  text-[#2C395B]">
+              {!!city.translatedTitle ? city.translatedTitle : city?.titleImg}
+            </h1>
+          </MaskText>
         </div>
       </div>
       <DynamicHeroCities city={city} />
-      <div className="min-h-[50vh] py-0 lg:py-4 ">
-        <div className="container w-11/12 xl:w-4/5 mx-auto xl:h-full ">
-          <div className="flex flex-col lg:flex-row w-full justify-between">
-            <div
-              className="w-full lg:w-1/2  lg:px-8 lg:p-4 pt-8 xl:pt-0"
-              style={city?.half_elenco?.length === 0 ? { display: "none" } : {}}
-            >
-              <h2 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
-                {city?.half}
-              </h2>
-              <ul className="text-xl md:text-base font-medium mt-2 leading-10  text-[#2C395B] pb-10 elenco_tours">
-                {city?.half_elenco?.map((el, i) => (
-                  <li
-                    key={i}
-                    className="text-base sm:text-[1.05rem]  mt-4 sm:mt-8 text-[#2C395B]"
-                  >
-                    <div dangerouslySetInnerHTML={{ __html: el }}></div>
-                  </li>
-                ))}
-              </ul>
 
-              {!!city?.ticket && (
-                <div className="text-xl md:text-lg font-medium mt-2 leading-10  pb-8 ticket">
-                  <Link href={city?.ticket} target="_blank" rel="noreferrer">
-                    Info
-                  </Link>
-                </div>
-              )}
-            </div>
-            <div
-              className="w-full lg:w-1/2  lg:px-8 lg:p-4 pt-8 xl:pt-0"
-              style={city?.half_elenco?.length === 0 ? { width: "100%" } : {}}
-            >
-              <h2 className="text-3xl md:text-[30px] font-medium mt-2 leading-10 text-[#2C395B] pb-8">
-                {city?.full}
-              </h2>
-              <ul className="text-xl md:text-base font-medium mt-2 leading-10 text-[#2C395B] pb-8 elenco_tours">
-                {city?.full_elenco?.map((el, i) => (
-                  <li
-                    key={i}
-                    className="text-base sm:text-[1.05rem]  mt-0 sm:mt-8 text-[#2C395B] pb-2"
-                  >
-                    <div dangerouslySetInnerHTML={{ __html: el }}></div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
+      <div className="flex flex-col  text-main text-xl font-normal xl:text-2xl w-11/12 mx-auto  ">
+        {city?.descrizione?.map((el, i) => {
+          return (
+            <p
+              key={i}
+              className=" text-para  w-full   text-[1.4rem] 2xl:text-[1.3rem] lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2rem] 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
+              dangerouslySetInnerHTML={{ __html: el.p }}
+            ></p>
+          );
+        })}
+        <ul className="elenco_tours flex flex-col gap-6">
+          {city?.list?.map((el, i) => (
+            <li key={i} className="flex">
+              <div className="flex flex-col gap-2">
+                <h2
+                  className="text-2xl text-principle font-bold"
+                  dangerouslySetInnerHTML={{ __html: el.l.title }}
+                ></h2>
+                <p
+                  className=" text-para  w-full   text-[1.4rem] 2xl:text-[1.3rem] lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2rem] 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
+                  dangerouslySetInnerHTML={{ __html: el.l.descrizione }}
+                ></p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="container w-11/12  mx-auto xl:h-full  flex justify-end mt-10">
+        <CtaPrimary link="/tours-da-fare">
+          <Icon icon="lets-icons:refund-back" /> {city.cta}
+        </CtaPrimary>
       </div>
 
-      {city?.gallery?.length > 0 && (
-        // <DynamicGalleryTours imageArray={city?.gallery} />
-        <DynamicSimpleGallery
-          imageArray={city?.gallery}
-          galleryID="gallery--click-to-next"
-          galleryTitle={"Gallery"}
-        />
-      )}
+      {city?.gallery?.length > 0 && <Gallery3d2 imageArray={city?.gallery} />}
 
-      <DynamicCorrelati city={city} others={others} correlati={correlati} />
       <DynamicBanner translation={banner} />
     </>
   );
@@ -149,20 +121,12 @@ export async function getStaticProps(context) {
   let targetObj = obj?.tours?.locationTours?.[params?.title];
   const banner = obj?.home?.banner;
   const arr = Object.keys(obj?.tours?.locationTours);
-  const others = arr?.map((el) => {
-    return {
-      title: el,
-      img: obj?.tours?.locationTours?.[el]?.img,
-      link: `/locations/${el}`,
-      translatedTitle: obj?.tours?.locationTours?.[el]?.translatedTitle || null,
-    };
-  });
+
   const correlati = obj?.tours?.corr;
 
   return {
     props: {
       city: targetObj,
-      others: others,
       banner: banner,
       correlati: correlati,
     },

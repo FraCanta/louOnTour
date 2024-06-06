@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^13.0.5",
+    "aos": "^2.3.4",
     "axios": "^1.4.0",
     "daisyui": "^2.38.1",
     "dom-parser-react": "^0.3.0",
-    "framer-motion": "^11.0.3",
+    "framer-motion": "^11.2.10",
     "gsap": "^3.11.3",
     "html-react-parser": "^3.0.16",
     "jsdom": "^22.0.0",
@@ -26,7 +27,10 @@
     "react": "18.2.0",
     "react-curved-text": "^1.0.0",
     "react-dom": "18.2.0",
-    "swiper": "^8.4.4"
+    "react-intersection-observer": "^9.10.2",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.1.4"
   },
   "devDependencies": {
     "@iconify/react": "^3.2.2",

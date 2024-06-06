@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   color: #2c395b;
+  font-weight: bold;
   text-align: center;
   /* background: white; */
 }
@@ -15,11 +16,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border-color: #2c395b;
-  border-width: 1px;
   padding: 20px;
-  border-radius: 20px;
-  outline: 5px solid #2c395b;
 }
 
 .section_container h2 {

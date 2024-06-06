@@ -52,7 +52,7 @@ const Mobile = ({ translation }) => {
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            className=" absolute top-[60px] left-0 right-0 bg-white h-screen w-screen text-[#2c395b]   flex flex-col items-center bg-pattern2"
+            className=" absolute top-[60px] left-0 right-0 bg-white h-screen w-screen text-[#2c395b]   flex flex-col "
             variants={variants}
             initial="closed"
             animate="open"
@@ -62,67 +62,87 @@ const Mobile = ({ translation }) => {
             <motion.div
               variants={variants.item}
               animate="visibleItem"
-              className="mt-8"
+              className="w-11/12 mx-auto mt-10"
             >
               <Link
                 href={`/`}
                 title="Scopri chi sono e cosa posso fare per te"
-                className={`menu-item block  mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] ${
+                className={`menu-item block  mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
                   pathname === "/" ? "font-bold" : ""
                 }`}
               >
                 {translation?.[locale]?.home}
               </Link>
             </motion.div>
-            <motion.div variants={variants.item} animate="visibleItem">
+            <motion.div
+              variants={variants.item}
+              animate="visibleItem"
+              className="w-11/12 mx-auto"
+            >
               <Link
-                href={`/tours`}
-                title="Ecco tutti i miei servizi"
-                className={`menu-item block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] ${
-                  pathname === "/tours" ? "font-bold" : ""
+                href={`/tours-da-fare`}
+                title="Ecco tutti i mieiTour"
+                className={`menu-item block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
+                  pathname === "/tours-da-fare" ? "font-bold" : ""
                 }`}
               >
                 {translation?.[locale]?.tours}
               </Link>
             </motion.div>
-            <motion.div variants={variants.item} animate="visibleItem">
+            <motion.div
+              variants={variants.item}
+              animate="visibleItem"
+              className="w-11/12 mx-auto"
+            >
               <Link
-                href={`/chiSono`}
+                href={`/chi-sono`}
                 title="Guarda tutti i miei casi studio"
-                className={`menu-item capitalize block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] ${
-                  pathname === "/chiSono" ? "font-bold" : ""
+                className={`menu-item  block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
+                  pathname === "/chi-sono" ? "font-bold" : ""
                 }`}
               >
                 {translation?.[locale]?.about}
               </Link>
             </motion.div>
-            <motion.div variants={variants.item} animate="visibleItem">
+            <motion.div
+              variants={variants.item}
+              animate="visibleItem"
+              className="w-11/12 mx-auto"
+            >
               <Link
                 href={`/blog`}
                 title="I miei articoli"
-                className={`menu-item capitalize block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] ${
+                className={`menu-item  block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
                   pathname === "/blog" ? "font-bold" : ""
                 }`}
               >
                 {translation?.[locale]?.blog}
               </Link>
             </motion.div>
-            <motion.div variants={variants.item} animate="visibleItem">
+            <motion.div
+              variants={variants.item}
+              animate="visibleItem"
+              className="w-11/12 mx-auto"
+            >
               <Link
                 href={`/contatti`}
                 title="I miei articoli"
-                className={`menu-item capitalize block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] ${
+                className={`menu-item  block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
                   pathname === "/contatti" ? "font-bold" : ""
                 }`}
               >
                 {translation?.[locale]?.contact}
               </Link>
             </motion.div>
-            <motion.div variants={variants.item} animate="visibleItem">
+            <motion.div
+              variants={variants.item}
+              animate="visibleItem"
+              className="w-11/12 mx-auto"
+            >
               <Link
                 href={`/newsletter`}
                 title="I miei articoli"
-                className={`menu-item block mt-6 text-[25px] leading-[30px] font-regular text-white font-bold py-2.5 px-8 bg-[#fe6847] max-w-max rounded-md ${
+                className={`menu-item block mt-6 text-[25px] leading-[30px] font-regular text-white font-bold py-2.5 px-8 bg-[#fe6847] max-w-max rounded-md uppercase ${
                   pathname === "/newsletter" ? "font-bold" : ""
                 }`}
               >
@@ -130,7 +150,7 @@ const Mobile = ({ translation }) => {
               </Link>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               ariants={variants.item}
               animate="visibleItem"
               className="mt-40 text-center flex flex-col gap-2"
@@ -169,7 +189,7 @@ const Mobile = ({ translation }) => {
                   <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />
                 </Link>
               </div>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         )}
       </AnimatePresence>

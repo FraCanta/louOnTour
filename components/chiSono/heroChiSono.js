@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import LouAvatar from "../../public/assets/lou-avatar.webp";
 import CurvedText from "./curvedText";
+import { MaskText } from "../UI/MaskText";
 
 const HeroChiSono = ({ translation }) => {
   return (
@@ -10,11 +11,26 @@ const HeroChiSono = ({ translation }) => {
         <div className="w-full h-screen xl:w-[65%] bg-[#2C395B] p-0 2xl:p-8 xl:hero_left grain">
           <div className="flex flex-col justify-center h-full w-11/12 mx-auto">
             <h3 className="text-[#FE6847]">{translation?.subTitle}</h3>
-            <h1 className="text-[3rem] md:text-[6rem] 2xl:text-[60px] xl:text-[45px] 3xl:text-[120px] font-medium leading-[1.1] md:leading-none lg:leading-none text-white ">
-              <div> {translation?.title?.primo} </div>
-              <div>{translation?.title?.secondo} </div>{" "}
-              <div>{translation?.title?.terzo} </div>
+
+            <h1>
+              <MaskText>
+                <div className="text-[2.5rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
+                  {" "}
+                  {translation?.title?.primo}{" "}
+                </div>{" "}
+              </MaskText>
+              <MaskText>
+                <div className="text-[2.5rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
+                  {translation?.title?.secondo}{" "}
+                </div>{" "}
+              </MaskText>
+              <MaskText>
+                <div className="text-[2.5rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
+                  {translation?.title?.terzo}{" "}
+                </div>
+              </MaskText>
             </h1>
+
             <p className="text-base sm:text-lg fxl:text-2xl mt-4 sm:mt-8 mb-8 text-white/90 leading-6 2xl:leading-9 xl:w-4/5">
               {translation?.paragraph}
             </p>
