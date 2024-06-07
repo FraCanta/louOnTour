@@ -47,7 +47,7 @@ const Tours = ({ translation }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="hero2 relative min-h-[90vh] 2xl:min-h-[90vh] w-full">
+      <div className="hero2 relative min-h-[70vh] 2xl:min-h-[80vh] w-11/12">
         <BgAnimation />
       </div>
       <div className="flex flex-col justify-center gap-4 xl:text-center text-main text-xl font-normal xl:text-2xl w-11/12 mx-auto py-10 text-para">
