@@ -96,7 +96,7 @@ export default function PostPage({
           </h2>
 
           <h1
-            className="py-8 text-3xl 2xl:text-5xl text-principle font-bold"
+            className="py-4 text-3xl 2xl:text-5xl text-principle font-bold"
             dangerouslySetInnerHTML={{ __html: post.title.rendered }}
           ></h1>
           <div className="flex flex-col md:flex-row   items-start  md:items-center pb-10">
