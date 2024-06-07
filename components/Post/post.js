@@ -47,7 +47,7 @@ export default function Post({ post, featuredMedia, translation }) {
         </Link>
         <div
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
-          className="line-clamp2 !text-white  mb-4 "
+          className="line-clamp2 !text-white/80  mb-4 !text-base"
         ></div>
         <div className="w-full h-[1px] bg-white/30 "></div>
         <div className="py-2 flex w-full justify-between items-center">

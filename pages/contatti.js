@@ -16,7 +16,7 @@ const Contact = ({ translation }) => {
         <meta name="description" content="Guida Turistica" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-11/12 xl:w-4/5 min-h-[30vh] container mx-auto flex flex-col lg:flex-row py-6 xl:py-8">
+      <div className="w-11/12 container mx-auto flex flex-col lg:flex-row py-6 ">
         <div className="w-full ">
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">Contact</h4>
           <MaskText>

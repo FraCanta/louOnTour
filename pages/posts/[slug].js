@@ -57,7 +57,7 @@ export default function PostPage({
   return (
     <>
       <Head>
-        <title>Lou On Tour - {contents}</title>
+        <title>Luisa Quaglia - Tuscany Experience - {contents}</title>
         <meta
           property="og:image"
           content={post?.yoast_head_json?.og_image?.url}
@@ -71,7 +71,7 @@ export default function PostPage({
         />
       </Head>
       <div className="grid grid-cols-1 lg:grid-cols-3 w-11/12 mx-auto gap-6">
-        <div className="pt-5 text-[#2C395B] col-span-2">
+        <div className="pt-5 text-[#2C395B] col-span-2 paragrafo">
           <div className="text-sm breadcrumbs">
             <ul>
               <li>
@@ -96,38 +96,39 @@ export default function PostPage({
           </h2>
 
           <h1
-            className="py-8 text-3xl 2xl:text-5xl text-[#2C395B] l-article"
+            className="py-8 text-3xl 2xl:text-5xl text-principle font-bold"
             dangerouslySetInnerHTML={{ __html: post.title.rendered }}
           ></h1>
-          <div className="flex flex-col md:flex-row   items-start  md:items-center font-[400] pb-10">
+          <div className="flex flex-col md:flex-row   items-start  md:items-center pb-10">
             {" "}
             <div className="flex  md:items-center">
               <Icon
                 icon="fa6-solid:user-pen"
                 className="mr-2 fxl:w-8 fxl:h-8 text-second"
               />
-              <Link
-                href={post?.["_embedded"].author[0]?.url}
-                className=" text-pink md:text-lg flex fxl:text-2xl"
-              >
-                <p>{post?.["_embedded"].author[0]?.name}</p>
+              <Link href={post?.["_embedded"].author[0]?.url}>
+                <span className=" text-para text-base flex fxl:text-2xl">
+                  {post?.["_embedded"].author[0]?.name}
+                </span>
               </Link>
             </div>
             <div className="flex items-center mt-4 md:mt-0 md:ml-8">
-              <p className=" text-pink md:text-lg fxl:text-2xl flex !font-[400] items-center">
+              <Icon
+                icon="clarity:date-line"
+                className="mr-2 fxl:w-8 fxl:h-8 text-second"
+              />
+              <span className=" text-para text-base flex fxl:text-2xl">
                 {" "}
-                <Icon
-                  icon="clarity:date-line"
-                  className="mr-2 fxl:w-8 fxl:h-8 text-second"
-                />
                 {getDate(post?.date)}
-              </p>
-              <div className=" text-pink md:text-lg flex ml-6 font-[400] items-center">
+              </span>
+              <div className=" text-para md:text-lg flex ml-6 font-[400] items-center">
                 <Icon
                   icon="tabler:clock-hour-3"
                   className="mr-2 fxl:w-8 fxl:h-8 text-second"
                 />
-                <p className="fxl:text-2xl">{minutiLettura} min read</p>
+                <span className=" text-para text-base flex fxl:text-2xl">
+                  {minutiLettura} min read
+                </span>
               </div>
             </div>
           </div>

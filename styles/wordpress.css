@@ -5,14 +5,10 @@
 .image-div img {
   width: 33%;
 }
-p {
-  font-size: 15px;
-  line-height: 1.6;
-}
 
-h2 {
-  font-size: 24px;
-  color: var(--primary);
+.paragrafo p {
+  font-size: 20px;
+  color: #6d7b80;
 }
 
 strong {

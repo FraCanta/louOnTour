@@ -47,7 +47,7 @@ export default function Post2({ post, featuredMedia, translation }) {
         </Link>
         <div
           dangerouslySetInnerHTML={{ __html: post?.excerpt?.rendered }}
-          className="line-clamp2 !text-para text-[4vw] 2xl:text-[1vw] mb-4 fxl:text-[20px] 3xl:text-[25px]"
+          className="line-clamp2 !text-para !text-base  mb-4 fxl:text-[20px] 3xl:text-[25px]"
         ></div>
         <div className="w-full h-[1px] bg-para/50 "></div>
         <div className="py-2 flex w-full justify-between items-center">
@@ -56,7 +56,7 @@ export default function Post2({ post, featuredMedia, translation }) {
           </small>
 
           <div className=" text-para text-md md:text-[2.5vw] 2xl:text-[0.8vw]  3xl:text-lg flex items-center font-bold ml-6">
-            <Icon icon="tabler:clock-hour-3" className="mr-2 text-second" />
+            <Icon icon="tabler:clock-hour-3" className="mr-1 text-second" />
             <span className=" text-pink text-xs md:text-[2.5vw] 2xl:text-[0.8vw] fxl:text-lg 3xl:text-2xl flex font-bold">
               {" "}
               {minutiLettura} min read

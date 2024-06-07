@@ -55,7 +55,7 @@ const Tours = ({ translation }) => {
           return (
             <p
               key={i}
-              className="lg:text-center text-para  w-full   text-[1.4rem] 2xl:text-[1.3rem] lg:text-[1.2rem] xl:text-[1.5rem] fxl:text-[2rem] 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
+              className="lg:text-center text-para  w-full   text-xl fxl:text-[2rem] 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
               dangerouslySetInnerHTML={{ __html: el.p }}
             ></p>
           );
