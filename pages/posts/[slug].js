@@ -70,8 +70,8 @@ export default function PostPage({
           content={post?.yoast_head_json?.description}
         />
       </Head>
-      <div className="grid grid-cols-1 lg:grid-cols-3 lg:w-11/12 mx-auto lg:gap-6">
-        <div className="pt-5 text-[#2C395B] col-span-2 paragrafo w-11/12 lg:w-full mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-3 lg:w-11/12 mx-auto lg:gap-6 pb-10">
+        <div className="pt-5 text-[#2C395B] col-span-2 paragrafo w-11/12 lg:w-full mx-auto pb-10">
           <div className="text-sm breadcrumbs">
             <ul>
               <li>
@@ -134,24 +134,31 @@ export default function PostPage({
           </div>
 
           <CarouselParser post={modifiedContent} />
-          <div className="w-full py-12">
-            <h6>Tags</h6>
-            {tags.map((el, i) => (
-              <div className="badge badge-warning mr-2 text-white" key={i}>
-                {el}
-              </div>
-            ))}
-          </div>
         </div>
-        <div className="flex flex-col gap-6 bg-principle p-6 w-full ">
-          <h2 className="text-[26px] fxl:text-4xl font-bold uppercase text-white underline">
-            Last recents
-          </h2>
-          {recentPostCol}
+        <div className="">
+          <div className="w-11/12 lg:w-full mx-auto py-12 flex flex-col gap-2">
+            <h6 className="text-principle font-medium">Tags</h6>
+            <div className="w-full">
+              {tags.map((el, i) => (
+                <div
+                  className="badge !bg-second/80 !border-none !py-2 mr-2 text-principle font-medium text-base"
+                  key={i}
+                >
+                  {el}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-6 bg-principle p-6 w-full lg:sticky top-10 ">
+            <h2 className="text-[26px] fxl:text-4xl font-bold uppercase text-white underline">
+              Last recents
+            </h2>
+            {recentPostCol}
+          </div>
         </div>
       </div>
 
-      <div className="btn-group grid grid-cols-2 mt-8">
+      {/* <div className="btn-group grid grid-cols-2 mt-8">
         <button className="btn btn-outline flex flex-col ">
           {!!nextPrevPost?.prevSlug ? (
             <Link href={`/posts/${nextPrevPost?.prevSlug}`}>
@@ -167,7 +174,7 @@ export default function PostPage({
             <div className="mb-2 capitalize">next{" >"}</div>
           </Link>
         </button>
-      </div>
+      </div> */}
     </>
   );
 }
@@ -216,7 +223,7 @@ export async function getStaticProps({ params, locale }) {
       recent: allPosts
         ?.filter((el) => el.id !== post.id)
         .sort((a, b) => a?.date > b?.date)
-        .filter((el, i) => i < 6),
+        .filter((el, i) => i < 4),
       featuredMedia: featuredMedia,
       tags: tags,
       nextPrevPost: nextPrevPost,
