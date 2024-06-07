@@ -34,7 +34,7 @@ const Subscribe = ({ translation }) => {
   };
 
   return (
-    <div className="max-w-sm bg-white border border-[#FE6847] p-6 text-[#2c395b]">
+    <div className="w-11/12 lg:max-w-sm bg-white border border-[#FE6847] p-6 text-[#2c395b]">
       <h2 className="text-3xl font-bold mb-4">What&apos;s your email?</h2>
       <p className="mb-6 text-base">{translation?.paragrafo}</p>
       <form onSubmit={subscribe} className="flex flex-wrap">

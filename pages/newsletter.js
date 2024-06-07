@@ -12,7 +12,7 @@ const Newsletter = ({ translation }) => {
         <meta name="description" content={translation.paragrafo} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="min-h-[calc(100vh_-_100px)] flex justify-center items-center newsletter w-full">
+      <div className="lg:min-h-[calc(100vh_-_100px)] flex justify-center items-center newsletter lg:w-11/12 mx-auto bg-second/20">
         <Subscribe translation={translation} />
       </div>
     </>

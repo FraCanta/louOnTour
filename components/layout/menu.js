@@ -11,7 +11,7 @@ const Menu = ({ translation }) => {
   return (
     <header className="relative">
       <nav className="h-[60px] md:h-[100px] lg:h-[70px] xl:h-[100px] 3xl:h-[180px] 4xl:h-[250px]  flex w-full items-center justify-between relative z-[999999] nav-scroll ">
-        <div className="flex w-[90%] mx-auto justify-between items-center ">
+        <div className="flex w-11/12 mx-auto justify-between items-center ">
           <div className="flex-1">
             <Link href={`/`} title="Luisa Quaglia | Home Page">
               <Image
