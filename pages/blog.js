@@ -60,7 +60,7 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container w-[90%] mx-auto p-2 xl:p-8">
+      <div className="container w-11/12 mx-auto ">
         <div className="flex flex-col lg:flex-row  gap-6  w-full mx-auto mt-[50px] lg:mt-10">
           <div className="grid grid-cols-1  lg:w-[75%] ">
             <div className="flex flex-col w-full gap-6">
