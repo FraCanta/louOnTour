@@ -8,10 +8,10 @@ import Image from "next/image";
 
 const Gallery3d = ({ imageArray, galleryTitle }) => {
   return (
-    <div className="w-full lg:w-[90%] mx-auto py-20">
-      <h2 className="text-principle font-bold text-3xl lg:text-5xl text-center mb-10">
+    <div className="w-11/12 mx-auto py-10">
+      {/* <h2 className="text-principle font-bold text-3xl lg:text-5xl text-center mb-10">
         {galleryTitle}
-      </h2>
+      </h2> */}
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

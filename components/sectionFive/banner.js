@@ -5,7 +5,7 @@ import { MaskText } from "../UI/MaskText";
 const Banner = ({ translation }) => {
   return (
     <section className="flex flex-col items-center py-10 lg:min-h-[50vh] justify-center">
-      <div className="flex flex-col items-center lg:justify-center w-11/12 2xl:w-4/5 gap-4">
+      <div className="flex flex-col items-center lg:justify-center w-11/12 gap-4">
         <div className="flex flex-col gap-2 lg:text-center">
           <MaskText>
             <h2 className="text-4xl md:text-5xl fxl:text-[10rem] font-bold leading-[1] md:mb-0 ">

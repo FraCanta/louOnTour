@@ -70,8 +70,8 @@ export default function PostPage({
           content={post?.yoast_head_json?.description}
         />
       </Head>
-      <div className="grid grid-cols-1 lg:grid-cols-3 w-11/12 mx-auto gap-6">
-        <div className="pt-5 text-[#2C395B] col-span-2 paragrafo">
+      <div className="grid grid-cols-1 lg:grid-cols-3 lg:w-11/12 mx-auto lg:gap-6">
+        <div className="pt-5 text-[#2C395B] col-span-2 paragrafo w-11/12 lg:w-full mx-auto">
           <div className="text-sm breadcrumbs">
             <ul>
               <li>
@@ -143,8 +143,8 @@ export default function PostPage({
             ))}
           </div>
         </div>
-        <div className="h-full flex justi flex-col gap-6">
-          <h2 className="text-[26px] fxl:text-4xl font-bold uppercase text-principle underline">
+        <div className="flex flex-col gap-6 bg-principle p-6 w-full ">
+          <h2 className="text-[26px] fxl:text-4xl font-bold uppercase text-white underline">
             Last recents
           </h2>
           {recentPostCol}

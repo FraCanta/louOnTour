@@ -6,7 +6,7 @@ import { MaskText } from "../UI/MaskText";
 
 const HeroChiSono = ({ translation }) => {
   return (
-    <div className="w-full xl:w-4/5  h-screen mx-auto pt-0 xl:pt-10 relative">
+    <div className="w-full xl:w-11/12 h-screen mx-auto pt-0 xl:pt-10 relative">
       <div className="flex h-full w-full flex-col xl:flex-row ">
         <div className="w-full h-screen xl:w-[65%] bg-[#2C395B] p-0 2xl:p-8 xl:hero_left grain">
           <div className="flex flex-col justify-center h-full w-11/12 mx-auto">
@@ -36,7 +36,7 @@ const HeroChiSono = ({ translation }) => {
             </p>
           </div>
         </div>
-        <div className="rounded-lg shadow-2xl hidden xl:block w-[50vh] h-[65%] p-8 absolute left-[59%] top-[20%]">
+        <div className="rounded-lg shadow-2xl hidden xl:block w-[70vh] h-[80%] p-8 absolute left-[59%] top-[20%]">
           <Image
             src={LouAvatar}
             alt="lou_avatar"

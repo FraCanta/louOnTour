@@ -18,12 +18,12 @@ const RecentPostCol = ({ post, featuredMedia }) => {
         </Link>
       </div>
       <div className="w-full flex flex-col ">
-        <small className=" text-principle py-2 fxl:text-base">
+        <small className=" text-white py-2 fxl:text-base">
           {getDate(post?.date)}
         </small>
         <Link href={`/posts/${post?.slug}`} title={`${post?.title?.rendered}`}>
           <p
-            className="font-bold text-principle capitalize text-[1.4rem] lg:text-3xl leading-[1.8rem] xl:text-lg fxl:text-3xl 3xl:text-4xl py-2"
+            className="font-bold text-white capitalize text-[1.4rem] lg:text-3xl leading-[1.8rem] xl:text-lg fxl:text-3xl 3xl:text-4xl py-2"
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           ></p>
         </Link>
