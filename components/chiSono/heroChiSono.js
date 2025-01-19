@@ -6,10 +6,10 @@ import { MaskText } from "../UI/MaskText";
 
 const HeroChiSono = ({ translation }) => {
   return (
-    <div className="w-full xl:w-11/12 h-screen mx-auto pt-0 xl:pt-10 relative">
-      <div className="flex h-full w-full flex-col xl:flex-row ">
-        <div className="w-full h-screen xl:w-[65%] bg-[#2C395B] p-0 2xl:p-8 xl:hero_left grain">
-          <div className="flex flex-col justify-center h-full w-11/12 mx-auto">
+    <div className="relative w-full h-screen pt-0 mx-auto xl:w-11/12 xl:pt-10">
+      <div className="flex flex-col w-full h-full xl:flex-row ">
+        <div className="w-full h-screen xl:w-[65%] bg-[#2C395B]  xl:hero_left grain">
+          <div className="flex flex-col justify-center w-11/12 h-full ">
             <h3 className="text-[#FE6847]">{translation?.subTitle}</h3>
 
             <h1>
@@ -31,7 +31,7 @@ const HeroChiSono = ({ translation }) => {
               </MaskText>
             </h1>
 
-            <p className="text-xl sm:text-lg fxl:text-2xl mt-4 sm:mt-8 mb-8 text-white/90  xl:w-4/5">
+            <p className="mt-4 mb-8 text-xl sm:text-lg fxl:text-2xl sm:mt-8 text-white/90 xl:w-4/5">
               {translation?.paragraph}
             </p>
           </div>
@@ -43,7 +43,7 @@ const HeroChiSono = ({ translation }) => {
             width={550}
             height={688}
             priority
-            className="min-h-full h-full object-cover w-full absolute inset-0 rounded-lg"
+            className="absolute inset-0 object-cover w-full h-full min-h-full rounded-lg"
           />
         </div>
         <CurvedText />
