@@ -8,8 +8,8 @@ const HeroChiSono = ({ translation }) => {
   return (
     <div className="relative w-full h-screen pt-0 mx-auto xl:w-11/12 xl:pt-10">
       <div className="flex flex-col w-full h-full xl:flex-row ">
-        <div className="w-full h-screen xl:w-[65%] bg-[#2C395B]  xl:hero_left grain">
-          <div className="flex flex-col justify-center w-11/12 h-full ">
+        <div className="w-full min-h-screen xl:w-[65%] fxl:w-[60%] bg-[#2C395B]  xl:hero_left grain">
+          <div className="flex flex-col justify-center w-11/12 h-full p-6 fxl:p-10 ">
             <h3 className="text-[#FE6847]">{translation?.subTitle}</h3>
 
             <h1>
@@ -25,7 +25,7 @@ const HeroChiSono = ({ translation }) => {
                 </div>{" "}
               </MaskText>
               <MaskText>
-                <div className="text-[2.2rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-bold  text-white ">
+                <div className="text-[2.2rem] md:text-[6rem] 2xl:text-6xl xl:text-[45px] 3xl:text-[120px] font-semibold  text-white italic">
                   {translation?.title?.terzo}{" "}
                 </div>
               </MaskText>

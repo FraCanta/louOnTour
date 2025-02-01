@@ -46,7 +46,7 @@ export default function Tours({ city, banner }) {
         <meta name="twitter:description" content={city?.descrizione2} />
         <meta name="twitter:image" content={city?.img} />
       </Head>
-      <div className="w-11/12  container mx-auto flex flex-col lg:flex-row py-4 xl:py-8">
+      <div className="container flex flex-col w-11/12 py-4 mx-auto lg:flex-row xl:py-8">
         <div className="w-full ">
           <h4 className="text-[#FE6847] text-xl 3xl:text-4xl">
             Tour {city?.name}
@@ -60,26 +60,26 @@ export default function Tours({ city, banner }) {
       </div>
       <DynamicHeroCities city={city} />
 
-      <div className="flex flex-col  text-main text-xl font-normal xl:text-2xl w-11/12 mx-auto  ">
+      <div className="flex flex-col w-11/12 mx-auto text-xl font-normal text-main xl:text-2xl ">
         {city?.descrizione?.map((el, i) => {
           return (
             <p
               key={i}
-              className=" text-para  w-full   text-xl fxl:text-[2rem] 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
+              className=" text-para  w-full   text-xl fxl:text-2xl 3xl:text-3xl  3xl:leading-[3.5rem] mb-5 font-regular"
               dangerouslySetInnerHTML={{ __html: el.p }}
             ></p>
           );
         })}
-        <ul className="elenco_tours flex flex-col gap-6">
+        <ul className="flex flex-col gap-6 elenco_tours">
           {city?.list?.map((el, i) => (
             <li key={i} className="flex">
               <div className="flex flex-col gap-2">
                 <h2
-                  className="text-2xl text-principle font-bold"
+                  className="text-2xl font-bold text-principle"
                   dangerouslySetInnerHTML={{ __html: el.l.title }}
                 ></h2>
                 <p
-                  className=" text-para  w-full   text-xl fxl:text-[2rem] 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
+                  className=" text-para  w-full   text-xl fxl:text-2xl 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
                   dangerouslySetInnerHTML={{ __html: el.l.descrizione }}
                 ></p>
               </div>
@@ -87,7 +87,7 @@ export default function Tours({ city, banner }) {
           ))}
         </ul>
       </div>
-      <div className="container w-11/12  mx-auto xl:h-full  flex justify-end mt-10">
+      <div className="container flex justify-end w-11/12 mx-auto mt-10 xl:h-full">
         <CtaPrimary link="/tours-da-fare">
           <Icon icon="lets-icons:refund-back" /> {city.cta}
         </CtaPrimary>

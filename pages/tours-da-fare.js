@@ -50,12 +50,12 @@ const Tours = ({ translation }) => {
       <div className="hero2 relative min-h-[70vh] 2xl:min-h-[80vh] w-11/12">
         <BgAnimation />
       </div>
-      <div className="flex flex-col justify-center gap-4 xl:text-center text-main text-xl font-normal xl:text-2xl w-11/12 mx-auto py-10 text-para">
+      <div className="flex flex-col justify-center w-11/12 gap-4 py-10 mx-auto text-xl font-normal xl:text-center text-main xl:text-2xl text-para">
         {translation?.toursPreview?.map((el, i) => {
           return (
             <p
               key={i}
-              className="lg:text-center text-para  w-full   text-xl fxl:text-[2rem] 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
+              className="lg:text-center text-para  w-full   text-xl fxl:text-2xl 3xl:text-3xl  3xl:leading-[3.5rem] mb-5 font-regular"
               dangerouslySetInnerHTML={{ __html: el.p }}
             ></p>
           );
@@ -76,10 +76,10 @@ const Tours = ({ translation }) => {
           );
         })}
       </section>
-      {/* <section className=" bg-second/20 ">
+      {/* <section className=" bg-second/20">
         <div className="w-[90%] mx-auto my-[50px] py-10">
           <MaskText>
-            <h2 className="text-6xl font-bold py-6">FAQs</h2>
+            <h2 className="py-6 text-6xl font-bold">FAQs</h2>
           </MaskText>
           <Faq translation={translation.faq} />
         </div>

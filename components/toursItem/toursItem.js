@@ -18,7 +18,7 @@ const ToursItem = ({ img, name, descrizione, link, text }) => {
           />{" "}
           <div class="px-6 py-4 ">
             <h2 class="font-bold text-xl mb-2 text-principle"> {name}</h2>
-            <p class="text-para text-base ">{descrizione} </p>
+            <p class="text-para text-base fxl:text-lg">{descrizione} </p>
           </div>
           <div class="px-6 pt-4 pb-8">
             <CtaDetails link={link}>{text}</CtaDetails>{" "}

@@ -18,7 +18,7 @@ const Footer = ({ translation }) => {
               className="mr-4 w-[180px] object-cover mb-4"
             />
           </Link>
-          <span className="text-principle/70 font-regular italic">
+          <span className="italic text-principle/70 font-regular">
             {translation?.footer?.[locale]?.Col1?.title}
             <br />
             P.Iva: 02436070508
@@ -97,14 +97,14 @@ const Footer = ({ translation }) => {
           </div>
         </div>
       </footer>
-      <footer className="footer footer-center  p-2 ">
+      <footer className="p-2 footer footer-center ">
         <div>
           <p className=" text-para text-sm   !opacity-100">
-            Copyright © 2024 - All rights reserved by Luisa Quaglia Tour Guide -{" "}
+            Copyright © 2025 - All rights reserved by Luisa Quaglia Tour Guide -{" "}
             <Link
               href="/policy"
               target="_blank"
-              className="underline font-bold"
+              className="font-bold underline"
             >
               Privacy Policy
             </Link>{" "}
@@ -112,7 +112,7 @@ const Footer = ({ translation }) => {
             <Link
               href="https://www.thallion-dev.it/"
               target="_blank"
-              className="underline font-bold"
+              className="font-bold underline"
             >
               thallion+dev - creative designer
             </Link>
