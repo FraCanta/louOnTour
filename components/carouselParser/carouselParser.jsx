@@ -79,7 +79,9 @@ const CarouselParser = ({ post }) => {
             return (
               <figure className="img-full">
                 <img src={arr[0]?.src} alt="" />
-                <figcaption>{arr[0]?.figcaption}</figcaption>
+                <figcaption className="text-sm">
+                  {arr[0]?.figcaption}
+                </figcaption>
               </figure>
             );
           } else {
@@ -87,7 +89,9 @@ const CarouselParser = ({ post }) => {
             return (
               <div
                 className={`pswp-gallery ${
-                  arr.length % 4 === 0 ? "gallery-img2" : "gallery-img"
+                  arr.length % 4 === 0 || arr.length % 2 === 0
+                    ? "gallery-img2"
+                    : "gallery-img"
                 }`}
                 id={"gallery--click-to-next"}
               >
@@ -104,7 +108,11 @@ const CarouselParser = ({ post }) => {
                       <figure>
                         <figure>
                           <img src={image.src} alt="" />
-                          <figcaption>{image?.figcaption}</figcaption>
+                          {image?.figcaption && (
+                            <figcaption className="text-sm">
+                              {image.figcaption}
+                            </figcaption>
+                          )}
                         </figure>
                       </figure>
                     </a>

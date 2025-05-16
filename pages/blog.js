@@ -69,7 +69,7 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
                   Last Post
                 </h4>{" "}
               </MaskText>
-              <div className="w-full relative">
+              <div className="relative w-full">
                 <LastPost lastPost={lastPost} category={category} />
               </div>
             </div>
@@ -106,9 +106,9 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
         </div>
       </div>
 
-      <div className="container w-screen mx-auto flex justify-center">
+      <div className="container flex justify-center w-screen mx-auto">
         {filterObj?.paginationArray?.length > 1 && (
-          <div className="flex justify-center mb-8 ">
+          <div className="flex justify-center my-10">
             <div className="btn-group">
               <button
                 className="btn "

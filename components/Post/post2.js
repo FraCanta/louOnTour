@@ -23,7 +23,7 @@ export default function Post2({ post, featuredMedia, translation }) {
   }, [post]);
 
   return (
-    <div className="w-full  h-full  ">
+    <div className="w-full h-full ">
       <Link href={`/posts/${post?.slug}`} title={`${post?.title?.rendered}`}>
         <figure>
           <Image
@@ -41,7 +41,7 @@ export default function Post2({ post, featuredMedia, translation }) {
       <div className="flex flex-col justify-between mt-4">
         <Link href={`/posts/${post?.slug}`} title={`${post?.title?.rendered}`}>
           <h2
-            className="font-bold !text-[#2c395b] pb-2 hover:text-second capitalize text-[5vw] md:text-[4vw] 2xl:text-[1.2vw] fxl:text-[25px] 3xl:pb-6 3xl:text-3xl"
+            className="font-bold !text-[#2c395b] pb-2 hover:text-second capitalize text-[5vw] md:text-[4vw] xl:text-[1.4vw] 2xl:text-[1.2vw] fxl:text-[25px] 3xl:pb-6 3xl:text-3xl"
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           ></h2>
         </Link>
@@ -50,14 +50,14 @@ export default function Post2({ post, featuredMedia, translation }) {
           className="line-clamp2 !text-para !text-base  mb-4 fxl:text-[20px] 3xl:text-[25px]"
         ></div>
         <div className="w-full h-[1px] bg-para/50 "></div>
-        <div className="py-2 flex w-full justify-between items-center">
-          <small className=" text-para text-md md:text-[2.5vw] 2xl:text-[0.8vw] fxl:text-lg 3xl:text-2xl">
+        <div className="flex items-center justify-between w-full py-2">
+          <small className=" text-para text-md md:text-[2.5vw] xl:text-[0.8vw] fxl:text-lg 3xl:text-2xl">
             {getDate(post?.date)}
           </small>
 
-          <div className=" text-para text-md md:text-[2.5vw] 2xl:text-[0.8vw]  3xl:text-lg flex items-center font-bold ml-6">
+          <div className=" text-para text-md md:text-[2.5vw] xl:text-[0.8vw]  3xl:text-lg flex items-center font-bold ml-6">
             <Icon icon="tabler:clock-hour-3" className="mr-1 text-second" />
-            <span className=" text-pink text-xs md:text-[2.5vw] 2xl:text-[0.8vw] fxl:text-lg 3xl:text-2xl flex font-bold">
+            <span className=" text-pink text-xs md:text-[2.5vw] xl:text-[0.8vw] fxl:text-lg 3xl:text-2xl flex font-bold">
               {" "}
               {minutiLettura} min read
             </span>
