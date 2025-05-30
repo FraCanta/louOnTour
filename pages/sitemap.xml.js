@@ -21,13 +21,13 @@ function generateSiteMap(posts) {
          <loc>https://luisaquaglia-tourguide.com/blog</loc>
        </url>
        <url>
-         <loc>https://luisaquaglia-tourguide.com/blog/en</loc>
+         <loc>https://luisaquaglia-tourguide.com/en/blog</loc>
        </url>
          <url>
-         <loc>https://luisaquaglia-tourguide.com/chiSono</loc>
+         <loc>https://luisaquaglia-tourguide.com/chi-sono</loc>
        </url>
         <url>
-         <loc>https://luisaquaglia-tourguide.com/en/chiSono</loc>
+         <loc>https://luisaquaglia-tourguide.com/en/chi-sono</loc>
        </url>
          <url>
          <loc>https://luisaquaglia-tourguide.com/contatti</loc>
@@ -36,10 +36,10 @@ function generateSiteMap(posts) {
          <loc>https://luisaquaglia-tourguide.com/en/contatti</loc>
        </url>
        <url>
-       <loc>https://luisaquaglia-tourguide.com/tours</loc>
+       <loc>https://luisaquaglia-tourguide.com/tours-da-fare</loc>
      </url>
        <url>
-       <loc>https://luisaquaglia-tourguide.com/en/tours</loc>
+       <loc>https://luisaquaglia-tourguide.com/en/tours-da-fare</loc>
      </url>
 
 ${LayoutTranslation?.menu?.it?.map?.markers

@@ -74,7 +74,7 @@ module.exports = withPlugins([
   async function redirects() {
     return [
       {
-        source: "/en/locations/Montepulciano%20e%20Val%20d'Orcia",
+        source: "/en/locations/Montepulciano e Val d'Orcia",
         destination: "https://www.luisaquaglia-tourguide.com/en/tours-da-fare",
         permanent: true,
       },
@@ -84,7 +84,7 @@ module.exports = withPlugins([
         permanent: true,
       },
       {
-        source: "/locations/[title]",
+        source: "/locations/:title",
         destination: "https://www.luisaquaglia-tourguide.com/tours-da-fare",
         permanent: true,
       },
