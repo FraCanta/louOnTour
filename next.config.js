@@ -71,4 +71,23 @@ module.exports = withPlugins([
     },
   },
   // withBundleAnalyzer,
+  async function redirects() {
+    return [
+      {
+        source: "/en/locations/Montepulciano%20e%20Val%20d'Orcia",
+        destination: "https://www.luisaquaglia-tourguide.com/en/tours-da-fare",
+        permanent: true,
+      },
+      {
+        source: "/tours",
+        destination: "https://www.luisaquaglia-tourguide.com/tours-da-fare",
+        permanent: true,
+      },
+      {
+        source: "/locations/[title]",
+        destination: "https://www.luisaquaglia-tourguide.com/tours-da-fare",
+        permanent: true,
+      },
+    ];
+  },
 ]);
