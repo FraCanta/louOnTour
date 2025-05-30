@@ -3,10 +3,6 @@
  */
 const withPlugins = require("next-compose-plugins");
 
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-};
 const ContentSecurityPolicy = `
   default-src 'self' https://api.iconify.design/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css https://region1.google-analytics.com;
   script-src 'self' https://storage.googleapis.com http://www.instagram.com/embed.js https://cdnjs.cloudflare.com/ http://cdn.cookie-script.com http://report.cookie-script.com  https://www.googletagmanager.com  https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval';
@@ -14,8 +10,8 @@ const ContentSecurityPolicy = `
   style-src 'self' 'unsafe-inline'  https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css  data:;
   font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ 'unsafe-inline' data:;
   img-src 'self' https://luisaquaglia-tourguide.com https://s.w.org/ https://loublog.luisaquaglia-tourguide.com/wp-content/uploads/ https://static.xx.fbcdn.net/ data: blob:;
-  
 `;
+
 const securityHeaders = [
   {
     key: "X-XSS-Protection",
@@ -38,40 +34,28 @@ const securityHeaders = [
     value: "on",
   },
 ];
-// const withBundleAnalyzer = require("@next/bundle-analyzer")({
-//   enabled: true,
-//   openAnalyzer: true,
-// });
 
-module.exports = withPlugins([
-  nextConfig,
-
-  {
-    i18n: {
-      locales: ["it", "en"],
-      defaultLocale: "it",
-      localeDetection: true,
-    },
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  i18n: {
+    locales: ["it", "en"],
+    defaultLocale: "it",
+    localeDetection: true,
   },
-  {
-    async headers() {
-      return [
-        {
-          // Apply these headers to all routes in your application.
-          source: "/:path*",
-          headers: securityHeaders,
-        },
-      ];
-    },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    domains: ["loublog.luisaquaglia-tourguide.com", "loublog.louontour.it"],
   },
-  {
-    images: {
-      formats: ["image/avif", "image/webp"],
-      domains: ["loublog.luisaquaglia-tourguide.com", "loublog.louontour.it"],
-    },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: securityHeaders,
+      },
+    ];
   },
-  // withBundleAnalyzer,
-  async function redirects() {
+  async redirects() {
     return [
       {
         source: "/en/locations/Montepulciano e Val d'Orcia",
@@ -90,4 +74,6 @@ module.exports = withPlugins([
       },
     ];
   },
-]);
+};
+
+module.exports = withPlugins([], nextConfig);
