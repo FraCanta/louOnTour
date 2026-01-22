@@ -7,7 +7,7 @@ import { MaskText } from "../UI/MaskText";
 const Map = ({ translation }) => {
   return (
     <div className="min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]   w-11/12 mx-auto">
-      <div className="grid items-center content-center grid-cols-1 pt-12 overflow-x-hidden gap-14 md:gap-14 xl:gap-18 lg:grid-cols-2 justify-items-center 2xl:pt-10 lg:overflow-visible">
+      <div className="grid items-center content-center grid-cols-1 py-12 overflow-x-hidden gap-14 md:gap-14 xl:gap-18 lg:grid-cols-2 justify-items-center 2xl:pt-10 lg:overflow-visible">
         <div className="w-full max-w-2xl p-0 mx-auto">
           <h3 className="text-[#FE6847] uppercase text-xl 3xl:text-4xl">
             {translation?.subTitle}
