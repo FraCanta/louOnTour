@@ -17,7 +17,7 @@ const Menu = ({ translation }) => {
               <Image
                 src={Logo}
                 alt="logo"
-                className="w-[120px] md:w-[100px] xl:w-[130px] 2xl:w-[180px] fxl:w-[200px] 3xl:w-[200px] 4xl:w-[300px] object-cover"
+                className="w-[120px] md:w-[100px] xl:w-[130px] 2xl:w-[180px] 3xl:w-[200px] 4xl:w-[300px] object-cover"
               />
             </Link>
           </div>
@@ -27,7 +27,7 @@ const Menu = ({ translation }) => {
               <Link
                 href={`/`}
                 title="Luisa Quaglia | Home Page"
-                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]  fxl:text-[20px]  3xl:text-[35px] 4xl:text-[55px]  text-[#2C395B] uppercase flex items-center ${
+                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-[#2C395B] uppercase flex items-center ${
                   pathname === "/" ? "font-bold" : ""
                 }`}
               >
@@ -37,7 +37,7 @@ const Menu = ({ translation }) => {
               <Link
                 href={`/tours-da-fare`}
                 title="Luisa Quaglia | I miei tour"
-                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]  fxl:text-[20px]  3xl:text-[35px] 4xl:text-[55px]  text-main  uppercase flex items-center ${
+                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-main  uppercase flex items-center ${
                   pathname === "/tours-da-fare" ? "font-bold" : ""
                 }`}
               >
@@ -47,7 +47,7 @@ const Menu = ({ translation }) => {
               <Link
                 href={`/chi-sono`}
                 title="Luisa Quaglia | Chi sono"
-                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]  fxl:text-[20px]  3xl:text-[35px] 4xl:text-[55px]  text-main  uppercase flex items-center ${
+                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-main  uppercase flex items-center ${
                   pathname === "/chi-sono" ? "font-bold" : " "
                 }`}
               >
@@ -56,7 +56,7 @@ const Menu = ({ translation }) => {
               <Link
                 href={`/blog`}
                 title="Luisa Quaglia | Blog"
-                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]  fxl:text-[20px]  3xl:text-[35px] 4xl:text-[55px]  text-main font-regular uppercase flex items-center ${
+                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-main font-regular uppercase flex items-center ${
                   pathname === "/blog" ? "font-bold" : " "
                 }`}
               >
@@ -65,20 +65,21 @@ const Menu = ({ translation }) => {
               <Link
                 href={`/contatti`}
                 title="Luisa Quaglia |Come prenotare e avere info sui tour da fare"
-                className="mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]  fxl:text-[20px]  3xl:text-[35px] 4xl:text-[55px]  text-main font-regular uppercase flex items-center"
+                className="mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-main font-regular uppercase flex items-center"
               >
                 {translation?.[locale]?.contact}
               </Link>
-              <Link
-                href={`/newsletter`}
-                title="I miei articoli"
-                className="uppercase font-bold py-2.5 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 xl:text-[1rem]   fxl:text-xl 3xl:text-3xl rounded-md shadow  text-white hover:transition-all  bg-[#fe6847]"
-              >
-                {translation?.[locale]?.iscriviti}
-              </Link>
             </div>
           </div>
-
+          <div>
+            <Link
+              href={`/newsletter`}
+              title="I miei articoli"
+              className="uppercase font-bold py-2.5 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 xl:text-[1rem]   3xl:text-3xl rounded-md shadow  text-white hover:transition-all  bg-[#fe6847]"
+            >
+              {translation?.[locale]?.iscriviti}
+            </Link>
+          </div>
           <div className="flex items-center justify-end py-1 text-main lg:hidden ">
             <Mobile translation={translation} />
           </div>

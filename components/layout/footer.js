@@ -78,7 +78,7 @@ const Footer = ({ translation }) => {
               <Icon icon="entypo-social:facebook" color="#FE6847" width="25" />
             </Link>
             <Link
-              href="https://www.instagram.com/luisatourguide__/"
+              href="https://www.instagram.com/luisa_guidaturisticatoscana/"
               target="_blank"
               className="mr-4"
             >
@@ -89,7 +89,7 @@ const Footer = ({ translation }) => {
               />
             </Link>
             <Link
-              href="https://www.tiktok.com/@luisatourguide?is_from_webapp=1&sender_device=pc"
+              href="https://www.tiktok.com/@luisa_guidatoscana"
               target="_blank"
             >
               <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />

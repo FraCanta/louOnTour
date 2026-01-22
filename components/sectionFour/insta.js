@@ -14,11 +14,11 @@ import { MaskText } from "../UI/MaskText";
 const Insta = ({ translation }) => {
   return (
     <div className="min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh]  w-full 2xl:p-8 ">
-      <div className="grid gap-4 md:gap-8 xl:gap-18 grid-cols-1 2xl:grid-cols-2 justify-items-center content-center pt-0 lg:pt-8 py-8">
-        <div className="pt-0 h-full whitespace-nowrap overflow-x-auto overflow-y-hidden w-full">
+      <div className="grid content-center grid-cols-1 gap-4 py-8 pt-0 md:gap-8 xl:gap-18 2xl:grid-cols-2 justify-items-center lg:pt-8">
+        <div className="w-full h-full pt-0 overflow-x-auto overflow-y-hidden whitespace-nowrap">
           <Masonry />
         </div>
-        <div className="md:hidden carousel carousel-center p-4 space-x-4 ">
+        <div className="p-4 space-x-4 md:hidden carousel carousel-center ">
           <div className="carousel-item">
             <Image
               src={Lou}
@@ -52,7 +52,7 @@ const Insta = ({ translation }) => {
             />
           </div>
         </div>
-        <div className=" 2xl:p-0 w-11/12 2xl:w-4/5 flex flex-col items-start justify-center">
+        <div className="flex flex-col items-start justify-center w-11/12  2xl:p-0 2xl:w-4/5">
           <h3 className="text-[#FE6847] font-bold text-xl 3xl:text-4xl">
             {translation?.subTitle}
           </h3>
@@ -62,11 +62,11 @@ const Insta = ({ translation }) => {
             </h2>
           </MaskText>
 
-          <p className="text-xl sm:text-lg 2xl:text-xl fxl:text-2xl  mt-4 sm:mt-10 mb-8 text-para">
+          <p className="mt-4 mb-8 text-xl sm:text-lg 2xl:text-xl fxl:text-2xl sm:mt-10 text-para">
             {translation?.paragraph}
           </p>
           <CtaPrimary
-            link="https://www.instagram.com/luisatourguide__/"
+            link="https://www.facebook.com/luisa.quaglia.tourguide"
             target="_blank"
           >
             {translation?.button}
