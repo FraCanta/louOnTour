@@ -100,7 +100,8 @@ const Footer = ({ translation }) => {
       <footer className="p-2 footer footer-center ">
         <div>
           <p className=" text-para text-sm   !opacity-100">
-            Copyright © 2025 - All rights reserved by Luisa Quaglia Tour Guide -{" "}
+            Copyright © {new Date().getFullYear()} - All rights reserved by
+            Luisa Quaglia Tour Guide -{" "}
             <Link
               href="/policy"
               target="_blank"
