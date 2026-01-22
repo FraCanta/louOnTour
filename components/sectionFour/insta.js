@@ -52,25 +52,45 @@ const Insta = ({ translation }) => {
             />
           </div>
         </div>
-        <div className="flex flex-col items-start justify-center w-11/12  2xl:p-0 2xl:w-4/5">
-          <h3 className="text-[#FE6847] font-bold text-xl 3xl:text-4xl">
+        <div className="flex flex-col items-start justify-center w-11/12 2xl:p-0 2xl:w-4/5">
+          <h3 className="text-[#FE6847] uppercase text-xl 3xl:text-4xl">
             {translation?.subTitle}
           </h3>
           <MaskText>
-            <h2 className="text-4xl md:text-6xl 3xl:text-[100px] font-bold  text-[#2C395B]">
+            <h2 className="text-4xl md:text-5xl 3xl:text-[100px] font-bold  text-[#2C395B]">
               {translation?.title}
             </h2>
           </MaskText>
 
-          <p className="mt-4 mb-8 text-xl sm:text-lg 2xl:text-xl fxl:text-2xl sm:mt-10 text-para">
+          <p className="mt-4 mb-8 text-base 2xl:text-xl sm:mt-10 text-para">
             {translation?.paragraph}
           </p>
-          <CtaPrimary
-            link="https://www.facebook.com/luisa.quaglia.tourguide"
-            target="_blank"
-          >
-            {translation?.button}
-          </CtaPrimary>
+          <div className="flex">
+            <Link
+              href="https://www.facebook.com/luisa.quaglia.tourguide"
+              target="_blank"
+              className="mr-4"
+            >
+              <Icon icon="entypo-social:facebook" color="#FE6847" width="25" />
+            </Link>
+            <Link
+              href="https://www.instagram.com/luisa_guidaturisticatoscana/"
+              target="_blank"
+              className="mr-4"
+            >
+              <Icon
+                icon="akar-icons:instagram-fill"
+                color="#FE6847"
+                width="25"
+              />
+            </Link>
+            <Link
+              href="https://www.tiktok.com/@luisa_guidatoscana"
+              target="_blank"
+            >
+              <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>

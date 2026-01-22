@@ -22,10 +22,12 @@ body {
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+  background-color: white;
 }
 
 h1,
 h2,
+h3,
 a,
 li {
   font-family: "minerva-modern", sans-serif;
@@ -35,11 +37,6 @@ li {
 h1,
 h2 {
   color: var(--primary);
-}
-
-h3 {
-  color: var(--second);
-  font-family: "Nunito", sans-serif;
 }
 
 p {

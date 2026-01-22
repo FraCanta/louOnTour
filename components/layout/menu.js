@@ -75,7 +75,7 @@ const Menu = ({ translation }) => {
             <Link
               href={`/newsletter`}
               title="I miei articoli"
-              className="uppercase font-bold py-2.5 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 xl:text-[1rem]   3xl:text-3xl rounded-md shadow  text-white hover:transition-all  bg-[#fe6847]"
+              className="uppercase font-bold py-2.5 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 text-sm rounded-md shadow  text-white hover:transition-all mr-6 bg-second"
             >
               {translation?.[locale]?.iscriviti}
             </Link>

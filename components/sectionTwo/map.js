@@ -7,17 +7,17 @@ import { MaskText } from "../UI/MaskText";
 const Map = ({ translation }) => {
   return (
     <div className="min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]   w-11/12 mx-auto">
-      <div className="grid gap-14  md:gap-14 xl:gap-18 grid-cols-1 lg:grid-cols-2 justify-items-center items-center content-center pt-12 2xl:pt-10  overflow-x-hidden lg:overflow-visible">
-        <div className="p-0 w-full  mx-auto ">
-          <h3 className="text-[#FE6847] font-bold text-xl 3xl:text-4xl">
+      <div className="grid items-center content-center grid-cols-1 pt-12 overflow-x-hidden gap-14 md:gap-14 xl:gap-18 lg:grid-cols-2 justify-items-center 2xl:pt-10 lg:overflow-visible">
+        <div className="w-full max-w-2xl p-0 mx-auto">
+          <h3 className="text-[#FE6847] uppercase text-xl 3xl:text-4xl">
             {translation?.subTitle}
           </h3>
           <MaskText>
-            <h2 className="text-4xl md:text-6xl 3xl:text-[100px] font-bold mt-2 3xl:mt-12 3xl:leading-[5.5rem] text-[#2C395B]">
+            <h2 className="text-4xl md:text-5xl 3xl:text-[100px] font-bold mt-2 3xl:mt-12 3xl:leading-[5.5rem] text-[#2C395B]">
               {translation?.title}
             </h2>
           </MaskText>
-          <p className="text-xl text-para sm:text-lg 2xl:text-xl fxl:text-2xl 3xl:text-3xl  mt-4 lg:mt-8 3xl:mt-20 mb-8  mx-auto">
+          <p className="mx-auto mt-4 mb-8 text-base text-para 2xl:text-xl 3xl:text-3xl lg:mt-8 3xl:mt-20">
             {translation?.paragraph}
           </p>
           <CtaPrimary link="/contatti">{translation?.button}</CtaPrimary>
@@ -34,7 +34,7 @@ const Map = ({ translation }) => {
           {translation?.markers?.map((el, i) => (
             <div
               key={i}
-              className="flex flex-col justify-center absolute items-center"
+              className="absolute flex flex-col items-center justify-center"
               style={
                 el?.marker?.top > 0
                   ? {

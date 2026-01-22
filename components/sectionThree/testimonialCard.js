@@ -40,9 +40,9 @@ const TestimonialCard = ({ review, i }) => {
         }}
       >
         <div className="content">
-          <div className="flex items-center w-full justify-between py-2 px-4">
+          {/* <div className="flex items-center justify-between w-full px-4 py-2">
             <div className="flex items-center">
-              <div className="avatar placeholder mr-2">
+              <div className="mr-2 avatar placeholder">
                 <div className="w-8 rounded-full ring ring-[#fe6847] ">
                   <span className="text-xs text-[#fe6847]">
                     <Image
@@ -74,7 +74,7 @@ const TestimonialCard = ({ review, i }) => {
             <span className="text-[#232F37] text-xs py-4 px-4 font-bold">
               {review?.date}
             </span>
-          </div>
+          </div> */}
           <div>
             <span
               className={`${expandText.clamp} text-[#232F37] text-[0.9rem]`}
