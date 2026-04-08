@@ -14,12 +14,12 @@ const ReviewModal = ({ review, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-principle/60"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-para/60"
       onClick={onClose} // 👈 click overlay
     >
       {/* MODAL */}
       <div
-        className="relative w-full max-w-xl p-6 bg-white rounded-xl"
+        className="relative w-full max-w-xl p-6 bg-[#fff9f4] rounded-xl"
         onClick={(e) => e.stopPropagation()} // 👈 blocca bubbling
       >
         {/* CLOSE */}
@@ -46,7 +46,7 @@ const ReviewModal = ({ review, onClose }) => {
         </div>
 
         {/* TEXT */}
-        <p className="mb-6 text-lg leading-relaxed text-principle">
+        <p className="mb-6 text-lg leading-relaxed text-para">
           {review.reviews_desc}
         </p>
 

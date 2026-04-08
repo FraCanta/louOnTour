@@ -14,8 +14,14 @@ export async function getPosts(lang) {
     }
   });
   const mainKeys = lngPost?.map((el) => {
+    const cats = Array.isArray(el?.categories)
+      ? el.categories
+      : el?.categories
+        ? [el.categories]
+        : [];
+
     return {
-      categories: el?.categories,
+      categories: cats,
       content: { rendered: el?.content?.rendered },
       date: el?.date,
       excerpt: { rendered: el?.excerpt?.rendered },
@@ -87,7 +93,7 @@ export async function getCategories(lang, onlyFull = true) {
   });
   const categories = await categoriesRes.json();
   const filteredCategories = categories?.filter(
-    (el) => el?.description === lang
+    (el) => el?.description === lang,
   );
   const fullCategories = onlyFull
     ? filteredCategories?.filter((el) => el?.count > 0)

@@ -3,8 +3,9 @@ import Subscribe from "../components/newsletter/subscribe";
 import Head from "next/head";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
+import Banner from "../components/sectionFive/banner";
 
-const Newsletter = ({ translation }) => {
+const Newsletter = ({ translation, banner }) => {
   return (
     <>
       <Head>
@@ -12,9 +13,10 @@ const Newsletter = ({ translation }) => {
         <meta name="description" content={translation.paragrafo} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="lg:min-h-[calc(100vh_-_100px)] flex justify-center items-center newsletter lg:w-11/12 mx-auto bg-second/20">
+      <div className="px-4 lg:min-h-[calc(50vh_-_100px)] flex justify-center items-center newsletter ">
         <Subscribe translation={translation} />
       </div>
+      <Banner translation={translation.banner} />
     </>
   );
 };

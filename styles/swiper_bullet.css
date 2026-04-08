@@ -1,0 +1,263 @@
+/* ======================================================
+   SWIPER PAGINATION – VERSIONE CUSTOM
+====================================================== */
+
+/* Wrapper principale */
+.swiper-pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Variante light */
+.swiper-pagination-wrapper.light
+  .swiper-pagination
+  .swiper-pagination-bullet
+  .swiper-pagination-bullet-base {
+  background: white;
+  opacity: 0.5;
+}
+
+.swiper-pagination-wrapper.light .swiper-pagination-bullet {
+  background: transparent;
+}
+
+.swiper-pagination-wrapper.light .swiper-numbers,
+.swiper-pagination-wrapper.light .swiper-numbers-current {
+  color: white;
+}
+
+/* Container bullets */
+.swiper-pagination-wrapper .swiper-pagination {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Bullet */
+.swiper-pagination-wrapper .swiper-pagination-bullet {
+  width: 8rem;
+  height: 2rem;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* Base + overlay */
+.swiper-pagination-bullet-base,
+.swiper-pagination-bullet-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  border-radius: 2px;
+}
+
+/* Base */
+.swiper-pagination-bullet-base {
+  background: white;
+  opacity: 0.3;
+}
+
+/* Overlay */
+.swiper-pagination-bullet-overlay {
+  background: white;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+/* Bullet attivo */
+.swiper-pagination-bullet-active .swiper-pagination-bullet-overlay {
+  transform: scaleX(1);
+}
+
+/* Numerazione */
+.swiper-pagination-wrapper .swiper-numbers {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.swiper-pagination-wrapper .slash,
+.swiper-pagination-wrapper .swiper-numbers-total {
+  opacity: 0.7;
+}
+
+/* Responsive bullets */
+@media (max-width: 880px) {
+  .swiper-pagination-wrapper .swiper-pagination-bullet {
+    width: 5rem;
+  }
+}
+
+/* ======================================================
+   STATO SLIDE
+====================================================== */
+
+.swiper-slide .slide-content {
+  opacity: 0.8;
+}
+
+.swiper-slide-active .slide-content {
+  opacity: 1;
+}
+
+.swiper-slide-prev .slide-content,
+.swiper-slide-next .slide-content {
+  opacity: 0.6;
+}
+
+/* ======================================================
+   SLIDER APPARTAMENTO – STRUTTURA
+====================================================== */
+
+.s-swipers {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Wrapper interno swiper */
+.s-swipers-inner {
+  width: 100%;
+}
+
+/* Swiper base */
+.swiper {
+  width: 100%;
+}
+
+.swiper-slide {
+  padding: 0;
+}
+
+/* ======================================================
+   MASCHERA VISIVA A COLONNE (FAKE GAP)
+====================================================== */
+
+.s-slider[data-amount="3"] .s-swipers::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
+  padding: 0 2.4rem;
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(#fff, #fff) content-box,
+    transparent;
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+/* Larghezza extra per effetto centrale */
+.s-slider[data-amount="3"] .s-swipers-inner {
+  width: 140vw;
+  margin-left: -20vw;
+}
+
+/* ======================================================
+   MEDIA WRAPPER IMMAGINI
+====================================================== */
+
+.swiper-slide .media-wrapper {
+  width: 100%;
+  height: 0;
+  padding-bottom: 68%;
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-slide .media-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ======================================================
+   RESPONSIVE MOBILE
+====================================================== */
+
+@media (max-width: 640px) {
+  .s-slider[data-amount="3"] .s-swipers::before {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    padding: 0 1.6rem;
+  }
+
+  .s-slider[data-amount="3"] .s-swipers-inner {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .swiper-slide .media-wrapper {
+    padding-bottom: 132%;
+  }
+}
+
+/* ======================================================
+   PAGINATION ALTERNATIVA (WRAPPER 2)
+====================================================== */
+
+.swiper-pagination-wrapper2 {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.swiper-pagination-wrapper2 .swiper-pagination {
+  display: inline-block;
+}
+
+.swiper-pagination-wrapper2 .swiper-pagination-bullet {
+  width: 3rem;
+  height: 2rem;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+}
+
+.swiper-pagination-wrapper2 .swiper-pagination-bullet-base,
+.swiper-pagination-wrapper2 .swiper-pagination-bullet-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  border-radius: 2px;
+}
+
+.swiper-pagination-wrapper2 .swiper-pagination-bullet-base {
+  background: white;
+  opacity: 0.3;
+}
+
+.swiper-pagination-wrapper2 .swiper-pagination-bullet-overlay {
+  background: white;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.swiper-pagination-wrapper2
+  .swiper-pagination-bullet-active
+  .swiper-pagination-bullet-overlay {
+  transform: scaleX(1);
+}
+
+@media (max-width: 768px) {
+  .swiper-pagination-wrapper2 .swiper-pagination-bullet {
+    width: 1.2rem;
+  }
+}

@@ -2,37 +2,105 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { getDate } from "../../utils/utils";
-const LastPost = ({ lastPost, category }) => {
+
+const LastPost = ({ lastPost }) => {
+  if (!lastPost?.length) return null;
+
+  const main = lastPost[0];
+  const side = lastPost.slice(1, 4);
+
+  const stripHtml = (html) =>
+    html?.replace(/<[^>]*>?/gm, "").slice(0, 200) + "...";
+
   return (
-    <>
+    <div className="grid h-full grid-cols-1 gap-8 lg:grid-cols-2">
+      {/* LEFT BIG */}
       <Link
-        href={`/posts/${lastPost[0].slug}`}
-        title={`${lastPost[0].title?.rendered}`}
+        href={`/posts/${main.slug}`}
+        className="flex flex-col gap-4 lg:row-span-3"
       >
-        <figure className="w-full before:content-{} before: inline  before:absolute before:left-0 before:right-0 before:top-0 before:z-10 before:h-full before:w-full before:bg-third/90 before:opacity-80">
-          <Image
-            className="w-full h-[70vw] xl:h-[30vw] object-cover rounded-[5px] relative"
-            src={
-              lastPost?.[0]["_embedded"]?.["wp:featuredmedia"][0][
-                "media_details"
-              ]?.sizes?.full?.["source_url"]
-            }
-            width={300}
-            height={300}
-            alt={lastPost?.["alt_text"]}
-          />
-        </figure>
-        <div className="absolute bottom-0 left-0 font-bold p-6 z-20 xl:w-[60%] flex flex-col gap-2 xl:gap-6">
-          <h2
-            dangerouslySetInnerHTML={{ __html: lastPost?.[0].title?.rendered }}
-            className="text-white text-[5.5vw] xl:text-[2.5vw] leading-[1.4] "
-          ></h2>
-          <small className=" text-white text-[3vw] xl:text-[1.2vw]">
-            {getDate(lastPost[0]?.date)}
-          </small>
+        <Image
+          className="object-cover w-full h-full rounded-sm"
+          src={
+            main?._embedded?.["wp:featuredmedia"][0]?.media_details?.sizes?.full
+              ?.source_url
+          }
+          width={4800}
+          height={2400}
+          alt={main?.title?.rendered}
+        />
+
+        <small className="text-md lg:text-base text-para/80">
+          {main?.["_embedded"].author[0]?.name} • {getDate(main?.date)}
+        </small>
+
+        <h2
+          dangerouslySetInnerHTML={{ __html: main.title?.rendered }}
+          className="text-3xl font-semibold lg:text-6xl"
+        />
+
+        <p className="text-para">{stripHtml(main?.excerpt?.rendered)}</p>
+
+        <div className="flex flex-wrap gap-2">
+          {main?.postCategories?.map((cat) => (
+            <span
+              key={cat.id}
+              className="text-principle font-bold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide text-xs lg:text-sm"
+            >
+              {cat.name}
+            </span>
+          ))}
         </div>
       </Link>
-    </>
+
+      {/* RIGHT LIST */}
+      {side.map((post) => (
+        <Link
+          href={`/posts/${post.slug}`}
+          className="grid grid-cols-1 gap-6 lg:grid-cols-2 "
+          key={post.id}
+        >
+          <Image
+            src={
+              post?._embedded?.["wp:featuredmedia"][0]?.media_details?.sizes
+                ?.full?.source_url
+            }
+            width={5220}
+            height={3160}
+            className="object-cover w-full h-full rounded-sm"
+            alt={post?.title?.rendered}
+          />
+
+          <div className="flex flex-col gap-4">
+            <small className="text-base text-para/80">
+              {post?.["_embedded"].author[0]?.name} • {getDate(post?.date)}
+            </small>
+
+            <h3
+              dangerouslySetInnerHTML={{
+                __html: post.title?.rendered,
+              }}
+              className="text-base font-semibold lg:text-3xl"
+            />
+
+            <p className="text-sm text-para">
+              {stripHtml(post?.excerpt?.rendered)}
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {post?.postCategories?.map((cat) => (
+                <span
+                  key={cat.id}
+                  className="text-principle font-bold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide text-xs lg:text-sm"
+                >
+                  {cat.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Link>
+      ))}
+    </div>
   );
 };
 

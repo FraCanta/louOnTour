@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Icon } from "@iconify/react";
 const Mobile = ({ translation }) => {
   const { locale, pathname } = useRouter();
 
@@ -28,14 +27,18 @@ const Mobile = ({ translation }) => {
     setOpen(!open);
   };
   return (
-    <div className="flex items-center">
-      <motion.div id="close" onClick={handleOpen}>
+    <div className="flex items-center gap-8">
+      <motion.div
+        id="close"
+        onClick={handleOpen}
+        className="z-50 cursor-pointer"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke="#2c395b"
+          stroke="#C9573C"
           className="w-6 h-6"
         >
           <motion.path
@@ -52,7 +55,7 @@ const Mobile = ({ translation }) => {
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            className=" absolute top-[60px] left-0 right-0 bg-white h-screen w-screen text-[#2c395b]   flex flex-col "
+            className=" absolute top-0 left-0 right-0 bg-[#fef3ea] h-screen w-screen text-[#2c395b]   flex flex-col "
             variants={variants}
             initial="closed"
             animate="open"
@@ -62,18 +65,8 @@ const Mobile = ({ translation }) => {
             <motion.div
               variants={variants.item}
               animate="visibleItem"
-              className="w-11/12 mx-auto mt-10"
-            >
-              <Link
-                href={`/`}
-                title="Scopri chi sono e cosa posso fare per te"
-                className={`menu-item block  mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
-                  pathname === "/" ? "font-bold" : ""
-                }`}
-              >
-                {translation?.[locale]?.home}
-              </Link>
-            </motion.div>
+              className="w-11/12 mx-auto mt-20"
+            ></motion.div>
             <motion.div
               variants={variants.item}
               animate="visibleItem"
@@ -149,47 +142,6 @@ const Mobile = ({ translation }) => {
                 {translation?.[locale]?.iscriviti}
               </Link>
             </motion.div>
-
-            {/* <motion.div
-              ariants={variants.item}
-              animate="visibleItem"
-              className="mt-40 text-center flex flex-col gap-2"
-            >
-              <h2 className="text-[20px] font-bold">Follow me</h2>
-              <div className="flex gap-4 justify-center items-center">
-                <Link
-                  href="https://www.facebook.com/luisa.quaglia.tourguide"
-                  className="link_menu"
-                  target="_blank"
-                >
-                  <Icon
-                    icon="entypo-social:facebook"
-                    color="#FE6847"
-                    width="25"
-                  />
-                </Link>
-
-                <Link
-                  href="https://www.instagram.com/luisatourguide__/"
-                  className="link_menu"
-                  target="_blank"
-                >
-                  <Icon
-                    icon="akar-icons:instagram-fill"
-                    color="#FE6847"
-                    width="25"
-                  />
-                </Link>
-
-                <Link
-                  href="https://www.tiktok.com/@luisatourguide?is_from_webapp=1&sender_device=pc"
-                  className="link_menu"
-                  target="_blank"
-                >
-                  <Icon icon="simple-icons:tiktok" color="#FE6847" width="25" />
-                </Link>
-              </div>
-            </motion.div> */}
           </motion.div>
         )}
       </AnimatePresence>

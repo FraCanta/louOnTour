@@ -8,6 +8,7 @@ import "../styles/form.css";
 import "../styles/testimonials.css";
 import "../styles/blog.css";
 import "../styles/wordpress.css";
+import "../styles/swiper_bullet.css";
 
 import dynamic from "next/dynamic";
 const DynamicLayout = dynamic(() => import("../components/layout/layout"));
@@ -18,14 +19,6 @@ import AOS from "aos";
 import { useEffect } from "react";
 
 function MyApp({ Component, pageProps, router }) {
-  const transitionSpringPhysics = {
-    type: "spring",
-    mass: 0.2,
-    stiffness: 80,
-    damping: 10,
-  };
-  const transitionColor = "white";
-
   useEffect(() => {
     // here you can add your aos options
     AOS.init({
@@ -37,48 +30,15 @@ function MyApp({ Component, pageProps, router }) {
   }, []);
   return (
     <>
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div key={router.route}>
-          <motion.div
-            style={{
-              backgroundColor: transitionColor,
-              position: "fixed",
-              width: "100vw",
-              zIndex: 1000,
-              bottom: 0,
-            }}
-            transition={transitionSpringPhysics}
-            animate={{ height: "0vh" }}
-            exit={{ height: "100vh" }}
-          />
-
-          <motion.div
-            style={{
-              backgroundColor: transitionColor,
-              position: "fixed",
-              width: "100vw",
-              zIndex: 99999,
-              top: 0,
-            }}
-            transition={transitionSpringPhysics}
-            initial={{ height: "100vh" }}
-            animate={{ height: "0vh", transition: { delay: 0.2 } }}
-          />
-          <DynamicLayout>
-            <Component {...pageProps} />
-          </DynamicLayout>
-        </motion.div>
-      </AnimatePresence>
-
-      <Script
-        type="text/javascript"
-        charset="UTF-8"
-        src="//cdn.cookie-script.com/s/952906ba33559231ca8c72a6268c0ddb.js"
-      />
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" />
+      <DynamicLayout>
+        <Component {...pageProps} />
+      </DynamicLayout>
 
       {/* Global site tag (gtag.js) - Google Analytics */}
-
+      <Script
+        type="text/javascript"
+        src="https://embeds.iubenda.com/widgets/465c6cec-2c93-4094-8068-9b9cc0d257e2.js"
+      ></Script>
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-FJ2J5B3EPX" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
