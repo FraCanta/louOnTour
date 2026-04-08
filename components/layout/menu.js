@@ -27,7 +27,7 @@ const Menu = ({ translation }) => {
               <Image
                 src={Logo}
                 alt="logo"
-                className="w-[130px] xs:w-[160px] md:w-[100px] xl:w-[150px] 2xl:w-[180px] 3xl:w-[200px] 4xl:w-[300px] object-cover"
+                className="w-[160px] md:w-[100px] xl:w-[150px] 2xl:w-[180px] 3xl:w-[200px] 4xl:w-[300px] object-cover"
               />
             </Link>
             <div className="items-center hidden text-xl lg:flex text-[#c9573c]  ">

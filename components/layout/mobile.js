@@ -2,35 +2,38 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
+import BgAnimation from "../bgAnimation/bgAnimation";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import CtaPrimary from "../button/CtaPrimary";
+
 const Mobile = ({ translation }) => {
   const { locale, pathname } = useRouter();
+  const [open, setOpen] = useState(false); // menu mobile
+  const [toursOpen, setToursOpen] = useState(false); // overlay Tours
 
-  const [open, setOpen] = useState(false);
   const svgVariants = {
-    closed: {
-      path: "M4 6h16M4 12h16M4 18h16",
-      transition: { duration: 0.5, ease: "easeInOut" },
-    },
-    open: {
-      path: "M6 18L18 6M6 6l12 12",
-      transition: { duration: 0.5, ease: "easeInOut" },
-    },
+    closed: { path: "M4 6h16M4 12h16M4 18h16", transition: { duration: 0.5 } },
+    open: { path: "M6 18L18 6M6 6l12 12", transition: { duration: 0.5 } },
   };
-  const variants = {
+
+  const menuVariants = {
     open: { opacity: 1, height: "100vh", transition: { duration: 0.5 } },
     closed: { opacity: 0, height: 0, transition: { duration: 0.5 } },
-    item: { opacity: 0, y: 100, transition: { duration: 0.5 } },
-    visibleItem: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    item: { opacity: 0, y: 50, transition: { duration: 0.3 } },
+    visibleItem: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   };
 
-  const handleOpen = () => {
-    setOpen(!open);
+  const overlayVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4 } },
+    exit: { opacity: 0, y: 50, scale: 0.95, transition: { duration: 0.3 } },
   };
+
   return (
     <div className="flex items-center gap-8">
+      {/* Hamburger */}
       <motion.div
-        id="close"
-        onClick={handleOpen}
+        onClick={() => setOpen(!open)}
         className="z-50 cursor-pointer"
       >
         <svg
@@ -51,97 +54,128 @@ const Mobile = ({ translation }) => {
         </svg>
       </motion.div>
 
-      {/* Conditionally render the menu */}
+      {/* Mobile Menu */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            className=" absolute top-0 left-0 right-0 bg-[#fef3ea] h-screen w-screen text-[#2c395b]   flex flex-col "
-            variants={variants}
+            className="absolute top-0 left-0 right-0 bg-[#fef3ea] min-h-screen w-screen text-principle flex flex-col pt-24"
+            variants={menuVariants}
             initial="closed"
             animate="open"
             exit="closed"
           >
-            {/* Add your menu items here */}
-            <motion.div
-              variants={variants.item}
-              animate="visibleItem"
-              className="w-11/12 mx-auto mt-20"
-            ></motion.div>
-            <motion.div
-              variants={variants.item}
-              animate="visibleItem"
-              className="w-11/12 mx-auto"
-            >
-              <Link
-                href={`/tours-da-fare`}
-                title="Ecco tutti i mieiTour"
-                className={`menu-item block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
-                  pathname === "/tours-da-fare" ? "font-bold" : ""
-                }`}
+            {/* Bottone Tours */}
+            <motion.div className="w-11/12 mx-auto mb-6">
+              <button
+                onClick={() => setToursOpen(true)}
+                className="flex items-center justify-between w-full gap-2 text-3xl tracking-wide menu-item font-regular"
               >
-                {translation?.[locale]?.tours}
-              </Link>
+                {translation?.[locale]?.tours}{" "}
+                <Icon
+                  icon="mdi-light:chevron-right"
+                  width="24px"
+                  height="24px"
+                />
+              </button>
             </motion.div>
-            <motion.div
-              variants={variants.item}
-              animate="visibleItem"
-              className="w-11/12 mx-auto"
-            >
-              <Link
-                href={`/chi-sono`}
-                title="Guarda tutti i miei casi studio"
-                className={`menu-item  block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
-                  pathname === "/chi-sono" ? "font-bold" : ""
-                }`}
+
+            {/* Altri link */}
+            {[
+              { href: "/chi-sono", label: translation?.[locale]?.about },
+              { href: "/blog", label: translation?.[locale]?.blog },
+            ].map((link, i) => (
+              <motion.div
+                variants={menuVariants.item}
+                animate="visibleItem"
+                key={i}
+                className="w-11/12 mx-auto mb-6"
               >
-                {translation?.[locale]?.about}
-              </Link>
-            </motion.div>
-            <motion.div
-              variants={variants.item}
-              animate="visibleItem"
-              className="w-11/12 mx-auto"
-            >
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)} // chiude il menu
+                  className={`text-3xl tracking-wide menu-item font-regular`}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
+            ))}
+
+            {/* Pulsanti extra */}
+            <motion.div className="flex flex-col w-11/12 gap-4 mx-auto mt-6">
               <Link
-                href={`/blog`}
+                href="https://wa.me/393200327355"
+                target="_blank"
+                title="Luisa Quaglia | Come prenotare e avere info sui tour da fare"
+                onClick={() => setOpen(false)} // chiude il menu
+                className="w-full flex items-center justify-center max-content text-center text-[#c9573c] tracking-wide  font-medium  leading-snug py-3 px-6  xs:text-lg 3xl:text-3xl rounded-md border-2 border-[#c9573c]"
+              >
+                {translation?.[locale]?.contact}{" "}
+                <Icon
+                  icon="basil:whatsapp-outline"
+                  width="24"
+                  height="24"
+                  className="flex-shrink-0"
+                />
+              </Link>
+              <CtaPrimary
+                link={`/newsletter`}
                 title="I miei articoli"
-                className={`menu-item  block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
-                  pathname === "/blog" ? "font-bold" : ""
-                }`}
-              >
-                {translation?.[locale]?.blog}
-              </Link>
-            </motion.div>
-            <motion.div
-              variants={variants.item}
-              animate="visibleItem"
-              className="w-11/12 mx-auto"
-            >
-              <Link
-                href={`/contatti`}
-                title="I miei articoli"
-                className={`menu-item  block mb-6 text-[25px] leading-[30px] font-regular text-[#2c395b] uppercase ${
-                  pathname === "/contatti" ? "font-bold" : ""
-                }`}
-              >
-                {translation?.[locale]?.contact}
-              </Link>
-            </motion.div>
-            <motion.div
-              variants={variants.item}
-              animate="visibleItem"
-              className="w-11/12 mx-auto"
-            >
-              <Link
-                href={`/newsletter`}
-                title="I miei articoli"
-                className={`menu-item block mt-6 text-[25px] leading-[30px] font-regular text-white font-bold py-2.5 px-8 bg-[#fe6847] max-w-max rounded-md uppercase ${
-                  pathname === "/newsletter" ? "font-bold" : ""
-                }`}
+                onClick={() => setOpen(false)} // chiude il menu
               >
                 {translation?.[locale]?.iscriviti}
-              </Link>
+              </CtaPrimary>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Overlay Tours */}
+      <AnimatePresence>
+        {toursOpen && (
+          <motion.div
+            className="fixed top-0 left-0 w-screen h-screen bg-[#fef3ea] z-[1000] flex flex-col overflow-y-hidden  py-6"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={overlayVariants}
+          >
+            <button
+              onClick={() => setToursOpen(false)}
+              className="self-end px-4 mb-6 text-2xl font-bold text-principle"
+            >
+              back
+            </button>
+
+            <div className="grid grid-cols-1 gap-6 px-4">
+              {translation?.[locale]?.map?.markers.map((el, i) => (
+                <Link
+                  key={i}
+                  href={`/tour/${el?.link}`}
+                  onClick={() => {
+                    setToursOpen(false);
+                    setOpen(false); // chiude anche menu principale
+                  }}
+                  className="text-lg font-medium text-principle bg-[#CE9486]/20 p-2"
+                >
+                  {el?.title}
+                </Link>
+              ))}
+              <Link
+                href={`/tours-da-fare`}
+                onClick={() => {
+                  setToursOpen(false);
+                  setOpen(false); // chiude anche menu principale
+                }}
+                className="text-[22px] font-bold mt-4 text-[#C9573C]"
+              >
+                Tutti i tours &rarr;
+              </Link>
+            </div>
+
+            {/* BGAnimation sotto */}
+            <div className="hero2 min-h-[75vh] w-full">
+              <BgAnimation />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
