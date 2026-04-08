@@ -53,7 +53,7 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
       </Head>
 
       <div className="w-11/12 py-10 mx-auto lg:py-20 lg:px-10">
-        <div className="relative  flex flex-col md:flex-row lg:items-center gap-6 lg:gap-20 min-h-[calc(100svh_-_60px)] xl:h-[calc(100svh_-_100px)] ">
+        <div className="relative  flex flex-col md:flex-row lg:items-center gap-6 lg:gap-20 min-h-[calc(100svh_-_60px)] xl:min-h-[calc(100svh_-_100px)] ">
           <div className="flex flex-col w-full gap-6">
             <MaskText>
               <h4 className="text-principle text-[8vw] leading-[1.2] md:leading-none lg:text-[6vw] xl:text-[5vw] 2xl:text-[3vw] font-extrabold  ">
