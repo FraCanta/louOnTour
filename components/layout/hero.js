@@ -59,7 +59,7 @@ const Hero = ({ translation }) => {
         </motion.div>
 
         <MaskText>
-          <h2 className="text-[2.3rem] xs:text-[2.6rem] lg:text-[4rem] fxl:text-[5.5rem] font-bold leading-none max-w-7xl py-1.5">
+          <h2 className="text-[2.6rem] lg:text-[4rem] fxl:text-[5.5rem] font-bold leading-none max-w-7xl py-1.5">
             {translation?.name}
           </h2>
         </MaskText>
