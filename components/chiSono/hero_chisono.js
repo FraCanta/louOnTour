@@ -43,7 +43,7 @@ function HeroChiSono({ translation }) {
         </motion.div>
 
         <MaskText>
-          <h2 className="text-[5rem] lg:text-[13rem] fxl:text-[17rem] font-bold leading-none py-1.5">
+          <h2 className="text-[4.5rem] xs:text-[5rem] lg:text-[13rem] fxl:text-[17rem] font-bold leading-none py-1.5">
             {translation?.title?.primo}{" "}
           </h2>
         </MaskText>
