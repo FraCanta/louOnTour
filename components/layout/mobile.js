@@ -216,9 +216,14 @@ const Mobile = ({ translation }) => {
           >
             <button
               onClick={() => setToursOpen(false)}
-              className="self-end px-4 mb-6 text-2xl font-bold text-principle"
+              className="flex items-center self-end gap-3 px-4 mb-6 text-2xl font-bold text-principle"
             >
-              back
+              <Icon
+                icon="lets-icons:refund-back-light"
+                width="30px"
+                height="30px"
+              />
+              Back
             </button>
 
             <div className="grid grid-cols-1 gap-6 px-4">
@@ -233,6 +238,7 @@ const Mobile = ({ translation }) => {
                   className="text-lg font-medium text-principle bg-[#CE9486]/20 p-2"
                 >
                   {el?.title}
+                  <p className="text-sm text-para">{el?.description}</p>
                 </Link>
               ))}
               <Link

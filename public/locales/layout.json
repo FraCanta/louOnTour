@@ -11,25 +11,30 @@
         "markers": [
           {
             "title": "Firenze",
-            "link": "Firenze"
+            "link": "Firenze",
+            "description": "Tra Arte e Storia"
           },
           {
             "title": "San Gimignano",
-            "link": "San%20Gimignano"
+            "link": "San%20Gimignano",
+            "description": "La Manhattan del Medioevo"
           },
           {
             "title": "Volterra",
-            "link": "Volterra"
+            "link": "Volterra",
+            "description": "Dagli Etruschi al Medioevo"
           },
 
           {
             "id": "si",
             "title": "Siena",
-            "link": "Siena"
+            "link": "Siena",
+            "description": "Un tuffo nel Medioevo"
           },
           {
             "title": "San Galgano",
-            "link": "San%20Galgano"
+            "link": "San%20Galgano",
+            "description": "Mistero e Spiritualità"
           }
         ]
       }
@@ -47,25 +52,30 @@
             "title": "Florence",
             "link": "Firenze",
             "marker": { "top": 213, "right": 240 },
-            "desc": true
+            "desc": true,
+            "description": "Art and History"
           },
           {
             "title": "San Gimignano",
-            "link": "San%20Gimignano"
+            "link": "San%20Gimignano",
+            "description": "The Medieval Manhattan"
           },
           {
             "title": "Volterra",
-            "link": "Volterra"
+            "link": "Volterra",
+            "description": "From Etruscans to the Middle Ages"
           },
 
           {
             "id": "si",
             "title": "Siena",
-            "link": "Siena"
+            "link": "Siena",
+            "description": "A dive into the Middle Ages"
           },
           {
             "title": "San Galgano",
-            "link": "San%20Galgano"
+            "link": "San%20Galgano",
+            "description": "Mystery and Spirituality"
           }
         ]
       }

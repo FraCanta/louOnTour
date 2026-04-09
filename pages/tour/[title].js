@@ -91,7 +91,7 @@ export default function Tours({ city, banner }) {
             variants={item}
             className="flex items-center justify-between w-full lg:justify-start lg:gap-4"
           >
-            <h1 className="text-[2.9vw] lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide">
+            <h1 className="text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide">
               {city?.title}
             </h1>
           </motion.div>
@@ -103,7 +103,7 @@ export default function Tours({ city, banner }) {
                   ? city.translatedTitle
                   : city?.titleImg,
               }}
-              className="text-[3.2rem] lg:text-[4rem] 2xl:text-[4.5rem] fxl:text-[5rem] font-bold leading-none max-w-7xl py-1.5"
+              className="text-[2.5rem] lg:text-[4rem] 2xl:text-[4.5rem] fxl:text-[5rem] font-bold leading-none max-w-7xl py-1.5"
             ></h2>
           </MaskText>
         </motion.div>
@@ -126,12 +126,12 @@ export default function Tours({ city, banner }) {
           {city?.citazione}
         </p>
       </section>
-      <div className="flex flex-col w-11/12 mx-auto text-xl font-normal lg:px-10 text-main xl:text-2xl ">
+      <div className="flex flex-col w-11/12 mx-auto text-base font-normal lg:px-10 text-main xl:text-lg ">
         {city?.descrizione?.map((el, i) => {
           return (
             <p
               key={i}
-              className=" text-para  w-full   text-lg 3xl:text-3xl  3xl:leading-[3.5rem] mb-5 font-regular"
+              className="w-full mb-5 text-para font-regular"
               dangerouslySetInnerHTML={{ __html: el.p }}
             ></p>
           );
@@ -145,7 +145,7 @@ export default function Tours({ city, banner }) {
                   dangerouslySetInnerHTML={{ __html: el.l.title }}
                 ></h2>
                 <p
-                  className=" text-para  w-full   text-lg 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
+                  className=" text-para  w-full  text-base lg:text-lg 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
                   dangerouslySetInnerHTML={{ __html: el.l.descrizione }}
                 ></p>
               </div>

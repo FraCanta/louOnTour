@@ -76,8 +76,7 @@ const Menu = ({ translation }) => {
                         >
                           {el?.title}
                           <p className="text-base text-para">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.
+                            {el?.description}
                           </p>
                         </Link>
                       ))}
