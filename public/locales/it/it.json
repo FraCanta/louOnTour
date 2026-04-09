@@ -73,12 +73,21 @@
       ]
     },
     "about": {
-      "subTitle": "About me",
+      "subTitle": "Chi sono",
       "title": "Dicono di me",
       "paragraph": "Il fatto che tu stia cercando un tour per conoscere meglio un luogo fa di te una persona curiosa e questo, a me, piace moltissimo! Ma dal tuo punto di vista però, è anche vero che è importante trovare la guida giusta, con cui poter entrare in sintonia e apprezzare meglio l’esperienza. Facciamo così: nell’attesa di conoscerci meglio durante il nostro tour, dai un’occhiata qui e leggi cosa dicono di me.",
       "button": "Scopri chi sono",
+      "button2": "Leggi più recensioni",
 
       "reviews": [
+        {
+          "avatar": "A",
+          "name": "Federico",
+          "date": "Aprile 2026",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was super flexible and knowledgeable. She thread stories and focused in main themes with details thrown in and adding layers if we wanted to know more. Great pace and didn’t overwhelm with fast talk and details but rather focused on delivering the information at a perfect pace , which in the end makes it more informative and easier to retain. We all enjoyed it and highly recommend Luisa."
+        },
         {
           "avatar": "A",
           "name": "Maria",
@@ -686,11 +695,32 @@
   },
   "tours": {
     "head": {
-      "title": "Luisa Quaglia Tour Guide | Tours",
+      "title": "Luisa Quaglia Tour Guide | Tours da fare",
       "description": "Visita guidata di Siena con Cattedrale, Campo, Palazzo Pubblico e il Palio. San Domenico, Santa Caterina e le Contrade.",
       "keywords": "Tour Toscana, Guida turistica Firenze, Tour a piedi per scoprire i segreti di Firenze Tour guidati in Toscana per scoprire la storia e l'arte, Degustazioni di vini pregiati nel cuore delle colline toscane, Escursioni Val d'Orcia, Visite guidate Siena, Tour arte toscana, Esperienze autentiche toscane, Passeggiate nelle città medievali, Itinerari culturali Siena, Itinerari culturali Firenze"
     },
-
+    "hero": {
+      "subTitle": "Luisa Quaglia Tour Guide | Tours da fare",
+      "title": "Tour su misura per te con guida esperta",
+      "paragraph": "Dai borghi medievali alle città iconiche, ogni tour è pensato per farti vivere la cultura, la storia e i paesaggi unici della Toscana, al tuo ritmo e secondo i tuoi desideri."
+    },
+    "features": [
+      {
+        "icon": "hugeicons:twin-tower",
+        "title": "Bellezze senza tempo",
+        "description": "Borghi e paesaggi che ti lasciano senza fiato"
+      },
+      {
+        "icon": "octicon:book-24",
+        "title": "Storie e leggende",
+        "description": "Scopri miti e tesori nascosti ad ogni passo"
+      },
+      {
+        "icon": "lineicons:trees-3",
+        "title": "Cultura autentica",
+        "description": "Assapora tradizioni e atmosfere locali uniche"
+      }
+    ],
     "toursPreview": [
       {
         "p": "<strong>La Toscana</strong> è una terra di bellezza senza tempo, dove ogni città e ogni borgo raccontano storie antiche e offrono paesaggi mozzafiato. Preparati a immergerti in un viaggio unico attraverso <strong>Siena, San Gimignano, San Galgano e Volterra</strong>. Ogni destinazione ti avvolgerà con la sua atmosfera unica, le sue leggende e i suoi tesori artistici il tutto accompagnato da una <strong>guida esperta</strong>."
@@ -742,6 +772,7 @@
       "title": "Dicono di me",
       "paragraph": "Il fatto che tu stia cercando un tour per conoscere meglio un luogo fa di te una persona curiosa e questo, a me, piace moltissimo! Ma dal tuo punto di vista però, è anche vero che è importante trovare la guida giusta, con cui poter entrare in sintonia e apprezzare meglio l’esperienza. Facciamo così: nell’attesa di conoscerci meglio durante il nostro tour, dai un’occhiata qui e leggi cosa dicono di me.",
       "button": "Scopri chi sono",
+      "button2": "Leggi più recensioni",
 
       "reviews": [
         {
@@ -2068,13 +2099,14 @@
       "title": "Luisa Quaglia Tour Guide | Chi Sono"
     },
     "hero": {
-      "subTitle": "About me",
+      "subTitle": "Luisa Quaglia Tour Guide | Chi sono",
       "title": {
         "primo": "Hi there!",
         "secondo": "Sono Luisa Quaglia,",
         "terzo": "guida turistica ed archeologa."
       },
       "paragraph": "Vivo vicino Volterra, in un agriturismo con mio marito Luigi, la nostra piccola Alice e due gatti perennemente affamati, Angus e Marla. Sono laureata in archeologia a Siena e ho lavorato in diverse zone sia in Italia che all’estero. Quando sono tornata ho lavorato nel museo archeologico di Volterra come guida per studenti delle scuole e poi ho co- gestito un parco archeologico all’Isola d’Elba.",
+      "cta": "Scopri i miei tours",
       "secondTitle": "Ho fatto della mia passione il mio lavoro",
       "secondPa": "Queste ultime esperienze mi hanno fatto apprezzare la divulgazione, quindi ho deciso di diventare una guida turistica: la scelta migliore della mia vita! Amo incontrare persone nuove e condividere con loro la mia passione per la storia e l’arte. Incontro persone che vengono da tutta Italia e dall’estero: un’occasione questa per me, per conoscere altre storie e culture, una sorta di viaggio senza fine, fantastico!",
       "finalP": "Amo questo lavoro e amo farlo in Toscana, una Regione dove arte, storia, natura e tradizioni sono perfettamente bilanciate. Infatti, con mio marito, che è una guida ambientale, organizziamo anche qualche camminata in natura. Se ti va di rimanere aggiornato sulle nostre uscite iscriviti alla mailing list! Spero di conoscerti presto in Toscana. Nell’attesa mi trovi tutti i giorni sui social. A presto, Luisa."

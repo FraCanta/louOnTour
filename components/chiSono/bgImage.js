@@ -6,7 +6,7 @@ const BgImage = ({ translation }) => {
     <>
       <div className="grid w-11/12 gap-6 mx-auto my-10 lg:grid-cols-2">
         <div>
-          <p className="mx-auto text-lg lg:w-4/5 text-para ">
+          <p className="mx-auto text-base lg:text-lg lg:w-4/5 text-para ">
             {translation?.finalP}
           </p>
         </div>

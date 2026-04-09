@@ -82,22 +82,20 @@ const Tours = ({ translation }) => {
             variants={item}
             className="flex items-center justify-between w-full lg:justify-start lg:gap-4"
           >
-            <h1 className="text-[2.9vw] lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide">
-              Luisa Quaglia Tour Guide | Tours da fare
+            <h1 className="text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max lg:tracking-wide">
+              {translation?.hero?.subTitle}
             </h1>
           </motion.div>
 
           <MaskText>
             <h2 className="text-[2.3rem] xs:text-[2.2rem] lg:text-[4rem] 2xl:text-[4.5rem] fxl:text-[5rem] font-bold leading-none max-w-7xl py-1.5">
-              Tour su misura per te con guida esperta
+              {translation?.hero?.title}
             </h2>
           </MaskText>
 
           <MaskText>
             <p className="text-para w-full text-base lg:text-[1.25rem]   leading-snug mb-5 font-normal">
-              Dai borghi medievali alle città iconiche, ogni tour è pensato per
-              farti vivere la cultura, la storia e i paesaggi unici della
-              Toscana, al tuo ritmo e secondo i tuoi desideri.
+              {translation?.hero?.paragraph}
             </p>
           </MaskText>
         </motion.div>
@@ -115,43 +113,20 @@ const Tours = ({ translation }) => {
         </motion.div>
       </motion.div>
       <section className="grid w-11/12 grid-cols-1 gap-10 mx-auto my-20 lg:grid-cols-3">
-        <div className="flex flex-col items-center gap-2">
-          <Icon
-            icon="hugeicons:twin-tower"
-            width="50px"
-            height="50px"
-            className="text-principle "
-          />
-          <h4 className="text-4xl text-principle">Bellezze senza tempo</h4>
-          <p className="mx-auto text-lg leading-snug text-center lg:w-1/2 text-para">
-            Borghi e paesaggi che ti lasciano senza fiato
-          </p>
-        </div>
-        <div className="flex flex-col items-center gap-2">
-          <Icon
-            icon="octicon:book-24"
-            width="50px"
-            height="50px"
-            className="text-principle "
-          />
-          <h4 className="text-4xl text-principle">Storie e leggende</h4>
-          <p className="mx-auto text-lg leading-snug text-center lg:w-1/2 text-para">
-            Scopri miti e tesori nascosti ad ogni passo
-          </p>
-        </div>
-
-        <div className="flex flex-col items-center gap-2">
-          <Icon
-            icon="lineicons:trees-3"
-            width="50px"
-            height="50px"
-            className="text-principle "
-          />
-          <h4 className="text-4xl text-principle">Cultura autentica</h4>
-          <p className="mx-auto text-lg leading-snug text-center lg:w-1/2 text-para">
-            Assapora tradizioni e atmosfere locali uniche
-          </p>
-        </div>
+        {translation.features.map((item, index) => (
+          <div key={index} className="flex flex-col items-center gap-2">
+            <Icon
+              icon={item.icon}
+              width="50px"
+              height="50px"
+              className="text-principle"
+            />
+            <h4 className="text-4xl text-principle">{item.title}</h4>
+            <p className="mx-auto text-lg leading-snug text-center lg:w-1/2 text-para">
+              {item.description}
+            </p>
+          </div>
+        ))}
       </section>
 
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  w-[90%] mx-auto min-h-[40vh] gap-4 ">

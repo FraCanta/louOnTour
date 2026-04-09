@@ -118,7 +118,7 @@ const Footer = ({ translation }) => {
         </div>
       </footer>
 
-      <footer className="grid justify-center w-full  p-2 px-4 py-2 text-[0.65rem] 2xl:text-sm lg:grid-cols-3  lg:text-center text-para">
+      <footer className="grid justify-center w-full p-2 px-4 py-2 text-base 2xl:text-sm lg:grid-cols-3 gap-y-4 lg:text-center text-para">
         <div className="text-left">
           © {new Date().getFullYear()} Luisa Quaglia Tour Guide -
           <span className="font-regular">

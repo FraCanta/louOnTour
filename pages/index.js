@@ -78,7 +78,7 @@ export default function Home({ translation, post, tours }) {
       <div className="min-h-screen pt-20 ">
         <div className="flex flex-col w-full px-4 mx-auto my-10 lg:items-center lg:justify-center lg:text-center 2xl:w-3/5">
           <h2 className="text-base lg:text-xl font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full max-w-max tracking-wide">
-            Tours da fare
+            {translation?.map?.subTitle}
           </h2>
           <MaskText>
             <h2 className="text-4xl md:text-5xl 3xl:text-[100px] font-bold mt-3 3xl:mt-12 3xl:leading-[5.5rem] ">
@@ -101,9 +101,13 @@ export default function Home({ translation, post, tours }) {
       </div>
 
       <DynamicAboutMe translation={translation?.about} />
+      <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div
+        class="elfsight-app-3556d60c-9ec1-4325-8318-b25c82d7ac2a"
+        data-elfsight-app-lazy
+      ></div>
 
       <BlogSection post={post} translation={translation?.blogSection} />
-
       <DynamicBanner translation={translation?.banner} />
     </>
   );

@@ -39,11 +39,11 @@ const Hero = ({ translation }) => {
           variants={item}
           className="flex items-center justify-between w-full lg:justify-start lg:gap-4"
         >
-          <h1 className="text-[2.9vw] lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide">
+          <h1 className="text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max lg:tracking-wide">
             Luisa Quaglia Tour Guide | Tuscany Experience
           </h1>
 
-          <div className="flex items-center gap-1 px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max">
+          <div className="hidden lg:flex items-center gap-1 px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max">
             <svg
               className="w-5 h-5"
               xmlns="http://www.w3.org/2000/svg"

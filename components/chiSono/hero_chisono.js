@@ -33,17 +33,17 @@ function HeroChiSono({ translation }) {
       variants={container}
       initial="hidden"
       animate="show"
-      className="relative w-11/12 mx-auto   fxl:py-10  lg:px-10 flex flex-col justify-center  gap-6 lg:gap-20 min-h-[calc(100svh_-_60px)] xl:min-h-[calc(100svh_-_100px)] "
+      className="relative w-11/12 mx-auto   py-10  lg:px-10 flex flex-col justify-center  gap-6 lg:gap-20 min-h-[calc(100svh_-_60px)] xl:min-h-[calc(100svh_-_100px)] "
     >
       <motion.div variants={item} className="flex flex-col gap-3 lg:gap-0">
         <motion.div variants={item}>
-          <h1 className="text-[2.9vw] lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full max-w-max tracking-wide">
-            Luisa Quaglia Tour Guide | Chi sono
+          <h1 className="text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full max-w-max lg:tracking-wide">
+            {translation?.subTitle}
           </h1>
         </motion.div>
 
         <MaskText>
-          <h2 className="text-[4.5rem] xs:text-[5rem] lg:text-[13rem] fxl:text-[17rem] font-bold leading-none py-1.5">
+          <h2 className="text-[4rem] xs:text-[5rem] lg:text-[13rem] fxl:text-[17rem] font-bold leading-none py-1.5">
             {translation?.title?.primo}{" "}
           </h2>
         </MaskText>
@@ -78,7 +78,7 @@ function HeroChiSono({ translation }) {
                   link="/tours-da-fare"
                   aria-label="Scopri i miei tours"
                 >
-                  Scopri i miei tours
+                  {translation?.cta}
                 </CtaPrimary>
               </div>
             </motion.div>

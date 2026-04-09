@@ -12,7 +12,7 @@ const Post2 = ({ post, featuredMedia }) => {
       className="flex flex-col h-[600px] gap-4"
     >
       <Image
-        className="object-cover w-full h-[450px] rounded-sm"
+        className="object-cover w-full   h-[300px] lg:h-[350px] xl:h-[400px] 2xl:h-[450px]  rounded-sm"
         src={
           featuredMedia?.media_details?.sizes?.full?.source_url ||
           featuredMedia?.source_url
