@@ -103,7 +103,7 @@ export default function Home({ translation, post, tours }) {
       <DynamicAboutMe translation={translation?.about} />
       <script src="https://elfsightcdn.com/platform.js" async></script>
       <div
-        class="elfsight-app-3556d60c-9ec1-4325-8318-b25c82d7ac2a"
+        className="elfsight-app-3556d60c-9ec1-4325-8318-b25c82d7ac2a !overflow-hidden"
         data-elfsight-app-lazy
       ></div>
 

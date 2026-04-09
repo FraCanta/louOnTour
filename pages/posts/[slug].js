@@ -114,12 +114,12 @@ export default function PostPage({
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-6 mx-auto text-lg text-para ">
+          <div className="flex flex-col gap-6 mx-auto text-para ">
             <CarouselParser post={modifiedContent} />
           </div>
         </div>
         <div className="">
-          <div className="grid w-full grid-cols-3 gap-6 mt-48">
+          <div className="grid w-full grid-cols-1 gap-6 mt-48 lg:grid-cols-3">
             <h2 className="text-4xl font-bold fxl:text-5xl text-principle ">
               Last recents
             </h2>

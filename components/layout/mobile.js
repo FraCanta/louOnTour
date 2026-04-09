@@ -101,13 +101,13 @@ const Mobile = ({ translation }) => {
             ))}
 
             {/* Pulsanti extra */}
-            <motion.div className="flex flex-col w-11/12 gap-4 mx-auto mt-6">
+            <motion.div className="flex flex-col w-11/12 gap-4 mx-auto mt-20">
               <Link
                 href="https://wa.me/393200327355"
                 target="_blank"
                 title="Luisa Quaglia | Come prenotare e avere info sui tour da fare"
                 onClick={() => setOpen(false)} // chiude il menu
-                className="w-full flex items-center justify-center max-content text-center text-[#c9573c] tracking-wide  font-medium  leading-snug py-3 px-6  xs:text-lg 3xl:text-3xl rounded-md border-2 border-[#c9573c]"
+                className="w-full flex items-center gap-4 justify-center max-content text-center text-[#c9573c] tracking-wide  font-medium  leading-snug py-3 px-6  xs:text-lg 3xl:text-3xl rounded-md border-2 border-[#c9573c]"
               >
                 {translation?.[locale]?.contact}{" "}
                 <Icon
@@ -125,6 +125,81 @@ const Mobile = ({ translation }) => {
                 {translation?.[locale]?.iscriviti}
               </CtaPrimary>
             </motion.div>
+            <div className="w-full px-6 mb-6">
+              <div className=" w-full px-4 h-[1px] mt-10"></div>
+              <div className="flex flex-wrap items-center justify-between w-full gap-4 px-0 py-6">
+                <div className="flex flex-col items-center gap-4 lg:flex-row">
+                  <div className="flex items-center gap-2">
+                    <Icon
+                      className="text-principle"
+                      icon="mdi:star"
+                      width="20"
+                      height="20"
+                    />
+                    <Icon
+                      className="text-principle"
+                      icon="mdi:star"
+                      width="20"
+                      height="20"
+                    />
+                    <Icon
+                      className="text-principle"
+                      icon="mdi:star"
+                      width="20"
+                      height="20"
+                    />
+                    <Icon
+                      className="text-principle"
+                      icon="mdi:star"
+                      width="20"
+                      height="20"
+                    />
+                    <Icon
+                      className="text-principle"
+                      icon="mdi:star"
+                      width="20"
+                      height="20"
+                    />
+                    <span className="ml-2 font-semibold text-blu">5.0</span>
+                  </div>
+                  <div className="flex w-full gap-4">
+                    <Link
+                      href="https://www.facebook.com/luisa.quaglia.tourguide"
+                      target="_blank"
+                    >
+                      <Icon
+                        icon="entypo-social:facebook"
+                        color="#C9573C"
+                        width="25"
+                      />
+                    </Link>
+                    <Link
+                      href="https://www.instagram.com/luisa_guidaturisticatoscana/"
+                      target="_blank"
+                    >
+                      <Icon
+                        icon="akar-icons:instagram-fill"
+                        color="#C9573C"
+                        width="25"
+                      />
+                    </Link>
+                    <Link
+                      href="https://www.tiktok.com/@luisa_guidatoscana"
+                      target="_blank"
+                    >
+                      <Icon
+                        icon="simple-icons:tiktok"
+                        color="#C9573C"
+                        width="25"
+                      />
+                    </Link>
+                  </div>
+                </div>
+                <p className="text-sm">
+                  &copy; {new Date().getFullYear()} Luisa Quaglia Tour Guide.
+                </p>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
