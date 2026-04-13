@@ -5,11 +5,13 @@ import { getDate } from "../../utils/utils";
 const Post2 = ({ post, featuredMedia }) => {
   // Prende il nome della prima categoria, se esiste
   const categoryName = post?.postCategories?.[0]?.name || "";
+  const stripHtml = (html) =>
+    html?.replace(/<[^>]*>?/gm, "").slice(0, 200) + "...";
 
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="flex flex-col h-[600px] gap-4"
+      className="flex flex-col lg:h-[600px] gap-4"
     >
       <Image
         className="object-cover w-full   h-[300px] lg:h-[350px] xl:h-[400px] 2xl:h-[450px]  rounded-sm"
@@ -29,10 +31,13 @@ const Post2 = ({ post, featuredMedia }) => {
           dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           className="text-2xl font-semibold leading-none"
         />
+        <p className="text-sm text-para">
+          {stripHtml(post?.excerpt?.rendered)}
+        </p>
       </div>
       <div className="flex flex-col gap-2">
         {categoryName && (
-          <span className="text-principle font-bold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide text-xs lg:text-sm">
+          <span className="text-principle font-bold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full max-w-max tracking-wide text-xs lg:text-sm">
             {categoryName}
           </span>
         )}

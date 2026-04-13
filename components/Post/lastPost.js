@@ -36,7 +36,7 @@ const LastPost = ({ lastPost }) => {
 
         <h2
           dangerouslySetInnerHTML={{ __html: main.title?.rendered }}
-          className="text-3xl font-semibold lg:text-6xl"
+          className="text-2xl font-semibold lg:text-6xl"
         />
 
         <p className="text-para">{stripHtml(main?.excerpt?.rendered)}</p>
@@ -80,7 +80,7 @@ const LastPost = ({ lastPost }) => {
               dangerouslySetInnerHTML={{
                 __html: post.title?.rendered,
               }}
-              className="text-base font-semibold lg:text-3xl"
+              className="text-2xl font-semibold lg:text-3xl"
             />
 
             <p className="text-sm text-para">

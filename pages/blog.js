@@ -184,7 +184,7 @@ export async function getServerSideProps(context) {
       return {
         ...p,
         // se non ci sono categorie valide, metti BLOG
-        postCategories: cats.length > 0 ? cats : [{ id: 0, name: "BLOG" }],
+        postCategories: cats.length > 0 ? cats : [{ id: 0, name: "Blog" }],
       };
     });
 

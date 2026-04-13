@@ -6,7 +6,7 @@ const Text = ({ translation }) => {
     <div className="grid items-center justify-center w-11/12 gap-10 mx-auto mt-10 lg:grid-cols-2 lg:py-20">
       <div className="relative flex flex-col gap-4 mx-auto lg:w-4/5">
         <MaskText>
-          <h2 className="text-4xl font-bold md:text-6xl text-principle">
+          <h2 className="text-3xl font-bold md:text-6xl text-principle">
             {translation?.secondTitle}
           </h2>
         </MaskText>

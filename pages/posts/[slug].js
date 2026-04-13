@@ -82,7 +82,7 @@ export default function PostPage({
               </Link>
             </div>
             <h2 className="text-principle max-w-max font-bold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide text-xs lg:text-sm">
-              {postCategories[0]?.name}
+              {postCategories?.length > 0 ? postCategories[0].name : "Blog"}
             </h2>
 
             <h1
@@ -175,8 +175,8 @@ export async function getStaticProps({ params, locale }) {
     nextSlug: allPosts[postArrayIndex + 1]?.slug || null,
   };
 
-  const postCategories = category?.filter(
-    (el) => post?.categories?.includes(el?.id) || "Blog",
+  const postCategories = category?.filter((el) =>
+    post?.categories?.includes(el?.id),
   );
 
   const modifiedContent = post?.content?.rendered?.replace(
