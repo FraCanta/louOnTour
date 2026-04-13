@@ -121,8 +121,10 @@ const Tours = ({ translation }) => {
               height="50px"
               className="text-principle"
             />
-            <h4 className="text-4xl text-principle">{item.title}</h4>
-            <p className="mx-auto text-lg leading-snug text-center lg:w-1/2 text-para">
+            <h4 className="text-3xl lg:text-4xl text-principle">
+              {item.title}
+            </h4>
+            <p className="mx-auto text-base leading-snug text-center lg:text-lg lg:w-1/2 text-para">
               {item.description}
             </p>
           </div>
