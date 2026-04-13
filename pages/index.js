@@ -81,7 +81,7 @@ export default function Home({ translation, post, tours }) {
             {translation?.map?.subTitle}
           </h2>
           <MaskText>
-            <h2 className="text-4xl md:text-5xl 3xl:text-[100px] font-bold mt-3 3xl:mt-12 3xl:leading-[5.5rem] ">
+            <h2 className="text-3xl md:text-5xl 3xl:text-[100px] font-bold mt-3 3xl:mt-12 3xl:leading-[5.5rem] ">
               {translation?.map?.title}
             </h2>
           </MaskText>

@@ -12,7 +12,7 @@ const AboutMe = ({ translation }) => {
             {translation?.subTitle}
           </h2>
           <MaskText>
-            <h2 className="text-4xl md:text-5xl 3xl:text-[100px] font-bold !text-principle">
+            <h2 className="text-3xl md:text-5xl 3xl:text-[100px] font-bold !text-principle">
               {translation?.title}
             </h2>
           </MaskText>

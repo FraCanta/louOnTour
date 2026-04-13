@@ -40,7 +40,7 @@ export default function Post({ post, featuredMedia }) {
         {/* Titolo */}
         <div className="absolute left-0 flex items-center justify-center w-full p-4 bottom-6 lg:bottom-6">
           <h3
-            className="text-3xl font-bold text-center text-white 2xl:text-4xl fxl:text-3xl"
+            className="text-2xl font-bold text-center text-white 2xl:text-4xl fxl:text-3xl"
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           />
         </div>

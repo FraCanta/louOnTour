@@ -10,7 +10,7 @@ const Banner = ({ translation }) => {
         <div className="flex flex-col items-center justify-center w-11/12 gap-2 pt-20">
           <div className="flex flex-col gap-2 text-center">
             <MaskText>
-              <h2 className="text-4xl md:text-5xl font-bold leading-[1] md:mb-0">
+              <h2 className="text-3xl md:text-5xl font-bold leading-[1] md:mb-0">
                 {translation?.text}
               </h2>
             </MaskText>

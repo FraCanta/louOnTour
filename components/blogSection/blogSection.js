@@ -23,7 +23,7 @@ const BlogSection = ({ post, featuredMedia, tags, translation }) => {
             {translation?.subTitle}
           </h2>
           <MaskText>
-            <h2 className="text-4xl md:text-5xl 3xl:text-[100px] font-bold  md:leading-none lg:leading-none mb-10 text-principle">
+            <h2 className="text-3xl md:text-5xl 3xl:text-[100px] font-bold  md:leading-none lg:leading-none mb-10 text-principle">
               {translation?.title}
             </h2>
           </MaskText>
