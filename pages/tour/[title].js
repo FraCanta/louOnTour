@@ -155,7 +155,7 @@ export default function Tours({ city, banner }) {
       </div>
 
       {city?.tourItem?.length > 0 && (
-        <div className="h-screen mt-10 lg:mt-20">
+        <div className="mt-10 lg:h-screen lg:mt-20">
           {" "}
           <MapCards translation={city} />
         </div>
