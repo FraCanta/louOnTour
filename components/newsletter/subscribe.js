@@ -1,3 +1,5 @@
+import { Icon } from "@iconify/react/dist/iconify.js";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const Subscribe = ({ translation }) => {
@@ -34,11 +36,13 @@ const Subscribe = ({ translation }) => {
   };
 
   return (
-    <div className="w-11/12 lg:max-w-sm bg-white border border-[#FE6847] p-6 text-[#2c395b]">
-      <h2 className="text-3xl font-bold mb-4">What&apos;s your email?</h2>
-      <p className="mb-6 text-base">{translation?.paragrafo}</p>
+    <div className=" text-[#2c395b] w-full lg:w-4/5">
+      <h2 className="mb-4 text-4xl font-bold lg:text-6xl">
+        What&apos;s your email?
+      </h2>
+      <p className="mb-6 text-xl text-para">{translation?.paragrafo}</p>
       <form onSubmit={subscribe} className="flex flex-wrap">
-        <div className="w-full md:w-3/4 mb-4 md:mr-2">
+        <div className="w-4/5 mb-4 mr-2 lg:w-3/4">
           <input
             required
             id="email-input"
@@ -50,21 +54,43 @@ const Subscribe = ({ translation }) => {
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
-        <div className="w-full">
+        <div className="">
           <button
             disabled={state === "Loading"}
             type="submit"
-            className={`w-full p-2 font-bold text-white bg-[#FE6847] border-lg rounded-md ${
+            className={`w-full p-1 font-bold text-white border-[#C9573C] border rounded-sm ${
               state === "Loading" ? "opacity-60 cursor-not-allowed" : ""
             }`}
           >
-            {state === "Loading" ? "Loading..." : "Subscribe"}
+            {state === "Loading" ? (
+              "Loading..."
+            ) : (
+              <Icon
+                icon="stash:arrow-right-light"
+                width="24px"
+                height="24px"
+                className="text-principle"
+              />
+            )}
           </button>
         </div>
       </form>
-      {state === "Error" && <p className="text-red-600 py-4">{errorMsg}</p>}
+      <p className="mt-2 text-[11px] text-para/80">
+        Niente spam. Solo contenuti esclusivi e aggiornamenti sui tour. Puoi
+        cancellarti quando vuoi. Leggi la
+        <Link
+          href="https://www.iubenda.com/privacy-policy/15052201"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-1 underline"
+        >
+          Privacy Policy
+        </Link>{" "}
+        per saperne di più.
+      </p>
+      {state === "Error" && <p className="py-4 text-red-600">{errorMsg}</p>}
       {state === "Success" && (
-        <p className="text-green-600 py-4">
+        <p className="py-4 text-green-600">
           Awesome, you&apos;ve been subscribed!
         </p>
       )}

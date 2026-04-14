@@ -8,6 +8,8 @@ module.exports = {
 
   theme: {
     screens: {
+      "2xs": "320px",
+      xs: "375px",
       sm: "640px",
       // => @media (min-width: 640px) { ... }
 
@@ -20,23 +22,23 @@ module.exports = {
       xl: "1280px",
       // => @media (min-width: 1280px) { ... }
 
-      "2xl": "1536px",
+      "2xl": "1500px",
       // => @media (min-width: 1536px) { ... }
-      fxl: "1900px",
+      "2xla": "1650px",
+      // => @media (min-width: 1680px) { ... }
+      fxl: "1920px",
       // => @media (min-width: 1920px) { ... }
 
       "3xl": "2560px",
       // => @media (min-width: 2560px) { ... }
       "4xl": "3840px",
       // => @media (min-width: 3840px) { ... }
-      rotated: { raw: "(max-height: 500px)" },
-      // => @media (max-heigh: 3840px) { ... }
     },
     colors: {
-      principle: "#2c395b",
-      second: "#fe6847",
+      principle: "#C9573C",
+      second: "#77674E",
       white: "#ffff",
-      para: "#6D7B80",
+      para: "#77674E",
     },
   },
 };

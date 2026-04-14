@@ -1,12 +1,36 @@
-import React from "react";
-import BgAnimation from "../components/bgAnimation/bgAnimation";
+import { motion } from "framer-motion";
 import Head from "next/head";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import ToursItem from "../components/toursItem/toursItem";
 import Banner from "../components/sectionFive/banner";
+import Map from "../components/sectionTwo/map";
+import { MaskText } from "../components/UI/MaskText";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import AboutMe from "../components/sectionThree/aboutMe";
 
 const Tours = ({ translation }) => {
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.25,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 25 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1.1,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
   return (
     <>
       <Head>
@@ -47,22 +71,67 @@ const Tours = ({ translation }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="hero2 relative min-h-[70vh] 2xl:min-h-[80vh] w-11/12">
-        <BgAnimation />
-      </div>
-      <div className="flex flex-col justify-center w-11/12 gap-4 py-10 mx-auto text-xl font-normal xl:text-center text-main xl:text-2xl text-para">
-        {translation?.toursPreview?.map((el, i) => {
-          return (
-            <p
-              key={i}
-              className="lg:text-center text-para  w-full   text-xl fxl:text-2xl 3xl:text-3xl  3xl:leading-[3.5rem] mb-5 font-regular"
-              dangerouslySetInnerHTML={{ __html: el.p }}
-            ></p>
-          );
-        })}
-      </div>
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="relative w-11/12 mx-auto py-10 lg:py-0 lg:px-10 flex flex-col md:flex-row lg:items-center gap-6 lg:gap-20 min-h-[calc(100svh_-_60px)] xl:min-h-[calc(90svh_-_70px)] "
+      >
+        <motion.div variants={item}>
+          <motion.div
+            variants={item}
+            className="flex items-center justify-between w-full lg:justify-start lg:gap-4"
+          >
+            <h1 className="text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max lg:tracking-wide">
+              {translation?.hero?.subTitle}
+            </h1>
+          </motion.div>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  w-[90%] mx-auto min-h-[40vh] gap-4 my-6">
+          <MaskText>
+            <h2 className="text-[2.3rem] xs:text-[2.2rem] lg:text-[4rem] 2xl:text-[4.5rem] fxl:text-[5rem] font-bold leading-none max-w-7xl py-1.5">
+              {translation?.hero?.title}
+            </h2>
+          </MaskText>
+
+          <MaskText>
+            <p className="text-para w-full text-base lg:text-[1.25rem]   leading-snug mb-5 font-normal">
+              {translation?.hero?.paragraph}
+            </p>
+          </MaskText>
+        </motion.div>
+        <motion.div
+          variants={item}
+          className="relative flex items-center justify-end w-full aspect-square"
+        >
+          <video
+            src="/assets/hero_tour.mp4"
+            autoPlay
+            loop
+            muted
+            className="object-cover w-full h-full rounded-sm"
+          />
+        </motion.div>
+      </motion.div>
+      <section className="grid w-11/12 grid-cols-1 gap-10 mx-auto my-20 lg:grid-cols-3">
+        {translation.features.map((item, index) => (
+          <div key={index} className="flex flex-col items-center gap-2">
+            <Icon
+              icon={item.icon}
+              width="50px"
+              height="50px"
+              className="text-principle"
+            />
+            <h4 className="text-3xl lg:text-4xl text-principle">
+              {item.title}
+            </h4>
+            <p className="mx-auto text-base leading-snug text-center lg:text-lg lg:w-1/2 text-para">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </section>
+
+      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  w-[90%] mx-auto min-h-[40vh] gap-4 ">
         {translation?.tourItem?.map((el, i) => {
           return (
             <ToursItem
@@ -76,14 +145,7 @@ const Tours = ({ translation }) => {
           );
         })}
       </section>
-      {/* <section className=" bg-second/20">
-        <div className="w-[90%] mx-auto my-[50px] py-10">
-          <MaskText>
-            <h2 className="py-6 text-6xl font-bold">FAQs</h2>
-          </MaskText>
-          <Faq translation={translation.faq} />
-        </div>
-      </section> */}
+      <AboutMe translation={translation.about} />
 
       <Banner translation={translation?.banner} />
     </>

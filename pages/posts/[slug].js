@@ -70,87 +70,57 @@ export default function PostPage({
           content={post?.yoast_head_json?.description}
         />
       </Head>
-      <div className="grid grid-cols-1 lg:grid-cols-3 lg:w-11/12 mx-auto lg:gap-6 pb-10">
-        <div className="pt-5 text-[#2C395B] col-span-2 paragrafo w-11/12 lg:w-full mx-auto pb-10">
-          <div className="text-sm breadcrumbs">
-            <ul>
-              <li>
-                <Link href="/" className="text-[#2C395B]">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-[#2C395B]">
-                  Blog
-                </Link>
-              </li>
-              <li
-                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                className="font-bold underline text-[#2C395B]"
-              ></li>
-            </ul>
-          </div>
-
-          <h2 className=" text-second text-xl md:text-2xl 3xl:text-5xl font-medium   mt-10">
-            {postCategories[0]?.name}
-          </h2>
-
-          <h1
-            className="py-4 text-3xl 2xl:text-5xl text-principle font-bold"
-            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-          ></h1>
-          <div className="flex flex-col md:flex-row   items-start  md:items-center pb-10">
-            {" "}
-            <div className="flex  md:items-center">
-              <Icon
-                icon="fa6-solid:user-pen"
-                className="mr-2 fxl:w-8 fxl:h-8 text-second"
-              />
-              <Link href={post?.["_embedded"].author[0]?.url}>
-                <span className=" text-para text-base flex fxl:text-2xl">
-                  {post?.["_embedded"].author[0]?.name}
-                </span>
+      <div className="grid w-11/12 grid-cols-1 gap-10 py-10 mx-auto lg:py-20 lg:px-10 ">
+        <div className="flex flex-col gap-6 paragrafo lg:w-full lg:gap-12">
+          <div className="flex flex-col gap-4 mb-10 lg:items-center">
+            <div className="mb-20">
+              <Link
+                href="/blog"
+                className="flex items-center gap-2 text-xl text-principle"
+              >
+                <Icon icon="lets-icons:refund-back" /> Back to blog
               </Link>
             </div>
-            <div className="flex items-center mt-4 md:mt-0 md:ml-8">
-              <Icon
-                icon="clarity:date-line"
-                className="mr-2 fxl:w-8 fxl:h-8 text-second"
-              />
-              <span className=" text-para text-base flex fxl:text-2xl">
-                {" "}
-                {getDate(post?.date)}
-              </span>
-              <div className=" text-para md:text-lg flex ml-6 font-[400] items-center">
-                <Icon
-                  icon="tabler:clock-hour-3"
-                  className="mr-2 fxl:w-8 fxl:h-8 text-second"
-                />
-                <span className=" text-para text-base flex fxl:text-2xl">
-                  {minutiLettura} min read
+            <h2 className="text-principle max-w-max font-bold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide text-xs lg:text-sm">
+              {postCategories?.length > 0 ? postCategories[0].name : "Blog"}
+            </h2>
+
+            <h1
+              className="py-4 text-3xl font-bold lg:text-center 2xl:text-5xl text-principle"
+              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+            ></h1>
+            <div className="flex flex-col items-start pb-10 md:flex-row md:items-center">
+              {" "}
+              <div className="flex md:items-center">
+                <Icon icon="fa6-solid:user-pen" className="mr-2 text-para" />
+                <Link href={post?.["_embedded"].author[0]?.url}>
+                  <span className="flex text-base text-para fxl:text-lg">
+                    {post?.["_embedded"].author[0]?.name}
+                  </span>
+                </Link>
+              </div>
+              <div className="flex items-center mt-4 md:mt-0 md:ml-8">
+                <Icon icon="clarity:date-line" className="mr-2 text-para" />
+                <span className="flex text-base text-para fxl:text-lg">
+                  {" "}
+                  {getDate(post?.date)}
                 </span>
+                <div className=" text-para md:text-lg flex ml-6 font-[400] items-center">
+                  <Icon icon="tabler:clock-hour-3" className="mr-2 text-para" />
+                  <span className="flex text-base text-para fxl:text-lg">
+                    {minutiLettura} min read
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-
-          <CarouselParser post={modifiedContent} />
+          <div className="flex flex-col gap-6 mx-auto text-para ">
+            <CarouselParser post={modifiedContent} />
+          </div>
         </div>
         <div className="">
-          <div className="w-11/12 lg:w-full mx-auto py-12 flex flex-col gap-2">
-            <h6 className="text-principle font-medium">Tags</h6>
-            <div className="w-full">
-              {tags.map((el, i) => (
-                <div
-                  className="badge !bg-second/80 !border-none !py-2 mr-2 text-principle font-medium text-base"
-                  key={i}
-                >
-                  {el}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-6 bg-principle p-6 w-full lg:sticky top-10 ">
-            <h2 className="text-[26px] fxl:text-4xl font-bold uppercase text-white underline">
+          <div className="grid w-full grid-cols-1 gap-6 mt-48 lg:grid-cols-3">
+            <h2 className="text-4xl font-bold fxl:text-5xl text-principle ">
               Last recents
             </h2>
             {recentPostCol}
@@ -158,8 +128,8 @@ export default function PostPage({
         </div>
       </div>
 
-      {/* <div className="btn-group grid grid-cols-2 mt-8">
-        <button className="btn btn-outline flex flex-col ">
+      {/* <div className="grid grid-cols-2 mt-8 btn-group">
+        <button className="flex flex-col btn btn-outline ">
           {!!nextPrevPost?.prevSlug ? (
             <Link href={`/posts/${nextPrevPost?.prevSlug}`}>
               <div className="mb-2 capitalize">{"< "}prev</div>
@@ -169,7 +139,7 @@ export default function PostPage({
           )}
         </button>
 
-        <button className="btn btn-outline  flex flex-col">
+        <button className="flex flex-col btn btn-outline">
           <Link href={`/posts/${nextPrevPost?.nextSlug}`}>
             <div className="mb-2 capitalize">next{" >"}</div>
           </Link>
@@ -206,12 +176,12 @@ export async function getStaticProps({ params, locale }) {
   };
 
   const postCategories = category?.filter((el) =>
-    post?.categories?.includes(el?.id)
+    post?.categories?.includes(el?.id),
   );
 
   const modifiedContent = post?.content?.rendered?.replace(
     "data-src-fg",
-    "src"
+    "src",
   );
   const featuredMedia = post?.["_embedded"]?.["wp:featuredmedia"][0];
   const tags = await getTagNameList(post?.tags);

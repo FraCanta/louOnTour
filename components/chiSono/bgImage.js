@@ -1,13 +1,23 @@
+import Image from "next/image";
 import React from "react";
 
 const BgImage = ({ translation }) => {
   return (
     <>
-      <div className="bgImage  w-11/12 mx-auto "></div>
-      <div className="text-left 2xl:text-center w-11/12 mx-auto lg:py-10">
-        <p className="text-xl sm:text-lg 2xl:text-xl fxl:text-2xl    text-para  mx-auto">
-          {translation?.finalP}
-        </p>
+      <div className="grid w-11/12 gap-6 mx-auto my-10 lg:grid-cols-2">
+        <div>
+          <p className="mx-auto text-base lg:text-lg lg:w-4/5 text-para ">
+            {translation?.finalP}
+          </p>
+        </div>
+        <div className="relative h-full aspect-video">
+          <Image
+            src="/assets/lou.jpg"
+            alt="bgImage"
+            fill
+            className="object-cover w-full h-full aspect-video"
+          />
+        </div>
       </div>
     </>
   );

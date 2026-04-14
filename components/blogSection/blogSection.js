@@ -5,6 +5,7 @@ import PostSection from "./postSection";
 import Post from "../Post/post";
 import CtaWhite from "../button/CtaWhite";
 import { MaskText } from "../UI/MaskText";
+import CtaOutline from "../button/CtaOutline";
 
 const BlogSection = ({ post, featuredMedia, tags, translation }) => {
   const jsxPosts = post.map((p, i) => {
@@ -15,24 +16,22 @@ const BlogSection = ({ post, featuredMedia, tags, translation }) => {
     );
   });
   return (
-    <div className="hero min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full   text-[#f1f1f1] flex items-center  overflow-x-hidden py-20 !grain !bg-[#2C395B]">
+    <div className="bg-[#fff8f4] min-h-[38vh] lg:min-h-[68vh] 3xl:min-h-[80vh]  w-full   text-[#f1f1f1] flex items-center justify-center overflow-x-hidden py-20 ">
       <div className="grid w-11/12 h-full grid-cols-1 gap-6 mx-auto lg:justify-items-center lg:content-center">
-        <div className="lg:text-center">
-          <h3 className="text-[#FE6847] text-xl 3xl:text-4xl uppercase">
+        <div className="flex flex-col items-center gap-2 lg:text-center">
+          <h2 className="text-base lg:text-xl font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full max-w-max tracking-wide">
             {translation?.subTitle}
-          </h3>
+          </h2>
           <MaskText>
-            <h2 className="text-4xl md:text-5xl 3xl:text-[100px] font-bold  md:leading-none lg:leading-none mb-10 text-white">
+            <h2 className="text-3xl md:text-5xl 3xl:text-[100px] font-bold  md:leading-none lg:leading-none mb-10 text-principle">
               {translation?.title}
             </h2>
           </MaskText>
         </div>
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-4 lg:py-10">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:py-10">
           {jsxPosts}
         </div>
-        <div className="">
-          <CtaWhite link="/blog">{translation?.button}</CtaWhite>
-        </div>
+        <CtaOutline link="/blog">{translation?.button}</CtaOutline>
       </div>
     </div>
   );

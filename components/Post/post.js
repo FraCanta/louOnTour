@@ -19,51 +19,32 @@ export default function Post({ post, featuredMedia }) {
   }, [post]);
 
   return (
-    <article className="flex flex-col h-full gap-4">
-      {/* IMAGE */}
-      <Link href={`/posts/${post?.slug}`} title={post?.title?.rendered}>
+    <Link href={`/posts/${post?.slug}`} title={post?.title?.rendered}>
+      <article className="relative flex flex-col h-full gap-4">
+        {/* IMAGE */}
+
         <figure>
           <Image
             src={featuredMedia?.media_details?.sizes?.full?.source_url}
             width={461}
             height={420}
             alt={featuredMedia?.alt_text || ""}
-            className="w-full md:h-[50vw] lg:h-[260px] 3xl:h-[380px] object-cover"
+            className="object-cover rounded-sm aspect-square"
             priority
             quality={70}
           />
         </figure>
-      </Link>
 
-      {/* CONTENT */}
-      <div className="flex flex-col flex-grow">
-        {/* TITLE */}
-        <Link href={`/posts/${post?.slug}`} title={post?.title?.rendered}>
+        {/* CONTENT */}
+        <div className="absolute inset-0 bg-[linear-gradient(359.99deg,rgba(119,103,78,1)_1.62%,rgba(119,103,78,0)_65.37%)]"></div>
+        {/* Titolo */}
+        <div className="absolute left-0 flex items-center justify-center w-full p-4 bottom-6 lg:bottom-6">
           <h3
-            className="
-              font-bold text-white
-              text-[5vw] md:text-[4vw] 2xl:text-xl 3xl:text-3xl
-              line-clamp-2 min-h-[3em]
-            "
+            className="text-2xl font-bold text-center text-white 2xl:text-4xl fxl:text-3xl"
             dangerouslySetInnerHTML={{ __html: post?.title?.rendered }}
           />
-        </Link>
-
-        {/* DIVIDER */}
-        <div className="w-full h-px my-3 bg-white/30" />
-
-        {/* FOOTER */}
-        <div className="flex items-center justify-between mt-auto">
-          <small className="text-sm text-white 3xl:text-xl">
-            {getDate(post?.date)}
-          </small>
-
-          <div className="flex items-center text-sm text-white 3xl:text-lg">
-            <Icon icon="tabler:clock-hour-3" className="mr-2" />
-            <span>{minutiLettura} min read</span>
-          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
 }

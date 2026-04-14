@@ -7,11 +7,12 @@
 }
 
 .paragrafo p {
-  font-size: 20px;
-  color: #6d7b80;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
-.paragrafo h2 {
+.paragrafo h2,
+h3 {
   font-size: 24px;
   font-weight: bold;
 }
@@ -26,10 +27,21 @@ strong {
     flex-direction: column;
   }
 
+  .paragrafo p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
   .image-div img {
     width: 100%;
   }
   .image {
     width: 100%;
+  }
+
+  .paragrafo h2,
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
   }
 }

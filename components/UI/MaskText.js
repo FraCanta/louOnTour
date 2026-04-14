@@ -19,7 +19,7 @@ export function MaskText({ children }) {
     triggerOnce: true,
   });
 
-  const customValue = 3; // Sostituisci con il valore desiderato
+  const customValue = 5; // Sostituisci con il valore desiderato
 
   return (
     <div ref={ref} className="body">

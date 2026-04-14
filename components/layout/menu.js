@@ -1,84 +1,146 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import Logo from "../../public/logo-2024.png";
+import { useEffect, useState } from "react";
+import Logo from "../../public/logo_lou2.png";
 import { useRouter } from "next/router";
 import Mobile from "./mobile";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import CtaOutline from "../button/CtaOutline";
+import CtaPrimary from "../button/CtaPrimary";
+import BgAnimation from "../bgAnimation/bgAnimation";
 
 const Menu = ({ translation }) => {
   const { locale, pathname } = useRouter();
+  const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    const close = () => setOpen(false);
+    window.addEventListener("click", close);
+    return () => window.removeEventListener("click", close);
+  }, []);
   return (
     <header className="relative">
-      <nav className="h-[60px] md:h-[100px] lg:h-[70px] xl:h-[100px] 3xl:h-[180px] 4xl:h-[250px]  flex w-full items-center justify-between relative z-[999999] nav-scroll ">
+      <nav className="h-[70px] lg:px-10 md:h-[100px] lg:h-[70px] xl:h-[100px] 3xl:h-[180px] 4xl:h-[250px]  flex w-full items-center justify-between relative z-[999999] nav-scroll ">
         <div className="flex items-center justify-between w-11/12 mx-auto ">
-          <div className="flex-1">
+          <div className="z-50 flex items-center gap-10">
             <Link href={`/`} title="Luisa Quaglia | Home Page">
               <Image
                 src={Logo}
                 alt="logo"
-                className="w-[120px] md:w-[100px] xl:w-[130px] 2xl:w-[180px] 3xl:w-[200px] 4xl:w-[300px] object-cover"
+                className="w-[160px] md:w-[100px] xl:w-[150px] 2xl:w-[180px] 3xl:w-[200px] 4xl:w-[300px] object-cover"
               />
             </Link>
-          </div>
+            <div className="items-center hidden text-xl lg:flex text-[#c9573c]  ">
+              <div className="relative flex items-center justify-end w-full gap-10 ">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpen(!open);
+                  }}
+                  className="flex items-end gap-1 text-xl font-medium tracking-wider"
+                >
+                  {translation?.[locale]?.tours}
 
-          <div className="lg:flex items-center  hidden uppercase  text-[#4A4A49]">
-            <div className="flex items-center justify-end w-full">
-              <Link
-                href={`/`}
-                title="Luisa Quaglia | Home Page"
-                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-[#2C395B] uppercase flex items-center ${
-                  pathname === "/" ? "font-bold" : ""
-                }`}
-              >
-                {translation?.[locale]?.home}
-              </Link>
+                  <Icon
+                    icon="mdi:chevron-down"
+                    width="25"
+                    className={`transition-transform duration-300 ${
+                      open ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                <div
+                  onClick={(e) => e.stopPropagation()}
+                  className={`
+    absolute z-50 p-4 mt-6
+    transition-all duration-300 origin-top
+    rounded-sm shadow-xl w-max top-full -left-1/2
+    bg-white/90 backdrop-blur-md
 
-              <Link
-                href={`/tours-da-fare`}
-                title="Luisa Quaglia | I miei tour"
-                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-main  uppercase flex items-center ${
-                  pathname === "/tours-da-fare" ? "font-bold" : ""
-                }`}
-              >
-                {translation?.[locale]?.tours}
-              </Link>
+    ${
+      open
+        ? "opacity-100 visible scale-100 translate-y-0"
+        : "opacity-0 invisible scale-90 translate-y-4"
+    }
+  `}
+                >
+                  {" "}
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="flex flex-col h-full w-[500px] justify-evenly">
+                      {translation?.[locale]?.map?.markers.map((el, i) => (
+                        <Link
+                          href={`/tour/${el?.link}`}
+                          onClick={() => setOpen(false)}
+                          className="p-4 text-principle text-3xl transition rounded-sm font-regular hover:bg-[#CE9486]/20"
+                          key={i}
+                        >
+                          {el?.title}
+                          <p className="text-base text-para">
+                            {el?.description}
+                          </p>
+                        </Link>
+                      ))}
+                      <Link
+                        href={`/tours-da-fare`}
+                        onClick={() => setOpen(false)}
+                        className="flex items-center gap-1 p-4 text-2xl text-principle"
+                      >
+                        Tutti i tours{" "}
+                        <Icon
+                          icon="lets-icons:arrow-right-light"
+                          width="24px"
+                          height="24px"
+                          style="color: #77674E"
+                        />
+                      </Link>
+                    </div>
 
-              <Link
-                href={`/chi-sono`}
-                title="Luisa Quaglia | Chi sono"
-                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-main  uppercase flex items-center ${
-                  pathname === "/chi-sono" ? "font-bold" : " "
-                }`}
-              >
-                {translation?.[locale]?.about}
-              </Link>
-              <Link
-                href={`/blog`}
-                title="Luisa Quaglia | Blog"
-                className={`mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-main font-regular uppercase flex items-center ${
-                  pathname === "/blog" ? "font-bold" : " "
-                }`}
-              >
-                {translation?.[locale]?.blog}
-              </Link>
-              <Link
-                href={`/contatti`}
-                title="Luisa Quaglia |Come prenotare e avere info sui tour da fare"
-                className="mr-[2.35rem] 3xl:mr-12 4xl:mr-16 text-[16px]    3xl:text-[35px] 4xl:text-[55px]  text-main font-regular uppercase flex items-center"
-              >
-                {translation?.[locale]?.contact}
-              </Link>
+                    <div className="hero2  min-h-[65vh] 2xl:min-h-[45vh] fxl:min-h-[55svh] w-full">
+                      <BgAnimation />
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  href={`/chi-sono`}
+                  title="Luisa Quaglia | Chi sono"
+                  className={` tracking-wider   flex items-center text-xl ${
+                    pathname === "/chi-sono" ? "font-bold" : " "
+                  }`}
+                >
+                  {translation?.[locale]?.about}
+                </Link>
+                <Link
+                  href={`/blog`}
+                  title="Luisa Quaglia | Blog"
+                  className={`tracking-wider text-xl flex items-center ${
+                    pathname === "/blog" ? "font-bold" : " "
+                  }`}
+                >
+                  {translation?.[locale]?.blog}
+                </Link>
+              </div>
             </div>
           </div>
-          <div>
+
+          <div className="items-center hidden gap-4 text-xl lg:flex ">
             <Link
-              href={`/newsletter`}
-              title="I miei articoli"
-              className="uppercase font-bold py-2.5 px-6 2xl:py-2 2xl:px-6 fxl:py-4 fxl:px-6 3xl:py-6 3xl:px-8 text-sm rounded-md shadow  text-white hover:transition-all mr-6 bg-second"
+              href="https://wa.me/393200327355"
+              target="_blank"
+              title="Luisa Quaglia | Come prenotare e avere info sui tour da fare"
+              className="w-full flex items-center gap-2 lg:w-max-content text-center text-[#c9573c] tracking-wide  font-medium  leading-snug py-3 px-6  xs:text-lg 3xl:text-3xl rounded-md border-2 border-[#c9573c]"
             >
-              {translation?.[locale]?.iscriviti}
+              {translation?.[locale]?.contact}{" "}
+              <Icon
+                icon="basil:whatsapp-outline"
+                width="24"
+                height="24"
+                className="flex-shrink-0"
+              />
             </Link>
+            <CtaPrimary link={`/newsletter`} title="I miei articoli">
+              {translation?.[locale]?.iscriviti}
+            </CtaPrimary>
           </div>
           <div className="flex items-center justify-end py-1 text-main lg:hidden ">
             <Mobile translation={translation} />

@@ -1,15 +1,15 @@
 {
   "home": {
     "head": {
-      "title": "Luisa Quaglia Tour Guide | Tourist Guide of Siena and Province and Volterra",
+      "title": "Luisa Quaglia Tour Guide | Tuscany Experience",
       "description": "Guided tour of Siena with Cathedral, Campo, Palazzo Pubblico, and the Palio. San Domenico, Santa Caterina, and the Contrade.",
       "keywords": "Tuscany tours, Tuscany italy, Tours of Tuscany, Private tour guide Tuscany, Tuscany tour guide, Tour guide tuscany, Best private tour guide Tuscany, Best Tuscany tour guide, Private tour guide in Tuscany"
     },
     "hero": {
       "name": "Customized tours for groups and individuals",
       "paragraph": "Guide enabled in Italian and English",
-      "cta": "discover my tours",
-      "tourcta": "more information"
+      "cta": "Discover my tours",
+      "tourcta": "Book your tour"
     },
     "mission": {
       "subTitle": "Mission",
@@ -21,10 +21,11 @@
       "paragraph5": "Write to me for an authentic and profound experience that will stay with you forever.."
     },
     "map": {
-      "subTitle": "Tours",
+      "subTitle": "Tours to take",
       "title": "Which city or hill town would you like to visit?",
       "paragraph": "Here you will find some of the most popular tours, which many people have enjoyed and which I often love to do! Choose a location on the map next here, and take a look at my tour suggestions-there's something for everyone! But if you're looking for something that's more your thing, contact me and we'll try together to create the tour that best meets your tastes and needs.",
-      "button": "more information",
+      "button": "More information",
+      "tourcta": "Discover my tours",
       "markers": [
         {
           "title": "Florence",
@@ -76,9 +77,18 @@
       "subTitle": "About me",
       "title": "Say about me",
       "paragraph": "The fact that you are looking for a tour to learn more about a place makes you a curious person and I love that! But from your point of view, however, it is also true that it is important to find the right guide with whom you can connect and better appreciate the experience. Let's do this: while waiting to get to know each other better on our tour, take a look here and read what clients said about me.",
-      "button": "read more",
+      "button": "Discover more",
+      "button2": "Read more reviews",
 
       "reviews": [
+        {
+          "avatar": "A",
+          "name": "Federico",
+          "date": "Aprile 2026",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was super flexible and knowledgeable. She thread stories and focused in main themes with details thrown in and adding layers if we wanted to know more. Great pace and didn’t overwhelm with fast talk and details but rather focused on delivering the information at a perfect pace , which in the end makes it more informative and easier to retain. We all enjoyed it and highly recommend Luisa."
+        },
         {
           "avatar": "A",
           "name": "Maria",
@@ -690,6 +700,623 @@
       "keywords": "Tuscany Tour, Florence Tour Guide, Walking Tours to Uncover Florence's Secrets, Guided Tours in Tuscany to Discover History and Art, Wine Tastings in the Heart of the Tuscan Hills, Val d'Orcia Excursions, Guided Tours of Siena, Tuscan Art Tour, Authentic Tuscan Experiences, Strolls in Medieval Cities, Cultural Itineraries in Siena, Cultural Itineraries in Florence"
     },
 
+    "hero": {
+      "subTitle": "Luisa Quaglia Tour Guide | Things to do",
+      "title": "Tailor-made tours for you with an expert guide",
+      "paragraph": "From medieval villages to iconic cities, each tour is designed to let you experience the culture, history, and unique landscapes of Tuscany, at your own pace and according to your wishes."
+    },
+    "about": {
+      "subTitle": "About me",
+      "title": "Say about me",
+      "paragraph": "The fact that you are looking for a tour to learn more about a place makes you a curious person and I love that! But from your point of view, however, it is also true that it is important to find the right guide with whom you can connect and better appreciate the experience. Let's do this: while waiting to get to know each other better on our tour, take a look here and read what clients said about me.",
+      "button": "Discover more",
+      "button2": "Read more reviews",
+
+      "reviews": [
+        {
+          "avatar": "A",
+          "name": "Maria",
+          "date": "Maggio 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was a wonderful guide! She was so accommodating to us, in meeting us a little later than the usual time due to train schedule. Learned so much about Siena from Luisa, was very happy with the tour. Would recommend her tour to everyone."
+        },
+        {
+          "avatar": "A",
+          "name": "Gabbie",
+          "date": "Maggio 2024",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is knowledgeable and passionate about the City and it’s districts. Saint Catharine history was well covered and valuable. We highly recommend Luisa."
+        },
+        {
+          "avatar": "A",
+          "name": "Patty",
+          "date": "Maggio 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was great! Great presentation of history of Siena and the horse race as well as St Catherine. We enjoyed the 2 hours of information."
+        },
+        {
+          "avatar": "A",
+          "name": "Cathy",
+          "date": "Maggio 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was very knowledgeable and gave a tour specific to our interests. She gave good recommendations for books/ items of interest. Her background in archaeology is a plus. We learned wonderful things about Siena!"
+        },
+        {
+          "avatar": "A",
+          "name": "Ana",
+          "date": "Aprile 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luísa é surpreendente, tem uma vivacidade contagiante e faz a gente querer saber mais e mais. Fez um percurso inteligente e nos mostrou coisas que realmente não encontraríamos em nenhum livro ou pesquisa mais cuidadosa, encontramos nessa guia preparada, inteligente e extraordinária um passeio pela Siena profunda. Muito obrigada Luísa"
+        },
+        {
+          "avatar": "A",
+          "name": "Tasha",
+          "date": "Marzo 2024",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "My husband and I enjoyed our time with Luisa for many reasons: she is knowledgeable (education in archeology), personable, speaks great English, has a good balance between listening and speaking, educated, professional, and kind. Having a private tour with her is an experience we highly recommend."
+        },
+        {
+          "avatar": "A",
+          "name": "Marion",
+          "date": "Novembre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa's tour was presented with knowledge and humour. She was able to give us a wonderful insight into Siena and it's interesting and complex history. Loved it and would highly recommend it to anyone. Thank you Luisa 😄😄."
+        },
+        {
+          "avatar": "A",
+          "name": "Susan",
+          "date": "Ottobre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a passionate storyteller and guide. She almost made us forget the rain! She has a comprehensive knowledge of Sienese history and made the city come alive!"
+        },
+        {
+          "avatar": "A",
+          "name": "Tanya",
+          "date": "Ottobre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is engaging and very knowledgeable about all aspects of Siena as well as the surrounding areas of Italy. We had a private tour and before the tour began, she asked about our interests for our time with her. We wanted to understand the history and significance of Siena and we feel she far exceeded this in our time with her. Luisa’s archeological degree brings interesting insights to her tour, which I feel other tour guides would not know. We felt that Luisa gave us a very important understanding of the 17 districts of Siena and their patron Saint Catherine. Luisa is delightful and engaging as well."
+        },
+        {
+          "avatar": "A",
+          "name": "Mary",
+          "date": "Ottobre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is not only professional but very personable! She was very knowledgeable and we all learned so much about Siena. I was so glad we booked this personal tour (there were 7 of us) rather than one of those huge tours with lots of people. Luisa personalized the tour for us!"
+        },
+        {
+          "avatar": "A",
+          "name": "Gordon",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Fantastic tour. Luisa is a great guide with a deep understanding of Siena. If you’re in Siena for a short stay make sure this is the first thing you do."
+        },
+        {
+          "avatar": "A",
+          "name": "Joseph",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a fantastic guide with real in-depth knowledge of history and art. We learnt so much more than we would have just by walking around or reading about Siena ourselves. We would highly recommend Luisa to anyone looking to learn more about Tuscany."
+        },
+        {
+          "avatar": "A",
+          "name": "Gale",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Absolutely excellent experience! We enjoyed the story-telling and the history of beautiful Siena. Learning about the Palio, the saints of Siena, the different rivalries and architectural history made this tour extra special. We highly recommend. You will feel well hosted with someone who really cares and knows their stuff!"
+        },
+        {
+          "avatar": "A",
+          "name": "Ryan",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a great guide to Siena. She's friendly and knowledgeable. My family and I had a wonderful time with her — don't hesitate to book today."
+        },
+        {
+          "avatar": "A",
+          "name": "Ondra",
+          "date": "Settembre 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We literally just drove in Siena, spent 2.5 hours with Luisa, had a quick dinner and drove off. I’m sure we’ll be back some day, but this was a perfect introduction. Her experience is full of great insights and interesting facts, good choice!"
+        },
+        {
+          "avatar": "A",
+          "name": "Christopher",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is an incredible tour guide and history teacher on Siena, Tuscany, and archeology. She’s passionate and playful, but also laid back and easy to talk to. She offered to cater the tour to our interests and stop whenever we wanted. Highly recommended!"
+        },
+        {
+          "avatar": "A",
+          "name": "Cécile",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa est une excellente guide qui a pris le temps de donner des explications poussées sur les lieux qu’on visitait. Elle a su personnaliser notre visite qu’on voulait axée sur l’archéologie et l’histoire. Vraiment une super matinée pour découvrir cette magnifique ville de Sienne. Je recommande chaudement Luisa."
+        },
+        {
+          "avatar": "A",
+          "name": "Hélène",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Passionnante visite, qui a constitué l’introduction idéale pour notre séjour à Sienne, avec en particulier un focus initial fascinant et très utile sur le « palio »."
+        },
+        {
+          "avatar": "A",
+          "name": "Celine",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Super visite de Sienne grâce à Luisa !! Nous ne sommes restés qu’une journée dans cette ville exceptionnelle et cette visite de 3h était idéale pour découvrir cette ville, comprendre ses traditions et admirer son patrimoine. Luisa est passionnée et passionnante ! Elle s’adapte au groupe. Nous étions avec un adolescent de 17 ans qui a aussi, beaucoup apprécié cette visite !"
+        },
+        {
+          "avatar": "A",
+          "name": "Lindsay",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was a wonderful guide for my family of 5 (grandma, mom, and 3 kids ages 7, 10, 13). She managed to keep the kids engaged and we all learned a lot. Luisa is trained as an archaeologist and has a deep knowledge of Sienese history and culture. We were going to do one of those full day bus tours from Florence, and I’m so glad we decided instead to just take the train to Siena and book our own tour with Luisa. I highly recommend Luisa for any tour of Siena or the nearby areas."
+        },
+        {
+          "avatar": "A",
+          "name": "Juliette",
+          "date": "Agosto 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We had a wonderful time with Luisa in the street of Sienna ! She knows a lot of things and she is really passionate about history. We learned a lot! Thanks again for this afternoon :)"
+        },
+        {
+          "avatar": "A",
+          "name": "Christian",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a wonderful guide who knows the history inside and out, communicates it well, and shares both the legends as well as the facts. Highly recommended! We had a private tour which was perfect because we had 3 kids with us and wanted to pace things accordingly. It worked out very well."
+        },
+        {
+          "avatar": "A",
+          "name": "Sonia",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Agréable visite, adaptée au groupe. L'histoire, les anecdotes, Luisa est une passionnée, elle a su transmettre cette passion pdt sa visite. Mes enfants et nius etions enchantés."
+        },
+        {
+          "avatar": "A",
+          "name": "Cory",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is delightful! She is so smart and passionate, and can answer all of your questions (and if she can’t she will be honest and it). While the description of her tour is an option, she will also happily customize the tour to your specific curiosity. She is not a frantic, frenetic guide with a rehearsed spiel (like many guides). She is calm, kind, considerate, generous, and authentic. She gave us personal recommendations for other things to do (when we asked) and we enjoyed them very much!"
+        },
+        {
+          "avatar": "A",
+          "name": "Lisa",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was a great communicator - her knowledge and love of Siena made the tour special and informative. She shared stories and history - and our group of 6 loved it! Highly recommend seeing Siena with Luisa!!"
+        },
+        {
+          "avatar": "A",
+          "name": "Lisa",
+          "date": "Luglio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "My family of six adults truly enjoyed hearing about Sienna's interesting history and the intrigue of the Palio. Learning about this town enriched our time there immensely. Highly recommend!"
+        },
+        {
+          "avatar": "A",
+          "name": "Shannon",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was an incredible guide for our first time in Siena! She personalized our tour based on our preferences and even booked us a spot for a delicious lunch. She is so knowledgeable and knew the answers to all of our questions. Super funny, kind, and smart- would definitely recommend!"
+        },
+        {
+          "avatar": "A",
+          "name": "Maria",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Amazing experience with Luisa! Highly recommended! We are a family of 4 including our 8-year-old twins. Luisa is very friendly and sweet, she gave a lot of information about Siena, answered all of our questions and was very patient and accommodating to our needs. She kept our kids interested and showed some pictures of the Palio on her tablet, which got them excited about it! She even arranged for tasting of Sienese desserts (not to be missed!) , and gave us some recommendations of restaurants for lunch at the end of the tour. I don’t think anything can be done better, she’s smart and attentive to details, and will introduce Siena to you in the best way!"
+        },
+        {
+          "avatar": "A",
+          "name": "Dawn",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was great! Very accommodating, knowledgeable and kind. Felt like we came away with a great overview of Sienna in the short time we had!"
+        },
+        {
+          "avatar": "A",
+          "name": "Kayla",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "AMAZING tour guide! Luisa is extremely knowledgeable and was able to answer all of our questions. She is very friendly and also has great recommendations for gelato, bakeries, and restaurants!"
+        },
+        {
+          "avatar": "A",
+          "name": "Anthony",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Unbeatable tour with an incredibly knowledgeable and approachable host. Luisa is a Sienese archaeologist, so she shares advanced knowledge of art, history, local culture and customs etc that others can’t provide. She even offered to personalize our tour according to what we wanted more of - art, food, churches, etc. Thank you for the tour of a lifetime!"
+        },
+        {
+          "avatar": "A",
+          "name": "Daniel",
+          "date": "Giugno 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Amazing private tour! Luisa personalized the experience for us as we had very little knowledge about Siena, and she made all the sights and history so interesting. She is extremely knowledgeable and an interesting story teller."
+        },
+        {
+          "avatar": "A",
+          "name": "Kenneth",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is amazing! Very knowledgeable, kind and a great communicator. We loved walking through beautiful Siena with her and learning about the history of this great city"
+        },
+        {
+          "avatar": "A",
+          "name": "Jonathan",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We had a great experience with Luisa! She is very knowledgeable about the cultural, political, and religious history of Siena and the broader Tuscany region and on top of that is a professional archaeologist. She is engaging, funny, and curious. She thoughtfully adapted our tour to accommodate my parents and we left the tour with a deeper and more nuanced understanding of how Siena has evolved over the millennia. I highly recommend this experience!"
+        },
+        {
+          "avatar": "A",
+          "name": "Kay",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is extremely knowledgeable and personable! She adapted our tour to focus on the palio (horse races) and competition between the 17 contrade. We booked only days before but she managed to get us a tour at the museum of one of them. Fascinating! She is also an art and architecture expert so her tour of the cathedral was amazing. Highly recommend!!"
+        },
+        {
+          "avatar": "A",
+          "name": "Chip",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Such a beautiful location and amazing history! I loved learning about the 17 districts, the rivalries, and historic horse races. Our guide gave many personal insights and advice on phrases, restaurants and more. Brava!! Highly recommend."
+        },
+        {
+          "avatar": "A",
+          "name": "Laura",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Book this tour! Luisa has a deep knowledge and passion for the area Andrew its history and showed us so many things about Siena, I wish we had days to spend with her! She paced the tour nicely, it was not hard to keep up with her in such a hilly town. She even made a reservation for us at a restaurant she recommended and it was delicious! Don’t miss her favorite gelato shop either, Bellisimo. Highly recommend."
+        },
+        {
+          "avatar": "A",
+          "name": "Pamela",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was very knowledgeable and flexible regarding what we wanted to see. She was wonderful explaining the legends and stories of the city."
+        },
+        {
+          "avatar": "A",
+          "name": "Jason",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "This is the best city tour I've ever been on. It's not only an incredible introduction to Siena, but a wonderful way to dig into the fun secrets of the city. The tour is well thought out, though Luisa is open to customizing it based on your interests. We were interested in the culture of Siena and we went deep on that. Would highly recommend!"
+        },
+        {
+          "avatar": "A",
+          "name": "Lori",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Louisa was so knowledgeable she customized the trip to our questions and interest. I learned so much from her which was delivered with humour and professionalism"
+        },
+        {
+          "avatar": "A",
+          "name": "Angela",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "I have been to Siena many times, but I learned so much from Luisa! She was so sweet, knowledgable and wonderful to tour Siena with. She shared so much facinating detail and perspective on the Palio. She used great ipad visuals to accentuate the facts and legends! If you are spending time in Siena, you must book Luisa. :-)"
+        },
+        {
+          "avatar": "A",
+          "name": "Diego",
+          "date": "Maggio 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa’s tour of Siena is perfect! She was happy to customize the tour to what interested me the most and she was very very knowledgeable about this very old and beautiful town. Would highly recommend this tour!"
+        },
+        {
+          "avatar": "A",
+          "name": "Candace",
+          "date": "Aprile 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was wonderful. We had a private tour customized to our interests. Our guided tour started in the Campo with a discussion of the history of Siena, its culture, government structure, and buildings. She did an incredible job of explaining the Palio and its significance. In addition to photos on her laptop, she had video of a race which was fascinating. While in the Campo she also shared information about life in Siena, food treats that we must sample, and her own life experiences. All of this helped us to gain more insight into both the history and current life in the city. From the Campo we went to the Duomo and learned about the initial plans, construction, renovation, and recent discoveries there before entering for a comprehensive tour of the amazing interior. Luisa had an incredible amount of detail to offer about the artwork, its significance, and the stories portrayed within. All of this added to the experience of seeing this amazing church ! Finally, she guided us through the cathedral dedicated to Saint Catherine. Here too, the insight and details of both the church and her life made everything much more meaningful. In addition to her incredible knowledge, Luisa has a warm and engaging personality. She went above and beyond with us in providing details, and generously spent additional time with us to make sure that our interests and the places we wanted to visit were addressed. It was an incredible experience that we highly recommend ! THANK YOU LUISA!!!!"
+        },
+        {
+          "avatar": "A",
+          "name": "Diego",
+          "date": "Aprile 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Se ci fossimo persi l’esperienza vissuta con Luisa, Siena sarebbe stata una delle solite città visitate… invece ….con le informazioni ricevute e i racconti avvincenti siamo entrati nel profondo della cultura e della storia che si ê dipanata nei secoli! È stato un gran piacere condividere con lei i luoghi unici che ha voluto mostrarci! Esperienza consigliata !"
+        },
+        {
+          "avatar": "A",
+          "name": "Krista",
+          "date": "Aprile 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Extremely accommodating to our personal interests. Pleasant and very knowledgeable of history of area, religion influences, and archeological significance. We so enjoyed our tour with Luisa and can’t recommend her enough! If you want to learn more about Siena with an engaging, personable guide, this experience is for you! ❤️"
+        },
+        {
+          "avatar": "A",
+          "name": "Stephen",
+          "date": "Aprile 2023",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was very knowledgeable and informative. She enhanced the experience with visuals on her iPad. Luisa also provided restaurant recommendations and information regarding the surrounding area."
+        },
+        {
+          "avatar": "A",
+          "name": "Dayna",
+          "date": "Marzo 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "I cannot imagine coming to Siena for the first time without such a personal and historical tour with Luisa. She really knows the city as it is now and as it was from the beginning. We really loved seeing the things that other tours don't stop to see, and understanding Siena's beautiful past. Luisa made the city come alive for us. Our children, ages 8, 11, and 15 also really loved it. She also gave us great recommendations for eating lunch, and the best bakery and gelato in town."
+        },
+        {
+          "avatar": "A",
+          "name": "Andra",
+          "date": "Gennaio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We loved our tour. Luisa was good incredibly flexible with us (it was a private tour) and provided valuable insight that in all ways enriched our time in Siena."
+        },
+        {
+          "avatar": "A",
+          "name": "Amanda",
+          "date": "Gennaio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa is a delight! She drew us in with her stories of the Palio and the history of the city. We definitely used the knowledge she gave us during the rest of our time in Siena. She personized our experience as we were a small group and even gave us the option to visit a shop for some local treats. At the end of the tour, she gave us several ideas for restaurants and how we should spend our time during the rest of our visit. She is a big reason as to why we all fell in love with Siena!"
+        },
+        {
+          "avatar": "M",
+          "name": "Molly",
+          "date": "Gennaio 2023",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "A great experience. Way better value than one of those large group tours you have to wear a headset for. I will 💯 book this tour again the next time. Luisa has a very vast knowledge of the Siena area and gave us some amazing recommendations when the tour was over. Tasting the Siena treats at the end was a nice touch. Don’t hesitate to book!"
+        },
+        {
+          "avatar": "E",
+          "name": "Erica",
+          "date": "Dicembre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Great tour to explore Siena and understand some history of the city. Luisa was very friendly and adjusted the tour to fit our interests. Would highly recommend."
+        },
+        {
+          "avatar": "A",
+          "name": "Alex",
+          "date": "Dicembre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa was absolutely amazing and so knowledgeable. Siena is a beautiful place to visit itself, but she made it that much better. Highly recommend for everyone, but especially if you love European history."
+        },
+        {
+          "avatar": "M",
+          "name": "Mara",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "We thoroughly enjoyed our tour with Luisa. She was extremely knowledgeable and personable. We were only in Siena for 24 hours, but she left us wanting more and we can’t wait to go back. We learned and laughed a lot, as Luisa walked us through an amazing city and contextualized architecture, art, theology, and other aspects for us. We highly recommend it!"
+        },
+        {
+          "avatar": "Mk",
+          "name": "Mark",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Such an excellent tour. Luisa was fascinating and helpful. She structured the tour to our needs, explaining all the wonders of the Palio and surrounding buildings.She answered all of our questions and kept our eight year old entertained and interested for the full duration of the trip.I would highly recommend Luisa to bring Siena to life.She is both knowledgeable and kind and the perfect guide for such a beautiful city."
+        },
+        {
+          "avatar": "T",
+          "name": "Tim",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "We loved this tour. Lots of history to be learned as we made our way around the Siena.I'd definitely recommend this tour with Luisa!"
+        },
+        {
+          "avatar": "G",
+          "name": "Guy",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was a wonderful host. We enjoyed learning about the history of Siena and she was extremely knowledgeable.The 3 hours flew by. Luisa was amenable to changing her usual tour if we had special requests.I would recommend this tour and Luisa to my friends and family."
+        },
+        {
+          "avatar": "Bn",
+          "name": "Brandon",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "What an amazing tour guide! Super detailed explanations and extremely knowledgeable about everything (she’s an archaeologist and it shows). I recommend this tour highly!"
+        },
+        {
+          "avatar": "Dh",
+          "name": "Deborah",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was truly fantastic - knowledgeable, friendly, patient, and fun! She varied pace and topic according to our interests and familiarity.We had a mixed private group of an Italian, Americans, bilingual, English-speaking only, very familiar with Italian history, and no familiarity at all. She was so gracious and engaging, making sure that all of us understood and answering all of our questions. Our tour with her was the first full day of our trip, and it really informed us for the rest of our trip. She provided such helpful historical context, we were able to identify and put together like a puzzle the places, family crests, contradas, and other historical and cultural markers we came across in our sightseeing. Highly recommended!"
+        },
+        {
+          "avatar": "R",
+          "name": "Ron",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa is extremely knowledgable and shared that knowledge with great stories and personal insights.Our group of 7 all highly recommend Luisa. It is obvious she knows and loves Siena, and that meant a lot to us."
+        },
+        {
+          "avatar": "Sh",
+          "name": "Shelley",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was very knowledgeable about her city and we enjoyed learning all about Siena! Go Owl district!"
+        },
+        {
+          "avatar": "V",
+          "name": "Vania",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Interessante e appassionata spiegazione della città! Molto soddisfatti di questo pomeriggio insieme! Grazie Luisa"
+        },
+        {
+          "avatar": "A",
+          "name": "Amy",
+          "date": "Ottobre 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "We learned so much today during our tour! It was so fun and educational! I highly recommend Luisa🌟"
+        },
+        {
+          "avatar": "J",
+          "name": "Jessie",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was amazing! We brought our three kids (11, 9, 5) on the tour, and she was great with them. She answered all my sons questions… all 5000 of them. She was fun, kind, and very personable. We loved learning about Sienna from her. I highly recommend her tour."
+        },
+        {
+          "avatar": "Rd",
+          "name": "Richard",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was extremely accommodating of our delay, and dealt with some atrocious weather really well.She clearly knows Siena inside out, and took us to some wonderful locations we would otherwise have never seen."
+        },
+        {
+          "avatar": "Bt",
+          "name": "Benedetta",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was the perfect guide for our private tour in Siena, she gave a personal touch to the experience and was very flexible and patient since we had our dog with us.She told us the history of Siena, took us to see the city highlights and finally got many good recommendations.Totally recommend the tour with Luisa!"
+        },
+        {
+          "avatar": "Y",
+          "name": "Yuan",
+          "date": "Agosto 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Thoughtful and wonderful experience for learning history of Siena! Luisa was very patient with our 7 and 8 years old, they were asking lots of questions. We all have learned so much about the intrigues and different connections from the history of Siena and Italy, thanks to Luisa makes it also interesting for the kids!Furthermore we have exceeded the time slot, Luisa was very kind to us!We would highly recommend to anyone who wants to have a pleasant tour about Siena!"
+        },
+        {
+          "avatar": "E",
+          "name": "Eric",
+          "date": "Luglio 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa has been the best guide we hired in Italy so far and that is after spending a week in Florence!!! We had a blast listening to the history of Siena and the thoughtfulness of her particular way of telling it!"
+        },
+        {
+          "avatar": "L",
+          "name": "Lisa",
+          "date": "Luglio 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa was knowledgeable without being textbook-like. She wove storytelling into the history, and supplemented with pictures.She is an archeologist, so this is her passion. As hot as it was the day of our tour, she did her best to keep us comforts."
+        },
+        {
+          "avatar": "Bn",
+          "name": "Brian",
+          "date": "Luglio 2022",
+          "img_reviews": "/assets/avatar/uomoAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "Luisa is so knowledgeable and fantastic thank you!!!"
+        },
+        {
+          "avatar": "Br",
+          "name": "Brandi",
+          "date": "Giugno 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+          "reviews_desc": "Luisa gave my family of 9 kids and 5 adults a tour of the main sights of Siena.It was very easy going and everyone learned a lot. Luisa is a pleasure to be around and we had a great time!"
+        },
+        {
+          "avatar": "De",
+          "name": "Debora",
+          "date": "Maggio 2022",
+          "img_reviews": "/assets/avatar/donnaAvatar.png",
+          "rating": 5,
+
+          "reviews_desc": "the best privat tour ever, louisa knows everything about the history of this beautiful city!"
+        }
+      ]
+    },
+    "features": [
+      {
+        "icon": "hugeicons:twin-tower",
+        "title": "Timeless beauty",
+        "description": "Villages and landscapes that take your breath away"
+      },
+      {
+        "icon": "octicon:book-24",
+        "title": "Stories and legends",
+        "description": "Discover myths and hidden treasures at every step"
+      },
+      {
+        "icon": "lineicons:trees-3",
+        "title": "Authentic culture",
+        "description": "Experience unique local traditions and atmospheres"
+      }
+    ],
     "toursPreview": [
       {
         "p": "<strong>Tuscany</strong> is a land of timeless beauty, where every city and village tell ancient stories and offer breathtaking landscapes. Get ready to embark on a unique journey through <strong>Siena, San Gimignano, San Galgano, and Volterra</strong>. Each destination will envelop you with its unique atmosphere, legends, and artistic treasures, all accompanied by an <strong>expert guide</strong>."
@@ -740,7 +1367,7 @@
       "Firenze": {
         "img": "/assets/locationTour/florence_duomo.jpg",
         "name": "Florence",
-        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour Florence",
+        "title": "Luisa Quaglia Tour Guide | Tour Florence",
         "cta": "back to Tour",
 
         "titleImg": "Florence: Art and History",
@@ -771,14 +1398,14 @@
             }
           }
         ],
-        "gallery": []
+        "tourItem": []
       },
 
       "Siena": {
         "img": "/assets/locationTour/siena.jpg",
         "name": "Siena",
         "titleImg": "Siena: A Dive into the Middle Ages",
-        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour Siena",
+        "title": "Luisa Quaglia Tour Guide | Tour Siena",
         "keywords": "Siena Walking Tour, Personal Tour Guide for a Tailored Experience in Siena, Half-Day Tour to Explore the Artistic Treasures of Siena, Siena Tour, Siena Tours, Siena and Surroundings Tour, Siena and Val d'Orcia Tour, Siena Cathedral Tour, Siena Tour Guide, Tour Guide for Siena and Province, Siena Tourist Guide, Private Tour of Siena",
         "cta": "back to Tour",
 
@@ -827,124 +1454,124 @@
             }
           }
         ],
-        "gallery": [
+        "tourItem": [
           {
-            "src": "/assets/locationTour/siena/siena1.jpg",
+            "img": "/assets/locationTour/siena/siena1.jpg",
             "width": 1799,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena2.jpg",
+            "img": "/assets/locationTour/siena/siena2.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena3.jpg",
+            "img": "/assets/locationTour/siena/siena3.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena4.jpg",
+            "img": "/assets/locationTour/siena/siena4.jpg",
             "width": 1807,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena5.jpg",
+            "img": "/assets/locationTour/siena/siena5.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena6.jpg",
+            "img": "/assets/locationTour/siena/siena6.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena7.jpg",
+            "img": "/assets/locationTour/siena/siena7.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena8.jpg",
+            "img": "/assets/locationTour/siena/siena8.jpg",
             "width": 1680,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena9.jpg",
+            "img": "/assets/locationTour/siena/siena9.jpg",
             "width": 1920,
             "height": 660
           },
           {
-            "src": "/assets/locationTour/siena/siena10.jpg",
+            "img": "/assets/locationTour/siena/siena10.jpg",
             "width": 1799,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena11.jpg",
+            "img": "/assets/locationTour/siena/siena11.jpg",
             "width": 900,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena12.jpg",
+            "img": "/assets/locationTour/siena/siena12.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena13.jpg",
+            "img": "/assets/locationTour/siena/siena13.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena14.jpg",
+            "img": "/assets/locationTour/siena/siena14.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena15.jpg",
+            "img": "/assets/locationTour/siena/siena15.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena16.jpg",
+            "img": "/assets/locationTour/siena/siena16.jpg",
             "width": 1714,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena17.jpg",
+            "img": "/assets/locationTour/siena/siena17.jpg",
             "width": 1920,
             "height": 1166
           },
           {
-            "src": "/assets/locationTour/siena/siena20.jpg",
+            "img": "/assets/locationTour/siena/siena20.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena21.jpg",
+            "img": "/assets/locationTour/siena/siena21.jpg",
             "width": 1920,
             "height": 834
           },
           {
-            "src": "/assets/locationTour/siena/siena22.jpg",
+            "img": "/assets/locationTour/siena/siena22.jpg",
             "width": 1788,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena23.jpg",
+            "img": "/assets/locationTour/siena/siena23.jpg",
             "width": 971,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena24.jpg",
+            "img": "/assets/locationTour/siena/siena24.jpg",
             "width": 1920,
             "height": 1151
           },
           {
-            "src": "/assets/locationTour/siena/siena25.jpg",
+            "img": "/assets/locationTour/siena/siena25.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/siena/siena26.jpg",
+            "img": "/assets/locationTour/siena/siena26.jpg",
             "width": 1920,
             "height": 591
           }
@@ -956,7 +1583,7 @@
         "cta": "back to Tour",
 
         "titleImg": "Volterra: From the Etruscans to the Middle Ages",
-        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour Volterra",
+        "title": "Luisa Quaglia Tour Guide | Tour Volterra",
         "keywords": "Volterra tour, Volterra tours, Volterra tour guide, Volterra walking tour, Volterra Italy walking tour, Tour Volterra san gimignano, Volterra city tour, Volterra visit guide, Volterra Tuscany Italy, Tours Volterra italy, Visit Volterra Italy, Volterra visit, Private tour Volterra",
         "citazione": "[…] Volterra shows itself with an arcane charm that emanates from the leaning houses, from the severed towers, from the streets crossed by disturbing shadows, paved in time of sweat and absurdity that cross history and legend digging endless grooves in the mind of men. (Franco Porretti)",
         "descrizione2": "A hidden gem in the heart of Tuscany where every step takes you through centuries of history, from the Etruscan era to the Middle Ages, to the Renaissance. Admire the imposing Etruscan walls, which still protect the city like a timeless embrace. As you stroll through the historic center, let yourself be fascinated by the grandeur of the Palazzo dei Priori, the oldest municipal building in Tuscany, and lose yourself among the charming artisan shops where alabaster, the local stone, comes to life in unique artistic creations. If you want to fully immerse yourself in Volterra's culture, spend a day exploring some of the must-visit places:",
@@ -985,144 +1612,144 @@
             }
           }
         ],
-        "gallery": [
+        "tourItem": [
           {
-            "src": "/assets/locationTour/volterra/volterra1.jpg",
+            "img": "/assets/locationTour/volterra/volterra1.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra2.jpg",
+            "img": "/assets/locationTour/volterra/volterra2.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra3.jpg",
+            "img": "/assets/locationTour/volterra/volterra3.jpg",
             "width": 1812,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra4.jpg",
+            "img": "/assets/locationTour/volterra/volterra4.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra5.jpg",
+            "img": "/assets/locationTour/volterra/volterra5.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra6.jpg",
+            "img": "/assets/locationTour/volterra/volterra6.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra7.jpg",
+            "img": "/assets/locationTour/volterra/volterra7.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra8.jpg",
+            "img": "/assets/locationTour/volterra/volterra8.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra9.jpg",
+            "img": "/assets/locationTour/volterra/volterra9.jpg",
             "width": 1807,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra10.jpg",
+            "img": "/assets/locationTour/volterra/volterra10.jpg",
             "width": 1728,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra11.jpg",
+            "img": "/assets/locationTour/volterra/volterra11.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra12.jpg",
+            "img": "/assets/locationTour/volterra/volterra12.jpg",
             "width": 1803,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra13.jpg",
+            "img": "/assets/locationTour/volterra/volterra13.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra15.jpg",
+            "img": "/assets/locationTour/volterra/volterra15.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra16.jpg",
+            "img": "/assets/locationTour/volterra/volterra16.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra17.jpg",
+            "img": "/assets/locationTour/volterra/volterra17.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra18.jpg",
+            "img": "/assets/locationTour/volterra/volterra18.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra19.jpg",
+            "img": "/assets/locationTour/volterra/volterra19.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra20.jpg",
+            "img": "/assets/locationTour/volterra/volterra20.jpg",
             "width": 900,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra21.jpg",
+            "img": "/assets/locationTour/volterra/volterra21.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra22.jpg",
+            "img": "/assets/locationTour/volterra/volterra22.jpg",
             "width": 1807,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra23.jpg",
+            "img": "/assets/locationTour/volterra/volterra23.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra24.jpg",
+            "img": "/assets/locationTour/volterra/volterra24.jpg",
             "width": 1920,
             "height": 534
           },
           {
-            "src": "/assets/locationTour/volterra/volterra25.jpg",
+            "img": "/assets/locationTour/volterra/volterra25.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra26.jpg",
+            "img": "/assets/locationTour/volterra/volterra26.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra27.jpg",
+            "img": "/assets/locationTour/volterra/volterra27.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra28.jpg",
+            "img": "/assets/locationTour/volterra/volterra28.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/volterra/volterra29.jpg",
+            "img": "/assets/locationTour/volterra/volterra29.jpg",
             "width": 1800,
             "height": 1200
           }
@@ -1134,7 +1761,7 @@
         "cta": "back to Tour",
 
         "titleImg": "San Gimignano: The Medieval Manhattan",
-        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour San Gimignano",
+        "title": "Luisa Quaglia Tour Guide | Tour San Gimignano",
         "keywords": "San Gimignano tour, San Gimignano tour from siena, San Gimignano guided tour, Tour of San Gimignano Italy, San Gimignano Tuscany, San Gimignano walking tour, Walking tour of San Gimignano, Private tour San Gimignano, Siena to San Gimignano tour",
         "citazione": "San Gimignano with its beautiful towers and beautiful bells... (Florentine proverb)",
         "descrizione2": "The 'City of the Beautiful Towers' has been declared a World Heritage Site because its appearance still harks back to the thirteenth and fourteenth centuries, a rare example in Europe of urban organization of the communal age: practically a medieval dream. Here you can immerse yourself in the life of a wealthy merchant with his impregnable tower-house that dominated the town's stretch of the Via Francigena. At that time, you would have seen as many as 72 towers in San Gimignano (today about 15). ",
@@ -1163,149 +1790,149 @@
             }
           }
         ],
-        "gallery": [
+        "tourItem": [
           {
-            "src": "/assets/locationTour/sanGimi/sangimi1.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi1.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi2.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi2.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi4.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi4.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi6.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi6.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi7.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi7.jpg",
             "width": 1747,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi8.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi8.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi9.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi9.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi10.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi10.jpg",
             "width": 1601,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi11.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi11.jpg",
             "width": 899,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi12.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi12.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi13.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi13.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi14.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi14.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi15.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi15.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi16.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi16.jpg",
             "width": 1768,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi17.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi17.jpg",
             "width": 800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi18.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi18.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi19.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi19.jpg",
             "width": 900,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi20.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi20.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi21.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi21.jpg",
             "width": 900,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi22.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi22.jpg",
             "width": 899,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi23.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi23.jpg",
             "width": 1920,
             "height": 1080
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi24.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi24.jpg",
             "width": 1920,
             "height": 1080
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi25.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi25.jpg",
             "width": 1920,
             "height": 1080
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi26.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi26.jpg",
             "width": 1920,
             "height": 1071
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi27.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi27.jpg",
             "width": 675,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi28.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi28.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi29.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi29.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi30.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi30.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGimi/sangimi31.jpg",
+            "img": "/assets/locationTour/sanGimi/sangimi31.jpg",
             "width": 1600,
             "height": 1200
           }
@@ -1316,7 +1943,7 @@
         "img": "/assets/locationTour/abbazia_sangalgano.jpg",
         "name": "San Galgano",
         "titleImg": "San Galgano: Mystery and Spirituality",
-        "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Tour San Galgano",
+        "title": "Luisa Quaglia Tour Guide | Tour San Galgano",
         "keywords": "San Galgano tour, San Galgano tour from siena, San Galgano guided tour, Tour of San Galgano Italy, San Galgano Tuscany, San Galgano walking tour, Walking tour of San Galgano, Private tour San Galgano, Siena to San Galgano tour",
         "cta": "back to Tour",
 
@@ -1354,79 +1981,79 @@
             }
           }
         ],
-        "gallery": [
+        "tourItem": [
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano1.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano1.jpg",
             "width": 1918,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano3.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano3.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano4.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano4.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano5.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano5.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano6.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano6.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano7.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano7.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano8.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano8.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano9.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano9.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano10.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano10.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano11.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano11.jpg",
             "width": 1601,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano12.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano12.jpg",
             "width": 1600,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano13.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano13.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano14.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano14.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano15.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano15.jpg",
             "width": 1800,
             "height": 1200
           },
           {
-            "src": "/assets/locationTour/sanGalg/sangalgano16.jpg",
+            "img": "/assets/locationTour/sanGalg/sangalgano16.jpg",
             "width": 1800,
             "height": 1200
           }
@@ -1439,21 +2066,22 @@
     "banner": {
       "text": "Customize your own tour experience",
       "paragrafo": "Art, History, Archaeology, Folklore and Culinary Tradition...which aspects interest you most?",
-      "button": "more information"
+      "button": "More information"
     }
   },
   "who": {
     "head": {
-      "title": "Luisa Quaglia Tour Guide | Tuscany Experience | Who I Am"
+      "title": "Luisa Quaglia Tour Guide | Who I Am"
     },
     "hero": {
-      "subTitle": "About me",
+      "subTitle": "Luisa Quaglia Tour Guide | About me",
       "title": {
-        "primo": "Hi!",
+        "primo": "Hi there!",
         "secondo": "I am Luisa Quaglia, ",
         "terzo": "a tour guide and archaeologist."
       },
       "paragraph": "I live near Volterra on a farm with my husband Luigi, our little Alice and two perpetually hungry cats, Angus and Marla. I have a degree in archaeology from Siena and have worked in different areas both in Italy and abroad. When I returned I worked in the archaeological museum in Volterra as a guide for school students and then co-managed an archaeological park on Elba Island.",
+      "cta": "Discover my tours",
       "secondTitle": "I made my passion my job",
       "secondPa": "These last experiences made me appreciate outreach, so I decided to become a tour guide-the best choice of my life! I love meeting new people and sharing my passion for history and art with them. I meet people from all over Italy and abroad: this is an opportunity for me to learn about other histories and cultures, a kind of endless journey, fantastic!",
       "finalP": "I love this job and I love doing it in Tuscany, a region where art, history, nature and traditions are perfectly balanced. In fact, with my husband, who is an environmental guide, we also organize some nature walks. If you'd like to stay updated on our outings sign up for the mailing list! I hope to meet you soon in Tuscany. In the meantime, you can find me every day on social. See you soon, Luisa."
