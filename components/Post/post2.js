@@ -11,7 +11,7 @@ const Post2 = ({ post, featuredMedia }) => {
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="flex flex-col lg:h-[600px] gap-4"
+      className="flex flex-col lg:h-[700px] gap-4"
     >
       <Image
         className="object-cover w-full   h-[300px] lg:h-[350px] xl:h-[400px] 2xl:h-[450px]  rounded-sm"
