@@ -34,7 +34,6 @@ function MyApp({ Component, pageProps, router }) {
         <Component {...pageProps} />
       </DynamicLayout>
       {/* <!-- Elfsight Accessibility | Untitled Accessibility --> */}
-      <Script src="https://elfsightcdn.com/platform.js" async></Script>
 
       {/* Global site tag (gtag.js) - Google Analytics */}
       <Script
