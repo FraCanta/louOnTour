@@ -35,10 +35,7 @@ function MyApp({ Component, pageProps, router }) {
       </DynamicLayout>
       {/* <!-- Elfsight Accessibility | Untitled Accessibility --> */}
       <Script src="https://elfsightcdn.com/platform.js" async></Script>
-      <div
-        className="elfsight-app-acbdfc91-1069-4174-a7aa-9fd11406bb2e"
-        data-elfsight-app-lazy
-      ></div>
+
       {/* Global site tag (gtag.js) - Google Analytics */}
       <Script
         type="text/javascript"
