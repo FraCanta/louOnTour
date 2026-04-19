@@ -38,6 +38,9 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    largePageDataBytes: 200 * 1000, // Set threshold to 200 kB
+  },
   i18n: {
     locales: ["it", "en"],
     defaultLocale: "it",

@@ -10,7 +10,8 @@ const Subscribe = ({ translation }) => {
   const subscribe = async (e) => {
     e.preventDefault();
 
-    setState("Loading");
+    setErrorMsg(null);
+    setState("loading");
 
     try {
       const response = await fetch("/api/subscribe", {
@@ -22,16 +23,16 @@ const Subscribe = ({ translation }) => {
       });
 
       if (response.ok) {
-        setState("Success");
+        setState("success");
         setEmail("");
       } else {
         const errorData = await response.json();
-        setErrorMsg(errorData.error);
-        setState("Error");
+        setErrorMsg(errorData.error || "Errore imprevisto");
+        setState("error");
       }
     } catch (e) {
       setErrorMsg("An error occurred while subscribing.");
-      setState("Error");
+      setState("error");
     }
   };
 
