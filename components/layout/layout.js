@@ -12,11 +12,17 @@ function Layout({ children }) {
       <LenisScroll />
 
       <DynamicMenu translation={LayoutTranslation?.menu} />
-      <Script
-        id="mcjs"
-        strategy="afterInteractive"
-        src="https://chimpstatic.com/mcjs-connected/js/users/23d6ce9b211aa205189c78058/73622c583c1efde2309feee86.js"
-      />
+      <Script id="mcjs" strategy="afterInteractive">
+        {`
+    !function(c,h,i,m,p){
+      m=c.createElement(h),
+      p=c.getElementsByTagName(h)[0],
+      m.async=1,
+      m.src=i,
+      p.parentNode.insertBefore(m,p)
+    }(document,"script","https://chimpstatic.com/mcjs-connected/js/users/23d6ce9b211aa205189c78058/73622c583c1efde2309feee86.js");
+  `}
+      </Script>
       {children}
       <DynamicFooter translation={LayoutTranslation} />
     </>
