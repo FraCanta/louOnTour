@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import router, { useRouter } from "next/router";
-import translationIT from "../public/locales/it/it.json";
-import translationEN from "../public/locales/en/en.json";
+import router from "next/router";
 
 import { getPosts, getCategories, getTagId } from "../utils/wordpress";
 import Head from "next/head";
@@ -10,9 +8,8 @@ import LastPost from "../components/Post/lastPost";
 import { MaskText } from "../components/UI/MaskText";
 
 const Blog = ({ post, category, pages, currentP, lastPost }) => {
-  const myRouter = useRouter();
   const [jsxPosts, setJsxPosts] = useState([]);
-  const [filterObj, setFilterObj] = useState({});
+  const [paginationArray, setPaginationArray] = useState([]);
 
   const handlePagination = (page) => {
     router.push({
@@ -24,12 +21,6 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
   };
 
   useEffect(() => {
-    setFilterObj({
-      currentPage: parseInt(myRouter?.query?.page) || 1,
-    });
-  }, []);
-
-  useEffect(() => {
     setJsxPosts(
       post.map((p, i) => {
         const featuredMedia = p?._embedded?.["wp:featuredmedia"]?.[0];
@@ -39,9 +30,7 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
   }, [post]);
 
   useEffect(() => {
-    setFilterObj((prevData) => {
-      return { ...prevData, paginationArray: new Array(pages).fill(1) };
-    });
+    setPaginationArray(new Array(pages).fill(1));
   }, [pages]);
 
   return (
@@ -74,7 +63,7 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
             {jsxPosts}
           </div>
           <div className="container flex justify-center ">
-            {filterObj?.paginationArray?.length > 1 && (
+            {paginationArray.length > 1 && (
               <div className="flex justify-center gap-4 my-10">
                 <div className="btn-group">
                   <button
@@ -89,7 +78,7 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
                     «
                   </button>
 
-                  {filterObj?.paginationArray?.map((el, i) => (
+                  {paginationArray.map((el, i) => (
                     <button
                       className={`btn ${
                         parseInt(currentP) - i === el && "btn-active"
@@ -191,20 +180,6 @@ export async function getServerSideProps(context) {
   const lastPostWithCategories = attachPostCategories(lastPost);
   const paginationTrimWithCategories = attachPostCategories(paginationTrim);
 
-  // Traduzioni
-  let obj;
-  switch (locale) {
-    case "it":
-      obj = translationIT;
-      break;
-    case "en":
-      obj = translationEN;
-      break;
-    default:
-      obj = translationIT;
-      break;
-  }
-
   return {
     props: {
       post: paginationTrimWithCategories, // post per Post2 (dal 5° in poi)
@@ -212,7 +187,6 @@ export async function getServerSideProps(context) {
       pages: Math.ceil(remainingPosts.length / itemPerPage), // pagine
       category: category || ["Blog"], // tutte le categorie della lingua
       currentP: page, // pagina corrente
-      blog: obj?.blog, // traduzioni
     },
   };
 }

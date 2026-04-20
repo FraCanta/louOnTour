@@ -50,7 +50,6 @@ const ChiSono = ({ translation, home }) => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <DynamicHeroChiSono translation={translation?.hero} /> */}
       <HeroChiSono translation={translation?.hero} />
       <DynamicText translation={translation?.hero} />
       <DynamicBgImage translation={translation?.hero} />

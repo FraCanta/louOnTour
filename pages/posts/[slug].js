@@ -5,7 +5,6 @@ import {
   getPosts,
   getSlugs,
   getTagId,
-  getTagNameList,
   getCategories,
 } from "../../utils/wordpress";
 import { getDate } from "../../utils/utils";
@@ -19,8 +18,6 @@ export default function PostPage({
   post,
   modifiedContent,
   recent,
-  tags,
-  nextPrevPost,
   postCategories,
 }) {
   const contents = parse(post.title.rendered, {
@@ -128,23 +125,6 @@ export default function PostPage({
         </div>
       </div>
 
-      {/* <div className="grid grid-cols-2 mt-8 btn-group">
-        <button className="flex flex-col btn btn-outline ">
-          {!!nextPrevPost?.prevSlug ? (
-            <Link href={`/posts/${nextPrevPost?.prevSlug}`}>
-              <div className="mb-2 capitalize">{"< "}prev</div>
-            </Link>
-          ) : (
-            ""
-          )}
-        </button>
-
-        <button className="flex flex-col btn btn-outline">
-          <Link href={`/posts/${nextPrevPost?.nextSlug}`}>
-            <div className="mb-2 capitalize">next{" >"}</div>
-          </Link>
-        </button>
-      </div> */}
     </>
   );
 }
@@ -167,13 +147,6 @@ export async function getStaticProps({ params, locale }) {
   const idLocale = await getTagId(locale); // recupera id della lingua attuale
   const allPosts = await getPosts(idLocale);
   const category = await getCategories(locale);
-  const postArrayIndex = allPosts?.findIndex((el) => el.id === post?.id);
-  const nextPrevPost = {
-    prevTitle: allPosts[postArrayIndex - 1]?.title?.rendered || null,
-    nexTitle: allPosts[postArrayIndex + 1]?.title?.rendered || null,
-    prevSlug: allPosts[postArrayIndex - 1]?.slug || null,
-    nextSlug: allPosts[postArrayIndex + 1]?.slug || null,
-  };
 
   const postCategories = category?.filter((el) =>
     post?.categories?.includes(el?.id),
@@ -183,8 +156,6 @@ export async function getStaticProps({ params, locale }) {
     "data-src-fg",
     "src",
   );
-  const featuredMedia = post?.["_embedded"]?.["wp:featuredmedia"][0];
-  const tags = await getTagNameList(post?.tags);
 
   return {
     props: {
@@ -194,9 +165,6 @@ export async function getStaticProps({ params, locale }) {
         ?.filter((el) => el.id !== post.id)
         .sort((a, b) => a?.date > b?.date)
         .filter((el, i) => i < 4),
-      featuredMedia: featuredMedia,
-      tags: tags,
-      nextPrevPost: nextPrevPost,
       postCategories: postCategories,
     },
     revalidate: 10, // In seconds

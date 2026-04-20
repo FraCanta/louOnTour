@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import FooterLogo from "../../public/logo_lou2.png";
 import { useRouter } from "next/router";
-import BgAnimation from "../bgAnimation/bgAnimation";
 import Subscribe from "../newsletter/subscribe";
 
 const Footer = ({ translation }) => {

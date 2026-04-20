@@ -11,14 +11,12 @@ import "../styles/wordpress.css";
 import "../styles/swiper_bullet.css";
 
 import dynamic from "next/dynamic";
-const DynamicLayout = dynamic(() => import("../components/layout/layout"));
-import Head from "next/head";
 import Script from "next/script";
-import { AnimatePresence, motion, Spring } from "framer-motion";
 import AOS from "aos";
 import { useEffect } from "react";
+const DynamicLayout = dynamic(() => import("../components/layout/layout"));
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps }) {
   useEffect(() => {
     // here you can add your aos options
     AOS.init({

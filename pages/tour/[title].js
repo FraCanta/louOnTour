@@ -1,21 +1,14 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
-const DynamicHeroCities = dynamic(
-  () => import("../../components/UI/heroCities"),
-);
-
 const DynamicBanner = dynamic(
   () => import("../../components/sectionFive/banner"),
 );
 import translationIT from "../../public/locales/it/it.json";
 import translationEN from "../../public/locales/en/en.json";
-import Gallery3d2 from "../../components/UI/Gallery3D2";
 import { MaskText } from "../../components/UI/MaskText";
-import CtaPrimary from "../../components/button/CtaPrimary";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import CtaOutline from "../../components/button/CtaOutline";
 import Link from "next/link";
 import MapCards from "../../components/MapCards/MapCards";
 
@@ -185,15 +178,11 @@ export async function getStaticProps(context) {
 
   let targetObj = obj?.tours?.locationTours?.[params?.title];
   const banner = obj?.home?.banner;
-  const arr = Object.keys(obj?.tours?.locationTours);
-
-  const correlati = obj?.tours?.corr;
 
   return {
     props: {
       city: targetObj,
       banner: banner,
-      correlati: correlati,
     },
   };
 }
