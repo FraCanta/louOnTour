@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 const DynamicFooter = dynamic(() => import("./footer"), { ssr: false });
 const DynamicMenu = dynamic(() => import("./menu"), { ssr: false });
 import LayoutTranslation from "../../public/locales/layout.json";
-import Script from "next/script";
 const LenisScroll = dynamic(() => import("../LenisScroll/LenisScroll"), {
   ssr: false,
 });
@@ -12,17 +11,7 @@ function Layout({ children }) {
       <LenisScroll />
 
       <DynamicMenu translation={LayoutTranslation?.menu} />
-      <Script id="mcjs" strategy="afterInteractive">
-        {`
-    !function(c,h,i,m,p){
-      m=c.createElement(h),
-      p=c.getElementsByTagName(h)[0],
-      m.async=1,
-      m.src=i,
-      p.parentNode.insertBefore(m,p)
-    }(document,"script","https://chimpstatic.com/mcjs-connected/js/users/23d6ce9b211aa205189c78058/73622c583c1efde2309feee86.js");
-  `}
-      </Script>
+
       {children}
       <DynamicFooter translation={LayoutTranslation} />
     </>
