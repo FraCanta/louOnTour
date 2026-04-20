@@ -27,7 +27,7 @@ const Footer = ({ translation }) => {
               Iscriviti alla newsletter per partecipare ai tour esclusivi
               dedicati alla mia community più affezionata!
             </p>
-            <Subscribe translation={translation} />
+            <Subscribe translation={translation} variant="footer" />
           </div>
           <div className="grid justify-between h-full grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-6">
             <div className="flex flex-col gap-2">

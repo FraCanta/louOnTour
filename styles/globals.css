@@ -59,9 +59,13 @@ button {
 
 @layer utilities {
   .newsletter {
-    background-image: url("/public/assets/newsletter.jpg");
+    background-image: linear-gradient(
+        rgba(254, 243, 234, 0.82),
+        rgba(254, 243, 234, 0.88)
+      ),
+      url("/assets/newsletter.jpg");
     background-size: cover;
-    height: 70vh;
+    background-position: center;
   }
   .hero_left {
     -webkit-clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);

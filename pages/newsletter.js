@@ -1,11 +1,11 @@
 import React from "react";
-import Subscribe from "../components/newsletter/subscribe";
 import Head from "next/head";
+import Subscribe from "../components/newsletter/subscribe";
+import Banner from "../components/sectionFive/banner";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
-import Banner from "../components/sectionFive/banner";
 
-const Newsletter = ({ translation, banner }) => {
+const Newsletter = ({ translation }) => {
   return (
     <>
       <Head>
@@ -13,10 +13,12 @@ const Newsletter = ({ translation, banner }) => {
         <meta name="description" content={translation.paragrafo} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="px-4 lg:min-h-[calc(50vh_-_100px)] flex justify-center items-center newsletter ">
-        <Subscribe translation={translation} />
-      </div>
-      <Banner translation={translation.banner} />
+
+      <section className="newsletter flex min-h-[calc(100vh-100px)] items-center justify-center px-4 py-16">
+        <Subscribe translation={translation} variant="page" />
+      </section>
+
+      {/* <Banner translation={translation.banner} /> */}
     </>
   );
 };
@@ -30,7 +32,6 @@ export async function getStaticProps({ locale }) {
     case "it":
       obj = translationIT;
       break;
-
     case "en":
       obj = translationEN;
       break;
@@ -41,7 +42,13 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
-      translation: obj?.newsletter,
+      translation: {
+        ...obj?.newsletter,
+        banner:
+          obj?.newsletter?.banner ||
+          obj?.tour?.banner ||
+          translationIT?.newsletter?.banner,
+      },
     },
     revalidate: 60,
   };
