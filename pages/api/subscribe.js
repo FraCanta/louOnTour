@@ -7,11 +7,14 @@ mailchimp.setConfig({
 });
 
 export default async (req, res) => {
-  const { email } = req.body;
+  const { email, gdpr } = req.body;
 
-  // 🔒 Validazione base
   if (!email || !/\S+@\S+\.\S+/.test(email)) {
     return res.status(400).json({ error: "Email non valida" });
+  }
+
+  if (!gdpr) {
+    return res.status(400).json({ error: "Consenso richiesto" });
   }
 
   try {
@@ -20,22 +23,24 @@ export default async (req, res) => {
       {
         email_address: email,
         status: "subscribed",
+        marketing_permissions: [
+          {
+            marketing_permission_id: "341504",
+            enabled: true,
+          },
+        ],
       },
     );
 
     return res.status(201).json({ message: "Iscritto con successo" });
   } catch (error) {
-    // 👇 Mailchimp error handling
     const errorResponse = error.response?.body;
 
-    // Email già iscritta
     if (errorResponse?.title === "Member Exists") {
       return res.status(200).json({
         message: "Sei già iscritto 😉",
       });
     }
-
-    console.error(errorResponse || error);
 
     return res.status(500).json({
       error: errorResponse?.detail || "Errore durante l'iscrizione",

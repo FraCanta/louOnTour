@@ -6,7 +6,7 @@ const Subscribe = ({ translation }) => {
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle");
   const [errorMsg, setErrorMsg] = useState(null);
-
+  const [gdpr, setGdpr] = useState(false);
   const subscribe = async (e) => {
     e.preventDefault();
 
@@ -19,7 +19,7 @@ const Subscribe = ({ translation }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, gdpr }),
       });
 
       if (response.ok) {
@@ -76,7 +76,17 @@ const Subscribe = ({ translation }) => {
           </button>
         </div>
       </form>
-      <p className="mt-2 text-[11px] text-para/80">
+      <label className="flex h-auto gap-2">
+        <input
+          type="checkbox"
+          checked={gdpr}
+          onChange={(e) => setGdpr(e.target.checked)}
+          required
+        />
+        <span>Acconsento a ricevere email promozionali</span>
+      </label>
+
+      {/* <p className="mt-2 text-[11px] text-para/80">
         Niente spam. Solo contenuti esclusivi e aggiornamenti sui tour. Puoi
         cancellarti quando vuoi. Leggi la
         <Link
@@ -88,7 +98,8 @@ const Subscribe = ({ translation }) => {
           Privacy Policy
         </Link>{" "}
         per saperne di più.
-      </p>
+      </p> */}
+
       {state === "Error" && <p className="py-4 text-red-600">{errorMsg}</p>}
       {state === "Success" && (
         <p className="py-4 text-green-600">
