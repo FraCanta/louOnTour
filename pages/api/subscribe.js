@@ -1,42 +1,44 @@
 /* eslint-disable import/no-anonymous-default-export */
+import mailchimp from "@mailchimp/mailchimp_marketing";
+
+mailchimp.setConfig({
+  apiKey: process.env.MAILCHIMP_API_KEY,
+  server: process.env.MAILCHIMP_API_SERVER, // es: "us21"
+});
+
 export default async (req, res) => {
   const { email } = req.body;
 
+  // 🔒 Validazione base
   if (!email || !/\S+@\S+\.\S+/.test(email)) {
     return res.status(400).json({ error: "Email non valida" });
   }
 
   try {
-    const { MAILCHIMP_AUDIENCE_ID, MAILCHIMP_API_KEY, MAILCHIMP_API_SERVER } =
-      process.env;
-
-    const response = await fetch(
-      `https://${MAILCHIMP_API_SERVER}.api.mailchimp.com/3.0/lists/${MAILCHIMP_AUDIENCE_ID}/members`,
+    const response = await mailchimp.lists.addListMember(
+      process.env.MAILCHIMP_AUDIENCE_ID,
       {
-        method: "POST",
-        headers: {
-          Authorization: `Basic ${Buffer.from(`anystring:${MAILCHIMP_API_KEY}`).toString("base64")}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email_address: email,
-          status: "subscribed",
-        }),
+        email_address: email,
+        status: "subscribed",
       },
     );
 
-    const data = await response.json();
+    return res.status(201).json({ message: "Iscritto con successo" });
+  } catch (error) {
+    // 👇 Mailchimp error handling
+    const errorResponse = error.response?.body;
 
-    if (!response.ok) {
-      return res.status(response.status).json({
-        error: data.detail || "Errore durante l'iscrizione",
+    // Email già iscritta
+    if (errorResponse?.title === "Member Exists") {
+      return res.status(200).json({
+        message: "Sei già iscritto 😉",
       });
     }
 
-    return res.status(201).json({ message: "Iscritto con successo" });
-  } catch (error) {
+    console.error(errorResponse || error);
+
     return res.status(500).json({
-      error: "Errore server",
+      error: errorResponse?.detail || "Errore durante l'iscrizione",
     });
   }
 };
