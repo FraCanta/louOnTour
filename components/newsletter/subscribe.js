@@ -76,15 +76,17 @@ const Subscribe = ({ translation }) => {
           </button>
         </div>
       </form>
-      <label className="flex h-auto gap-2">
-        <input
-          type="checkbox"
-          checked={gdpr}
-          onChange={(e) => setGdpr(e.target.checked)}
-          required
-        />
+      <div className="flex w-4/5 gap-2 mb-4 mr-2 lg:w-3/4">
+        <label className="flex ">
+          <input
+            type="checkbox"
+            checked={gdpr}
+            onChange={(e) => setGdpr(e.target.checked)}
+            required
+          />
+        </label>
         <span>Acconsento a ricevere email promozionali</span>
-      </label>
+      </div>
 
       {/* <p className="mt-2 text-[11px] text-para/80">
         Niente spam. Solo contenuti esclusivi e aggiornamenti sui tour. Puoi
