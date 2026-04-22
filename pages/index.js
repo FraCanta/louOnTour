@@ -7,6 +7,7 @@ const DynamicMission = dynamic(
 const DynamicAboutMe = dynamic(
   () => import("../components/sectionThree/aboutMe"),
 );
+const DynamicEvents = dynamic(() => import("../components/sectionSix/events"));
 const DynamicMap = dynamic(() => import("../components/sectionTwo/map"));
 const DynamicInsta = dynamic(() => import("../components/sectionFour/insta"));
 const DynamicBanner = dynamic(() => import("../components/sectionFive/banner"));
@@ -24,6 +25,7 @@ import {
 } from "../utils/wordpress";
 import MapCards from "../components/MapCards/MapCards";
 import { MaskText } from "../components/UI/MaskText";
+import ElfsightWidget from "../components/UI/ElfsightWidget";
 import CtaPrimary from "../components/button/CtaPrimary";
 import CtaOutline from "../components/button/CtaOutline";
 
@@ -101,11 +103,8 @@ export default function Home({ translation, post, tours }) {
       </div>
 
       <DynamicAboutMe translation={translation?.about} />
-      <script src="https://elfsightcdn.com/platform.js" async></script>
-      <div
-        className="elfsight-app-3556d60c-9ec1-4325-8318-b25c82d7ac2a !overflow-hidden"
-        data-elfsight-app-lazy
-      ></div>
+      <DynamicEvents translation={translation?.events} />
+      <ElfsightWidget />
 
       <BlogSection post={post} translation={translation?.blogSection} />
       <DynamicBanner translation={translation?.banner} />

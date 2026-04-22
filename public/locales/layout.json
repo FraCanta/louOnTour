@@ -4,9 +4,11 @@
       "home": "Inizi da qui!",
       "tours": "Tour",
       "about": "Chi sono",
+      "events": "Eventi",
       "blog": "Blog",
+      "comingSoon": "coming soon",
       "contact": "Contattami",
-      "iscriviti": "Newsletter",
+      "iscriviti": "Iscriviti alla newsletter",
       "map": {
         "markers": [
           {
@@ -43,9 +45,11 @@
       "home": "Start Here!",
       "tours": "Tours",
       "about": "Who i am",
+      "events": "Events",
       "blog": "Blog",
+      "comingSoon": "coming soon",
       "contact": "Contact me",
-      "iscriviti": "Subscribe",
+      "iscriviti": "Join the newsletter",
       "map": {
         "markers": [
           {

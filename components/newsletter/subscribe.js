@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { MaskText } from "../UI/MaskText";
 
 const MAILCHIMP_ACTION =
   "https://luisaquaglia-tourguide.us14.list-manage.com/subscribe/post?u=23d6ce9b211aa205189c78058&id=5f51338f71&v_id=4764&f_id=0050b7e5f0";
@@ -15,12 +16,12 @@ const COPY = {
     lastNameLabel: "Cognome",
     gdprTitle: "Informativa GDPR",
     gdprPrompt: "Seleziona per confermare il tuo consenso",
-    gdprConsent:
-      "Acconsento all'utilizzo dei miei dati per ricevere informazioni su tour ed eventi",
+    gdprConsentBeforeLink: "Ho preso visione e accetto",
+    gdprConsentLink: "l'informativa sulla privacy",
+    gdprConsentAfterLink:
+      "e autorizzo il trattamento dei miei dati personali ai sensi del D.Lgs. 196/2003 e del GDPR 679/2016.",
     unsubscribeNotice:
       "Puoi disiscriverti in qualsiasi momento facendo clic sul link nel piè di pagina delle email.",
-    privacyNotice:
-      "Per informazioni sulle nostre pratiche in materia di privacy, visita il sito web.",
     mailchimpNotice:
       "Usiamo Mailchimp come piattaforma di marketing. Cliccando su Iscriviti, accetti che i tuoi dati vengano trasferiti a Mailchimp per l'elaborazione.",
     mailchimpLink: "Scopri di più",
@@ -39,12 +40,12 @@ const COPY = {
     lastNameLabel: "Last name",
     gdprTitle: "GDPR notice",
     gdprPrompt: "Select to confirm your consent",
-    gdprConsent:
-      "I consent to the use of my data to receive information about tours and events",
+    gdprConsentBeforeLink: "I have read and accept",
+    gdprConsentLink: "the privacy policy",
+    gdprConsentAfterLink:
+      "and I authorize the processing of my personal data under GDPR 679/2016.",
     unsubscribeNotice:
       "You can unsubscribe at any time by clicking the link in the footer of our emails.",
-    privacyNotice:
-      "For information about our privacy practices, please visit our website.",
     mailchimpNotice:
       "We use Mailchimp as our marketing platform. By clicking Subscribe, you acknowledge that your information will be transferred to Mailchimp for processing.",
     mailchimpLink: "Learn more",
@@ -72,16 +73,18 @@ const Subscribe = ({ translation, variant = "default" }) => {
     >
       {showIntro ? (
         <div className={isPageVariant ? "mb-8" : "mb-6"}>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-[#c9573c]/80">
+          <h1 className="text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max lg:tracking-wide">
             {content.eyebrow}
-          </p>
-          <h2
-            className={`mb-3 font-semibold leading-tight text-[#c9573c] ${
-              isPageVariant ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl"
-            }`}
-          >
-            {content.title}
-          </h2>
+          </h1>
+          <MaskText>
+            <h2
+              className={`mb-3 font-semibold leading-tight text-[#c9573c] ${
+                isPageVariant ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl"
+              }`}
+            >
+              {content.title}
+            </h2>
+          </MaskText>
           <p className="max-w-2xl text-base leading-relaxed text-[#6d7b80] md:text-lg">
             {translation?.paragrafo || content.description}
           </p>
@@ -184,7 +187,18 @@ const Subscribe = ({ translation, variant = "default" }) => {
               required
               className="mt-1 h-4 w-4 rounded border-[#c9573c]/40 text-[#c9573c] focus:ring-[#c9573c]"
             />
-            <span>{content.gdprConsent}</span>
+            <span>
+              {content.gdprConsentBeforeLink}{" "}
+              <Link
+                href="https://www.iubenda.com/privacy-policy/15052201"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#c9573c] underline underline-offset-4"
+              >
+                {content.gdprConsentLink}
+              </Link>{" "}
+              {content.gdprConsentAfterLink}
+            </span>
           </label>
 
           {isFooterVariant ? (
@@ -203,7 +217,6 @@ const Subscribe = ({ translation, variant = "default" }) => {
           ) : (
             <div className="mt-4 space-y-2 text-sm leading-relaxed text-[#6d7b80]">
               <p>{content.unsubscribeNotice}</p>
-              <p>{content.privacyNotice}</p>
               <p>
                 {content.mailchimpNotice}{" "}
                 <Link

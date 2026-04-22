@@ -675,6 +675,35 @@
         }
       ]
     },
+    "events": {
+      "subTitle": "Eventi",
+      "title": "Esperienze speciali, stagionali e su misura",
+      "paragraph": "Sto preparando una selezione di eventi pensati per chi vuole vivere la Toscana in modo ancora piu personale: appuntamenti in piccoli gruppi, itinerari in occasione di ricorrenze speciali e momenti dedicati alla mia community.",
+      "primaryCta": "Iscriviti alla newsletter",
+      "secondaryCta": "Scrivimi per info",
+      "badge": "Coming soon",
+      "asideEyebrow": "Nuovi appuntamenti",
+      "asideTitle": "Una nuova sezione in arrivo per chi vuole qualcosa di piu di un semplice tour.",
+      "asideText": "Qui troverai presto eventi curati da me, con posti limitati e formule più intime, pensate per chi ama arte, storia e atmosfera locale.",
+      "asideNote": "Se vuoi essere tra i primi a sapere quando escono, puoi iscriverti alla newsletter oppure scrivermi, cosi ti tengo aggiornata sui prossimi lanci.",
+      "items": [
+        {
+          "icon": "hugeicons:maping",
+          "title": "Passeggiate tematiche",
+          "text": "Percorsi speciali tra storie, simboli e dettagli che meritano più tempo e più ascolto."
+        },
+        {
+          "icon": "mdi:party-popper",
+          "title": "Eventi stagionali",
+          "text": "Appuntamenti legati a periodi dell'anno, feste locali e occasioni che rendono ogni visita irripetibile."
+        },
+        {
+          "icon": "hugeicons:user-group",
+          "title": "Piccoli gruppi",
+          "text": "Esperienze piu raccolte, pensate per favorire dialogo, curiosita e un ritmo davvero piacevole."
+        }
+      ]
+    },
     "socialLou": {
       "subTitle": "Social",
       "title": "Restiamo in contatto!",

@@ -100,13 +100,25 @@ const Mobile = ({ translation }) => {
               </motion.div>
             ))}
 
+            <motion.div
+              variants={menuVariants.item}
+              animate="visibleItem"
+              className="w-11/12 mx-auto mb-6"
+            >
+              <div className="relative inline-flex pr-12 text-3xl tracking-wide menu-item font-regular">
+                <span>{translation?.[locale]?.events}</span>
+                <span className="absolute -top-3 right-0 px-2.5 py-1.5 text-[8px] font-semibold uppercase tracking-wide rounded-full bg-[#CE9486]/20 text-[#c9573c] leading-none whitespace-nowrap">
+                  {translation?.[locale]?.comingSoon}
+                </span>
+              </div>
+            </motion.div>
+
             {/* Pulsanti extra */}
-            <motion.div className="flex flex-col w-11/12 gap-4 mx-auto mt-20">
+            <motion.div className="flex flex-col w-11/12 gap-4 mx-auto mt-10">
               <Link
                 href="https://wa.me/393200327355"
                 target="_blank"
                 title="Luisa Quaglia | Come prenotare e avere info sui tour da fare"
-                onClick={() => setOpen(false)} // chiude il menu
                 className="w-full flex items-center gap-4 justify-center max-content text-center text-[#c9573c] tracking-wide  font-medium  leading-snug py-3 px-6  xs:text-lg 3xl:text-3xl rounded-md border-2 border-[#c9573c]"
               >
                 {translation?.[locale]?.contact}{" "}
@@ -117,16 +129,17 @@ const Mobile = ({ translation }) => {
                   className="flex-shrink-0"
                 />
               </Link>
-              <CtaPrimary
-                link={`/newsletter`}
-                title="I miei articoli"
+              <Link
+                href="/newsletter"
+                title="La mia Newsletter | Iscriviti per ricevere aggiornamenti su tour ed eventi"
                 onClick={() => setOpen(false)} // chiude il menu
+                className="flex items-center justify-center gap-1 text-center lg:max-w-max font-medium py-3 px-6 3xl:py-6 3xl:px-8 xs:text-lg tracking-wide 3xl:text-3xl rounded-md text-main hover:transition-all bg-[#77674E] w-full text-white"
               >
                 {translation?.[locale]?.iscriviti}
-              </CtaPrimary>
+              </Link>
             </motion.div>
             <div className="w-full px-6 mb-6">
-              <div className=" w-full px-4 h-[1px] mt-10"></div>
+              <div className=" w-full px-4 h-[1px] mt-6"></div>
               <div className="flex flex-wrap items-center justify-between w-full gap-4 px-0 py-6">
                 <div className="flex flex-col items-center gap-4 lg:flex-row">
                   <div className="flex items-center gap-2">

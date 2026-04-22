@@ -676,6 +676,35 @@
         }
       ]
     },
+    "events": {
+      "subTitle": "Events",
+      "title": "Special, seasonal and carefully curated experiences",
+      "paragraph": "I am preparing a selection of events for travelers who want to experience Tuscany in an even more personal way: small-group gatherings, special-occasion itineraries and exclusive moments designed for my community.",
+      "primaryCta": "Join the newsletter",
+      "secondaryCta": "Write me for info",
+      "badge": "Coming soon",
+      "asideEyebrow": "New experiences",
+      "asideTitle": "A new space is coming for those looking for more than a classic guided tour.",
+      "asideText": "Soon you will find events personally curated by me, with limited spots and a more intimate format for those who love art, history and local atmosphere.",
+      "asideNote": "If you want to be among the first to know when they are published, join the newsletter or send me a message and I will keep you updated on the next launches.",
+      "items": [
+        {
+          "icon": "hugeicons:maping",
+          "title": "Themed walks",
+          "text": "Special itineraries built around stories, symbols and details that deserve more time and deeper attention."
+        },
+        {
+          "icon": "mdi:party-popper",
+          "title": "Seasonal events",
+          "text": "Experiences tied to special times of the year, local celebrations and occasions that make every visit unique."
+        },
+        {
+          "icon": "hugeicons:user-group",
+          "title": "Small groups",
+          "text": "More intimate formats designed to encourage dialogue, curiosity and a truly enjoyable pace."
+        }
+      ]
+    },
     "socialLou": {
       "subTitle": "Social",
       "title": "Stay connected!",

@@ -119,6 +119,12 @@ const Menu = ({ translation }) => {
                 >
                   {translation?.[locale]?.blog}
                 </Link>
+                <span className="relative pr-16 tracking-wider text-xl flex items-center cursor-default select-none">
+                  <span>{translation?.[locale]?.events}</span>
+                  <span className="absolute -top-3 -right-6 px-2.5 py-1.5 text-[8px] lg:text-[9px] font-semibold uppercase tracking-wide rounded-full bg-[#CE9486]/20 text-[#c9573c] leading-none whitespace-nowrap">
+                    {translation?.[locale]?.comingSoon}
+                  </span>
+                </span>
               </div>
             </div>
           </div>
@@ -138,7 +144,11 @@ const Menu = ({ translation }) => {
                 className="flex-shrink-0"
               />
             </Link>
-            <CtaPrimary link={`/newsletter`} title="I miei articoli">
+            <CtaPrimary
+              link={`/newsletter`}
+              title="I miei articoli"
+              className="!w-auto whitespace-nowrap px-5 xl:px-6 text-base xl:text-lg"
+            >
               {translation?.[locale]?.iscriviti}
             </CtaPrimary>
           </div>
