@@ -1,0 +1,644 @@
+{
+  "copy": {
+    "it": {
+      "page": {
+        "title": "Eventi | Lou On Tour",
+        "description": "Scopri gli eventi a data fissa di Lou On Tour: tour stagionali, passeggiate tematiche ed esperienze in piccoli gruppi.",
+        "eyebrow": "Eventi",
+        "heading": "Date fisse, piccoli gruppi, esperienze da vivere in stagione",
+        "paragraph": "Qui trovi gli appuntamenti speciali in calendario: tour che si ripetono da giugno a novembre, con posti limitati, prezzo chiaro e tutti i dettagli utili per capire subito quale esperienza fa per te.",
+        "featured": "In evidenza",
+        "upcoming": "Prossime date disponibili",
+        "allEvents": "Tutti gli eventi",
+        "fromLabel": "A partire da",
+        "durationLabel": "Durata",
+        "locationLabel": "Luogo",
+        "spotsLabel": "Posti",
+        "discoverCta": "Scopri l'evento",
+        "infoCta": "Richiedi informazioni",
+        "includedTitle": "Cosa troverai",
+        "recurringTitle": "Ricorrenza"
+      },
+      "detail": {
+        "back": "Torna a tutti gli eventi",
+        "nextDates": "Date in calendario",
+        "infoTitle": "Dettagli evento",
+        "galleryTitle": "Atmosfera e immagini",
+        "includedTitle": "Cosa include",
+        "contactCta": "Prenota o chiedi info",
+        "newsletterCta": "Iscriviti alla newsletter",
+        "meetingPoint": "Punto di ritrovo",
+        "languages": "Lingue",
+        "category": "Categoria",
+        "duration": "Durata",
+        "price": "Prezzo"
+      }
+    },
+    "en": {
+      "page": {
+        "title": "Events | Lou On Tour",
+        "description": "Discover Lou On Tour fixed-date events: seasonal tours, themed walks and small-group cultural experiences.",
+        "eyebrow": "Events",
+        "heading": "Fixed dates, small groups, seasonal experiences worth planning for",
+        "paragraph": "Here you can browse special scheduled events: experiences that repeat from June to November, with limited spots, clear pricing and all the essential details to choose the right one quickly.",
+        "featured": "Featured",
+        "upcoming": "Upcoming available dates",
+        "allEvents": "All events",
+        "fromLabel": "From",
+        "durationLabel": "Duration",
+        "locationLabel": "Location",
+        "spotsLabel": "Spots",
+        "discoverCta": "View event",
+        "infoCta": "Request info",
+        "includedTitle": "What to expect",
+        "recurringTitle": "Recurring schedule"
+      },
+      "detail": {
+        "back": "Back to all events",
+        "nextDates": "Scheduled dates",
+        "infoTitle": "Event details",
+        "galleryTitle": "Atmosphere and imagery",
+        "includedTitle": "What's included",
+        "contactCta": "Book or request info",
+        "newsletterCta": "Join the newsletter",
+        "meetingPoint": "Meeting point",
+        "languages": "Languages",
+        "category": "Category",
+        "duration": "Duration",
+        "price": "Price"
+      }
+    }
+  },
+  "events": [
+    {
+      "slug": "rosso-urne-e-ombre",
+      "status": "published",
+      "featured": true,
+      "heroImage": "/assets/locationTour/volterra/volterra18.jpg",
+      "gallery": [
+        "/assets/locationTour/volterra/volterra18.jpg",
+        "/assets/locationTour/volterra/volterra24.jpg",
+        "/assets/locationTour/volterra/volterra29.jpg"
+      ],
+      "title": {
+        "it": "Rosso, urne e ombre: Volterra al museo",
+        "en": "Red, Urns and Shadows: Volterra at the Museum"
+      },
+      "excerpt": {
+        "it": "Pinacoteca e Museo Guarnacci in un itinerario lento tra immagini, volti e simboli che raccontano Volterra.",
+        "en": "A calm museum itinerary through the Pinacoteca and Museo Guarnacci, following images, faces and symbols that tell the story of Volterra."
+      },
+      "category": {
+        "it": "Musei",
+        "en": "Museums"
+      },
+      "location": {
+        "it": "Volterra",
+        "en": "Volterra"
+      },
+      "duration": {
+        "it": "2 ore",
+        "en": "2 hours"
+      },
+      "price": {
+        "it": "45 euro",
+        "en": "45 euros"
+      },
+      "meetingPoint": {
+        "it": "Ingresso Pinacoteca, Volterra",
+        "en": "Pinacoteca entrance, Volterra"
+      },
+      "languages": {
+        "it": "Italiano, inglese su richiesta",
+        "en": "Italian, English on request"
+      },
+      "recurring": {
+        "it": "Date speciali di giugno 2026",
+        "en": "Special June 2026 dates"
+      },
+      "included": {
+        "it": [
+          "Visita guidata tra Pinacoteca e Museo Guarnacci",
+          "Focus su Rosso Fiorentino, urne etrusche e Ombra della Sera",
+          "Percorso in piccolo gruppo con lettura delle opere principali"
+        ],
+        "en": [
+          "Guided visit through the Pinacoteca and Museo Guarnacci",
+          "Focus on Rosso Fiorentino, Etruscan urns and the Ombra della Sera",
+          "Small-group route with contextual reading of the key works"
+        ]
+      },
+      "description": {
+        "it": [
+          "Questa esperienza racconta Volterra attraverso immagini, volti e oggetti custoditi nei suoi musei. Il percorso unisce la Pinacoteca e il Museo Guarnacci in una narrazione continua.",
+          "Ci si sofferma sulla Deposizione del Rosso Fiorentino, sulle opere di maestri come Signorelli e Ghirlandaio e sul mondo etrusco evocato da urne, simboli e capolavori celebri.",
+          "E una proposta ideale per chi ama arte, archeologia e luoghi che chiedono uno sguardo attento, senza fretta."
+        ],
+        "en": [
+          "This experience tells the story of Volterra through the faces, images and objects preserved in its museums. The route links the Pinacoteca and Museo Guarnacci in a single narrative.",
+          "Highlights include Rosso Fiorentino Deposition, works connected with masters such as Signorelli and Ghirlandaio, and the Etruscan world suggested by urns, symbols and iconic pieces.",
+          "It is designed for travelers who enjoy art, archaeology and places that reward a slower, more thoughtful visit."
+        ]
+      },
+      "dates": [
+        {
+          "iso": "2026-06-02T17:00:00",
+          "labelIt": "2 giugno 2026",
+          "labelEn": "June 2, 2026",
+          "time": "17:00 - 19:00",
+          "spots": 10,
+          "googleCalendar": null
+        },
+        {
+          "iso": "2026-06-14T17:00:00",
+          "labelIt": "14 giugno 2026",
+          "labelEn": "June 14, 2026",
+          "time": "17:00 - 19:00",
+          "spots": 10,
+          "googleCalendar": null
+        }
+      ]
+    },
+    {
+      "slug": "sangalgano-oltre-il-mito",
+      "status": "published",
+      "featured": false,
+      "heroImage": "/assets/locationTour/abbazia_sangalgano.jpg",
+      "gallery": [
+        "/assets/locationTour/sanGalg/sangalgano1.jpg",
+        "/assets/locationTour/sanGalg/sangalgano8.jpg",
+        "/assets/locationTour/sanGalg/sangalgano15.jpg"
+      ],
+      "title": {
+        "it": "San Galgano: oltre il mito",
+        "en": "San Galgano: Beyond the Legend"
+      },
+      "excerpt": {
+        "it": "Un percorso tra Montesiepi e abbazia cistercense per andare oltre il mito della spada nella roccia.",
+        "en": "A route through Montesiepi and the Cistercian abbey that moves beyond the sword-in-the-stone legend."
+      },
+      "category": {
+        "it": "Abbazia e paesaggio",
+        "en": "Abbey and landscape"
+      },
+      "location": {
+        "it": "San Galgano",
+        "en": "San Galgano"
+      },
+      "duration": {
+        "it": "2 ore",
+        "en": "2 hours"
+      },
+      "price": {
+        "it": "45 euro",
+        "en": "45 euros"
+      },
+      "meetingPoint": {
+        "it": "Parcheggio Abbazia di San Galgano",
+        "en": "San Galgano Abbey parking area"
+      },
+      "languages": {
+        "it": "Italiano, inglese su richiesta",
+        "en": "Italian, English on request"
+      },
+      "recurring": {
+        "it": "Appuntamento di giugno 2026",
+        "en": "June 2026 date"
+      },
+      "included": {
+        "it": [
+          "Visita tra Montesiepi e Abbazia di San Galgano",
+          "Approfondimento sui cistercensi e sul contesto medievale",
+          "Lettura del paesaggio e della storia del sito"
+        ],
+        "en": [
+          "Visit across Montesiepi and San Galgano Abbey",
+          "Context on the Cistercians and medieval life",
+          "Interpretation of the landscape and site history"
+        ]
+      },
+      "description": {
+        "it": [
+          "San Galgano e uno di quei luoghi che sembrano nati per far correre la fantasia, ma dietro il mito c'e una storia ancora piu affascinante da raccontare.",
+          "Il percorso tocca Montesiepi e l'abbazia cistercense, entrando nel mondo dei monaci, della spiritualita medievale, del rigore architettonico e del paesaggio che amplifica tutto.",
+          "E un itinerario pensato per chi cerca storia, silenzio e atmosfera in uno dei luoghi piu suggestivi della campagna toscana."
+        ],
+        "en": [
+          "San Galgano is one of those places that immediately sparks the imagination, yet the history behind the legend is even more compelling.",
+          "The route includes Montesiepi and the Cistercian abbey, opening a window onto monastic life, medieval spirituality, architectural rigor and the surrounding landscape.",
+          "It is designed for travelers looking for history, quiet and atmosphere in one of the most evocative places in Tuscany."
+        ]
+      },
+      "dates": [
+        {
+          "iso": "2026-06-13T10:30:00",
+          "labelIt": "13 giugno 2026",
+          "labelEn": "June 13, 2026",
+          "time": "10:30 - 12:30",
+          "spots": 10
+        }
+      ]
+    },
+    {
+      "slug": "castelnuovo-imago-in-villa",
+      "status": "published",
+      "featured": false,
+      "heroImage": "/assets/foto17.jpg",
+      "gallery": [
+        "/assets/foto17.jpg",
+        "/assets/foto8.jpg",
+        "/assets/fotoinsta3.jpg"
+      ],
+      "title": {
+        "it": "Castelnuovo: l'arte riaccende il borgo",
+        "en": "Castelnuovo: Art Rekindles the Village"
+      },
+      "excerpt": {
+        "it": "Un borgo appartato e il progetto Imago in Villa per leggere come l'arte contemporanea possa dialogare con il paese.",
+        "en": "A lesser-known medieval village and the Imago in Villa project, where contemporary art enters into conversation with the town."
+      },
+      "category": {
+        "it": "Arte contemporanea",
+        "en": "Contemporary art"
+      },
+      "location": {
+        "it": "Castelnuovo Val di Cecina",
+        "en": "Castelnuovo Val di Cecina"
+      },
+      "duration": {
+        "it": "2 ore",
+        "en": "2 hours"
+      },
+      "price": {
+        "it": "25 euro",
+        "en": "25 euros"
+      },
+      "meetingPoint": {
+        "it": "Centro storico di Castelnuovo Val di Cecina",
+        "en": "Old town, Castelnuovo Val di Cecina"
+      },
+      "languages": {
+        "it": "Italiano, inglese su richiesta",
+        "en": "Italian, English on request"
+      },
+      "recurring": {
+        "it": "Appuntamento di giugno 2026",
+        "en": "June 2026 date"
+      },
+      "included": {
+        "it": [
+          "Passeggiata guidata nel borgo medievale",
+          "Focus sul progetto Imago in Villa",
+          "Dialogo tra paesaggio, memoria e interventi contemporanei"
+        ],
+        "en": [
+          "Guided walk through the medieval village",
+          "Focus on the Imago in Villa project",
+          "Reading of the dialogue between landscape, memory and contemporary works"
+        ]
+      },
+      "description": {
+        "it": [
+          "Castelnuovo Val di Cecina e uno di quei luoghi fuori dalle rotte piu battute che proprio per questo sanno sorprendere. Il borgo diventa il punto di partenza per una visita diversa dal solito.",
+          "Il progetto Imago in Villa ha riportato nuova energia nel paese attraverso un concorso artistico pensato per dialogare con i luoghi, non per snaturarli.",
+          "Ne nasce un percorso insolito, dove antico e contemporaneo convivono e aiutano a leggere il borgo con occhi nuovi."
+        ],
+        "en": [
+          "Castelnuovo Val di Cecina is one of those off-the-radar places that can still surprise. The village becomes the starting point for a less predictable kind of cultural visit.",
+          "The Imago in Villa project has brought new life to the town through an art initiative designed to work with the place rather than overwrite it.",
+          "The result is an unusual route where memory and contemporary expression meet, helping visitors read the village in a fresh way."
+        ]
+      },
+      "dates": [
+        {
+          "iso": "2026-06-13T17:00:00",
+          "labelIt": "13 giugno 2026",
+          "labelEn": "June 13, 2026",
+          "time": "17:00 - 19:00",
+          "spots": 10,
+          "googleCalendar": null
+        }
+      ]
+    },
+    {
+      "slug": "montalcino-e-sant-antimo",
+      "status": "published",
+      "featured": false,
+      "heroImage": "/assets/locationTour/valdorcia.jpg",
+      "gallery": [
+        "/assets/locationTour/valdorcia.jpg",
+        "/assets/hero_img2.jpg",
+        "/assets/foto7.jpg"
+      ],
+      "title": {
+        "it": "Montalcino e Sant'Antimo",
+        "en": "Montalcino and Sant'Antimo"
+      },
+      "excerpt": {
+        "it": "Un piccolo viaggio in Val d'Orcia tra un borgo che parla di potere e un'abbazia immersa nel silenzio.",
+        "en": "A compact journey in Val d'Orcia between a hill town shaped by power and an abbey wrapped in silence."
+      },
+      "category": {
+        "it": "Val d'Orcia",
+        "en": "Val d'Orcia"
+      },
+      "location": {
+        "it": "Montalcino e Sant'Antimo",
+        "en": "Montalcino and Sant'Antimo"
+      },
+      "duration": {
+        "it": "3 ore",
+        "en": "3 hours"
+      },
+      "price": {
+        "it": "45 euro",
+        "en": "45 euros"
+      },
+      "meetingPoint": {
+        "it": "Piazza del Popolo, Montalcino",
+        "en": "Piazza del Popolo, Montalcino"
+      },
+      "languages": {
+        "it": "Italiano, inglese su richiesta",
+        "en": "Italian, English on request"
+      },
+      "recurring": {
+        "it": "Appuntamento di giugno 2026",
+        "en": "June 2026 date"
+      },
+      "included": {
+        "it": [
+          "Passeggiata guidata a Montalcino",
+          "Lettura del rapporto tra territorio, storia e Brunello",
+          "Tappa all'Abbazia di Sant'Antimo"
+        ],
+        "en": [
+          "Guided walk in Montalcino",
+          "Context on territory, history and Brunello",
+          "Stop at Sant'Antimo Abbey"
+        ]
+      },
+      "description": {
+        "it": [
+          "Questo itinerario attraversa il cuore della Val d'Orcia mettendo insieme un borgo dal forte impianto medievale e un'abbazia che sembra sospesa fuori dal tempo.",
+          "A Montalcino il racconto tocca difesa, potere, paesaggio e il legame con il Brunello; poi il percorso si apre verso Sant'Antimo e la sua atmosfera raccolta.",
+          "E un'esperienza pensata per chi vuole alternare storia, territorio e silenzio in uno dei paesaggi piu iconici della Toscana."
+        ],
+        "en": [
+          "This itinerary moves through the heart of Val d'Orcia, pairing a strongly medieval hill town with an abbey that feels almost outside time.",
+          "In Montalcino the narrative touches power, defense, landscape and the bond with Brunello, then opens onto the calm atmosphere of Sant'Antimo.",
+          "It is designed for travelers who want a balance of history, territory and stillness in one of Tuscany most iconic landscapes."
+        ]
+      },
+      "dates": [
+        {
+          "iso": "2026-06-27T10:30:00",
+          "labelIt": "27 giugno 2026",
+          "labelEn": "June 27, 2026",
+          "time": "10:30 - 13:30",
+          "spots": 10
+        }
+      ]
+    },
+    {
+      "slug": "sangimignano-a-caccia-di-torri",
+      "status": "published",
+      "featured": false,
+      "heroImage": "/assets/locationTour/san_gimignano.jpg",
+      "gallery": [
+        "/assets/locationTour/sanGimi/sangimi1.jpg",
+        "/assets/locationTour/sanGimi/sangimi12.jpg",
+        "/assets/locationTour/sanGimi/sangimi24.jpg"
+      ],
+      "title": {
+        "it": "San Gimignano: a caccia di torri",
+        "en": "San Gimignano: Hunting for Towers"
+      },
+      "excerpt": {
+        "it": "Le torri come indizio per leggere famiglie, ambizioni, paure e immaginario religioso della citta.",
+        "en": "Towers become clues for reading family rivalries, ambition, fear and religious imagination in the town."
+      },
+      "category": {
+        "it": "Borgo medievale",
+        "en": "Medieval town"
+      },
+      "location": {
+        "it": "San Gimignano",
+        "en": "San Gimignano"
+      },
+      "duration": {
+        "it": "2 ore",
+        "en": "2 hours"
+      },
+      "price": {
+        "it": "45 euro",
+        "en": "45 euros"
+      },
+      "meetingPoint": {
+        "it": "Porta San Giovanni, San Gimignano",
+        "en": "Porta San Giovanni, San Gimignano"
+      },
+      "languages": {
+        "it": "Italiano, inglese su richiesta",
+        "en": "Italian, English on request"
+      },
+      "recurring": {
+        "it": "Appuntamento di giugno 2026",
+        "en": "June 2026 date"
+      },
+      "included": {
+        "it": [
+          "Passeggiata guidata nel centro storico",
+          "Ingresso e lettura della Collegiata",
+          "Focus su famiglie, torri e vita comunale medievale"
+        ],
+        "en": [
+          "Guided walk through the historic center",
+          "Entry and interpretation of the Collegiate Church",
+          "Focus on families, towers and medieval civic life"
+        ]
+      },
+      "description": {
+        "it": [
+          "A San Gimignano le torri non sono solo il simbolo della citta: raccontano ambizioni, rivalita, prestigio e paure. Da qui parte tutto il percorso.",
+          "L'esperienza ricostruisce il volto della citta comunale nel suo momento di massimo splendore, intrecciando assetti urbani, vita quotidiana e trasformazioni nel tempo.",
+          "La visita entra anche nella Collegiata, per leggere insieme pittura, immaginario religioso e permanenze medievali ancora potentissime."
+        ],
+        "en": [
+          "In San Gimignano the towers are more than a skyline icon: they speak of ambition, rivalry, prestige and fear. That is the thread of the whole experience.",
+          "The route rebuilds the face of the medieval commune at its height, weaving together urban structure, everyday life and later transformations.",
+          "The visit also enters the Collegiate Church to read its painting cycles and the religious imagination that still shapes the town atmosphere."
+        ]
+      },
+      "dates": [
+        {
+          "iso": "2026-06-27T17:00:00",
+          "labelIt": "27 giugno 2026",
+          "labelEn": "June 27, 2026",
+          "time": "17:00 - 19:00",
+          "spots": 10
+        }
+      ]
+    },
+    {
+      "slug": "siena-come-nel-medioevo",
+      "status": "published",
+      "featured": false,
+      "heroImage": "/assets/locationTour/siena.jpg",
+      "gallery": [
+        "/assets/locationTour/siena/siena2.jpg",
+        "/assets/locationTour/siena/siena12.jpg",
+        "/assets/locationTour/siena/siena23.jpg"
+      ],
+      "title": {
+        "it": "Siena, come nel Medioevo",
+        "en": "Siena, as in the Middle Ages"
+      },
+      "excerpt": {
+        "it": "Un percorso per ricostruire la Siena medievale non solo nei monumenti, ma nella vita quotidiana, nei costumi e negli odori della citta.",
+        "en": "A route that rebuilds medieval Siena not only through monuments, but through daily life, customs and the atmosphere of the city."
+      },
+      "category": {
+        "it": "Siena medievale",
+        "en": "Medieval Siena"
+      },
+      "location": {
+        "it": "Siena",
+        "en": "Siena"
+      },
+      "duration": {
+        "it": "2 ore",
+        "en": "2 hours"
+      },
+      "price": {
+        "it": "45 euro",
+        "en": "45 euros"
+      },
+      "meetingPoint": {
+        "it": "Piazza del Campo, Siena",
+        "en": "Piazza del Campo, Siena"
+      },
+      "languages": {
+        "it": "Italiano, inglese su richiesta",
+        "en": "Italian, English on request"
+      },
+      "recurring": {
+        "it": "Appuntamento di giugno 2026",
+        "en": "June 2026 date"
+      },
+      "included": {
+        "it": [
+          "Passeggiata guidata nel centro storico di Siena",
+          "Focus su costumi, lessico, cibi e potere nel Medioevo",
+          "Lettura della citta come spazio vissuto, non solo monumentale"
+        ],
+        "en": [
+          "Guided walk through Siena historic center",
+          "Focus on food, language, customs and power in the Middle Ages",
+          "Reading of the city as a lived medieval space, not just a set of monuments"
+        ]
+      },
+      "description": {
+        "it": [
+          "Questo tour prova a ricostruire la Siena medievale non solo attraverso i suoi monumenti, ma anche attraverso la vita di tutti i giorni.",
+          "Si parla di costumi, cibi, lessico, assetti urbani, religione e potere per immaginare come si vivesse davvero in una delle citta piu affascinanti del Medioevo europeo.",
+          "E un percorso pensato per dare voce e atmosfera alla citta, leggendo Siena con gli occhi di allora."
+        ],
+        "en": [
+          "This walk aims to rebuild medieval Siena not only through its famous monuments, but through the texture of everyday life.",
+          "The route touches food, language, urban form, religion and power to imagine what it meant to live in one of the most compelling cities of the medieval world.",
+          "It is designed to give the city voice and atmosphere, helping visitors read Siena through the eyes of its own time."
+        ]
+      },
+      "dates": [
+        {
+          "iso": "2026-06-28T10:30:00",
+          "labelIt": "28 giugno 2026",
+          "labelEn": "June 28, 2026",
+          "time": "10:30 - 12:30",
+          "spots": 10
+        }
+      ]
+    },
+    {
+      "slug": "il-pavimento-del-duomo-di-siena",
+      "status": "published",
+      "featured": false,
+      "heroImage": "/assets/locationTour/siena/siena10.jpg",
+      "gallery": [
+        "/assets/locationTour/siena/siena10.jpg",
+        "/assets/locationTour/siena/siena14.jpg",
+        "/assets/locationTour/siena/siena20.jpg"
+      ],
+      "title": {
+        "it": "Il pavimento del Duomo di Siena",
+        "en": "The Floor of Siena Cathedral"
+      },
+      "excerpt": {
+        "it": "Un'apertura da leggere senza fretta, per seguire immagini e simboli che trasformano il pavimento del Duomo in un racconto.",
+        "en": "A special opening to explore slowly, following images and symbols that turn the cathedral floor into a narrative."
+      },
+      "category": {
+        "it": "Duomo di Siena",
+        "en": "Siena Cathedral"
+      },
+      "location": {
+        "it": "Siena",
+        "en": "Siena"
+      },
+      "duration": {
+        "it": "2 ore",
+        "en": "2 hours"
+      },
+      "price": {
+        "it": "45 euro",
+        "en": "45 euros"
+      },
+      "meetingPoint": {
+        "it": "Piazza del Duomo, Siena",
+        "en": "Piazza del Duomo, Siena"
+      },
+      "languages": {
+        "it": "Italiano, inglese su richiesta",
+        "en": "Italian, English on request"
+      },
+      "recurring": {
+        "it": "Appuntamento di giugno 2026",
+        "en": "June 2026 date"
+      },
+      "included": {
+        "it": [
+          "Visita guidata dedicata al pavimento del Duomo",
+          "Lettura iconografica di immagini e simboli",
+          "Approccio lento e ragionato all'apertura stagionale"
+        ],
+        "en": [
+          "Guided visit focused on the cathedral floor",
+          "Iconographic reading of images and symbols",
+          "Slow-paced exploration of the seasonal opening"
+        ]
+      },
+      "description": {
+        "it": [
+          "Ci sono momenti in cui Siena si lascia leggere piu a fondo, e l'apertura straordinaria del pavimento del Duomo e uno di questi.",
+          "Il percorso invita a osservare con calma uno spazio sorprendente, dove immagini, simboli e intensita trasformano il pavimento in un racconto da attraversare passo dopo passo.",
+          "Il biglietto di ingresso non e incluso e puo essere acquistato online in base alle disponibilita e alle eventuali agevolazioni."
+        ],
+        "en": [
+          "There are moments when Siena opens up more deeply, and the special unveiling of the cathedral floor is one of them.",
+          "This experience invites visitors to slow down and read a remarkable space where images, symbols and layered meanings turn the floor into a story.",
+          "Admission ticket is not included and can be purchased online depending on availability and any applicable reductions."
+        ]
+      },
+      "dates": [
+        {
+          "iso": "2026-06-28T17:00:00",
+          "labelIt": "28 giugno 2026",
+          "labelEn": "June 28, 2026",
+          "time": "17:00 - 19:00",
+          "spots": 10
+        }
+      ]
+    }
+  ]
+}

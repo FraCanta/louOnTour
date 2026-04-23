@@ -14,9 +14,13 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import AOS from "aos";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 const DynamicLayout = dynamic(() => import("../components/layout/layout"));
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const isAdminRoute = router.pathname.startsWith("/admin");
+
   useEffect(() => {
     // here you can add your aos options
     AOS.init({
@@ -28,9 +32,13 @@ function MyApp({ Component, pageProps }) {
   }, []);
   return (
     <>
-      <DynamicLayout>
+      {isAdminRoute ? (
         <Component {...pageProps} />
-      </DynamicLayout>
+      ) : (
+        <DynamicLayout>
+          <Component {...pageProps} />
+        </DynamicLayout>
+      )}
       {/* <!-- Elfsight Accessibility | Untitled Accessibility --> */}
 
       {/* Global site tag (gtag.js) - Google Analytics */}
