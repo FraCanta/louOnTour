@@ -2,13 +2,15 @@ import { promises as fs } from "fs";
 import path from "path";
 import { supabase } from "./supabase";
 import { supabaseAdmin } from "./supabaseAdmin";
-const EVENTS_FILE = path.join(process.cwd(), "data", "events.json");
-
+import eventsJson from "../data/events.json";
 function normalizeString(value = "") {
   return String(value || "").trim();
 }
 
 function normalizeLocale(locale = "it") {
+  console.log("LOCALE RAW:", locale);
+  const lang = locale === "en" ? "en" : "it";
+  console.log("LANG NORMALIZED:", lang);
   return locale === "en" ? "en" : "it";
 }
 
@@ -230,10 +232,10 @@ export async function writeEventsData(data) {
   await fs.writeFile(EVENTS_FILE, JSON.stringify(data, null, 2), "utf8");
 }
 
-export async function getEventsPageCopy(locale = "it") {
-  const data = await readEventsData();
-  const lang = normalizeLocale(locale);
-  return data.copy?.[lang] || data.copy?.it || {};
+export function getEventsPageCopy(locale = "it") {
+  const lang = locale === "en" ? "en" : "it";
+
+  return eventsJson?.copy?.[lang] ?? eventsJson?.copy?.it ?? {};
 }
 
 export async function getAllEvents(locale = "it", options = {}) {
@@ -249,6 +251,7 @@ export async function getAllEvents(locale = "it", options = {}) {
 export async function getEventBySlug(slug, locale = "it", options = {}) {
   const { includeDrafts = false } = options;
   const data = await readEventsData();
+  console.log("SLUGS:", data.events);
   const found = (data.events || []).find((event) => event.slug === slug);
 
   if (!found) {
@@ -276,7 +279,7 @@ export async function getAdminEvents() {
   const { data, error } = await supabase
     .from("events")
     .select("*")
-    .order("created_at", { ascending: false });
+    .order("createdAt", { ascending: false });
 
   if (error) {
     throw new Error(error.message);
@@ -308,8 +311,7 @@ export async function createEvent(payload) {
 
   const event = {
     ...normalized,
-    slug,
-    hero_image: normalized.heroImage,
+    heroImage: normalized.heroImage,
   };
 
   const { data, error } = await supabase
@@ -317,6 +319,9 @@ export async function createEvent(payload) {
     .insert(event)
     .select()
     .single();
+
+  console.log("DATA RAW:", data);
+  console.log("ERROR:", error);
 
   if (error) {
     throw new Error(error.message);
