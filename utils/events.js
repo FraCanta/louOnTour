@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
-
+import { supabase } from "./supabase";
+import { supabaseAdmin } from "./supabaseAdmin";
 const EVENTS_FILE = path.join(process.cwd(), "data", "events.json");
 
 function normalizeString(value = "") {
@@ -214,8 +215,15 @@ function mergeExistingDateMetadata(existingDates = [], nextDates = []) {
 }
 
 export async function readEventsData() {
-  const raw = await fs.readFile(EVENTS_FILE, "utf8");
-  return JSON.parse(raw);
+  const { data, error } = await supabase.from("events").select("*");
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return {
+    events: data || [],
+  };
 }
 
 export async function writeEventsData(data) {
@@ -265,8 +273,16 @@ export async function getEventSlugs(options = {}) {
 }
 
 export async function getAdminEvents() {
-  const data = await readEventsData();
-  return sortByFirstDate(data.events || []);
+  const { data, error } = await supabase
+    .from("events")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data || [];
 }
 
 export async function getAdminEventBySlug(slug) {
@@ -277,56 +293,90 @@ export async function getAdminEventBySlug(slug) {
 export async function createEvent(payload) {
   assertEventShape(payload);
 
-  const data = await readEventsData();
   const normalized = normalizeEventPayload(payload);
   const slug = normalized.slug || buildSlugFromTitle(normalized.title.it);
 
-  if ((data.events || []).some((event) => event.slug === slug)) {
+  const { data: existing } = await supabase
+    .from("events")
+    .select("slug")
+    .eq("slug", slug)
+    .single();
+
+  if (existing) {
     throw new Error("Esiste gia un evento con questo slug.");
   }
 
   const event = {
     ...normalized,
     slug,
+    hero_image: normalized.heroImage,
   };
 
-  data.events.push(event);
-  await writeEventsData(data);
-  return event;
+  const { data, error } = await supabase
+    .from("events")
+    .insert(event)
+    .select()
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 }
 
 export async function updateEvent(slug, payload) {
   assertEventShape(payload);
 
-  const data = await readEventsData();
-  const index = (data.events || []).findIndex((event) => event.slug === slug);
+  const normalized = normalizeEventPayload(payload);
+  const nextSlug = normalized.slug || slug;
 
-  if (index === -1) {
+  // 1. prendo evento attuale dal DB
+  const { data: currentEvent, error: fetchError } = await supabaseAdmin
+    .from("events")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  if (fetchError || !currentEvent) {
     return null;
   }
 
-  const normalized = normalizeEventPayload(payload);
-  const nextSlug = normalized.slug || slug;
-  const duplicated = data.events.some(
-    (event, currentIndex) => event.slug === nextSlug && currentIndex !== index,
-  );
+  // 2. controllo duplicati slug
+  const { data: duplicate, error: dupError } = await supabaseAdmin
+    .from("events")
+    .select("slug")
+    .eq("slug", nextSlug)
+    .neq("slug", slug)
+    .maybeSingle();
 
-  if (duplicated) {
-    throw new Error("Esiste gia un evento con questo slug.");
+  if (duplicate) {
+    throw new Error("Esiste già un evento con questo slug.");
   }
 
-  const updated = {
-    ...normalized,
-    slug: nextSlug,
-    dates: mergeExistingDateMetadata(
-      data.events[index]?.dates,
-      normalized.dates,
-    ),
-  };
+  // 3. merge dates (mantieni logica tua)
+  const mergedDates = mergeExistingDateMetadata(
+    currentEvent.dates,
+    normalized.dates,
+  );
 
-  data.events[index] = updated;
-  await writeEventsData(data);
-  return updated;
+  // 4. update su Supabase
+  const { data, error } = await supabaseAdmin
+    .from("events")
+    .update({
+      ...normalized,
+      slug: nextSlug,
+      dates: mergedDates,
+    })
+    .eq("slug", slug)
+    .select()
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 }
 
 export async function replaceEventDates(slug, dates) {
@@ -346,14 +396,11 @@ export async function replaceEventDates(slug, dates) {
 }
 
 export async function deleteEvent(slug) {
-  const data = await readEventsData();
-  const nextEvents = (data.events || []).filter((event) => event.slug !== slug);
+  const { error } = await supabase.from("events").delete().eq("slug", slug);
 
-  if (nextEvents.length === (data.events || []).length) {
-    return false;
+  if (error) {
+    throw new Error(error.message);
   }
 
-  data.events = nextEvents;
-  await writeEventsData(data);
   return true;
 }
