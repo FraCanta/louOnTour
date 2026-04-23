@@ -62,6 +62,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "openweathermap.org",
       },
+      {
+        protocol: "https",
+        hostname: "luisaquaglia-tourguide.com",
+      },
     ],
   },
   async headers() {
