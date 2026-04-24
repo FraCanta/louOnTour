@@ -17,16 +17,16 @@ export default function EventDetailPage({ event, copy, locale }) {
 
   // 🔹 DB (solo contenuti evento)
   const title = event.title;
-  const excerpt = event.excerpt?.[lang];
-  const category = event.category?.[lang];
-  const duration = event.duration?.[lang];
-  const price = event.price?.[lang];
-  const languages = event.languages?.[lang];
-  const meetingPoint = event.meetingPoint?.[lang];
-  const recurring = event.recurring?.[lang];
+  const excerpt = event.excerpt;
+  const category = event.category;
+  const duration = event.duration;
+  const price = event.price;
+  const languages = event.languages;
+  const meetingPoint = event.meetingPoint;
+  const recurring = event.recurring;
 
-  const description = event.description?.[lang] || [];
-  const included = event.included?.[lang] || [];
+  const description = event.description || [];
+  const included = event.included || [];
   const subject = `Richiesta informazioni per ${title}`;
   return (
     <>

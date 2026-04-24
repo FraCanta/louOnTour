@@ -1,5 +1,3 @@
-import { promises as fs } from "fs";
-import path from "path";
 import { supabase } from "./supabase";
 import { supabaseAdmin } from "./supabaseAdmin";
 import eventsJson from "../data/events.json";
@@ -229,7 +227,7 @@ export async function readEventsData() {
 }
 
 export async function writeEventsData(data) {
-  await fs.writeFile(EVENTS_FILE, JSON.stringify(data, null, 2), "utf8");
+  return data;
 }
 
 export function getEventsPageCopy(locale = "it") {
@@ -299,11 +297,15 @@ export async function createEvent(payload) {
   const normalized = normalizeEventPayload(payload);
   const slug = normalized.slug || buildSlugFromTitle(normalized.title.it);
 
-  const { data: existing } = await supabase
+  const { data: existing, error: existingError } = await supabaseAdmin
     .from("events")
     .select("slug")
     .eq("slug", slug)
-    .single();
+    .maybeSingle();
+
+  if (existingError) {
+    throw new Error(existingError.message);
+  }
 
   if (existing) {
     throw new Error("Esiste gia un evento con questo slug.");
@@ -311,17 +313,15 @@ export async function createEvent(payload) {
 
   const event = {
     ...normalized,
+    slug,
     heroImage: normalized.heroImage,
   };
 
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from("events")
     .insert(event)
     .select()
     .single();
-
-  console.log("DATA RAW:", data);
-  console.log("ERROR:", error);
 
   if (error) {
     throw new Error(error.message);
@@ -355,6 +355,10 @@ export async function updateEvent(slug, payload) {
     .neq("slug", slug)
     .maybeSingle();
 
+  if (dupError) {
+    throw new Error(dupError.message);
+  }
+
   if (duplicate) {
     throw new Error("Esiste già un evento con questo slug.");
   }
@@ -385,19 +389,30 @@ export async function updateEvent(slug, payload) {
 }
 
 export async function replaceEventDates(slug, dates) {
-  const data = await readEventsData();
-  const index = (data.events || []).findIndex((event) => event.slug === slug);
+  const currentEvent = await getAdminEventBySlug(slug);
 
-  if (index === -1) {
+  if (!currentEvent) {
     return null;
   }
 
-  data.events[index].dates = Array.isArray(dates)
+  const normalizedDates = Array.isArray(dates)
     ? dates.map((date) => normalizeDate(date)).filter((date) => date.iso)
     : [];
 
-  await writeEventsData(data);
-  return data.events[index];
+  const { data, error } = await supabaseAdmin
+    .from("events")
+    .update({
+      dates: normalizedDates,
+    })
+    .eq("slug", slug)
+    .select()
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 }
 
 export async function deleteEvent(slug) {

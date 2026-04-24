@@ -1,4 +1,4 @@
-import { supabaseAdmin } from "../../../../utils/supabaseAdmin";
+import { createEvent, getAdminEvents } from "../../../../utils/events";
 import { requireAdminApiKey } from "../../../../utils/adminAuth";
 
 export default async function handler(req, res) {
@@ -9,29 +9,14 @@ export default async function handler(req, res) {
   try {
     // 📥 GET - lista eventi admin
     if (req.method === "GET") {
-      const { data, error } = await supabaseAdmin
-        .from("events")
-        .select("*")
-        .order("dates", { ascending: true });
-
-      if (error) throw error;
-
-      return res.status(200).json({ events: data });
+      const events = await getAdminEvents();
+      return res.status(200).json({ events });
     }
 
     // ➕ POST - crea evento
     if (req.method === "POST") {
-      const payload = req.body;
-
-      const { data, error } = await supabaseAdmin
-        .from("events")
-        .insert([payload])
-        .select()
-        .single();
-
-      if (error) throw error;
-
-      return res.status(201).json({ event: data });
+      const event = await createEvent(req.body);
+      return res.status(201).json({ event });
     }
 
     res.setHeader("Allow", ["GET", "POST"]);
