@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
+import { uploadEventImage } from "../../utils/uploadEventImage";
 
 const DEFAULT_TIMEZONE = "Europe/Rome";
 const NAV_ITEMS = [
@@ -317,6 +318,7 @@ export default function AdminDashboard() {
   const [form, setForm] = useState(() => buildEmptyForm());
   const [loading, setLoading] = useState(false);
   const [syncLoading, setSyncLoading] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [booting, setBooting] = useState(true);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -586,6 +588,29 @@ export default function AdminDashboard() {
     return data;
   }
 
+  async function handleUpload(event) {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    setUploadingImage(true);
+    setError("");
+    setNotice("");
+
+    try {
+      const url = await uploadEventImage(file, adminKey);
+      updateFormField("heroImage", url);
+      setNotice("Immagine caricata correttamente.");
+    } catch (uploadError) {
+      setError(uploadError.message || "Upload immagine non riuscito.");
+    } finally {
+      setUploadingImage(false);
+      event.target.value = "";
+    }
+  }
+
   async function handleSave(nextStatus) {
     const validationError = validateForm(form);
 
@@ -781,12 +806,12 @@ export default function AdminDashboard() {
     return (
       <>
         <Head>
-          <title>Lou On Tour | Admin Access</title>
+          <title>Dashboard Admin</title>
         </Head>
         <main className="flex min-h-screen items-center justify-center bg-[linear-gradient(180deg,#fef3ea_0%,#fff8f4_52%,#f6eee8_100%)] px-4 py-10">
           <section className="w-full max-w-xl rounded-[2rem] border border-[#c9573c]/10 bg-white/80 p-8 shadow-[0_24px_60px_rgba(35,47,55,0.08)] backdrop-blur-sm">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
-              Lou On Tour
+              Luisa Quaglia Tour Guide
             </p>
             <h1 className="mb-3 text-4xl font-bold leading-tight text-[#2c395b]">
               Accesso admin
@@ -837,7 +862,7 @@ export default function AdminDashboard() {
   return (
     <>
       <Head>
-        <title>Lou On Tour | Admin Dashboard</title>
+        <title>Admin Dashboard</title>
         <meta
           name="description"
           content="Dashboard admin per la gestione di eventi, date e pubblicazione."
@@ -850,7 +875,7 @@ export default function AdminDashboard() {
             <div className="flex flex-col gap-4 mb-8 sm:flex-row sm:items-start sm:justify-between xl:block">
               <div>
                 <p className="mb-2 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
-                  Lou On Tour
+                  Luisa Quaglia
                 </p>
                 <h1 className="text-3xl font-bold leading-tight text-[#2c395b] sm:text-4xl">
                   Admin
@@ -860,9 +885,6 @@ export default function AdminDashboard() {
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex rounded-full bg-[#77674E] px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#fef3ea]">
-                  Solo admin
-                </span>
                 <button
                   type="button"
                   onClick={handleLogout}
@@ -1151,14 +1173,19 @@ export default function AdminDashboard() {
 
                     <Field label="Hero image">
                       <input
-                        type="text"
-                        value={form.heroImage}
-                        onChange={(event) =>
-                          updateFormField("heroImage", event.target.value)
-                        }
-                        placeholder="/assets/fotoinsta2.jpg"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleUpload}
+                        disabled={uploadingImage}
                         className={baseInputClass()}
                       />
+                      <p className="text-xs text-[#6d7b80]">
+                        {uploadingImage
+                          ? "Upload in corso..."
+                          : form.heroImage
+                            ? "Immagine collegata all'evento."
+                            : "Seleziona un file per caricare la hero image."}
+                      </p>
                     </Field>
 
                     <Field label="Titolo IT">

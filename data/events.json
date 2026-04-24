@@ -2,7 +2,7 @@
   "copy": {
     "it": {
       "page": {
-        "title": "Eventi | Lou On Tour",
+        "title": "Luisa Quaglia Tour Guide | Eventi",
         "description": "Scopri gli eventi a data fissa di Lou On Tour: tour stagionali, passeggiate tematiche ed esperienze in piccoli gruppi.",
         "eyebrow": "Eventi",
         "heading": "Date fisse, piccoli gruppi, esperienze da vivere in stagione",
@@ -17,7 +17,9 @@
         "discoverCta": "Scopri l'evento",
         "infoCta": "Richiedi informazioni",
         "includedTitle": "Cosa troverai",
-        "recurringTitle": "Ricorrenza"
+        "recurringTitle": "Ricorrenza",
+        "noEventsTitle": "Nessun evento disponibile al momento",
+        "noEventsText": "Torna presto per scoprire i prossimi eventi."
       },
       "detail": {
         "back": "Torna a tutti gli eventi",
@@ -36,7 +38,7 @@
     },
     "en": {
       "page": {
-        "title": "Events | Lou On Tour",
+        "title": "Luisa Quaglia Tour Guide | Events",
         "description": "Discover Lou On Tour fixed-date events: seasonal tours, themed walks and small-group cultural experiences.",
         "eyebrow": "Events",
         "heading": "Fixed dates, small groups, seasonal experiences worth planning for",
@@ -51,7 +53,9 @@
         "discoverCta": "View event",
         "infoCta": "Request info",
         "includedTitle": "What to expect",
-        "recurringTitle": "Recurring schedule"
+        "recurringTitle": "Recurring schedule",
+        "noEventsTitle": "No events available at the moment",
+        "noEventsText": "Check back soon to discover upcoming events."
       },
       "detail": {
         "back": "Back to all events",
@@ -69,6 +73,7 @@
       }
     }
   },
+
   "events": [
     {
       "slug": "rosso-urne-e-ombre",
