@@ -2,7 +2,7 @@ import { supabaseAdmin } from "../../../../utils/supabaseAdmin";
 import { requireAdminApiKey } from "../../../../utils/adminAuth";
 
 export default async function handler(req, res) {
-  if (!requireAdminApiKey(req, res)) {
+  if (!(await requireAdminApiKey(req, res))) {
     return;
   }
 

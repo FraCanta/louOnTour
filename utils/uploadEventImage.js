@@ -23,7 +23,7 @@ function fileToBase64(file) {
 
 export async function uploadEventImage(file, adminKey) {
   if (!adminKey) {
-    throw new Error("Chiave admin mancante.");
+    throw new Error("Sessione admin mancante.");
   }
 
   const dataBase64 = await fileToBase64(file);

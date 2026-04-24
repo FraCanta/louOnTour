@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { uploadEventImage } from "../../utils/uploadEventImage";
+import { supabase } from "../../utils/supabase";
 
 const DEFAULT_TIMEZONE = "Europe/Rome";
 const NAV_ITEMS = [
@@ -309,16 +310,65 @@ function baseInputClass(multiline = false) {
   }`;
 }
 
+function getAdminDisplayName(user) {
+  if (!user) {
+    return "";
+  }
+
+  const metadata = user.user_metadata || {};
+  const explicitName =
+    metadata.full_name || metadata.name || metadata.display_name || "";
+
+  if (String(explicitName).trim()) {
+    return String(explicitName).trim();
+  }
+
+  const email = String(user.email || "").trim();
+
+  if (!email) {
+    return "";
+  }
+
+  return email.split("@")[0] || email;
+}
+
+function getFileNameFromUrl(url = "") {
+  const value = String(url || "").trim();
+
+  if (!value) {
+    return "";
+  }
+
+  const withoutQuery = value.split("?")[0];
+  const segments = withoutQuery.split("/");
+  const fileName = segments[segments.length - 1] || "";
+
+  try {
+    return decodeURIComponent(fileName);
+  } catch (_error) {
+    return fileName;
+  }
+}
+
 export default function AdminDashboard() {
   const [activePanel, setActivePanel] = useState("overview");
   const [adminKey, setAdminKey] = useState("");
-  const [keyInput, setKeyInput] = useState("");
+  const [adminUser, setAdminUser] = useState(null);
+  const [authMode, setAuthMode] = useState("login");
+  const [authName, setAuthName] = useState("");
+  const [authEmail, setAuthEmail] = useState("");
+  const [authPassword, setAuthPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberEmail, setRememberEmail] = useState(true);
+  const [authLoading, setAuthLoading] = useState(false);
   const [events, setEvents] = useState([]);
   const [selectedSlug, setSelectedSlug] = useState("");
   const [form, setForm] = useState(() => buildEmptyForm());
   const [loading, setLoading] = useState(false);
   const [syncLoading, setSyncLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadingGallery, setUploadingGallery] = useState(false);
+  const [heroFileName, setHeroFileName] = useState("");
   const [booting, setBooting] = useState(true);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -370,17 +420,53 @@ export default function AdminDashboard() {
   }, [events, syncStatus]);
 
   useEffect(() => {
-    const storedKey =
-      typeof window !== "undefined"
-        ? window.sessionStorage.getItem("lou-admin-key") || ""
-        : "";
+    let mounted = true;
 
-    if (storedKey) {
-      setAdminKey(storedKey);
-      setKeyInput(storedKey);
+    async function bootstrapAuth() {
+      try {
+        const { data, error: sessionError } = await supabase.auth.getSession();
+
+        if (!mounted) {
+          return;
+        }
+
+        if (sessionError) {
+          setError(sessionError.message || "Errore nel recupero sessione.");
+        }
+
+        const accessToken = data?.session?.access_token || "";
+        const user = data?.session?.user || null;
+
+        setAdminUser(user);
+
+        if (accessToken) {
+          setAdminKey(accessToken);
+        }
+      } finally {
+        if (mounted) {
+          setBooting(false);
+        }
+      }
     }
 
-    setBooting(false);
+    bootstrapAuth();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const savedEmail = window.localStorage.getItem("lou-admin-email") || "";
+
+    if (savedEmail) {
+      setAuthEmail(savedEmail);
+      setRememberEmail(true);
+    }
   }, []);
 
   const loadSyncStatus = useCallback(
@@ -463,20 +549,204 @@ export default function AdminDashboard() {
     loadSyncStatus(adminKey);
   }, [adminKey, loadEvents, loadSyncStatus]);
 
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
     setNotice("");
     setError("");
-    setAdminKey(keyInput.trim());
 
-    if (typeof window !== "undefined") {
-      window.sessionStorage.setItem("lou-admin-key", keyInput.trim());
+    const email = authEmail.trim();
+
+    if (!email || !authPassword.trim()) {
+      setError("Inserisci email e password.");
+      return;
+    }
+
+    setAuthLoading(true);
+
+    try {
+      const { data, error: loginError } = await supabase.auth.signInWithPassword(
+        {
+          email,
+          password: authPassword,
+        },
+      );
+
+      if (loginError) {
+        throw new Error(loginError.message || "Login non riuscito.");
+      }
+
+      const accessToken = data?.session?.access_token || "";
+      const user = data?.user || data?.session?.user || null;
+
+      if (!accessToken) {
+        setNotice(
+          "Controlla la tua email e conferma l'account prima di accedere.",
+        );
+        return;
+      }
+
+      setAdminKey(accessToken);
+      setAdminUser(user);
+      if (typeof window !== "undefined") {
+        if (rememberEmail) {
+          window.localStorage.setItem("lou-admin-email", email);
+        } else {
+          window.localStorage.removeItem("lou-admin-email");
+        }
+      }
+      setNotice("Accesso admin effettuato.");
+    } catch (loginError) {
+      setError(loginError.message || "Login non riuscito.");
+    } finally {
+      setAuthLoading(false);
     }
   }
 
-  function handleLogout() {
+  async function handleRegister() {
+    setNotice("");
+    setError("");
+
+    const fullName = authName.trim();
+    const email = authEmail.trim();
+
+    if (!fullName || !email || !authPassword.trim()) {
+      setError("Inserisci nome, email e password.");
+      return;
+    }
+
+    setAuthLoading(true);
+
+    try {
+      const redirectTo =
+        typeof window !== "undefined"
+          ? `${window.location.origin}/admin`
+          : undefined;
+
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password: authPassword,
+        options: {
+          data: {
+            full_name: fullName,
+          },
+          emailRedirectTo: redirectTo,
+        },
+      });
+
+      if (signUpError) {
+        throw new Error(signUpError.message || "Registrazione non riuscita.");
+      }
+
+      const accessToken = data?.session?.access_token || "";
+      const user = data?.user || data?.session?.user || null;
+
+      if (accessToken) {
+        setAdminKey(accessToken);
+        setAdminUser(user);
+        setNotice("Account creato e accesso effettuato.");
+      } else {
+        setNotice(
+          "Account creato. Controlla la tua email, conferma l'indirizzo e poi accedi.",
+        );
+      }
+    } catch (signUpError) {
+      setError(signUpError.message || "Registrazione non riuscita.");
+    } finally {
+      setAuthLoading(false);
+    }
+  }
+
+  async function handleResetPasswordEmail() {
+    setNotice("");
+    setError("");
+
+    const email = authEmail.trim();
+
+    if (!email) {
+      setError("Inserisci prima la tua email per ricevere il reset password.");
+      return;
+    }
+
+    setAuthLoading(true);
+
+    try {
+      const redirectTo =
+        typeof window !== "undefined"
+          ? `${window.location.origin}/admin/reset-password`
+          : undefined;
+
+      const { error: resetError } = await supabase.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo,
+        },
+      );
+
+      if (resetError) {
+        throw new Error(
+          resetError.message || "Invio email reset password non riuscito.",
+        );
+      }
+
+      setNotice(
+        "Email inviata. Apri il link ricevuto e imposta una nuova password.",
+      );
+    } catch (resetError) {
+      setError(
+        resetError.message || "Invio email reset password non riuscito.",
+      );
+    } finally {
+      setAuthLoading(false);
+    }
+  }
+
+  async function handleResendConfirmationEmail() {
+    setNotice("");
+    setError("");
+
+    const email = authEmail.trim();
+
+    if (!email) {
+      setError("Inserisci prima la tua email.");
+      return;
+    }
+
+    setAuthLoading(true);
+
+    try {
+      const emailRedirectTo =
+        typeof window !== "undefined"
+          ? `${window.location.origin}/admin`
+          : undefined;
+
+      const { error: resendError } = await supabase.auth.resend({
+        type: "signup",
+        email,
+        options: {
+          emailRedirectTo,
+        },
+      });
+
+      if (resendError) {
+        throw new Error(
+          resendError.message || "Reinvio email di conferma non riuscito.",
+        );
+      }
+
+      setNotice("Email di conferma reinviata. Controlla anche Spam/Promozioni.");
+    } catch (resendError) {
+      setError(
+        resendError.message || "Reinvio email di conferma non riuscito.",
+      );
+    } finally {
+      setAuthLoading(false);
+    }
+  }
+
+  async function handleLogout() {
     setAdminKey("");
-    setKeyInput("");
+    setAdminUser(null);
+    setAuthPassword("");
     setEvents([]);
     setSelectedSlug("");
     setForm(buildEmptyForm());
@@ -484,9 +754,7 @@ export default function AdminDashboard() {
     setError("");
     setSyncStatus(null);
 
-    if (typeof window !== "undefined") {
-      window.sessionStorage.removeItem("lou-admin-key");
-    }
+    await supabase.auth.signOut();
   }
 
   function startNewEvent() {
@@ -595,6 +863,7 @@ export default function AdminDashboard() {
       return;
     }
 
+    setHeroFileName(file.name || "");
     setUploadingImage(true);
     setError("");
     setNotice("");
@@ -607,6 +876,46 @@ export default function AdminDashboard() {
       setError(uploadError.message || "Upload immagine non riuscito.");
     } finally {
       setUploadingImage(false);
+      event.target.value = "";
+    }
+  }
+
+  async function handleGalleryUpload(event) {
+    const files = Array.from(event.target.files || []);
+
+    if (!files.length) {
+      return;
+    }
+
+    setUploadingGallery(true);
+    setError("");
+    setNotice("");
+
+    try {
+      const uploadedUrls = [];
+
+      for (const file of files) {
+        const url = await uploadEventImage(file, adminKey);
+        uploadedUrls.push(url);
+      }
+
+      setForm((current) => {
+        const existing = splitLines(current.galleryText);
+        const nextGallery = [...existing, ...uploadedUrls];
+
+        return {
+          ...current,
+          galleryText: nextGallery.join("\n"),
+        };
+      });
+
+      setNotice(
+        `${uploadedUrls.length} immagini caricate e aggiunte alla galleria.`,
+      );
+    } catch (uploadError) {
+      setError(uploadError.message || "Upload galleria non riuscito.");
+    } finally {
+      setUploadingGallery(false);
       event.target.value = "";
     }
   }
@@ -817,36 +1126,170 @@ export default function AdminDashboard() {
               Accesso admin
             </h1>
             <p className="mb-6 text-base leading-7 text-[#6d7b80]">
-              Per ora usiamo una chiave admin semplice per collegare dashboard e
-              backend. Nel prossimo step la sostituiamo con login reale.
+              {authMode === "login"
+                ? "Accedi con email e password Supabase."
+                : "Crea il tuo account admin con nome, email e password."}
             </p>
 
-            <form onSubmit={handleLogin} className="space-y-4">
-              <Field label="Admin key">
+            <div className="mb-5 grid grid-cols-2 gap-2 rounded-xl bg-[#fef3ea] p-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setAuthMode("login");
+                  setError("");
+                  setNotice("");
+                }}
+                className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
+                  authMode === "login"
+                    ? "bg-white text-[#2c395b] shadow-sm"
+                    : "text-[#6d7b80] hover:text-[#2c395b]"
+                }`}
+              >
+                Accedi
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setAuthMode("register");
+                  setError("");
+                  setNotice("");
+                }}
+                className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
+                  authMode === "register"
+                    ? "bg-white text-[#2c395b] shadow-sm"
+                    : "text-[#6d7b80] hover:text-[#2c395b]"
+                }`}
+              >
+                Crea account
+              </button>
+            </div>
+
+            <form
+              onSubmit={authMode === "login" ? handleLogin : (event) => {
+                event.preventDefault();
+                handleRegister();
+              }}
+              className="space-y-4"
+            >
+              {authMode === "register" ? (
+                <Field label="Nome">
+                  <input
+                    type="text"
+                    name="name"
+                    autoComplete="name"
+                    value={authName}
+                    onChange={(event) => setAuthName(event.target.value)}
+                    placeholder="Il tuo nome"
+                    className={baseInputClass()}
+                  />
+                </Field>
+              ) : null}
+
+              <Field label="Email admin">
                 <input
-                  type="password"
-                  value={keyInput}
-                  onChange={(event) => setKeyInput(event.target.value)}
-                  placeholder="Inserisci la chiave admin"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  value={authEmail}
+                  onChange={(event) => setAuthEmail(event.target.value)}
+                  placeholder="admin@dominio.com"
                   className={baseInputClass()}
                 />
               </Field>
 
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#77674E] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#685b43]"
-              >
-                <Icon icon="hugeicons:square-lock-02" width="18" height="18" />
-                Entra nella dashboard
-              </button>
+              <Field label="Password">
+                <div className="flex items-center gap-2">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    autoComplete={
+                      authMode === "login" ? "current-password" : "new-password"
+                    }
+                    value={authPassword}
+                    onChange={(event) => setAuthPassword(event.target.value)}
+                    placeholder="Inserisci la password"
+                    className={`${baseInputClass()} flex-1`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((current) => !current)}
+                    className="inline-flex items-center justify-center rounded-xl border border-[#c9573c]/20 bg-[#fef3ea] px-3 py-3 text-xs font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
+                  >
+                    {showPassword ? "Nascondi" : "Mostra"}
+                  </button>
+                </div>
+              </Field>
+
+              {authMode === "login" ? (
+                <label className="inline-flex items-center gap-2 text-sm font-medium text-[#2c395b]">
+                  <input
+                    type="checkbox"
+                    checked={rememberEmail}
+                    onChange={(event) => setRememberEmail(event.target.checked)}
+                    className="h-4 w-4 rounded border-[#c9573c]/40 text-[#c9573c] focus:ring-[#c9573c]"
+                  />
+                  Ricordami su questo dispositivo
+                </label>
+              ) : null}
+
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <button
+                  type="submit"
+                  disabled={authLoading}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#77674E] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#685b43] disabled:opacity-60"
+                >
+                  <Icon icon="hugeicons:square-lock-02" width="18" height="18" />
+                  {authMode === "login" ? "Accedi" : "Crea account"}
+                </button>
+
+                {authMode === "register" ? (
+                  <button
+                    type="button"
+                    disabled={authLoading}
+                    onClick={() => setAuthMode("login")}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-[#fef3ea] px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10 disabled:opacity-60"
+                  >
+                    Torna al login
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    disabled={authLoading}
+                    onClick={() => setAuthMode("register")}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-[#fef3ea] px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10 disabled:opacity-60"
+                  >
+                    <Icon icon="hugeicons:user-plus-01" width="18" height="18" />
+                    Crea account
+                  </button>
+                )}
+              </div>
+
+              {authMode === "login" ? (
+                <div className="flex flex-wrap items-center gap-4">
+                  <button
+                    type="button"
+                    disabled={authLoading}
+                    onClick={handleResetPasswordEmail}
+                    className="text-sm font-semibold text-[#2c395b] underline underline-offset-4 transition hover:text-[#c9573c] disabled:opacity-60"
+                  >
+                    Password dimenticata?
+                  </button>
+                  <button
+                    type="button"
+                    disabled={authLoading}
+                    onClick={handleResendConfirmationEmail}
+                    className="text-sm font-semibold text-[#2c395b] underline underline-offset-4 transition hover:text-[#c9573c] disabled:opacity-60"
+                  >
+                    Reinvia email di conferma
+                  </button>
+                </div>
+              ) : null}
             </form>
 
             <div className="mt-6 rounded-[1.5rem] bg-[#fff8f4] p-4 text-sm leading-6 text-[#6d7b80]">
-              In locale la chiave di default e{" "}
-              <code className="rounded bg-white px-2 py-1 text-[#2c395b]">
-                lou-demo-2026
-              </code>
-              . In produzione useremo <code>ADMIN_API_KEY</code> o auth vera.
+              In Supabase lascia attivo il provider Email e la conferma email.
+              Per limitare gli accessi all&apos;area admin imposta{" "}
+              <code>ADMIN_ALLOWED_EMAILS</code>.
             </div>
           </section>
         </main>
@@ -885,6 +1328,10 @@ export default function AdminDashboard() {
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#c9573c]/15 bg-white px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#2c395b]">
+                  <Icon icon="hugeicons:user-account" width="14" height="14" />
+                  {getAdminDisplayName(adminUser) || "Admin"}
+                </div>
                 <button
                   type="button"
                   onClick={handleLogout}
@@ -934,6 +1381,10 @@ export default function AdminDashboard() {
             <header className="mb-8 rounded-[2rem] border border-[#c9573c]/10 bg-white/75 p-6 shadow-[0_20px_50px_rgba(35,47,55,0.06)] backdrop-blur-sm lg:p-8">
               <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
                 <div className="max-w-4xl">
+                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#c9573c]/15 bg-[#fff8f4] px-3 py-1.5 text-xs font-semibold text-[#77674E]">
+                    <Icon icon="hugeicons:user-account" width="14" height="14" />
+                    Benvenuta/o, {getAdminDisplayName(adminUser) || "Admin"}
+                  </div>
                   <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
                     Backend eventi attivo
                   </p>
@@ -1186,6 +1637,21 @@ export default function AdminDashboard() {
                             ? "Immagine collegata all'evento."
                             : "Seleziona un file per caricare la hero image."}
                       </p>
+                      {heroFileName || form.heroImage ? (
+                        <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#c9573c]/15 bg-[#fff8f4] px-3 py-1 text-xs font-semibold text-[#2c395b]">
+                          <Icon
+                            icon="hugeicons:image-01"
+                            width="14"
+                            height="14"
+                            className="shrink-0"
+                          />
+                          <span className="truncate">
+                            {heroFileName ||
+                              getFileNameFromUrl(form.heroImage) ||
+                              "File hero collegato"}
+                          </span>
+                        </div>
+                      ) : null}
                     </Field>
 
                     <Field label="Titolo IT">
@@ -1388,6 +1854,19 @@ export default function AdminDashboard() {
                       label="Gallery immagini (una per riga)"
                       className="xl:col-span-2"
                     >
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={handleGalleryUpload}
+                        disabled={uploadingGallery}
+                        className={`${baseInputClass()} mb-3`}
+                      />
+                      <p className="mb-3 text-xs text-[#6d7b80]">
+                        {uploadingGallery
+                          ? "Upload galleria in corso..."
+                          : "Puoi selezionare piu immagini insieme: gli URL vengono aggiunti automaticamente qui sotto."}
+                      </p>
                       <textarea
                         value={form.galleryText}
                         onChange={(event) =>

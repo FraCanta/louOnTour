@@ -5,7 +5,7 @@ import {
 } from "../../../../utils/googleCalendar";
 
 export default async function handler(req, res) {
-  if (!requireAdminApiKey(req, res)) {
+  if (!(await requireAdminApiKey(req, res))) {
     return;
   }
 
