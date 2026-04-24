@@ -173,8 +173,16 @@ export async function getStaticProps({ params, locale = "it" }) {
   const event = await getEventBySlug(params.slug, lang);
   const copy = await getEventsPageCopy(lang);
 
+  if (!event) {
+    return {
+      notFound: true,
+      revalidate: 60,
+    };
+  }
+
   return {
     props: { event, copy, locale: lang },
+    revalidate: 60,
   };
 }
 export async function getStaticPaths() {
@@ -188,6 +196,6 @@ export async function getStaticPaths() {
         locale,
       })),
     ),
-    fallback: false,
+    fallback: "blocking",
   };
 }
