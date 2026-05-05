@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { uploadEventImage } from "../../utils/uploadEventImage";
 import { supabase } from "../../utils/supabase";
@@ -498,6 +498,7 @@ export default function AdminDashboard() {
   const [notice, setNotice] = useState("");
   const [syncStatus, setSyncStatus] = useState(null);
   const [payments, setPayments] = useState([]);
+  const [expandedPaymentSessionId, setExpandedPaymentSessionId] = useState("");
 
   const selectedEvent =
     events.find((event) => event.slug === selectedSlug) || null;
@@ -2789,6 +2790,7 @@ export default function AdminDashboard() {
                     <table className="min-w-full text-sm">
                       <thead className="bg-[#fff8f4] text-[#2c395b]">
                         <tr>
+                          <th className="px-4 py-3 text-left font-semibold">Dettagli</th>
                           <th className="px-4 py-3 text-left font-semibold">Data</th>
                           <th className="px-4 py-3 text-left font-semibold">Evento</th>
                           <th className="px-4 py-3 text-left font-semibold">Importo</th>
@@ -2805,56 +2807,166 @@ export default function AdminDashboard() {
                             const attendeeCount = Number(
                               payment?.raw_payload?.metadata?.attendeeCount || 1,
                             );
+                            const sessionId = String(payment.stripe_session_id || "");
+                            const isExpanded =
+                              sessionId && expandedPaymentSessionId === sessionId;
+                            const metadata = payment?.raw_payload?.metadata || {};
+                            const customerDetails = payment?.raw_payload?.customer_details || {};
 
                             return (
-                              <tr key={payment.stripe_session_id} className="border-t border-[#c9573c]/10 bg-white">
-                                <td className="px-4 py-3 text-[#6d7b80]">
-                                  {formatAdminDateTime(payment.created_at)}
-                                </td>
-                                <td className="px-4 py-3">
-                                  <p className="font-semibold text-[#2c395b]">
-                                    {payment.event_slug || "-"}
-                                  </p>
-                                  <p className="text-xs text-[#6d7b80]">
-                                    {payment.event_date_iso || "-"}
-                                  </p>
-                                </td>
-                                <td className="px-4 py-3 font-semibold text-[#2c395b]">
-                                  {formatMoneyFromCents(
-                                    payment.amount_total,
-                                    payment.currency,
-                                  )}
-                                </td>
-                                <td className="px-4 py-3 text-[#6d7b80]">
-                                  {payment.payment_status || "-"}
-                                </td>
-                                <td className="px-4 py-3 text-[#6d7b80]">
-                                  {payment.customer_email || "-"}
-                                </td>
-                                <td className="px-4 py-3 text-[#6d7b80]">
-                                  <p className="font-semibold text-[#2c395b]">
-                                    {attendeeCount}{" "}
-                                    {attendeeCount === 1 ? "persona" : "persone"}
-                                  </p>
-                                  {attendeeNames.length ? (
-                                    <p className="text-xs">
-                                      {attendeeNames.join(", ")}
+                              <Fragment key={payment.stripe_session_id}>
+                                <tr className="border-t border-[#c9573c]/10 bg-white">
+                                  <td className="px-4 py-3 text-[#6d7b80]">
+                                    <button
+                                      type="button"
+                                      onClick={() =>
+                                        setExpandedPaymentSessionId((current) =>
+                                          current === sessionId ? "" : sessionId,
+                                        )
+                                      }
+                                      className="inline-flex items-center gap-2 rounded-lg border border-[#c9573c]/20 px-3 py-1 text-xs font-semibold text-[#2c395b] transition hover:bg-[#fff8f4]"
+                                    >
+                                      <Icon
+                                        icon={
+                                          isExpanded
+                                            ? "hugeicons:arrow-up-01"
+                                            : "hugeicons:arrow-down-01"
+                                        }
+                                        width="14"
+                                        height="14"
+                                      />
+                                      {isExpanded ? "Chiudi" : "Apri"}
+                                    </button>
+                                  </td>
+                                  <td className="px-4 py-3 text-[#6d7b80]">
+                                    {formatAdminDateTime(payment.created_at)}
+                                  </td>
+                                  <td className="px-4 py-3">
+                                    <p className="font-semibold text-[#2c395b]">
+                                      {payment.event_slug || "-"}
                                     </p>
-                                  ) : (
-                                    <p className="text-xs">Nomi non inseriti</p>
-                                  )}
-                                </td>
-                                <td className="px-4 py-3 text-[#6d7b80]">
-                                  <span className="font-mono text-xs">
-                                    {payment.stripe_session_id || "-"}
-                                  </span>
-                                </td>
-                              </tr>
+                                    <p className="text-xs text-[#6d7b80]">
+                                      {payment.event_date_iso || "-"}
+                                    </p>
+                                  </td>
+                                  <td className="px-4 py-3 font-semibold text-[#2c395b]">
+                                    {formatMoneyFromCents(
+                                      payment.amount_total,
+                                      payment.currency,
+                                    )}
+                                  </td>
+                                  <td className="px-4 py-3 text-[#6d7b80]">
+                                    {payment.payment_status || "-"}
+                                  </td>
+                                  <td className="px-4 py-3 text-[#6d7b80]">
+                                    {payment.customer_email || "-"}
+                                  </td>
+                                  <td className="px-4 py-3 text-[#6d7b80]">
+                                    <p className="font-semibold text-[#2c395b]">
+                                      {attendeeCount}{" "}
+                                      {attendeeCount === 1 ? "persona" : "persone"}
+                                    </p>
+                                    {attendeeNames.length ? (
+                                      <p className="text-xs">
+                                        {attendeeNames.join(", ")}
+                                      </p>
+                                    ) : (
+                                      <p className="text-xs">Nomi non inseriti</p>
+                                    )}
+                                  </td>
+                                  <td className="px-4 py-3 text-[#6d7b80]">
+                                    <span className="font-mono text-xs">
+                                      {payment.stripe_session_id || "-"}
+                                    </span>
+                                  </td>
+                                </tr>
+                                {isExpanded ? (
+                                  <tr className="border-t border-[#c9573c]/10 bg-[#fffaf7]">
+                                    <td colSpan={8} className="px-4 py-4">
+                                      <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
+                                        <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
+                                          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+                                            Dati cliente
+                                          </p>
+                                          <div className="space-y-1 text-sm text-[#2c395b]">
+                                            <p>
+                                              <strong>Email:</strong>{" "}
+                                              {customerDetails.email || payment.customer_email || "-"}
+                                            </p>
+                                            <p>
+                                              <strong>Nome:</strong>{" "}
+                                              {customerDetails.name || "-"}
+                                            </p>
+                                            <p>
+                                              <strong>Telefono:</strong>{" "}
+                                              {customerDetails.phone || "-"}
+                                            </p>
+                                            <p>
+                                              <strong>Nazione:</strong>{" "}
+                                              {customerDetails.address?.country || "-"}
+                                            </p>
+                                          </div>
+                                        </div>
+
+                                        <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
+                                          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+                                            Metadata checkout
+                                          </p>
+                                          <div className="space-y-1 text-sm text-[#2c395b]">
+                                            <p>
+                                              <strong>Evento:</strong> {metadata.eventSlug || "-"}
+                                            </p>
+                                            <p>
+                                              <strong>Data evento:</strong> {metadata.eventDateIso || "-"}
+                                            </p>
+                                            <p>
+                                              <strong>Partecipanti:</strong>{" "}
+                                              {metadata.attendeeCount || "-"}
+                                            </p>
+                                            <p>
+                                              <strong>Nomi:</strong>{" "}
+                                              {metadata.attendeeNames || "-"}
+                                            </p>
+                                            <p>
+                                              <strong>Lingua:</strong> {metadata.locale || "-"}
+                                            </p>
+                                          </div>
+                                        </div>
+
+                                        <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
+                                          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+                                            Identificativi Stripe
+                                          </p>
+                                          <div className="space-y-1 text-sm text-[#2c395b]">
+                                            <p>
+                                              <strong>Session ID:</strong>{" "}
+                                              <span className="font-mono text-xs">
+                                                {payment.stripe_session_id || "-"}
+                                              </span>
+                                            </p>
+                                            <p>
+                                              <strong>Payment Intent:</strong>{" "}
+                                              <span className="font-mono text-xs">
+                                                {payment.stripe_payment_intent_id || "-"}
+                                              </span>
+                                            </p>
+                                            <p>
+                                              <strong>Status:</strong>{" "}
+                                              {payment.payment_status || "-"}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    </td>
+                                  </tr>
+                                ) : null}
+                              </Fragment>
                             );
                           })
                         ) : (
                           <tr>
-                            <td colSpan={7} className="px-4 py-8 text-center text-[#6d7b80]">
+                            <td colSpan={8} className="px-4 py-8 text-center text-[#6d7b80]">
                               Nessun pagamento registrato ancora.
                             </td>
                           </tr>
