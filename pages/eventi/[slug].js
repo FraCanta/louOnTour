@@ -455,6 +455,7 @@ export default function EventDetailPage({ event, copy, locale }) {
                         alt={`${event.title} ${index + 1}`}
                         fill
                         className="object-cover"
+                        unoptimized
                       />
                     </div>
                   ))
