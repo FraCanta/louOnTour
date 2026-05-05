@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { MaskText } from "../../components/UI/MaskText";
 import CtaPrimary from "../../components/button/CtaPrimary";
@@ -58,15 +58,57 @@ export default function EventDetailPage({ event, copy, locale }) {
   const [checkoutDateIso, setCheckoutDateIso] = useState("");
   const [checkoutError, setCheckoutError] = useState("");
   const [bookingByDate, setBookingByDate] = useState({});
+  const [newsletterConsentByDate, setNewsletterConsentByDate] = useState({});
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(null);
   const lang = locale === "en" ? "en" : "it";
   const checkoutStatus = useMemo(() => {
     const rawStatus = router.query.checkout;
     return typeof rawStatus === "string" ? rawStatus : "";
   }, [router.query.checkout]);
+  const gallery = event?.gallery || [];
+  const visibleGallery = gallery.length > 5 ? gallery.slice(0, 5) : gallery;
+  const hiddenGalleryCount = Math.max(gallery.length - visibleGallery.length, 0);
+  const activeGalleryImage =
+    activeGalleryIndex !== null ? gallery[activeGalleryIndex] : null;
+  const showMoreGalleryLabel =
+    lang === "en" ? "View the others" : "Guarda le altre";
+
+
+  // 🔹 DB (solo contenuti evento)
+  useEffect(() => {
+    if (activeGalleryIndex === null) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setActiveGalleryIndex(null);
+      }
+
+      if (event.key === "ArrowRight") {
+        setActiveGalleryIndex((current) =>
+          current === null ? current : (current + 1) % gallery.length,
+        );
+      }
+
+      if (event.key === "ArrowLeft") {
+        setActiveGalleryIndex((current) =>
+          current === null
+            ? current
+            : (current - 1 + gallery.length) % gallery.length,
+        );
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeGalleryIndex, gallery.length]);
 
   if (!event) return null;
 
-  // 🔹 DB (solo contenuti evento)
   const title = event.title;
   const excerpt = event.excerpt;
   const category = event.category;
@@ -76,7 +118,6 @@ export default function EventDetailPage({ event, copy, locale }) {
   const meetingPoint = event.meetingPoint;
   const meetingPointLink = event.meetingPointLink;
   const recurring = buildRecurringLabel(event.dates || [], lang);
-  const gallery = event.gallery || [];
   const groupSizeLabel = lang === "en" ? "Min 4 - Max 10" : "Min 4 - Max 10";
   const bookingNote =
     lang === "en"
@@ -131,12 +172,24 @@ export default function EventDetailPage({ event, copy, locale }) {
     });
   }
 
+  function getNewsletterConsent(dateIso) {
+    return Boolean(newsletterConsentByDate[dateIso]);
+  }
+
+  function updateNewsletterConsent(dateIso, accepted) {
+    setNewsletterConsentByDate((current) => ({
+      ...current,
+      [dateIso]: Boolean(accepted),
+    }));
+  }
+
   async function startStripeCheckout(date) {
     setCheckoutError("");
     setCheckoutDateIso(date.iso);
 
     try {
       const bookingState = getDateBookingState(date.iso);
+      const newsletterConsent = getNewsletterConsent(date.iso);
       const attendeeNames = (bookingState.attendeeNames || [])
         .slice(0, bookingState.quantity)
         .map((item) => String(item || "").trim())
@@ -153,6 +206,7 @@ export default function EventDetailPage({ event, copy, locale }) {
           locale: lang,
           quantity: bookingState.quantity,
           attendeeNames,
+          newsletterConsent,
         }),
       });
       const data = await response.json();
@@ -309,6 +363,14 @@ export default function EventDetailPage({ event, copy, locale }) {
                   const checkoutLabel = lang === "en" ? "Book now" : "Prenota ora";
                   const checkoutLoadingLabel =
                     lang === "en" ? "Opening checkout..." : "Apertura checkout...";
+                  const newsletterConsentLabel =
+                    lang === "en"
+                      ? "I agree to receive updates and newsletter emails."
+                      : "Acconsento a ricevere aggiornamenti e newsletter via email.";
+                  const newsletterConsentNote =
+                    lang === "en"
+                      ? "Optional consent. You can unsubscribe anytime."
+                      : "Consenso facoltativo. Potrai disiscriverti in qualsiasi momento.";
                   const checkoutPriceLabel = stripeEnabled
                     ? new Intl.NumberFormat(lang === "en" ? "en-US" : "it-IT", {
                         style: "currency",
@@ -389,6 +451,26 @@ export default function EventDetailPage({ event, copy, locale }) {
                             ))}
                           </div>
 
+                          <label className="mb-3 flex items-start gap-2 rounded-md border border-white/10 bg-white/5 p-3">
+                            <input
+                              type="checkbox"
+                              checked={getNewsletterConsent(date.iso)}
+                              onChange={(event) =>
+                                updateNewsletterConsent(
+                                  date.iso,
+                                  event.target.checked,
+                                )
+                              }
+                              className="mt-0.5 h-4 w-4 rounded border-white/30 bg-white/10 accent-[#fef3ea]"
+                            />
+                            <span className="text-xs text-[#fef3ea]/85">
+                              {newsletterConsentLabel}{" "}
+                              <span className="text-[#fef3ea]/65">
+                                {newsletterConsentNote}
+                              </span>
+                            </span>
+                          </label>
+
                           <button
                             type="button"
                             onClick={() => startStripeCheckout(date)}
@@ -442,23 +524,46 @@ export default function EventDetailPage({ event, copy, locale }) {
                 {copy.detail.galleryTitle}
               </p>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {event.gallery ? (
-                  event.gallery.map((image, index) => (
-                    <div
-                      key={`${image}-${index}`}
-                      className={`relative overflow-hidden rounded-md ${
-                        index === 0 ? "sm:col-span-2 h-[260px]" : "h-[180px]"
-                      }`}
-                    >
-                      <Image
-                        src={image}
-                        alt={`${event.title} ${index + 1}`}
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    </div>
-                  ))
+                {gallery.length > 0 ? (
+                  visibleGallery.map((image, index) => {
+                    const isMoreTile =
+                      hiddenGalleryCount > 0 && index === visibleGallery.length - 1;
+
+                    return (
+                      <button
+                        type="button"
+                        onClick={() => setActiveGalleryIndex(index)}
+                        key={`${image}-${index}`}
+                        aria-label={
+                          isMoreTile
+                            ? `${showMoreGalleryLabel}: ${hiddenGalleryCount}`
+                            : `${event.title} ${index + 1}`
+                        }
+                        className={`group relative overflow-hidden rounded-md text-left ${
+                          index === 0 ? "sm:col-span-2 h-[260px]" : "h-[180px]"
+                        }`}
+                      >
+                        <Image
+                          src={image}
+                          alt={`${event.title} ${index + 1}`}
+                          fill
+                          className="object-cover transition duration-500 group-hover:scale-105"
+                          unoptimized
+                        />
+                        <span className="absolute inset-0 bg-black/0 transition group-hover:bg-black/20" />
+                        {isMoreTile ? (
+                          <span className="absolute inset-0 flex flex-col items-center justify-center bg-[#2c395b]/70 px-4 text-center text-white">
+                            <span className="text-xs font-semibold uppercase tracking-[0.2em]">
+                              {showMoreGalleryLabel}
+                            </span>
+                            <span className="mt-2 text-3xl font-bold">
+                              +{hiddenGalleryCount}
+                            </span>
+                          </span>
+                        ) : null}
+                      </button>
+                    );
+                  })
                 ) : (
                   <p className="text-sm text-para">{copy.detail.noGallery}</p>
                 )}
@@ -467,6 +572,74 @@ export default function EventDetailPage({ event, copy, locale }) {
           </div>
         </section>
       </div>
+      {activeGalleryImage ? (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#111827]/90 px-4 py-6"
+          role="dialog"
+          aria-modal="true"
+          aria-label={copy.detail.galleryTitle}
+          onClick={() => setActiveGalleryIndex(null)}
+        >
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              setActiveGalleryIndex(null);
+            }}
+            className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+            aria-label={lang === "en" ? "Close gallery" : "Chiudi gallery"}
+          >
+            <Icon icon="hugeicons:cancel-01" width="22" height="22" />
+          </button>
+
+          {gallery.length > 1 ? (
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                setActiveGalleryIndex(
+                  (activeGalleryIndex - 1 + gallery.length) % gallery.length,
+                );
+              }}
+              className="absolute left-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+              aria-label={lang === "en" ? "Previous image" : "Immagine precedente"}
+            >
+              <Icon icon="hugeicons:arrow-left-02" width="24" height="24" />
+            </button>
+          ) : null}
+
+          <div
+            className="relative h-[78vh] w-full max-w-5xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <Image
+              src={activeGalleryImage}
+              alt={`${event.title} ${activeGalleryIndex + 1}`}
+              fill
+              sizes="(max-width: 1024px) 92vw, 1024px"
+              className="object-contain"
+              unoptimized
+            />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-black/45 px-4 py-2 text-sm text-white">
+              {activeGalleryIndex + 1} / {gallery.length}
+            </div>
+          </div>
+
+          {gallery.length > 1 ? (
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                setActiveGalleryIndex((activeGalleryIndex + 1) % gallery.length);
+              }}
+              className="absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+              aria-label={lang === "en" ? "Next image" : "Immagine successiva"}
+            >
+              <Icon icon="hugeicons:arrow-right-02" width="24" height="24" />
+            </button>
+          ) : null}
+        </div>
+      ) : null}
     </>
   );
 }

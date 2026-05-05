@@ -77,6 +77,7 @@ export default async function handler(req, res) {
           .filter(Boolean)
           .slice(0, quantity)
       : [];
+    const newsletterConsent = Boolean(req.body?.newsletterConsent);
 
     if (!slug || !dateIso) {
       return res.status(400).json({ error: "Slug e data sono obbligatori." });
@@ -159,6 +160,7 @@ export default async function handler(req, res) {
         eventCapacity: String(dateCapacity),
         remainingBeforeCheckout: String(remainingSeats),
         attendeeNames: attendeeNamesPayload,
+        newsletterConsent: newsletterConsent ? "true" : "false",
         locale,
       },
       payment_intent_data: {
@@ -167,6 +169,7 @@ export default async function handler(req, res) {
           eventDateIso: dateIso,
           attendeeCount: String(quantity),
           attendeeNames: attendeeNamesPayload,
+          newsletterConsent: newsletterConsent ? "true" : "false",
           locale,
         },
       },

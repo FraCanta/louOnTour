@@ -1,4 +1,6 @@
 import nodemailer from "nodemailer";
+import crypto from "crypto";
+import mailchimp from "@mailchimp/mailchimp_marketing";
 import { supabaseAdmin } from "../../../utils/supabaseAdmin";
 import {
   getStripeClient,
@@ -50,6 +52,72 @@ function getSessionAttendeeCount(session) {
   return parsePositiveInt(session?.metadata?.attendeeCount, 1) || 1;
 }
 
+function hasNewsletterConsent(session) {
+  return (
+    String(session?.metadata?.newsletterConsent || "").trim().toLowerCase() === "true"
+  );
+}
+
+function getMailchimpConfig() {
+  const apiKey = String(process.env.MAILCHIMP_API_KEY || "").trim();
+  const server = String(process.env.MAILCHIMP_SERVER_PREFIX || "us14").trim();
+  const audienceId = String(
+    process.env.MAILCHIMP_AUDIENCE_ID || "5f51338f71",
+  ).trim();
+  const permissionId = String(
+    process.env.MAILCHIMP_MARKETING_PERMISSION_ID || "",
+  ).trim();
+
+  return { apiKey, server, audienceId, permissionId };
+}
+
+async function subscribeToNewsletterIfConsented(session) {
+  if (!hasNewsletterConsent(session)) return;
+
+  const email =
+    String(session?.customer_details?.email || "").trim().toLowerCase() ||
+    String(session?.customer_email || "").trim().toLowerCase();
+
+  if (!email) {
+    console.warn("[stripe-webhook] newsletter opt-in true but no customer email.");
+    return;
+  }
+
+  const { apiKey, server, audienceId, permissionId } = getMailchimpConfig();
+
+  if (!apiKey || !server || !audienceId) {
+    console.warn(
+      "[stripe-webhook] missing Mailchimp env (MAILCHIMP_API_KEY / MAILCHIMP_SERVER_PREFIX / MAILCHIMP_AUDIENCE_ID).",
+    );
+    return;
+  }
+
+  mailchimp.setConfig({ apiKey, server });
+
+  const subscriberHash = crypto
+    .createHash("md5")
+    .update(email)
+    .digest("hex");
+
+  const marketingPermissions = permissionId
+    ? [{ marketing_permission_id: permissionId, enabled: true }]
+    : undefined;
+
+  try {
+    await mailchimp.lists.setListMember(audienceId, subscriberHash, {
+      email_address: email,
+      status_if_new: "pending",
+      status: "subscribed",
+      tags: ["checkout-event", "newsletter-optin"],
+      marketing_permissions: marketingPermissions,
+    });
+  } catch (error) {
+    console.warn(
+      `[stripe-webhook] Mailchimp subscribe failed for ${email}: ${error.message}`,
+    );
+  }
+}
+
 async function getBookedSeats(eventSlug, eventDateIso, sessionIdToExclude = "") {
   const { data, error } = await supabaseAdmin
     .from("event_bookings")
@@ -90,6 +158,7 @@ async function sendPaymentNotification(session) {
   const eventSlug = String(session.metadata?.eventSlug || "-");
   const eventDateIso = String(session.metadata?.eventDateIso || "-");
   const attendeeCount = getSessionAttendeeCount(session);
+  const newsletterConsent = hasNewsletterConsent(session);
   const customerEmail =
     String(session.customer_details?.email || "").trim() ||
     String(session.customer_email || "").trim() ||
@@ -118,6 +187,7 @@ async function sendPaymentNotification(session) {
         <p><strong>Nomi:</strong> ${attendeeNames}</p>
         <p><strong>Importo:</strong> ${amountTotal.toFixed(2)} ${currency}</p>
         <p><strong>Email cliente:</strong> ${customerEmail}</p>
+        <p><strong>Consenso newsletter:</strong> ${newsletterConsent ? "Si" : "No"}</p>
         <p><strong>Sessione Stripe:</strong> ${session.id}</p>
       </div>
     `,
@@ -175,6 +245,8 @@ async function persistBookingFromSession(session) {
   if (error) {
     throw new Error(`Booking upsert failed: ${error.message}`);
   }
+
+  await subscribeToNewsletterIfConsented(session);
 
   await sendPaymentNotification(session);
 }
