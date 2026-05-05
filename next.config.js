@@ -9,7 +9,7 @@ const ContentSecurityPolicy = `
   child-src 'self' https://luisaquaglia-tourguide.com https://www.instagram.com/ https://www.youtube-nocookie.com/ https://www.google.com/ https://www.youtube.com/;
   style-src 'self' 'unsafe-inline'  https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css  data:;
   font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ 'unsafe-inline' data:;
-  img-src 'self' https://form-assets.mailchimp.com/ https://www.googletagmanager.com/ https://phosphor.utils.elfsightcdn.com/ https://luisaquaglia-tourguide.com https://s.w.org/ https://loublog.luisaquaglia-tourguide.com/wp-content/uploads/ https://static.xx.fbcdn.net/ data: blob:;
+  img-src 'self' https://form-assets.mailchimp.com/ https://www.googletagmanager.com/ https://phosphor.utils.elfsightcdn.com/ https://luisaquaglia-tourguide.com https://s.w.org/ https://loublog.luisaquaglia-tourguide.com/wp-content/uploads/ https://static.xx.fbcdn.net/ https://jciikbgoqdfqcyqqajpy.supabase.co https://*.supabase.co data: blob:;
    object-src 'self' data: blob:;
 `;
 
@@ -69,6 +69,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "**.supabase.co",
+      },
+      {
+        protocol: "https",
+        hostname: "jciikbgoqdfqcyqqajpy.supabase.co",
       },
     ],
   },
