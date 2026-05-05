@@ -1,9 +1,65 @@
+import { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { MaskText } from "../UI/MaskText";
-import CtaPrimary from "../button/CtaPrimary";
-import CtaOutline from "../button/CtaOutline";
 
-const EventsSection = ({ translation }) => {
+const AUTOPLAY_DELAY = 4500;
+const GROUP_SIZE_LABEL_IT = "Min 4 - Max 10";
+const GROUP_SIZE_LABEL_EN = "Min 4 - Max 10";
+
+const EventsSection = ({ translation, appointments = [], locale = "it" }) => {
+  const isItalian = locale !== "en";
+  const discoverEventLabel = isItalian ? "Scopri" : "Discover";
+  const groupSizeLabel = isItalian ? GROUP_SIZE_LABEL_IT : GROUP_SIZE_LABEL_EN;
+  const fallbackTitle = isItalian
+    ? "Date in aggiornamento"
+    : "Dates being updated";
+  const fallbackText = isItalian
+    ? "Sto pubblicando i prossimi appuntamenti mese per mese. Torna qui a breve per vedere le nuove date."
+    : "I am publishing upcoming appointments month by month. Check back soon to see the new dates.";
+
+  const validAppointments = useMemo(
+    () => (appointments || []).filter((item) => item?.id && item?.slug),
+    [appointments],
+  );
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeAppointment = validAppointments[activeIndex] || null;
+  const activeMonthLabel = useMemo(() => {
+    const firstIso = validAppointments[0]?.iso;
+
+    if (!firstIso) {
+      return isItalian ? "giugno" : "June";
+    }
+
+    const date = new Date(`${firstIso.slice(0, 10)}T12:00:00`);
+    const formatter = new Intl.DateTimeFormat(isItalian ? "it-IT" : "en-US", {
+      month: "long",
+      timeZone: "Europe/Rome",
+    });
+
+    return formatter.format(date);
+  }, [isItalian, validAppointments]);
+  const badgeText = isItalian
+    ? `Date speciali di ${activeMonthLabel}`
+    : `Special dates in ${activeMonthLabel}`;
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [validAppointments.length]);
+
+  useEffect(() => {
+    if (validAppointments.length < 2) {
+      return undefined;
+    }
+
+    const intervalId = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % validAppointments.length);
+    }, AUTOPLAY_DELAY);
+
+    return () => clearInterval(intervalId);
+  }, [validAppointments.length]);
+
   return (
     <section
       id="eventi"
@@ -44,19 +100,16 @@ const EventsSection = ({ translation }) => {
             ))}
           </div>
 
-          <div className="flex flex-col gap-4 pt-2 lg:flex-row lg:max-w-max">
-            <CtaPrimary link="/newsletter">
-              {translation?.primaryCta}
-            </CtaPrimary>
-            <CtaOutline link="mailto:luisaquaglia.tourguide@gmail.com">
-              {translation?.secondaryCta}
-            </CtaOutline>
+          <div className="flex flex-col gap-4 pt-2 lg:max-w-max">
+            <p className="inline-flex items-center rounded-full bg-[#CE9486]/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#c9573c]">
+              {translation?.comingSoon}
+            </p>
           </div>
         </div>
 
         <aside className="relative overflow-hidden rounded-md bg-[#77674E] p-8 text-[#fef3ea] lg:sticky lg:top-24">
           <div className="absolute top-6 right-6 rounded-full bg-[#fef3ea]/10 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#fef3ea]">
-            {translation?.badge}
+            {badgeText}
           </div>
 
           <div className="flex flex-col h-full gap-6 pt-10">
@@ -69,20 +122,103 @@ const EventsSection = ({ translation }) => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <h3 className="text-3xl font-bold leading-tight lg:text-4xl text-[#CE9486]">
-                {translation?.asideTitle}
-              </h3>
-              <p className="text-base leading-7 text-[#fef3ea]/80 xl:text-lg">
-                {translation?.asideText}
-              </p>
-            </div>
+            {activeAppointment ? (
+              <>
+                <div className="relative min-h-[350px]">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.article
+                      key={activeAppointment.id}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -16 }}
+                      transition={{ duration: 0.45, ease: "easeOut" }}
+                      className="absolute inset-0 p-5 rounded-md bg-[#fef3ea]/5 border border-[#fef3ea]/15"
+                    >
+                      <div className="grid h-full grid-cols-1 gap-4 md:grid-cols-[1fr_auto] ">
+                        <div>
+                          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#fef3ea]/65">
+                            {activeAppointment.category}
+                          </p>
+                          <h3 className="text-2xl font-bold leading-tight text-[#CE9486]">
+                            {activeAppointment.title}
+                          </h3>
 
-            <div className="rounded-md border border-[#fef3ea]/15 bg-[#fef3ea]/5 p-2 lg:p-5">
-              <p className="text-sm leading-6 text-[#fef3ea]/85 xl:text-base">
-                {translation?.asideNote}
-              </p>
-            </div>
+                          <div className="mt-5 space-y-3 text-sm text-[#fef3ea]/90">
+                            <p className="flex items-center gap-2">
+                              <Icon icon="hugeicons:calendar-03" width="16" />
+                              <span>{activeAppointment.dateLabel}</span>
+                            </p>
+                            <p className="flex items-center gap-2">
+                              <Icon
+                                icon="hugeicons:time-quarter-pass"
+                                width="16"
+                              />
+                              <span>{activeAppointment.time || "-"}</span>
+                            </p>
+                            <p className="flex items-center gap-2">
+                              <Icon icon="hugeicons:location-01" width="16" />
+                              <span>{activeAppointment.location || "-"}</span>
+                            </p>
+                            <p className="flex items-center gap-2">
+                              <Icon icon="hugeicons:ticket-01" width="16" />
+                              <span>{activeAppointment.price || "-"}</span>
+                            </p>
+                            <p className="flex items-center gap-2">
+                              <Icon icon="hugeicons:user-group" width="16" />
+                              <span>
+                                {isItalian
+                                  ? "Posti disponibili"
+                                  : "Spots available"}
+                                : {activeAppointment.spots}
+                              </span>
+                            </p>
+                            <p className="text-xs text-[#fef3ea]/70">
+                              {groupSizeLabel}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex md:justify-self-end md:items-end">
+                          <span className="inline-flex items-center gap-2 rounded-md border border-[#fef3ea]/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#fef3ea]/80">
+                            {discoverEventLabel}
+                          </span>
+                        </div>
+                      </div>
+                    </motion.article>
+                  </AnimatePresence>
+                </div>
+
+                {validAppointments.length > 1 ? (
+                  <div className="flex items-center gap-2">
+                    {validAppointments.map((item, index) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => setActiveIndex(index)}
+                        className={`h-[0.1rem] md:h-[0.18rem] rounded-sm transition-all ${
+                          index === activeIndex
+                            ? "w-8  bg-[#CE9486]"
+                            : "w-2.5 bg-white/35 hover:bg-[#fef3ea]/55"
+                        }`}
+                        aria-label={`${isItalian ? "Vai alla data" : "Go to date"} ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                ) : null}
+              </>
+            ) : (
+              <div className="rounded-md border border-[#fef3ea]/15 bg-[#fef3ea]/5 p-5">
+                <h3 className="text-3xl font-bold leading-tight lg:text-4xl text-[#CE9486]">
+                  {fallbackTitle}
+                </h3>
+                <p className="mt-4 text-base leading-7 text-[#fef3ea]/80 xl:text-lg">
+                  {fallbackText}
+                </p>
+                <p className="mt-5 text-sm leading-6 text-[#fef3ea]/85 xl:text-base">
+                  {translation?.asideNote}
+                </p>
+              </div>
+            )}
           </div>
         </aside>
       </div>

@@ -1,15 +1,41 @@
 import { supabase } from "./supabase";
 import { supabaseAdmin } from "./supabaseAdmin";
 import eventsJson from "../data/events.json";
+
+const MIN_EVENT_SPOTS = 4;
+const MAX_EVENT_SPOTS = 10;
+
 function normalizeString(value = "") {
   return String(value || "").trim();
 }
 
+function normalizeSpotsValue(value) {
+  const numeric = Number(value);
+
+  if (!Number.isFinite(numeric)) {
+    return MAX_EVENT_SPOTS;
+  }
+
+  return Math.max(MIN_EVENT_SPOTS, Math.min(MAX_EVENT_SPOTS, numeric));
+}
+
 function normalizeLocale(locale = "it") {
-  console.log("LOCALE RAW:", locale);
   const lang = locale === "en" ? "en" : "it";
-  console.log("LANG NORMALIZED:", lang);
   return locale === "en" ? "en" : "it";
+}
+
+function normalizeUrl(value = "") {
+  const normalized = normalizeString(value);
+
+  if (!normalized) {
+    return "";
+  }
+
+  if (/^https?:\/\//i.test(normalized)) {
+    return normalized;
+  }
+
+  return `https://${normalized}`;
 }
 
 function normalizeGoogleCalendarMeta(meta) {
@@ -29,6 +55,35 @@ function normalizeGoogleCalendarMeta(meta) {
     status: normalizeString(meta.status) || "synced",
     syncedAt: normalizeString(meta.syncedAt),
     updatedAt: normalizeString(meta.updatedAt),
+  };
+}
+
+function normalizeStripeCurrency(value) {
+  const normalized = normalizeString(value).toLowerCase();
+  return normalized || "eur";
+}
+
+function normalizeStripeDateConfig(config) {
+  if (!config || typeof config !== "object") {
+    return null;
+  }
+
+  const enabled = Boolean(config.enabled);
+  const parsedPriceCents = Number(config.priceCents);
+  const priceCents = Number.isFinite(parsedPriceCents)
+    ? Math.max(0, Math.round(parsedPriceCents))
+    : 0;
+  const priceId = normalizeString(config.priceId);
+
+  if (!enabled && !priceCents && !priceId) {
+    return null;
+  }
+
+  return {
+    enabled,
+    priceCents,
+    currency: normalizeStripeCurrency(config.currency),
+    priceId,
   };
 }
 
@@ -52,8 +107,9 @@ function normalizeDate(date = {}) {
     startTime,
     endTime,
 
-    spots: Number(date.spots) || 0,
+    spots: normalizeSpotsValue(date.spots),
     googleCalendar: normalizeGoogleCalendarMeta(date.googleCalendar),
+    stripe: normalizeStripeDateConfig(date.stripe),
   };
 }
 
@@ -94,6 +150,14 @@ function normalizeEventPayload(payload = {}) {
     meetingPoint: {
       it: normalizeString(payload.meetingPoint?.it),
       en: normalizeString(payload.meetingPoint?.en),
+      link: {
+        it: normalizeUrl(
+          payload.meetingPoint?.link?.it || payload.meetingPointLink?.it,
+        ),
+        en: normalizeUrl(
+          payload.meetingPoint?.link?.en || payload.meetingPointLink?.en,
+        ),
+      },
     },
     languages: {
       it: normalizeString(payload.languages?.it),
@@ -159,6 +223,12 @@ function localizeEvent(event, locale = "it") {
     duration: event.duration?.[lang] || event.duration?.it || "",
     price: event.price?.[lang] || event.price?.it || "",
     meetingPoint: event.meetingPoint?.[lang] || event.meetingPoint?.it || "",
+    meetingPointLink:
+      event.meetingPoint?.link?.[lang] ||
+      event.meetingPoint?.link?.it ||
+      event.meetingPointLink?.[lang] ||
+      event.meetingPointLink?.it ||
+      "",
     languages: event.languages?.[lang] || event.languages?.it || "",
     recurring: event.recurring?.[lang] || event.recurring?.it || "",
     included: event.included?.[lang] || event.included?.it || [],
@@ -249,7 +319,6 @@ export async function getAllEvents(locale = "it", options = {}) {
 export async function getEventBySlug(slug, locale = "it", options = {}) {
   const { includeDrafts = false } = options;
   const data = await readEventsData();
-  console.log("SLUGS:", data.events);
   const found = (data.events || []).find((event) => event.slug === slug);
 
   if (!found) {

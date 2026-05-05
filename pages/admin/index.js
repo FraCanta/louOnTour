@@ -5,14 +5,22 @@ import { uploadEventImage } from "../../utils/uploadEventImage";
 import { supabase } from "../../utils/supabase";
 
 const DEFAULT_TIMEZONE = "Europe/Rome";
+const MIN_EVENT_SPOTS = 4;
+const MAX_EVENT_SPOTS = 10;
+const SESSION_EXPIRED_MESSAGE = "Sessione scaduta. Effettua di nuovo l'accesso.";
 const NAV_ITEMS = [
   { id: "overview", label: "Panoramica", icon: "hugeicons:square-lock-02" },
   { id: "events", label: "Eventi", icon: "hugeicons:calendar-03" },
   { id: "editor", label: "Editor", icon: "hugeicons:note-edit" },
   { id: "sync", label: "Google Sync", icon: "hugeicons:link-circle-02" },
+  { id: "payments", label: "Pagamenti", icon: "hugeicons:credit-card" },
 ];
 
 function createDateEntry(partial = {}) {
+  const initialStripePriceEuro = partial.stripePriceEuro
+    ? String(partial.stripePriceEuro).trim()
+    : formatStripePriceEuros(partial.stripePriceCents);
+
   return {
     id:
       partial.id ||
@@ -24,6 +32,11 @@ function createDateEntry(partial = {}) {
     labelEn: partial.labelEn || "",
     spots: String(partial.spots ?? "10"),
     googleCalendar: partial.googleCalendar || null,
+    stripeEnabled: Boolean(partial.stripeEnabled),
+    stripePriceEuro: initialStripePriceEuro,
+    stripeCurrency: String(partial.stripeCurrency || "eur")
+      .trim()
+      .toLowerCase(),
   };
 }
 
@@ -48,6 +61,8 @@ function buildEmptyForm() {
     priceEn: "",
     meetingPointIt: "",
     meetingPointEn: "",
+    meetingPointLinkIt: "",
+    meetingPointLinkEn: "",
     languagesIt: "",
     languagesEn: "",
     recurringIt: "",
@@ -72,6 +87,41 @@ function splitParagraphs(value) {
     .split(/\n\s*\n/)
     .map((item) => item.trim())
     .filter(Boolean);
+}
+
+function normalizeSpotsValue(value) {
+  const numeric = Number(String(value || "").trim());
+
+  if (!Number.isFinite(numeric)) {
+    return MAX_EVENT_SPOTS;
+  }
+
+  return Math.max(MIN_EVENT_SPOTS, Math.min(MAX_EVENT_SPOTS, numeric));
+}
+
+function normalizeCurrencyValue(value = "eur") {
+  const normalized = String(value || "").trim().toLowerCase();
+  return normalized || "eur";
+}
+
+function parseStripePriceCents(value) {
+  const parsed = Number(String(value || "").replace(",", "."));
+
+  if (!Number.isFinite(parsed)) {
+    return 0;
+  }
+
+  return Math.max(0, Math.round(parsed * 100));
+}
+
+function formatStripePriceEuros(priceCents) {
+  const parsed = Number(priceCents);
+
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    return "";
+  }
+
+  return (parsed / 100).toFixed(2);
 }
 
 function buildSlugFromTitle(title = "") {
@@ -141,6 +191,10 @@ function eventToForm(event) {
     priceEn: event.price?.en || "",
     meetingPointIt: event.meetingPoint?.it || "",
     meetingPointEn: event.meetingPoint?.en || "",
+    meetingPointLinkIt:
+      event.meetingPoint?.link?.it || event.meetingPointLink?.it || "",
+    meetingPointLinkEn:
+      event.meetingPoint?.link?.en || event.meetingPointLink?.en || "",
     languagesIt: event.languages?.it || "",
     languagesEn: event.languages?.en || "",
     recurringIt: event.recurring?.it || "",
@@ -162,6 +216,9 @@ function eventToForm(event) {
               labelEn: date.labelEn || formatDateLabel(parsed.date, "en"),
               spots: String(date.spots ?? "10"),
               googleCalendar: date.googleCalendar || null,
+              stripeEnabled: Boolean(date.stripe?.enabled),
+              stripePriceEuro: formatStripePriceEuros(date.stripe?.priceCents),
+              stripeCurrency: normalizeCurrencyValue(date.stripe?.currency),
             });
           })
         : [createDateEntry()],
@@ -185,8 +242,13 @@ function dateEntryToPayload(date) {
     labelEn:
       String(date.labelEn || "").trim() || formatDateLabel(dateValue, "en"),
     time: `${startTime} - ${endTime}`,
-    spots: Number(String(date.spots || "").trim()) || 0,
+    spots: normalizeSpotsValue(date.spots),
     googleCalendar: date.googleCalendar || undefined,
+    stripe: {
+      enabled: Boolean(date.stripeEnabled),
+      priceCents: parseStripePriceCents(date.stripePriceEuro),
+      currency: normalizeCurrencyValue(date.stripeCurrency),
+    },
   };
 }
 
@@ -224,6 +286,10 @@ function formToPayload(form) {
     meetingPoint: {
       it: form.meetingPointIt.trim(),
       en: form.meetingPointEn.trim(),
+      link: {
+        it: form.meetingPointLinkIt.trim(),
+        en: form.meetingPointLinkEn.trim(),
+      },
     },
     languages: {
       it: form.languagesIt.trim(),
@@ -266,12 +332,15 @@ function validateForm(form) {
       !date.startTime ||
       !date.endTime ||
       !String(date.spots || "").trim() ||
+      normalizeSpotsValue(date.spots) < MIN_EVENT_SPOTS ||
+      normalizeSpotsValue(date.spots) > MAX_EVENT_SPOTS ||
       !date.labelIt.trim() ||
-      !date.labelEn.trim(),
+      !date.labelEn.trim() ||
+      (date.stripeEnabled && parseStripePriceCents(date.stripePriceEuro) <= 0),
   );
 
   if (invalidDate) {
-    return "Ogni data deve avere giorno, orario, posti e label IT/EN.";
+    return "Ogni data deve avere giorno, orario, posti (min 4, max 10), label IT/EN e prezzo Stripe se il pagamento e attivo.";
   }
 
   return "";
@@ -279,7 +348,7 @@ function validateForm(form) {
 
 function StatsCard({ label, value, note, icon }) {
   return (
-    <article className="rounded-[1.6rem] border border-[#c9573c]/10 bg-white/80 p-5 shadow-[0_16px_40px_rgba(35,47,55,0.05)] backdrop-blur-sm">
+    <article className="rounded-md border border-[#c9573c]/10 bg-white/80 p-5 shadow-[0_16px_40px_rgba(35,47,55,0.05)] backdrop-blur-sm">
       <div className="flex items-start justify-between mb-5">
         <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#CE9486]/20 text-[#c9573c]">
           <Icon icon={icon} width="21" height="21" />
@@ -350,6 +419,60 @@ function getFileNameFromUrl(url = "") {
   }
 }
 
+function isSessionExpiredResponse(response, data) {
+  if (response?.status === 401) {
+    return true;
+  }
+
+  const errorText = String(data?.error || "").toLowerCase();
+  return (
+    errorText.includes("sessione non valida") ||
+    errorText.includes("scaduta") ||
+    errorText.includes("unauthorized")
+  );
+}
+
+function formatAdminDateTime(value) {
+  if (!value) {
+    return "-";
+  }
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "-";
+  }
+
+  return new Intl.DateTimeFormat("it-IT", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+}
+
+function formatMoneyFromCents(cents, currency = "eur") {
+  const amount = Number(cents || 0) / 100;
+  return new Intl.NumberFormat("it-IT", {
+    style: "currency",
+    currency: String(currency || "eur").toUpperCase(),
+  }).format(amount);
+}
+
+function getAttendeeNames(payment) {
+  const raw = String(payment?.raw_payload?.metadata?.attendeeNames || "").trim();
+
+  if (!raw) {
+    return [];
+  }
+
+  return raw
+    .split("|")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 export default function AdminDashboard() {
   const [activePanel, setActivePanel] = useState("overview");
   const [adminKey, setAdminKey] = useState("");
@@ -366,6 +489,7 @@ export default function AdminDashboard() {
   const [form, setForm] = useState(() => buildEmptyForm());
   const [loading, setLoading] = useState(false);
   const [syncLoading, setSyncLoading] = useState(false);
+  const [paymentsLoading, setPaymentsLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
   const [heroFileName, setHeroFileName] = useState("");
@@ -373,6 +497,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [syncStatus, setSyncStatus] = useState(null);
+  const [payments, setPayments] = useState([]);
 
   const selectedEvent =
     events.find((event) => event.slug === selectedSlug) || null;
@@ -419,6 +544,48 @@ export default function AdminDashboard() {
     ];
   }, [events, syncStatus]);
 
+  const paymentStats = useMemo(() => {
+    const successful = payments.filter((item) => item.payment_status === "paid");
+    const refunded = payments.filter((item) =>
+      String(item.payment_status || "").includes("refund"),
+    );
+    const totalCents = successful.reduce(
+      (sum, item) => sum + Number(item.amount_total || 0),
+      0,
+    );
+
+    return {
+      count: payments.length,
+      successfulCount: successful.length,
+      refundedCount: refunded.length,
+      totalCents,
+    };
+  }, [payments]);
+
+  const clearAdminSession = useCallback((message = "") => {
+    setAdminKey("");
+    setAdminUser(null);
+    setAuthPassword("");
+    setEvents([]);
+    setSelectedSlug("");
+    setForm(buildEmptyForm());
+    setNotice("");
+    setError(message);
+    setSyncStatus(null);
+    setPayments([]);
+  }, []);
+
+  const handleLogout = useCallback(
+    async ({ skipRemoteSignOut = false, message = "" } = {}) => {
+      clearAdminSession(message);
+
+      if (!skipRemoteSignOut) {
+        await supabase.auth.signOut();
+      }
+    },
+    [clearAdminSession],
+  );
+
   useEffect(() => {
     let mounted = true;
 
@@ -451,10 +618,28 @@ export default function AdminDashboard() {
 
     bootstrapAuth();
 
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        if (!mounted) {
+          return;
+        }
+
+        const token = session?.access_token || "";
+        const user = session?.user || null;
+        setAdminKey(token);
+        setAdminUser(user);
+
+        if (!token) {
+          clearAdminSession("");
+        }
+      },
+    );
+
     return () => {
       mounted = false;
+      authListener?.subscription?.unsubscribe();
     };
-  }, []);
+  }, [clearAdminSession]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -484,6 +669,13 @@ export default function AdminDashboard() {
         const data = await response.json();
 
         if (!response.ok) {
+          if (isSessionExpiredResponse(response, data)) {
+            await handleLogout({
+              skipRemoteSignOut: true,
+              message: SESSION_EXPIRED_MESSAGE,
+            });
+            return;
+          }
           throw new Error(data.error || "Errore nel caricamento stato Google.");
         }
 
@@ -492,7 +684,7 @@ export default function AdminDashboard() {
         setError(fetchError.message);
       }
     },
-    [adminKey],
+    [adminKey, handleLogout],
   );
 
   const loadEvents = useCallback(
@@ -509,6 +701,13 @@ export default function AdminDashboard() {
         const data = await response.json();
 
         if (!response.ok) {
+          if (isSessionExpiredResponse(response, data)) {
+            await handleLogout({
+              skipRemoteSignOut: true,
+              message: SESSION_EXPIRED_MESSAGE,
+            });
+            return;
+          }
           throw new Error(data.error || "Errore nel caricamento eventi.");
         }
 
@@ -537,7 +736,44 @@ export default function AdminDashboard() {
         setLoading(false);
       }
     },
-    [activePanel, adminKey, selectedSlug],
+    [activePanel, adminKey, handleLogout, selectedSlug],
+  );
+
+  const loadPayments = useCallback(
+    async (key = adminKey) => {
+      if (!key) {
+        return;
+      }
+
+      setPaymentsLoading(true);
+
+      try {
+        const response = await fetch("/api/admin/payments", {
+          headers: {
+            Authorization: `Bearer ${key}`,
+          },
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (isSessionExpiredResponse(response, data)) {
+            await handleLogout({
+              skipRemoteSignOut: true,
+              message: SESSION_EXPIRED_MESSAGE,
+            });
+            return;
+          }
+          throw new Error(data.error || "Errore nel caricamento pagamenti.");
+        }
+
+        setPayments(data.payments || []);
+      } catch (fetchError) {
+        setError(fetchError.message);
+      } finally {
+        setPaymentsLoading(false);
+      }
+    },
+    [adminKey, handleLogout],
   );
 
   useEffect(() => {
@@ -547,7 +783,38 @@ export default function AdminDashboard() {
 
     loadEvents(adminKey);
     loadSyncStatus(adminKey);
-  }, [adminKey, loadEvents, loadSyncStatus]);
+    loadPayments(adminKey);
+  }, [adminKey, loadEvents, loadPayments, loadSyncStatus]);
+
+  useEffect(() => {
+    if (!adminKey || typeof window === "undefined") {
+      return undefined;
+    }
+
+    let cancelled = false;
+
+    const checkSessionOnFocus = async () => {
+      const { data } = await supabase.auth.getSession();
+
+      if (cancelled) {
+        return;
+      }
+
+      if (!data?.session?.access_token) {
+        await handleLogout({
+          skipRemoteSignOut: true,
+          message: SESSION_EXPIRED_MESSAGE,
+        });
+      }
+    };
+
+    window.addEventListener("focus", checkSessionOnFocus);
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("focus", checkSessionOnFocus);
+    };
+  }, [adminKey, handleLogout]);
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -743,20 +1010,6 @@ export default function AdminDashboard() {
     }
   }
 
-  async function handleLogout() {
-    setAdminKey("");
-    setAdminUser(null);
-    setAuthPassword("");
-    setEvents([]);
-    setSelectedSlug("");
-    setForm(buildEmptyForm());
-    setNotice("");
-    setError("");
-    setSyncStatus(null);
-
-    await supabase.auth.signOut();
-  }
-
   function startNewEvent() {
     setSelectedSlug("");
     setForm(buildEmptyForm());
@@ -850,6 +1103,13 @@ export default function AdminDashboard() {
     const data = await response.json();
 
     if (!response.ok) {
+      if (isSessionExpiredResponse(response, data)) {
+        await handleLogout({
+          skipRemoteSignOut: true,
+          message: SESSION_EXPIRED_MESSAGE,
+        });
+        throw new Error(SESSION_EXPIRED_MESSAGE);
+      }
       throw new Error(data.error || "Operazione non riuscita.");
     }
 
@@ -954,6 +1214,13 @@ export default function AdminDashboard() {
       const data = await response.json();
 
       if (!response.ok) {
+        if (isSessionExpiredResponse(response, data)) {
+          await handleLogout({
+            skipRemoteSignOut: true,
+            message: SESSION_EXPIRED_MESSAGE,
+          });
+          return;
+        }
         throw new Error(data.error || "Salvataggio non riuscito.");
       }
 
@@ -1091,6 +1358,13 @@ export default function AdminDashboard() {
       const data = await response.json();
 
       if (!response.ok) {
+        if (isSessionExpiredResponse(response, data)) {
+          await handleLogout({
+            skipRemoteSignOut: true,
+            message: SESSION_EXPIRED_MESSAGE,
+          });
+          return;
+        }
         throw new Error(data.error || "Eliminazione non riuscita.");
       }
 
@@ -1118,7 +1392,7 @@ export default function AdminDashboard() {
           <title>Dashboard Admin</title>
         </Head>
         <main className="flex min-h-screen items-center justify-center bg-[linear-gradient(180deg,#fef3ea_0%,#fff8f4_52%,#f6eee8_100%)] px-4 py-10">
-          <section className="w-full max-w-xl rounded-[2rem] border border-[#c9573c]/10 bg-white/80 p-8 shadow-[0_24px_60px_rgba(35,47,55,0.08)] backdrop-blur-sm">
+          <section className="w-full max-w-xl rounded-md border border-[#c9573c]/10 bg-white/80 p-8 shadow-[0_24px_60px_rgba(35,47,55,0.08)] backdrop-blur-sm">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
               Luisa Quaglia Tour Guide
             </p>
@@ -1286,7 +1560,7 @@ export default function AdminDashboard() {
               ) : null}
             </form>
 
-            <div className="mt-6 rounded-[1.5rem] bg-[#fff8f4] p-4 text-sm leading-6 text-[#6d7b80]">
+            <div className="mt-6 rounded-md bg-[#fff8f4] p-4 text-sm leading-6 text-[#6d7b80]">
               In Supabase lascia attivo il provider Email e la conferma email.
               Per limitare gli accessi all&apos;area admin imposta{" "}
               <code>ADMIN_ALLOWED_EMAILS</code>.
@@ -1301,6 +1575,7 @@ export default function AdminDashboard() {
   const showEvents = activePanel === "events" || showOverview;
   const showEditor = activePanel === "editor" || showOverview;
   const showSync = activePanel === "sync" || showOverview;
+  const showPayments = activePanel === "payments" || showOverview;
 
   return (
     <>
@@ -1349,7 +1624,7 @@ export default function AdminDashboard() {
                   key={item.id}
                   type="button"
                   onClick={() => setActivePanel(item.id)}
-                  className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-left transition ${
+                  className={`flex items-center gap-3 rounded-md px-4 py-3 text-left transition ${
                     activePanel === item.id
                       ? "bg-[#77674E] text-white shadow-[0_18px_30px_rgba(119,103,78,0.18)]"
                       : "bg-white/75 text-[#2c395b] hover:bg-[#CE9486]/10"
@@ -1363,7 +1638,7 @@ export default function AdminDashboard() {
               ))}
             </nav>
 
-            <div className="mt-8 rounded-[1.75rem] bg-[#2c395b] p-5 text-[#fef3ea]">
+            <div className="mt-8 rounded-md bg-[#2c395b] p-5 text-[#fef3ea]">
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#fef3ea]/70">
                 Step utile adesso
               </p>
@@ -1378,7 +1653,7 @@ export default function AdminDashboard() {
           </aside>
 
           <section className="px-4 py-6 sm:px-6 lg:px-8 xl:px-10 xl:py-8">
-            <header className="mb-8 rounded-[2rem] border border-[#c9573c]/10 bg-white/75 p-6 shadow-[0_20px_50px_rgba(35,47,55,0.06)] backdrop-blur-sm lg:p-8">
+            <header className="mb-8 rounded-md border border-[#c9573c]/10 bg-white/75 p-6 shadow-[0_20px_50px_rgba(35,47,55,0.06)] backdrop-blur-sm lg:p-8">
               <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
                 <div className="max-w-4xl">
                   <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#c9573c]/15 bg-[#fff8f4] px-3 py-1.5 text-xs font-semibold text-[#77674E]">
@@ -1412,6 +1687,7 @@ export default function AdminDashboard() {
                     onClick={() => {
                       loadEvents(adminKey);
                       loadSyncStatus(adminKey);
+                      loadPayments(adminKey);
                     }}
                     className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-[#fef3ea] px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
                   >
@@ -1423,13 +1699,13 @@ export default function AdminDashboard() {
             </header>
 
             {error ? (
-              <div className="mb-6 rounded-[1.5rem] border border-[#c9573c]/20 bg-[#fff1ec] px-5 py-4 text-sm font-medium text-[#b74d33]">
+              <div className="mb-6 rounded-md border border-[#c9573c]/20 bg-[#fff1ec] px-5 py-4 text-sm font-medium text-[#b74d33]">
                 {error}
               </div>
             ) : null}
 
             {notice ? (
-              <div className="mb-6 rounded-[1.5rem] border border-[#4b6b4e]/20 bg-[#edf7ee] px-5 py-4 text-sm font-medium text-[#4b6b4e]">
+              <div className="mb-6 rounded-md border border-[#4b6b4e]/20 bg-[#edf7ee] px-5 py-4 text-sm font-medium text-[#4b6b4e]">
                 {notice}
               </div>
             ) : null}
@@ -1442,7 +1718,7 @@ export default function AdminDashboard() {
 
             <div className="space-y-6">
               {showEvents ? (
-                <article className="rounded-[2rem] border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
+                <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
                   <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-end sm:justify-between">
                     <div>
                       <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
@@ -1470,7 +1746,7 @@ export default function AdminDashboard() {
                         return (
                           <div
                             key={event.slug}
-                            className="grid gap-4 rounded-[1.5rem] border border-[#c9573c]/10 bg-[#fff8f4] p-5 lg:grid-cols-[1fr_auto]"
+                            className="grid gap-4 rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-5 lg:grid-cols-[1fr_auto]"
                           >
                             <div>
                               <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -1557,7 +1833,7 @@ export default function AdminDashboard() {
                         );
                       })
                     ) : (
-                      <div className="rounded-[1.5rem] border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-6 text-sm leading-7 text-[#6d7b80]">
+                      <div className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-6 text-sm leading-7 text-[#6d7b80]">
                         Nessun evento salvato ancora. Crea il primo da qui sopra
                         con “Nuovo evento”.
                       </div>
@@ -1567,7 +1843,7 @@ export default function AdminDashboard() {
               ) : null}
 
               {showEditor ? (
-                <article className="rounded-[2rem] border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
+                <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
                   <div className="flex flex-col gap-3 mb-6 md:flex-row md:items-end md:justify-between">
                     <div>
                       <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
@@ -1806,6 +2082,30 @@ export default function AdminDashboard() {
                       />
                     </Field>
 
+                    <Field label="Link Google Maps IT">
+                      <input
+                        type="text"
+                        value={form.meetingPointLinkIt}
+                        onChange={(event) =>
+                          updateFormField("meetingPointLinkIt", event.target.value)
+                        }
+                        placeholder="https://maps.app.goo.gl/..."
+                        className={baseInputClass()}
+                      />
+                    </Field>
+
+                    <Field label="Link Google Maps EN">
+                      <input
+                        type="text"
+                        value={form.meetingPointLinkEn}
+                        onChange={(event) =>
+                          updateFormField("meetingPointLinkEn", event.target.value)
+                        }
+                        placeholder="https://maps.app.goo.gl/..."
+                        className={baseInputClass()}
+                      />
+                    </Field>
+
                     <Field label="Lingue IT">
                       <input
                         type="text"
@@ -1957,7 +2257,7 @@ export default function AdminDashboard() {
                         {form.dates.map((date, index) => (
                           <div
                             key={date.id}
-                            className="rounded-[1.5rem] border border-[#c9573c]/10 bg-[#fffaf7] p-4"
+                            className="rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-4"
                           >
                             <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-start sm:justify-between">
                               <div>
@@ -1988,7 +2288,7 @@ export default function AdminDashboard() {
                               </div>
                             </div>
 
-                            <div className="grid grid-cols-1 gap-4 xl:grid-cols-5">
+                            <div className="grid grid-cols-1 gap-4 xl:grid-cols-6">
                               <Field label="Giorno">
                                 <input
                                   type="date"
@@ -2037,7 +2337,8 @@ export default function AdminDashboard() {
                               <Field label="Posti">
                                 <input
                                   type="number"
-                                  min="0"
+                                  min={MIN_EVENT_SPOTS}
+                                  max={MAX_EVENT_SPOTS}
                                   value={date.spots}
                                   onChange={(event) =>
                                     updateDateField(
@@ -2048,7 +2349,65 @@ export default function AdminDashboard() {
                                   }
                                   className={baseInputClass()}
                                 />
+                                <p className="text-xs text-[#6d7b80]">
+                                  Min {MIN_EVENT_SPOTS} - Max {MAX_EVENT_SPOTS}.
+                                </p>
                               </Field>
+
+                              <div className="rounded-xl border border-[#c9573c]/10 bg-white px-4 py-3">
+                                <label className="inline-flex items-center gap-2 text-sm font-semibold text-[#2c395b]">
+                                  <input
+                                    type="checkbox"
+                                    checked={date.stripeEnabled}
+                                    onChange={(event) =>
+                                      updateDateField(
+                                        date.id,
+                                        "stripeEnabled",
+                                        event.target.checked,
+                                      )
+                                    }
+                                    className="h-4 w-4 rounded border-[#c9573c]/40 text-[#c9573c] focus:ring-[#c9573c]"
+                                  />
+                                  Pagamento Stripe
+                                </label>
+                                <p className="mt-2 text-xs text-[#6d7b80]">
+                                  Attiva checkout online per questa data.
+                                </p>
+                                {date.stripeEnabled ? (
+                                  <div className="grid grid-cols-2 gap-2 mt-3">
+                                    <input
+                                      type="number"
+                                      min="0"
+                                      step="0.50"
+                                      value={date.stripePriceEuro}
+                                      onChange={(event) =>
+                                        updateDateField(
+                                          date.id,
+                                          "stripePriceEuro",
+                                          event.target.value,
+                                        )
+                                      }
+                                      placeholder="35.00"
+                                      className={baseInputClass()}
+                                    />
+                                    <select
+                                      value={date.stripeCurrency}
+                                      onChange={(event) =>
+                                        updateDateField(
+                                          date.id,
+                                          "stripeCurrency",
+                                          event.target.value,
+                                        )
+                                      }
+                                      className={baseInputClass()}
+                                    >
+                                      <option value="eur">EUR</option>
+                                      <option value="usd">USD</option>
+                                      <option value="gbp">GBP</option>
+                                    </select>
+                                  </div>
+                                ) : null}
+                              </div>
 
                               <div className="rounded-xl border border-[#c9573c]/10 bg-white px-4 py-3 text-sm text-[#6d7b80]">
                                 <p className="mb-1 font-semibold text-[#2c395b]">
@@ -2153,7 +2512,7 @@ export default function AdminDashboard() {
               ) : null}
 
               {showSync ? (
-                <article className="rounded-[2rem] bg-[#2c395b] p-6 text-[#fef3ea] shadow-[0_24px_60px_rgba(44,57,91,0.2)] lg:p-8">
+                <article className="rounded-md bg-[#2c395b] p-6 text-[#fef3ea] shadow-[0_24px_60px_rgba(44,57,91,0.2)] lg:p-8">
                   <div className="flex flex-col gap-4 mb-6 lg:flex-row lg:items-start lg:justify-between">
                     <div className="max-w-3xl">
                       <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#fef3ea]/60">
@@ -2215,7 +2574,7 @@ export default function AdminDashboard() {
 
                   <div className="grid grid-cols-1 gap-6 xl:grid-cols-[0.95fr_1.05fr]">
                     <div className="space-y-4">
-                      <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                      <div className="rounded-md border border-white/10 bg-white/5 p-5">
                         <div className="flex flex-wrap items-center gap-2 mb-3">
                           <span
                             className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] ${
@@ -2268,7 +2627,7 @@ export default function AdminDashboard() {
                         </div>
                       </div>
 
-                      <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                      <div className="rounded-md border border-white/10 bg-white/5 p-5">
                         <p className="mb-3 text-sm font-semibold text-white">
                           Variabili richieste
                         </p>
@@ -2300,7 +2659,7 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="space-y-4">
-                      <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                      <div className="rounded-md border border-white/10 bg-white/5 p-5">
                         <p className="mb-3 text-sm font-semibold text-white">
                           Come funziona la sync
                         </p>
@@ -2325,7 +2684,7 @@ export default function AdminDashboard() {
                         </div>
                       </div>
 
-                      <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                      <div className="rounded-md border border-white/10 bg-white/5 p-5">
                         <p className="mb-3 text-sm font-semibold text-white">
                           Evento selezionato
                         </p>
@@ -2380,6 +2739,131 @@ export default function AdminDashboard() {
                   </div>
                 </article>
               ) : null}
+
+              {showPayments ? (
+                <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
+                  <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
+                        Stripe
+                      </p>
+                      <h3 className="text-3xl font-bold text-[#2c395b]">
+                        Pagamenti
+                      </h3>
+                    </div>
+                    {paymentsLoading ? (
+                      <span className="text-sm font-semibold text-[#77674E]">
+                        Caricamento...
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2 xl:grid-cols-4">
+                    <StatsCard
+                      label="Transazioni"
+                      value={paymentStats.count}
+                      note="Ultime 300 da Stripe webhook"
+                      icon="hugeicons:credit-card"
+                    />
+                    <StatsCard
+                      label="Pagate"
+                      value={paymentStats.successfulCount}
+                      note="Sessioni completate"
+                      icon="hugeicons:checkmark-circle-02"
+                    />
+                    <StatsCard
+                      label="Rimborsi"
+                      value={paymentStats.refundedCount}
+                      note="Stati con refund"
+                      icon="hugeicons:invoice-02"
+                    />
+                    <StatsCard
+                      label="Incasso lordo"
+                      value={formatMoneyFromCents(paymentStats.totalCents, "eur")}
+                      note="Somma importi pagati"
+                      icon="hugeicons:wallet-02"
+                    />
+                  </div>
+
+                  <div className="overflow-x-auto rounded-md border border-[#c9573c]/10">
+                    <table className="min-w-full text-sm">
+                      <thead className="bg-[#fff8f4] text-[#2c395b]">
+                        <tr>
+                          <th className="px-4 py-3 text-left font-semibold">Data</th>
+                          <th className="px-4 py-3 text-left font-semibold">Evento</th>
+                          <th className="px-4 py-3 text-left font-semibold">Importo</th>
+                          <th className="px-4 py-3 text-left font-semibold">Stato</th>
+                          <th className="px-4 py-3 text-left font-semibold">Email</th>
+                          <th className="px-4 py-3 text-left font-semibold">Partecipanti</th>
+                          <th className="px-4 py-3 text-left font-semibold">Sessione</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {payments.length ? (
+                          payments.map((payment) => {
+                            const attendeeNames = getAttendeeNames(payment);
+                            const attendeeCount = Number(
+                              payment?.raw_payload?.metadata?.attendeeCount || 1,
+                            );
+
+                            return (
+                              <tr key={payment.stripe_session_id} className="border-t border-[#c9573c]/10 bg-white">
+                                <td className="px-4 py-3 text-[#6d7b80]">
+                                  {formatAdminDateTime(payment.created_at)}
+                                </td>
+                                <td className="px-4 py-3">
+                                  <p className="font-semibold text-[#2c395b]">
+                                    {payment.event_slug || "-"}
+                                  </p>
+                                  <p className="text-xs text-[#6d7b80]">
+                                    {payment.event_date_iso || "-"}
+                                  </p>
+                                </td>
+                                <td className="px-4 py-3 font-semibold text-[#2c395b]">
+                                  {formatMoneyFromCents(
+                                    payment.amount_total,
+                                    payment.currency,
+                                  )}
+                                </td>
+                                <td className="px-4 py-3 text-[#6d7b80]">
+                                  {payment.payment_status || "-"}
+                                </td>
+                                <td className="px-4 py-3 text-[#6d7b80]">
+                                  {payment.customer_email || "-"}
+                                </td>
+                                <td className="px-4 py-3 text-[#6d7b80]">
+                                  <p className="font-semibold text-[#2c395b]">
+                                    {attendeeCount}{" "}
+                                    {attendeeCount === 1 ? "persona" : "persone"}
+                                  </p>
+                                  {attendeeNames.length ? (
+                                    <p className="text-xs">
+                                      {attendeeNames.join(", ")}
+                                    </p>
+                                  ) : (
+                                    <p className="text-xs">Nomi non inseriti</p>
+                                  )}
+                                </td>
+                                <td className="px-4 py-3 text-[#6d7b80]">
+                                  <span className="font-mono text-xs">
+                                    {payment.stripe_session_id || "-"}
+                                  </span>
+                                </td>
+                              </tr>
+                            );
+                          })
+                        ) : (
+                          <tr>
+                            <td colSpan={7} className="px-4 py-8 text-center text-[#6d7b80]">
+                              Nessun pagamento registrato ancora.
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </article>
+              ) : null}
             </div>
           </section>
         </div>
@@ -2387,3 +2871,4 @@ export default function AdminDashboard() {
     </>
   );
 }
+

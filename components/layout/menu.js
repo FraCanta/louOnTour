@@ -119,12 +119,12 @@ const Menu = ({ translation }) => {
                 >
                   {translation?.[locale]?.blog}
                 </Link>
-                <span className="relative pr-16 tracking-wider text-xl flex items-center cursor-default select-none">
+                <div className="relative inline-flex pr-12 text-xl tracking-wider">
                   <span>{translation?.[locale]?.events}</span>
-                  <span className="absolute -top-3 -right-6 px-2.5 py-1.5 text-[8px] lg:text-[9px] font-semibold uppercase tracking-wide rounded-full bg-[#CE9486]/20 text-[#c9573c] leading-none whitespace-nowrap">
+                  <span className="absolute -top-2 right-0 px-2 py-1 text-[8px] font-semibold uppercase tracking-wide rounded-full bg-[#CE9486]/20 text-[#c9573c] leading-none whitespace-nowrap">
                     {translation?.[locale]?.comingSoon}
                   </span>
-                </span>
+                </div>
               </div>
             </div>
           </div>

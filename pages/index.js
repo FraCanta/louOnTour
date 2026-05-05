@@ -23,13 +23,41 @@ import {
   getMedia,
   getTagId,
 } from "../utils/wordpress";
+import { getAllEvents } from "../utils/events";
 import MapCards from "../components/MapCards/MapCards";
 import { MaskText } from "../components/UI/MaskText";
 import ElfsightWidget from "../components/UI/ElfsightWidget";
 import CtaPrimary from "../components/button/CtaPrimary";
 import CtaOutline from "../components/button/CtaOutline";
 
-export default function Home({ translation, post, tours }) {
+function buildHomeAppointments(events = []) {
+  const flatDates = (events || [])
+    .flatMap((event) =>
+      (event.dates || []).map((date) => ({
+        id: `${event.slug}-${date.iso}`,
+        slug: event.slug,
+        title: event.title,
+        category: event.category,
+        location: event.location,
+        price: event.price,
+        dateLabel: date.label || date.labelIt || date.labelEn || "",
+        time: date.time || "",
+        spots: Number(date.spots) || 0,
+        iso: date.iso || "",
+      })),
+    )
+    .filter((item) => item.iso)
+    .sort((left, right) => left.iso.localeCompare(right.iso));
+
+  const firstMonth = flatDates[0]?.iso?.slice(5, 7);
+  const source = firstMonth
+    ? flatDates.filter((item) => item.iso.slice(5, 7) === firstMonth)
+    : flatDates;
+
+  return source.slice(0, 6);
+}
+
+export default function Home({ translation, post, tours, homeAppointments }) {
   const { locale } = useRouter();
   return (
     <>
@@ -103,7 +131,11 @@ export default function Home({ translation, post, tours }) {
       </div>
 
       <DynamicAboutMe translation={translation?.about} />
-      <DynamicEvents translation={translation?.events} />
+      <DynamicEvents
+        translation={translation?.events}
+        appointments={homeAppointments || []}
+        locale={locale || "it"}
+      />
       <ElfsightWidget />
 
       <BlogSection post={post} translation={translation?.blogSection} />
@@ -112,10 +144,12 @@ export default function Home({ translation, post, tours }) {
   );
 }
 export async function getStaticProps({ locale }) {
+  const lang = locale || "it";
   const idLocale = await getTagId(locale); // recupera id della lingua attuale
   const post = await getPosts(idLocale); //recupera post nella lingua attuale
   const category = await getCategories();
   const media = await getMedia();
+  const events = await getAllEvents(lang);
 
   let obj;
 
@@ -135,6 +169,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       translation: obj?.home,
+      homeAppointments: buildHomeAppointments(events),
       tours: obj?.tours,
       post: post.sort((a, b) => a?.date > b?.date).filter((el, i) => i < 3),
       category: category,

@@ -19,7 +19,13 @@
         "includedTitle": "Cosa troverai",
         "recurringTitle": "Ricorrenza",
         "noEventsTitle": "Nessun evento disponibile al momento",
-        "noEventsText": "Torna presto per scoprire i prossimi eventi."
+        "noEventsText": "Torna presto per scoprire i prossimi eventi.",
+        "banner": {
+          "text": "Personalizza la tua esperienza di tour ",
+          "paragrafo": "Arte, Storia, Archeologia, Folklore e tradizione culinaria...quali aspetti ti interessano di più? ",
+
+          "button": "Chiedi informazioni"
+        }
       },
       "detail": {
         "back": "Torna a tutti gli eventi",
@@ -33,7 +39,8 @@
         "languages": "Lingue",
         "category": "Categoria",
         "duration": "Durata",
-        "price": "Prezzo"
+        "price": "Prezzo",
+        "noGallery": "Non sono disponibili immagini per questo evento."
       }
     },
     "en": {
@@ -55,7 +62,12 @@
         "includedTitle": "What to expect",
         "recurringTitle": "Recurring schedule",
         "noEventsTitle": "No events available at the moment",
-        "noEventsText": "Check back soon to discover upcoming events."
+        "noEventsText": "Check back soon to discover upcoming events.",
+        "banner": {
+          "text": "Customize your own tour experience",
+          "paragrafo": "Art, History, Archaeology, Folklore and Culinary Tradition...which aspects interest you most?",
+          "button": "More information"
+        }
       },
       "detail": {
         "back": "Back to all events",
@@ -69,7 +81,8 @@
         "languages": "Languages",
         "category": "Category",
         "duration": "Duration",
-        "price": "Price"
+        "price": "Price",
+        "noGallery": "No images available for this event."
       }
     }
   },
@@ -115,7 +128,7 @@
       },
       "languages": {
         "it": "Italiano, inglese su richiesta",
-        "en": "Italian, English on request"
+        "en": "Italiano, inglese on request"
       },
       "recurring": {
         "it": "Date speciali di giugno 2026",
@@ -137,7 +150,7 @@
         "it": [
           "Questa esperienza racconta Volterra attraverso immagini, volti e oggetti custoditi nei suoi musei. Il percorso unisce la Pinacoteca e il Museo Guarnacci in una narrazione continua.",
           "Ci si sofferma sulla Deposizione del Rosso Fiorentino, sulle opere di maestri come Signorelli e Ghirlandaio e sul mondo etrusco evocato da urne, simboli e capolavori celebri.",
-          "E una proposta ideale per chi ama arte, archeologia e luoghi che chiedono uno sguardo attento, senza fretta."
+          "È una proposta ideale per chi ama arte, archeologia e luoghi che chiedono uno sguardo attento, senza fretta."
         ],
         "en": [
           "This experience tells the story of Volterra through the faces, images and objects preserved in its museums. The route links the Pinacoteca and Museo Guarnacci in a single narrative.",

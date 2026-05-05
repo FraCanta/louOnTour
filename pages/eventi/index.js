@@ -1,16 +1,76 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { MaskText } from "../../components/UI/MaskText";
-import CtaPrimary from "../../components/button/CtaPrimary";
-import CtaOutline from "../../components/button/CtaOutline";
 import { getAllEvents, getEventsPageCopy } from "../../utils/events";
+import Banner from "../../components/sectionFive/banner";
+
+const MONTH_RANGE = [6, 7, 8, 9, 10, 11];
+
+function getMonthFromIso(iso = "") {
+  const month = Number(String(iso).slice(5, 7));
+  return Number.isNaN(month) ? 0 : month;
+}
+
+function getMonthLabel(month, locale = "it") {
+  const monthDate = new Date(Date.UTC(2026, month - 1, 1, 12, 0, 0));
+  return new Intl.DateTimeFormat(locale === "en" ? "en-US" : "it-IT", {
+    month: "long",
+    timeZone: "Europe/Rome",
+  }).format(monthDate);
+}
 
 export default function EventsPage({ copy, events, featuredEvent }) {
   const categories = events?.length
     ? [...new Set(events.map((event) => event.category))]
     : [];
+
+  const [selectedMonth, setSelectedMonth] = useState(() => {
+    const firstMonth = getMonthFromIso(events?.[0]?.dates?.[0]?.iso);
+    return MONTH_RANGE.includes(firstMonth) ? firstMonth : MONTH_RANGE[0];
+  });
+
+  const monthOptions = useMemo(
+    () =>
+      MONTH_RANGE.map((month) => {
+        const hasEvents = events.some((event) =>
+          (event.dates || []).some(
+            (date) => getMonthFromIso(date.iso) === month,
+          ),
+        );
+
+        return {
+          month,
+          label: getMonthLabel(month, copy?.locale || "it"),
+          hasEvents,
+        };
+      }),
+    [copy?.locale, events],
+  );
+
+  const filteredEvents = useMemo(
+    () =>
+      events.filter((event) =>
+        (event.dates || []).some(
+          (date) => getMonthFromIso(date.iso) === selectedMonth,
+        ),
+      ),
+    [events, selectedMonth],
+  );
+
+  const noDatesLabel =
+    copy?.locale === "en"
+      ? "No dates published yet for this month."
+      : "Per questo mese non ci sono ancora date pubblicate.";
+  const noDatesHint =
+    copy?.locale === "en"
+      ? "I am updating the calendar continuously. Check back soon."
+      : "Sto aggiornando il calendario in modo continuo. Torna presto.";
+  const groupSizeLabel =
+    copy?.locale === "en" ? "Min 4 - Max 10" : "Min 4 - Max 10";
+
   return (
     <>
       <Head>
@@ -20,8 +80,8 @@ export default function EventsPage({ copy, events, featuredEvent }) {
         <meta property="og:description" content={copy.page.description} />
       </Head>
 
-      <div className="pb-20">
-        <section className="w-11/12 px-4 py-10 mx-auto lg:px-10 lg:py-16">
+      <div className="w-11/12 pb-20 mx-auto">
+        <section className="py-10 lg:px-10 lg:py-16">
           <div className="grid items-end grid-cols-1 gap-8 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="flex flex-col gap-4">
               <h1 className="text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full max-w-max tracking-wide">
@@ -51,7 +111,7 @@ export default function EventsPage({ copy, events, featuredEvent }) {
             </div>
 
             {featuredEvent && (
-              <article className="overflow-hidden rounded-[2rem] border border-[#c9573c]/10 bg-white shadow-[0_20px_50px_rgba(35,47,55,0.06)]">
+              <article className="overflow-hidden rounded-md border border-[#c9573c]/10 bg-white shadow-[0_20px_50px_rgba(35,47,55,0.06)]">
                 {" "}
                 <div className="relative h-[320px]">
                   <Image
@@ -74,7 +134,7 @@ export default function EventsPage({ copy, events, featuredEvent }) {
                     <h2 className="mt-4 text-3xl font-bold text-white">
                       {featuredEvent.title}
                     </h2>
-                    <p className="mt-2 text-sm leading-6 text-white/85">
+                    <p className="mt-2 text-sm leading-6 text-white/90">
                       {featuredEvent.excerpt}
                     </p>
                   </div>
@@ -110,7 +170,7 @@ export default function EventsPage({ copy, events, featuredEvent }) {
           </div>
         </section>
 
-        <section className="w-11/12 px-4 mx-auto lg:px-10">
+        <section className="lg:px-10">
           <div className="flex flex-col gap-4 mb-8 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
@@ -122,6 +182,23 @@ export default function EventsPage({ copy, events, featuredEvent }) {
             </div>
           </div>
 
+          <div className="flex flex-wrap gap-2 mb-8">
+            {monthOptions.map((option) => (
+              <button
+                key={option.month}
+                type="button"
+                onClick={() => setSelectedMonth(option.month)}
+                className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition ${
+                  option.month === selectedMonth
+                    ? "bg-[#77674E] text-white"
+                    : "bg-white text-[#77674E] border border-[#c9573c]/15"
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+
           {events.length === 0 ? (
             <div className="py-20 text-center">
               <p className="text-lg font-semibold text-principle">
@@ -129,92 +206,109 @@ export default function EventsPage({ copy, events, featuredEvent }) {
               </p>
               <p className="mt-2 text-para">{copy.page.noEventsText}</p>
             </div>
+          ) : filteredEvents.length === 0 ? (
+            <div className="py-20 text-center rounded-md border border-[#c9573c]/10 bg-white">
+              <p className="text-lg font-semibold text-principle">
+                {noDatesLabel}
+              </p>
+              <p className="mt-2 text-sm text-[#6d7b80]">{noDatesHint}</p>
+            </div>
           ) : (
             <div className="grid grid-cols-1 gap-6 xl:grid-cols-3 lg:grid-cols-2">
-              {events.map((event) => (
-                <article
-                  key={event.slug}
-                  className="overflow-hidden rounded-[2rem] border border-[#c9573c]/10 bg-white shadow-[0_18px_45px_rgba(35,47,55,0.05)]"
-                >
-                  <div className="relative h-[280px]">
-                    <Image
-                      src={event.heroImage}
-                      alt={event.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+              {filteredEvents.map((event) => {
+                const monthDate = (event.dates || []).find(
+                  (date) => getMonthFromIso(date.iso) === selectedMonth,
+                );
 
-                  <div className="p-6">
-                    <div className="flex flex-wrap items-center gap-2 mb-4">
-                      <span className="rounded-full bg-[#CE9486]/20 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c9573c]">
-                        {event.category}
-                      </span>
-                      <span className="rounded-full bg-[#fff8f4] px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#77674E]">
-                        {event.dates[0]?.label}
-                      </span>
-                    </div>
-
-                    <h3 className="mb-3 text-3xl font-bold text-principle">
-                      {event.title}
-                    </h3>
-                    <p className="mb-5 text-sm leading-6 text-para">
-                      {event.excerpt}
-                    </p>
-
-                    <div className="grid grid-cols-2 gap-3 mb-6 text-sm">
-                      <div className="rounded-2xl bg-[#fff8f4] p-3">
-                        <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
-                          {copy.page.locationLabel}
-                        </p>
-                        <p className="font-semibold text-principle">
-                          {event.location}
-                        </p>
-                      </div>
-                      <div className="rounded-2xl bg-[#fff8f4] p-3">
-                        <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
-                          {copy.page.durationLabel}
-                        </p>
-                        <p className="font-semibold text-principle">
-                          {event.duration}
-                        </p>
-                      </div>
-                      <div className="rounded-2xl bg-[#fff8f4] p-3">
-                        <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
-                          {copy.page.fromLabel}
-                        </p>
-                        <p className="font-semibold text-principle">
-                          {event.price}
-                        </p>
-                      </div>
-                      <div className="rounded-2xl bg-[#fff8f4] p-3">
-                        <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
-                          {copy.page.spotsLabel}
-                        </p>
-                        <p className="font-semibold text-principle">
-                          {event.dates[0]?.spots}
-                        </p>
-                      </div>
-                    </div>
-
-                    <Link
-                      href={`/eventi/${event.slug}`}
-                      className="inline-flex items-center gap-2 font-semibold text-[#c9573c] underline underline-offset-4"
-                    >
-                      {copy.page.discoverCta}
-                      <Icon
-                        icon="lets-icons:arrow-right-light"
-                        width="18"
-                        height="18"
+                return (
+                  <article
+                    key={`${event.slug}-${selectedMonth}`}
+                    className="overflow-hidden rounded-md border border-[#c9573c]/10 bg-white shadow-[0_18px_45px_rgba(35,47,55,0.05)]"
+                  >
+                    <div className="relative h-[280px]">
+                      <Image
+                        src={event.heroImage}
+                        alt={event.title}
+                        fill
+                        className="object-cover"
                       />
-                    </Link>
-                  </div>
-                </article>
-              ))}
+                    </div>
+
+                    <div className="p-6">
+                      <div className="flex flex-wrap items-center gap-2 mb-4">
+                        <span className="rounded-full bg-[#CE9486]/20 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c9573c]">
+                          {event.category}
+                        </span>
+                        <span className="rounded-full bg-[#fff8f4] px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#77674E]">
+                          {monthDate?.label || event.dates[0]?.label}
+                        </span>
+                      </div>
+
+                      <h3 className="mb-3 text-3xl font-bold text-principle">
+                        {event.title}
+                      </h3>
+                      <p className="mb-5 text-sm leading-6 text-para">
+                        {event.excerpt}
+                      </p>
+
+                      <div className="grid grid-cols-2 gap-3 mb-6 text-sm">
+                        <div className="rounded-md bg-[#fff8f4] p-3">
+                          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
+                            {copy.page.locationLabel}
+                          </p>
+                          <p className="font-semibold text-principle">
+                            {event.location}
+                          </p>
+                        </div>
+                        <div className="rounded-md bg-[#fff8f4] p-3">
+                          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
+                            {copy.page.durationLabel}
+                          </p>
+                          <p className="font-semibold text-principle">
+                            {event.duration}
+                          </p>
+                        </div>
+                        <div className="rounded-md bg-[#fff8f4] p-3">
+                          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
+                            {copy.page.fromLabel}
+                          </p>
+                          <p className="font-semibold text-principle">
+                            {event.price}
+                          </p>
+                        </div>
+                        <div className="rounded-md bg-[#fff8f4] p-3">
+                          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
+                            {copy.page.spotsLabel}
+                          </p>
+                          <p className="font-semibold text-principle">
+                            {monthDate?.spots ?? event.dates[0]?.spots}
+                          </p>
+                          <p className="mt-1 text-[11px] text-[#6d7b80]">
+                            {groupSizeLabel}
+                          </p>
+                        </div>
+                      </div>
+
+                      <Link
+                        href={`/eventi/${event.slug}`}
+                        className="inline-flex items-center gap-2 font-semibold text-[#c9573c] underline underline-offset-4"
+                      >
+                        {copy.page.discoverCta}
+                        <Icon
+                          icon="lets-icons:arrow-right-light"
+                          width="18"
+                          height="18"
+                        />
+                      </Link>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           )}
         </section>
       </div>
+      <Banner translation={copy.page.banner} />
     </>
   );
 }
@@ -223,10 +317,14 @@ export async function getStaticProps({ locale }) {
   const lang = locale || "it";
   const copy = await getEventsPageCopy(lang);
   const events = await getAllEvents(lang);
+  const copyWithLocale = {
+    ...copy,
+    locale: lang,
+  };
 
   return {
     props: {
-      copy,
+      copy: copyWithLocale,
       events,
       featuredEvent: events.length > 0 ? events[0] : null,
     },
