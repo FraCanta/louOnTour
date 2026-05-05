@@ -120,6 +120,7 @@ export default function EventsPage({ copy, events, featuredEvent }) {
                     fill
                     className="object-cover"
                     priority
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(44,57,91,0.05)_0%,rgba(44,57,91,0.72)_100%)]" />
                   <div className="absolute inset-x-0 bottom-0 p-6">
@@ -231,6 +232,7 @@ export default function EventsPage({ copy, events, featuredEvent }) {
                         alt={event.title}
                         fill
                         className="object-cover"
+                        unoptimized
                       />
                     </div>
 

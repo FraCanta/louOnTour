@@ -218,6 +218,7 @@ export default function EventDetailPage({ event, copy, locale }) {
               fill
               priority
               className="object-cover"
+              unoptimized
             />
           </div>
         </section>
