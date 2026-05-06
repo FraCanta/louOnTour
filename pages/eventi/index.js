@@ -89,12 +89,12 @@ export default function EventsPage({ copy, events, featuredEvent }) {
               </h1>
 
               <MaskText>
-                <h2 className="text-[2.5rem] md:text-[3.8rem] xl:text-[5rem] qhd:text-[6.6rem] font-bold leading-none max-w-5xl qhd:max-w-7xl text-principle">
+                <h2 className="text-[2.5rem] md:text-[3.8rem] qhd:text-[5rem] font-bold leading-none max-w-5xl qhd:max-w-7xl text-principle">
                   {copy.page.heading}
                 </h2>
               </MaskText>
 
-              <p className="max-w-3xl qhd:max-w-5xl text-base leading-7 text-para lg:text-lg qhd:text-2xl qhd:leading-10">
+              <p className="max-w-3xl text-base leading-7 qhd:max-w-5xl text-para lg:text-lg qhd:text-2xl qhd:leading-10">
                 {copy.page.paragraph}
               </p>
 
@@ -132,10 +132,10 @@ export default function EventsPage({ copy, events, featuredEvent }) {
                       />
                       {copy.page.featured}
                     </span>
-                    <h2 className="mt-4 text-3xl qhd:text-5xl font-bold text-white">
+                    <h2 className="mt-4 text-3xl font-bold text-white qhd:text-5xl">
                       {featuredEvent.title}
                     </h2>
-                    <p className="mt-2 text-sm qhd:text-xl leading-6 qhd:leading-8 text-white/90">
+                    <p className="mt-2 text-sm leading-6 qhd:text-xl qhd:leading-8 text-white/90">
                       {featuredEvent.excerpt}
                     </p>
                   </div>
@@ -177,7 +177,7 @@ export default function EventsPage({ copy, events, featuredEvent }) {
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
                 {copy.page.allEvents}
               </p>
-              <h2 className="text-4xl qhd:text-6xl font-bold text-principle">
+              <h2 className="text-4xl font-bold qhd:text-6xl text-principle">
                 {copy.page.upcoming}
               </h2>
             </div>
@@ -246,10 +246,10 @@ export default function EventsPage({ copy, events, featuredEvent }) {
                         </span>
                       </div>
 
-                      <h3 className="mb-3 text-3xl qhd:text-5xl font-bold text-principle">
+                      <h3 className="mb-3 text-3xl font-bold qhd:text-5xl text-principle">
                         {event.title}
                       </h3>
-                      <p className="mb-5 text-sm qhd:text-xl leading-6 qhd:leading-8 text-para">
+                      <p className="mb-5 text-sm leading-6 qhd:text-xl qhd:leading-8 text-para">
                         {event.excerpt}
                       </p>
 
