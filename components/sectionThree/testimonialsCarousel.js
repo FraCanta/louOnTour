@@ -36,7 +36,7 @@ const TestimonialsCarousel = ({ translation }) => {
         <Slider {...settings}>
           {translation.reviews.map((testimonial, index) => (
             <div key={index} className="p-2">
-              <div className="testimonial h-[26rem] flex flex-col justify-between bg-[#fffaf7] p-4">
+              <div className="testimonial h-[26rem] qhd:h-[34rem] flex flex-col justify-between bg-[#fffaf7] p-4 qhd:p-6">
                 {/* STARS */}
                 <div className="flex">
                   {starsArray(testimonial.rating).map((_, i) => (
@@ -51,7 +51,7 @@ const TestimonialsCarousel = ({ translation }) => {
 
                 {/* TEXT */}
                 <div className="flex flex-col justify-center flex-grow h-full gap-2">
-                  <p className="text-lg line-clamp text-para">
+                  <p className="text-lg qhd:text-2xl qhd:leading-9 line-clamp text-para">
                     {testimonial.reviews_desc}
                   </p>
 
@@ -66,7 +66,7 @@ const TestimonialsCarousel = ({ translation }) => {
                 </div>
 
                 {/* AUTHOR */}
-                <p className="text-sm font-bold uppercase text-principle/80">
+                <p className="text-sm qhd:text-lg font-bold uppercase text-principle/80">
                   {testimonial.name}
                 </p>
               </div>

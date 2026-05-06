@@ -157,6 +157,9 @@ async function sendPaymentNotification(session) {
   const currency = String(session.currency || "eur").toUpperCase();
   const eventSlug = String(session.metadata?.eventSlug || "-");
   const eventDateIso = String(session.metadata?.eventDateIso || "-");
+  const eventDateLabel = String(
+    session.metadata?.eventDateLabel || eventDateIso,
+  );
   const attendeeCount = getSessionAttendeeCount(session);
   const newsletterConsent = hasNewsletterConsent(session);
   const customerEmail =
@@ -182,7 +185,8 @@ async function sendPaymentNotification(session) {
       <div style="font-size:16px;line-height:1.5;">
         <h3>Nuovo pagamento ricevuto</h3>
         <p><strong>Evento:</strong> ${eventSlug}</p>
-        <p><strong>Data:</strong> ${eventDateIso}</p>
+        <p><strong>Data:</strong> ${eventDateLabel}</p>
+        <p><strong>ISO data:</strong> ${eventDateIso}</p>
         <p><strong>Partecipanti:</strong> ${attendeeCount}</p>
         <p><strong>Nomi:</strong> ${attendeeNames}</p>
         <p><strong>Importo:</strong> ${amountTotal.toFixed(2)} ${currency}</p>

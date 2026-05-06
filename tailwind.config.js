@@ -29,8 +29,11 @@ module.exports = {
       fxl: "1920px",
       // => @media (min-width: 1920px) { ... }
 
-      "3xl": "2560px",
-      // => @media (min-width: 2560px) { ... }
+      qhd: { raw: "(min-width: 2500px) and (max-width: 2879px) and (max-height: 1700px)" },
+      // => ottimizzazione per display tipo 2560 x 1440
+
+      "3xl": "2880px",
+      // => @media (min-width: 2880px) { ... }
       "4xl": "3840px",
       // => @media (min-width: 3840px) { ... }
     },

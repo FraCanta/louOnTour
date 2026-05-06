@@ -64,10 +64,10 @@ export default function Tours({ city, banner }) {
         <meta name="twitter:description" content={city?.descrizione2} />
         <meta name="twitter:image" content={city?.img} />
       </Head>
-      <div className="w-11/12 px-4 mx-auto mt-10 mb-10 lg:px-10">
+      <div className="w-11/12 qhd:max-w-[2304px] px-4 mx-auto mt-10 qhd:mt-14 mb-10 lg:px-10 qhd:px-0">
         <Link
           href="/tours-da-fare"
-          className="flex items-center gap-2 text-xl text-principle"
+          className="flex items-center gap-2 text-xl qhd:text-3xl text-principle"
         >
           <Icon icon="lets-icons:refund-back" /> {city?.cta}
         </Link>
@@ -77,14 +77,14 @@ export default function Tours({ city, banner }) {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative w-11/12 mx-auto  lg:py-0 lg:px-10 flex flex-col md:flex-row lg:items-center gap-6 lg:gap-20 min-h-[calc(50svh_-_60px)] xl:min-h-[calc(70svh_-_70px)] "
+        className="relative w-11/12 qhd:max-w-[2304px] mx-auto lg:py-0 lg:px-10 qhd:px-0 flex flex-col md:flex-row lg:items-center gap-6 lg:gap-20 qhd:gap-28 min-h-[calc(50svh_-_60px)] xl:min-h-[calc(70svh_-_70px)] qhd:min-h-[calc(70svh_-_133px)]"
       >
         <motion.div variants={item}>
           <motion.div
             variants={item}
             className="flex items-center justify-between w-full lg:justify-start lg:gap-4"
           >
-            <h1 className="text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide">
+            <h1 className="text-sm lg:text-base qhd:text-xl font-semibold px-3 lg:px-4 qhd:px-5 py-2 qhd:py-3 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide">
               {city?.title}
             </h1>
           </motion.div>
@@ -96,7 +96,7 @@ export default function Tours({ city, banner }) {
                   ? city.translatedTitle
                   : city?.titleImg,
               }}
-              className="text-[2.5rem] lg:text-[4rem] 2xl:text-[4.5rem] fxl:text-[5rem] font-bold leading-none max-w-7xl py-1.5"
+              className="text-[2.5rem] lg:text-[4rem] 2xl:text-[4.5rem] fxl:text-[5rem] qhd:text-[6.6rem] font-bold leading-none max-w-7xl py-1.5"
             ></h2>
           </MaskText>
         </motion.div>
@@ -114,12 +114,12 @@ export default function Tours({ city, banner }) {
         </motion.div>
       </motion.div>
 
-      <section className="w-11/12 gap-6 py-10 mx-auto lg:py-24 lg:max-w-7xl">
-        <p className="text-xl italic leading-snug text-center lg:text-5xl text-para/50">
+      <section className="w-11/12 gap-6 py-10 mx-auto lg:py-24 qhd:py-32 lg:max-w-7xl qhd:max-w-[1800px]">
+        <p className="text-xl italic leading-snug text-center lg:text-5xl qhd:text-6xl qhd:leading-tight text-para/50">
           {city?.citazione}
         </p>
       </section>
-      <div className="flex flex-col w-11/12 mx-auto text-base font-normal lg:px-10 text-main xl:text-lg ">
+      <div className="flex flex-col w-11/12 qhd:max-w-[2100px] mx-auto text-base qhd:text-2xl qhd:leading-10 font-normal lg:px-10 qhd:px-0 text-main xl:text-lg ">
         {city?.descrizione?.map((el, i) => {
           return (
             <p
@@ -134,11 +134,11 @@ export default function Tours({ city, banner }) {
             <li key={i} className="flex">
               <div className="flex flex-col gap-2">
                 <h2
-                  className="text-xl font-bold text-principle"
+                  className="text-xl qhd:text-4xl font-bold text-principle"
                   dangerouslySetInnerHTML={{ __html: el.l.title }}
                 ></h2>
                 <p
-                  className=" text-para  w-full  text-base lg:text-lg 3xl:text-[2.5rem]  3xl:leading-[3.5rem] mb-5 font-regular"
+                  className="text-para w-full text-base lg:text-lg qhd:text-2xl qhd:leading-10 3xl:text-[2.5rem] 3xl:leading-[3.5rem] mb-5 font-regular"
                   dangerouslySetInnerHTML={{ __html: el.l.descrizione }}
                 ></p>
               </div>

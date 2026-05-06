@@ -13,7 +13,7 @@ const LastPost = ({ lastPost }) => {
     html?.replace(/<[^>]*>?/gm, "").slice(0, 200) + "...";
 
   return (
-    <div className="grid h-full grid-cols-1 gap-8 lg:grid-cols-2">
+    <div className="grid h-full grid-cols-1 gap-8 qhd:gap-12 lg:grid-cols-2">
       {/* LEFT BIG */}
       <Link
         href={`/posts/${main.slug}`}
@@ -30,16 +30,18 @@ const LastPost = ({ lastPost }) => {
           alt={main?.title?.rendered}
         />
 
-        <small className="text-md lg:text-base text-para/80">
+        <small className="text-md lg:text-base qhd:text-xl text-para/80">
           {main?.["_embedded"].author[0]?.name} • {getDate(main?.date)}
         </small>
 
         <h2
           dangerouslySetInnerHTML={{ __html: main.title?.rendered }}
-          className="text-2xl font-semibold lg:text-6xl"
+          className="text-2xl font-semibold lg:text-6xl qhd:text-7xl"
         />
 
-        <p className="text-para">{stripHtml(main?.excerpt?.rendered)}</p>
+        <p className="text-para qhd:text-2xl qhd:leading-10">
+          {stripHtml(main?.excerpt?.rendered)}
+        </p>
 
         <div className="flex flex-wrap gap-2">
           {main?.postCategories?.map((cat) => (
@@ -57,7 +59,7 @@ const LastPost = ({ lastPost }) => {
       {side.map((post) => (
         <Link
           href={`/posts/${post.slug}`}
-          className="grid grid-cols-1 gap-6 lg:grid-cols-2 "
+          className="grid grid-cols-1 gap-6 qhd:gap-8 lg:grid-cols-2 "
           key={post.id}
         >
           <Image
@@ -72,7 +74,7 @@ const LastPost = ({ lastPost }) => {
           />
 
           <div className="flex flex-col gap-4">
-            <small className="text-base text-para/80">
+            <small className="text-base qhd:text-xl text-para/80">
               {post?.["_embedded"].author[0]?.name} • {getDate(post?.date)}
             </small>
 
@@ -80,10 +82,10 @@ const LastPost = ({ lastPost }) => {
               dangerouslySetInnerHTML={{
                 __html: post.title?.rendered,
               }}
-              className="text-2xl font-semibold lg:text-3xl"
+              className="text-2xl font-semibold lg:text-3xl qhd:text-4xl"
             />
 
-            <p className="text-sm text-para">
+            <p className="text-sm qhd:text-xl qhd:leading-8 text-para">
               {stripHtml(post?.excerpt?.rendered)}
             </p>
 

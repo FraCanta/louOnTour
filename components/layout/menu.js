@@ -20,24 +20,24 @@ const Menu = ({ translation }) => {
   }, []);
   return (
     <header className="relative">
-      <nav className="h-[70px] lg:px-10 md:h-[100px] lg:h-[70px] xl:h-[100px] 3xl:h-[180px] 4xl:h-[250px]  flex w-full items-center justify-between relative z-[999999] nav-scroll ">
+      <nav className="h-[70px] lg:px-10 md:h-[100px] lg:h-[70px] xl:h-[100px] qhd:h-[133px] 3xl:h-[180px] 4xl:h-[250px] flex w-full items-center justify-between relative z-[999999] nav-scroll ">
         <div className="flex items-center justify-between w-11/12 mx-auto ">
           <div className="z-50 flex items-center gap-10">
             <Link href={`/`} title="Luisa Quaglia | Home Page">
               <Image
                 src={Logo}
                 alt="logo"
-                className="w-[160px] md:w-[100px] xl:w-[150px] 2xl:w-[180px] 3xl:w-[200px] 4xl:w-[300px] object-cover"
+                className="w-[160px] md:w-[100px] xl:w-[150px] 2xl:w-[180px] qhd:w-[240px] 3xl:w-[200px] 4xl:w-[300px] object-cover"
               />
             </Link>
-            <div className="items-center hidden text-xl lg:flex text-[#c9573c]  ">
-              <div className="relative flex items-center justify-end w-full gap-10 ">
+            <div className="items-center hidden text-xl qhd:text-[1.65rem] lg:flex text-[#c9573c]  ">
+              <div className="relative flex items-center justify-end w-full gap-10 qhd:gap-14">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setOpen(!open);
                   }}
-                  className="flex items-end gap-1 text-xl font-medium tracking-wider"
+                  className="flex items-end gap-1 text-xl qhd:text-[1.65rem] font-medium tracking-wider"
                 >
                   {translation?.[locale]?.tours}
 
@@ -71,7 +71,7 @@ const Menu = ({ translation }) => {
                         <Link
                           href={`/tour/${el?.link}`}
                           onClick={() => setOpen(false)}
-                          className="p-4 text-principle text-3xl transition rounded-sm font-regular hover:bg-[#CE9486]/20"
+                          className="p-4 text-principle text-3xl qhd:text-4xl transition rounded-sm font-regular hover:bg-[#CE9486]/20"
                           key={i}
                         >
                           {el?.title}
@@ -104,7 +104,7 @@ const Menu = ({ translation }) => {
                 <Link
                   href={`/chi-sono`}
                   title="Luisa Quaglia | Chi sono"
-                  className={` tracking-wider   flex items-center text-xl ${
+                  className={` tracking-wider flex items-center text-xl qhd:text-[1.65rem] ${
                     pathname === "/chi-sono" ? "font-bold" : " "
                   }`}
                 >
@@ -113,28 +113,31 @@ const Menu = ({ translation }) => {
                 <Link
                   href={`/blog`}
                   title="Luisa Quaglia | Blog"
-                  className={`tracking-wider text-xl flex items-center ${
+                  className={`tracking-wider text-xl qhd:text-[1.65rem] flex items-center ${
                     pathname === "/blog" ? "font-bold" : " "
                   }`}
                 >
                   {translation?.[locale]?.blog}
                 </Link>
-                <div className="relative inline-flex pr-12 text-xl tracking-wider">
-                  <span>{translation?.[locale]?.events}</span>
-                  <span className="absolute -top-2 right-0 px-2 py-1 text-[8px] font-semibold uppercase tracking-wide rounded-full bg-[#CE9486]/20 text-[#c9573c] leading-none whitespace-nowrap">
-                    {translation?.[locale]?.comingSoon}
-                  </span>
-                </div>
+                <Link
+                  href={`/eventi`}
+                  title="Luisa Quaglia | Eventi"
+                  className={`tracking-wider text-xl qhd:text-[1.65rem] flex items-center ${
+                    pathname === "/eventi" ? "font-bold" : " "
+                  }`}
+                >
+                  {translation?.[locale]?.events}
+                </Link>
               </div>
             </div>
           </div>
 
-          <div className="items-center hidden gap-4 text-xl lg:flex ">
+          <div className="items-center hidden gap-4 text-xl qhd:gap-5 lg:flex ">
             <Link
               href="https://wa.me/393200327355"
               target="_blank"
               title="Luisa Quaglia | Come prenotare e avere info sui tour da fare"
-              className="w-full flex items-center gap-2 lg:w-max-content text-center text-[#c9573c] tracking-wide  font-medium  leading-snug py-3 px-6  xs:text-lg 3xl:text-3xl rounded-md border-2 border-[#c9573c]"
+              className="w-full flex items-center gap-2 lg:w-max-content text-center text-[#c9573c] tracking-wide font-medium leading-snug py-3 px-6 qhd:py-6 qhd:px-10 xs:text-lg qhd:text-[1.5rem] 3xl:text-3xl rounded-md border-2 border-[#c9573c]"
             >
               {translation?.[locale]?.contact}{" "}
               <Icon
@@ -147,7 +150,7 @@ const Menu = ({ translation }) => {
             <CtaPrimary
               link={`/newsletter`}
               title="I miei articoli"
-              className="!w-auto whitespace-nowrap px-5 xl:px-6 text-base xl:text-lg"
+              className="!w-auto whitespace-nowrap px-5 xl:px-6 qhd:px-8 qhd:py-4 text-base xl:text-lg qhd:text-[1.45rem]"
             >
               {translation?.[locale]?.iscriviti}
             </CtaPrimary>

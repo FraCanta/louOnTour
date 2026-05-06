@@ -44,28 +44,28 @@ const Masonry = () => {
       >
         <motion.div
           variants={item}
-          className="w-[100%] h-[300px] xl:h-[350px] fxl:h-[450px] first-pic relative mb-4 masonry_img break-inside-avoid"
+          className="w-[100%] h-[300px] xl:h-[350px] fxl:h-[450px] qhd:h-[600px] first-pic relative mb-4 qhd:mb-5 masonry_img break-inside-avoid"
         >
           <Image src={Lou} alt="lou" width={400} height={625} quality={70} />
         </motion.div>
 
         <motion.div
           variants={item}
-          className="masonry_img w-[100%] h-[160px] xl:h-[200px] fxl:h-[350px] second-pic relative mb-4 break-inside-avoid"
+          className="masonry_img w-[100%] h-[160px] xl:h-[200px] fxl:h-[350px] qhd:h-[466px] second-pic relative mb-4 qhd:mb-5 break-inside-avoid"
         >
           <Image src={Lou2} alt="lou" width={500} height={625} quality={70} />
         </motion.div>
 
         <motion.div
           variants={item}
-          className="masonry_img w-[100%] h-[160px] xl:h-[200px] fxl:h-[350px] third-pic relative mb-4 break-inside-avoid"
+          className="masonry_img w-[100%] h-[160px] xl:h-[200px] fxl:h-[350px] qhd:h-[466px] third-pic relative mb-4 qhd:mb-5 break-inside-avoid"
         >
           <Image src={Lou3} alt="lou" width={500} height={625} quality={70} />
         </motion.div>
 
         <motion.div
           variants={item}
-          className="masonry_img w-[100%] h-[300px] xl:h-[350px] fxl:h-[450px] fourth-pic relative mb-4 break-inside-avoid"
+          className="masonry_img w-[100%] h-[300px] xl:h-[350px] fxl:h-[450px] qhd:h-[600px] fourth-pic relative mb-4 qhd:mb-5 break-inside-avoid"
         >
           <Image src={Lou4} alt="lou" width={500} height={625} quality={70} />
         </motion.div>

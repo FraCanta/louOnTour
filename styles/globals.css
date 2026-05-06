@@ -59,10 +59,8 @@ button {
 
 @layer utilities {
   .newsletter {
-    background-image: linear-gradient(
-        rgba(254, 243, 234, 0.82),
-        rgba(254, 243, 234, 0.88)
-      ),
+    background-image:
+      linear-gradient(rgba(254, 243, 234, 0.82), rgba(254, 243, 234, 0.88)),
       url("/assets/newsletter.jpg");
     background-size: cover;
     background-position: center;

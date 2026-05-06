@@ -41,11 +41,11 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="w-11/12 py-10 mx-auto lg:py-20 lg:px-10">
-        <div className="relative  flex flex-col md:flex-row lg:items-center gap-6 lg:gap-20 min-h-[calc(100svh_-_60px)] xl:min-h-[calc(100svh_-_100px)] ">
+      <div className="w-11/12 qhd:max-w-[2304px] py-10 mx-auto lg:py-20 qhd:py-28 lg:px-10 qhd:px-0">
+        <div className="relative flex flex-col md:flex-row lg:items-center gap-6 lg:gap-20 min-h-[calc(100svh_-_60px)] xl:min-h-[calc(100svh_-_100px)] qhd:min-h-[calc(100svh_-_133px)]">
           <div className="flex flex-col w-full gap-6">
             <MaskText>
-              <h4 className="text-principle text-[8vw] leading-[1.2] md:leading-none lg:text-[6vw] xl:text-[5vw] 2xl:text-[3vw] font-extrabold  ">
+              <h4 className="text-principle text-[8vw] leading-[1.2] md:leading-none lg:text-[6vw] xl:text-[5vw] 2xl:text-[3vw] qhd:text-[4vw] font-extrabold">
                 Recent blog posts
               </h4>
             </MaskText>
@@ -55,11 +55,11 @@ const Blog = ({ post, category, pages, currentP, lastPost }) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col mt-[30px] md:my-48">
-          <h2 className="mb-10 text-4xl font-semibold text-principle">
+        <div className="flex flex-col mt-[30px] md:my-48 qhd:my-64">
+          <h2 className="mb-10 qhd:mb-14 text-4xl qhd:text-6xl font-semibold text-principle">
             All blog posts
           </h2>
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 ">
+          <div className="grid grid-cols-1 gap-8 qhd:gap-12 lg:grid-cols-3 ">
             {jsxPosts}
           </div>
           <div className="container flex justify-center ">

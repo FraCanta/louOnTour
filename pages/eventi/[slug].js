@@ -53,8 +53,178 @@ function buildRecurringLabel(dates = [], locale = "it") {
     : `Date speciali da ${monthLabels[0]} a ${monthLabels[monthLabels.length - 1]}`;
 }
 
+function DateCheckoutBox({
+  date,
+  dates,
+  lang,
+  checkoutDateIso,
+  bookingState,
+  newsletterConsent,
+  onDateChange,
+  onQuantityChange,
+  onAttendeeNameChange,
+  onNewsletterConsentChange,
+  onCheckout,
+}) {
+  const label = lang === "en" ? date.labelEn : date.labelIt;
+  const stripeEnabled =
+    Boolean(date?.stripe?.enabled) && Number(date?.stripe?.priceCents) > 0;
+  const quantity = bookingState.quantity;
+  const maxQuantity = Math.max(
+    1,
+    Math.min(MAX_EVENT_CAPACITY, Number(date?.spots || MAX_EVENT_CAPACITY)),
+  );
+  const unitPriceCents = Number(date?.stripe?.priceCents || 0);
+  const totalPriceCents = unitPriceCents * quantity;
+  const checkoutLabel = lang === "en" ? "Book now" : "Prenota ora";
+  const checkoutLoadingLabel =
+    lang === "en" ? "Opening checkout..." : "Apertura checkout...";
+  const newsletterConsentLabel =
+    lang === "en"
+      ? "I agree to receive updates and newsletter emails."
+      : "Acconsento a ricevere aggiornamenti e newsletter via email.";
+  const newsletterConsentNote =
+    lang === "en"
+      ? "Optional consent. You can unsubscribe anytime."
+      : "Consenso facoltativo. Potrai disiscriverti in qualsiasi momento.";
+  const notAvailableLabel =
+    lang === "en"
+      ? "Online payment is not active for this date yet."
+      : "Il pagamento online non e ancora attivo per questa data.";
+  const moneyFormatter = new Intl.NumberFormat(
+    lang === "en" ? "en-US" : "it-IT",
+    {
+      style: "currency",
+      currency: String(date?.stripe?.currency || "eur").toUpperCase(),
+    },
+  );
+  const checkoutPriceLabel = stripeEnabled
+    ? moneyFormatter.format(unitPriceCents / 100)
+    : "";
+  const checkoutTotalPriceLabel = stripeEnabled
+    ? moneyFormatter.format(totalPriceCents / 100)
+    : "";
+
+  return (
+    <div className="p-4 qhd:p-6 border rounded-md border-white/10 bg-white/5">
+      <label className="block mb-2 text-xs qhd:text-base font-semibold uppercase tracking-[0.22em] text-[#fef3ea]/70">
+        {lang === "en" ? "Choose date" : "Scegli la data"}
+      </label>
+      <select
+        value={date.iso}
+        onChange={(event) => onDateChange(event.target.value)}
+        className="w-full rounded-md border border-white/20 bg-[#2c395b] px-3 qhd:px-4 py-3 qhd:py-4 text-sm qhd:text-xl font-semibold text-white outline-none focus:border-white/45"
+      >
+        {(dates || []).map((option) => {
+          const optionLabel = lang === "en" ? option.labelEn : option.labelIt;
+
+          return (
+            <option key={option.iso} value={option.iso}>
+              {[optionLabel, option.time].filter(Boolean).join(" - ")}
+            </option>
+          );
+        })}
+      </select>
+
+      <div className="mt-4 rounded-md bg-white/5 p-3 qhd:p-5">
+        <p className="font-semibold qhd:text-2xl text-white">{label}</p>
+        <p className="text-sm qhd:text-xl text-[#fef3ea]/75">{date.time}</p>
+        <p className="mt-1 text-xs qhd:text-base text-[#fef3ea]/70">
+          {lang === "en" ? "Available spots" : "Posti disponibili"}:{" "}
+          {date.spots || MAX_EVENT_CAPACITY}
+        </p>
+      </div>
+
+      {stripeEnabled ? (
+        <div className="mt-3">
+          <p className="mb-2 text-xs qhd:text-lg text-[#fef3ea]/75">
+            {lang === "en" ? "Online payment" : "Pagamento online"}:{" "}
+            <strong className="text-white">{checkoutPriceLabel}</strong>
+          </p>
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => onQuantityChange(quantity - 1, maxQuantity)}
+              disabled={quantity <= 1}
+              className="inline-flex h-8 w-8 qhd:h-11 qhd:w-11 items-center justify-center rounded-md border border-white/20 text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              -
+            </button>
+            <span className="min-w-[36px] qhd:min-w-[48px] text-center text-sm qhd:text-xl font-semibold text-white">
+              {quantity}
+            </span>
+            <button
+              type="button"
+              onClick={() => onQuantityChange(quantity + 1, maxQuantity)}
+              disabled={quantity >= maxQuantity}
+              className="inline-flex h-8 w-8 qhd:h-11 qhd:w-11 items-center justify-center rounded-md border border-white/20 text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              +
+            </button>
+            <span className="text-xs qhd:text-lg text-[#fef3ea]/75 sm:ml-2">
+              {lang === "en" ? "Total" : "Totale"}:{" "}
+              <strong className="text-white">{checkoutTotalPriceLabel}</strong>
+            </span>
+          </div>
+
+          <div className="mb-3 space-y-2">
+            {Array.from({ length: quantity }).map((_, index) => (
+              <input
+                key={`${date.iso}-attendee-${index}`}
+                type="text"
+                value={bookingState.attendeeNames?.[index] || ""}
+                onChange={(event) =>
+                  onAttendeeNameChange(index, event.target.value)
+                }
+                placeholder={
+                  lang === "en"
+                    ? `Participant ${index + 1} name`
+                    : `Nome partecipante ${index + 1}`
+                }
+                className="w-full rounded-md border border-white/20 bg-white/10 px-3 qhd:px-4 py-2 qhd:py-3 text-sm qhd:text-lg text-white placeholder:text-[#fef3ea]/60 outline-none focus:border-white/40"
+              />
+            ))}
+          </div>
+
+          <label className="mb-3 flex items-start gap-2 rounded-md border border-white/10 bg-white/5 p-3">
+            <input
+              type="checkbox"
+              checked={newsletterConsent}
+              onChange={(event) =>
+                onNewsletterConsentChange(event.target.checked)
+              }
+              className="mt-0.5 h-4 w-4 rounded border-white/30 bg-white/10 accent-[#fef3ea]"
+            />
+            <span className="text-xs qhd:text-base qhd:leading-7 text-[#fef3ea]/85">
+              {newsletterConsentLabel}{" "}
+              <span className="text-[#fef3ea]/65">
+                {newsletterConsentNote}
+              </span>
+            </span>
+          </label>
+
+          <button
+            type="button"
+            onClick={onCheckout}
+            disabled={checkoutDateIso === date.iso}
+            className="inline-flex items-center gap-2 rounded-md border border-white/20 px-3 qhd:px-5 py-2 qhd:py-3 text-xs qhd:text-base font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            <Icon icon="hugeicons:credit-card" width="14" height="14" />
+            {checkoutDateIso === date.iso ? checkoutLoadingLabel : checkoutLabel}
+          </button>
+        </div>
+      ) : (
+        <p className="mt-3 rounded-md border border-[#f8b7a8]/30 bg-[#f8b7a8]/10 px-3 py-2 text-sm text-[#fef3ea]">
+          {notAvailableLabel}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export default function EventDetailPage({ event, copy, locale }) {
   const router = useRouter();
+  const [selectedDateIso, setSelectedDateIso] = useState("");
   const [checkoutDateIso, setCheckoutDateIso] = useState("");
   const [checkoutError, setCheckoutError] = useState("");
   const [bookingByDate, setBookingByDate] = useState({});
@@ -72,6 +242,16 @@ export default function EventDetailPage({ event, copy, locale }) {
     activeGalleryIndex !== null ? gallery[activeGalleryIndex] : null;
   const showMoreGalleryLabel =
     lang === "en" ? "View the others" : "Guarda le altre";
+  const selectedDate = useMemo(() => {
+    if (!event?.dates?.length) {
+      return null;
+    }
+
+    return (
+      event.dates.find((date) => date.iso === selectedDateIso) ||
+      event.dates[0]
+    );
+  }, [event?.dates, selectedDateIso]);
 
 
   // 🔹 DB (solo contenuti evento)
@@ -106,6 +286,19 @@ export default function EventDetailPage({ event, copy, locale }) {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [activeGalleryIndex, gallery.length]);
+
+  useEffect(() => {
+    if (!event?.dates?.length) {
+      setSelectedDateIso("");
+      return;
+    }
+
+    setSelectedDateIso((current) =>
+      event.dates.some((date) => date.iso === current)
+        ? current
+        : event.dates[0].iso,
+    );
+  }, [event?.dates]);
 
   if (!event) return null;
 
@@ -235,12 +428,12 @@ export default function EventDetailPage({ event, copy, locale }) {
         <meta property="og:image" content={event.heroImage} />
       </Head>
 
-      <div className="w-11/12 pb-20 mx-auto">
+      <div className="w-11/12 qhd:max-w-[2304px] pb-20 qhd:pb-32 mx-auto">
         {/* BACK */}
-        <div className="mt-10 mb-8 lg:px-10">
+        <div className="mt-10 qhd:mt-14 mb-8 lg:px-10 qhd:px-0">
           <Link
             href="/eventi"
-            className="inline-flex items-center gap-2 text-xl text-principle"
+            className="inline-flex items-center gap-2 text-xl qhd:text-3xl text-principle"
           >
             <Icon icon="lets-icons:refund-back" />
             {copy?.detail?.back}
@@ -248,24 +441,24 @@ export default function EventDetailPage({ event, copy, locale }) {
         </div>
 
         {/* HERO */}
-        <section className="grid grid-cols-1 gap-8 lg:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="flex flex-col gap-4">
-            <span className="inline-flex max-w-max rounded-full bg-[#CE9486]/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#c9573c]">
+        <section className="grid grid-cols-1 gap-8 qhd:gap-16 lg:px-10 qhd:px-0 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="flex flex-col gap-4 qhd:gap-7">
+            <span className="inline-flex max-w-max rounded-full bg-[#CE9486]/20 px-4 qhd:px-5 py-2 qhd:py-3 text-xs qhd:text-lg font-semibold uppercase tracking-[0.24em] text-[#c9573c]">
               {category}
             </span>
 
             <MaskText>
-              <h1 className="text-[2.5rem] md:text-[4rem] xl:text-[5rem] font-bold leading-none text-principle">
+              <h1 className="text-[2.5rem] md:text-[4rem] xl:text-[5rem] qhd:text-[6.6rem] font-bold leading-none text-principle">
                 {title}
               </h1>
             </MaskText>
 
-            <p className="max-w-3xl text-base leading-7 text-para lg:text-lg">
+            <p className="max-w-3xl qhd:max-w-5xl text-base leading-7 text-para lg:text-lg qhd:text-2xl qhd:leading-10">
               {excerpt}
             </p>
           </div>
 
-          <div className="relative h-[380px] overflow-hidden rounded-md lg:h-[620px]">
+          <div className="relative h-[380px] overflow-hidden rounded-md lg:h-[620px] qhd:h-[826px]">
             <Image
               src={event.heroImage}
               alt={title}
@@ -278,22 +471,22 @@ export default function EventDetailPage({ event, copy, locale }) {
         </section>
 
         {/* CONTENT */}
-        <section className="grid grid-cols-1 gap-8  py-16  lg:px-10 xl:grid-cols-[1.05fr_0.95fr]">
+        <section className="grid grid-cols-1 gap-8 qhd:gap-14 py-16 qhd:py-24 lg:px-10 qhd:px-0 xl:grid-cols-[1.05fr_0.95fr]">
           {/* LEFT */}
           <div className="space-y-8">
-            <article className="rounded-md border border-[#c9573c]/10 bg-white p-6 lg:p-8">
+            <article className="rounded-md border border-[#c9573c]/10 bg-white p-6 lg:p-8 qhd:p-10">
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
                 {copy?.detail?.infoTitle}
               </p>
 
-              <div className="space-y-4 text-base leading-8 text-para lg:text-lg">
+              <div className="space-y-4 qhd:space-y-6 text-base leading-8 text-para lg:text-lg qhd:text-2xl qhd:leading-10">
                 {description.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
             </article>
 
-            <article className="rounded-md border border-[#c9573c]/10 bg-white p-6 lg:p-8">
+            <article className="rounded-md border border-[#c9573c]/10 bg-white p-6 lg:p-8 qhd:p-10">
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
                 {copy?.detail?.includedTitle}
               </p>
@@ -302,7 +495,7 @@ export default function EventDetailPage({ event, copy, locale }) {
                 {included.map((item, i) => (
                   <div
                     key={i}
-                    className="rounded-md bg-[#fff8f4] p-5 text-md text-para"
+                    className="rounded-md bg-[#fff8f4] p-5 qhd:p-7 text-md qhd:text-xl qhd:leading-8 text-para"
                   >
                     <Icon
                       icon="hugeicons:checkmark-badge-01"
@@ -317,12 +510,12 @@ export default function EventDetailPage({ event, copy, locale }) {
 
           {/* RIGHT */}
           <div className="space-y-8">
-            <article className="rounded-md bg-[#2c395b] p-6 text-[#fef3ea] lg:p-8">
+            <article className="rounded-md bg-[#2c395b] p-6 text-[#fef3ea] lg:p-8 qhd:p-10">
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#fef3ea]/60">
                 {copy?.detail?.nextDates}
               </p>
 
-              <h2 className="mb-5 text-3xl font-bold text-white">
+              <h2 className="mb-5 text-3xl qhd:text-5xl font-bold text-white">
                 {recurring}
               </h2>
               <p className="mb-5 text-sm text-[#fef3ea]/75">{groupSizeLabel}</p>
@@ -346,148 +539,31 @@ export default function EventDetailPage({ event, copy, locale }) {
                 </p>
               ) : null}
 
-              <div className="space-y-3">
-                {event.dates?.map((date) => {
-                  const label = lang === "en" ? date.labelEn : date.labelIt;
-                  const stripeEnabled =
-                    Boolean(date?.stripe?.enabled) &&
-                    Number(date?.stripe?.priceCents) > 0;
-                  const bookingState = getDateBookingState(date.iso);
-                  const quantity = bookingState.quantity;
-                  const maxQuantity = Math.max(
-                    1,
-                    Math.min(MAX_EVENT_CAPACITY, Number(date?.spots || MAX_EVENT_CAPACITY)),
-                  );
-                  const unitPriceCents = Number(date?.stripe?.priceCents || 0);
-                  const totalPriceCents = unitPriceCents * quantity;
-                  const checkoutLabel = lang === "en" ? "Book now" : "Prenota ora";
-                  const checkoutLoadingLabel =
-                    lang === "en" ? "Opening checkout..." : "Apertura checkout...";
-                  const newsletterConsentLabel =
-                    lang === "en"
-                      ? "I agree to receive updates and newsletter emails."
-                      : "Acconsento a ricevere aggiornamenti e newsletter via email.";
-                  const newsletterConsentNote =
-                    lang === "en"
-                      ? "Optional consent. You can unsubscribe anytime."
-                      : "Consenso facoltativo. Potrai disiscriverti in qualsiasi momento.";
-                  const checkoutPriceLabel = stripeEnabled
-                    ? new Intl.NumberFormat(lang === "en" ? "en-US" : "it-IT", {
-                        style: "currency",
-                        currency: String(date.stripe.currency || "eur").toUpperCase(),
-                      }).format(unitPriceCents / 100)
-                    : "";
-                  const checkoutTotalPriceLabel = stripeEnabled
-                    ? new Intl.NumberFormat(lang === "en" ? "en-US" : "it-IT", {
-                        style: "currency",
-                        currency: String(date.stripe.currency || "eur").toUpperCase(),
-                      }).format(totalPriceCents / 100)
-                    : "";
-
-                  return (
-                    <div
-                      key={date.iso}
-                      className="p-4 border rounded-md border-white/10 bg-white/5"
-                    >
-                      <p className="font-semibold text-white">{label}</p>
-                      <p className="text-sm text-[#fef3ea]/75">{date.time}</p>
-                      {stripeEnabled ? (
-                        <div className="mt-3">
-                          <p className="mb-2 text-xs text-[#fef3ea]/75">
-                            {lang === "en" ? "Online payment" : "Pagamento online"}:{" "}
-                            <strong className="text-white">{checkoutPriceLabel}</strong>
-                          </p>
-                          <div className="mb-3 flex items-center gap-2">
-                            <button
-                              type="button"
-                              onClick={() =>
-                                updateDateQuantity(date.iso, quantity - 1, maxQuantity)
-                              }
-                              className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/20 text-white transition hover:bg-white/10"
-                            >
-                              -
-                            </button>
-                            <span className="min-w-[36px] text-center text-sm font-semibold text-white">
-                              {quantity}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={() =>
-                                updateDateQuantity(date.iso, quantity + 1, maxQuantity)
-                              }
-                              disabled={quantity >= maxQuantity}
-                              className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/20 text-white transition hover:bg-white/10"
-                            >
-                              +
-                            </button>
-                            <span className="ml-2 text-xs text-[#fef3ea]/75">
-                              {lang === "en" ? "Total" : "Totale"}:{" "}
-                              <strong className="text-white">
-                                {checkoutTotalPriceLabel}
-                              </strong>
-                            </span>
-                          </div>
-
-                          <div className="mb-3 space-y-2">
-                            {Array.from({ length: quantity }).map((_, index) => (
-                              <input
-                                key={`${date.iso}-attendee-${index}`}
-                                type="text"
-                                value={bookingState.attendeeNames?.[index] || ""}
-                                onChange={(event) =>
-                                  updateAttendeeName(
-                                    date.iso,
-                                    index,
-                                    event.target.value,
-                                  )
-                                }
-                                placeholder={
-                                  lang === "en"
-                                    ? `Participant ${index + 1} name`
-                                    : `Nome partecipante ${index + 1}`
-                                }
-                                className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-[#fef3ea]/60 outline-none focus:border-white/40"
-                              />
-                            ))}
-                          </div>
-
-                          <label className="mb-3 flex items-start gap-2 rounded-md border border-white/10 bg-white/5 p-3">
-                            <input
-                              type="checkbox"
-                              checked={getNewsletterConsent(date.iso)}
-                              onChange={(event) =>
-                                updateNewsletterConsent(
-                                  date.iso,
-                                  event.target.checked,
-                                )
-                              }
-                              className="mt-0.5 h-4 w-4 rounded border-white/30 bg-white/10 accent-[#fef3ea]"
-                            />
-                            <span className="text-xs text-[#fef3ea]/85">
-                              {newsletterConsentLabel}{" "}
-                              <span className="text-[#fef3ea]/65">
-                                {newsletterConsentNote}
-                              </span>
-                            </span>
-                          </label>
-
-                          <button
-                            type="button"
-                            onClick={() => startStripeCheckout(date)}
-                            disabled={checkoutDateIso === date.iso}
-                            className="inline-flex items-center gap-2 rounded-md border border-white/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60"
-                          >
-                            <Icon icon="hugeicons:credit-card" width="14" height="14" />
-                            {checkoutDateIso === date.iso
-                              ? checkoutLoadingLabel
-                              : checkoutLabel}
-                          </button>
-                        </div>
-                      ) : null}
-                    </div>
-                  );
-                })}
-              </div>
+              {selectedDate ? (
+                <DateCheckoutBox
+                  date={selectedDate}
+                  dates={event.dates || []}
+                  lang={lang}
+                  checkoutDateIso={checkoutDateIso}
+                  bookingState={getDateBookingState(selectedDate.iso)}
+                  newsletterConsent={getNewsletterConsent(selectedDate.iso)}
+                  onDateChange={setSelectedDateIso}
+                  onQuantityChange={(nextQuantity, maxQuantity) =>
+                    updateDateQuantity(
+                      selectedDate.iso,
+                      nextQuantity,
+                      maxQuantity,
+                    )
+                  }
+                  onAttendeeNameChange={(index, value) =>
+                    updateAttendeeName(selectedDate.iso, index, value)
+                  }
+                  onNewsletterConsentChange={(accepted) =>
+                    updateNewsletterConsent(selectedDate.iso, accepted)
+                  }
+                  onCheckout={() => startStripeCheckout(selectedDate)}
+                />
+              ) : null}
 
               <div className="mt-6 space-y-3">
                 <div className="p-4 rounded-md bg-white/5">

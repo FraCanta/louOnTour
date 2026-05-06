@@ -75,26 +75,26 @@ const Tours = ({ translation }) => {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative w-11/12 mx-auto py-10 lg:py-0 lg:px-10 flex flex-col md:flex-row lg:items-center gap-6 lg:gap-20 min-h-[calc(100svh_-_60px)] xl:min-h-[calc(90svh_-_70px)] "
+        className="relative w-11/12 qhd:max-w-[2304px] mx-auto py-10 lg:py-0 lg:px-10 qhd:px-0 flex flex-col md:flex-row lg:items-center gap-6 lg:gap-20 qhd:gap-28 min-h-[calc(100svh_-_60px)] xl:min-h-[calc(90svh_-_70px)] qhd:min-h-[calc(90svh_-_133px)]"
       >
         <motion.div variants={item}>
           <motion.div
             variants={item}
             className="flex items-center justify-between w-full lg:justify-start lg:gap-4"
           >
-            <h1 className="text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max lg:tracking-wide">
+            <h1 className="text-sm lg:text-base qhd:text-xl font-semibold px-3 lg:px-4 qhd:px-5 py-2 qhd:py-3 bg-[#CE9486]/20 rounded-full lg:max-w-max lg:tracking-wide">
               {translation?.hero?.subTitle}
             </h1>
           </motion.div>
 
           <MaskText>
-            <h2 className="text-[2.3rem] xs:text-[2.2rem] lg:text-[4rem] 2xl:text-[4.5rem] fxl:text-[5rem] font-bold leading-none max-w-7xl py-1.5">
+            <h2 className="text-[2.3rem] xs:text-[2.2rem] lg:text-[4rem] 2xl:text-[4.5rem] fxl:text-[5rem] qhd:text-[6.6rem] font-bold leading-none max-w-7xl py-1.5">
               {translation?.hero?.title}
             </h2>
           </MaskText>
 
           <MaskText>
-            <p className="text-para w-full text-base lg:text-[1.25rem]   leading-snug mb-5 font-normal">
+            <p className="text-para w-full text-base lg:text-[1.25rem] qhd:text-[1.7rem] qhd:leading-10 leading-snug mb-5 font-normal">
               {translation?.hero?.paragraph}
             </p>
           </MaskText>
@@ -112,7 +112,7 @@ const Tours = ({ translation }) => {
           />
         </motion.div>
       </motion.div>
-      <section className="grid w-11/12 grid-cols-1 gap-10 mx-auto my-20 lg:grid-cols-3">
+      <section className="grid w-11/12 qhd:max-w-[2304px] grid-cols-1 gap-10 qhd:gap-16 mx-auto my-20 qhd:my-28 lg:grid-cols-3">
         {translation.features.map((item, index) => (
           <div key={index} className="flex flex-col items-center gap-2">
             <Icon
@@ -121,17 +121,17 @@ const Tours = ({ translation }) => {
               height="50px"
               className="text-principle"
             />
-            <h4 className="text-3xl lg:text-4xl text-principle">
+            <h4 className="text-3xl lg:text-4xl qhd:text-5xl text-principle">
               {item.title}
             </h4>
-            <p className="mx-auto text-base leading-snug text-center lg:text-lg lg:w-1/2 text-para">
+            <p className="mx-auto text-base leading-snug text-center lg:text-lg qhd:text-2xl qhd:leading-9 lg:w-1/2 qhd:w-2/3 text-para">
               {item.description}
             </p>
           </div>
         ))}
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  w-[90%] mx-auto min-h-[40vh] gap-4 ">
+      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-[90%] qhd:max-w-[2304px] mx-auto min-h-[40vh] gap-4 qhd:gap-7">
         {translation?.tourItem?.map((el, i) => {
           return (
             <ToursItem

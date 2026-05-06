@@ -473,8 +473,383 @@ function getAttendeeNames(payment) {
     .filter(Boolean);
 }
 
+function getPaymentEventDateLabel(payment) {
+  const metadata = payment?.raw_payload?.metadata || {};
+  const label = String(metadata.eventDateLabel || "").trim();
+  const iso = String(payment?.event_date_iso || metadata.eventDateIso || "").trim();
+
+  if (label && label !== iso) {
+    return label;
+  }
+
+  return iso || "-";
+}
+
+function getEventStripeDateCount(event) {
+  return (event?.dates || []).filter(
+    (date) => Boolean(date?.stripe?.enabled) && Number(date?.stripe?.priceCents) > 0,
+  ).length;
+}
+
+function getEventNextDateLabel(event) {
+  const firstDate = event?.dates?.[0];
+  return [firstDate?.labelIt, firstDate?.time].filter(Boolean).join(" - ") || "Nessuna data";
+}
+
+function OverviewPanel({
+  events,
+  payments,
+  paymentStats,
+  syncStatus,
+  loading,
+  onNewEvent,
+  onOpenEvents,
+  onOpenEditor,
+  onOpenSync,
+  onOpenPayments,
+  onSelectEvent,
+}) {
+  const publishedEvents = events.filter((event) => event.status === "published");
+  const draftEvents = events.filter((event) => event.status === "draft");
+  const onlineCheckoutDates = events.reduce(
+    (sum, event) => sum + getEventStripeDateCount(event),
+    0,
+  );
+  const latestEvents = events.slice(0, 4);
+  const latestPayments = payments.slice(0, 4);
+
+  return (
+    <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
+      <div className="mb-6 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+        <div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
+            Panoramica
+          </p>
+          <h3 className="text-3xl font-bold text-[#2c395b]">
+            Stato operativo
+          </h3>
+        </div>
+        {loading ? (
+          <span className="text-sm font-semibold text-[#77674E]">
+            Caricamento...
+          </span>
+        ) : null}
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.15fr_0.85fr] 4xl:grid-cols-[1.3fr_0.7fr]">
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 2xl:grid-cols-4">
+            {[
+              {
+                label: "Pubblicati",
+                value: publishedEvents.length,
+                note: "Eventi visibili",
+                icon: "hugeicons:checkmark-circle-02",
+              },
+              {
+                label: "Bozze",
+                value: draftEvents.length,
+                note: "Da completare",
+                icon: "hugeicons:note-edit",
+              },
+              {
+                label: "Date checkout",
+                value: onlineCheckoutDates,
+                note: "Con Stripe attivo",
+                icon: "hugeicons:credit-card",
+              },
+              {
+                label: "Incasso",
+                value: formatMoneyFromCents(paymentStats.totalCents, "eur"),
+                note: `${paymentStats.successfulCount} pagamenti`,
+                icon: "hugeicons:wallet-02",
+              },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-4"
+              >
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#CE9486]/20 text-[#c9573c]">
+                  <Icon icon={item.icon} width="19" height="19" />
+                </div>
+                <p className="text-sm font-semibold text-[#6d7b80]">
+                  {item.label}
+                </p>
+                <p className="mt-1 text-3xl font-bold text-[#2c395b]">
+                  {item.value}
+                </p>
+                <p className="mt-1 text-xs text-[#6d7b80]">{item.note}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 2xl:grid-cols-2">
+            <section className="rounded-md border border-[#c9573c]/10 bg-white p-4">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <h4 className="text-lg font-bold text-[#2c395b]">
+                  Ultimi eventi
+                </h4>
+                <button
+                  type="button"
+                  onClick={onOpenEvents}
+                  className="text-xs font-semibold uppercase tracking-[0.16em] text-[#c9573c]"
+                >
+                  Apri archivio
+                </button>
+              </div>
+              <div className="space-y-3">
+                {latestEvents.length ? (
+                  latestEvents.map((event) => (
+                    <button
+                      key={event.slug}
+                      type="button"
+                      onClick={() => onSelectEvent(event)}
+                      className="block w-full rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-3 text-left transition hover:bg-[#fff8f4]"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold text-[#2c395b]">
+                            {event.title?.it || event.slug}
+                          </p>
+                          <p className="mt-1 text-xs text-[#6d7b80]">
+                            {getEventNextDateLabel(event)}
+                          </p>
+                        </div>
+                        <span
+                          className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase ${
+                            event.status === "published"
+                              ? "bg-[#dfe9df] text-[#4b6b4e]"
+                              : "bg-[#f5e4d8] text-[#9c613d]"
+                          }`}
+                        >
+                          {event.status === "published" ? "Live" : "Bozza"}
+                        </span>
+                      </div>
+                    </button>
+                  ))
+                ) : (
+                  <p className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-4 text-sm text-[#6d7b80]">
+                    Nessun evento ancora.
+                  </p>
+                )}
+              </div>
+            </section>
+
+            <section className="rounded-md border border-[#c9573c]/10 bg-white p-4">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <h4 className="text-lg font-bold text-[#2c395b]">
+                  Ultimi pagamenti
+                </h4>
+                <button
+                  type="button"
+                  onClick={onOpenPayments}
+                  className="text-xs font-semibold uppercase tracking-[0.16em] text-[#c9573c]"
+                >
+                  Apri pagamenti
+                </button>
+              </div>
+              <div className="space-y-3">
+                {latestPayments.length ? (
+                  latestPayments.map((payment) => (
+                    <div
+                      key={payment.stripe_session_id}
+                      className="rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-3"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold text-[#2c395b]">
+                            {payment.event_slug || "-"}
+                          </p>
+                          <p className="mt-1 text-xs text-[#6d7b80]">
+                            {getPaymentEventDateLabel(payment)}
+                          </p>
+                        </div>
+                        <span className="font-semibold text-[#2c395b]">
+                          {formatMoneyFromCents(
+                            payment.amount_total,
+                            payment.currency,
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-4 text-sm text-[#6d7b80]">
+                    Nessun pagamento registrato.
+                  </p>
+                )}
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <aside className="space-y-4">
+          <div className="rounded-md bg-[#2c395b] p-5 text-[#fef3ea]">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#fef3ea]/70">
+              Azioni rapide
+            </p>
+            <div className="grid grid-cols-1 gap-3">
+              <button
+                type="button"
+                onClick={onNewEvent}
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#fef3ea] px-4 py-3 text-sm font-semibold text-[#2c395b]"
+              >
+                <Icon icon="hugeicons:add-circle" width="18" height="18" />
+                Nuovo evento
+              </button>
+              <button
+                type="button"
+                onClick={onOpenEditor}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#fef3ea]/20 px-4 py-3 text-sm font-semibold text-white"
+              >
+                <Icon icon="hugeicons:note-edit" width="18" height="18" />
+                Apri editor
+              </button>
+              <button
+                type="button"
+                onClick={onOpenSync}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#fef3ea]/20 px-4 py-3 text-sm font-semibold text-white"
+              >
+                <Icon icon="hugeicons:link-circle-02" width="18" height="18" />
+                Google Sync
+              </button>
+            </div>
+          </div>
+
+          <div className="rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-5">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#c9573c]/70">
+              Google Calendar
+            </p>
+            <p className="text-2xl font-bold text-[#2c395b]">
+              {syncStatus?.configured ? "Configurato" : "Da configurare"}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[#6d7b80]">
+              {syncStatus?.configured
+                ? `${syncStatus.syncedDates}/${syncStatus.publishedDates} date sincronizzate.`
+                : "Manca ancora la configurazione OAuth per sincronizzare."}
+            </p>
+          </div>
+        </aside>
+      </div>
+    </article>
+  );
+}
+
+function PaymentMobileCard({
+  payment,
+  isExpanded,
+  onToggle,
+}) {
+  const attendeeNames = getAttendeeNames(payment);
+  const attendeeCount = Number(payment?.raw_payload?.metadata?.attendeeCount || 1);
+  const metadata = payment?.raw_payload?.metadata || {};
+  const customerDetails = payment?.raw_payload?.customer_details || {};
+  const eventDateLabel = getPaymentEventDateLabel(payment);
+  const customerEmail =
+    customerDetails.email || payment.customer_email || "-";
+  const sessionId = String(payment.stripe_session_id || "");
+
+  return (
+    <article className="rounded-md border border-[#c9573c]/10 bg-white p-4 shadow-[0_14px_30px_rgba(35,47,55,0.05)]">
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
+            {formatAdminDateTime(payment.created_at)}
+          </p>
+          <h4 className="mt-1 break-words text-lg font-bold leading-tight text-[#2c395b]">
+            {payment.event_slug || "-"}
+          </h4>
+          <p className="mt-1 text-sm text-[#6d7b80]">{eventDateLabel}</p>
+        </div>
+        <div className="shrink-0 text-right">
+          <p className="text-lg font-bold text-[#2c395b]">
+            {formatMoneyFromCents(payment.amount_total, payment.currency)}
+          </p>
+          <span
+            className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+              payment.payment_status === "paid"
+                ? "bg-[#dfe9df] text-[#4b6b4e]"
+                : "bg-[#f5e4d8] text-[#9c613d]"
+            }`}
+          >
+            {payment.payment_status || "-"}
+          </span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-3 text-sm">
+        <div className="rounded-md bg-[#fff8f4] p-3">
+          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#77674E]">
+            Cliente
+          </p>
+          <p className="break-words font-semibold text-[#2c395b]">
+            {customerEmail}
+          </p>
+          {customerDetails.name ? (
+            <p className="mt-1 text-[#6d7b80]">{customerDetails.name}</p>
+          ) : null}
+        </div>
+
+        <div className="rounded-md bg-[#fff8f4] p-3">
+          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#77674E]">
+            Partecipanti
+          </p>
+          <p className="font-semibold text-[#2c395b]">
+            {attendeeCount} {attendeeCount === 1 ? "persona" : "persone"}
+          </p>
+          <p className="mt-1 text-[#6d7b80]">
+            {attendeeNames.length
+              ? attendeeNames.join(", ")
+              : "Nomi non inseriti"}
+          </p>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        onClick={onToggle}
+        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 px-4 py-3 text-sm font-semibold text-[#2c395b] transition hover:bg-[#fff8f4]"
+      >
+        <Icon
+          icon={isExpanded ? "hugeicons:arrow-up-01" : "hugeicons:arrow-down-01"}
+          width="16"
+          height="16"
+        />
+        {isExpanded ? "Nascondi dettagli" : "Mostra dettagli"}
+      </button>
+
+      {isExpanded ? (
+        <div className="mt-4 space-y-3 rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-3 text-sm text-[#2c395b]">
+          <p>
+            <strong>ISO data:</strong>{" "}
+            {metadata.eventDateIso || payment.event_date_iso || "-"}
+          </p>
+          <p>
+            <strong>Lingua:</strong> {metadata.locale || "-"}
+          </p>
+          <p>
+            <strong>Telefono:</strong> {customerDetails.phone || "-"}
+          </p>
+          <p>
+            <strong>Nazione:</strong> {customerDetails.address?.country || "-"}
+          </p>
+          <p className="break-all">
+            <strong>Sessione:</strong> {sessionId || "-"}
+          </p>
+          <p className="break-all">
+            <strong>Payment Intent:</strong>{" "}
+            {payment.stripe_payment_intent_id || "-"}
+          </p>
+        </div>
+      ) : null}
+    </article>
+  );
+}
+
 export default function AdminDashboard() {
   const [activePanel, setActivePanel] = useState("overview");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [adminKey, setAdminKey] = useState("");
   const [adminUser, setAdminUser] = useState(null);
   const [authMode, setAuthMode] = useState("login");
@@ -1058,10 +1433,21 @@ export default function AdminDashboard() {
   }
 
   function addDateRow() {
-    setForm((current) => ({
-      ...current,
-      dates: [...current.dates, createDateEntry()],
-    }));
+    setForm((current) => {
+      const lastDate = current.dates[current.dates.length - 1] || {};
+
+      return {
+        ...current,
+        dates: [
+          ...current.dates,
+          createDateEntry({
+            stripeEnabled: Boolean(lastDate.stripeEnabled),
+            stripePriceEuro: lastDate.stripePriceEuro || "",
+            stripeCurrency: lastDate.stripeCurrency || "eur",
+          }),
+        ],
+      };
+    });
   }
 
   function removeDateRow(id) {
@@ -1573,10 +1959,15 @@ export default function AdminDashboard() {
   }
 
   const showOverview = activePanel === "overview";
-  const showEvents = activePanel === "events" || showOverview;
-  const showEditor = activePanel === "editor" || showOverview;
-  const showSync = activePanel === "sync" || showOverview;
-  const showPayments = activePanel === "payments" || showOverview;
+  const showEvents = activePanel === "events";
+  const showEditor = activePanel === "editor";
+  const showSync = activePanel === "sync";
+  const showPayments = activePanel === "payments";
+
+  function handleNavSelect(panelId) {
+    setActivePanel(panelId);
+    setMobileNavOpen(false);
+  }
 
   return (
     <>
@@ -1589,10 +1980,70 @@ export default function AdminDashboard() {
       </Head>
 
       <div className="min-h-screen bg-[linear-gradient(180deg,#fef3ea_0%,#fff8f4_52%,#f6eee8_100%)] text-[#232f37]">
-        <div className="grid min-h-screen w-full grid-cols-1 xl:grid-cols-[320px_1fr]">
-          <aside className="border-b border-[#c9573c]/10 bg-[#fef3ea]/85 px-4 py-6 backdrop-blur-sm sm:px-6 lg:px-8 xl:min-h-screen xl:border-b-0 xl:border-r">
-            <div className="flex flex-col gap-4 mb-8 sm:flex-row sm:items-start sm:justify-between xl:block">
-              <div>
+        <div className="sticky top-0 z-[80] flex items-center justify-between border-b border-[#c9573c]/10 bg-[#fef3ea]/95 px-4 py-3 backdrop-blur-md xl:hidden">
+          <button
+            type="button"
+            onClick={() => setMobileNavOpen(true)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#c9573c]/20 bg-white text-[#c9573c]"
+            aria-label="Apri menu admin"
+          >
+            <Icon icon="hugeicons:menu-01" width="22" height="22" />
+          </button>
+          <div className="text-center">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#c9573c]/70">
+              Admin
+            </p>
+            <p className="text-sm font-bold text-[#2c395b]">
+              {NAV_ITEMS.find((item) => item.id === activePanel)?.label ||
+                "Dashboard"}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              loadEvents(adminKey);
+              loadSyncStatus(adminKey);
+              loadPayments(adminKey);
+            }}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#c9573c]/20 bg-white text-[#c9573c]"
+            aria-label="Ricarica dati"
+          >
+            <Icon icon="hugeicons:refresh" width="20" height="20" />
+          </button>
+        </div>
+
+        {mobileNavOpen ? (
+          <button
+            type="button"
+            aria-label="Chiudi menu admin"
+            onClick={() => setMobileNavOpen(false)}
+            className="fixed inset-0 z-[90] bg-[#232f37]/35 backdrop-blur-[2px] xl:hidden"
+          />
+        ) : null}
+
+        <div
+          className={`grid min-h-screen w-full grid-cols-1 transition-[grid-template-columns] duration-300 ${
+            sidebarCollapsed
+              ? "xl:grid-cols-[92px_minmax(0,1fr)]"
+              : "xl:grid-cols-[320px_minmax(0,1fr)]"
+          }`}
+        >
+          <aside
+            className={`fixed inset-y-0 left-0 z-[100] w-[min(86vw,340px)] border-r border-[#c9573c]/10 bg-[#fef3ea]/95 px-4 py-6 shadow-[24px_0_60px_rgba(35,47,55,0.16)] backdrop-blur-md transition-transform duration-300 sm:px-6 xl:sticky xl:top-0 xl:z-30 xl:w-auto xl:min-h-screen xl:translate-x-0 xl:px-4 xl:shadow-none ${
+              mobileNavOpen ? "translate-x-0" : "-translate-x-full"
+            } ${sidebarCollapsed ? "xl:px-3" : "xl:px-5"}`}
+          >
+            <div
+              className={`mb-8 flex flex-col gap-4 ${
+                sidebarCollapsed ? "xl:items-center" : ""
+              }`}
+            >
+              <div
+                className={`flex items-start justify-between gap-3 ${
+                  sidebarCollapsed ? "xl:justify-center" : ""
+                }`}
+              >
+                <div className={sidebarCollapsed ? "xl:hidden" : ""}>
                 <p className="mb-2 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
                   Luisa Quaglia
                 </p>
@@ -1603,10 +2054,47 @@ export default function AdminDashboard() {
                 </h1>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#c9573c]/20 bg-white text-[#c9573c] xl:hidden"
+                  aria-label="Chiudi menu admin"
+                >
+                  <Icon icon="hugeicons:cancel-01" width="20" height="20" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setSidebarCollapsed((current) => !current)}
+                  className="hidden h-10 w-10 items-center justify-center rounded-xl border border-[#c9573c]/20 bg-white text-[#c9573c] xl:inline-flex"
+                  aria-label={
+                    sidebarCollapsed
+                      ? "Espandi barra laterale"
+                      : "Comprimi barra laterale"
+                  }
+                >
+                  <Icon
+                    icon={
+                      sidebarCollapsed
+                        ? "hugeicons:sidebar-right-01"
+                        : "hugeicons:sidebar-left-01"
+                    }
+                    width="20"
+                    height="20"
+                  />
+                </button>
+              </div>
+
+              <div
+                className={`flex flex-wrap items-center gap-2 ${
+                  sidebarCollapsed ? "xl:justify-center" : ""
+                }`}
+              >
                 <div className="inline-flex items-center gap-2 rounded-full border border-[#c9573c]/15 bg-white px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#2c395b]">
                   <Icon icon="hugeicons:user-account" width="14" height="14" />
-                  {getAdminDisplayName(adminUser) || "Admin"}
+                  <span className={sidebarCollapsed ? "xl:hidden" : ""}>
+                    {getAdminDisplayName(adminUser) || "Admin"}
+                  </span>
                 </div>
                 <button
                   type="button"
@@ -1614,32 +2102,43 @@ export default function AdminDashboard() {
                   className="inline-flex items-center gap-2 rounded-full border border-[#c9573c]/20 bg-white px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c9573c]"
                 >
                   <Icon icon="hugeicons:logout-03" width="14" height="14" />
-                  Esci
+                  <span className={sidebarCollapsed ? "xl:hidden" : ""}>
+                    Esci
+                  </span>
                 </button>
               </div>
             </div>
 
-            <nav className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+            <nav className="grid gap-3">
               {NAV_ITEMS.map((item) => (
                 <button
                   key={item.id}
                   type="button"
-                  onClick={() => setActivePanel(item.id)}
+                  onClick={() => handleNavSelect(item.id)}
+                  title={sidebarCollapsed ? item.label : undefined}
                   className={`flex items-center gap-3 rounded-md px-4 py-3 text-left transition ${
                     activePanel === item.id
                       ? "bg-[#77674E] text-white shadow-[0_18px_30px_rgba(119,103,78,0.18)]"
                       : "bg-white/75 text-[#2c395b] hover:bg-[#CE9486]/10"
-                  }`}
+                  } ${sidebarCollapsed ? "xl:justify-center xl:px-3" : ""}`}
                 >
                   <Icon icon={item.icon} width="20" height="20" />
-                  <span className="text-sm font-semibold tracking-wide">
+                  <span
+                    className={`text-sm font-semibold tracking-wide ${
+                      sidebarCollapsed ? "xl:hidden" : ""
+                    }`}
+                  >
                     {item.label}
                   </span>
                 </button>
               ))}
             </nav>
 
-            <div className="mt-8 rounded-md bg-[#2c395b] p-5 text-[#fef3ea]">
+            <div
+              className={`mt-8 rounded-md bg-[#2c395b] p-5 text-[#fef3ea] ${
+                sidebarCollapsed ? "xl:hidden" : ""
+              }`}
+            >
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#fef3ea]/70">
                 Step utile adesso
               </p>
@@ -1653,7 +2152,8 @@ export default function AdminDashboard() {
             </div>
           </aside>
 
-          <section className="px-4 py-6 sm:px-6 lg:px-8 xl:px-10 xl:py-8">
+          <section className="min-w-0 px-4 py-6 sm:px-6 lg:px-8 xl:px-10 xl:py-8">
+            <div className="mx-auto w-full max-w-[2200px]">
             <header className="mb-8 rounded-md border border-[#c9573c]/10 bg-white/75 p-6 shadow-[0_20px_50px_rgba(35,47,55,0.06)] backdrop-blur-sm lg:p-8">
               <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
                 <div className="max-w-4xl">
@@ -1716,6 +2216,22 @@ export default function AdminDashboard() {
                 <StatsCard key={stat.label} {...stat} />
               ))}
             </section>
+
+            {showOverview ? (
+              <OverviewPanel
+                events={events}
+                payments={payments}
+                paymentStats={paymentStats}
+                syncStatus={syncStatus}
+                loading={loading || paymentsLoading}
+                onNewEvent={startNewEvent}
+                onOpenEvents={() => handleNavSelect("events")}
+                onOpenEditor={() => handleNavSelect("editor")}
+                onOpenSync={() => handleNavSelect("sync")}
+                onOpenPayments={() => handleNavSelect("payments")}
+                onSelectEvent={handleSelectEvent}
+              />
+            ) : null}
 
             <div className="space-y-6">
               {showEvents ? (
@@ -2786,7 +3302,34 @@ export default function AdminDashboard() {
                     />
                   </div>
 
-                  <div className="overflow-x-auto rounded-md border border-[#c9573c]/10">
+                  <div className="space-y-4 lg:hidden">
+                    {payments.length ? (
+                      payments.map((payment) => {
+                        const sessionId = String(payment.stripe_session_id || "");
+                        const isExpanded =
+                          sessionId && expandedPaymentSessionId === sessionId;
+
+                        return (
+                          <PaymentMobileCard
+                            key={payment.stripe_session_id}
+                            payment={payment}
+                            isExpanded={Boolean(isExpanded)}
+                            onToggle={() =>
+                              setExpandedPaymentSessionId((current) =>
+                                current === sessionId ? "" : sessionId,
+                              )
+                            }
+                          />
+                        );
+                      })
+                    ) : (
+                      <div className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-6 text-center text-sm text-[#6d7b80]">
+                        Nessun pagamento registrato ancora.
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="hidden overflow-x-auto rounded-md border border-[#c9573c]/10 lg:block">
                     <table className="min-w-full text-sm">
                       <thead className="bg-[#fff8f4] text-[#2c395b]">
                         <tr>
@@ -2812,6 +3355,7 @@ export default function AdminDashboard() {
                               sessionId && expandedPaymentSessionId === sessionId;
                             const metadata = payment?.raw_payload?.metadata || {};
                             const customerDetails = payment?.raw_payload?.customer_details || {};
+                            const eventDateLabel = getPaymentEventDateLabel(payment);
 
                             return (
                               <Fragment key={payment.stripe_session_id}>
@@ -2846,8 +3390,14 @@ export default function AdminDashboard() {
                                       {payment.event_slug || "-"}
                                     </p>
                                     <p className="text-xs text-[#6d7b80]">
-                                      {payment.event_date_iso || "-"}
+                                      {eventDateLabel}
                                     </p>
+                                    {payment.event_date_iso &&
+                                    eventDateLabel !== payment.event_date_iso ? (
+                                      <p className="font-mono text-[11px] text-[#6d7b80]/75">
+                                        {payment.event_date_iso}
+                                      </p>
+                                    ) : null}
                                   </td>
                                   <td className="px-4 py-3 font-semibold text-[#2c395b]">
                                     {formatMoneyFromCents(
@@ -2917,7 +3467,14 @@ export default function AdminDashboard() {
                                               <strong>Evento:</strong> {metadata.eventSlug || "-"}
                                             </p>
                                             <p>
-                                              <strong>Data evento:</strong> {metadata.eventDateIso || "-"}
+                                              <strong>Data evento:</strong>{" "}
+                                              {eventDateLabel}
+                                            </p>
+                                            <p>
+                                              <strong>ISO data:</strong>{" "}
+                                              {metadata.eventDateIso ||
+                                                payment.event_date_iso ||
+                                                "-"}
                                             </p>
                                             <p>
                                               <strong>Partecipanti:</strong>{" "}
@@ -2976,6 +3533,7 @@ export default function AdminDashboard() {
                   </div>
                 </article>
               ) : null}
+            </div>
             </div>
           </section>
         </div>

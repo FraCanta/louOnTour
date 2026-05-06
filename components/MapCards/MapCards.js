@@ -59,7 +59,7 @@ const MapCards = ({ translation }) => {
                 <div className="absolute inset-0 bg-[linear-gradient(359.99deg,rgba(201,87,60,0.8)_1.62%,rgba(201,87,60,0)_65.37%)]"></div>
 
                 <div className="absolute left-0 flex items-center justify-center w-full bottom-6 lg:bottom-14">
-                  <h2 className="text-2xl font-bold text-center text-white lg:text-4xl fxl:text-5xl">
+                  <h2 className="text-2xl font-bold text-center text-white lg:text-4xl fxl:text-5xl qhd:text-6xl">
                     {el.name}
                   </h2>
                 </div>

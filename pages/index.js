@@ -105,17 +105,17 @@ export default function Home({ translation, post, tours, homeAppointments }) {
 
       <DynamicHero translation={translation?.hero} />
 
-      <div className="min-h-screen pt-20 ">
-        <div className="flex flex-col w-full px-4 mx-auto my-10 lg:items-center lg:justify-center lg:text-center 2xl:w-3/5">
-          <h2 className="text-base lg:text-xl font-semibold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full max-w-max tracking-wide">
+      <div className="min-h-screen pt-20 qhd:pt-28">
+        <div className="flex flex-col w-full px-4 mx-auto my-10 qhd:my-16 lg:items-center lg:justify-center lg:text-center 2xl:w-3/5 qhd:w-[62%]">
+          <h2 className="text-base lg:text-xl qhd:text-[1.55rem] font-semibold px-3 lg:px-4 qhd:px-5 py-2 qhd:py-3 bg-[#CE9486]/20 rounded-full max-w-max tracking-wide">
             {translation?.map?.subTitle}
           </h2>
           <MaskText>
-            <h2 className="text-3xl md:text-5xl 3xl:text-[100px] font-bold mt-3 3xl:mt-12 3xl:leading-[5.5rem] ">
+            <h2 className="text-3xl md:text-5xl qhd:text-[4.4rem] 3xl:text-[100px] font-bold mt-3 qhd:mt-5 3xl:mt-12 qhd:leading-[4.9rem] 3xl:leading-[5.5rem] ">
               {translation?.map?.title}
             </h2>
           </MaskText>
-          <p className="mx-auto mt-4 mb-8 text-base text-para xl:max-w-4xl 2xl:text-lg 3xl:text-3xl lg:mt-8 3xl:mt-20">
+          <p className="mx-auto mt-4 mb-8 text-base text-para xl:max-w-4xl qhd:max-w-6xl 2xl:text-lg qhd:text-2xl qhd:leading-10 3xl:text-3xl lg:mt-8 qhd:mt-10 3xl:mt-20">
             {translation?.map?.paragraph}
           </p>
           <div className="flex flex-col items-center justify-center gap-4 lg:flex-row lg:max-w-max">

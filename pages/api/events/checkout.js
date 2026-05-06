@@ -167,6 +167,7 @@ export default async function handler(req, res) {
         metadata: {
           eventSlug: slug,
           eventDateIso: dateIso,
+          eventDateLabel: dateLabel,
           attendeeCount: String(quantity),
           attendeeNames: attendeeNamesPayload,
           newsletterConsent: newsletterConsent ? "true" : "false",

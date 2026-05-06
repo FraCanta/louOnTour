@@ -13,8 +13,8 @@ import { MaskText } from "../UI/MaskText";
 
 const Insta = ({ translation }) => {
   return (
-    <div className="min-h-[38vh] lg:min-h-[40vh] 3xl:min-h-[80vh]  w-full 2xl:p-8 ">
-      <div className="grid content-center grid-cols-1 gap-4 py-8 pt-0 md:gap-8 xl:gap-18 2xl:grid-cols-2 justify-items-center lg:pt-8">
+    <div className="min-h-[38vh] lg:min-h-[40vh] qhd:min-h-[58vh] 3xl:min-h-[80vh] w-full 2xl:p-8 qhd:p-12">
+      <div className="grid content-center grid-cols-1 gap-4 py-8 pt-0 md:gap-8 xl:gap-18 qhd:gap-20 2xl:grid-cols-2 justify-items-center lg:pt-8 qhd:max-w-[2304px] qhd:mx-auto">
         <div className="w-full h-full pt-0 overflow-x-auto overflow-y-hidden whitespace-nowrap">
           <Masonry />
         </div>
@@ -53,16 +53,16 @@ const Insta = ({ translation }) => {
           </div>
         </div>
         <div className="flex flex-col items-start justify-center w-11/12 2xl:p-0 2xl:w-4/5">
-          <h3 className="text-[#FE6847] uppercase text-xl 3xl:text-4xl">
+          <h3 className="text-[#FE6847] uppercase text-xl qhd:text-3xl 3xl:text-4xl">
             {translation?.subTitle}
           </h3>
           <MaskText>
-            <h2 className="text-4xl md:text-5xl 3xl:text-[100px] font-bold  text-[#2C395B]">
+            <h2 className="text-4xl md:text-5xl qhd:text-[4.4rem] 3xl:text-[100px] font-bold text-[#2C395B] qhd:leading-[4.9rem]">
               {translation?.title}
             </h2>
           </MaskText>
 
-          <p className="mt-4 mb-8 text-base 2xl:text-xl sm:mt-10 text-para">
+          <p className="mt-4 mb-8 text-base 2xl:text-xl qhd:text-2xl qhd:leading-10 sm:mt-10 text-para">
             {translation?.paragraph}
           </p>
           <div className="flex">

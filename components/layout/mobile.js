@@ -105,12 +105,13 @@ const Mobile = ({ translation }) => {
               animate="visibleItem"
               className="w-11/12 mx-auto mb-6"
             >
-              <div className="relative inline-flex pr-12 text-3xl tracking-wide menu-item font-regular">
-                <span>{translation?.[locale]?.events}</span>
-                <span className="absolute -top-3 right-0 px-2.5 py-1.5 text-[8px] font-semibold uppercase tracking-wide rounded-full bg-[#CE9486]/20 text-[#c9573c] leading-none whitespace-nowrap">
-                  {translation?.[locale]?.comingSoon}
-                </span>
-              </div>
+              <Link
+                href="/eventi"
+                onClick={() => setOpen(false)}
+                className="text-3xl tracking-wide menu-item font-regular"
+              >
+                {translation?.[locale]?.events}
+              </Link>
             </motion.div>
 
             {/* Pulsanti extra */}

@@ -67,23 +67,23 @@ export default function PostPage({
           content={post?.yoast_head_json?.description}
         />
       </Head>
-      <div className="grid w-11/12 grid-cols-1 gap-10 py-10 mx-auto lg:py-20 lg:px-10 ">
-        <div className="flex flex-col gap-6 paragrafo lg:w-full lg:gap-12">
+      <div className="grid w-11/12 qhd:max-w-[2100px] grid-cols-1 gap-10 qhd:gap-16 py-10 mx-auto lg:py-20 qhd:py-28 lg:px-10 qhd:px-0">
+        <div className="flex flex-col gap-6 paragrafo lg:w-full lg:gap-12 qhd:gap-16">
           <div className="flex flex-col gap-4 mb-10 lg:items-center">
             <div className="mb-20">
               <Link
                 href="/blog"
-                className="flex items-center gap-2 text-xl text-principle"
+                className="flex items-center gap-2 text-xl qhd:text-3xl text-principle"
               >
                 <Icon icon="lets-icons:refund-back" /> Back to blog
               </Link>
             </div>
-            <h2 className="text-principle max-w-max font-bold px-3 lg:px-4 py-2 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide text-xs lg:text-sm">
+            <h2 className="text-principle max-w-max font-bold px-3 lg:px-4 qhd:px-5 py-2 qhd:py-3 bg-[#CE9486]/20 rounded-full lg:max-w-max tracking-wide text-xs lg:text-sm qhd:text-base">
               {postCategories?.length > 0 ? postCategories[0].name : "Blog"}
             </h2>
 
             <h1
-              className="py-4 text-3xl font-bold lg:text-center 2xl:text-5xl text-principle"
+              className="py-4 text-3xl font-bold lg:text-center 2xl:text-5xl qhd:text-7xl qhd:leading-tight text-principle"
               dangerouslySetInnerHTML={{ __html: post.title.rendered }}
             ></h1>
             <div className="flex flex-col items-start pb-10 md:flex-row md:items-center">
@@ -91,33 +91,33 @@ export default function PostPage({
               <div className="flex md:items-center">
                 <Icon icon="fa6-solid:user-pen" className="mr-2 text-para" />
                 <Link href={post?.["_embedded"].author[0]?.url}>
-                  <span className="flex text-base text-para fxl:text-lg">
+                  <span className="flex text-base text-para fxl:text-lg qhd:text-2xl">
                     {post?.["_embedded"].author[0]?.name}
                   </span>
                 </Link>
               </div>
               <div className="flex items-center mt-4 md:mt-0 md:ml-8">
                 <Icon icon="clarity:date-line" className="mr-2 text-para" />
-                <span className="flex text-base text-para fxl:text-lg">
+                <span className="flex text-base text-para fxl:text-lg qhd:text-2xl">
                   {" "}
                   {getDate(post?.date)}
                 </span>
                 <div className=" text-para md:text-lg flex ml-6 font-[400] items-center">
                   <Icon icon="tabler:clock-hour-3" className="mr-2 text-para" />
-                  <span className="flex text-base text-para fxl:text-lg">
+                  <span className="flex text-base text-para fxl:text-lg qhd:text-2xl">
                     {minutiLettura} min read
                   </span>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-6 mx-auto text-para ">
+          <div className="flex flex-col gap-6 qhd:gap-10 mx-auto text-para qhd:text-2xl qhd:leading-10">
             <CarouselParser post={modifiedContent} />
           </div>
         </div>
         <div className="">
           <div className="grid w-full grid-cols-1 gap-6 mt-48 lg:grid-cols-3">
-            <h2 className="text-4xl font-bold fxl:text-5xl text-principle ">
+            <h2 className="text-4xl font-bold fxl:text-5xl qhd:text-6xl text-principle ">
               Last recents
             </h2>
             {recentPostCol}
