@@ -106,7 +106,7 @@ function DateCheckoutBox({
     : "";
 
   return (
-    <div className="p-4 qhd:p-6 border rounded-md border-white/10 bg-white/5">
+    <div className="p-4 border rounded-md qhd:p-6 border-white/10 bg-white/5">
       <label className="block mb-2 text-xs qhd:text-base font-semibold uppercase tracking-[0.22em] text-[#fef3ea]/70">
         {lang === "en" ? "Choose date" : "Scegli la data"}
       </label>
@@ -126,8 +126,8 @@ function DateCheckoutBox({
         })}
       </select>
 
-      <div className="mt-4 rounded-md bg-white/5 p-3 qhd:p-5">
-        <p className="font-semibold qhd:text-2xl text-white">{label}</p>
+      <div className="p-3 mt-4 rounded-md bg-white/5 qhd:p-5">
+        <p className="font-semibold text-white qhd:text-2xl">{label}</p>
         <p className="text-sm qhd:text-xl text-[#fef3ea]/75">{date.time}</p>
         <p className="mt-1 text-xs qhd:text-base text-[#fef3ea]/70">
           {lang === "en" ? "Available spots" : "Posti disponibili"}:{" "}
@@ -141,12 +141,12 @@ function DateCheckoutBox({
             {lang === "en" ? "Online payment" : "Pagamento online"}:{" "}
             <strong className="text-white">{checkoutPriceLabel}</strong>
           </p>
-          <div className="mb-3 flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 mb-3">
             <button
               type="button"
               onClick={() => onQuantityChange(quantity - 1, maxQuantity)}
               disabled={quantity <= 1}
-              className="inline-flex h-8 w-8 qhd:h-11 qhd:w-11 items-center justify-center rounded-md border border-white/20 text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center justify-center w-8 h-8 text-white transition border rounded-md qhd:h-11 qhd:w-11 border-white/20 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
             >
               -
             </button>
@@ -157,7 +157,7 @@ function DateCheckoutBox({
               type="button"
               onClick={() => onQuantityChange(quantity + 1, maxQuantity)}
               disabled={quantity >= maxQuantity}
-              className="inline-flex h-8 w-8 qhd:h-11 qhd:w-11 items-center justify-center rounded-md border border-white/20 text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center justify-center w-8 h-8 text-white transition border rounded-md qhd:h-11 qhd:w-11 border-white/20 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
             >
               +
             </button>
@@ -186,7 +186,7 @@ function DateCheckoutBox({
             ))}
           </div>
 
-          <label className="mb-3 flex items-start gap-2 rounded-md border border-white/10 bg-white/5 p-3">
+          <label className="flex items-start gap-2 p-3 mb-3 border rounded-md border-white/10 bg-white/5">
             <input
               type="checkbox"
               checked={newsletterConsent}
@@ -197,9 +197,7 @@ function DateCheckoutBox({
             />
             <span className="text-xs qhd:text-base qhd:leading-7 text-[#fef3ea]/85">
               {newsletterConsentLabel}{" "}
-              <span className="text-[#fef3ea]/65">
-                {newsletterConsentNote}
-              </span>
+              <span className="text-[#fef3ea]/65">{newsletterConsentNote}</span>
             </span>
           </label>
 
@@ -210,7 +208,9 @@ function DateCheckoutBox({
             className="inline-flex items-center gap-2 rounded-md border border-white/20 px-3 qhd:px-5 py-2 qhd:py-3 text-xs qhd:text-base font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Icon icon="hugeicons:credit-card" width="14" height="14" />
-            {checkoutDateIso === date.iso ? checkoutLoadingLabel : checkoutLabel}
+            {checkoutDateIso === date.iso
+              ? checkoutLoadingLabel
+              : checkoutLabel}
           </button>
         </div>
       ) : (
@@ -237,7 +237,10 @@ export default function EventDetailPage({ event, copy, locale }) {
   }, [router.query.checkout]);
   const gallery = event?.gallery || [];
   const visibleGallery = gallery.length > 5 ? gallery.slice(0, 5) : gallery;
-  const hiddenGalleryCount = Math.max(gallery.length - visibleGallery.length, 0);
+  const hiddenGalleryCount = Math.max(
+    gallery.length - visibleGallery.length,
+    0,
+  );
   const activeGalleryImage =
     activeGalleryIndex !== null ? gallery[activeGalleryIndex] : null;
   const showMoreGalleryLabel =
@@ -248,11 +251,9 @@ export default function EventDetailPage({ event, copy, locale }) {
     }
 
     return (
-      event.dates.find((date) => date.iso === selectedDateIso) ||
-      event.dates[0]
+      event.dates.find((date) => date.iso === selectedDateIso) || event.dates[0]
     );
   }, [event?.dates, selectedDateIso]);
-
 
   // 🔹 DB (solo contenuti evento)
   useEffect(() => {
@@ -330,7 +331,11 @@ export default function EventDetailPage({ event, copy, locale }) {
     };
   }
 
-  function updateDateQuantity(dateIso, nextQuantity, maxQuantity = MAX_EVENT_CAPACITY) {
+  function updateDateQuantity(
+    dateIso,
+    nextQuantity,
+    maxQuantity = MAX_EVENT_CAPACITY,
+  ) {
     setBookingByDate((current) => {
       const prev = current[dateIso] || { quantity: 1, attendeeNames: [""] };
       const clamped = Math.max(1, Math.min(maxQuantity, nextQuantity));
@@ -421,16 +426,19 @@ export default function EventDetailPage({ event, copy, locale }) {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>Luisa Quaglia Tour Guide | {title}</title>
         <meta name="description" content={excerpt} />
-        <meta property="og:title" content={title} />
+        <meta
+          property="og:title"
+          content={`Luisa Quaglia Tour Guide | ${title}`}
+        />
         <meta property="og:description" content={excerpt} />
         <meta property="og:image" content={event.heroImage} />
       </Head>
 
       <div className="w-11/12 qhd:max-w-[2304px] pb-20 qhd:pb-32 mx-auto">
         {/* BACK */}
-        <div className="mt-10 qhd:mt-14 mb-8 lg:px-10 qhd:px-0">
+        <div className="mt-10 mb-8 qhd:mt-14 lg:px-10 qhd:px-0">
           <Link
             href="/eventi"
             className="inline-flex items-center gap-2 text-xl qhd:text-3xl text-principle"
@@ -453,7 +461,7 @@ export default function EventDetailPage({ event, copy, locale }) {
               </h1>
             </MaskText>
 
-            <p className="max-w-3xl qhd:max-w-5xl text-base leading-7 text-para lg:text-lg qhd:text-2xl qhd:leading-10">
+            <p className="max-w-3xl text-base leading-7 qhd:max-w-5xl text-para lg:text-lg qhd:text-2xl qhd:leading-10">
               {excerpt}
             </p>
           </div>
@@ -479,7 +487,7 @@ export default function EventDetailPage({ event, copy, locale }) {
                 {copy?.detail?.infoTitle}
               </p>
 
-              <div className="space-y-4 qhd:space-y-6 text-base leading-8 text-para lg:text-lg qhd:text-2xl qhd:leading-10">
+              <div className="space-y-4 text-base leading-8 qhd:space-y-6 text-para lg:text-lg qhd:text-2xl qhd:leading-10">
                 {description.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
@@ -515,7 +523,7 @@ export default function EventDetailPage({ event, copy, locale }) {
                 {copy?.detail?.nextDates}
               </p>
 
-              <h2 className="mb-5 text-3xl qhd:text-5xl font-bold text-white">
+              <h2 className="mb-5 text-3xl font-bold text-white qhd:text-5xl">
                 {recurring}
               </h2>
               <p className="mb-5 text-sm text-[#fef3ea]/75">{groupSizeLabel}</p>
@@ -577,9 +585,16 @@ export default function EventDetailPage({ event, copy, locale }) {
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 text-sm underline underline-offset-4"
                     >
-                      <Icon icon="hugeicons:maps-location-01" width="14" height="14" />
+                      <Icon
+                        icon="hugeicons:maps-location-01"
+                        width="14"
+                        height="14"
+                      />
                       {meetingPoint} (
-                      {lang === "en" ? "Open in Google Maps" : "Apri su Google Maps"})
+                      {lang === "en"
+                        ? "Open in Google Maps"
+                        : "Apri su Google Maps"}
+                      )
                     </a>
                   ) : (
                     <p className="text-sm">{meetingPoint}</p>
@@ -603,7 +618,8 @@ export default function EventDetailPage({ event, copy, locale }) {
                 {gallery.length > 0 ? (
                   visibleGallery.map((image, index) => {
                     const isMoreTile =
-                      hiddenGalleryCount > 0 && index === visibleGallery.length - 1;
+                      hiddenGalleryCount > 0 &&
+                      index === visibleGallery.length - 1;
 
                     return (
                       <button
@@ -626,7 +642,7 @@ export default function EventDetailPage({ event, copy, locale }) {
                           className="object-cover transition duration-500 group-hover:scale-105"
                           unoptimized
                         />
-                        <span className="absolute inset-0 bg-black/0 transition group-hover:bg-black/20" />
+                        <span className="absolute inset-0 transition bg-black/0 group-hover:bg-black/20" />
                         {isMoreTile ? (
                           <span className="absolute inset-0 flex flex-col items-center justify-center bg-[#2c395b]/70 px-4 text-center text-white">
                             <span className="text-xs font-semibold uppercase tracking-[0.2em]">
@@ -662,7 +678,7 @@ export default function EventDetailPage({ event, copy, locale }) {
               event.stopPropagation();
               setActiveGalleryIndex(null);
             }}
-            className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+            className="absolute inline-flex items-center justify-center text-white transition rounded-full right-4 top-4 h-11 w-11 bg-white/10 hover:bg-white/20"
             aria-label={lang === "en" ? "Close gallery" : "Chiudi gallery"}
           >
             <Icon icon="hugeicons:cancel-01" width="22" height="22" />
@@ -677,8 +693,10 @@ export default function EventDetailPage({ event, copy, locale }) {
                   (activeGalleryIndex - 1 + gallery.length) % gallery.length,
                 );
               }}
-              className="absolute left-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-              aria-label={lang === "en" ? "Previous image" : "Immagine precedente"}
+              className="absolute inline-flex items-center justify-center text-white transition -translate-y-1/2 rounded-full left-4 top-1/2 h-11 w-11 bg-white/10 hover:bg-white/20"
+              aria-label={
+                lang === "en" ? "Previous image" : "Immagine precedente"
+              }
             >
               <Icon icon="hugeicons:arrow-left-02" width="24" height="24" />
             </button>
@@ -696,7 +714,7 @@ export default function EventDetailPage({ event, copy, locale }) {
               className="object-contain"
               unoptimized
             />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-black/45 px-4 py-2 text-sm text-white">
+            <div className="absolute bottom-0 px-4 py-2 text-sm text-white -translate-x-1/2 rounded-full left-1/2 bg-black/45">
               {activeGalleryIndex + 1} / {gallery.length}
             </div>
           </div>
@@ -706,9 +724,11 @@ export default function EventDetailPage({ event, copy, locale }) {
               type="button"
               onClick={(event) => {
                 event.stopPropagation();
-                setActiveGalleryIndex((activeGalleryIndex + 1) % gallery.length);
+                setActiveGalleryIndex(
+                  (activeGalleryIndex + 1) % gallery.length,
+                );
               }}
-              className="absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+              className="absolute inline-flex items-center justify-center text-white transition -translate-y-1/2 rounded-full right-4 top-1/2 h-11 w-11 bg-white/10 hover:bg-white/20"
               aria-label={lang === "en" ? "Next image" : "Immagine successiva"}
             >
               <Icon icon="hugeicons:arrow-right-02" width="24" height="24" />
