@@ -38,26 +38,6 @@ function normalizeUrl(value = "") {
   return `https://${normalized}`;
 }
 
-function normalizeGoogleCalendarMeta(meta) {
-  if (!meta || typeof meta !== "object") {
-    return null;
-  }
-
-  const eventId = normalizeString(meta.eventId);
-
-  if (!eventId) {
-    return null;
-  }
-
-  return {
-    eventId,
-    htmlLink: normalizeString(meta.htmlLink),
-    status: normalizeString(meta.status) || "synced",
-    syncedAt: normalizeString(meta.syncedAt),
-    updatedAt: normalizeString(meta.updatedAt),
-  };
-}
-
 function normalizeStripeCurrency(value) {
   const normalized = normalizeString(value).toLowerCase();
   return normalized || "eur";
@@ -108,7 +88,6 @@ function normalizeDate(date = {}) {
     endTime,
 
     spots: normalizeSpotsValue(date.spots),
-    googleCalendar: normalizeGoogleCalendarMeta(date.googleCalendar),
     stripe: normalizeStripeDateConfig(date.stripe),
   };
 }
@@ -263,27 +242,6 @@ function assertEventShape(payload) {
   }
 }
 
-function mergeExistingDateMetadata(existingDates = [], nextDates = []) {
-  return nextDates.map((date) => {
-    if (date.googleCalendar?.eventId) {
-      return date;
-    }
-
-    const existingMatch = existingDates.find(
-      (current) => current.iso === date.iso && current.googleCalendar?.eventId,
-    );
-
-    if (!existingMatch?.googleCalendar) {
-      return date;
-    }
-
-    return {
-      ...date,
-      googleCalendar: existingMatch.googleCalendar,
-    };
-  });
-}
-
 export async function readEventsData() {
   const { data, error } = await supabase.from("events").select("*");
 
@@ -432,46 +390,12 @@ export async function updateEvent(slug, payload) {
     throw new Error("Esiste già un evento con questo slug.");
   }
 
-  // 3. merge dates (mantieni logica tua)
-  const mergedDates = mergeExistingDateMetadata(
-    currentEvent.dates,
-    normalized.dates,
-  );
-
-  // 4. update su Supabase
+  // 3. update su Supabase
   const { data, error } = await supabaseAdmin
     .from("events")
     .update({
       ...normalized,
       slug: nextSlug,
-      dates: mergedDates,
-    })
-    .eq("slug", slug)
-    .select()
-    .single();
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  return data;
-}
-
-export async function replaceEventDates(slug, dates) {
-  const currentEvent = await getAdminEventBySlug(slug);
-
-  if (!currentEvent) {
-    return null;
-  }
-
-  const normalizedDates = Array.isArray(dates)
-    ? dates.map((date) => normalizeDate(date)).filter((date) => date.iso)
-    : [];
-
-  const { data, error } = await supabaseAdmin
-    .from("events")
-    .update({
-      dates: normalizedDates,
     })
     .eq("slug", slug)
     .select()

@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import { uploadEventImage } from "../../utils/uploadEventImage";
 import { supabase } from "../../utils/supabase";
 
-const DEFAULT_TIMEZONE = "Europe/Rome";
+const SITE_TIMEZONE = "Europe/Rome";
 const MIN_EVENT_SPOTS = 4;
 const MAX_EVENT_SPOTS = 10;
 const SESSION_EXPIRED_MESSAGE = "Sessione scaduta. Effettua di nuovo l'accesso.";
@@ -12,7 +12,6 @@ const NAV_ITEMS = [
   { id: "overview", label: "Panoramica", icon: "hugeicons:square-lock-02" },
   { id: "events", label: "Eventi", icon: "hugeicons:calendar-03" },
   { id: "editor", label: "Editor", icon: "hugeicons:note-edit" },
-  { id: "sync", label: "Google Sync", icon: "hugeicons:link-circle-02" },
   { id: "payments", label: "Pagamenti", icon: "hugeicons:credit-card" },
 ];
 
@@ -31,7 +30,6 @@ function createDateEntry(partial = {}) {
     labelIt: partial.labelIt || "",
     labelEn: partial.labelEn || "",
     spots: String(partial.spots ?? "10"),
-    googleCalendar: partial.googleCalendar || null,
     stripeEnabled: Boolean(partial.stripeEnabled),
     stripePriceEuro: initialStripePriceEuro,
     stripeCurrency: String(partial.stripeCurrency || "eur")
@@ -144,7 +142,7 @@ function formatDateLabel(dateValue, locale = "it") {
       day: "numeric",
       month: "long",
       year: "numeric",
-      timeZone: DEFAULT_TIMEZONE,
+      timeZone: SITE_TIMEZONE,
     },
   );
 
@@ -215,7 +213,6 @@ function eventToForm(event) {
               labelIt: date.labelIt || formatDateLabel(parsed.date, "it"),
               labelEn: date.labelEn || formatDateLabel(parsed.date, "en"),
               spots: String(date.spots ?? "10"),
-              googleCalendar: date.googleCalendar || null,
               stripeEnabled: Boolean(date.stripe?.enabled),
               stripePriceEuro: formatStripePriceEuros(date.stripe?.priceCents),
               stripeCurrency: normalizeCurrencyValue(date.stripe?.currency),
@@ -243,7 +240,6 @@ function dateEntryToPayload(date) {
       String(date.labelEn || "").trim() || formatDateLabel(dateValue, "en"),
     time: `${startTime} - ${endTime}`,
     spots: normalizeSpotsValue(date.spots),
-    googleCalendar: date.googleCalendar || undefined,
     stripe: {
       enabled: Boolean(date.stripeEnabled),
       priceCents: parseStripePriceCents(date.stripePriceEuro),
@@ -309,11 +305,6 @@ function formToPayload(form) {
     },
     dates: form.dates.map((date) => dateEntryToPayload(date)).filter(Boolean),
   };
-}
-
-function getSyncedDatesCount(event) {
-  return (event?.dates || []).filter((date) => date.googleCalendar?.eventId)
-    .length;
 }
 
 function validateForm(form) {
@@ -485,6 +476,52 @@ function getPaymentEventDateLabel(payment) {
   return iso || "-";
 }
 
+function getIsoDateKey(value = "") {
+  return String(value || "").split("T")[0] || "";
+}
+
+function getAdminMonthLabel(date) {
+  return new Intl.DateTimeFormat("it-IT", {
+    month: "long",
+    year: "numeric",
+    timeZone: SITE_TIMEZONE,
+  }).format(date);
+}
+
+function getCalendarDays(monthDate) {
+  const year = monthDate.getFullYear();
+  const month = monthDate.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const leadingEmptyDays = (firstDay.getDay() + 6) % 7;
+  const days = [];
+
+  for (let index = 0; index < leadingEmptyDays; index += 1) {
+    days.push(null);
+  }
+
+  for (let day = 1; day <= lastDay.getDate(); day += 1) {
+    const date = new Date(year, month, day, 12, 0, 0);
+    const key = [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0"),
+    ].join("-");
+
+    days.push({
+      key,
+      day,
+    });
+  }
+
+  return days;
+}
+
+function getPaymentAttendeeCount(payment) {
+  const count = Number(payment?.raw_payload?.metadata?.attendeeCount || 1);
+  return Number.isFinite(count) && count > 0 ? count : 1;
+}
+
 function getEventStripeDateCount(event) {
   return (event?.dates || []).filter(
     (date) => Boolean(date?.stripe?.enabled) && Number(date?.stripe?.priceCents) > 0,
@@ -500,12 +537,10 @@ function OverviewPanel({
   events,
   payments,
   paymentStats,
-  syncStatus,
   loading,
   onNewEvent,
   onOpenEvents,
   onOpenEditor,
-  onOpenSync,
   onOpenPayments,
   onSelectEvent,
 }) {
@@ -517,6 +552,60 @@ function OverviewPanel({
   );
   const latestEvents = events.slice(0, 4);
   const latestPayments = payments.slice(0, 4);
+  const firstEventMonth = events
+    .flatMap((event) => event.dates || [])
+    .map((date) => getIsoDateKey(date.iso))
+    .filter(Boolean)
+    .sort()[0];
+  const initialMonthDate = firstEventMonth
+    ? new Date(`${firstEventMonth.slice(0, 7)}-01T12:00:00`)
+    : new Date();
+  const [calendarMonth, setCalendarMonth] = useState(initialMonthDate);
+  const calendarDays = getCalendarDays(calendarMonth);
+  const calendarMonthKey = [
+    calendarMonth.getFullYear(),
+    String(calendarMonth.getMonth() + 1).padStart(2, "0"),
+  ].join("-");
+  const bookingsByDate = payments.reduce((accumulator, payment) => {
+    if (payment.payment_status !== "paid") {
+      return accumulator;
+    }
+
+    const key = getIsoDateKey(payment.event_date_iso);
+
+    if (!key) {
+      return accumulator;
+    }
+
+    accumulator[key] = (accumulator[key] || 0) + getPaymentAttendeeCount(payment);
+    return accumulator;
+  }, {});
+  const eventsByDate = events.reduce((accumulator, event) => {
+    (event.dates || []).forEach((date) => {
+      const key = getIsoDateKey(date.iso);
+
+      if (!key) {
+        return;
+      }
+
+      accumulator[key] = accumulator[key] || [];
+      accumulator[key].push({ event, date });
+    });
+
+    return accumulator;
+  }, {});
+  const monthEventDates = Object.keys(eventsByDate).filter((key) =>
+    key.startsWith(calendarMonthKey),
+  ).length;
+  const monthBookings = Object.entries(bookingsByDate)
+    .filter(([key]) => key.startsWith(calendarMonthKey))
+    .reduce((sum, [, count]) => sum + count, 0);
+
+  function changeCalendarMonth(offset) {
+    setCalendarMonth(
+      (current) => new Date(current.getFullYear(), current.getMonth() + offset, 1, 12, 0, 0),
+    );
+  }
 
   return (
     <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
@@ -705,29 +794,124 @@ function OverviewPanel({
                 <Icon icon="hugeicons:note-edit" width="18" height="18" />
                 Apri editor
               </button>
-              <button
-                type="button"
-                onClick={onOpenSync}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#fef3ea]/20 px-4 py-3 text-sm font-semibold text-white"
-              >
-                <Icon icon="hugeicons:link-circle-02" width="18" height="18" />
-                Google Sync
-              </button>
             </div>
           </div>
 
-          <div className="rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-5">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#c9573c]/70">
-              Google Calendar
-            </p>
-            <p className="text-2xl font-bold text-[#2c395b]">
-              {syncStatus?.configured ? "Configurato" : "Da configurare"}
-            </p>
-            <p className="mt-2 text-sm leading-6 text-[#6d7b80]">
-              {syncStatus?.configured
-                ? `${syncStatus.syncedDates}/${syncStatus.publishedDates} date sincronizzate.`
-                : "Manca ancora la configurazione OAuth per sincronizzare."}
-            </p>
+          <div className="rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-4 shadow-[0_16px_40px_rgba(35,47,55,0.05)]">
+            <div className="mb-4 flex items-start justify-between gap-3">
+              <div>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#c9573c]/70">
+                  Calendario sito
+                </p>
+                <p className="text-2xl font-bold capitalize text-[#2c395b]">
+                  {getAdminMonthLabel(calendarMonth)}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => changeCalendarMonth(-1)}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#c9573c]/15 bg-white text-[#c9573c]"
+                  aria-label="Mese precedente"
+                >
+                  <Icon icon="hugeicons:arrow-left-02" width="18" height="18" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => changeCalendarMonth(1)}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#c9573c]/15 bg-white text-[#c9573c]"
+                  aria-label="Mese successivo"
+                >
+                  <Icon icon="hugeicons:arrow-right-02" width="18" height="18" />
+                </button>
+              </div>
+            </div>
+
+            <div className="mb-4 grid grid-cols-2 gap-2">
+              <div className="rounded-xl bg-white px-3 py-2">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
+                  Giorni evento
+                </p>
+                <p className="mt-1 text-2xl font-bold text-[#2c395b]">
+                  {monthEventDates}
+                </p>
+              </div>
+              <div className="rounded-xl bg-white px-3 py-2">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
+                  Prenotati
+                </p>
+                <p className="mt-1 text-2xl font-bold text-[#2c395b]">
+                  {monthBookings}
+                </p>
+              </div>
+            </div>
+
+            <div className="mb-2 grid grid-cols-7 gap-1 text-center text-[10px] font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+              {["L", "M", "M", "G", "V", "S", "D"].map((dayLabel, index) => (
+                <span key={`${dayLabel}-${index}`}>{dayLabel}</span>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-7 gap-1.5">
+              {calendarDays.map((day, index) => {
+                if (!day) {
+                  return <div key={`empty-${index}`} className="min-h-[72px]" />;
+                }
+
+                const dayEvents = eventsByDate[day.key] || [];
+                const bookedCount = bookingsByDate[day.key] || 0;
+                const hasEvent = dayEvents.length > 0;
+                const firstEvent = dayEvents[0]?.event;
+
+                return (
+                  <button
+                    key={day.key}
+                    type="button"
+                    disabled={!firstEvent}
+                    onClick={() => firstEvent && onSelectEvent(firstEvent)}
+                    className={`min-h-[72px] rounded-xl border p-2 text-left transition ${
+                      hasEvent
+                        ? "border-[#c9573c]/25 bg-white shadow-[0_10px_24px_rgba(35,47,55,0.05)] hover:bg-[#fef3ea]"
+                        : "border-transparent bg-white/45 text-[#6d7b80]"
+                    } disabled:cursor-default`}
+                  >
+                    <span className="block text-sm font-bold text-[#2c395b]">
+                      {day.day}
+                    </span>
+                    {hasEvent ? (
+                      <span className="mt-2 block h-1.5 w-8 rounded-full bg-[#c9573c]" />
+                    ) : null}
+                    {bookedCount ? (
+                      <span className="mt-2 inline-flex rounded-full bg-[#dfe9df] px-2 py-1 text-[10px] font-bold text-[#4b6b4e]">
+                        {bookedCount}
+                      </span>
+                    ) : null}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="mt-4 space-y-2">
+              {Object.entries(eventsByDate)
+                .filter(([key]) => key.startsWith(calendarMonthKey))
+                .sort(([left], [right]) => left.localeCompare(right))
+                .slice(0, 4)
+                .map(([key, entries]) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => onSelectEvent(entries[0].event)}
+                    className="block w-full rounded-xl bg-white px-3 py-2 text-left transition hover:bg-[#fef3ea]"
+                  >
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
+                      {entries[0].date.labelIt || key}
+                    </p>
+                    <p className="mt-1 truncate text-sm font-bold text-[#2c395b]">
+                      {entries.map((entry) => entry.event.title?.it || entry.event.slug).join(", ")}
+                    </p>
+                  </button>
+                ))}
+            </div>
           </div>
         </aside>
       </div>
@@ -863,7 +1047,6 @@ export default function AdminDashboard() {
   const [selectedSlug, setSelectedSlug] = useState("");
   const [form, setForm] = useState(() => buildEmptyForm());
   const [loading, setLoading] = useState(false);
-  const [syncLoading, setSyncLoading] = useState(false);
   const [paymentsLoading, setPaymentsLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
@@ -871,13 +1054,8 @@ export default function AdminDashboard() {
   const [booting, setBooting] = useState(true);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
-  const [syncStatus, setSyncStatus] = useState(null);
   const [payments, setPayments] = useState([]);
   const [expandedPaymentSessionId, setExpandedPaymentSessionId] = useState("");
-
-  const selectedEvent =
-    events.find((event) => event.slug === selectedSlug) || null;
-  const selectedEventSyncedDates = getSyncedDatesCount(selectedEvent);
 
   const stats = useMemo(() => {
     const published = events.filter((event) => event.status === "published");
@@ -907,18 +1085,8 @@ export default function AdminDashboard() {
         note: "Mostrati come featured nel frontend",
         icon: "hugeicons:star",
       },
-      {
-        label: "Google Sync",
-        value: syncStatus?.configured
-          ? `${syncStatus.syncedDates}/${syncStatus.publishedDates}`
-          : "Setup",
-        note: syncStatus?.configured
-          ? `${syncStatus.calendarId || "Calendar pronto"}`
-          : "Manca ancora la configurazione OAuth",
-        icon: "hugeicons:link-circle-02",
-      },
     ];
-  }, [events, syncStatus]);
+  }, [events]);
 
   const paymentStats = useMemo(() => {
     const successful = payments.filter((item) => item.payment_status === "paid");
@@ -1030,39 +1198,6 @@ export default function AdminDashboard() {
     }
   }, []);
 
-  const loadSyncStatus = useCallback(
-    async (key = adminKey) => {
-      if (!key) {
-        return;
-      }
-
-      try {
-        const response = await fetch("/api/admin/google-calendar/status", {
-          headers: {
-            Authorization: `Bearer ${key}`,
-          },
-        });
-        const data = await response.json();
-
-        if (!response.ok) {
-          if (isSessionExpiredResponse(response, data)) {
-            await handleLogout({
-              skipRemoteSignOut: true,
-              message: SESSION_EXPIRED_MESSAGE,
-            });
-            return;
-          }
-          throw new Error(data.error || "Errore nel caricamento stato Google.");
-        }
-
-        setSyncStatus(data.status || null);
-      } catch (fetchError) {
-        setError(fetchError.message);
-      }
-    },
-    [adminKey, handleLogout],
-  );
-
   const loadEvents = useCallback(
     async (key = adminKey) => {
       setLoading(true);
@@ -1158,9 +1293,8 @@ export default function AdminDashboard() {
     }
 
     loadEvents(adminKey);
-    loadSyncStatus(adminKey);
     loadPayments(adminKey);
-  }, [adminKey, loadEvents, loadPayments, loadSyncStatus]);
+  }, [adminKey, loadEvents, loadPayments]);
 
   useEffect(() => {
     if (!adminKey || typeof window === "undefined") {
@@ -1478,31 +1612,6 @@ export default function AdminDashboard() {
     }));
   }
 
-  async function postAdminJson(url, body) {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${adminKey}`,
-      },
-      body: JSON.stringify(body),
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      if (isSessionExpiredResponse(response, data)) {
-        await handleLogout({
-          skipRemoteSignOut: true,
-          message: SESSION_EXPIRED_MESSAGE,
-        });
-        throw new Error(SESSION_EXPIRED_MESSAGE);
-      }
-      throw new Error(data.error || "Operazione non riuscita.");
-    }
-
-    return data;
-  }
-
   async function handleUpload(event) {
     const file = event.target.files?.[0];
 
@@ -1618,7 +1727,6 @@ export default function AdminDashboard() {
       );
 
       await loadEvents(adminKey);
-      await loadSyncStatus(adminKey);
       setSelectedSlug(data.event.slug);
       setForm(eventToForm(data.event));
       setActivePanel("events");
@@ -1629,97 +1737,15 @@ export default function AdminDashboard() {
     }
   }
 
-  async function handleSyncSelected() {
-    if (!selectedSlug) {
-      setError("Seleziona un evento prima di sincronizzare.");
-      return;
-    }
-
-    setSyncLoading(true);
-    setError("");
-    setNotice("");
-
-    try {
-      const data = await postAdminJson("/api/admin/google-calendar/sync", {
-        slug: selectedSlug,
-      });
-      setNotice(
-        `Google Calendar aggiornato per ${data.result.slug}: ${data.result.syncedDates} date sincronizzate.`,
-      );
-      await loadEvents(adminKey);
-      await loadSyncStatus(adminKey);
-    } catch (syncError) {
-      setError(syncError.message);
-    } finally {
-      setSyncLoading(false);
-    }
-  }
-
-  async function handleSyncAll() {
-    setSyncLoading(true);
-    setError("");
-    setNotice("");
-
-    try {
-      const data = await postAdminJson("/api/admin/google-calendar/sync", {});
-      setNotice(
-        `Google Calendar aggiornato: ${data.result.syncedEvents} eventi e ${data.result.syncedDates} date sincronizzate.`,
-      );
-      await loadEvents(adminKey);
-      await loadSyncStatus(adminKey);
-    } catch (syncError) {
-      setError(syncError.message);
-    } finally {
-      setSyncLoading(false);
-    }
-  }
-
-  async function handleUnsyncSelected() {
-    if (!selectedSlug) {
-      setError("Seleziona un evento prima di rimuoverlo da Google Calendar.");
-      return;
-    }
-
-    setSyncLoading(true);
-    setError("");
-    setNotice("");
-
-    try {
-      const data = await postAdminJson("/api/admin/google-calendar/unsync", {
-        slug: selectedSlug,
-      });
-
-      if (data.result.skippedRemoteDelete) {
-        setNotice(
-          "Metadati Google rimossi localmente. Mancava la configurazione per cancellare anche il calendario remoto.",
-        );
-      } else {
-        setNotice(
-          `Eventi Google rimossi per ${data.result.slug}: ${data.result.removedDates} date scollegate.`,
-        );
-      }
-
-      await loadEvents(adminKey);
-      await loadSyncStatus(adminKey);
-    } catch (syncError) {
-      setError(syncError.message);
-    } finally {
-      setSyncLoading(false);
-    }
-  }
-
   async function handleDelete() {
     if (!selectedSlug) {
       return;
     }
 
-    const warningMessage =
-      selectedEventSyncedDates > 0
-        ? `Questo evento ha ${selectedEventSyncedDates} date sincronizzate con Google Calendar. Le scollego prima di eliminarlo. Vuoi continuare?`
-        : "Vuoi eliminare questo evento?";
-
     const confirmed =
-      typeof window === "undefined" ? false : window.confirm(warningMessage);
+      typeof window === "undefined"
+        ? false
+        : window.confirm("Vuoi eliminare questo evento?");
 
     if (!confirmed) {
       return;
@@ -1730,12 +1756,6 @@ export default function AdminDashboard() {
     setNotice("");
 
     try {
-      if (selectedEventSyncedDates > 0) {
-        await postAdminJson("/api/admin/google-calendar/unsync", {
-          slug: selectedSlug,
-        });
-      }
-
       const response = await fetch(`/api/admin/events/${selectedSlug}`, {
         method: "DELETE",
         headers: {
@@ -1759,7 +1779,6 @@ export default function AdminDashboard() {
       setSelectedSlug("");
       setForm(buildEmptyForm());
       await loadEvents(adminKey);
-      await loadSyncStatus(adminKey);
       setActivePanel("events");
     } catch (deleteError) {
       setError(deleteError.message);
@@ -1961,7 +1980,6 @@ export default function AdminDashboard() {
   const showOverview = activePanel === "overview";
   const showEvents = activePanel === "events";
   const showEditor = activePanel === "editor";
-  const showSync = activePanel === "sync";
   const showPayments = activePanel === "payments";
 
   function handleNavSelect(panelId) {
@@ -2002,7 +2020,6 @@ export default function AdminDashboard() {
             type="button"
             onClick={() => {
               loadEvents(adminKey);
-              loadSyncStatus(adminKey);
               loadPayments(adminKey);
             }}
             className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#c9573c]/20 bg-white text-[#c9573c]"
@@ -2143,11 +2160,11 @@ export default function AdminDashboard() {
                 Step utile adesso
               </p>
               <h2 className="mb-3 text-2xl font-bold leading-tight text-white">
-                Eventi da admin e sync Google guidata.
+                Eventi e pagamenti da admin.
               </h2>
               <p className="text-sm leading-6 text-[#fef3ea]/78">
-                Gli eventi si gestiscono gia da qui. La sezione Google ti dice
-                se l&apos;OAuth e pronto e sincronizza gli eventi pubblicati.
+                Gestisci archivio, date, posti e checkout online da un solo
+                pannello.
               </p>
             </div>
           </aside>
@@ -2165,12 +2182,11 @@ export default function AdminDashboard() {
                     Backend eventi attivo
                   </p>
                   <h2 className="mb-3 text-3xl font-bold leading-tight text-[#2c395b] sm:text-4xl xl:text-5xl">
-                    Aggiungi, modifica, pubblica e sincronizza da un solo posto.
+                    Aggiungi, modifica e pubblica da un solo posto.
                   </h2>
                   <p className="text-base leading-7 text-[#6d7b80] lg:text-lg">
-                    L&apos;editor ora usa campi veri per le date, mentre Google
-                    Calendar ha una sezione dedicata con stato di configurazione
-                    e sync manuale degli eventi pubblicati.
+                    L&apos;editor usa campi veri per date, posti, meeting point e
+                    pagamenti, cosi puoi mantenere gli eventi sempre aggiornati.
                   </p>
                 </div>
 
@@ -2187,7 +2203,6 @@ export default function AdminDashboard() {
                     type="button"
                     onClick={() => {
                       loadEvents(adminKey);
-                      loadSyncStatus(adminKey);
                       loadPayments(adminKey);
                     }}
                     className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-[#fef3ea] px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
@@ -2222,12 +2237,10 @@ export default function AdminDashboard() {
                 events={events}
                 payments={payments}
                 paymentStats={paymentStats}
-                syncStatus={syncStatus}
                 loading={loading || paymentsLoading}
                 onNewEvent={startNewEvent}
                 onOpenEvents={() => handleNavSelect("events")}
                 onOpenEditor={() => handleNavSelect("editor")}
-                onOpenSync={() => handleNavSelect("sync")}
                 onOpenPayments={() => handleNavSelect("payments")}
                 onSelectEvent={handleSelectEvent}
               />
@@ -2258,8 +2271,6 @@ export default function AdminDashboard() {
                         const firstDate = event.dates?.[0];
                         const statusLabel =
                           event.status === "published" ? "Pubblicato" : "Bozza";
-                        const syncedDates = getSyncedDatesCount(event);
-
                         return (
                           <div
                             key={event.slug}
@@ -2279,12 +2290,6 @@ export default function AdminDashboard() {
                                 {event.featured ? (
                                   <span className="rounded-full bg-[#CE9486]/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c9573c]">
                                     Featured
-                                  </span>
-                                ) : null}
-                                {syncedDates ? (
-                                  <span className="rounded-full bg-[#edf7ee] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#4b6b4e]">
-                                    Google {syncedDates}/
-                                    {event.dates?.length || 0}
                                   </span>
                                 ) : null}
                                 <span className="text-sm font-semibold text-[#77674E]">
@@ -2782,9 +2787,7 @@ export default function AdminDashboard() {
                                   Data #{index + 1}
                                 </p>
                                 <p className="text-xs uppercase tracking-[0.22em] text-[#c9573c]/70">
-                                  {date.googleCalendar?.eventId
-                                    ? "Sincronizzata con Google"
-                                    : "Non sincronizzata"}
+                                  Dettagli data
                                 </p>
                               </div>
                               <div className="flex flex-wrap gap-2">
@@ -2805,7 +2808,7 @@ export default function AdminDashboard() {
                               </div>
                             </div>
 
-                            <div className="grid grid-cols-1 gap-4 xl:grid-cols-6">
+                            <div className="grid grid-cols-1 gap-4 xl:grid-cols-5">
                               <Field label="Giorno">
                                 <input
                                   type="date"
@@ -2926,24 +2929,6 @@ export default function AdminDashboard() {
                                 ) : null}
                               </div>
 
-                              <div className="rounded-xl border border-[#c9573c]/10 bg-white px-4 py-3 text-sm text-[#6d7b80]">
-                                <p className="mb-1 font-semibold text-[#2c395b]">
-                                  Sync Google
-                                </p>
-                                {date.googleCalendar?.eventId ? (
-                                  <a
-                                    href={date.googleCalendar.htmlLink || "#"}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline-flex items-center gap-2 font-semibold text-[#4b6b4e] underline underline-offset-4"
-                                  >
-                                    Apri evento Google
-                                  </a>
-                                ) : (
-                                  <p>Ancora non sincronizzata.</p>
-                                )}
-                              </div>
-
                               <Field label="Label IT" className="xl:col-span-2">
                                 <input
                                   type="text"
@@ -3025,235 +3010,6 @@ export default function AdminDashboard() {
                       </button>
                     </div>
                   </form>
-                </article>
-              ) : null}
-
-              {showSync ? (
-                <article className="rounded-md bg-[#2c395b] p-6 text-[#fef3ea] shadow-[0_24px_60px_rgba(44,57,91,0.2)] lg:p-8">
-                  <div className="flex flex-col gap-4 mb-6 lg:flex-row lg:items-start lg:justify-between">
-                    <div className="max-w-3xl">
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#fef3ea]/60">
-                        Google sync
-                      </p>
-                      <h3 className="mb-3 text-3xl font-bold text-white">
-                        Stato configurazione e sincronizzazione manuale
-                      </h3>
-                      <p className="text-sm leading-7 text-[#fef3ea]/78">
-                        Le credenziali Google restano lato server per sicurezza.
-                        Da qui puoi capire se l&apos;OAuth e pronto e
-                        sincronizzare gli eventi pubblicati verso il calendario
-                        scelto.
-                      </p>
-                    </div>
-
-                    <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                      <button
-                        type="button"
-                        disabled={syncLoading || !syncStatus?.configured}
-                        onClick={handleSyncAll}
-                        className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#2c395b] transition hover:bg-[#fef3ea] disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        <Icon icon="hugeicons:refresh" width="18" height="18" />
-                        Sync tutti i pubblicati
-                      </button>
-                      <button
-                        type="button"
-                        disabled={
-                          syncLoading ||
-                          !selectedSlug ||
-                          !syncStatus?.configured
-                        }
-                        onClick={handleSyncSelected}
-                        className="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-white transition border rounded-xl border-white/20 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        <Icon
-                          icon="hugeicons:calendar-03"
-                          width="18"
-                          height="18"
-                        />
-                        Sync evento selezionato
-                      </button>
-                      <button
-                        type="button"
-                        disabled={syncLoading || !selectedSlug}
-                        onClick={handleUnsyncSelected}
-                        className="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-white transition border rounded-xl border-white/20 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        <Icon
-                          icon="hugeicons:link-circle-02"
-                          width="18"
-                          height="18"
-                        />
-                        Rimuovi da Google
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-                    <div className="space-y-4">
-                      <div className="rounded-md border border-white/10 bg-white/5 p-5">
-                        <div className="flex flex-wrap items-center gap-2 mb-3">
-                          <span
-                            className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] ${
-                              syncStatus?.configured
-                                ? "bg-[#dfe9df] text-[#4b6b4e]"
-                                : "bg-[#f5e4d8] text-[#9c613d]"
-                            }`}
-                          >
-                            {syncStatus?.configured
-                              ? "Configurato"
-                              : "Da configurare"}
-                          </span>
-                          <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#fef3ea]">
-                            Timezone {syncStatus?.timeZone || DEFAULT_TIMEZONE}
-                          </span>
-                        </div>
-
-                        <p className="mb-2 text-sm font-semibold text-white">
-                          Calendario destinazione
-                        </p>
-                        <p className="mb-4 text-sm leading-6 text-[#fef3ea]/78">
-                          {syncStatus?.calendarId || "Non ancora definito"}
-                        </p>
-
-                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                          <div className="p-4 rounded-xl bg-black/10">
-                            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#fef3ea]/60">
-                              Eventi pubblicati
-                            </p>
-                            <p className="text-2xl font-bold text-white">
-                              {syncStatus?.publishedEvents ?? 0}
-                            </p>
-                          </div>
-                          <div className="p-4 rounded-xl bg-black/10">
-                            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#fef3ea]/60">
-                              Date pubblicate
-                            </p>
-                            <p className="text-2xl font-bold text-white">
-                              {syncStatus?.publishedDates ?? 0}
-                            </p>
-                          </div>
-                          <div className="p-4 rounded-xl bg-black/10">
-                            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#fef3ea]/60">
-                              Date sincronizzate
-                            </p>
-                            <p className="text-2xl font-bold text-white">
-                              {syncStatus?.syncedDates ?? 0}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="rounded-md border border-white/10 bg-white/5 p-5">
-                        <p className="mb-3 text-sm font-semibold text-white">
-                          Variabili richieste
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {[
-                            "GOOGLE_CLIENT_ID",
-                            "GOOGLE_CLIENT_SECRET",
-                            "GOOGLE_REFRESH_TOKEN",
-                            "GOOGLE_CALENDAR_ID",
-                            "GOOGLE_CALENDAR_TIMEZONE",
-                          ].map((item) => {
-                            const missing = syncStatus?.missing?.includes(item);
-
-                            return (
-                              <span
-                                key={item}
-                                className={`rounded-full px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                                  missing
-                                    ? "bg-[#f5e4d8] text-[#9c613d]"
-                                    : "bg-[#dfe9df] text-[#4b6b4e]"
-                                }`}
-                              >
-                                {item}
-                              </span>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div className="rounded-md border border-white/10 bg-white/5 p-5">
-                        <p className="mb-3 text-sm font-semibold text-white">
-                          Come funziona la sync
-                        </p>
-                        <div className="space-y-3 text-sm leading-7 text-[#fef3ea]/78">
-                          <p>
-                            1. Crei o modifichi l&apos;evento qui
-                            nell&apos;admin e lo pubblichi.
-                          </p>
-                          <p>
-                            2. La sync legge tutte le date pubblicate e crea o
-                            aggiorna gli eventi Google corrispondenti.
-                          </p>
-                          <p>
-                            3. Se cambi titolo, descrizione, orari o meeting
-                            point, basta rilanciare la sync.
-                          </p>
-                          <p>
-                            4. Se rimuovi un evento da Google da qui, il sito
-                            mantiene l&apos;evento locale ma scollega gli ID
-                            Google.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="rounded-md border border-white/10 bg-white/5 p-5">
-                        <p className="mb-3 text-sm font-semibold text-white">
-                          Evento selezionato
-                        </p>
-                        {selectedEvent ? (
-                          <div className="space-y-3 text-sm leading-7 text-[#fef3ea]/78">
-                            <p className="text-lg font-bold text-white">
-                              {selectedEvent.title?.it || selectedEvent.slug}
-                            </p>
-                            <p>
-                              Stato:{" "}
-                              <strong className="text-white">
-                                {selectedEvent.status === "published"
-                                  ? "Pubblicato"
-                                  : "Bozza"}
-                              </strong>
-                            </p>
-                            <p>
-                              Date sincronizzate:{" "}
-                              <strong className="text-white">
-                                {selectedEventSyncedDates}/
-                                {selectedEvent.dates?.length || 0}
-                              </strong>
-                            </p>
-                            {(selectedEvent.dates || []).some(
-                              (date) => date.googleCalendar?.htmlLink,
-                            ) ? (
-                              <div className="flex flex-wrap gap-2 pt-1">
-                                {selectedEvent.dates.map((date) =>
-                                  date.googleCalendar?.htmlLink ? (
-                                    <a
-                                      key={date.iso}
-                                      href={date.googleCalendar.htmlLink}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                      className="rounded-full bg-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white"
-                                    >
-                                      {date.labelIt || date.iso}
-                                    </a>
-                                  ) : null,
-                                )}
-                              </div>
-                            ) : null}
-                          </div>
-                        ) : (
-                          <p className="text-sm leading-7 text-[#fef3ea]/78">
-                            Seleziona un evento dall&apos;archivio per
-                            sincronizzare solo quello.
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
                 </article>
               ) : null}
 

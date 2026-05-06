@@ -164,16 +164,14 @@
           "labelIt": "2 giugno 2026",
           "labelEn": "June 2, 2026",
           "time": "17:00 - 19:00",
-          "spots": 10,
-          "googleCalendar": null
+          "spots": 10
         },
         {
           "iso": "2026-06-14T17:00:00",
           "labelIt": "14 giugno 2026",
           "labelEn": "June 14, 2026",
           "time": "17:00 - 19:00",
-          "spots": 10,
-          "googleCalendar": null
+          "spots": 10
         }
       ]
     },
@@ -333,8 +331,7 @@
           "labelIt": "13 giugno 2026",
           "labelEn": "June 13, 2026",
           "time": "17:00 - 19:00",
-          "spots": 10,
-          "googleCalendar": null
+          "spots": 10
         }
       ]
     },
