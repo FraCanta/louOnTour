@@ -7,7 +7,8 @@ import { supabase } from "../../utils/supabase";
 const SITE_TIMEZONE = "Europe/Rome";
 const MIN_EVENT_SPOTS = 4;
 const MAX_EVENT_SPOTS = 10;
-const SESSION_EXPIRED_MESSAGE = "Sessione scaduta. Effettua di nuovo l'accesso.";
+const SESSION_EXPIRED_MESSAGE =
+  "Sessione scaduta. Effettua di nuovo l'accesso.";
 const NAV_ITEMS = [
   { id: "overview", label: "Panoramica", icon: "hugeicons:square-lock-02" },
   { id: "events", label: "Eventi", icon: "hugeicons:calendar-03" },
@@ -98,7 +99,9 @@ function normalizeSpotsValue(value) {
 }
 
 function normalizeCurrencyValue(value = "eur") {
-  const normalized = String(value || "").trim().toLowerCase();
+  const normalized = String(value || "")
+    .trim()
+    .toLowerCase();
   return normalized || "eur";
 }
 
@@ -452,7 +455,9 @@ function formatMoneyFromCents(cents, currency = "eur") {
 }
 
 function getAttendeeNames(payment) {
-  const raw = String(payment?.raw_payload?.metadata?.attendeeNames || "").trim();
+  const raw = String(
+    payment?.raw_payload?.metadata?.attendeeNames || "",
+  ).trim();
 
   if (!raw) {
     return [];
@@ -467,7 +472,9 @@ function getAttendeeNames(payment) {
 function getPaymentEventDateLabel(payment) {
   const metadata = payment?.raw_payload?.metadata || {};
   const label = String(metadata.eventDateLabel || "").trim();
-  const iso = String(payment?.event_date_iso || metadata.eventDateIso || "").trim();
+  const iso = String(
+    payment?.event_date_iso || metadata.eventDateIso || "",
+  ).trim();
 
   if (label && label !== iso) {
     return label;
@@ -524,13 +531,17 @@ function getPaymentAttendeeCount(payment) {
 
 function getEventStripeDateCount(event) {
   return (event?.dates || []).filter(
-    (date) => Boolean(date?.stripe?.enabled) && Number(date?.stripe?.priceCents) > 0,
+    (date) =>
+      Boolean(date?.stripe?.enabled) && Number(date?.stripe?.priceCents) > 0,
   ).length;
 }
 
 function getEventNextDateLabel(event) {
   const firstDate = event?.dates?.[0];
-  return [firstDate?.labelIt, firstDate?.time].filter(Boolean).join(" - ") || "Nessuna data";
+  return (
+    [firstDate?.labelIt, firstDate?.time].filter(Boolean).join(" - ") ||
+    "Nessuna data"
+  );
 }
 
 function OverviewPanel({
@@ -544,7 +555,9 @@ function OverviewPanel({
   onOpenPayments,
   onSelectEvent,
 }) {
-  const publishedEvents = events.filter((event) => event.status === "published");
+  const publishedEvents = events.filter(
+    (event) => event.status === "published",
+  );
   const draftEvents = events.filter((event) => event.status === "draft");
   const onlineCheckoutDates = events.reduce(
     (sum, event) => sum + getEventStripeDateCount(event),
@@ -577,7 +590,8 @@ function OverviewPanel({
       return accumulator;
     }
 
-    accumulator[key] = (accumulator[key] || 0) + getPaymentAttendeeCount(payment);
+    accumulator[key] =
+      (accumulator[key] || 0) + getPaymentAttendeeCount(payment);
     return accumulator;
   }, {});
   const eventsByDate = events.reduce((accumulator, event) => {
@@ -603,20 +617,26 @@ function OverviewPanel({
 
   function changeCalendarMonth(offset) {
     setCalendarMonth(
-      (current) => new Date(current.getFullYear(), current.getMonth() + offset, 1, 12, 0, 0),
+      (current) =>
+        new Date(
+          current.getFullYear(),
+          current.getMonth() + offset,
+          1,
+          12,
+          0,
+          0,
+        ),
     );
   }
 
   return (
     <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
-      <div className="mb-6 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+      <div className="flex flex-col gap-3 mb-6 xl:flex-row xl:items-end xl:justify-between">
         <div>
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
             Panoramica
           </p>
-          <h3 className="text-3xl font-bold text-[#2c395b]">
-            Stato operativo
-          </h3>
+          <h3 className="text-3xl font-bold text-[#2c395b]">Stato operativo</h3>
         </div>
         {loading ? (
           <span className="text-sm font-semibold text-[#77674E]">
@@ -674,7 +694,7 @@ function OverviewPanel({
 
           <div className="grid grid-cols-1 gap-4 2xl:grid-cols-2">
             <section className="rounded-md border border-[#c9573c]/10 bg-white p-4">
-              <div className="mb-4 flex items-center justify-between gap-3">
+              <div className="flex items-center justify-between gap-3 mb-4">
                 <h4 className="text-lg font-bold text-[#2c395b]">
                   Ultimi eventi
                 </h4>
@@ -725,7 +745,7 @@ function OverviewPanel({
             </section>
 
             <section className="rounded-md border border-[#c9573c]/10 bg-white p-4">
-              <div className="mb-4 flex items-center justify-between gap-3">
+              <div className="flex items-center justify-between gap-3 mb-4">
                 <h4 className="text-lg font-bold text-[#2c395b]">
                   Ultimi pagamenti
                 </h4>
@@ -798,7 +818,7 @@ function OverviewPanel({
           </div>
 
           <div className="rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-4 shadow-[0_16px_40px_rgba(35,47,55,0.05)]">
-            <div className="mb-4 flex items-start justify-between gap-3">
+            <div className="flex items-start justify-between gap-3 mb-4">
               <div>
                 <p className="mb-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#c9573c]/70">
                   Calendario sito
@@ -822,13 +842,17 @@ function OverviewPanel({
                   className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#c9573c]/15 bg-white text-[#c9573c]"
                   aria-label="Mese successivo"
                 >
-                  <Icon icon="hugeicons:arrow-right-02" width="18" height="18" />
+                  <Icon
+                    icon="hugeicons:arrow-right-02"
+                    width="18"
+                    height="18"
+                  />
                 </button>
               </div>
             </div>
 
-            <div className="mb-4 grid grid-cols-2 gap-2">
-              <div className="rounded-xl bg-white px-3 py-2">
+            <div className="grid grid-cols-2 gap-2 mb-4">
+              <div className="px-3 py-2 bg-white rounded-xl">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
                   Giorni evento
                 </p>
@@ -836,7 +860,7 @@ function OverviewPanel({
                   {monthEventDates}
                 </p>
               </div>
-              <div className="rounded-xl bg-white px-3 py-2">
+              <div className="px-3 py-2 bg-white rounded-xl">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
                   Prenotati
                 </p>
@@ -855,7 +879,9 @@ function OverviewPanel({
             <div className="grid grid-cols-7 gap-1.5">
               {calendarDays.map((day, index) => {
                 if (!day) {
-                  return <div key={`empty-${index}`} className="min-h-[72px]" />;
+                  return (
+                    <div key={`empty-${index}`} className="min-h-[72px]" />
+                  );
                 }
 
                 const dayEvents = eventsByDate[day.key] || [];
@@ -907,7 +933,11 @@ function OverviewPanel({
                       {entries[0].date.labelIt || key}
                     </p>
                     <p className="mt-1 truncate text-sm font-bold text-[#2c395b]">
-                      {entries.map((entry) => entry.event.title?.it || entry.event.slug).join(", ")}
+                      {entries
+                        .map(
+                          (entry) => entry.event.title?.it || entry.event.slug,
+                        )
+                        .join(", ")}
                     </p>
                   </button>
                 ))}
@@ -919,23 +949,20 @@ function OverviewPanel({
   );
 }
 
-function PaymentMobileCard({
-  payment,
-  isExpanded,
-  onToggle,
-}) {
+function PaymentMobileCard({ payment, isExpanded, onToggle }) {
   const attendeeNames = getAttendeeNames(payment);
-  const attendeeCount = Number(payment?.raw_payload?.metadata?.attendeeCount || 1);
+  const attendeeCount = Number(
+    payment?.raw_payload?.metadata?.attendeeCount || 1,
+  );
   const metadata = payment?.raw_payload?.metadata || {};
   const customerDetails = payment?.raw_payload?.customer_details || {};
   const eventDateLabel = getPaymentEventDateLabel(payment);
-  const customerEmail =
-    customerDetails.email || payment.customer_email || "-";
+  const customerEmail = customerDetails.email || payment.customer_email || "-";
   const sessionId = String(payment.stripe_session_id || "");
 
   return (
     <article className="rounded-md border border-[#c9573c]/10 bg-white p-4 shadow-[0_14px_30px_rgba(35,47,55,0.05)]">
-      <div className="mb-4 flex items-start justify-between gap-3">
+      <div className="flex items-start justify-between gap-3 mb-4">
         <div className="min-w-0">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9573c]/70">
             {formatAdminDateTime(payment.created_at)}
@@ -945,7 +972,7 @@ function PaymentMobileCard({
           </h4>
           <p className="mt-1 text-sm text-[#6d7b80]">{eventDateLabel}</p>
         </div>
-        <div className="shrink-0 text-right">
+        <div className="text-right shrink-0">
           <p className="text-lg font-bold text-[#2c395b]">
             {formatMoneyFromCents(payment.amount_total, payment.currency)}
           </p>
@@ -995,7 +1022,9 @@ function PaymentMobileCard({
         className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 px-4 py-3 text-sm font-semibold text-[#2c395b] transition hover:bg-[#fff8f4]"
       >
         <Icon
-          icon={isExpanded ? "hugeicons:arrow-up-01" : "hugeicons:arrow-down-01"}
+          icon={
+            isExpanded ? "hugeicons:arrow-up-01" : "hugeicons:arrow-down-01"
+          }
           width="16"
           height="16"
         />
@@ -1089,7 +1118,9 @@ export default function AdminDashboard() {
   }, [events]);
 
   const paymentStats = useMemo(() => {
-    const successful = payments.filter((item) => item.payment_status === "paid");
+    const successful = payments.filter(
+      (item) => item.payment_status === "paid",
+    );
     const refunded = payments.filter((item) =>
       String(item.payment_status || "").includes("refund"),
     );
@@ -1341,12 +1372,11 @@ export default function AdminDashboard() {
     setAuthLoading(true);
 
     try {
-      const { data, error: loginError } = await supabase.auth.signInWithPassword(
-        {
+      const { data, error: loginError } =
+        await supabase.auth.signInWithPassword({
           email,
           password: authPassword,
-        },
-      );
+        });
 
       if (loginError) {
         throw new Error(loginError.message || "Login non riuscito.");
@@ -1510,7 +1540,9 @@ export default function AdminDashboard() {
         );
       }
 
-      setNotice("Email di conferma reinviata. Controlla anche Spam/Promozioni.");
+      setNotice(
+        "Email di conferma reinviata. Controlla anche Spam/Promozioni.",
+      );
     } catch (resendError) {
       setError(
         resendError.message || "Reinvio email di conferma non riuscito.",
@@ -1796,6 +1828,7 @@ export default function AdminDashboard() {
       <>
         <Head>
           <title>Dashboard Admin</title>
+          <meta name="robots" content="noindex, nofollow" />
         </Head>
         <main className="flex min-h-screen items-center justify-center bg-[linear-gradient(180deg,#fef3ea_0%,#fff8f4_52%,#f6eee8_100%)] px-4 py-10">
           <section className="w-full max-w-xl rounded-md border border-[#c9573c]/10 bg-white/80 p-8 shadow-[0_24px_60px_rgba(35,47,55,0.08)] backdrop-blur-sm">
@@ -1845,10 +1878,14 @@ export default function AdminDashboard() {
             </div>
 
             <form
-              onSubmit={authMode === "login" ? handleLogin : (event) => {
-                event.preventDefault();
-                handleRegister();
-              }}
+              onSubmit={
+                authMode === "login"
+                  ? handleLogin
+                  : (event) => {
+                      event.preventDefault();
+                      handleRegister();
+                    }
+              }
               className="space-y-4"
             >
               {authMode === "register" ? (
@@ -1918,7 +1955,11 @@ export default function AdminDashboard() {
                   disabled={authLoading}
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#77674E] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#685b43] disabled:opacity-60"
                 >
-                  <Icon icon="hugeicons:square-lock-02" width="18" height="18" />
+                  <Icon
+                    icon="hugeicons:square-lock-02"
+                    width="18"
+                    height="18"
+                  />
                   {authMode === "login" ? "Accedi" : "Crea account"}
                 </button>
 
@@ -1938,7 +1979,11 @@ export default function AdminDashboard() {
                     onClick={() => setAuthMode("register")}
                     className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-[#fef3ea] px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10 disabled:opacity-60"
                   >
-                    <Icon icon="hugeicons:user-plus-01" width="18" height="18" />
+                    <Icon
+                      icon="hugeicons:user-plus-01"
+                      width="18"
+                      height="18"
+                    />
                     Crea account
                   </button>
                 )}
@@ -2061,15 +2106,15 @@ export default function AdminDashboard() {
                 }`}
               >
                 <div className={sidebarCollapsed ? "xl:hidden" : ""}>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
-                  Luisa Quaglia
-                </p>
-                <h1 className="text-3xl font-bold leading-tight text-[#2c395b] sm:text-4xl">
-                  Admin
-                  <br />
-                  Dashboard
-                </h1>
-              </div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
+                    Luisa Quaglia
+                  </p>
+                  <h1 className="text-3xl font-bold leading-tight text-[#2c395b] sm:text-4xl">
+                    Admin
+                    <br />
+                    Dashboard
+                  </h1>
+                </div>
 
                 <button
                   type="button"
@@ -2171,1125 +2216,1202 @@ export default function AdminDashboard() {
 
           <section className="min-w-0 px-4 py-6 sm:px-6 lg:px-8 xl:px-10 xl:py-8">
             <div className="mx-auto w-full max-w-[2200px]">
-            <header className="mb-8 rounded-md border border-[#c9573c]/10 bg-white/75 p-6 shadow-[0_20px_50px_rgba(35,47,55,0.06)] backdrop-blur-sm lg:p-8">
-              <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
-                <div className="max-w-4xl">
-                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#c9573c]/15 bg-[#fff8f4] px-3 py-1.5 text-xs font-semibold text-[#77674E]">
-                    <Icon icon="hugeicons:user-account" width="14" height="14" />
-                    Benvenuta/o, {getAdminDisplayName(adminUser) || "Admin"}
-                  </div>
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
-                    Backend eventi attivo
-                  </p>
-                  <h2 className="mb-3 text-3xl font-bold leading-tight text-[#2c395b] sm:text-4xl xl:text-5xl">
-                    Aggiungi, modifica e pubblica da un solo posto.
-                  </h2>
-                  <p className="text-base leading-7 text-[#6d7b80] lg:text-lg">
-                    L&apos;editor usa campi veri per date, posti, meeting point e
-                    pagamenti, cosi puoi mantenere gli eventi sempre aggiornati.
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-3 sm:flex-row xl:flex-col xl:min-w-[220px]">
-                  <button
-                    type="button"
-                    onClick={startNewEvent}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#77674E] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#685b43]"
-                  >
-                    <Icon icon="hugeicons:add-circle" width="18" height="18" />
-                    Nuovo evento
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      loadEvents(adminKey);
-                      loadPayments(adminKey);
-                    }}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-[#fef3ea] px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
-                  >
-                    <Icon icon="hugeicons:refresh" width="18" height="18" />
-                    Ricarica dati
-                  </button>
-                </div>
-              </div>
-            </header>
-
-            {error ? (
-              <div className="mb-6 rounded-md border border-[#c9573c]/20 bg-[#fff1ec] px-5 py-4 text-sm font-medium text-[#b74d33]">
-                {error}
-              </div>
-            ) : null}
-
-            {notice ? (
-              <div className="mb-6 rounded-md border border-[#4b6b4e]/20 bg-[#edf7ee] px-5 py-4 text-sm font-medium text-[#4b6b4e]">
-                {notice}
-              </div>
-            ) : null}
-
-            <section className="grid grid-cols-1 gap-4 mb-8 md:grid-cols-2 2xl:grid-cols-4">
-              {stats.map((stat) => (
-                <StatsCard key={stat.label} {...stat} />
-              ))}
-            </section>
-
-            {showOverview ? (
-              <OverviewPanel
-                events={events}
-                payments={payments}
-                paymentStats={paymentStats}
-                loading={loading || paymentsLoading}
-                onNewEvent={startNewEvent}
-                onOpenEvents={() => handleNavSelect("events")}
-                onOpenEditor={() => handleNavSelect("editor")}
-                onOpenPayments={() => handleNavSelect("payments")}
-                onSelectEvent={handleSelectEvent}
-              />
-            ) : null}
-
-            <div className="space-y-6">
-              {showEvents ? (
-                <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
-                  <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-end sm:justify-between">
-                    <div>
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
-                        Archivio eventi
-                      </p>
-                      <h3 className="text-3xl font-bold text-[#2c395b]">
-                        Eventi salvati
-                      </h3>
+              <header className="mb-8 rounded-md border border-[#c9573c]/10 bg-white/75 p-6 shadow-[0_20px_50px_rgba(35,47,55,0.06)] backdrop-blur-sm lg:p-8">
+                <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
+                  <div className="max-w-4xl">
+                    <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#c9573c]/15 bg-[#fff8f4] px-3 py-1.5 text-xs font-semibold text-[#77674E]">
+                      <Icon
+                        icon="hugeicons:user-account"
+                        width="14"
+                        height="14"
+                      />
+                      Benvenuta/o, {getAdminDisplayName(adminUser) || "Admin"}
                     </div>
-                    {loading ? (
-                      <span className="text-sm font-semibold text-[#77674E]">
-                        Caricamento...
-                      </span>
-                    ) : null}
+                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
+                      Backend eventi attivo
+                    </p>
+                    <h2 className="mb-3 text-3xl font-bold leading-tight text-[#2c395b] sm:text-4xl xl:text-5xl">
+                      Aggiungi, modifica e pubblica da un solo posto.
+                    </h2>
+                    <p className="text-base leading-7 text-[#6d7b80] lg:text-lg">
+                      L&apos;editor usa campi veri per date, posti, meeting
+                      point e pagamenti, cosi puoi mantenere gli eventi sempre
+                      aggiornati.
+                    </p>
                   </div>
 
-                  <div className="space-y-4">
-                    {events.length ? (
-                      events.map((event) => {
-                        const firstDate = event.dates?.[0];
-                        const statusLabel =
-                          event.status === "published" ? "Pubblicato" : "Bozza";
-                        return (
-                          <div
-                            key={event.slug}
-                            className="grid gap-4 rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-5 lg:grid-cols-[1fr_auto]"
-                          >
-                            <div>
-                              <div className="flex flex-wrap items-center gap-2 mb-3">
-                                <span
-                                  className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] ${
-                                    event.status === "published"
-                                      ? "bg-[#dfe9df] text-[#4b6b4e]"
-                                      : "bg-[#f5e4d8] text-[#9c613d]"
-                                  }`}
-                                >
-                                  {statusLabel}
-                                </span>
-                                {event.featured ? (
-                                  <span className="rounded-full bg-[#CE9486]/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c9573c]">
-                                    Featured
-                                  </span>
-                                ) : null}
-                                <span className="text-sm font-semibold text-[#77674E]">
-                                  {event.location?.it || "-"}
-                                </span>
-                              </div>
-
-                              <h4 className="mb-2 text-2xl font-bold text-[#2c395b]">
-                                {event.title?.it || event.slug}
-                              </h4>
-
-                              <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#6d7b80]">
-                                <span className="inline-flex items-center gap-2">
-                                  <Icon
-                                    icon="hugeicons:calendar-03"
-                                    width="16"
-                                    height="16"
-                                  />
-                                  {firstDate?.labelIt || "Nessuna data"}
-                                </span>
-                                <span className="inline-flex items-center gap-2">
-                                  <Icon
-                                    icon="hugeicons:clock-01"
-                                    width="16"
-                                    height="16"
-                                  />
-                                  {firstDate?.time || "Da definire"}
-                                </span>
-                                <span className="inline-flex items-center gap-2">
-                                  <Icon
-                                    icon="hugeicons:wallet-02"
-                                    width="16"
-                                    height="16"
-                                  />
-                                  {event.price?.it || "-"}
-                                </span>
-                              </div>
-                            </div>
-
-                            <div className="flex flex-col items-start justify-between gap-3 lg:items-end">
-                              <span className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-[#77674E] shadow-sm">
-                                {(event.dates || []).length} date
-                              </span>
-                              <div className="flex flex-wrap gap-2">
-                                <button
-                                  type="button"
-                                  onClick={() => handleSelectEvent(event)}
-                                  className="rounded-xl border border-[#c9573c]/20 px-4 py-2 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
-                                >
-                                  Modifica
-                                </button>
-                                <a
-                                  href={`/eventi/${event.slug}`}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  className="rounded-xl bg-[#77674E] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#685b43]"
-                                >
-                                  Apri
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-6 text-sm leading-7 text-[#6d7b80]">
-                        Nessun evento salvato ancora. Crea il primo da qui sopra
-                        con “Nuovo evento”.
-                      </div>
-                    )}
+                  <div className="flex flex-col gap-3 sm:flex-row xl:flex-col xl:min-w-[220px]">
+                    <button
+                      type="button"
+                      onClick={startNewEvent}
+                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#77674E] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#685b43]"
+                    >
+                      <Icon
+                        icon="hugeicons:add-circle"
+                        width="18"
+                        height="18"
+                      />
+                      Nuovo evento
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        loadEvents(adminKey);
+                        loadPayments(adminKey);
+                      }}
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-[#fef3ea] px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
+                    >
+                      <Icon icon="hugeicons:refresh" width="18" height="18" />
+                      Ricarica dati
+                    </button>
                   </div>
-                </article>
+                </div>
+              </header>
+
+              {error ? (
+                <div className="mb-6 rounded-md border border-[#c9573c]/20 bg-[#fff1ec] px-5 py-4 text-sm font-medium text-[#b74d33]">
+                  {error}
+                </div>
               ) : null}
 
-              {showEditor ? (
-                <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
-                  <div className="flex flex-col gap-3 mb-6 md:flex-row md:items-end md:justify-between">
-                    <div>
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
-                        Editor evento
-                      </p>
-                      <h3 className="text-3xl font-bold text-[#2c395b]">
-                        {selectedSlug ? "Modifica evento" : "Crea nuovo evento"}
-                      </h3>
-                    </div>
+              {notice ? (
+                <div className="mb-6 rounded-md border border-[#4b6b4e]/20 bg-[#edf7ee] px-5 py-4 text-sm font-medium text-[#4b6b4e]">
+                  {notice}
+                </div>
+              ) : null}
 
-                    <div className="flex flex-wrap gap-2">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          updateFormField(
-                            "slug",
-                            form.slug || buildSlugFromTitle(form.titleIt),
-                          )
-                        }
-                        className="rounded-xl border border-[#c9573c]/20 px-4 py-2 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
-                      >
-                        Genera slug
-                      </button>
+              <section className="grid grid-cols-1 gap-4 mb-8 md:grid-cols-2 2xl:grid-cols-4">
+                {stats.map((stat) => (
+                  <StatsCard key={stat.label} {...stat} />
+                ))}
+              </section>
 
-                      {selectedSlug ? (
-                        <button
-                          type="button"
-                          onClick={handleDelete}
-                          className="rounded-xl border border-[#b74d33]/20 px-4 py-2 text-sm font-semibold text-[#b74d33] transition hover:bg-[#fff1ec]"
-                        >
-                          Elimina evento
-                        </button>
-                      ) : null}
-                    </div>
-                  </div>
+              {showOverview ? (
+                <OverviewPanel
+                  events={events}
+                  payments={payments}
+                  paymentStats={paymentStats}
+                  loading={loading || paymentsLoading}
+                  onNewEvent={startNewEvent}
+                  onOpenEvents={() => handleNavSelect("events")}
+                  onOpenEditor={() => handleNavSelect("editor")}
+                  onOpenPayments={() => handleNavSelect("payments")}
+                  onSelectEvent={handleSelectEvent}
+                />
+              ) : null}
 
-                  <form
-                    onSubmit={(event) => {
-                      event.preventDefault();
-                    }}
-                    className="grid grid-cols-1 gap-4 xl:grid-cols-2"
-                  >
-                    <Field label="Slug">
-                      <input
-                        type="text"
-                        value={form.slug}
-                        onChange={(event) =>
-                          updateFormField("slug", event.target.value)
-                        }
-                        placeholder="es. siena-al-tramonto"
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Hero image">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleUpload}
-                        disabled={uploadingImage}
-                        className={baseInputClass()}
-                      />
-                      <p className="text-xs text-[#6d7b80]">
-                        {uploadingImage
-                          ? "Upload in corso..."
-                          : form.heroImage
-                            ? "Immagine collegata all'evento."
-                            : "Seleziona un file per caricare la hero image."}
-                      </p>
-                      {heroFileName || form.heroImage ? (
-                        <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#c9573c]/15 bg-[#fff8f4] px-3 py-1 text-xs font-semibold text-[#2c395b]">
-                          <Icon
-                            icon="hugeicons:image-01"
-                            width="14"
-                            height="14"
-                            className="shrink-0"
-                          />
-                          <span className="truncate">
-                            {heroFileName ||
-                              getFileNameFromUrl(form.heroImage) ||
-                              "File hero collegato"}
-                          </span>
-                        </div>
-                      ) : null}
-                    </Field>
-
-                    <Field label="Titolo IT">
-                      <input
-                        type="text"
-                        value={form.titleIt}
-                        onChange={(event) =>
-                          updateFormField("titleIt", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Titolo EN">
-                      <input
-                        type="text"
-                        value={form.titleEn}
-                        onChange={(event) =>
-                          updateFormField("titleEn", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Categoria IT">
-                      <input
-                        type="text"
-                        value={form.categoryIt}
-                        onChange={(event) =>
-                          updateFormField("categoryIt", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Categoria EN">
-                      <input
-                        type="text"
-                        value={form.categoryEn}
-                        onChange={(event) =>
-                          updateFormField("categoryEn", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Excerpt IT" className="xl:col-span-2">
-                      <textarea
-                        value={form.excerptIt}
-                        onChange={(event) =>
-                          updateFormField("excerptIt", event.target.value)
-                        }
-                        className={baseInputClass(true)}
-                      />
-                    </Field>
-
-                    <Field label="Excerpt EN" className="xl:col-span-2">
-                      <textarea
-                        value={form.excerptEn}
-                        onChange={(event) =>
-                          updateFormField("excerptEn", event.target.value)
-                        }
-                        className={baseInputClass(true)}
-                      />
-                    </Field>
-
-                    <Field label="Location IT">
-                      <input
-                        type="text"
-                        value={form.locationIt}
-                        onChange={(event) =>
-                          updateFormField("locationIt", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Location EN">
-                      <input
-                        type="text"
-                        value={form.locationEn}
-                        onChange={(event) =>
-                          updateFormField("locationEn", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Durata IT">
-                      <input
-                        type="text"
-                        value={form.durationIt}
-                        onChange={(event) =>
-                          updateFormField("durationIt", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Durata EN">
-                      <input
-                        type="text"
-                        value={form.durationEn}
-                        onChange={(event) =>
-                          updateFormField("durationEn", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Prezzo IT">
-                      <input
-                        type="text"
-                        value={form.priceIt}
-                        onChange={(event) =>
-                          updateFormField("priceIt", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Prezzo EN">
-                      <input
-                        type="text"
-                        value={form.priceEn}
-                        onChange={(event) =>
-                          updateFormField("priceEn", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Punto di ritrovo IT">
-                      <input
-                        type="text"
-                        value={form.meetingPointIt}
-                        onChange={(event) =>
-                          updateFormField("meetingPointIt", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Punto di ritrovo EN">
-                      <input
-                        type="text"
-                        value={form.meetingPointEn}
-                        onChange={(event) =>
-                          updateFormField("meetingPointEn", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Link Google Maps IT">
-                      <input
-                        type="text"
-                        value={form.meetingPointLinkIt}
-                        onChange={(event) =>
-                          updateFormField("meetingPointLinkIt", event.target.value)
-                        }
-                        placeholder="https://maps.app.goo.gl/..."
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Link Google Maps EN">
-                      <input
-                        type="text"
-                        value={form.meetingPointLinkEn}
-                        onChange={(event) =>
-                          updateFormField("meetingPointLinkEn", event.target.value)
-                        }
-                        placeholder="https://maps.app.goo.gl/..."
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Lingue IT">
-                      <input
-                        type="text"
-                        value={form.languagesIt}
-                        onChange={(event) =>
-                          updateFormField("languagesIt", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Lingue EN">
-                      <input
-                        type="text"
-                        value={form.languagesEn}
-                        onChange={(event) =>
-                          updateFormField("languagesEn", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Ricorrenza IT">
-                      <input
-                        type="text"
-                        value={form.recurringIt}
-                        onChange={(event) =>
-                          updateFormField("recurringIt", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field label="Ricorrenza EN">
-                      <input
-                        type="text"
-                        value={form.recurringEn}
-                        onChange={(event) =>
-                          updateFormField("recurringEn", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      />
-                    </Field>
-
-                    <Field
-                      label="Gallery immagini (una per riga)"
-                      className="xl:col-span-2"
-                    >
-                      <input
-                        type="file"
-                        accept="image/*"
-                        multiple
-                        onChange={handleGalleryUpload}
-                        disabled={uploadingGallery}
-                        className={`${baseInputClass()} mb-3`}
-                      />
-                      <p className="mb-3 text-xs text-[#6d7b80]">
-                        {uploadingGallery
-                          ? "Upload galleria in corso..."
-                          : "Puoi selezionare piu immagini insieme: gli URL vengono aggiunti automaticamente qui sotto."}
-                      </p>
-                      <textarea
-                        value={form.galleryText}
-                        onChange={(event) =>
-                          updateFormField("galleryText", event.target.value)
-                        }
-                        className={baseInputClass(true)}
-                      />
-                    </Field>
-
-                    <Field
-                      label="Inclusi IT (uno per riga)"
-                      className="xl:col-span-2"
-                    >
-                      <textarea
-                        value={form.includedIt}
-                        onChange={(event) =>
-                          updateFormField("includedIt", event.target.value)
-                        }
-                        className={baseInputClass(true)}
-                      />
-                    </Field>
-
-                    <Field
-                      label="Inclusi EN (uno per riga)"
-                      className="xl:col-span-2"
-                    >
-                      <textarea
-                        value={form.includedEn}
-                        onChange={(event) =>
-                          updateFormField("includedEn", event.target.value)
-                        }
-                        className={baseInputClass(true)}
-                      />
-                    </Field>
-
-                    <Field
-                      label="Descrizione IT (paragrafi separati da riga vuota)"
-                      className="xl:col-span-2"
-                    >
-                      <textarea
-                        value={form.descriptionIt}
-                        onChange={(event) =>
-                          updateFormField("descriptionIt", event.target.value)
-                        }
-                        className={baseInputClass(true)}
-                      />
-                    </Field>
-
-                    <Field
-                      label="Descrizione EN (paragrafi separati da riga vuota)"
-                      className="xl:col-span-2"
-                    >
-                      <textarea
-                        value={form.descriptionEn}
-                        onChange={(event) =>
-                          updateFormField("descriptionEn", event.target.value)
-                        }
-                        className={baseInputClass(true)}
-                      />
-                    </Field>
-
-                    <div className="xl:col-span-2">
-                      <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between">
-                        <div>
-                          <p className="text-sm font-semibold text-[#2c395b]">
-                            Date evento
-                          </p>
-                          <p className="text-sm text-[#6d7b80]">
-                            Inserisci giorno, fascia oraria, label e posti senza
-                            scrivere stringhe manuali.
-                          </p>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={addDateRow}
-                          className="inline-flex items-center gap-2 rounded-xl border border-[#c9573c]/20 px-4 py-2 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
-                        >
-                          <Icon
-                            icon="hugeicons:add-square"
-                            width="16"
-                            height="16"
-                          />
-                          Aggiungi data
-                        </button>
+              <div className="space-y-6">
+                {showEvents ? (
+                  <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
+                    <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-end sm:justify-between">
+                      <div>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
+                          Archivio eventi
+                        </p>
+                        <h3 className="text-3xl font-bold text-[#2c395b]">
+                          Eventi salvati
+                        </h3>
                       </div>
+                      {loading ? (
+                        <span className="text-sm font-semibold text-[#77674E]">
+                          Caricamento...
+                        </span>
+                      ) : null}
+                    </div>
 
-                      <div className="space-y-4">
-                        {form.dates.map((date, index) => (
-                          <div
-                            key={date.id}
-                            className="rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-4"
-                          >
-                            <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="space-y-4">
+                      {events.length ? (
+                        events.map((event) => {
+                          const firstDate = event.dates?.[0];
+                          const statusLabel =
+                            event.status === "published"
+                              ? "Pubblicato"
+                              : "Bozza";
+                          return (
+                            <div
+                              key={event.slug}
+                              className="grid gap-4 rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-5 lg:grid-cols-[1fr_auto]"
+                            >
                               <div>
-                                <p className="text-sm font-semibold text-[#2c395b]">
-                                  Data #{index + 1}
-                                </p>
-                                <p className="text-xs uppercase tracking-[0.22em] text-[#c9573c]/70">
-                                  Dettagli data
-                                </p>
+                                <div className="flex flex-wrap items-center gap-2 mb-3">
+                                  <span
+                                    className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] ${
+                                      event.status === "published"
+                                        ? "bg-[#dfe9df] text-[#4b6b4e]"
+                                        : "bg-[#f5e4d8] text-[#9c613d]"
+                                    }`}
+                                  >
+                                    {statusLabel}
+                                  </span>
+                                  {event.featured ? (
+                                    <span className="rounded-full bg-[#CE9486]/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c9573c]">
+                                      Featured
+                                    </span>
+                                  ) : null}
+                                  <span className="text-sm font-semibold text-[#77674E]">
+                                    {event.location?.it || "-"}
+                                  </span>
+                                </div>
+
+                                <h4 className="mb-2 text-2xl font-bold text-[#2c395b]">
+                                  {event.title?.it || event.slug}
+                                </h4>
+
+                                <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#6d7b80]">
+                                  <span className="inline-flex items-center gap-2">
+                                    <Icon
+                                      icon="hugeicons:calendar-03"
+                                      width="16"
+                                      height="16"
+                                    />
+                                    {firstDate?.labelIt || "Nessuna data"}
+                                  </span>
+                                  <span className="inline-flex items-center gap-2">
+                                    <Icon
+                                      icon="hugeicons:clock-01"
+                                      width="16"
+                                      height="16"
+                                    />
+                                    {firstDate?.time || "Da definire"}
+                                  </span>
+                                  <span className="inline-flex items-center gap-2">
+                                    <Icon
+                                      icon="hugeicons:wallet-02"
+                                      width="16"
+                                      height="16"
+                                    />
+                                    {event.price?.it || "-"}
+                                  </span>
+                                </div>
                               </div>
-                              <div className="flex flex-wrap gap-2">
-                                <button
-                                  type="button"
-                                  onClick={() => autofillDateLabels(date.id)}
-                                  className="rounded-xl border border-[#c9573c]/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#c9573c] transition hover:bg-[#CE9486]/10"
-                                >
-                                  Auto label
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => removeDateRow(date.id)}
-                                  className="rounded-xl border border-[#b74d33]/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#b74d33] transition hover:bg-[#fff1ec]"
-                                >
-                                  Rimuovi
-                                </button>
+
+                              <div className="flex flex-col items-start justify-between gap-3 lg:items-end">
+                                <span className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-[#77674E] shadow-sm">
+                                  {(event.dates || []).length} date
+                                </span>
+                                <div className="flex flex-wrap gap-2">
+                                  <button
+                                    type="button"
+                                    onClick={() => handleSelectEvent(event)}
+                                    className="rounded-xl border border-[#c9573c]/20 px-4 py-2 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
+                                  >
+                                    Modifica
+                                  </button>
+                                  <a
+                                    href={`/eventi/${event.slug}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="rounded-xl bg-[#77674E] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#685b43]"
+                                  >
+                                    Apri
+                                  </a>
+                                </div>
                               </div>
                             </div>
+                          );
+                        })
+                      ) : (
+                        <div className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-6 text-sm leading-7 text-[#6d7b80]">
+                          Nessun evento salvato ancora. Crea il primo da qui
+                          sopra con “Nuovo evento”.
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                ) : null}
 
-                            <div className="grid grid-cols-1 gap-4 xl:grid-cols-5">
-                              <Field label="Giorno">
-                                <input
-                                  type="date"
-                                  value={date.date}
-                                  onChange={(event) =>
-                                    updateDateField(
-                                      date.id,
-                                      "date",
-                                      event.target.value,
-                                    )
-                                  }
-                                  className={baseInputClass()}
-                                />
-                              </Field>
+                {showEditor ? (
+                  <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
+                    <div className="flex flex-col gap-3 mb-6 md:flex-row md:items-end md:justify-between">
+                      <div>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
+                          Editor evento
+                        </p>
+                        <h3 className="text-3xl font-bold text-[#2c395b]">
+                          {selectedSlug
+                            ? "Modifica evento"
+                            : "Crea nuovo evento"}
+                        </h3>
+                      </div>
 
-                              <Field label="Inizio">
-                                <input
-                                  type="time"
-                                  value={date.startTime}
-                                  onChange={(event) =>
-                                    updateDateField(
-                                      date.id,
-                                      "startTime",
-                                      event.target.value,
-                                    )
-                                  }
-                                  className={baseInputClass()}
-                                />
-                              </Field>
+                      <div className="flex flex-wrap gap-2">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            updateFormField(
+                              "slug",
+                              form.slug || buildSlugFromTitle(form.titleIt),
+                            )
+                          }
+                          className="rounded-xl border border-[#c9573c]/20 px-4 py-2 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
+                        >
+                          Genera slug
+                        </button>
 
-                              <Field label="Fine">
-                                <input
-                                  type="time"
-                                  value={date.endTime}
-                                  onChange={(event) =>
-                                    updateDateField(
-                                      date.id,
-                                      "endTime",
-                                      event.target.value,
-                                    )
-                                  }
-                                  className={baseInputClass()}
-                                />
-                              </Field>
+                        {selectedSlug ? (
+                          <button
+                            type="button"
+                            onClick={handleDelete}
+                            className="rounded-xl border border-[#b74d33]/20 px-4 py-2 text-sm font-semibold text-[#b74d33] transition hover:bg-[#fff1ec]"
+                          >
+                            Elimina evento
+                          </button>
+                        ) : null}
+                      </div>
+                    </div>
 
-                              <Field label="Posti">
-                                <input
-                                  type="number"
-                                  min={MIN_EVENT_SPOTS}
-                                  max={MAX_EVENT_SPOTS}
-                                  value={date.spots}
-                                  onChange={(event) =>
-                                    updateDateField(
-                                      date.id,
-                                      "spots",
-                                      event.target.value,
-                                    )
-                                  }
-                                  className={baseInputClass()}
-                                />
-                                <p className="text-xs text-[#6d7b80]">
-                                  Min {MIN_EVENT_SPOTS} - Max {MAX_EVENT_SPOTS}.
-                                </p>
-                              </Field>
+                    <form
+                      onSubmit={(event) => {
+                        event.preventDefault();
+                      }}
+                      className="grid grid-cols-1 gap-4 xl:grid-cols-2"
+                    >
+                      <Field label="Slug">
+                        <input
+                          type="text"
+                          value={form.slug}
+                          onChange={(event) =>
+                            updateFormField("slug", event.target.value)
+                          }
+                          placeholder="es. siena-al-tramonto"
+                          className={baseInputClass()}
+                        />
+                      </Field>
 
-                              <div className="rounded-xl border border-[#c9573c]/10 bg-white px-4 py-3">
-                                <label className="inline-flex items-center gap-2 text-sm font-semibold text-[#2c395b]">
+                      <Field label="Hero image">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleUpload}
+                          disabled={uploadingImage}
+                          className={baseInputClass()}
+                        />
+                        <p className="text-xs text-[#6d7b80]">
+                          {uploadingImage
+                            ? "Upload in corso..."
+                            : form.heroImage
+                              ? "Immagine collegata all'evento."
+                              : "Seleziona un file per caricare la hero image."}
+                        </p>
+                        {heroFileName || form.heroImage ? (
+                          <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#c9573c]/15 bg-[#fff8f4] px-3 py-1 text-xs font-semibold text-[#2c395b]">
+                            <Icon
+                              icon="hugeicons:image-01"
+                              width="14"
+                              height="14"
+                              className="shrink-0"
+                            />
+                            <span className="truncate">
+                              {heroFileName ||
+                                getFileNameFromUrl(form.heroImage) ||
+                                "File hero collegato"}
+                            </span>
+                          </div>
+                        ) : null}
+                      </Field>
+
+                      <Field label="Titolo IT">
+                        <input
+                          type="text"
+                          value={form.titleIt}
+                          onChange={(event) =>
+                            updateFormField("titleIt", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Titolo EN">
+                        <input
+                          type="text"
+                          value={form.titleEn}
+                          onChange={(event) =>
+                            updateFormField("titleEn", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Categoria IT">
+                        <input
+                          type="text"
+                          value={form.categoryIt}
+                          onChange={(event) =>
+                            updateFormField("categoryIt", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Categoria EN">
+                        <input
+                          type="text"
+                          value={form.categoryEn}
+                          onChange={(event) =>
+                            updateFormField("categoryEn", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Excerpt IT" className="xl:col-span-2">
+                        <textarea
+                          value={form.excerptIt}
+                          onChange={(event) =>
+                            updateFormField("excerptIt", event.target.value)
+                          }
+                          className={baseInputClass(true)}
+                        />
+                      </Field>
+
+                      <Field label="Excerpt EN" className="xl:col-span-2">
+                        <textarea
+                          value={form.excerptEn}
+                          onChange={(event) =>
+                            updateFormField("excerptEn", event.target.value)
+                          }
+                          className={baseInputClass(true)}
+                        />
+                      </Field>
+
+                      <Field label="Location IT">
+                        <input
+                          type="text"
+                          value={form.locationIt}
+                          onChange={(event) =>
+                            updateFormField("locationIt", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Location EN">
+                        <input
+                          type="text"
+                          value={form.locationEn}
+                          onChange={(event) =>
+                            updateFormField("locationEn", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Durata IT">
+                        <input
+                          type="text"
+                          value={form.durationIt}
+                          onChange={(event) =>
+                            updateFormField("durationIt", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Durata EN">
+                        <input
+                          type="text"
+                          value={form.durationEn}
+                          onChange={(event) =>
+                            updateFormField("durationEn", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Prezzo IT">
+                        <input
+                          type="text"
+                          value={form.priceIt}
+                          onChange={(event) =>
+                            updateFormField("priceIt", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Prezzo EN">
+                        <input
+                          type="text"
+                          value={form.priceEn}
+                          onChange={(event) =>
+                            updateFormField("priceEn", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Punto di ritrovo IT">
+                        <input
+                          type="text"
+                          value={form.meetingPointIt}
+                          onChange={(event) =>
+                            updateFormField(
+                              "meetingPointIt",
+                              event.target.value,
+                            )
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Punto di ritrovo EN">
+                        <input
+                          type="text"
+                          value={form.meetingPointEn}
+                          onChange={(event) =>
+                            updateFormField(
+                              "meetingPointEn",
+                              event.target.value,
+                            )
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Link Google Maps IT">
+                        <input
+                          type="text"
+                          value={form.meetingPointLinkIt}
+                          onChange={(event) =>
+                            updateFormField(
+                              "meetingPointLinkIt",
+                              event.target.value,
+                            )
+                          }
+                          placeholder="https://maps.app.goo.gl/..."
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Link Google Maps EN">
+                        <input
+                          type="text"
+                          value={form.meetingPointLinkEn}
+                          onChange={(event) =>
+                            updateFormField(
+                              "meetingPointLinkEn",
+                              event.target.value,
+                            )
+                          }
+                          placeholder="https://maps.app.goo.gl/..."
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Lingue IT">
+                        <input
+                          type="text"
+                          value={form.languagesIt}
+                          onChange={(event) =>
+                            updateFormField("languagesIt", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Lingue EN">
+                        <input
+                          type="text"
+                          value={form.languagesEn}
+                          onChange={(event) =>
+                            updateFormField("languagesEn", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Ricorrenza IT">
+                        <input
+                          type="text"
+                          value={form.recurringIt}
+                          onChange={(event) =>
+                            updateFormField("recurringIt", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field label="Ricorrenza EN">
+                        <input
+                          type="text"
+                          value={form.recurringEn}
+                          onChange={(event) =>
+                            updateFormField("recurringEn", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        />
+                      </Field>
+
+                      <Field
+                        label="Gallery immagini (una per riga)"
+                        className="xl:col-span-2"
+                      >
+                        <input
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          onChange={handleGalleryUpload}
+                          disabled={uploadingGallery}
+                          className={`${baseInputClass()} mb-3`}
+                        />
+                        <p className="mb-3 text-xs text-[#6d7b80]">
+                          {uploadingGallery
+                            ? "Upload galleria in corso..."
+                            : "Puoi selezionare piu immagini insieme: gli URL vengono aggiunti automaticamente qui sotto."}
+                        </p>
+                        <textarea
+                          value={form.galleryText}
+                          onChange={(event) =>
+                            updateFormField("galleryText", event.target.value)
+                          }
+                          className={baseInputClass(true)}
+                        />
+                      </Field>
+
+                      <Field
+                        label="Inclusi IT (uno per riga)"
+                        className="xl:col-span-2"
+                      >
+                        <textarea
+                          value={form.includedIt}
+                          onChange={(event) =>
+                            updateFormField("includedIt", event.target.value)
+                          }
+                          className={baseInputClass(true)}
+                        />
+                      </Field>
+
+                      <Field
+                        label="Inclusi EN (uno per riga)"
+                        className="xl:col-span-2"
+                      >
+                        <textarea
+                          value={form.includedEn}
+                          onChange={(event) =>
+                            updateFormField("includedEn", event.target.value)
+                          }
+                          className={baseInputClass(true)}
+                        />
+                      </Field>
+
+                      <Field
+                        label="Descrizione IT (paragrafi separati da riga vuota)"
+                        className="xl:col-span-2"
+                      >
+                        <textarea
+                          value={form.descriptionIt}
+                          onChange={(event) =>
+                            updateFormField("descriptionIt", event.target.value)
+                          }
+                          className={baseInputClass(true)}
+                        />
+                      </Field>
+
+                      <Field
+                        label="Descrizione EN (paragrafi separati da riga vuota)"
+                        className="xl:col-span-2"
+                      >
+                        <textarea
+                          value={form.descriptionEn}
+                          onChange={(event) =>
+                            updateFormField("descriptionEn", event.target.value)
+                          }
+                          className={baseInputClass(true)}
+                        />
+                      </Field>
+
+                      <div className="xl:col-span-2">
+                        <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between">
+                          <div>
+                            <p className="text-sm font-semibold text-[#2c395b]">
+                              Date evento
+                            </p>
+                            <p className="text-sm text-[#6d7b80]">
+                              Inserisci giorno, fascia oraria, label e posti
+                              senza scrivere stringhe manuali.
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={addDateRow}
+                            className="inline-flex items-center gap-2 rounded-xl border border-[#c9573c]/20 px-4 py-2 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
+                          >
+                            <Icon
+                              icon="hugeicons:add-square"
+                              width="16"
+                              height="16"
+                            />
+                            Aggiungi data
+                          </button>
+                        </div>
+
+                        <div className="space-y-4">
+                          {form.dates.map((date, index) => (
+                            <div
+                              key={date.id}
+                              className="rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-4"
+                            >
+                              <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-start sm:justify-between">
+                                <div>
+                                  <p className="text-sm font-semibold text-[#2c395b]">
+                                    Data #{index + 1}
+                                  </p>
+                                  <p className="text-xs uppercase tracking-[0.22em] text-[#c9573c]/70">
+                                    Dettagli data
+                                  </p>
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                  <button
+                                    type="button"
+                                    onClick={() => autofillDateLabels(date.id)}
+                                    className="rounded-xl border border-[#c9573c]/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#c9573c] transition hover:bg-[#CE9486]/10"
+                                  >
+                                    Auto label
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => removeDateRow(date.id)}
+                                    className="rounded-xl border border-[#b74d33]/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#b74d33] transition hover:bg-[#fff1ec]"
+                                  >
+                                    Rimuovi
+                                  </button>
+                                </div>
+                              </div>
+
+                              <div className="grid grid-cols-1 gap-4 xl:grid-cols-5">
+                                <Field label="Giorno">
                                   <input
-                                    type="checkbox"
-                                    checked={date.stripeEnabled}
+                                    type="date"
+                                    value={date.date}
                                     onChange={(event) =>
                                       updateDateField(
                                         date.id,
-                                        "stripeEnabled",
-                                        event.target.checked,
+                                        "date",
+                                        event.target.value,
                                       )
                                     }
-                                    className="h-4 w-4 rounded border-[#c9573c]/40 text-[#c9573c] focus:ring-[#c9573c]"
+                                    className={baseInputClass()}
                                   />
-                                  Pagamento Stripe
-                                </label>
-                                <p className="mt-2 text-xs text-[#6d7b80]">
-                                  Attiva checkout online per questa data.
-                                </p>
-                                {date.stripeEnabled ? (
-                                  <div className="grid grid-cols-2 gap-2 mt-3">
+                                </Field>
+
+                                <Field label="Inizio">
+                                  <input
+                                    type="time"
+                                    value={date.startTime}
+                                    onChange={(event) =>
+                                      updateDateField(
+                                        date.id,
+                                        "startTime",
+                                        event.target.value,
+                                      )
+                                    }
+                                    className={baseInputClass()}
+                                  />
+                                </Field>
+
+                                <Field label="Fine">
+                                  <input
+                                    type="time"
+                                    value={date.endTime}
+                                    onChange={(event) =>
+                                      updateDateField(
+                                        date.id,
+                                        "endTime",
+                                        event.target.value,
+                                      )
+                                    }
+                                    className={baseInputClass()}
+                                  />
+                                </Field>
+
+                                <Field label="Posti">
+                                  <input
+                                    type="number"
+                                    min={MIN_EVENT_SPOTS}
+                                    max={MAX_EVENT_SPOTS}
+                                    value={date.spots}
+                                    onChange={(event) =>
+                                      updateDateField(
+                                        date.id,
+                                        "spots",
+                                        event.target.value,
+                                      )
+                                    }
+                                    className={baseInputClass()}
+                                  />
+                                  <p className="text-xs text-[#6d7b80]">
+                                    Min {MIN_EVENT_SPOTS} - Max{" "}
+                                    {MAX_EVENT_SPOTS}.
+                                  </p>
+                                </Field>
+
+                                <div className="rounded-xl border border-[#c9573c]/10 bg-white px-4 py-3">
+                                  <label className="inline-flex items-center gap-2 text-sm font-semibold text-[#2c395b]">
                                     <input
-                                      type="number"
-                                      min="0"
-                                      step="0.50"
-                                      value={date.stripePriceEuro}
+                                      type="checkbox"
+                                      checked={date.stripeEnabled}
                                       onChange={(event) =>
                                         updateDateField(
                                           date.id,
-                                          "stripePriceEuro",
-                                          event.target.value,
+                                          "stripeEnabled",
+                                          event.target.checked,
                                         )
                                       }
-                                      placeholder="35.00"
-                                      className={baseInputClass()}
+                                      className="h-4 w-4 rounded border-[#c9573c]/40 text-[#c9573c] focus:ring-[#c9573c]"
                                     />
-                                    <select
-                                      value={date.stripeCurrency}
-                                      onChange={(event) =>
-                                        updateDateField(
-                                          date.id,
-                                          "stripeCurrency",
-                                          event.target.value,
-                                        )
-                                      }
-                                      className={baseInputClass()}
-                                    >
-                                      <option value="eur">EUR</option>
-                                      <option value="usd">USD</option>
-                                      <option value="gbp">GBP</option>
-                                    </select>
-                                  </div>
-                                ) : null}
-                              </div>
-
-                              <Field label="Label IT" className="xl:col-span-2">
-                                <input
-                                  type="text"
-                                  value={date.labelIt}
-                                  onChange={(event) =>
-                                    updateDateField(
-                                      date.id,
-                                      "labelIt",
-                                      event.target.value,
-                                    )
-                                  }
-                                  placeholder="14 giugno 2026"
-                                  className={baseInputClass()}
-                                />
-                              </Field>
-
-                              <Field label="Label EN" className="xl:col-span-3">
-                                <input
-                                  type="text"
-                                  value={date.labelEn}
-                                  onChange={(event) =>
-                                    updateDateField(
-                                      date.id,
-                                      "labelEn",
-                                      event.target.value,
-                                    )
-                                  }
-                                  placeholder="June 14, 2026"
-                                  className={baseInputClass()}
-                                />
-                              </Field>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-3 xl:col-span-2">
-                      <label className="inline-flex items-center gap-3 rounded-xl border border-[#c9573c]/15 bg-[#fffaf7] px-4 py-3 text-sm font-semibold text-[#2c395b]">
-                        <input
-                          type="checkbox"
-                          checked={form.featured}
-                          onChange={(event) =>
-                            updateFormField("featured", event.target.checked)
-                          }
-                          className="h-4 w-4 rounded border-[#c9573c]/40 text-[#c9573c] focus:ring-[#c9573c]"
-                        />
-                        Featured in homepage/events
-                      </label>
-
-                      <select
-                        value={form.status}
-                        onChange={(event) =>
-                          updateFormField("status", event.target.value)
-                        }
-                        className={baseInputClass()}
-                      >
-                        <option value="draft">Bozza</option>
-                        <option value="published">Pubblicato</option>
-                      </select>
-                    </div>
-
-                    <div className="flex flex-col gap-3 pt-2 xl:col-span-2 sm:flex-row sm:justify-end">
-                      <button
-                        type="button"
-                        disabled={loading}
-                        onClick={() => handleSave("draft")}
-                        className="rounded-xl border border-[#c9573c]/20 px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10 disabled:opacity-50"
-                      >
-                        Salva bozza
-                      </button>
-                      <button
-                        type="button"
-                        disabled={loading}
-                        onClick={() => handleSave("published")}
-                        className="rounded-xl bg-[#77674E] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#685b43] disabled:opacity-50"
-                      >
-                        Pubblica evento
-                      </button>
-                    </div>
-                  </form>
-                </article>
-              ) : null}
-
-              {showPayments ? (
-                <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
-                  <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-end sm:justify-between">
-                    <div>
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
-                        Stripe
-                      </p>
-                      <h3 className="text-3xl font-bold text-[#2c395b]">
-                        Pagamenti
-                      </h3>
-                    </div>
-                    {paymentsLoading ? (
-                      <span className="text-sm font-semibold text-[#77674E]">
-                        Caricamento...
-                      </span>
-                    ) : null}
-                  </div>
-
-                  <div className="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2 xl:grid-cols-4">
-                    <StatsCard
-                      label="Transazioni"
-                      value={paymentStats.count}
-                      note="Ultime 300 da Stripe webhook"
-                      icon="hugeicons:credit-card"
-                    />
-                    <StatsCard
-                      label="Pagate"
-                      value={paymentStats.successfulCount}
-                      note="Sessioni completate"
-                      icon="hugeicons:checkmark-circle-02"
-                    />
-                    <StatsCard
-                      label="Rimborsi"
-                      value={paymentStats.refundedCount}
-                      note="Stati con refund"
-                      icon="hugeicons:invoice-02"
-                    />
-                    <StatsCard
-                      label="Incasso lordo"
-                      value={formatMoneyFromCents(paymentStats.totalCents, "eur")}
-                      note="Somma importi pagati"
-                      icon="hugeicons:wallet-02"
-                    />
-                  </div>
-
-                  <div className="space-y-4 lg:hidden">
-                    {payments.length ? (
-                      payments.map((payment) => {
-                        const sessionId = String(payment.stripe_session_id || "");
-                        const isExpanded =
-                          sessionId && expandedPaymentSessionId === sessionId;
-
-                        return (
-                          <PaymentMobileCard
-                            key={payment.stripe_session_id}
-                            payment={payment}
-                            isExpanded={Boolean(isExpanded)}
-                            onToggle={() =>
-                              setExpandedPaymentSessionId((current) =>
-                                current === sessionId ? "" : sessionId,
-                              )
-                            }
-                          />
-                        );
-                      })
-                    ) : (
-                      <div className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-6 text-center text-sm text-[#6d7b80]">
-                        Nessun pagamento registrato ancora.
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="hidden overflow-x-auto rounded-md border border-[#c9573c]/10 lg:block">
-                    <table className="min-w-full text-sm">
-                      <thead className="bg-[#fff8f4] text-[#2c395b]">
-                        <tr>
-                          <th className="px-4 py-3 text-left font-semibold">Dettagli</th>
-                          <th className="px-4 py-3 text-left font-semibold">Data</th>
-                          <th className="px-4 py-3 text-left font-semibold">Evento</th>
-                          <th className="px-4 py-3 text-left font-semibold">Importo</th>
-                          <th className="px-4 py-3 text-left font-semibold">Stato</th>
-                          <th className="px-4 py-3 text-left font-semibold">Email</th>
-                          <th className="px-4 py-3 text-left font-semibold">Partecipanti</th>
-                          <th className="px-4 py-3 text-left font-semibold">Sessione</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {payments.length ? (
-                          payments.map((payment) => {
-                            const attendeeNames = getAttendeeNames(payment);
-                            const attendeeCount = Number(
-                              payment?.raw_payload?.metadata?.attendeeCount || 1,
-                            );
-                            const sessionId = String(payment.stripe_session_id || "");
-                            const isExpanded =
-                              sessionId && expandedPaymentSessionId === sessionId;
-                            const metadata = payment?.raw_payload?.metadata || {};
-                            const customerDetails = payment?.raw_payload?.customer_details || {};
-                            const eventDateLabel = getPaymentEventDateLabel(payment);
-
-                            return (
-                              <Fragment key={payment.stripe_session_id}>
-                                <tr className="border-t border-[#c9573c]/10 bg-white">
-                                  <td className="px-4 py-3 text-[#6d7b80]">
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        setExpandedPaymentSessionId((current) =>
-                                          current === sessionId ? "" : sessionId,
-                                        )
-                                      }
-                                      className="inline-flex items-center gap-2 rounded-lg border border-[#c9573c]/20 px-3 py-1 text-xs font-semibold text-[#2c395b] transition hover:bg-[#fff8f4]"
-                                    >
-                                      <Icon
-                                        icon={
-                                          isExpanded
-                                            ? "hugeicons:arrow-up-01"
-                                            : "hugeicons:arrow-down-01"
+                                    Pagamento Stripe
+                                  </label>
+                                  <p className="mt-2 text-xs text-[#6d7b80]">
+                                    Attiva checkout online per questa data.
+                                  </p>
+                                  {date.stripeEnabled ? (
+                                    <div className="grid grid-cols-2 gap-2 mt-3">
+                                      <input
+                                        type="number"
+                                        min="0"
+                                        step="0.50"
+                                        value={date.stripePriceEuro}
+                                        onChange={(event) =>
+                                          updateDateField(
+                                            date.id,
+                                            "stripePriceEuro",
+                                            event.target.value,
+                                          )
                                         }
-                                        width="14"
-                                        height="14"
+                                        placeholder="35.00"
+                                        className={baseInputClass()}
                                       />
-                                      {isExpanded ? "Chiudi" : "Apri"}
-                                    </button>
-                                  </td>
-                                  <td className="px-4 py-3 text-[#6d7b80]">
-                                    {formatAdminDateTime(payment.created_at)}
-                                  </td>
-                                  <td className="px-4 py-3">
-                                    <p className="font-semibold text-[#2c395b]">
-                                      {payment.event_slug || "-"}
-                                    </p>
-                                    <p className="text-xs text-[#6d7b80]">
-                                      {eventDateLabel}
-                                    </p>
-                                    {payment.event_date_iso &&
-                                    eventDateLabel !== payment.event_date_iso ? (
-                                      <p className="font-mono text-[11px] text-[#6d7b80]/75">
-                                        {payment.event_date_iso}
+                                      <select
+                                        value={date.stripeCurrency}
+                                        onChange={(event) =>
+                                          updateDateField(
+                                            date.id,
+                                            "stripeCurrency",
+                                            event.target.value,
+                                          )
+                                        }
+                                        className={baseInputClass()}
+                                      >
+                                        <option value="eur">EUR</option>
+                                        <option value="usd">USD</option>
+                                        <option value="gbp">GBP</option>
+                                      </select>
+                                    </div>
+                                  ) : null}
+                                </div>
+
+                                <Field
+                                  label="Label IT"
+                                  className="xl:col-span-2"
+                                >
+                                  <input
+                                    type="text"
+                                    value={date.labelIt}
+                                    onChange={(event) =>
+                                      updateDateField(
+                                        date.id,
+                                        "labelIt",
+                                        event.target.value,
+                                      )
+                                    }
+                                    placeholder="14 giugno 2026"
+                                    className={baseInputClass()}
+                                  />
+                                </Field>
+
+                                <Field
+                                  label="Label EN"
+                                  className="xl:col-span-3"
+                                >
+                                  <input
+                                    type="text"
+                                    value={date.labelEn}
+                                    onChange={(event) =>
+                                      updateDateField(
+                                        date.id,
+                                        "labelEn",
+                                        event.target.value,
+                                      )
+                                    }
+                                    placeholder="June 14, 2026"
+                                    className={baseInputClass()}
+                                  />
+                                </Field>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-3 xl:col-span-2">
+                        <label className="inline-flex items-center gap-3 rounded-xl border border-[#c9573c]/15 bg-[#fffaf7] px-4 py-3 text-sm font-semibold text-[#2c395b]">
+                          <input
+                            type="checkbox"
+                            checked={form.featured}
+                            onChange={(event) =>
+                              updateFormField("featured", event.target.checked)
+                            }
+                            className="h-4 w-4 rounded border-[#c9573c]/40 text-[#c9573c] focus:ring-[#c9573c]"
+                          />
+                          Featured in homepage/events
+                        </label>
+
+                        <select
+                          value={form.status}
+                          onChange={(event) =>
+                            updateFormField("status", event.target.value)
+                          }
+                          className={baseInputClass()}
+                        >
+                          <option value="draft">Bozza</option>
+                          <option value="published">Pubblicato</option>
+                        </select>
+                      </div>
+
+                      <div className="flex flex-col gap-3 pt-2 xl:col-span-2 sm:flex-row sm:justify-end">
+                        <button
+                          type="button"
+                          disabled={loading}
+                          onClick={() => handleSave("draft")}
+                          className="rounded-xl border border-[#c9573c]/20 px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10 disabled:opacity-50"
+                        >
+                          Salva bozza
+                        </button>
+                        <button
+                          type="button"
+                          disabled={loading}
+                          onClick={() => handleSave("published")}
+                          className="rounded-xl bg-[#77674E] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#685b43] disabled:opacity-50"
+                        >
+                          Pubblica evento
+                        </button>
+                      </div>
+                    </form>
+                  </article>
+                ) : null}
+
+                {showPayments ? (
+                  <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
+                    <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-end sm:justify-between">
+                      <div>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
+                          Stripe
+                        </p>
+                        <h3 className="text-3xl font-bold text-[#2c395b]">
+                          Pagamenti
+                        </h3>
+                      </div>
+                      {paymentsLoading ? (
+                        <span className="text-sm font-semibold text-[#77674E]">
+                          Caricamento...
+                        </span>
+                      ) : null}
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2 xl:grid-cols-4">
+                      <StatsCard
+                        label="Transazioni"
+                        value={paymentStats.count}
+                        note="Ultime 300 da Stripe webhook"
+                        icon="hugeicons:credit-card"
+                      />
+                      <StatsCard
+                        label="Pagate"
+                        value={paymentStats.successfulCount}
+                        note="Sessioni completate"
+                        icon="hugeicons:checkmark-circle-02"
+                      />
+                      <StatsCard
+                        label="Rimborsi"
+                        value={paymentStats.refundedCount}
+                        note="Stati con refund"
+                        icon="hugeicons:invoice-02"
+                      />
+                      <StatsCard
+                        label="Incasso lordo"
+                        value={formatMoneyFromCents(
+                          paymentStats.totalCents,
+                          "eur",
+                        )}
+                        note="Somma importi pagati"
+                        icon="hugeicons:wallet-02"
+                      />
+                    </div>
+
+                    <div className="space-y-4 lg:hidden">
+                      {payments.length ? (
+                        payments.map((payment) => {
+                          const sessionId = String(
+                            payment.stripe_session_id || "",
+                          );
+                          const isExpanded =
+                            sessionId && expandedPaymentSessionId === sessionId;
+
+                          return (
+                            <PaymentMobileCard
+                              key={payment.stripe_session_id}
+                              payment={payment}
+                              isExpanded={Boolean(isExpanded)}
+                              onToggle={() =>
+                                setExpandedPaymentSessionId((current) =>
+                                  current === sessionId ? "" : sessionId,
+                                )
+                              }
+                            />
+                          );
+                        })
+                      ) : (
+                        <div className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-6 text-center text-sm text-[#6d7b80]">
+                          Nessun pagamento registrato ancora.
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="hidden overflow-x-auto rounded-md border border-[#c9573c]/10 lg:block">
+                      <table className="min-w-full text-sm">
+                        <thead className="bg-[#fff8f4] text-[#2c395b]">
+                          <tr>
+                            <th className="px-4 py-3 font-semibold text-left">
+                              Dettagli
+                            </th>
+                            <th className="px-4 py-3 font-semibold text-left">
+                              Data
+                            </th>
+                            <th className="px-4 py-3 font-semibold text-left">
+                              Evento
+                            </th>
+                            <th className="px-4 py-3 font-semibold text-left">
+                              Importo
+                            </th>
+                            <th className="px-4 py-3 font-semibold text-left">
+                              Stato
+                            </th>
+                            <th className="px-4 py-3 font-semibold text-left">
+                              Email
+                            </th>
+                            <th className="px-4 py-3 font-semibold text-left">
+                              Partecipanti
+                            </th>
+                            <th className="px-4 py-3 font-semibold text-left">
+                              Sessione
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {payments.length ? (
+                            payments.map((payment) => {
+                              const attendeeNames = getAttendeeNames(payment);
+                              const attendeeCount = Number(
+                                payment?.raw_payload?.metadata?.attendeeCount ||
+                                  1,
+                              );
+                              const sessionId = String(
+                                payment.stripe_session_id || "",
+                              );
+                              const isExpanded =
+                                sessionId &&
+                                expandedPaymentSessionId === sessionId;
+                              const metadata =
+                                payment?.raw_payload?.metadata || {};
+                              const customerDetails =
+                                payment?.raw_payload?.customer_details || {};
+                              const eventDateLabel =
+                                getPaymentEventDateLabel(payment);
+
+                              return (
+                                <Fragment key={payment.stripe_session_id}>
+                                  <tr className="border-t border-[#c9573c]/10 bg-white">
+                                    <td className="px-4 py-3 text-[#6d7b80]">
+                                      <button
+                                        type="button"
+                                        onClick={() =>
+                                          setExpandedPaymentSessionId(
+                                            (current) =>
+                                              current === sessionId
+                                                ? ""
+                                                : sessionId,
+                                          )
+                                        }
+                                        className="inline-flex items-center gap-2 rounded-lg border border-[#c9573c]/20 px-3 py-1 text-xs font-semibold text-[#2c395b] transition hover:bg-[#fff8f4]"
+                                      >
+                                        <Icon
+                                          icon={
+                                            isExpanded
+                                              ? "hugeicons:arrow-up-01"
+                                              : "hugeicons:arrow-down-01"
+                                          }
+                                          width="14"
+                                          height="14"
+                                        />
+                                        {isExpanded ? "Chiudi" : "Apri"}
+                                      </button>
+                                    </td>
+                                    <td className="px-4 py-3 text-[#6d7b80]">
+                                      {formatAdminDateTime(payment.created_at)}
+                                    </td>
+                                    <td className="px-4 py-3">
+                                      <p className="font-semibold text-[#2c395b]">
+                                        {payment.event_slug || "-"}
                                       </p>
-                                    ) : null}
-                                  </td>
-                                  <td className="px-4 py-3 font-semibold text-[#2c395b]">
-                                    {formatMoneyFromCents(
-                                      payment.amount_total,
-                                      payment.currency,
-                                    )}
-                                  </td>
-                                  <td className="px-4 py-3 text-[#6d7b80]">
-                                    {payment.payment_status || "-"}
-                                  </td>
-                                  <td className="px-4 py-3 text-[#6d7b80]">
-                                    {payment.customer_email || "-"}
-                                  </td>
-                                  <td className="px-4 py-3 text-[#6d7b80]">
-                                    <p className="font-semibold text-[#2c395b]">
-                                      {attendeeCount}{" "}
-                                      {attendeeCount === 1 ? "persona" : "persone"}
-                                    </p>
-                                    {attendeeNames.length ? (
-                                      <p className="text-xs">
-                                        {attendeeNames.join(", ")}
+                                      <p className="text-xs text-[#6d7b80]">
+                                        {eventDateLabel}
                                       </p>
-                                    ) : (
-                                      <p className="text-xs">Nomi non inseriti</p>
-                                    )}
-                                  </td>
-                                  <td className="px-4 py-3 text-[#6d7b80]">
-                                    <span className="font-mono text-xs">
-                                      {payment.stripe_session_id || "-"}
-                                    </span>
-                                  </td>
-                                </tr>
-                                {isExpanded ? (
-                                  <tr className="border-t border-[#c9573c]/10 bg-[#fffaf7]">
-                                    <td colSpan={8} className="px-4 py-4">
-                                      <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
-                                        <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
-                                          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
-                                            Dati cliente
-                                          </p>
-                                          <div className="space-y-1 text-sm text-[#2c395b]">
-                                            <p>
-                                              <strong>Email:</strong>{" "}
-                                              {customerDetails.email || payment.customer_email || "-"}
-                                            </p>
-                                            <p>
-                                              <strong>Nome:</strong>{" "}
-                                              {customerDetails.name || "-"}
-                                            </p>
-                                            <p>
-                                              <strong>Telefono:</strong>{" "}
-                                              {customerDetails.phone || "-"}
-                                            </p>
-                                            <p>
-                                              <strong>Nazione:</strong>{" "}
-                                              {customerDetails.address?.country || "-"}
-                                            </p>
-                                          </div>
-                                        </div>
-
-                                        <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
-                                          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
-                                            Metadata checkout
-                                          </p>
-                                          <div className="space-y-1 text-sm text-[#2c395b]">
-                                            <p>
-                                              <strong>Evento:</strong> {metadata.eventSlug || "-"}
-                                            </p>
-                                            <p>
-                                              <strong>Data evento:</strong>{" "}
-                                              {eventDateLabel}
-                                            </p>
-                                            <p>
-                                              <strong>ISO data:</strong>{" "}
-                                              {metadata.eventDateIso ||
-                                                payment.event_date_iso ||
-                                                "-"}
-                                            </p>
-                                            <p>
-                                              <strong>Partecipanti:</strong>{" "}
-                                              {metadata.attendeeCount || "-"}
-                                            </p>
-                                            <p>
-                                              <strong>Nomi:</strong>{" "}
-                                              {metadata.attendeeNames || "-"}
-                                            </p>
-                                            <p>
-                                              <strong>Lingua:</strong> {metadata.locale || "-"}
-                                            </p>
-                                          </div>
-                                        </div>
-
-                                        <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
-                                          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
-                                            Identificativi Stripe
-                                          </p>
-                                          <div className="space-y-1 text-sm text-[#2c395b]">
-                                            <p>
-                                              <strong>Session ID:</strong>{" "}
-                                              <span className="font-mono text-xs">
-                                                {payment.stripe_session_id || "-"}
-                                              </span>
-                                            </p>
-                                            <p>
-                                              <strong>Payment Intent:</strong>{" "}
-                                              <span className="font-mono text-xs">
-                                                {payment.stripe_payment_intent_id || "-"}
-                                              </span>
-                                            </p>
-                                            <p>
-                                              <strong>Status:</strong>{" "}
-                                              {payment.payment_status || "-"}
-                                            </p>
-                                          </div>
-                                        </div>
-                                      </div>
-
+                                      {payment.event_date_iso &&
+                                      eventDateLabel !==
+                                        payment.event_date_iso ? (
+                                        <p className="font-mono text-[11px] text-[#6d7b80]/75">
+                                          {payment.event_date_iso}
+                                        </p>
+                                      ) : null}
+                                    </td>
+                                    <td className="px-4 py-3 font-semibold text-[#2c395b]">
+                                      {formatMoneyFromCents(
+                                        payment.amount_total,
+                                        payment.currency,
+                                      )}
+                                    </td>
+                                    <td className="px-4 py-3 text-[#6d7b80]">
+                                      {payment.payment_status || "-"}
+                                    </td>
+                                    <td className="px-4 py-3 text-[#6d7b80]">
+                                      {payment.customer_email || "-"}
+                                    </td>
+                                    <td className="px-4 py-3 text-[#6d7b80]">
+                                      <p className="font-semibold text-[#2c395b]">
+                                        {attendeeCount}{" "}
+                                        {attendeeCount === 1
+                                          ? "persona"
+                                          : "persone"}
+                                      </p>
+                                      {attendeeNames.length ? (
+                                        <p className="text-xs">
+                                          {attendeeNames.join(", ")}
+                                        </p>
+                                      ) : (
+                                        <p className="text-xs">
+                                          Nomi non inseriti
+                                        </p>
+                                      )}
+                                    </td>
+                                    <td className="px-4 py-3 text-[#6d7b80]">
+                                      <span className="font-mono text-xs">
+                                        {payment.stripe_session_id || "-"}
+                                      </span>
                                     </td>
                                   </tr>
-                                ) : null}
-                              </Fragment>
-                            );
-                          })
-                        ) : (
-                          <tr>
-                            <td colSpan={8} className="px-4 py-8 text-center text-[#6d7b80]">
-                              Nessun pagamento registrato ancora.
-                            </td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                </article>
-              ) : null}
-            </div>
+                                  {isExpanded ? (
+                                    <tr className="border-t border-[#c9573c]/10 bg-[#fffaf7]">
+                                      <td colSpan={8} className="px-4 py-4">
+                                        <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
+                                          <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
+                                            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+                                              Dati cliente
+                                            </p>
+                                            <div className="space-y-1 text-sm text-[#2c395b]">
+                                              <p>
+                                                <strong>Email:</strong>{" "}
+                                                {customerDetails.email ||
+                                                  payment.customer_email ||
+                                                  "-"}
+                                              </p>
+                                              <p>
+                                                <strong>Nome:</strong>{" "}
+                                                {customerDetails.name || "-"}
+                                              </p>
+                                              <p>
+                                                <strong>Telefono:</strong>{" "}
+                                                {customerDetails.phone || "-"}
+                                              </p>
+                                              <p>
+                                                <strong>Nazione:</strong>{" "}
+                                                {customerDetails.address
+                                                  ?.country || "-"}
+                                              </p>
+                                            </div>
+                                          </div>
+
+                                          <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
+                                            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+                                              Metadata checkout
+                                            </p>
+                                            <div className="space-y-1 text-sm text-[#2c395b]">
+                                              <p>
+                                                <strong>Evento:</strong>{" "}
+                                                {metadata.eventSlug || "-"}
+                                              </p>
+                                              <p>
+                                                <strong>Data evento:</strong>{" "}
+                                                {eventDateLabel}
+                                              </p>
+                                              <p>
+                                                <strong>ISO data:</strong>{" "}
+                                                {metadata.eventDateIso ||
+                                                  payment.event_date_iso ||
+                                                  "-"}
+                                              </p>
+                                              <p>
+                                                <strong>Partecipanti:</strong>{" "}
+                                                {metadata.attendeeCount || "-"}
+                                              </p>
+                                              <p>
+                                                <strong>Nomi:</strong>{" "}
+                                                {metadata.attendeeNames || "-"}
+                                              </p>
+                                              <p>
+                                                <strong>Lingua:</strong>{" "}
+                                                {metadata.locale || "-"}
+                                              </p>
+                                            </div>
+                                          </div>
+
+                                          <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
+                                            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+                                              Identificativi Stripe
+                                            </p>
+                                            <div className="space-y-1 text-sm text-[#2c395b]">
+                                              <p>
+                                                <strong>Session ID:</strong>{" "}
+                                                <span className="font-mono text-xs">
+                                                  {payment.stripe_session_id ||
+                                                    "-"}
+                                                </span>
+                                              </p>
+                                              <p>
+                                                <strong>Payment Intent:</strong>{" "}
+                                                <span className="font-mono text-xs">
+                                                  {payment.stripe_payment_intent_id ||
+                                                    "-"}
+                                                </span>
+                                              </p>
+                                              <p>
+                                                <strong>Status:</strong>{" "}
+                                                {payment.payment_status || "-"}
+                                              </p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  ) : null}
+                                </Fragment>
+                              );
+                            })
+                          ) : (
+                            <tr>
+                              <td
+                                colSpan={8}
+                                className="px-4 py-8 text-center text-[#6d7b80]"
+                              >
+                                Nessun pagamento registrato ancora.
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </article>
+                ) : null}
+              </div>
             </div>
           </section>
         </div>
@@ -3297,4 +3419,3 @@ export default function AdminDashboard() {
     </>
   );
 }
-

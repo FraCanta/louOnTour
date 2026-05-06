@@ -5,6 +5,7 @@ Allow: /
 
 Disallow: /loublog/
 Disallow: /blog/
+Disallow: /admin
 Allow: /blog/posts/
 
 # Host
