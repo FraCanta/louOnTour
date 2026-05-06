@@ -74,12 +74,9 @@ export default function EventsPage({ copy, events, featuredEvent }) {
   return (
     <>
       <Head>
-        <title>Luisa Quaglia Tour Guide | {copy.page.title}</title>
+        <title>{copy.page.title}</title>
         <meta name="description" content={copy.page.description} />
-        <meta
-          property="og:title"
-          content={`Luisa Quaglia Tour Guide | ${copy.page.title}`}
-        />
+        <meta property="og:title" content={`${copy.page.title}`} />
         <meta property="og:description" content={copy.page.description} />
       </Head>
 
