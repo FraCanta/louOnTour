@@ -36,12 +36,7 @@ function generateSiteMap(posts) {
     <url>
       <loc>${headlessSite}/en/tours-da-fare</loc>
     </url>
-     <url>
-      <loc>${headlessSite}/eventi</loc>
-    </url>
-    <url>
-      <loc>${headlessSite}/en/eventi</loc>
-    </url>
+    
 
     ${LayoutTranslation?.menu?.it?.map?.markers
       .map((el) => {
