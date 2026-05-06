@@ -2,13 +2,14 @@ import dynamic from "next/dynamic";
 
 const DynamicText = dynamic(() => import("../components/chiSono/text"));
 const DynamicBgImage = dynamic(() => import("../components/chiSono/bgImage"));
-const DynamicBanner = dynamic(() => import("../components/sectionFive/banner"));
+const DynamicBanner = dynamic(() => import("../components/chiSono/banner"));
 import Head from "next/head";
 import translationIT from "../public/locales/it/it.json";
 import translationEN from "../public/locales/en/en.json";
 import HeroChiSono from "../components/chiSono/hero_chisono";
 import Carousel from "../components/chiSono/Carousel";
 import { MaskText } from "../components/UI/MaskText";
+import Text2 from "../components/chiSono/text2";
 
 const ChiSono = ({ translation, home }) => {
   return (
@@ -53,6 +54,7 @@ const ChiSono = ({ translation, home }) => {
       <HeroChiSono translation={translation?.hero} />
       <DynamicText translation={translation?.hero} />
       <DynamicBgImage translation={translation?.hero} />
+      <Text2 translation={translation?.hero} />
       <div className="flex flex-col lg:min-h-screen gap-10 lg:gap-20 lg:my-[150px] bg-para/10 py-10 justify-center lg:py-20 ">
         <MaskText>
           {" "}
@@ -63,7 +65,7 @@ const ChiSono = ({ translation, home }) => {
         <Carousel translation={translation} />
       </div>
 
-      <DynamicBanner translation={home?.banner} />
+      <DynamicBanner translation={translation?.banner} />
     </>
   );
 };

@@ -55,7 +55,7 @@ function HeroChiSono({ translation }) {
       >
         <div className="flex flex-col justify-between gap-4 qhd:gap-6 lg:px-2 xl:mt-10 2xl:mt-6 fxl:mt-14 qhd:mt-16">
           <MaskText>
-            <p className="text-[#c9573c]/80 w-full text-lg 2xl:text-[1.5rem] fxl:text-3xl qhd:text-[2.5rem] 3xl:text-[2.5rem] leading-none qhd:leading-[3.5rem] 3xl:leading-[3.5rem] 2xl:mb-5 font-normal">
+            <p className="text-[#c9573c]/80 w-full text-lg 2xl:text-[1.3rem] fxl:text-2xl qhd:text-[2.5rem] 3xl:text-[2.5rem] leading-none qhd:leading-[3.5rem] 3xl:leading-[3.5rem] 2xl:mb-5 font-normal">
               {translation?.title?.secondo}
               <br />
               {translation?.title?.terzo}{" "}
@@ -66,9 +66,12 @@ function HeroChiSono({ translation }) {
               variants={item}
               className="flex flex-col items-center w-full gap-3 2xl:gap-4 lg:flex-row"
             >
-              <p className="text-para qhd:text-[1.35rem] qhd:leading-9">
-                {translation?.paragraph}
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: translation?.paragraph,
+                }}
+                className="text-para qhd:text-[1.35rem] qhd:leading-9"
+              ></p>
             </motion.div>
 
             <motion.div

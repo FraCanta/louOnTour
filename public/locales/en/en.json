@@ -2106,14 +2106,29 @@
       "subTitle": "Luisa Quaglia Tour Guide | About me",
       "title": {
         "primo": "Hi there!",
-        "secondo": "I am Luisa Quaglia, ",
-        "terzo": "a tour guide and archaeologist."
+        "secondo": "I help you read Tuscany,",
+        "terzo": "not just look at it."
       },
-      "paragraph": "I live near Volterra on a farm with my husband Luigi, our little Alice and two perpetually hungry cats, Angus and Marla. I have a degree in archaeology from Siena and have worked in different areas both in Italy and abroad. When I returned I worked in the archaeological museum in Volterra as a guide for school students and then co-managed an archaeological park on Elba Island.",
+      "paragraph": "My name is Luisa Quaglia and I am a licensed tour guide, but I like to define myself above all as a historical and archaeological guide. I was born in Puglia, but I have been living for many years near Volterra, in an agriturismo that I run with my family, two constantly hungry cats, and one clumsy dog. I graduated in Archaeology in 2009 and, before becoming a guide, I worked in tourist hospitality, museum education, and the management of archaeological sites. Since 2019 I have been working as a tour guide in Tuscany, mainly in Volterra, Siena, museums, and archaeological sites.",
       "cta": "Discover my tours",
-      "secondTitle": "I made my passion my job",
-      "secondPa": "These last experiences made me appreciate outreach, so I decided to become a tour guide-the best choice of my life! I love meeting new people and sharing my passion for history and art with them. I meet people from all over Italy and abroad: this is an opportunity for me to learn about other histories and cultures, a kind of endless journey, fantastic!",
-      "finalP": "I love this job and I love doing it in Tuscany, a region where art, history, nature and traditions are perfectly balanced. In fact, with my husband, who is an environmental guide, we also organize some nature walks. If you'd like to stay updated on our outings sign up for the mailing list! I hope to meet you soon in Tuscany. In the meantime, you can find me every day on social. See you soon, Luisa."
+      "secondTitle": "My way of telling<br/> the story of places",
+      "secondPa": [
+        "n my tours, I am not simply interested in showing you a square, a church, or a museum.",
+        "I want to help you understand why a place looks the way it does, who lived there, what transformations it has gone through, and what it can still tell us today.",
+        "That is why my tours have a mainly historical and archaeological focus: they start from monuments, objects, and stones, but they try to reconstruct the stories of the people and communities that created them."
+      ],
+      "finalTitle": "History, archaeology, and cultural storytelling",
+      "finalPa": [
+        "Alongside my work as a guide, I also share cultural content online, where I talk about towns, villages, artifacts, monuments, historical figures, and details that there is often no time to explore properly during a tour.",
+        "My goal, both in person and online, is always the same: to make history clearer, closer, and easier to understand, without oversimplifying it."
+      ],
+      "thirdTitle": "Because the past <br/> is still here",
+      "thirdPa": [
+        "Because the past is not something dead, to be studied only in books.",
+        "It is still there: in the streets, in museums, in the stones of buildings, in the shape of cities.",
+        "You just need to learn how to read it.",
+        "And, in the end, that is what I do: I help you look more closely, because when history stops being just a date or a name, it can become something that stays with you."
+      ]
     },
     "galleryTitle": "Beautiful memories",
 
@@ -2151,7 +2166,13 @@
       { "src": "/assets/aboutLou/lou37.jpg", "width": 1600, "height": 1200 },
       { "src": "/assets/aboutLou/lou38.jpg", "width": 1920, "height": 1080 },
       { "src": "/assets/aboutLou/lou39.jpg", "width": 900, "height": 1200 }
-    ]
+    ],
+    "banner": {
+      "text": "Would you like to discover Tuscany<br/> through a different lens?",
+      "paragrafo": "Take a look at my tours and choose the experience that suits you best.",
+
+      "button": "Discover more"
+    }
   },
   "blog": {
     "title": "Tourist Guide of Siena and Province and Volterra | Lou on Tour | Blog"

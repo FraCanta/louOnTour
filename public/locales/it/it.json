@@ -2131,14 +2131,29 @@
       "subTitle": "Luisa Quaglia Tour Guide | Chi sono",
       "title": {
         "primo": "Hi there!",
-        "secondo": "Sono Luisa Quaglia,",
-        "terzo": "guida turistica ed archeologa."
+        "secondo": "Ti accompagno a leggere la Toscana,",
+        "terzo": "non solo a guardarla."
       },
-      "paragraph": "Vivo vicino Volterra, in un agriturismo con mio marito Luigi, la nostra piccola Alice e due gatti perennemente affamati, Angus e Marla. Sono laureata in archeologia a Siena e ho lavorato in diverse zone sia in Italia che all’estero. Quando sono tornata ho lavorato nel museo archeologico di Volterra come guida per studenti delle scuole e poi ho co- gestito un parco archeologico all’Isola d’Elba.",
+      "paragraph": "Mi chiamo Luisa Quaglia e sono una guida turistica abilitata, ma mi piace definirmi soprattutto una guida storica e archeologica. Sono nata in Puglia, ma vivo da molti anni vicino a Volterra, in un agriturismo che gestisco con la mia famiglia, due gatti famelici e un cane maldestro. Mi sono laureata in Archeologia nel 2009 e, prima di diventare guida, ho lavorato nell’accoglienza turistica, nella didattica museale e nella gestione di siti archeologici. Dal 2019 lavoro come guida turistica in Toscana, soprattutto tra Volterra, Siena, musei e siti archeologici.",
       "cta": "Scopri i miei tours",
-      "secondTitle": "Ho fatto della mia passione il mio lavoro",
-      "secondPa": "Queste ultime esperienze mi hanno fatto apprezzare la divulgazione, quindi ho deciso di diventare una guida turistica: la scelta migliore della mia vita! Amo incontrare persone nuove e condividere con loro la mia passione per la storia e l’arte. Incontro persone che vengono da tutta Italia e dall’estero: un’occasione questa per me, per conoscere altre storie e culture, una sorta di viaggio senza fine, fantastico!",
-      "finalP": "Amo questo lavoro e amo farlo in Toscana, una Regione dove arte, storia, natura e tradizioni sono perfettamente bilanciate. Infatti, con mio marito, che è una guida ambientale, organizziamo anche qualche camminata in natura. Se ti va di rimanere aggiornato sulle nostre uscite iscriviti alla mailing list! Spero di conoscerti presto in Toscana. Nell’attesa mi trovi tutti i giorni sui social. A presto, Luisa."
+      "secondTitle": "Il mio modo di <br/>raccontare i luoghi",
+      "secondPa": [
+        "Nei miei tour non mi interessa semplicemente mostrarti una piazza, una chiesa o un museo.",
+        "Mi interessa aiutarti a capire perché un luogo è fatto così, chi lo ha abitato, quali trasformazioni ha vissuto e cosa può ancora raccontarci.",
+        "Per questo le mie visite hanno un taglio soprattutto storico e archeologico: partono dai monumenti, dagli oggetti e dalle pietre, ma cercano di ricostruire le storie delle persone e delle comunità che li hanno prodotti."
+      ],
+      "finalTitle": "Storia, archeologia <br/>e divulgazione",
+      "finalPa": [
+        "Accanto al lavoro di guida porto avanti anche un’attività di divulgazione culturale online, dove racconto città, borghi, reperti, monumenti, personaggi e dettagli che spesso nei tour non c’è il tempo di approfondire.",
+        "Il mio obiettivo, sia dal vivo sia online, è sempre lo stesso: rendere la storia più chiara, vicina e comprensibile, senza banalizzarla."
+      ],
+      "thirdTitle": "Perché il passato<br/> è ancora qui",
+      "thirdPa": [
+        "Perché il passato non è una cosa morta da studiare solo sui libri.",
+        "È ancora lì: nelle strade, nei musei, nelle pietre dei palazzi, nella forma delle città.",
+        "Bisogna solo imparare a leggerlo.",
+        "E io, in fondo, faccio questo: ti accompagno a guardare meglio, perché quando la storia smette di essere solo una data o un nome, può diventare qualcosa che ti resta addosso."
+      ]
     },
     "galleryTitle": "Ricordi belli",
     "galleria": [
@@ -2175,7 +2190,13 @@
       { "src": "/assets/aboutLou/lou37.jpg", "width": 1600, "height": 1200 },
       { "src": "/assets/aboutLou/lou38.jpg", "width": 1920, "height": 1080 },
       { "src": "/assets/aboutLou/lou39.jpg", "width": 900, "height": 1200 }
-    ]
+    ],
+    "banner": {
+      "text": "Vuoi scoprire la Toscana<br/> con uno sguardo diverso? ",
+      "paragrafo": "Dai un’occhiata ai miei tour e scegli il percorso più adatto a te.",
+
+      "button": "Scopri i miei tour"
+    }
   },
   "blog": {
     "title": "Guida Turistica di Siena e provincia e Volterra | Lou on Tour| Blog"
