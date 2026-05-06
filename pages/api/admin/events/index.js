@@ -1,5 +1,6 @@
 import { createEvent, getAdminEvents } from "../../../../utils/events";
 import { requireAdminApiKey } from "../../../../utils/adminAuth";
+import { revalidateEventPages } from "../../../../utils/revalidateEventPages";
 
 export default async function handler(req, res) {
   if (!(await requireAdminApiKey(req, res))) {
@@ -16,6 +17,7 @@ export default async function handler(req, res) {
     // ➕ POST - crea evento
     if (req.method === "POST") {
       const event = await createEvent(req.body);
+      await revalidateEventPages(res, event.slug);
       return res.status(201).json({ event });
     }
 

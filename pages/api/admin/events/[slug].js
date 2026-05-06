@@ -4,6 +4,7 @@ import {
   updateEvent,
 } from "../../../../utils/events";
 import { requireAdminApiKey } from "../../../../utils/adminAuth";
+import { revalidateEventPages } from "../../../../utils/revalidateEventPages";
 
 export default async function handler(req, res) {
   if (!(await requireAdminApiKey(req, res))) {
@@ -28,6 +29,7 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: "Event not found" });
       }
 
+      await revalidateEventPages(res, event.slug, req.query.slug);
       return res.status(200).json({ event });
     }
 
@@ -38,6 +40,7 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: "Event not found" });
       }
 
+      await revalidateEventPages(res, req.query.slug);
       return res.status(200).json({ ok: true });
     }
 
