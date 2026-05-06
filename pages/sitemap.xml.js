@@ -36,13 +36,19 @@ function generateSiteMap(posts) {
     <url>
       <loc>${headlessSite}/en/tours-da-fare</loc>
     </url>
+     <url>
+      <loc>${headlessSite}/eventi</loc>
+    </url>
+    <url>
+      <loc>${headlessSite}/en/eventi</loc>
+    </url>
 
     ${LayoutTranslation?.menu?.it?.map?.markers
       .map((el) => {
         return `
           <url>
             <loc>${`${headlessSite}/locations/${encodeURIComponent(
-              el?.title
+              el?.title,
             )}`}</loc>
           </url>`;
       })
@@ -53,7 +59,7 @@ function generateSiteMap(posts) {
         return `
           <url>
             <loc>${`${headlessSite}/en/locations/${encodeURIComponent(
-              el?.title
+              el?.title,
             )}`}</loc>
           </url>`;
       })
