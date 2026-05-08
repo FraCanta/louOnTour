@@ -2,10 +2,7 @@ import nodemailer from "nodemailer";
 import crypto from "crypto";
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import { supabaseAdmin } from "../../../utils/supabaseAdmin";
-import {
-  getStripeClient,
-  getStripeWebhookSecret,
-} from "../../../utils/stripe";
+import { getStripeClient, getStripeWebhookSecret } from "../../../utils/stripe";
 
 const MAX_EVENT_CAPACITY = 10;
 
@@ -54,7 +51,9 @@ function getSessionAttendeeCount(session) {
 
 function hasNewsletterConsent(session) {
   return (
-    String(session?.metadata?.newsletterConsent || "").trim().toLowerCase() === "true"
+    String(session?.metadata?.newsletterConsent || "")
+      .trim()
+      .toLowerCase() === "true"
   );
 }
 
@@ -71,15 +70,44 @@ function getMailchimpConfig() {
   return { apiKey, server, audienceId, permissionId };
 }
 
+function getSmtpConfig() {
+  const smtpUser = String(
+    process.env.PAYMENT_NOTIFICATION_SMTP_USER ||
+      process.env.SMTP_USER ||
+      process.env.GMAIL_USER ||
+      "luisaquaglia.tourguide@gmail.com",
+  ).trim();
+  const smtpPass = String(
+    process.env.PAYMENT_NOTIFICATION_SMTP_PASSWORD ||
+      process.env.SMTP_PASSWORD ||
+      process.env.SMTP_PASS ||
+      process.env.GMAIL_APP_PASSWORD ||
+      "",
+  )
+    .trim()
+    .replace(/\s+/g, "");
+  const destination = String(
+    process.env.PAYMENT_NOTIFICATION_EMAIL || smtpUser,
+  ).trim();
+
+  return { smtpUser, smtpPass, destination };
+}
+
 async function subscribeToNewsletterIfConsented(session) {
   if (!hasNewsletterConsent(session)) return;
 
   const email =
-    String(session?.customer_details?.email || "").trim().toLowerCase() ||
-    String(session?.customer_email || "").trim().toLowerCase();
+    String(session?.customer_details?.email || "")
+      .trim()
+      .toLowerCase() ||
+    String(session?.customer_email || "")
+      .trim()
+      .toLowerCase();
 
   if (!email) {
-    console.warn("[stripe-webhook] newsletter opt-in true but no customer email.");
+    console.warn(
+      "[stripe-webhook] newsletter opt-in true but no customer email.",
+    );
     return;
   }
 
@@ -94,10 +122,7 @@ async function subscribeToNewsletterIfConsented(session) {
 
   mailchimp.setConfig({ apiKey, server });
 
-  const subscriberHash = crypto
-    .createHash("md5")
-    .update(email)
-    .digest("hex");
+  const subscriberHash = crypto.createHash("md5").update(email).digest("hex");
 
   const marketingPermissions = permissionId
     ? [{ marketing_permission_id: permissionId, enabled: true }]
@@ -118,7 +143,11 @@ async function subscribeToNewsletterIfConsented(session) {
   }
 }
 
-async function getBookedSeats(eventSlug, eventDateIso, sessionIdToExclude = "") {
+async function getBookedSeats(
+  eventSlug,
+  eventDateIso,
+  sessionIdToExclude = "",
+) {
   const { data, error } = await supabaseAdmin
     .from("event_bookings")
     .select("stripe_session_id,raw_payload,payment_status")
@@ -136,11 +165,12 @@ async function getBookedSeats(eventSlug, eventDateIso, sessionIdToExclude = "") 
 }
 
 async function sendPaymentNotification(session) {
-  const smtpUser = process.env.SMTP_USER || "luisaquaglia.tourguide@gmail.com";
-  const smtpPass = process.env.SMTP_PASSWORD || "fvbuprlorshulfzk";
-  const destination = process.env.PAYMENT_NOTIFICATION_EMAIL || smtpUser;
+  const { smtpUser, smtpPass, destination } = getSmtpConfig();
 
   if (!smtpUser || !smtpPass || !destination) {
+    console.warn(
+      "[stripe-webhook] payment notification skipped: SMTP env not configured.",
+    );
     return;
   }
 
@@ -178,8 +208,9 @@ async function sendPaymentNotification(session) {
   });
 
   await transporter.sendMail({
-    from: smtpUser,
+    from: `"Luisa Quaglia Tour Guide" <${smtpUser}>`,
     to: destination,
+    replyTo: customerEmail !== "-" ? customerEmail : undefined,
     subject: `Nuovo pagamento evento: ${eventSlug}`,
     html: `
       <div style="font-size:16px;line-height:1.5;">
@@ -252,7 +283,13 @@ async function persistBookingFromSession(session) {
 
   await subscribeToNewsletterIfConsented(session);
 
-  await sendPaymentNotification(session);
+  try {
+    await sendPaymentNotification(session);
+  } catch (error) {
+    console.warn(
+      `[stripe-webhook] payment notification failed for ${session.id}: ${error.message}`,
+    );
+  }
 }
 
 export default async function handler(req, res) {
@@ -261,36 +298,61 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  let stripe;
+  let webhookSecret;
+
   try {
-    const stripe = getStripeClient();
-    const webhookSecret = getStripeWebhookSecret();
+    stripe = getStripeClient();
+    webhookSecret = getStripeWebhookSecret();
+  } catch (error) {
+    console.error("[stripe-webhook] configuration error:", error.message);
+    return res.status(500).json({
+      error: error.message || "Configurazione Stripe non valida.",
+    });
+  }
 
-    if (!webhookSecret) {
-      return res
-        .status(500)
-        .json({ error: "STRIPE_WEBHOOK_SECRET non configurata." });
-    }
+  if (!webhookSecret) {
+    return res
+      .status(500)
+      .json({ error: "STRIPE_WEBHOOK_SECRET non configurata." });
+  }
 
-    const signature = req.headers["stripe-signature"];
+  const signature = req.headers["stripe-signature"];
 
-    if (!signature || Array.isArray(signature)) {
-      return res.status(400).json({ error: "Firma Stripe mancante." });
-    }
+  if (!signature || Array.isArray(signature)) {
+    return res.status(400).json({ error: "Firma Stripe mancante." });
+  }
 
-    const rawBody = await readRawBody(req);
-    const event = stripe.webhooks.constructEvent(
-      rawBody,
-      signature,
-      webhookSecret,
-    );
+  const rawBody = await readRawBody(req);
+  let event;
 
+  try {
+    event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
+  } catch (error) {
+    console.error("[stripe-webhook] signature error:", error.message);
+    return res.status(400).json({ error: error.message || "Webhook error." });
+  }
+
+  try {
     if (event.type === "checkout.session.completed") {
-      await persistBookingFromSession(event.data.object);
+      const session = event.data.object;
+      const hasBookingMetadata =
+        String(session?.metadata?.eventSlug || "").trim() &&
+        String(session?.metadata?.eventDateIso || "").trim();
+
+      if (!hasBookingMetadata && event.livemode === false) {
+        console.warn(
+          "[stripe-webhook] ignored test checkout.session.completed without booking metadata.",
+        );
+        return res.status(200).json({ received: true, ignored: true });
+      }
+
+      await persistBookingFromSession(session);
     }
 
     return res.status(200).json({ received: true });
   } catch (error) {
     console.error("[stripe-webhook] error:", error.message);
-    return res.status(400).json({ error: error.message || "Webhook error." });
+    return res.status(500).json({ error: error.message || "Webhook error." });
   }
 }

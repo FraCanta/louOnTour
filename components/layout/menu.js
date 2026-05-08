@@ -33,6 +33,10 @@ const Menu = ({ translation }) => {
             <div className="items-center hidden text-xl qhd:text-[1.65rem] lg:flex text-[#c9573c]  ">
               <div className="relative flex items-center justify-end w-full gap-10 qhd:gap-14">
                 <button
+                  type="button"
+                  aria-expanded={open}
+                  aria-haspopup="true"
+                  aria-controls="tour-menu-panel"
                   onClick={(e) => {
                     e.stopPropagation();
                     setOpen(!open);
@@ -50,6 +54,7 @@ const Menu = ({ translation }) => {
                   />
                 </button>
                 <div
+                  id="tour-menu-panel"
                   onClick={(e) => e.stopPropagation()}
                   className={`
     absolute z-50 p-4 mt-6
@@ -90,7 +95,7 @@ const Menu = ({ translation }) => {
                           icon="lets-icons:arrow-right-light"
                           width="24px"
                           height="24px"
-                          style="color: #77674E"
+                          style={{ color: "#77674E" }}
                         />
                       </Link>
                     </div>

@@ -190,9 +190,8 @@ const Subscribe = ({ translation, variant = "default" }) => {
             <span>
               {content.gdprConsentBeforeLink}{" "}
               <Link
-                href="https://www.iubenda.com/privacy-policy/15052201"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/privacy-policy"
+                locale={locale}
                 className="font-semibold text-[#c9573c] underline underline-offset-4"
               >
                 {content.gdprConsentLink}
@@ -237,7 +236,7 @@ const Subscribe = ({ translation, variant = "default" }) => {
           <input type="hidden" name="tags" value="40219751" />
         </div>
 
-        <div aria-hidden="true" className="absolute left-[-5000px]">
+        <div aria-hidden="true" className="sr-only">
           <label htmlFor={`b_23d6ce9b211aa205189c78058_5f51338f71_${variant}`}>
             Hidden field
           </label>

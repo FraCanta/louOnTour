@@ -11,15 +11,17 @@ import "../styles/wordpress.css";
 import "../styles/swiper_bullet.css";
 
 import dynamic from "next/dynamic";
-import Script from "next/script";
 import AOS from "aos";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import CookieConsent, { ConsentScripts } from "../components/consent/CookieConsent";
+import AccessibilityWidget from "../components/accessibility/AccessibilityWidget";
 const DynamicLayout = dynamic(() => import("../components/layout/layout"));
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const isAdminRoute = router.pathname.startsWith("/admin");
+  const skipLabel = router.locale === "en" ? "Skip to content" : "Salta al contenuto";
 
   useEffect(() => {
     // here you can add your aos options
@@ -35,28 +37,20 @@ function MyApp({ Component, pageProps }) {
       {isAdminRoute ? (
         <Component {...pageProps} />
       ) : (
-        <DynamicLayout>
-          <Component {...pageProps} />
-        </DynamicLayout>
+        <>
+          <a href="#main-content" className="skip-link">
+            {skipLabel}
+          </a>
+          <DynamicLayout>
+            <div id="main-content" tabIndex="-1">
+              <Component {...pageProps} />
+            </div>
+          </DynamicLayout>
+        </>
       )}
-      {/* <!-- Elfsight Accessibility | Untitled Accessibility --> */}
-
-      {/* Global site tag (gtag.js) - Google Analytics */}
-      <Script
-        type="text/javascript"
-        src="https://embeds.iubenda.com/widgets/465c6cec-2c93-4094-8068-9b9cc0d257e2.js"
-      ></Script>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-FJ2J5B3EPX" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-
-
-          gtag('config', 'G-FJ2J5B3EPX');
-        `}
-      </Script>
+      {!isAdminRoute ? <AccessibilityWidget /> : null}
+      {!isAdminRoute ? <CookieConsent /> : null}
+      <ConsentScripts />
     </>
   );
 }

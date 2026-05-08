@@ -78,9 +78,16 @@ export default async function handler(req, res) {
           .slice(0, quantity)
       : [];
     const newsletterConsent = Boolean(req.body?.newsletterConsent);
+    const termsAccepted = Boolean(req.body?.termsAccepted);
 
     if (!slug || !dateIso) {
       return res.status(400).json({ error: "Slug e data sono obbligatori." });
+    }
+
+    if (!termsAccepted) {
+      return res.status(400).json({
+        error: "Devi accettare i Termini e condizioni prima del pagamento.",
+      });
     }
 
     const event = await getEventBySlug(slug, locale);
@@ -161,6 +168,7 @@ export default async function handler(req, res) {
         remainingBeforeCheckout: String(remainingSeats),
         attendeeNames: attendeeNamesPayload,
         newsletterConsent: newsletterConsent ? "true" : "false",
+        termsAccepted: "true",
         locale,
       },
       payment_intent_data: {
@@ -171,6 +179,7 @@ export default async function handler(req, res) {
           attendeeCount: String(quantity),
           attendeeNames: attendeeNamesPayload,
           newsletterConsent: newsletterConsent ? "true" : "false",
+          termsAccepted: "true",
           locale,
         },
       },

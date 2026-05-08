@@ -32,9 +32,21 @@ const Mobile = ({ translation }) => {
   return (
     <div className="flex items-center gap-8">
       {/* Hamburger */}
-      <motion.div
+      <motion.button
+        type="button"
+        aria-label={
+          open
+            ? locale === "en"
+              ? "Close menu"
+              : "Chiudi menu"
+            : locale === "en"
+              ? "Open menu"
+              : "Apri menu"
+        }
+        aria-expanded={open}
+        aria-controls="mobile-menu-panel"
         onClick={() => setOpen(!open)}
-        className="z-50 cursor-pointer"
+        className="z-50 inline-flex cursor-pointer items-center justify-center"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -52,12 +64,13 @@ const Mobile = ({ translation }) => {
             variants={svgVariants}
           />
         </svg>
-      </motion.div>
+      </motion.button>
 
       {/* Mobile Menu */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
+            id="mobile-menu-panel"
             className="absolute top-0 left-0 right-0 bg-[#fef3ea] min-h-screen w-screen text-principle flex flex-col pt-24"
             variants={menuVariants}
             initial="closed"
@@ -67,6 +80,8 @@ const Mobile = ({ translation }) => {
             {/* Bottone Tours */}
             <motion.div className="w-11/12 mx-auto mb-6">
               <button
+                type="button"
+                aria-expanded={toursOpen}
                 onClick={() => setToursOpen(true)}
                 className="flex items-center justify-between w-full gap-2 text-3xl tracking-wide menu-item font-regular"
               >
@@ -180,6 +195,7 @@ const Mobile = ({ translation }) => {
                     <Link
                       href="https://www.facebook.com/luisa.quaglia.tourguide"
                       target="_blank"
+                      aria-label="Facebook Luisa Quaglia Tour Guide"
                     >
                       <Icon
                         icon="entypo-social:facebook"
@@ -190,6 +206,7 @@ const Mobile = ({ translation }) => {
                     <Link
                       href="https://www.instagram.com/luisa_guidaturisticatoscana/"
                       target="_blank"
+                      aria-label="Instagram Luisa Quaglia Tour Guide"
                     >
                       <Icon
                         icon="akar-icons:instagram-fill"
@@ -200,6 +217,7 @@ const Mobile = ({ translation }) => {
                     <Link
                       href="https://www.tiktok.com/@luisa_guidatoscana"
                       target="_blank"
+                      aria-label="TikTok Luisa Quaglia Tour Guide"
                     >
                       <Icon
                         icon="simple-icons:tiktok"
@@ -229,6 +247,8 @@ const Mobile = ({ translation }) => {
             variants={overlayVariants}
           >
             <button
+              type="button"
+              aria-label={locale === "en" ? "Back to main menu" : "Torna al menu principale"}
               onClick={() => setToursOpen(false)}
               className="flex items-center self-end gap-3 px-4 mb-6 text-2xl font-bold text-principle"
             >
@@ -237,7 +257,7 @@ const Mobile = ({ translation }) => {
                 width="30px"
                 height="30px"
               />
-              Back
+              {locale === "en" ? "Back" : "Indietro"}
             </button>
 
             <div className="grid grid-cols-1 gap-6 px-4">

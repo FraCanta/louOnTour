@@ -26,6 +26,102 @@ body {
   scroll-behavior: auto;
 }
 
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10000;
+  transform: translateY(-150%);
+  border: 2px solid #232f37;
+  border-radius: 2px;
+  background: #ffffff;
+  color: #232f37;
+  padding: 10px 14px;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(35, 47, 55, 0.18);
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 3px solid #232f37;
+  outline-offset: 3px;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+html.lou-a11y-large-text {
+  font-size: 112.5%;
+}
+
+html.lou-a11y-readable-font * {
+  font-family: Arial, Helvetica, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+html.lou-a11y-highlight-links a {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+html.lou-a11y-highlight-links a[href^="tel:"],
+html.lou-a11y-highlight-links a[href^="mailto:"],
+html.lou-a11y-highlight-links a[target="_blank"] {
+  text-decoration-style: dotted !important;
+}
+
+html.lou-a11y-contrast,
+html.lou-a11y-contrast body {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+html.lou-a11y-contrast :is(h1, h2, h3, h4, h5, h6, p, li, dt, dd, label, span) {
+  color: #111111 !important;
+}
+
+html.lou-a11y-contrast a {
+  color: #7a1f11 !important;
+  text-decoration: underline !important;
+}
+
+html.lou-a11y-contrast button,
+html.lou-a11y-contrast input,
+html.lou-a11y-contrast select,
+html.lou-a11y-contrast textarea {
+  border-color: #111111 !important;
+}
+
+html.lou-a11y-contrast :focus-visible {
+  outline-color: #000000;
+}
+
+html.lou-a11y-reduce-motion *,
+html.lou-a11y-reduce-motion *::before,
+html.lou-a11y-reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-duration: 0.001ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
 h2,
 h3,
 h4,

@@ -3,6 +3,10 @@ import parseHTML from "html-react-parser";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import Image from "next/image";
+import {
+  COOKIE_CONSENT_EVENT,
+  getStoredCookieConsent,
+} from "../../utils/cookieConsent";
 
 const DEFAULT_IMAGE_WIDTH = 1600;
 const DEFAULT_IMAGE_HEIGHT = 1067;
@@ -53,18 +57,32 @@ const CarouselParser = ({ post }) => {
   }, []);
 
   useEffect(() => {
-    const existingScript = document.querySelector(
-      'script[src="//www.instagram.com/embed.js"]',
-    );
+    const loadInstagramEmbed = () => {
+      if (document.querySelector('script[src="//www.instagram.com/embed.js"]')) {
+        return;
+      }
 
-    if (existingScript) {
-      return;
+      const script = document.createElement("script");
+      script.setAttribute("src", "//www.instagram.com/embed.js");
+      script.setAttribute("async", "true");
+      document.head.appendChild(script);
+    };
+
+    if (getStoredCookieConsent()?.marketing) {
+      loadInstagramEmbed();
     }
 
-    const script = document.createElement("script");
-    script.setAttribute("src", "//www.instagram.com/embed.js");
-    script.setAttribute("async", "true");
-    document.head.appendChild(script);
+    const loadAfterConsent = (event) => {
+      if (event?.detail?.marketing) {
+        loadInstagramEmbed();
+      }
+    };
+
+    window.addEventListener(COOKIE_CONSENT_EVENT, loadAfterConsent);
+
+    return () => {
+      window.removeEventListener(COOKIE_CONSENT_EVENT, loadAfterConsent);
+    };
   }, []);
 
   return parseHTML(post, {

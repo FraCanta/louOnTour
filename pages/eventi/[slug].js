@@ -60,10 +60,12 @@ function DateCheckoutBox({
   checkoutDateIso,
   bookingState,
   newsletterConsent,
+  termsAccepted,
   onDateChange,
   onQuantityChange,
   onAttendeeNameChange,
   onNewsletterConsentChange,
+  onTermsAcceptedChange,
   onCheckout,
 }) {
   const label = lang === "en" ? date.labelEn : date.labelIt;
@@ -87,6 +89,12 @@ function DateCheckoutBox({
     lang === "en"
       ? "Optional consent. You can unsubscribe anytime."
       : "Consenso facoltativo. Potrai disiscriverti in qualsiasi momento.";
+  const termsLabel =
+    lang === "en"
+      ? "I have read and accept the Terms and conditions of purchase."
+      : "Ho letto e accetto i Termini e condizioni di acquisto.";
+  const termsLinkLabel =
+    lang === "en" ? "Terms and conditions" : "Termini e condizioni";
   const notAvailableLabel =
     lang === "en"
       ? "Online payment is not active for this date yet."
@@ -201,10 +209,30 @@ function DateCheckoutBox({
             </span>
           </label>
 
+          <label className="flex items-start gap-2 p-3 mb-3 border rounded-md border-white/10 bg-white/5">
+            <input
+              type="checkbox"
+              checked={termsAccepted}
+              onChange={(event) => onTermsAcceptedChange(event.target.checked)}
+              className="mt-0.5 h-4 w-4 rounded border-white/30 bg-white/10 accent-[#fef3ea]"
+            />
+            <span className="text-xs qhd:text-base qhd:leading-7 text-[#fef3ea]/85">
+              {termsLabel}{" "}
+              <Link
+                href="/termini-condizioni"
+                locale={lang}
+                target="_blank"
+                className="font-semibold text-white underline underline-offset-4"
+              >
+                {termsLinkLabel}
+              </Link>
+            </span>
+          </label>
+
           <button
             type="button"
             onClick={onCheckout}
-            disabled={checkoutDateIso === date.iso}
+            disabled={checkoutDateIso === date.iso || !termsAccepted}
             className="inline-flex items-center gap-2 rounded-md border border-white/20 px-3 qhd:px-5 py-2 qhd:py-3 text-xs qhd:text-base font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Icon icon="hugeicons:credit-card" width="14" height="14" />
@@ -229,6 +257,7 @@ export default function EventDetailPage({ event, copy, locale }) {
   const [checkoutError, setCheckoutError] = useState("");
   const [bookingByDate, setBookingByDate] = useState({});
   const [newsletterConsentByDate, setNewsletterConsentByDate] = useState({});
+  const [termsAcceptedByDate, setTermsAcceptedByDate] = useState({});
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(null);
   const lang = locale === "en" ? "en" : "it";
   const checkoutStatus = useMemo(() => {
@@ -381,8 +410,29 @@ export default function EventDetailPage({ event, copy, locale }) {
     }));
   }
 
+  function getTermsAccepted(dateIso) {
+    return Boolean(termsAcceptedByDate[dateIso]);
+  }
+
+  function updateTermsAccepted(dateIso, accepted) {
+    setTermsAcceptedByDate((current) => ({
+      ...current,
+      [dateIso]: Boolean(accepted),
+    }));
+  }
+
   async function startStripeCheckout(date) {
     setCheckoutError("");
+
+    if (!getTermsAccepted(date.iso)) {
+      setCheckoutError(
+        lang === "en"
+          ? "Please accept the Terms and conditions before payment."
+          : "Accetta i Termini e condizioni prima del pagamento.",
+      );
+      return;
+    }
+
     setCheckoutDateIso(date.iso);
 
     try {
@@ -405,6 +455,7 @@ export default function EventDetailPage({ event, copy, locale }) {
           quantity: bookingState.quantity,
           attendeeNames,
           newsletterConsent,
+          termsAccepted: getTermsAccepted(date.iso),
         }),
       });
       const data = await response.json();
@@ -555,6 +606,7 @@ export default function EventDetailPage({ event, copy, locale }) {
                   checkoutDateIso={checkoutDateIso}
                   bookingState={getDateBookingState(selectedDate.iso)}
                   newsletterConsent={getNewsletterConsent(selectedDate.iso)}
+                  termsAccepted={getTermsAccepted(selectedDate.iso)}
                   onDateChange={setSelectedDateIso}
                   onQuantityChange={(nextQuantity, maxQuantity) =>
                     updateDateQuantity(
@@ -568,6 +620,9 @@ export default function EventDetailPage({ event, copy, locale }) {
                   }
                   onNewsletterConsentChange={(accepted) =>
                     updateNewsletterConsent(selectedDate.iso, accepted)
+                  }
+                  onTermsAcceptedChange={(accepted) =>
+                    updateTermsAccepted(selectedDate.iso, accepted)
                   }
                   onCheckout={() => startStripeCheckout(selectedDate)}
                 />

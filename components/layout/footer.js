@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import FooterLogo from "../../public/logo_lou2.png";
 import { useRouter } from "next/router";
 import Subscribe from "../newsletter/subscribe";
+import { openCookiePreferences } from "../../utils/cookieConsent";
 
 const Footer = ({ translation }) => {
   const { locale } = useRouter();
@@ -60,6 +61,7 @@ const Footer = ({ translation }) => {
                 <Link
                   href="https://www.facebook.com/luisa.quaglia.tourguide"
                   target="_blank"
+                  aria-label="Facebook Luisa Quaglia Tour Guide"
                 >
                   <Icon
                     icon="entypo-social:facebook"
@@ -70,6 +72,7 @@ const Footer = ({ translation }) => {
                 <Link
                   href="https://www.instagram.com/luisa_guidaturisticatoscana/"
                   target="_blank"
+                  aria-label="Instagram Luisa Quaglia Tour Guide"
                 >
                   <Icon
                     icon="akar-icons:instagram-fill"
@@ -80,6 +83,7 @@ const Footer = ({ translation }) => {
                 <Link
                   href="https://www.tiktok.com/@luisa_guidatoscana"
                   target="_blank"
+                  aria-label="TikTok Luisa Quaglia Tour Guide"
                 >
                   <Icon icon="simple-icons:tiktok" color="#C9573C" width="25" />
                 </Link>
@@ -124,21 +128,42 @@ const Footer = ({ translation }) => {
             {translation?.footer?.[locale]?.Col1?.title} - P.Iva: 02436070508
           </span>
         </div>
-        <div className="flex gap-2 lg:justify-center">
+        <div className="flex flex-wrap gap-2 lg:justify-center">
           <Link
-            href="https://www.iubenda.com/privacy-policy/15052201"
-            target="_blank"
+            href="/privacy-policy"
+            locale={locale}
             className="font-bold underline"
           >
             Privacy Policy
           </Link>{" "}
           <Link
-            href="https://www.iubenda.com/privacy-policy/15052201/cookie-policy"
-            target="_blank"
+            href="/cookie-policy"
+            locale={locale}
             className="font-bold underline"
           >
             Cookie Policy
           </Link>
+          <Link
+            href="/termini-condizioni"
+            locale={locale}
+            className="font-bold underline"
+          >
+            {locale === "en" ? "Terms and conditions" : "Termini e condizioni"}
+          </Link>
+          <Link
+            href="/accessibilita"
+            locale={locale}
+            className="font-bold underline"
+          >
+            {locale === "en" ? "Accessibility" : "Accessibilita"}
+          </Link>
+          <button
+            type="button"
+            onClick={openCookiePreferences}
+            className="font-bold underline"
+          >
+            {locale === "en" ? "Cookie preferences" : "Preferenze cookie"}
+          </button>
         </div>
         <div className="lg:text-right">
           {" "}
