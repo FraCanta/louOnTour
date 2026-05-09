@@ -7,6 +7,7 @@ import { Icon } from "@iconify/react";
 import { MaskText } from "../../components/UI/MaskText";
 import CtaPrimary from "../../components/button/CtaPrimary";
 import {
+  getAllEvents,
   getEventBySlug,
   getEventsPageCopy,
   getEventSlugs,
@@ -250,7 +251,7 @@ function DateCheckoutBox({
   );
 }
 
-export default function EventDetailPage({ event, copy, locale }) {
+export default function EventDetailPage({ event, copy, locale, relatedEvents = [] }) {
   const router = useRouter();
   const [selectedDateIso, setSelectedDateIso] = useState("");
   const [checkoutDateIso, setCheckoutDateIso] = useState("");
@@ -259,6 +260,8 @@ export default function EventDetailPage({ event, copy, locale }) {
   const [newsletterConsentByDate, setNewsletterConsentByDate] = useState({});
   const [termsAcceptedByDate, setTermsAcceptedByDate] = useState({});
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(null);
+  const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
+  const [isIncludedExpanded, setIsIncludedExpanded] = useState(false);
   const lang = locale === "en" ? "en" : "it";
   const checkoutStatus = useMemo(() => {
     const rawStatus = router.query.checkout;
@@ -268,6 +271,12 @@ export default function EventDetailPage({ event, copy, locale }) {
   const visibleGallery = gallery.length > 5 ? gallery.slice(0, 5) : gallery;
   const hiddenGalleryCount = Math.max(
     gallery.length - visibleGallery.length,
+    0,
+  );
+  const mobileVisibleGallery =
+    gallery.length > 2 ? gallery.slice(0, 2) : gallery;
+  const mobileHiddenGalleryCount = Math.max(
+    gallery.length - mobileVisibleGallery.length,
     0,
   );
   const activeGalleryImage =
@@ -515,6 +524,11 @@ export default function EventDetailPage({ event, copy, locale }) {
             <p className="max-w-3xl text-base leading-7 qhd:max-w-5xl text-para lg:text-lg qhd:text-2xl qhd:leading-10">
               {excerpt}
             </p>
+
+            <CtaPrimary link="#prenotazione" className="md:hidden !bg-[#2c395b]">
+              {lang === "en" ? "Book now" : "Prenota ora"}
+              <Icon icon="hugeicons:calendar-check-out-02" width="18" height="18" />
+            </CtaPrimary>
           </div>
 
           <div className="relative h-[380px] overflow-hidden rounded-md lg:h-[620px] qhd:h-[826px]">
@@ -538,11 +552,32 @@ export default function EventDetailPage({ event, copy, locale }) {
                 {copy?.detail?.infoTitle}
               </p>
 
-              <div className="space-y-4 text-base leading-8 qhd:space-y-6 text-para lg:text-lg qhd:text-2xl qhd:leading-10">
+              <div
+                className={`event-mobile-collapsible relative space-y-4 text-base leading-8 qhd:space-y-6 text-para lg:text-lg qhd:text-2xl qhd:leading-10 ${
+                  isDetailsExpanded ? "is-expanded" : ""
+                }`}
+              >
                 {description.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
+                {!isDetailsExpanded ? (
+                  <span className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-white/0 md:hidden" />
+                ) : null}
               </div>
+
+              <button
+                type="button"
+                onClick={() => setIsDetailsExpanded((current) => !current)}
+                className="mt-4 text-sm font-semibold text-[#c9573c] underline underline-offset-4 md:hidden"
+              >
+                {isDetailsExpanded
+                  ? lang === "en"
+                    ? "Show less"
+                    : "Riduci"
+                  : lang === "en"
+                    ? "Read more"
+                    : "Leggi tutto"}
+              </button>
             </article>
 
             <article className="rounded-md border border-[#c9573c]/10 bg-white p-6 lg:p-8 qhd:p-10">
@@ -550,7 +585,11 @@ export default function EventDetailPage({ event, copy, locale }) {
                 {copy?.detail?.includedTitle}
               </p>
 
-              <div className="grid gap-4 md:grid-cols-2">
+              <div
+                className={`event-mobile-collapsible relative grid gap-4 md:grid-cols-2 ${
+                  isIncludedExpanded ? "is-expanded" : ""
+                }`}
+              >
                 {included.map((item, i) => (
                   <div
                     key={i}
@@ -563,13 +602,33 @@ export default function EventDetailPage({ event, copy, locale }) {
                     <p>{item}</p>
                   </div>
                 ))}
+                {!isIncludedExpanded ? (
+                  <span className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-white/0 md:hidden" />
+                ) : null}
               </div>
+
+              <button
+                type="button"
+                onClick={() => setIsIncludedExpanded((current) => !current)}
+                className="mt-4 text-sm font-semibold text-[#c9573c] underline underline-offset-4 md:hidden"
+              >
+                {isIncludedExpanded
+                  ? lang === "en"
+                    ? "Show less"
+                    : "Riduci"
+                  : lang === "en"
+                    ? "Read more"
+                    : "Leggi tutto"}
+              </button>
             </article>
           </div>
 
           {/* RIGHT */}
           <div className="space-y-8">
-            <article className="rounded-md bg-[#2c395b] p-6 text-[#fef3ea] lg:p-8 qhd:p-10">
+            <article
+              id="prenotazione"
+              className="scroll-mt-6 rounded-md bg-[#2c395b] p-6 text-[#fef3ea] lg:p-8 qhd:p-10"
+            >
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#fef3ea]/60">
                 {copy?.detail?.nextDates}
               </p>
@@ -669,7 +728,52 @@ export default function EventDetailPage({ event, copy, locale }) {
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
                 {copy.detail.galleryTitle}
               </p>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:hidden">
+                {gallery.length > 0 ? (
+                  mobileVisibleGallery.map((image, index) => {
+                    const isMoreTile =
+                      mobileHiddenGalleryCount > 0 &&
+                      index === mobileVisibleGallery.length - 1;
+
+                    return (
+                      <button
+                        type="button"
+                        onClick={() => setActiveGalleryIndex(index)}
+                        key={`${image}-mobile-${index}`}
+                        aria-label={
+                          isMoreTile
+                            ? `${showMoreGalleryLabel}: ${mobileHiddenGalleryCount}`
+                            : `${event.title} ${index + 1}`
+                        }
+                        className="group relative h-[220px] overflow-hidden rounded-md text-left"
+                      >
+                        <Image
+                          src={image}
+                          alt={`${event.title} ${index + 1}`}
+                          fill
+                          className="object-cover transition duration-500 group-hover:scale-105"
+                          unoptimized
+                        />
+                        <span className="absolute inset-0 transition bg-black/0 group-hover:bg-black/20" />
+                        {isMoreTile ? (
+                          <span className="absolute inset-0 flex flex-col items-center justify-center bg-[#2c395b]/70 px-4 text-center text-white">
+                            <span className="text-xs font-semibold uppercase tracking-[0.2em]">
+                              {showMoreGalleryLabel}
+                            </span>
+                            <span className="mt-2 text-3xl font-bold">
+                              +{mobileHiddenGalleryCount}
+                            </span>
+                          </span>
+                        ) : null}
+                      </button>
+                    );
+                  })
+                ) : (
+                  <p className="text-sm text-para">{copy.detail.noGallery}</p>
+                )}
+              </div>
+
+              <div className="hidden grid-cols-1 gap-4 sm:grid sm:grid-cols-2">
                 {gallery.length > 0 ? (
                   visibleGallery.map((image, index) => {
                     const isMoreTile =
@@ -718,6 +822,51 @@ export default function EventDetailPage({ event, copy, locale }) {
             </article>
           </div>
         </section>
+
+        {relatedEvents.length > 0 ? (
+          <section className="pb-16 qhd:pb-24 lg:px-10 qhd:px-0">
+            <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
+                  {lang === "en" ? "Keep exploring" : "Continua a esplorare"}
+                </p>
+                <h2 className="text-3xl font-bold text-principle qhd:text-5xl">
+                  {lang === "en" ? "Other scheduled events" : "Altri eventi in programma"}
+                </h2>
+              </div>
+              <Link
+                href="/eventi"
+                className="font-semibold text-[#c9573c] underline underline-offset-4"
+              >
+                {lang === "en" ? "View all events" : "Vedi tutti gli eventi"}
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {relatedEvents.map((relatedEvent) => (
+                <Link
+                  key={relatedEvent.slug}
+                  href={`/eventi/${relatedEvent.slug}`}
+                  className="group rounded-md border border-[#c9573c]/10 bg-white p-5 text-[#232f37] shadow-[0_14px_36px_rgba(35,47,55,0.05)] transition hover:-translate-y-0.5 hover:border-[#c9573c]/25"
+                >
+                  <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#c9573c]/70">
+                    {relatedEvent.location}
+                  </p>
+                  <h3 className="text-lg font-bold leading-snug text-principle">
+                    {relatedEvent.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-para">
+                    {relatedEvent.dates?.[0]?.label || relatedEvent.recurring}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#c9573c] group-hover:underline">
+                    {lang === "en" ? "View event" : "Scopri l'evento"}
+                    <Icon icon="lets-icons:arrow-right-light" width="18" height="18" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </div>
       {activeGalleryImage ? (
         <div
@@ -800,6 +949,7 @@ export async function getStaticProps({ params, locale = "it" }) {
 
   const event = await getEventBySlug(params.slug, lang);
   const copy = await getEventsPageCopy(lang);
+  const allEvents = await getAllEvents(lang);
 
   if (!event) {
     return {
@@ -809,7 +959,14 @@ export async function getStaticProps({ params, locale = "it" }) {
   }
 
   return {
-    props: { event, copy, locale: lang },
+    props: {
+      event,
+      copy,
+      locale: lang,
+      relatedEvents: allEvents
+        .filter((item) => item.slug !== params.slug)
+        .slice(0, 3),
+    },
     revalidate: 60,
   };
 }

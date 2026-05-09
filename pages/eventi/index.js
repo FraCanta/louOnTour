@@ -89,7 +89,7 @@ export default function EventsPage({ copy, events, featuredEvent }) {
               </h1>
 
               <MaskText>
-                <h2 className="text-[2.5rem] md:text-[3.8rem] qhd:text-[5rem] font-bold leading-none max-w-5xl qhd:max-w-7xl text-principle">
+                <h2 className="text-3xl md:text-[3.8rem] qhd:text-[5rem] font-bold leading-tight md:leading-none max-w-5xl qhd:max-w-7xl text-principle">
                   {copy.page.heading}
                 </h2>
               </MaskText>

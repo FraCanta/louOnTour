@@ -23,7 +23,13 @@ const Menu = ({ translation }) => {
       <nav className="h-[70px] lg:px-10 md:h-[100px] lg:h-[70px] xl:h-[100px] qhd:h-[133px] 3xl:h-[180px] 4xl:h-[250px] flex w-full items-center justify-between relative z-[999999] nav-scroll ">
         <div className="flex items-center justify-between w-11/12 mx-auto ">
           <div className="z-50 flex items-center gap-10">
-            <Link href={`/`} title="Luisa Quaglia | Home Page">
+            <Link
+              href={`/`}
+              title="Luisa Quaglia | Home Page"
+              onClick={() => {
+                window.dispatchEvent(new Event("lou-mobile-menu-close"));
+              }}
+            >
               <Image
                 src={Logo}
                 alt="logo"

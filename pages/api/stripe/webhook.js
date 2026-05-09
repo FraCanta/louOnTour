@@ -3,6 +3,11 @@ import crypto from "crypto";
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import { supabaseAdmin } from "../../../utils/supabaseAdmin";
 import { getStripeClient, getStripeWebhookSecret } from "../../../utils/stripe";
+import {
+  getBookingAttendeeCount,
+  isCountableBooking,
+  parsePositiveInt,
+} from "../../../utils/eventBookings";
 
 const MAX_EVENT_CAPACITY = 10;
 
@@ -20,29 +25,6 @@ async function readRawBody(req) {
   }
 
   return Buffer.concat(chunks);
-}
-
-function parsePositiveInt(value, fallback = 0) {
-  const parsed = Number(value);
-
-  if (!Number.isFinite(parsed)) {
-    return fallback;
-  }
-
-  return Math.max(0, Math.round(parsed));
-}
-
-function getBookingAttendeeCount(booking) {
-  const fromMetadata = parsePositiveInt(
-    booking?.raw_payload?.metadata?.attendeeCount,
-    0,
-  );
-
-  if (fromMetadata > 0) {
-    return fromMetadata;
-  }
-
-  return 1;
 }
 
 function getSessionAttendeeCount(session) {
@@ -161,6 +143,7 @@ async function getBookedSeats(
 
   return (data || [])
     .filter((booking) => booking.stripe_session_id !== sessionIdToExclude)
+    .filter(isCountableBooking)
     .reduce((sum, booking) => sum + getBookingAttendeeCount(booking), 0);
 }
 
@@ -336,13 +319,12 @@ export default async function handler(req, res) {
   try {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
-      const hasBookingMetadata =
-        String(session?.metadata?.eventSlug || "").trim() &&
-        String(session?.metadata?.eventDateIso || "").trim();
+      const isTestSession =
+        event.livemode === false || session?.livemode === false;
 
-      if (!hasBookingMetadata && event.livemode === false) {
+      if (isTestSession) {
         console.warn(
-          "[stripe-webhook] ignored test checkout.session.completed without booking metadata.",
+          "[stripe-webhook] ignored test checkout.session.completed.",
         );
         return res.status(200).json({ received: true, ignored: true });
       }

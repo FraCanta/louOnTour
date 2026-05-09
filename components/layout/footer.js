@@ -6,9 +6,17 @@ import FooterLogo from "../../public/logo_lou2.png";
 import { useRouter } from "next/router";
 import Subscribe from "../newsletter/subscribe";
 import { openCookiePreferences } from "../../utils/cookieConsent";
+import eventsData from "../../data/events.json";
 
 const Footer = ({ translation }) => {
   const { locale } = useRouter();
+  const footerEvents = (eventsData?.events || [])
+    .filter((event) => event.status === "published")
+    .slice(0, 3);
+  const hasMoreFooterEvents =
+    (eventsData?.events || []).filter((event) => event.status === "published")
+      .length > footerEvents.length;
+
   return (
     <>
       <footer className=" flex flex-col justify-center px-4 py-10 2xl:p-10 min-h-[40vh] lg:min-h-[50vh]  text-[#232f37] ">
@@ -52,6 +60,29 @@ const Footer = ({ translation }) => {
                 {" "}
                 {translation?.footer?.[locale]?.Col4?.row1}
               </Link>
+              <div className="mt-4 flex flex-col gap-2 sm:mt-12">
+                <h6 className="footer-title text-para !opacity-100">
+                  {translation?.menu?.[locale]?.events}
+                </h6>
+                {footerEvents.map((event) => (
+                  <Link
+                    key={event.slug}
+                    href={`/eventi/${event.slug}`}
+                    className="text-base hover:underline text-para"
+                  >
+                    {event.title?.[locale] || event.title?.it}
+                  </Link>
+                ))}
+                <Link href="/eventi" className="text-para hover:underline">
+                  {hasMoreFooterEvents
+                    ? locale === "en"
+                      ? "...and the other events"
+                      : "...e gli altri eventi"
+                    : locale === "en"
+                      ? "All events"
+                      : "Tutti gli eventi"}
+                </Link>
+              </div>
             </div>
             <div className="flex flex-col gap-2">
               <h6 className="footer-title text-para !opacity-100">

@@ -47,8 +47,66 @@ body {
 }
 
 .cookie-consent-trigger,
-.cookie-consent-overlay {
+.cookie-consent-overlay,
+.accessibility-widget-trigger,
+.accessibility-widget-panel {
   z-index: 1000000;
+}
+
+.accessibility-widget-backdrop {
+  animation: lou-a11y-backdrop-in 0.22s ease-out both;
+}
+
+.accessibility-widget-backdrop-closing {
+  animation: lou-a11y-backdrop-out 0.22s ease-in both;
+}
+
+.accessibility-widget-panel {
+  animation: lou-a11y-panel-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  height: 100svh;
+  max-height: 100svh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.accessibility-widget-panel-closing {
+  animation: lou-a11y-panel-out 0.24s ease-in both;
+}
+
+@keyframes lou-a11y-panel-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes lou-a11y-panel-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes lou-a11y-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lou-a11y-backdrop-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 :focus-visible {
@@ -64,9 +122,24 @@ html.lou-a11y-large-text {
   font-size: 112.5%;
 }
 
+html.lou-a11y-line-height :is(p, li, a, button, label, span, input, textarea) {
+  line-height: 1.8 !important;
+}
+
+html.lou-a11y-letter-spacing :is(h1, h2, h3, h4, h5, h6, p, li, a, button, label, span, input, textarea) {
+  letter-spacing: 0.08em !important;
+}
+
+html.lou-a11y-center-align :is(h1, h2, h3, h4, h5, h6, p, li) {
+  text-align: center !important;
+}
+
+html.lou-a11y-bold-text :is(h1, h2, h3, h4, h5, h6, p, li, a, button, label, span) {
+  font-weight: 700 !important;
+}
+
 html.lou-a11y-readable-font * {
   font-family: Arial, Helvetica, sans-serif !important;
-  letter-spacing: 0 !important;
 }
 
 html.lou-a11y-highlight-links a {
@@ -107,6 +180,37 @@ html.lou-a11y-contrast :focus-visible {
   outline-color: #000000;
 }
 
+html.lou-a11y-light-contrast,
+html.lou-a11y-light-contrast body {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+html.lou-a11y-light-contrast :is(section, article, header, footer, main, div) {
+  background-color: #ffffff !important;
+}
+
+html.lou-a11y-light-contrast :is(h1, h2, h3, h4, h5, h6, p, li, dt, dd, label, span) {
+  color: #111111 !important;
+}
+
+html.lou-a11y-light-contrast a {
+  color: #8a2f1d !important;
+}
+
+html.lou-a11y-monochrome body {
+  filter: grayscale(1) !important;
+}
+
+html.lou-a11y-large-cursor,
+html.lou-a11y-large-cursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%23232f37' stroke='white' stroke-width='2' d='M7 3l17 16-9 1-4 8-4-25z'/%3E%3C/svg%3E") 4 4, auto !important;
+}
+
+html.lou-a11y-hide-images :is(img, picture, video, canvas, iframe) {
+  visibility: hidden !important;
+}
+
 html.lou-a11y-reduce-motion *,
 html.lou-a11y-reduce-motion *::before,
 html.lou-a11y-reduce-motion *::after {
@@ -144,6 +248,18 @@ html.lou-a11y-reduce-motion *::after {
     overflow-y: auto;
     overscroll-behavior: contain;
     padding-right: 0.25rem;
+  }
+
+  .accessibility-widget-panel {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 1rem;
+    padding-bottom: max(6rem, calc(env(safe-area-inset-bottom) + 3rem));
+  }
+
+  .event-mobile-collapsible:not(.is-expanded) {
+    max-height: 18rem;
+    overflow: hidden;
   }
 }
 

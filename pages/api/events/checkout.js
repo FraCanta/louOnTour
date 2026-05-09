@@ -5,6 +5,11 @@ import {
   getStripeClient,
 } from "../../../utils/stripe";
 import { supabaseAdmin } from "../../../utils/supabaseAdmin";
+import {
+  getBookingAttendeeCount,
+  isCountableBooking,
+  parsePositiveInt,
+} from "../../../utils/eventBookings";
 
 const MAX_EVENT_CAPACITY = 10;
 
@@ -14,29 +19,6 @@ function buildCheckoutLineDescription(date, locale) {
   const time = String(date.time || "").trim();
   const location = String(date.location || "").trim();
   return [label, time, location].filter(Boolean).join(" | ");
-}
-
-function parsePositiveInt(value, fallback = 0) {
-  const parsed = Number(value);
-
-  if (!Number.isFinite(parsed)) {
-    return fallback;
-  }
-
-  return Math.max(0, Math.round(parsed));
-}
-
-function getBookingAttendeeCount(booking) {
-  const fromMetadata = parsePositiveInt(
-    booking?.raw_payload?.metadata?.attendeeCount,
-    0,
-  );
-
-  if (fromMetadata > 0) {
-    return fromMetadata;
-  }
-
-  return 1;
 }
 
 async function getBookedSeats(eventSlug, eventDateIso) {
@@ -51,10 +33,9 @@ async function getBookedSeats(eventSlug, eventDateIso) {
     throw new Error(`Errore lettura disponibilita: ${error.message}`);
   }
 
-  return (data || []).reduce(
-    (sum, booking) => sum + getBookingAttendeeCount(booking),
-    0,
-  );
+  return (data || [])
+    .filter(isCountableBooking)
+    .reduce((sum, booking) => sum + getBookingAttendeeCount(booking), 0);
 }
 
 export default async function handler(req, res) {

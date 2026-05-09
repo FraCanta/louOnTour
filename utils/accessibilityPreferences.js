@@ -4,17 +4,33 @@ export const ACCESSIBILITY_PANEL_EVENT = "lou-accessibility-panel-open";
 
 export const DEFAULT_ACCESSIBILITY_PREFERENCES = {
   largeText: false,
+  lineHeight: false,
+  letterSpacing: false,
+  centerAlign: false,
+  boldText: false,
   highContrast: false,
+  lightContrast: false,
+  monochrome: false,
   highlightLinks: false,
   readableFont: false,
+  largeCursor: false,
+  hideImages: false,
   reduceMotion: false,
 };
 
 const CLASS_MAP = {
   largeText: "lou-a11y-large-text",
+  lineHeight: "lou-a11y-line-height",
+  letterSpacing: "lou-a11y-letter-spacing",
+  centerAlign: "lou-a11y-center-align",
+  boldText: "lou-a11y-bold-text",
   highContrast: "lou-a11y-contrast",
+  lightContrast: "lou-a11y-light-contrast",
+  monochrome: "lou-a11y-monochrome",
   highlightLinks: "lou-a11y-highlight-links",
   readableFont: "lou-a11y-readable-font",
+  largeCursor: "lou-a11y-large-cursor",
+  hideImages: "lou-a11y-hide-images",
   reduceMotion: "lou-a11y-reduce-motion",
 };
 

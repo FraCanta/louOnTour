@@ -3,6 +3,11 @@ import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { uploadEventImage } from "../../utils/uploadEventImage";
 import { supabase } from "../../utils/supabase";
+import {
+  getBookingAttendeeCount,
+  isCountableBooking,
+  isTestBooking,
+} from "../../utils/eventBookings";
 
 const SITE_TIMEZONE = "Europe/Rome";
 const MIN_EVENT_SPOTS = 4;
@@ -14,6 +19,18 @@ const NAV_ITEMS = [
   { id: "events", label: "Eventi", icon: "hugeicons:calendar-03" },
   { id: "editor", label: "Editor", icon: "hugeicons:note-edit" },
   { id: "payments", label: "Pagamenti", icon: "hugeicons:credit-card" },
+];
+const EMPTY_MANUAL_BOOKING_FORM = {
+  customerEmail: "",
+  attendeeCount: "1",
+  attendeeNames: "",
+  amountEuro: "",
+  paymentStatus: "pending",
+  note: "",
+};
+const MANUAL_PAYMENT_STATUS_OPTIONS = [
+  { value: "pending", label: "In versamento" },
+  { value: "paid", label: "Pagato" },
 ];
 
 function createDateEntry(partial = {}) {
@@ -524,11 +541,6 @@ function getCalendarDays(monthDate) {
   return days;
 }
 
-function getPaymentAttendeeCount(payment) {
-  const count = Number(payment?.raw_payload?.metadata?.attendeeCount || 1);
-  return Number.isFinite(count) && count > 0 ? count : 1;
-}
-
 function getEventStripeDateCount(event) {
   return (event?.dates || []).filter(
     (date) =>
@@ -554,17 +566,20 @@ function OverviewPanel({
   onOpenEditor,
   onOpenPayments,
   onSelectEvent,
+  onCreateManualBooking,
 }) {
   const publishedEvents = events.filter(
     (event) => event.status === "published",
   );
   const draftEvents = events.filter((event) => event.status === "draft");
+  const countablePayments = payments.filter(isCountableBooking);
+  const testPaymentsCount = payments.filter(isTestBooking).length;
   const onlineCheckoutDates = events.reduce(
     (sum, event) => sum + getEventStripeDateCount(event),
     0,
   );
   const latestEvents = events.slice(0, 4);
-  const latestPayments = payments.slice(0, 4);
+  const latestPayments = countablePayments.slice(0, 4);
   const firstEventMonth = events
     .flatMap((event) => event.dates || [])
     .map((date) => getIsoDateKey(date.iso))
@@ -574,13 +589,19 @@ function OverviewPanel({
     ? new Date(`${firstEventMonth.slice(0, 7)}-01T12:00:00`)
     : new Date();
   const [calendarMonth, setCalendarMonth] = useState(initialMonthDate);
+  const [selectedCalendarDay, setSelectedCalendarDay] = useState(null);
+  const [manualBookingKey, setManualBookingKey] = useState("");
+  const [manualBookingForm, setManualBookingForm] = useState(
+    EMPTY_MANUAL_BOOKING_FORM,
+  );
+  const [manualBookingSaving, setManualBookingSaving] = useState(false);
   const calendarDays = getCalendarDays(calendarMonth);
   const calendarMonthKey = [
     calendarMonth.getFullYear(),
     String(calendarMonth.getMonth() + 1).padStart(2, "0"),
   ].join("-");
   const bookingsByDate = payments.reduce((accumulator, payment) => {
-    if (payment.payment_status !== "paid") {
+    if (!isCountableBooking(payment)) {
       return accumulator;
     }
 
@@ -591,7 +612,7 @@ function OverviewPanel({
     }
 
     accumulator[key] =
-      (accumulator[key] || 0) + getPaymentAttendeeCount(payment);
+      (accumulator[key] || 0) + getBookingAttendeeCount(payment);
     return accumulator;
   }, {});
   const eventsByDate = events.reduce((accumulator, event) => {
@@ -611,9 +632,49 @@ function OverviewPanel({
   const monthEventDates = Object.keys(eventsByDate).filter((key) =>
     key.startsWith(calendarMonthKey),
   ).length;
+  const monthEventEntries = Object.entries(eventsByDate)
+    .filter(([key]) => key.startsWith(calendarMonthKey))
+    .flatMap(([key, entries]) =>
+      entries.map((entry) => ({
+        key,
+        event: entry.event,
+        date: entry.date,
+      })),
+    )
+    .sort((left, right) => {
+      const dateComparison = String(left.date?.iso || "").localeCompare(
+        String(right.date?.iso || ""),
+      );
+
+      if (dateComparison !== 0) {
+        return dateComparison;
+      }
+
+      return String(left.event?.title?.it || left.event?.slug || "").localeCompare(
+        String(right.event?.title?.it || right.event?.slug || ""),
+      );
+    });
   const monthBookings = Object.entries(bookingsByDate)
     .filter(([key]) => key.startsWith(calendarMonthKey))
     .reduce((sum, [, count]) => sum + count, 0);
+  const selectedDayEvents = selectedCalendarDay
+    ? eventsByDate[selectedCalendarDay.key] || []
+    : [];
+  const selectedDayPayments = selectedCalendarDay
+    ? payments.filter(
+        (payment) =>
+          isCountableBooking(payment) &&
+          getIsoDateKey(payment.event_date_iso) === selectedCalendarDay.key,
+      )
+    : [];
+  const selectedDayBookedCount = selectedDayPayments.reduce(
+    (sum, payment) => sum + getBookingAttendeeCount(payment),
+    0,
+  );
+  const selectedDayLabel =
+    selectedDayEvents[0]?.date?.labelIt ||
+    selectedCalendarDay?.key ||
+    "Giorno selezionato";
 
   function changeCalendarMonth(offset) {
     setCalendarMonth(
@@ -629,7 +690,41 @@ function OverviewPanel({
     );
   }
 
+  function openManualBookingForm(event, date) {
+    setManualBookingKey(`${event.slug}-${date.iso}`);
+    setManualBookingForm({
+      ...EMPTY_MANUAL_BOOKING_FORM,
+      note: "Bonifico",
+    });
+  }
+
+  function updateManualBookingField(field, value) {
+    setManualBookingForm((current) => ({
+      ...current,
+      [field]: value,
+    }));
+  }
+
+  async function submitManualBooking(event, date) {
+    setManualBookingSaving(true);
+
+    try {
+      await onCreateManualBooking({
+        eventSlug: event.slug,
+        eventDateIso: date.iso,
+        ...manualBookingForm,
+      });
+      setManualBookingKey("");
+      setManualBookingForm(EMPTY_MANUAL_BOOKING_FORM);
+    } catch (_error) {
+      // The parent already surfaces the error in the admin notice area.
+    } finally {
+      setManualBookingSaving(false);
+    }
+  }
+
   return (
+    <>
     <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
       <div className="flex flex-col gap-3 mb-6 xl:flex-row xl:items-end xl:justify-between">
         <div>
@@ -854,10 +949,13 @@ function OverviewPanel({
             <div className="grid grid-cols-2 gap-2 mb-4">
               <div className="px-3 py-2 bg-white rounded-xl">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
-                  Giorni evento
+                  Eventi mese
                 </p>
                 <p className="mt-1 text-2xl font-bold text-[#2c395b]">
-                  {monthEventDates}
+                  {monthEventEntries.length}
+                </p>
+                <p className="mt-1 text-[10px] text-[#6d7b80]">
+                  {monthEventDates} giorni
                 </p>
               </div>
               <div className="px-3 py-2 bg-white rounded-xl">
@@ -867,6 +965,11 @@ function OverviewPanel({
                 <p className="mt-1 text-2xl font-bold text-[#2c395b]">
                   {monthBookings}
                 </p>
+                {testPaymentsCount ? (
+                  <p className="mt-1 text-[10px] text-[#6d7b80]">
+                    {testPaymentsCount} test esclusi
+                  </p>
+                ) : null}
               </div>
             </div>
 
@@ -887,25 +990,40 @@ function OverviewPanel({
                 const dayEvents = eventsByDate[day.key] || [];
                 const bookedCount = bookingsByDate[day.key] || 0;
                 const hasEvent = dayEvents.length > 0;
-                const firstEvent = dayEvents[0]?.event;
-
+                const hasDayActivity = hasEvent || bookedCount > 0;
                 return (
                   <button
                     key={day.key}
                     type="button"
-                    disabled={!firstEvent}
-                    onClick={() => firstEvent && onSelectEvent(firstEvent)}
+                    onClick={() =>
+                      hasDayActivity
+                        ? setSelectedCalendarDay({
+                            key: day.key,
+                            day: day.day,
+                          })
+                        : null
+                    }
+                    disabled={!hasDayActivity}
                     className={`min-h-[72px] rounded-xl border p-2 text-left transition ${
-                      hasEvent
-                        ? "border-[#c9573c]/25 bg-white shadow-[0_10px_24px_rgba(35,47,55,0.05)] hover:bg-[#fef3ea]"
+                      hasDayActivity
+                        ? "border-[#c9573c]/25 bg-white shadow-[0_10px_24px_rgba(35,47,55,0.05)]"
                         : "border-transparent bg-white/45 text-[#6d7b80]"
-                    } disabled:cursor-default`}
+                    } ${
+                      hasDayActivity
+                        ? "cursor-pointer hover:-translate-y-0.5 hover:border-[#c9573c]/45 hover:bg-[#fffaf7]"
+                        : "cursor-default"
+                    }`}
                   >
                     <span className="block text-sm font-bold text-[#2c395b]">
                       {day.day}
                     </span>
                     {hasEvent ? (
                       <span className="mt-2 block h-1.5 w-8 rounded-full bg-[#c9573c]" />
+                    ) : null}
+                    {dayEvents.length > 1 ? (
+                      <span className="mt-2 inline-flex rounded-full bg-[#c9573c]/10 px-2 py-1 text-[10px] font-bold text-[#c9573c]">
+                        {dayEvents.length} eventi
+                      </span>
                     ) : null}
                     {bookedCount ? (
                       <span className="mt-2 inline-flex rounded-full bg-[#dfe9df] px-2 py-1 text-[10px] font-bold text-[#4b6b4e]">
@@ -918,47 +1036,389 @@ function OverviewPanel({
             </div>
 
             <div className="mt-4 space-y-2">
-              {Object.entries(eventsByDate)
-                .filter(([key]) => key.startsWith(calendarMonthKey))
-                .sort(([left], [right]) => left.localeCompare(right))
-                .slice(0, 4)
-                .map(([key, entries]) => (
+              {monthEventEntries.length ? (
+                monthEventEntries.map(({ key, event, date }) => (
                   <button
-                    key={key}
+                    key={`${key}-${event.slug}-${date.iso}`}
                     type="button"
-                    onClick={() => onSelectEvent(entries[0].event)}
+                    onClick={() => onSelectEvent(event)}
                     className="block w-full rounded-xl bg-white px-3 py-2 text-left transition hover:bg-[#fef3ea]"
                   >
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
-                      {entries[0].date.labelIt || key}
+                      {date.labelIt || key}
                     </p>
                     <p className="mt-1 truncate text-sm font-bold text-[#2c395b]">
-                      {entries
-                        .map(
-                          (entry) => entry.event.title?.it || entry.event.slug,
-                        )
-                        .join(", ")}
+                      {event.title?.it || event.slug}
                     </p>
                   </button>
-                ))}
+                ))
+              ) : (
+                <p className="rounded-xl bg-white px-3 py-2 text-sm text-[#6d7b80]">
+                  Nessun evento in questo mese.
+                </p>
+              )}
             </div>
           </div>
         </aside>
       </div>
     </article>
+    {selectedCalendarDay ? (
+      <div
+        className="fixed inset-0 z-[1000] flex items-center justify-center bg-[#17212a]/45 p-4 backdrop-blur-sm"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="calendar-day-modal-title"
+      >
+        <div className="max-h-[min(86vh,760px)] w-full max-w-3xl overflow-y-auto rounded-md bg-[#fffaf7] p-5 shadow-[0_30px_80px_rgba(23,33,42,0.24)] lg:p-6">
+          <div className="mb-5 flex items-start justify-between gap-4">
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#c9573c]/70">
+                Riepilogo giorno
+              </p>
+              <h3
+                id="calendar-day-modal-title"
+                className="text-2xl font-bold text-[#2c395b]"
+              >
+                {selectedDayLabel}
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
+                <span className="rounded-full bg-white px-3 py-1.5 text-[#2c395b]">
+                  {selectedDayEvents.length}{" "}
+                  {selectedDayEvents.length === 1 ? "evento" : "eventi"}
+                </span>
+                <span className="rounded-full bg-[#dfe9df] px-3 py-1.5 text-[#4b6b4e]">
+                  {selectedDayBookedCount} prenotati
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setSelectedCalendarDay(null)}
+              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#c9573c]/20 bg-white text-[#c9573c]"
+              aria-label="Chiudi riepilogo giorno"
+            >
+              <Icon icon="hugeicons:cancel-01" width="18" height="18" />
+            </button>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-[1.25fr_0.75fr]">
+            <section className="space-y-3">
+              <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#77674E]">
+                Eventi in calendario
+              </h4>
+              {selectedDayEvents.length ? (
+                selectedDayEvents.map(({ event, date }) => {
+                  const eventPayments = selectedDayPayments.filter(
+                    (payment) => payment.event_slug === event.slug,
+                  );
+                  const eventBookedCount = eventPayments.reduce(
+                    (sum, payment) => sum + getBookingAttendeeCount(payment),
+                    0,
+                  );
+                  const dateSpots = Number(date?.spots || 0);
+                  const remainingSpots = dateSpots
+                    ? Math.max(dateSpots - eventBookedCount, 0)
+                    : null;
+
+                  return (
+                    <article
+                      key={`${event.slug}-${date.iso}`}
+                      className="rounded-md border border-[#c9573c]/10 bg-white p-4"
+                    >
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
+                            {[date?.time, date?.recurringLabelIt]
+                              .filter(Boolean)
+                              .join(" - ") || date?.labelIt}
+                          </p>
+                          <h5 className="mt-1 text-lg font-bold text-[#2c395b]">
+                            {event.title?.it || event.slug}
+                          </h5>
+                        </div>
+                        <span
+                          className={`w-fit rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase ${
+                            event.status === "published"
+                              ? "bg-[#dfe9df] text-[#4b6b4e]"
+                              : "bg-[#f5e4d8] text-[#9c613d]"
+                          }`}
+                        >
+                          {event.status === "published" ? "Live" : "Bozza"}
+                        </span>
+                      </div>
+                      <div className="mt-4 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
+                        <div className="rounded-xl bg-[#fff8f4] p-3">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+                            Prenotati
+                          </p>
+                          <p className="mt-1 text-xl font-bold text-[#2c395b]">
+                            {eventBookedCount}
+                          </p>
+                        </div>
+                        <div className="rounded-xl bg-[#fff8f4] p-3">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+                            Disponibili
+                          </p>
+                          <p className="mt-1 text-xl font-bold text-[#2c395b]">
+                            {remainingSpots ?? "-"}
+                          </p>
+                        </div>
+                        <div className="rounded-xl bg-[#fff8f4] p-3">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#77674E]">
+                            Checkout
+                          </p>
+                          <p className="mt-1 text-sm font-bold text-[#2c395b]">
+                            {date?.stripe?.enabled ? "Online" : "Email"}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedCalendarDay(null);
+                            onSelectEvent(event);
+                          }}
+                          className="rounded-xl bg-[#2c395b] px-4 py-2 text-sm font-semibold text-white"
+                        >
+                          Modifica evento
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedCalendarDay(null);
+                            onOpenPayments();
+                          }}
+                          className="rounded-xl border border-[#c9573c]/20 bg-white px-4 py-2 text-sm font-semibold text-[#c9573c]"
+                        >
+                          Vedi pagamenti
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => openManualBookingForm(event, date)}
+                          disabled={remainingSpots === 0}
+                          className="rounded-xl border border-[#2c395b]/15 bg-[#fff8f4] px-4 py-2 text-sm font-semibold text-[#2c395b] disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                          Aggiungi bonifico
+                        </button>
+                      </div>
+                      {manualBookingKey === `${event.slug}-${date.iso}` ? (
+                        <form
+                          className="mt-4 rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-4"
+                          onSubmit={async (formEvent) => {
+                            formEvent.preventDefault();
+                            await submitManualBooking(event, date);
+                          }}
+                        >
+                          <div className="mb-3 flex items-start justify-between gap-3">
+                            <div>
+                              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
+                                Prenotazione manuale
+                              </p>
+                              <p className="mt-1 text-sm text-[#6d7b80]">
+                                Per bonifico o pagamento fuori sito.
+                              </p>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => setManualBookingKey("")}
+                              className="text-sm font-semibold text-[#c9573c]"
+                            >
+                              Chiudi
+                            </button>
+                          </div>
+                          <div className="grid gap-3 sm:grid-cols-2">
+                            <label className="text-sm font-semibold text-[#2c395b]">
+                              Email cliente
+                              <input
+                                type="email"
+                                value={manualBookingForm.customerEmail}
+                                onChange={(inputEvent) =>
+                                  updateManualBookingField(
+                                    "customerEmail",
+                                    inputEvent.target.value,
+                                  )
+                                }
+                                className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                                placeholder="nome@email.com"
+                              />
+                            </label>
+                            <label className="text-sm font-semibold text-[#2c395b]">
+                              Persone
+                              <input
+                                type="number"
+                                min="1"
+                                max={remainingSpots || MAX_EVENT_SPOTS}
+                                required
+                                value={manualBookingForm.attendeeCount}
+                                onChange={(inputEvent) =>
+                                  updateManualBookingField(
+                                    "attendeeCount",
+                                    inputEvent.target.value,
+                                  )
+                                }
+                                className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                              />
+                            </label>
+                            <label className="text-sm font-semibold text-[#2c395b]">
+                              Importo ricevuto
+                              <input
+                                type="text"
+                                inputMode="decimal"
+                                value={manualBookingForm.amountEuro}
+                                onChange={(inputEvent) =>
+                                  updateManualBookingField(
+                                    "amountEuro",
+                                    inputEvent.target.value,
+                                  )
+                                }
+                                className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                                placeholder="45,00"
+                              />
+                            </label>
+                            <label className="text-sm font-semibold text-[#2c395b]">
+                              Nota
+                              <input
+                                type="text"
+                                value={manualBookingForm.note}
+                                onChange={(inputEvent) =>
+                                  updateManualBookingField(
+                                    "note",
+                                    inputEvent.target.value,
+                                  )
+                                }
+                                className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                                placeholder="Bonifico"
+                              />
+                            </label>
+                            <label className="text-sm font-semibold text-[#2c395b] sm:col-span-2">
+                              Nomi partecipanti
+                              <textarea
+                                value={manualBookingForm.attendeeNames}
+                                onChange={(inputEvent) =>
+                                  updateManualBookingField(
+                                    "attendeeNames",
+                                    inputEvent.target.value,
+                                  )
+                                }
+                                className="mt-1 min-h-[78px] w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                                placeholder="Un nome per riga, oppure separati da virgola"
+                              />
+                            </label>
+                          </div>
+                          <button
+                            type="submit"
+                            disabled={manualBookingSaving}
+                            className="mt-4 rounded-xl bg-[#2c395b] px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+                          >
+                            {manualBookingSaving
+                              ? "Salvataggio..."
+                              : "Salva prenotazione"}
+                          </button>
+                        </form>
+                      ) : null}
+                    </article>
+                  );
+                })
+              ) : (
+                <p className="rounded-md border border-dashed border-[#c9573c]/20 bg-white p-4 text-sm text-[#6d7b80]">
+                  Nessun evento programmato in questo giorno.
+                </p>
+              )}
+            </section>
+
+            <aside className="space-y-3">
+              <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#77674E]">
+                Prenotazioni
+              </h4>
+              {selectedDayPayments.length ? (
+                selectedDayPayments.map((payment) => {
+                  const attendeeCount = getBookingAttendeeCount(payment);
+                  const attendeeNames = getAttendeeNames(payment);
+                  const customerEmail =
+                    payment?.raw_payload?.customer_details?.email ||
+                    payment.customer_email ||
+                    "-";
+
+                  return (
+                    <div
+                      key={payment.stripe_session_id}
+                      className="rounded-md border border-[#c9573c]/10 bg-white p-3"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#c9573c]/70">
+                        {payment.event_slug || "-"}
+                      </p>
+                      <p className="mt-1 break-words text-sm font-bold text-[#2c395b]">
+                        {customerEmail}
+                      </p>
+                      <p className="mt-2 text-xs text-[#6d7b80]">
+                        {attendeeCount}{" "}
+                        {attendeeCount === 1 ? "persona" : "persone"}
+                        {attendeeNames.length
+                          ? ` - ${attendeeNames.join(", ")}`
+                          : ""}
+                      </p>
+                      <p className="mt-2 text-sm font-bold text-[#2c395b]">
+                        {formatMoneyFromCents(
+                          payment.amount_total,
+                          payment.currency,
+                        )}
+                      </p>
+                    </div>
+                  );
+                })
+              ) : (
+                <p className="rounded-md border border-dashed border-[#c9573c]/20 bg-white p-4 text-sm text-[#6d7b80]">
+                  Nessuna prenotazione pagata per questo giorno.
+                </p>
+              )}
+            </aside>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-2 border-t border-[#c9573c]/10 pt-4">
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedCalendarDay(null);
+                onNewEvent();
+              }}
+              className="rounded-xl bg-[#c9573c] px-4 py-2 text-sm font-semibold text-white"
+            >
+              Nuovo evento
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedCalendarDay(null);
+                onOpenEvents();
+              }}
+              className="rounded-xl border border-[#c9573c]/20 bg-white px-4 py-2 text-sm font-semibold text-[#2c395b]"
+            >
+              Archivio eventi
+            </button>
+          </div>
+        </div>
+      </div>
+    ) : null}
+    </>
   );
 }
 
-function PaymentMobileCard({ payment, isExpanded, onToggle }) {
+function PaymentMobileCard({
+  payment,
+  isExpanded,
+  onToggle,
+  onToggleExcluded,
+  isUpdatingExclusion,
+}) {
   const attendeeNames = getAttendeeNames(payment);
-  const attendeeCount = Number(
-    payment?.raw_payload?.metadata?.attendeeCount || 1,
-  );
+  const attendeeCount = getBookingAttendeeCount(payment);
   const metadata = payment?.raw_payload?.metadata || {};
   const customerDetails = payment?.raw_payload?.customer_details || {};
   const eventDateLabel = getPaymentEventDateLabel(payment);
   const customerEmail = customerDetails.email || payment.customer_email || "-";
   const sessionId = String(payment.stripe_session_id || "");
+  const paymentIsTest = isTestBooking(payment);
 
   return (
     <article className="rounded-md border border-[#c9573c]/10 bg-white p-4 shadow-[0_14px_30px_rgba(35,47,55,0.05)]">
@@ -978,12 +1438,14 @@ function PaymentMobileCard({ payment, isExpanded, onToggle }) {
           </p>
           <span
             className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
-              payment.payment_status === "paid"
+              paymentIsTest
+                ? "bg-[#f5e4d8] text-[#9c613d]"
+                : payment.payment_status === "paid"
                 ? "bg-[#dfe9df] text-[#4b6b4e]"
                 : "bg-[#f5e4d8] text-[#9c613d]"
             }`}
           >
-            {payment.payment_status || "-"}
+            {paymentIsTest ? "test escluso" : payment.payment_status || "-"}
           </span>
         </div>
       </div>
@@ -1029,6 +1491,20 @@ function PaymentMobileCard({ payment, isExpanded, onToggle }) {
           height="16"
         />
         {isExpanded ? "Nascondi dettagli" : "Mostra dettagli"}
+      </button>
+
+      <button
+        type="button"
+        onClick={() => onToggleExcluded(payment, !paymentIsTest)}
+        disabled={isUpdatingExclusion}
+        className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#2c395b]/15 px-4 py-3 text-sm font-semibold text-[#2c395b] transition hover:bg-[#fff8f4] disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        <Icon
+          icon={paymentIsTest ? "hugeicons:checkmark-circle-02" : "hugeicons:cancel-circle"}
+          width="16"
+          height="16"
+        />
+        {paymentIsTest ? "Reincludi nei conteggi" : "Escludi dai conteggi"}
       </button>
 
       {isExpanded ? (
@@ -1085,6 +1561,14 @@ export default function AdminDashboard() {
   const [notice, setNotice] = useState("");
   const [payments, setPayments] = useState([]);
   const [expandedPaymentSessionId, setExpandedPaymentSessionId] = useState("");
+  const [updatingPaymentExclusionId, setUpdatingPaymentExclusionId] =
+    useState("");
+  const [paymentsManualFormOpen, setPaymentsManualFormOpen] = useState(false);
+  const [paymentsManualForm, setPaymentsManualForm] = useState({
+    eventSlug: "",
+    eventDateIso: "",
+    ...EMPTY_MANUAL_BOOKING_FORM,
+  });
 
   const stats = useMemo(() => {
     const published = events.filter((event) => event.status === "published");
@@ -1118,10 +1602,9 @@ export default function AdminDashboard() {
   }, [events]);
 
   const paymentStats = useMemo(() => {
-    const successful = payments.filter(
-      (item) => item.payment_status === "paid",
-    );
-    const refunded = payments.filter((item) =>
+    const countablePayments = payments.filter((item) => !isTestBooking(item));
+    const successful = countablePayments.filter(isCountableBooking);
+    const refunded = countablePayments.filter((item) =>
       String(item.payment_status || "").includes("refund"),
     );
     const totalCents = successful.reduce(
@@ -1130,12 +1613,27 @@ export default function AdminDashboard() {
     );
 
     return {
-      count: payments.length,
+      count: countablePayments.length,
       successfulCount: successful.length,
       refundedCount: refunded.length,
       totalCents,
+      testCount: payments.length - countablePayments.length,
     };
   }, [payments]);
+  const manualBookingEventOptions = useMemo(
+    () =>
+      events
+        .filter((event) => (event.dates || []).length > 0)
+        .map((event) => ({
+          slug: event.slug,
+          title: event.title?.it || event.slug,
+          dates: event.dates || [],
+        })),
+    [events],
+  );
+  const selectedManualBookingEvent = manualBookingEventOptions.find(
+    (event) => event.slug === paymentsManualForm.eventSlug,
+  );
 
   const clearAdminSession = useCallback((message = "") => {
     setAdminKey("");
@@ -1146,7 +1644,6 @@ export default function AdminDashboard() {
     setForm(buildEmptyForm());
     setNotice("");
     setError(message);
-    setSyncStatus(null);
     setPayments([]);
   }, []);
 
@@ -1316,6 +1813,122 @@ export default function AdminDashboard() {
       }
     },
     [adminKey, handleLogout],
+  );
+
+  const updatePaymentExclusion = useCallback(
+    async (payment, excluded) => {
+      const stripeSessionId = String(payment?.stripe_session_id || "").trim();
+
+      if (!adminKey || !stripeSessionId) {
+        return;
+      }
+
+      setUpdatingPaymentExclusionId(stripeSessionId);
+      setError("");
+      setNotice("");
+
+      try {
+        const response = await fetch("/api/admin/payments", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${adminKey}`,
+          },
+          body: JSON.stringify({ stripeSessionId, excluded }),
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (isSessionExpiredResponse(response, data)) {
+            await handleLogout({
+              skipRemoteSignOut: true,
+              message: SESSION_EXPIRED_MESSAGE,
+            });
+            return;
+          }
+          throw new Error(data.error || "Errore aggiornamento pagamento.");
+        }
+
+        setPayments((current) =>
+          current.map((item) =>
+            item.stripe_session_id === stripeSessionId
+              ? data.payment || item
+              : item,
+          ),
+        );
+        setNotice(
+          excluded
+            ? "Pagamento escluso dai conteggi."
+            : "Pagamento reincluso nei conteggi.",
+        );
+      } catch (updateError) {
+        setError(updateError.message);
+      } finally {
+        setUpdatingPaymentExclusionId("");
+      }
+    },
+    [adminKey, handleLogout],
+  );
+
+  const createManualBooking = useCallback(
+    async (payload) => {
+      if (!adminKey) {
+        return;
+      }
+
+      setPaymentsLoading(true);
+      setError("");
+      setNotice("");
+
+      try {
+        const response = await fetch("/api/admin/payments", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${adminKey}`,
+          },
+          body: JSON.stringify(payload),
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (isSessionExpiredResponse(response, data)) {
+            await handleLogout({
+              skipRemoteSignOut: true,
+              message: SESSION_EXPIRED_MESSAGE,
+            });
+            return;
+          }
+          throw new Error(data.error || "Errore creazione prenotazione.");
+        }
+
+        setPayments((current) => [data.payment, ...current].filter(Boolean));
+        setNotice("Prenotazione manuale aggiunta ai conteggi.");
+      } catch (createError) {
+        setError(createError.message);
+        throw createError;
+      } finally {
+        setPaymentsLoading(false);
+      }
+    },
+    [adminKey, handleLogout],
+  );
+  const submitPaymentsManualBooking = useCallback(
+    async (submitEvent) => {
+      submitEvent.preventDefault();
+      if (!paymentsManualForm.eventSlug || !paymentsManualForm.eventDateIso) {
+        setError("Seleziona evento e data per il bonifico.");
+        return;
+      }
+
+      await createManualBooking(paymentsManualForm);
+      setPaymentsManualForm({
+        eventSlug: paymentsManualForm.eventSlug,
+        eventDateIso: paymentsManualForm.eventDateIso,
+        ...EMPTY_MANUAL_BOOKING_FORM,
+      });
+    },
+    [createManualBooking, paymentsManualForm],
   );
 
   useEffect(() => {
@@ -2297,6 +2910,7 @@ export default function AdminDashboard() {
                   onOpenEditor={() => handleNavSelect("editor")}
                   onOpenPayments={() => handleNavSelect("payments")}
                   onSelectEvent={handleSelectEvent}
+                  onCreateManualBooking={createManualBooking}
                 />
               ) : null}
 
@@ -3112,7 +3726,11 @@ export default function AdminDashboard() {
                       <StatsCard
                         label="Transazioni"
                         value={paymentStats.count}
-                        note="Ultime 300 da Stripe webhook"
+                        note={
+                          paymentStats.testCount
+                            ? `${paymentStats.testCount} test esclusi`
+                            : "Ultime 300 da Stripe webhook"
+                        }
                         icon="hugeicons:credit-card"
                       />
                       <StatsCard
@@ -3133,10 +3751,186 @@ export default function AdminDashboard() {
                           paymentStats.totalCents,
                           "eur",
                         )}
-                        note="Somma importi pagati"
+                        note="Somma importi reali"
                         icon="hugeicons:wallet-02"
                       />
                     </div>
+
+                    <section className="mb-6 rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-4">
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                          <p className="text-sm font-semibold text-[#2c395b]">
+                            Prenotazione manuale (bonifico)
+                          </p>
+                          <p className="text-xs text-[#6d7b80]">
+                            Inserisci prenotazioni fuori sito per mantenere
+                            disponibilita e contatori reali.
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setPaymentsManualFormOpen((current) => !current)
+                          }
+                          className="inline-flex items-center gap-2 rounded-xl border border-[#2c395b]/15 bg-white px-4 py-2 text-sm font-semibold text-[#2c395b]"
+                        >
+                          <Icon
+                            icon={
+                              paymentsManualFormOpen
+                                ? "hugeicons:arrow-up-01"
+                                : "hugeicons:arrow-down-01"
+                            }
+                            width="16"
+                            height="16"
+                          />
+                          {paymentsManualFormOpen ? "Chiudi" : "Aggiungi"}
+                        </button>
+                      </div>
+
+                      {paymentsManualFormOpen ? (
+                        <form
+                          className="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-3"
+                          onSubmit={submitPaymentsManualBooking}
+                        >
+                          <label className="text-sm font-semibold text-[#2c395b]">
+                            Evento
+                            <select
+                              value={paymentsManualForm.eventSlug}
+                              onChange={(event) =>
+                                setPaymentsManualForm((current) => {
+                                  const nextEventSlug = event.target.value;
+                                  const nextEvent = manualBookingEventOptions.find(
+                                    (item) => item.slug === nextEventSlug,
+                                  );
+                                  return {
+                                    ...current,
+                                    eventSlug: nextEventSlug,
+                                    eventDateIso: nextEvent?.dates?.[0]?.iso || "",
+                                  };
+                                })
+                              }
+                              className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                            >
+                              <option value="">Seleziona evento</option>
+                              {manualBookingEventOptions.map((event) => (
+                                <option key={event.slug} value={event.slug}>
+                                  {event.title}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                          <label className="text-sm font-semibold text-[#2c395b]">
+                            Data evento
+                            <select
+                              value={paymentsManualForm.eventDateIso}
+                              onChange={(event) =>
+                                setPaymentsManualForm((current) => ({
+                                  ...current,
+                                  eventDateIso: event.target.value,
+                                }))
+                              }
+                              className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                              disabled={!selectedManualBookingEvent}
+                            >
+                              <option value="">Seleziona data</option>
+                              {(selectedManualBookingEvent?.dates || []).map(
+                                (date) => (
+                                  <option key={date.iso} value={date.iso}>
+                                    {date.labelIt || date.iso}
+                                  </option>
+                                ),
+                              )}
+                            </select>
+                          </label>
+                          <label className="text-sm font-semibold text-[#2c395b]">
+                            Persone
+                            <input
+                              type="number"
+                              min="1"
+                              max={MAX_EVENT_SPOTS}
+                              value={paymentsManualForm.attendeeCount}
+                              onChange={(event) =>
+                                setPaymentsManualForm((current) => ({
+                                  ...current,
+                                  attendeeCount: event.target.value,
+                                }))
+                              }
+                              className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                              required
+                            />
+                          </label>
+                          <label className="text-sm font-semibold text-[#2c395b]">
+                            Email cliente
+                            <input
+                              type="email"
+                              value={paymentsManualForm.customerEmail}
+                              onChange={(event) =>
+                                setPaymentsManualForm((current) => ({
+                                  ...current,
+                                  customerEmail: event.target.value,
+                                }))
+                              }
+                              className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                            />
+                          </label>
+                          <label className="text-sm font-semibold text-[#2c395b]">
+                            Importo
+                            <input
+                              type="text"
+                              inputMode="decimal"
+                              value={paymentsManualForm.amountEuro}
+                              onChange={(event) =>
+                                setPaymentsManualForm((current) => ({
+                                  ...current,
+                                  amountEuro: event.target.value,
+                                }))
+                              }
+                              className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                              placeholder="45,00"
+                            />
+                          </label>
+                          <label className="text-sm font-semibold text-[#2c395b]">
+                            Nota
+                            <input
+                              type="text"
+                              value={paymentsManualForm.note}
+                              onChange={(event) =>
+                                setPaymentsManualForm((current) => ({
+                                  ...current,
+                                  note: event.target.value,
+                                }))
+                              }
+                              className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                              placeholder="Bonifico"
+                            />
+                          </label>
+                          <label className="text-sm font-semibold text-[#2c395b] lg:col-span-3">
+                            Nomi partecipanti
+                            <textarea
+                              value={paymentsManualForm.attendeeNames}
+                              onChange={(event) =>
+                                setPaymentsManualForm((current) => ({
+                                  ...current,
+                                  attendeeNames: event.target.value,
+                                }))
+                              }
+                              className="mt-1 min-h-[72px] w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                            />
+                          </label>
+                          <div className="lg:col-span-3">
+                            <button
+                              type="submit"
+                              disabled={paymentsLoading}
+                              className="rounded-xl bg-[#2c395b] px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+                            >
+                              {paymentsLoading
+                                ? "Salvataggio..."
+                                : "Salva bonifico"}
+                            </button>
+                          </div>
+                        </form>
+                      ) : null}
+                    </section>
 
                     <div className="space-y-4 lg:hidden">
                       {payments.length ? (
@@ -3156,6 +3950,10 @@ export default function AdminDashboard() {
                                 setExpandedPaymentSessionId((current) =>
                                   current === sessionId ? "" : sessionId,
                                 )
+                              }
+                              onToggleExcluded={updatePaymentExclusion}
+                              isUpdatingExclusion={
+                                updatingPaymentExclusionId === sessionId
                               }
                             />
                           );
@@ -3201,13 +3999,12 @@ export default function AdminDashboard() {
                           {payments.length ? (
                             payments.map((payment) => {
                               const attendeeNames = getAttendeeNames(payment);
-                              const attendeeCount = Number(
-                                payment?.raw_payload?.metadata?.attendeeCount ||
-                                  1,
-                              );
+                              const attendeeCount =
+                                getBookingAttendeeCount(payment);
                               const sessionId = String(
                                 payment.stripe_session_id || "",
                               );
+                              const paymentIsTest = isTestBooking(payment);
                               const isExpanded =
                                 sessionId &&
                                 expandedPaymentSessionId === sessionId;
@@ -3271,7 +4068,37 @@ export default function AdminDashboard() {
                                       )}
                                     </td>
                                     <td className="px-4 py-3 text-[#6d7b80]">
-                                      {payment.payment_status || "-"}
+                                      <span
+                                        className={`inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                                          paymentIsTest
+                                            ? "bg-[#f5e4d8] text-[#9c613d]"
+                                            : payment.payment_status === "paid"
+                                            ? "bg-[#dfe9df] text-[#4b6b4e]"
+                                            : "bg-[#f5e4d8] text-[#9c613d]"
+                                        }`}
+                                      >
+                                        {paymentIsTest
+                                          ? "test escluso"
+                                          : payment.payment_status || "-"}
+                                      </span>
+                                      <button
+                                        type="button"
+                                        onClick={() =>
+                                          updatePaymentExclusion(
+                                            payment,
+                                            !paymentIsTest,
+                                          )
+                                        }
+                                        disabled={
+                                          updatingPaymentExclusionId ===
+                                          sessionId
+                                        }
+                                        className="mt-2 block rounded-lg border border-[#2c395b]/15 px-2.5 py-1 text-[11px] font-semibold text-[#2c395b] transition hover:bg-[#fff8f4] disabled:cursor-not-allowed disabled:opacity-60"
+                                      >
+                                        {paymentIsTest
+                                          ? "Reincludi"
+                                          : "Escludi"}
+                                      </button>
                                     </td>
                                     <td className="px-4 py-3 text-[#6d7b80]">
                                       {payment.customer_email || "-"}

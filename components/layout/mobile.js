@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,6 +10,16 @@ const Mobile = ({ translation }) => {
   const { locale, pathname } = useRouter();
   const [open, setOpen] = useState(false); // menu mobile
   const [toursOpen, setToursOpen] = useState(false); // overlay Tours
+
+  useEffect(() => {
+    const closeMenu = () => {
+      setOpen(false);
+      setToursOpen(false);
+    };
+
+    window.addEventListener("lou-mobile-menu-close", closeMenu);
+    return () => window.removeEventListener("lou-mobile-menu-close", closeMenu);
+  }, []);
 
   const svgVariants = {
     closed: { path: "M4 6h16M4 12h16M4 18h16", transition: { duration: 0.5 } },
