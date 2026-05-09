@@ -158,7 +158,7 @@ export default function CookieConsent() {
           setShowDetails(true);
           setIsOpen(true);
         }}
-        className={`fixed bottom-5 right-4 z-[9998] inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#c9573c]/25 bg-white text-[#c9573c] shadow-[0_16px_40px_rgba(35,47,55,0.18)] transition hover:bg-[#fff4ef] sm:right-5 ${
+        className={`cookie-consent-trigger fixed bottom-5 right-4 z-[1000000] inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#c9573c]/25 bg-white text-[#c9573c] shadow-[0_16px_40px_rgba(35,47,55,0.18)] transition hover:bg-[#fff4ef] sm:right-5 ${
           isOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         aria-label={content.floatingLabel}
@@ -168,14 +168,17 @@ export default function CookieConsent() {
       </button>
 
       {isOpen ? (
-        <div className="fixed inset-x-0 bottom-0 z-[9999] px-3 pb-3 sm:px-5 sm:pb-5">
+        <div
+          className="cookie-consent-overlay fixed inset-x-0 bottom-0 z-[1000000] px-3 pt-3 sm:px-5 sm:pb-5"
+          style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
+        >
           <section
-            className="mx-auto max-w-5xl rounded-md border border-[#c9573c]/20 bg-white p-4 text-[#232f37] shadow-[0_18px_60px_rgba(35,47,55,0.18)] sm:p-5"
+            className="cookie-consent-panel mx-auto max-h-[calc(100svh-1.5rem)] max-w-5xl overflow-y-auto overscroll-contain rounded-md border border-[#c9573c]/20 bg-white p-3 text-[#232f37] shadow-[0_18px_60px_rgba(35,47,55,0.18)] sm:max-h-[calc(100svh-2.5rem)] sm:p-5"
             role="dialog"
             aria-modal="true"
             aria-labelledby="cookie-consent-title"
           >
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div className="max-w-3xl">
                 <h2 id="cookie-consent-title" className="text-lg font-semibold text-[#c9573c]">
                   {content.title}
@@ -195,21 +198,21 @@ export default function CookieConsent() {
                 <button
                   type="button"
                   onClick={() => persist({ analytics: true, marketing: true })}
-                  className="rounded-[2px] bg-[#c9573c] px-4 py-3 text-sm font-semibold text-white"
+                  className="rounded-[2px] bg-[#c9573c] px-4 py-2.5 text-sm font-semibold text-white sm:py-3"
                 >
                   {content.accept}
                 </button>
                 <button
                   type="button"
                   onClick={() => persist({ analytics: false, marketing: false })}
-                  className="rounded-[2px] border border-[#c9573c]/25 px-4 py-3 text-sm font-semibold text-[#c9573c]"
+                  className="rounded-[2px] border border-[#c9573c]/25 px-4 py-2.5 text-sm font-semibold text-[#c9573c] sm:py-3"
                 >
                   {content.reject}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowDetails((current) => !current)}
-                  className="rounded-[2px] border border-[#d8c8bd] px-4 py-3 text-sm font-semibold text-[#435257]"
+                  className="rounded-[2px] border border-[#d8c8bd] px-4 py-2.5 text-sm font-semibold text-[#435257] sm:py-3"
                 >
                   {content.customize}
                 </button>
@@ -217,36 +220,38 @@ export default function CookieConsent() {
             </div>
 
             {showDetails ? (
-              <div className="mt-5 grid gap-3 border-t border-[#c9573c]/10 pt-4 md:grid-cols-3">
-                <PreferenceRow
-                  title={content.necessaryTitle}
-                  text={content.necessaryText}
-                  aside={content.alwaysOn}
-                />
-                <PreferenceRow
-                  title={content.analyticsTitle}
-                  text={content.analyticsText}
-                  checked={preferences.analytics}
-                  onChange={(checked) => setPreferences((current) => ({ ...current, analytics: checked }))}
-                />
-                <PreferenceRow
-                  title={content.marketingTitle}
-                  text={content.marketingText}
-                  checked={preferences.marketing}
-                  onChange={(checked) => setPreferences((current) => ({ ...current, marketing: checked }))}
-                />
-                <div className="flex flex-col gap-2 md:col-span-3 sm:flex-row sm:justify-end">
+              <div className="cookie-consent-details mt-4 border-t border-[#c9573c]/10 pt-4">
+                <div className="cookie-consent-options grid max-h-[28svh] gap-2.5 overflow-y-auto overscroll-contain pr-1 sm:max-h-none sm:gap-3 sm:overflow-visible sm:pr-0 md:grid-cols-3">
+                  <PreferenceRow
+                    title={content.necessaryTitle}
+                    text={content.necessaryText}
+                    aside={content.alwaysOn}
+                  />
+                  <PreferenceRow
+                    title={content.analyticsTitle}
+                    text={content.analyticsText}
+                    checked={preferences.analytics}
+                    onChange={(checked) => setPreferences((current) => ({ ...current, analytics: checked }))}
+                  />
+                  <PreferenceRow
+                    title={content.marketingTitle}
+                    text={content.marketingText}
+                    checked={preferences.marketing}
+                    onChange={(checked) => setPreferences((current) => ({ ...current, marketing: checked }))}
+                  />
+                </div>
+                <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:justify-end">
                   <button
                     type="button"
                     onClick={() => persist({ analytics: false, marketing: false })}
-                    className="rounded-[2px] border border-[#c9573c]/25 px-4 py-3 text-sm font-semibold text-[#c9573c]"
+                    className="rounded-[2px] border border-[#c9573c]/25 px-4 py-2.5 text-sm font-semibold text-[#c9573c] sm:py-3"
                   >
                     {content.close}
                   </button>
                   <button
                     type="button"
                     onClick={() => persist(preferences)}
-                    className="rounded-[2px] bg-[#232f37] px-4 py-3 text-sm font-semibold text-white"
+                    className="rounded-[2px] bg-[#232f37] px-4 py-2.5 text-sm font-semibold text-white sm:py-3"
                   >
                     {content.save}
                   </button>
@@ -262,7 +267,7 @@ export default function CookieConsent() {
 
 function PreferenceRow({ title, text, aside, checked, onChange }) {
   return (
-    <div className="rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-4">
+    <div className="rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-3 sm:p-4">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h3 className="text-sm font-semibold text-[#232f37]">{title}</h3>

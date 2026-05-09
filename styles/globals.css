@@ -46,6 +46,11 @@ body {
   transform: translateY(0);
 }
 
+.cookie-consent-trigger,
+.cookie-consent-overlay {
+  z-index: 1000000;
+}
+
 :focus-visible {
   outline: 3px solid #232f37;
   outline-offset: 3px;
@@ -119,6 +124,26 @@ html.lou-a11y-reduce-motion *::after {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .cookie-consent-panel {
+    max-height: calc(100svh - 1.5rem);
+    overflow-y: auto;
+    padding: 0.75rem;
+  }
+
+  .cookie-consent-details {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .cookie-consent-options {
+    max-height: 28svh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 0.25rem;
   }
 }
 
