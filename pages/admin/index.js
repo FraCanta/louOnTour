@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { uploadEventImage } from "../../utils/uploadEventImage";
@@ -7,6 +8,7 @@ import {
   getBookingAttendeeCount,
   isCountableBooking,
   isTestBooking,
+  parsePositiveInt,
 } from "../../utils/eventBookings";
 
 const SITE_TIMEZONE = "Europe/Rome";
@@ -15,10 +17,48 @@ const MAX_EVENT_SPOTS = 10;
 const SESSION_EXPIRED_MESSAGE =
   "Sessione scaduta. Effettua di nuovo l'accesso.";
 const NAV_ITEMS = [
-  { id: "overview", label: "Panoramica", icon: "hugeicons:square-lock-02" },
+  { id: "overview", label: "Dashboard", icon: "hugeicons:square-lock-02" },
   { id: "events", label: "Eventi", icon: "hugeicons:calendar-03" },
-  { id: "editor", label: "Editor", icon: "hugeicons:note-edit" },
   { id: "payments", label: "Pagamenti", icon: "hugeicons:credit-card" },
+  { id: "editor", label: "Editor", icon: "hugeicons:note-edit" },
+];
+const ADMIN_OTHER_ITEMS = [
+  { id: "profile", label: "Profilo", icon: "hugeicons:user-account" },
+  { id: "settings", label: "Impostazioni", icon: "hugeicons:settings-02" },
+];
+const DEFAULT_ADMIN_PREFERENCES = {
+  displayName: "",
+  profileImage: "",
+  logoText: "LQ",
+  brandName: "Luisa Quaglia",
+  brandSubtitle: "Tour Guide Admin",
+  accentColor: "#C9573C",
+  theme: "light",
+  density: "comfortable",
+  showCalendar: true,
+  showSuccessChart: true,
+};
+const ADMIN_AVATAR_PRESETS = [
+  {
+    label: "Sole",
+    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=sole-lq&backgroundColor=fef3ea",
+  },
+  {
+    label: "Viola",
+    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=viola-lq&backgroundColor=fff1ec",
+  },
+  {
+    label: "Menta",
+    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=menta-lq&backgroundColor=dfe9df",
+  },
+  {
+    label: "Cielo",
+    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=cielo-lq&backgroundColor=e7eff2",
+  },
+  {
+    label: "Terra",
+    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=terra-lq&backgroundColor=f5e4d8",
+  },
 ];
 const EMPTY_MANUAL_BOOKING_FORM = {
   customerEmail: "",
@@ -359,12 +399,12 @@ function validateForm(form) {
 
 function StatsCard({ label, value, note, icon }) {
   return (
-    <article className="rounded-md border border-[#c9573c]/10 bg-white/80 p-5 shadow-[0_16px_40px_rgba(35,47,55,0.05)] backdrop-blur-sm">
+    <article className="rounded-md border border-[#dfe7e3] bg-white p-5 shadow-[0_18px_42px_rgba(44,57,91,0.06)]">
       <div className="flex items-start justify-between mb-5">
-        <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#CE9486]/20 text-[#c9573c]">
+        <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-[#fff1ec] text-[#c9573c]">
           <Icon icon={icon} width="21" height="21" />
         </span>
-        <span className="rounded-full bg-[#fef3ea] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#77674E]">
+        <span className="rounded-full bg-[#f4f7f5] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6d7b80]">
           Live
         </span>
       </div>
@@ -578,11 +618,355 @@ function getEventNextDateLabel(event) {
   );
 }
 
+function normalizeSearchValue(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+function getEventSearchText(event) {
+  return normalizeSearchValue(
+    [
+      event?.slug,
+      event?.status,
+      event?.title?.it,
+      event?.title?.en,
+      event?.location?.it,
+      event?.location?.en,
+      event?.price?.it,
+      event?.price?.en,
+      ...(event?.dates || []).flatMap((date) => [
+        date?.iso,
+        date?.labelIt,
+        date?.labelEn,
+        date?.time,
+        date?.recurringLabelIt,
+      ]),
+    ]
+      .filter(Boolean)
+      .join(" "),
+  );
+}
+
+function getPaymentSearchText(payment) {
+  const metadata = payment?.raw_payload?.metadata || {};
+  const customerDetails = payment?.raw_payload?.customer_details || {};
+
+  return normalizeSearchValue(
+    [
+      payment?.event_slug,
+      payment?.event_date_iso,
+      payment?.customer_email,
+      payment?.payment_status,
+      payment?.stripe_session_id,
+      payment?.stripe_payment_intent_id,
+      metadata.eventSlug,
+      metadata.eventDateLabel,
+      metadata.eventDateIso,
+      metadata.attendeeNames,
+      metadata.note,
+      customerDetails.email,
+      customerDetails.name,
+      customerDetails.phone,
+      getPaymentEventDateLabel(payment),
+      getAttendeeNames(payment).join(" "),
+    ]
+      .filter(Boolean)
+      .join(" "),
+  );
+}
+
+function getEventPeriodDates(event) {
+  return (event?.dates || []).filter((date) => {
+    const month = Number(String(date?.iso || "").slice(5, 7));
+
+    return Number.isFinite(month) && month >= 1 && month <= 11;
+  });
+}
+
+function buildEventPerformance(events, payments) {
+  const countablePayments = payments.filter(isCountableBooking);
+
+  return events
+    .map((event) => {
+      const periodDates = getEventPeriodDates(event);
+      const dateKeys = new Set(
+        periodDates.map((date) => getIsoDateKey(date.iso)).filter(Boolean),
+      );
+      const capacity = periodDates.reduce(
+        (sum, date) =>
+          sum +
+          Math.max(
+            0,
+            Math.min(MAX_EVENT_SPOTS, parsePositiveInt(date.spots, MAX_EVENT_SPOTS)),
+          ),
+        0,
+      );
+      const eventPayments = countablePayments.filter(
+        (payment) =>
+          payment.event_slug === event.slug &&
+          dateKeys.has(getIsoDateKey(payment.event_date_iso)),
+      );
+      const booked = eventPayments.reduce(
+        (sum, payment) => sum + getBookingAttendeeCount(payment),
+        0,
+      );
+      const revenueCents = eventPayments.reduce(
+        (sum, payment) => sum + Number(payment.amount_total || 0),
+        0,
+      );
+
+      return {
+        slug: event.slug,
+        title: event.title?.it || event.slug,
+        datesCount: periodDates.length,
+        booked,
+        capacity,
+        revenueCents,
+        occupancy: capacity > 0 ? Math.round((booked / capacity) * 100) : 0,
+      };
+    })
+    .filter((item) => item.datesCount > 0)
+    .sort((left, right) => {
+      if (right.booked !== left.booked) {
+        return right.booked - left.booked;
+      }
+
+      return right.revenueCents - left.revenueCents;
+    });
+}
+
+function EventPerformanceChart({ performance }) {
+  const topEvents = performance.slice(0, 6);
+  const totalBooked = performance.reduce((sum, item) => sum + item.booked, 0);
+  const totalRevenueCents = performance.reduce(
+    (sum, item) => sum + item.revenueCents,
+    0,
+  );
+  const chartEvents = topEvents.filter((item) => item.booked > 0);
+  const chartTotal = chartEvents.reduce((sum, item) => sum + item.booked, 0);
+  const circumference = 276.46;
+  const chartColors = [
+    "#c9573c",
+    "#2c395b",
+    "#77674E",
+    "#d79b7f",
+    "#CE9486",
+    "#f0b19a",
+    "#8f7354",
+  ];
+  let sliceOffset = 0;
+
+  if (chartEvents.length) {
+    return (
+      <section className="rounded-md border border-[#c9573c]/10 bg-white p-4">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h4 className="text-lg font-bold text-[#2c395b]">
+              Successo eventi
+            </h4>
+            <p className="mt-1 text-xs text-[#6d7b80]">
+              Prenotazioni pagate sulle date del periodo fino a novembre.
+            </p>
+          </div>
+          <div className="flex gap-2 text-xs font-semibold">
+            <span className="rounded-full bg-[#dfe9df] px-3 py-1.5 text-[#4b6b4e]">
+              {totalBooked} persone
+            </span>
+            <span className="rounded-full bg-[#fff8f4] px-3 py-1.5 text-[#2c395b]">
+              {formatMoneyFromCents(totalRevenueCents, "eur")}
+            </span>
+          </div>
+        </div>
+
+        <div className="grid gap-5 lg:grid-cols-[300px_1fr] lg:items-center">
+          <div className="relative mx-auto aspect-square w-full max-w-[280px]">
+            <svg
+              viewBox="0 0 120 120"
+              role="img"
+              aria-label="Grafico a torta del successo eventi"
+              className="h-full w-full -rotate-90"
+            >
+              <circle
+                cx="60"
+                cy="60"
+                r="44"
+                fill="none"
+                stroke="#f3e8df"
+                strokeWidth="16"
+              />
+              {chartEvents.map((item, index) => {
+                const sliceLength = (item.booked / chartTotal) * circumference;
+                const currentOffset = sliceOffset;
+                sliceOffset += sliceLength;
+
+                return (
+                  <circle
+                    key={item.slug}
+                    cx="60"
+                    cy="60"
+                    r="44"
+                    fill="none"
+                    stroke={chartColors[index % chartColors.length]}
+                    strokeWidth="16"
+                    strokeLinecap="round"
+                    strokeDasharray={`${sliceLength} ${circumference - sliceLength}`}
+                    strokeDashoffset={-currentOffset}
+                    style={{
+                      "--slice-length": sliceLength,
+                      "--slice-gap": circumference - sliceLength,
+                      animation: "eventPieSlice 900ms ease-out both",
+                      animationDelay: `${index * 120}ms`,
+                    }}
+                  />
+                );
+              })}
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+              <p className="text-4xl font-bold text-[#2c395b]">{chartTotal}</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#77674E]">
+                persone
+              </p>
+            </div>
+            <style jsx>{`
+              @keyframes eventPieSlice {
+                from {
+                  stroke-dasharray: 0 ${circumference};
+                }
+                to {
+                  stroke-dasharray: var(--slice-length) var(--slice-gap);
+                }
+              }
+            `}</style>
+          </div>
+
+          <div className="grid grid-cols-1 gap-2">
+            {chartEvents.map((item, index) => {
+              const share = Math.round((item.booked / chartTotal) * 100);
+
+              return (
+                <div
+                  key={`${item.slug}-legend`}
+                  className="rounded-md border border-[#c9573c]/10 bg-[#fffaf7] px-3 py-2"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex min-w-0 items-start gap-2">
+                      <span
+                        className="mt-1 h-3 w-3 shrink-0 rounded-full"
+                        style={{
+                          backgroundColor:
+                            chartColors[index % chartColors.length],
+                        }}
+                      />
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-bold text-[#2c395b]">
+                          {item.title}
+                        </p>
+                        <p className="mt-1 text-xs text-[#6d7b80]">
+                          {item.booked}/{item.capacity || "-"} posti -{" "}
+                          {formatMoneyFromCents(item.revenueCents, "eur")}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="shrink-0 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-[#c9573c]">
+                      {share}%
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
+  return (
+    <section className="rounded-md border border-[#c9573c]/10 bg-white p-4">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h4 className="text-lg font-bold text-[#2c395b]">Successo eventi</h4>
+          <p className="mt-1 text-xs text-[#6d7b80]">
+            Prenotazioni pagate sulle date del periodo fino a novembre.
+          </p>
+        </div>
+        <div className="flex gap-2 text-xs font-semibold">
+          <span className="rounded-full bg-[#dfe9df] px-3 py-1.5 text-[#4b6b4e]">
+            {totalBooked} persone
+          </span>
+          <span className="rounded-full bg-[#fff8f4] px-3 py-1.5 text-[#2c395b]">
+            {formatMoneyFromCents(totalRevenueCents, "eur")}
+          </span>
+        </div>
+      </div>
+
+      {topEvents.length ? (
+        <div className="space-y-4">
+          {topEvents.map((item, index) => {
+            const bookedWidth = Math.max(4, (item.booked / maxBooked) * 100);
+            const occupancyWidth = Math.max(4, Math.min(100, item.occupancy));
+
+            return (
+              <div key={item.slug} className="space-y-2">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-bold text-[#2c395b]">
+                      {index + 1}. {item.title}
+                    </p>
+                    <p className="mt-0.5 text-xs text-[#6d7b80]">
+                      {item.booked}/{item.capacity || "-"} posti ·{" "}
+                      {item.occupancy}% riempimento ·{" "}
+                      {formatMoneyFromCents(item.revenueCents, "eur")}
+                    </p>
+                  </div>
+                  <span className="shrink-0 rounded-full bg-[#2c395b] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white">
+                    {item.booked}
+                  </span>
+                </div>
+                <div className="space-y-1.5">
+                  <div className="h-2 overflow-hidden rounded-full bg-[#f3e8df]">
+                    <div
+                      className="h-full rounded-full bg-[#c9573c]"
+                      style={{ width: `${bookedWidth}%` }}
+                    />
+                  </div>
+                  <div className="h-1.5 overflow-hidden rounded-full bg-[#edf1f2]">
+                    <div
+                      className="h-full rounded-full bg-[#7aa9a5]"
+                      style={{ width: `${occupancyWidth}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          <div className="flex flex-wrap gap-3 pt-1 text-[11px] font-semibold text-[#6d7b80]">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-2 w-5 rounded-full bg-[#c9573c]" />
+              Persone prenotate
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-1.5 w-5 rounded-full bg-[#7aa9a5]" />
+              Percentuale riempimento
+            </span>
+          </div>
+        </div>
+      ) : (
+        <p className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-4 text-sm text-[#6d7b80]">
+          Il grafico si popola quando arrivano prenotazioni pagate.
+        </p>
+      )}
+    </section>
+  );
+}
+
 function OverviewPanel({
   events,
   payments,
   paymentStats,
   loading,
+  dashboardSettings,
   onNewEvent,
   onOpenEvents,
   onOpenEditor,
@@ -602,6 +986,9 @@ function OverviewPanel({
   );
   const latestEvents = events.slice(0, 4);
   const latestPayments = countablePayments.slice(0, 4);
+  const eventPerformance = buildEventPerformance(events, payments);
+  const showCalendar = dashboardSettings?.show_calendar !== false;
+  const showSuccessChart = dashboardSettings?.show_success_chart !== false;
   const firstEventMonth = events
     .flatMap((event) => event.dates || [])
     .map((date) => getIsoDateKey(date.iso))
@@ -747,7 +1134,7 @@ function OverviewPanel({
 
   return (
     <>
-    <article className="rounded-md border border-[#c9573c]/10 bg-white/75 p-5 shadow-[0_20px_50px_rgba(35,47,55,0.05)] backdrop-blur-sm lg:p-7">
+    <article className="rounded-md border border-[#dfe7e3] bg-white p-5 shadow-[0_18px_42px_rgba(44,57,91,0.06)] lg:p-7">
       <div className="flex flex-col gap-3 mb-6 xl:flex-row xl:items-end xl:justify-between">
         <div>
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
@@ -762,7 +1149,11 @@ function OverviewPanel({
         ) : null}
       </div>
 
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.15fr_0.85fr] 4xl:grid-cols-[1.3fr_0.7fr]">
+      <div
+        className={`grid grid-cols-1 gap-4 ${
+          showCalendar ? "xl:grid-cols-[1.15fr_0.85fr] 4xl:grid-cols-[1.3fr_0.7fr]" : ""
+        }`}
+      >
         <div className="space-y-4">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 2xl:grid-cols-4">
             {[
@@ -793,21 +1184,49 @@ function OverviewPanel({
             ].map((item) => (
               <div
                 key={item.label}
-                className="rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-4"
+                className={`rounded-md border p-4 ${
+                  item.label === "Incasso"
+                    ? "border-[#c9573c]/10 bg-[#c9573c] text-white"
+                    : "border-[#dfe7e3] bg-[#f9fbf8]"
+                }`}
               >
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#CE9486]/20 text-[#c9573c]">
+                <div
+                  className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md ${
+                    item.label === "Incasso"
+                      ? "bg-white/15 text-white"
+                      : "bg-[#fff1ec] text-[#c9573c]"
+                  }`}
+                >
                   <Icon icon={item.icon} width="19" height="19" />
                 </div>
-                <p className="text-sm font-semibold text-[#6d7b80]">
+                <p
+                  className={`text-sm font-semibold ${
+                    item.label === "Incasso" ? "text-white/78" : "text-[#6d7b80]"
+                  }`}
+                >
                   {item.label}
                 </p>
-                <p className="mt-1 text-3xl font-bold text-[#2c395b]">
+                <p
+                  className={`mt-1 text-3xl font-bold ${
+                    item.label === "Incasso" ? "text-white" : "text-[#2c395b]"
+                  }`}
+                >
                   {item.value}
                 </p>
-                <p className="mt-1 text-xs text-[#6d7b80]">{item.note}</p>
+                <p
+                  className={`mt-1 text-xs ${
+                    item.label === "Incasso" ? "text-white/72" : "text-[#6d7b80]"
+                  }`}
+                >
+                  {item.note}
+                </p>
               </div>
             ))}
           </div>
+
+          {showSuccessChart ? (
+            <EventPerformanceChart performance={eventPerformance} />
+          ) : null}
 
           <div className="grid grid-cols-1 gap-4 2xl:grid-cols-2">
             <section className="rounded-md border border-[#c9573c]/10 bg-white p-4">
@@ -909,31 +1328,8 @@ function OverviewPanel({
           </div>
         </div>
 
+        {showCalendar ? (
         <aside className="space-y-4">
-          <div className="rounded-md bg-[#2c395b] p-5 text-[#fef3ea]">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#fef3ea]/70">
-              Azioni rapide
-            </p>
-            <div className="grid grid-cols-1 gap-3">
-              <button
-                type="button"
-                onClick={onNewEvent}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#fef3ea] px-4 py-3 text-sm font-semibold text-[#2c395b]"
-              >
-                <Icon icon="hugeicons:add-circle" width="18" height="18" />
-                Nuovo evento
-              </button>
-              <button
-                type="button"
-                onClick={onOpenEditor}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#fef3ea]/20 px-4 py-3 text-sm font-semibold text-white"
-              >
-                <Icon icon="hugeicons:note-edit" width="18" height="18" />
-                Apri editor
-              </button>
-            </div>
-          </div>
-
           <div className="rounded-md border border-[#c9573c]/10 bg-[#fff8f4] p-4 shadow-[0_16px_40px_rgba(35,47,55,0.05)]">
             <div className="flex items-start justify-between gap-3 mb-4">
               <div>
@@ -1057,31 +1453,9 @@ function OverviewPanel({
               })}
             </div>
 
-            <div className="mt-4 space-y-2">
-              {monthEventEntries.length ? (
-                monthEventEntries.map(({ key, event, date }) => (
-                  <button
-                    key={`${key}-${event.slug}-${date.iso}`}
-                    type="button"
-                    onClick={() => onSelectEvent(event)}
-                    className="block w-full rounded-xl bg-white px-3 py-2 text-left transition hover:bg-[#fef3ea]"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
-                      {date.labelIt || key}
-                    </p>
-                    <p className="mt-1 truncate text-sm font-bold text-[#2c395b]">
-                      {event.title?.it || event.slug}
-                    </p>
-                  </button>
-                ))
-              ) : (
-                <p className="rounded-xl bg-white px-3 py-2 text-sm text-[#6d7b80]">
-                  Nessun evento in questo mese.
-                </p>
-              )}
-            </div>
           </div>
         </aside>
+        ) : null}
       </div>
     </article>
     {selectedCalendarDay ? (
@@ -1698,6 +2072,265 @@ function PaymentMobileCard({
   );
 }
 
+function ProfilePanel({ profile, adminUser, onChange, onSave, saving }) {
+  const email = profile.email || adminUser?.email || "";
+  const displayName = profile.display_name || "";
+  const avatarUrl = profile.avatar_url || "";
+  const initials = (displayName || email || "LQ")
+    .split(/\s+|@/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((item) => item[0])
+    .join("")
+    .toUpperCase();
+
+  return (
+    <article className="rounded-md border border-[#dfe7e3] bg-white p-5 shadow-[0_18px_42px_rgba(44,57,91,0.06)] lg:p-7">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
+            Profilo
+          </p>
+          <h3 className="text-3xl font-bold text-[#2c395b]">
+            Dati amministratore
+          </h3>
+        </div>
+        <div className="flex items-center gap-3 rounded-full bg-[#fff8f4] px-4 py-2">
+          {avatarUrl ? (
+            <span
+              aria-label={displayName || "Profilo admin"}
+              className="h-12 w-12 rounded-full bg-[#fff1ec] bg-cover bg-center"
+              role="img"
+              style={{ backgroundImage: `url("${avatarUrl}")` }}
+            />
+          ) : (
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#c9573c] text-sm font-bold text-white">
+              {initials}
+            </span>
+          )}
+          <div>
+            <p className="text-sm font-bold text-[#2c395b]">
+              {displayName || "Admin"}
+            </p>
+            <p className="text-xs text-[#6d7b80]">{email || "-"}</p>
+          </div>
+        </div>
+      </div>
+
+      <form
+        className="grid grid-cols-1 gap-4 lg:grid-cols-2"
+        onSubmit={(event) => {
+          event.preventDefault();
+          onSave();
+        }}
+      >
+        <Field label="Nome visualizzato">
+          <input
+            type="text"
+            value={displayName}
+            onChange={(event) => onChange("display_name", event.target.value)}
+            className={baseInputClass()}
+            placeholder="Nome admin"
+          />
+        </Field>
+        <Field label="Email">
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => onChange("email", event.target.value)}
+            className={baseInputClass()}
+            placeholder="admin@dominio.com"
+          />
+        </Field>
+        <Field label="URL immagine profilo" className="lg:col-span-2">
+          <input
+            type="url"
+            value={avatarUrl}
+            onChange={(event) => onChange("avatar_url", event.target.value)}
+            className={baseInputClass()}
+            placeholder="https://..."
+          />
+        </Field>
+        <div className="lg:col-span-2">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#77674E]">
+            Avatar predefiniti
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {ADMIN_AVATAR_PRESETS.map((preset) => {
+              const isSelected = avatarUrl === preset.url;
+
+              return (
+                <button
+                  key={preset.url}
+                  type="button"
+                  onClick={() => onChange("avatar_url", preset.url)}
+                  className={`group inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition ${
+                    isSelected
+                      ? "border-[#c9573c] bg-[#fff1ec] text-[#c9573c]"
+                      : "border-[#dfe7e3] bg-white text-[#2c395b] hover:border-[#c9573c]/40 hover:bg-[#fff8f4]"
+                  }`}
+                >
+                  <span
+                    className="h-9 w-9 rounded-full bg-[#fff1ec] bg-cover bg-center"
+                    style={{ backgroundImage: `url("${preset.url}")` }}
+                  />
+                  {preset.label}
+                </button>
+              );
+            })}
+            {avatarUrl ? (
+              <button
+                type="button"
+                onClick={() => onChange("avatar_url", "")}
+                className="inline-flex items-center gap-2 rounded-full border border-[#dfe7e3] bg-white px-3 py-2 text-xs font-semibold text-[#6d7b80] transition hover:bg-[#fff8f4]"
+              >
+                <Icon icon="hugeicons:cancel-01" width="16" height="16" />
+                Nessun avatar
+              </button>
+            ) : null}
+          </div>
+        </div>
+        <div className="lg:col-span-2">
+          <button
+            type="submit"
+            disabled={saving}
+            className="inline-flex items-center gap-2 rounded-xl bg-[#c9573c] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#b84c34] disabled:opacity-60"
+          >
+            <Icon icon="hugeicons:floppy-disk" width="18" height="18" />
+            {saving ? "Salvataggio..." : "Salva profilo"}
+          </button>
+        </div>
+      </form>
+    </article>
+  );
+}
+
+function SettingsPanel({ settings, onChange, onSave, saving }) {
+  return (
+    <article className="rounded-md border border-[#dfe7e3] bg-white p-5 shadow-[0_18px_42px_rgba(44,57,91,0.06)] lg:p-7">
+      <div className="mb-6">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
+          Impostazioni
+        </p>
+        <h3 className="text-3xl font-bold text-[#2c395b]">
+          Aspetto dashboard
+        </h3>
+      </div>
+
+      <form
+        className="grid grid-cols-1 gap-4 lg:grid-cols-2"
+        onSubmit={(event) => {
+          event.preventDefault();
+          onSave();
+        }}
+      >
+        <Field label="Nome brand">
+          <input
+            type="text"
+            value={settings.brand_name}
+            onChange={(event) => onChange("brand_name", event.target.value)}
+            className={baseInputClass()}
+          />
+        </Field>
+        <Field label="Sottotitolo">
+          <input
+            type="text"
+            value={settings.brand_subtitle}
+            onChange={(event) => onChange("brand_subtitle", event.target.value)}
+            className={baseInputClass()}
+          />
+        </Field>
+        <Field label="Testo logo">
+          <input
+            type="text"
+            value={settings.logo_text}
+            onChange={(event) => onChange("logo_text", event.target.value)}
+            className={baseInputClass()}
+            maxLength={4}
+          />
+        </Field>
+        <Field label="URL logo">
+          <input
+            type="url"
+            value={settings.logo_url}
+            onChange={(event) => onChange("logo_url", event.target.value)}
+            className={baseInputClass()}
+            placeholder="https://..."
+          />
+        </Field>
+        <Field label="Colore accento">
+          <div className="flex gap-2">
+            <input
+              type="color"
+              value={settings.accent_color}
+              onChange={(event) => onChange("accent_color", event.target.value)}
+              className="h-12 w-14 rounded-xl border border-[#c9573c]/15 bg-white"
+            />
+            <input
+              type="text"
+              value={settings.accent_color}
+              onChange={(event) => onChange("accent_color", event.target.value)}
+              className={`${baseInputClass()} flex-1`}
+            />
+          </div>
+        </Field>
+        <Field label="Tema">
+          <select
+            value={settings.theme}
+            onChange={(event) => onChange("theme", event.target.value)}
+            className={baseInputClass()}
+          >
+            <option value="light">Chiaro</option>
+            <option value="dark">Scuro</option>
+          </select>
+        </Field>
+        <Field label="Densita layout">
+          <select
+            value={settings.density}
+            onChange={(event) => onChange("density", event.target.value)}
+            className={baseInputClass()}
+          >
+            <option value="comfortable">Comodo</option>
+            <option value="compact">Compatto</option>
+          </select>
+        </Field>
+        <div className="grid gap-3 rounded-md bg-[#fff8f4] p-4 lg:col-span-2">
+          <label className="inline-flex items-center gap-3 text-sm font-semibold text-[#2c395b]">
+            <input
+              type="checkbox"
+              checked={settings.show_calendar}
+              onChange={(event) => onChange("show_calendar", event.target.checked)}
+              className="h-4 w-4 accent-[#c9573c]"
+            />
+            Mostra calendario in dashboard
+          </label>
+          <label className="inline-flex items-center gap-3 text-sm font-semibold text-[#2c395b]">
+            <input
+              type="checkbox"
+              checked={settings.show_success_chart}
+              onChange={(event) =>
+                onChange("show_success_chart", event.target.checked)
+              }
+              className="h-4 w-4 accent-[#c9573c]"
+            />
+            Mostra grafico successo eventi
+          </label>
+        </div>
+        <div className="lg:col-span-2">
+          <button
+            type="submit"
+            disabled={saving}
+            className="inline-flex items-center gap-2 rounded-xl bg-[#c9573c] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#b84c34] disabled:opacity-60"
+          >
+            <Icon icon="hugeicons:floppy-disk" width="18" height="18" />
+            {saving ? "Salvataggio..." : "Salva impostazioni"}
+          </button>
+        </div>
+      </form>
+    </article>
+  );
+}
+
 export default function AdminDashboard() {
   const [activePanel, setActivePanel] = useState("overview");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -1723,6 +2356,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [payments, setPayments] = useState([]);
+  const [adminSearchQuery, setAdminSearchQuery] = useState("");
   const [expandedPaymentSessionId, setExpandedPaymentSessionId] = useState("");
   const [updatingPaymentExclusionId, setUpdatingPaymentExclusionId] =
     useState("");
@@ -1734,6 +2368,26 @@ export default function AdminDashboard() {
     eventDateIso: "",
     ...EMPTY_MANUAL_BOOKING_FORM,
   });
+  const [adminProfile, setAdminProfile] = useState({
+    email: "",
+    display_name: "",
+    avatar_url: "",
+    role: "admin",
+    preferences: {},
+  });
+  const [adminSettings, setAdminSettings] = useState({
+    brand_name: DEFAULT_ADMIN_PREFERENCES.brandName,
+    brand_subtitle: DEFAULT_ADMIN_PREFERENCES.brandSubtitle,
+    logo_text: DEFAULT_ADMIN_PREFERENCES.logoText,
+    logo_url: "",
+    accent_color: DEFAULT_ADMIN_PREFERENCES.accentColor,
+    theme: DEFAULT_ADMIN_PREFERENCES.theme,
+    density: DEFAULT_ADMIN_PREFERENCES.density,
+    show_calendar: DEFAULT_ADMIN_PREFERENCES.showCalendar,
+    show_success_chart: DEFAULT_ADMIN_PREFERENCES.showSuccessChart,
+    settings: {},
+  });
+  const [preferencesSaving, setPreferencesSaving] = useState(false);
 
   const stats = useMemo(() => {
     const published = events.filter((event) => event.status === "published");
@@ -1785,6 +2439,28 @@ export default function AdminDashboard() {
       testCount: payments.length - countablePayments.length,
     };
   }, [payments]);
+  const normalizedAdminSearchQuery = normalizeSearchValue(adminSearchQuery);
+  const hasAdminSearchQuery = normalizedAdminSearchQuery.length > 0;
+  const filteredEvents = useMemo(() => {
+    if (!hasAdminSearchQuery) {
+      return events;
+    }
+
+    return events.filter((event) =>
+      getEventSearchText(event).includes(normalizedAdminSearchQuery),
+    );
+  }, [events, hasAdminSearchQuery, normalizedAdminSearchQuery]);
+  const filteredPayments = useMemo(() => {
+    if (!hasAdminSearchQuery) {
+      return payments;
+    }
+
+    return payments.filter((payment) =>
+      getPaymentSearchText(payment).includes(normalizedAdminSearchQuery),
+    );
+  }, [payments, hasAdminSearchQuery, normalizedAdminSearchQuery]);
+  const visibleAdminEvents = hasAdminSearchQuery ? filteredEvents : events;
+  const visibleAdminPayments = hasAdminSearchQuery ? filteredPayments : payments;
   const manualBookingEventOptions = useMemo(
     () =>
       events
@@ -1799,6 +2475,17 @@ export default function AdminDashboard() {
   const selectedManualBookingEvent = manualBookingEventOptions.find(
     (event) => event.slug === paymentsManualForm.eventSlug,
   );
+  const sidebarDisplayName =
+    adminProfile.display_name ||
+    getAdminDisplayName(adminUser) ||
+    adminSettings.brand_name ||
+    "Admin";
+  const sidebarAvatarUrl = adminProfile.avatar_url || adminSettings.logo_url || "";
+  const sidebarInitials = String(
+    adminSettings.logo_text || sidebarDisplayName || "LQ",
+  )
+    .slice(0, 4)
+    .toUpperCase();
 
   const clearAdminSession = useCallback((message = "") => {
     setAdminKey("");
@@ -1807,6 +2494,13 @@ export default function AdminDashboard() {
     setEvents([]);
     setSelectedSlug("");
     setForm(buildEmptyForm());
+    setAdminProfile({
+      email: "",
+      display_name: "",
+      avatar_url: "",
+      role: "admin",
+      preferences: {},
+    });
     setNotice("");
     setError(message);
     setPayments([]);
@@ -1941,6 +2635,95 @@ export default function AdminDashboard() {
       }
     },
     [activePanel, adminKey, handleLogout, selectedSlug],
+  );
+
+  const loadPreferences = useCallback(
+    async (key = adminKey) => {
+      if (!key) {
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/admin/preferences", {
+          headers: {
+            Authorization: `Bearer ${key}`,
+          },
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (isSessionExpiredResponse(response, data)) {
+            await handleLogout({
+              skipRemoteSignOut: true,
+              message: SESSION_EXPIRED_MESSAGE,
+            });
+            return;
+          }
+          throw new Error(data.error || "Errore caricamento preferenze.");
+        }
+
+        if (data.profile) {
+          setAdminProfile((current) => ({ ...current, ...data.profile }));
+        }
+
+        if (data.settings) {
+          setAdminSettings((current) => ({ ...current, ...data.settings }));
+        }
+      } catch (preferencesError) {
+        setError(preferencesError.message);
+      }
+    },
+    [adminKey, handleLogout],
+  );
+
+  const savePreferences = useCallback(
+    async ({ profile, settings } = {}) => {
+      if (!adminKey) {
+        return;
+      }
+
+      setPreferencesSaving(true);
+      setError("");
+      setNotice("");
+
+      try {
+        const response = await fetch("/api/admin/preferences", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${adminKey}`,
+          },
+          body: JSON.stringify({ profile, settings }),
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (isSessionExpiredResponse(response, data)) {
+            await handleLogout({
+              skipRemoteSignOut: true,
+              message: SESSION_EXPIRED_MESSAGE,
+            });
+            return;
+          }
+          throw new Error(data.error || "Errore salvataggio preferenze.");
+        }
+
+        if (data.profile) {
+          setAdminProfile((current) => ({ ...current, ...data.profile }));
+        }
+
+        if (data.settings) {
+          setAdminSettings((current) => ({ ...current, ...data.settings }));
+        }
+
+        setNotice("Preferenze salvate.");
+      } catch (preferencesError) {
+        setError(preferencesError.message);
+      } finally {
+        setPreferencesSaving(false);
+      }
+    },
+    [adminKey, handleLogout],
   );
 
   const loadPayments = useCallback(
@@ -2208,7 +2991,8 @@ export default function AdminDashboard() {
 
     loadEvents(adminKey);
     loadPayments(adminKey);
-  }, [adminKey, loadEvents, loadPayments]);
+    loadPreferences(adminKey);
+  }, [adminKey, loadEvents, loadPayments, loadPreferences]);
 
   useEffect(() => {
     if (!adminKey || typeof window === "undefined") {
@@ -2909,6 +3693,12 @@ export default function AdminDashboard() {
   const showEvents = activePanel === "events";
   const showEditor = activePanel === "editor";
   const showPayments = activePanel === "payments";
+  const showProfile = activePanel === "profile";
+  const showSettings = activePanel === "settings";
+  const isDarkTheme = adminSettings.theme === "dark";
+  const isCompactDensity = adminSettings.density === "compact";
+  const adminAccentColor =
+    adminSettings.accent_color || DEFAULT_ADMIN_PREFERENCES.accentColor;
 
   function handleNavSelect(panelId) {
     setActivePanel(panelId);
@@ -2925,8 +3715,101 @@ export default function AdminDashboard() {
         />
       </Head>
 
-      <div className="min-h-screen bg-[linear-gradient(180deg,#fef3ea_0%,#fff8f4_52%,#f6eee8_100%)] text-[#232f37]">
-        <div className="sticky top-0 z-[80] flex items-center justify-between border-b border-[#c9573c]/10 bg-[#fef3ea]/95 px-4 py-3 backdrop-blur-md xl:hidden">
+      <div
+        className={`admin-dashboard-shell min-h-screen text-[#232f37] ${
+          isDarkTheme
+            ? "admin-theme-dark bg-[#17212a]"
+            : "bg-[#f4f6f3]"
+        } ${isCompactDensity ? "admin-density-compact" : ""}`}
+        style={{ "--admin-accent": adminAccentColor }}
+      >
+        <style jsx global>{`
+          .admin-dashboard-shell {
+            background-color: #f4f6f3;
+          }
+
+          .admin-dashboard-shell .bg-\\[\\#c9573c\\] {
+            background-color: var(--admin-accent) !important;
+          }
+
+          .admin-dashboard-shell .text-\\[\\#c9573c\\] {
+            color: var(--admin-accent) !important;
+          }
+
+          .admin-dashboard-shell .border-\\[\\#c9573c\\] {
+            border-color: var(--admin-accent) !important;
+          }
+
+          .admin-theme-dark {
+            background-color: #17212a !important;
+            color: #fef3ea;
+          }
+
+          .admin-theme-dark article,
+          .admin-theme-dark aside,
+          .admin-theme-dark table,
+          .admin-theme-dark thead,
+          .admin-theme-dark tbody tr,
+          .admin-theme-dark [class*="bg-white"],
+          .admin-theme-dark [class*="bg-[#fff"],
+          .admin-theme-dark [class*="bg-[#f4f6f3"],
+          .admin-theme-dark [class*="bg-[#f9fbf8"] {
+            background-color: #1f2d36 !important;
+            border-color: rgba(254, 243, 234, 0.14) !important;
+          }
+
+          .admin-theme-dark [class*="bg-[#fff1ec"],
+          .admin-theme-dark [class*="bg-[#fff8f4"],
+          .admin-theme-dark [class*="bg-[#fffaf7"] {
+            background-color: #253541 !important;
+          }
+
+          .admin-theme-dark [class*="text-[#232f37"],
+          .admin-theme-dark [class*="text-[#2c395b"] {
+            color: #fef3ea !important;
+          }
+
+          .admin-theme-dark [class*="text-[#6d7b80"],
+          .admin-theme-dark [class*="text-[#77674E"] {
+            color: rgba(254, 243, 234, 0.68) !important;
+          }
+
+          .admin-theme-dark input,
+          .admin-theme-dark textarea,
+          .admin-theme-dark select {
+            background-color: #17212a !important;
+            border-color: rgba(254, 243, 234, 0.16) !important;
+            color: #fef3ea !important;
+          }
+
+          .admin-theme-dark input::placeholder,
+          .admin-theme-dark textarea::placeholder {
+            color: rgba(254, 243, 234, 0.42) !important;
+          }
+
+          .admin-theme-dark button:not([class*="bg-[#c9573c]"]):not([class*="bg-[#2c395b]"]):not([class*="bg-[#77674E]"]):not([class*="bg-white/15"]) {
+            border-color: rgba(254, 243, 234, 0.14);
+          }
+
+          .admin-theme-dark .shadow-[0_18px_42px_rgba(44,57,91,0.06)],
+          .admin-theme-dark .shadow-[0_16px_42px_rgba(44,57,91,0.06)],
+          .admin-theme-dark .shadow-[0_20px_50px_rgba(35,47,55,0.05)] {
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.2) !important;
+          }
+
+          .admin-density-compact article,
+          .admin-density-compact section,
+          .admin-density-compact aside {
+            --admin-compact-space: 0.875rem;
+          }
+
+          .admin-density-compact article[class*="p-5"],
+          .admin-density-compact article[class*="p-6"],
+          .admin-density-compact article[class*="p-7"] {
+            padding: 1rem !important;
+          }
+        `}</style>
+        <div className="sticky top-0 z-[80] flex items-center justify-between border-b border-[#dfe7e3] bg-white/95 px-4 py-3 backdrop-blur-md xl:hidden">
           <button
             type="button"
             onClick={() => setMobileNavOpen(true)}
@@ -2969,17 +3852,17 @@ export default function AdminDashboard() {
         <div
           className={`grid min-h-screen w-full grid-cols-1 transition-[grid-template-columns] duration-300 ${
             sidebarCollapsed
-              ? "xl:grid-cols-[92px_minmax(0,1fr)]"
-              : "xl:grid-cols-[320px_minmax(0,1fr)]"
+              ? "xl:grid-cols-[84px_minmax(0,1fr)]"
+              : "xl:grid-cols-[288px_minmax(0,1fr)]"
           }`}
         >
           <aside
-            className={`fixed inset-y-0 left-0 z-[100] w-[min(86vw,340px)] border-r border-[#c9573c]/10 bg-[#fef3ea]/95 px-4 py-6 shadow-[24px_0_60px_rgba(35,47,55,0.16)] backdrop-blur-md transition-transform duration-300 sm:px-6 xl:sticky xl:top-0 xl:z-30 xl:w-auto xl:min-h-screen xl:translate-x-0 xl:px-4 xl:shadow-none ${
+            className={`fixed inset-y-0 left-0 z-[100] w-[min(86vw,304px)] border-r border-[#dfe7e3] bg-white/95 px-4 py-6 shadow-[24px_0_60px_rgba(35,47,55,0.16)] backdrop-blur-md transition-transform duration-300 sm:px-5 xl:sticky xl:top-0 xl:z-30 xl:w-auto xl:min-h-screen xl:translate-x-0 xl:px-3 xl:shadow-none ${
               mobileNavOpen ? "translate-x-0" : "-translate-x-full"
-            } ${sidebarCollapsed ? "xl:px-3" : "xl:px-5"}`}
+            }`}
           >
             <div
-              className={`mb-8 flex flex-col gap-4 ${
+              className={`mb-8 flex flex-col gap-5 ${
                 sidebarCollapsed ? "xl:items-center" : ""
               }`}
             >
@@ -2989,14 +3872,28 @@ export default function AdminDashboard() {
                 }`}
               >
                 <div className={sidebarCollapsed ? "xl:hidden" : ""}>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
-                    Luisa Quaglia
-                  </p>
-                  <h1 className="text-3xl font-bold leading-tight text-[#2c395b] sm:text-4xl">
-                    Admin
-                    <br />
-                    Dashboard
-                  </h1>
+                  <div className="flex items-center gap-3">
+                    {sidebarAvatarUrl ? (
+                      <span
+                        aria-label={adminSettings.brand_name || "Logo admin"}
+                        className="h-12 w-12 rounded-2xl bg-[#fff1ec] bg-cover bg-center"
+                        role="img"
+                        style={{ backgroundImage: `url("${sidebarAvatarUrl}")` }}
+                      />
+                    ) : (
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#c9573c] text-sm font-bold text-white">
+                        {sidebarInitials}
+                      </span>
+                    )}
+                    <div className="min-w-0">
+                      <p className="truncate text-base font-bold text-[#2c395b]">
+                        {adminSettings.brand_name || "Luisa Quaglia"}
+                      </p>
+                      <p className="truncate text-xs font-semibold uppercase tracking-[0.18em] text-[#6d7b80]">
+                        {adminSettings.brand_subtitle || "Tour Guide Admin"}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 <button
@@ -3011,7 +3908,7 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setSidebarCollapsed((current) => !current)}
-                  className="hidden h-10 w-10 items-center justify-center rounded-xl border border-[#c9573c]/20 bg-white text-[#c9573c] xl:inline-flex"
+                  className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#c9573c]/18 bg-white text-[#c9573c] xl:inline-flex"
                   aria-label={
                     sidebarCollapsed
                       ? "Espandi barra laterale"
@@ -3030,46 +3927,34 @@ export default function AdminDashboard() {
                 </button>
               </div>
 
-              <div
-                className={`flex flex-wrap items-center gap-2 ${
-                  sidebarCollapsed ? "xl:justify-center" : ""
-                }`}
-              >
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#c9573c]/15 bg-white px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#2c395b]">
-                  <Icon icon="hugeicons:user-account" width="14" height="14" />
-                  <span className={sidebarCollapsed ? "xl:hidden" : ""}>
-                    {getAdminDisplayName(adminUser) || "Admin"}
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="inline-flex items-center gap-2 rounded-full border border-[#c9573c]/20 bg-white px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c9573c]"
-                >
-                  <Icon icon="hugeicons:logout-03" width="14" height="14" />
-                  <span className={sidebarCollapsed ? "xl:hidden" : ""}>
-                    Esci
-                  </span>
-                </button>
-              </div>
             </div>
 
-            <nav className="grid gap-3">
+            <nav className="grid gap-2">
+              <p
+                className={`mb-1 px-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#6d7b80] ${
+                  sidebarCollapsed ? "xl:hidden" : ""
+                }`}
+              >
+                Menu
+              </p>
               {NAV_ITEMS.map((item) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => handleNavSelect(item.id)}
                   title={sidebarCollapsed ? item.label : undefined}
-                  className={`flex items-center gap-3 rounded-md px-4 py-3 text-left transition ${
+                  className={`relative flex items-center gap-3 rounded-md px-4 py-3 text-left transition ${
                     activePanel === item.id
-                      ? "bg-[#77674E] text-white shadow-[0_18px_30px_rgba(119,103,78,0.18)]"
-                      : "bg-white/75 text-[#2c395b] hover:bg-[#CE9486]/10"
+                      ? "bg-[#c9573c] text-white shadow-[0_18px_30px_rgba(201,87,60,0.18)]"
+                      : "bg-white text-[#2c395b] hover:bg-[#fff1ec]"
                   } ${sidebarCollapsed ? "xl:justify-center xl:px-3" : ""}`}
                 >
-                  <Icon icon={item.icon} width="20" height="20" />
+                  {activePanel === item.id && !sidebarCollapsed ? (
+                    <span className="absolute -left-3 top-1/2 h-8 w-1 -translate-y-1/2 rounded-r-full bg-[#c9573c]" />
+                  ) : null}
+                  <Icon icon={item.icon} width="19" height="19" />
                   <span
-                    className={`text-sm font-semibold tracking-wide ${
+                    className={`text-sm font-bold tracking-wide ${
                       sidebarCollapsed ? "xl:hidden" : ""
                     }`}
                   >
@@ -3080,76 +3965,96 @@ export default function AdminDashboard() {
             </nav>
 
             <div
-              className={`mt-8 rounded-md bg-[#2c395b] p-5 text-[#fef3ea] ${
+              className={`mt-9 grid gap-2 ${
                 sidebarCollapsed ? "xl:hidden" : ""
               }`}
             >
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.26em] text-[#fef3ea]/70">
-                Step utile adesso
+              <p className="mb-1 px-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#6d7b80]">
+                Generale
               </p>
-              <h2 className="mb-3 text-2xl font-bold leading-tight text-white">
-                Eventi e pagamenti da admin.
-              </h2>
-              <p className="text-sm leading-6 text-[#fef3ea]/78">
-                Gestisci archivio, date, posti e checkout online da un solo
-                pannello.
-              </p>
+              {ADMIN_OTHER_ITEMS.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => handleNavSelect(item.id)}
+                  className={`flex items-center gap-3 rounded-md px-4 py-3 text-left text-sm font-bold transition ${
+                    activePanel === item.id
+                      ? "bg-[#c9573c] text-white shadow-[0_18px_30px_rgba(201,87,60,0.18)]"
+                      : "bg-white text-[#2c395b] hover:bg-[#fff1ec]"
+                  }`}
+                >
+                  <Icon icon={item.icon} width="19" height="19" />
+                  {item.label}
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={() => {
+                  loadEvents(adminKey);
+                  loadPayments(adminKey);
+                }}
+                className="flex items-center gap-3 rounded-md bg-white px-4 py-3 text-left text-sm font-bold text-[#2c395b] transition hover:bg-[#fff1ec]"
+              >
+                <Icon icon="hugeicons:refresh" width="19" height="19" />
+                Ricarica dati
+              </button>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="flex items-center gap-3 rounded-md bg-white px-4 py-3 text-left text-sm font-bold text-[#2c395b] transition hover:bg-[#fff1ec]"
+              >
+                <Icon icon="hugeicons:logout-03" width="19" height="19" />
+                Logout
+              </button>
             </div>
           </aside>
 
           <section className="min-w-0 px-4 py-6 sm:px-6 lg:px-8 xl:px-10 xl:py-8">
             <div className="mx-auto w-full max-w-[2200px]">
-              <header className="mb-8 rounded-md border border-[#c9573c]/10 bg-white/75 p-6 shadow-[0_20px_50px_rgba(35,47,55,0.06)] backdrop-blur-sm lg:p-8">
-                <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
-                  <div className="max-w-4xl">
-                    <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#c9573c]/15 bg-[#fff8f4] px-3 py-1.5 text-xs font-semibold text-[#77674E]">
-                      <Icon
-                        icon="hugeicons:user-account"
-                        width="14"
-                        height="14"
-                      />
-                      Benvenuta/o, {getAdminDisplayName(adminUser) || "Admin"}
-                    </div>
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.34em] text-[#c9573c]/70">
-                      Backend eventi attivo
-                    </p>
-                    <h2 className="mb-3 text-3xl font-bold leading-tight text-[#2c395b] sm:text-4xl xl:text-5xl">
-                      Aggiungi, modifica e pubblica da un solo posto.
-                    </h2>
-                    <p className="text-base leading-7 text-[#6d7b80] lg:text-lg">
-                      L&apos;editor usa campi veri per date, posti, meeting
-                      point e pagamenti, cosi puoi mantenere gli eventi sempre
-                      aggiornati.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-3 sm:flex-row xl:flex-col xl:min-w-[220px]">
+              <div className="mb-6 hidden items-center justify-between gap-4 rounded-md border border-[#dfe7e3] bg-white px-4 py-3 shadow-[0_16px_42px_rgba(44,57,91,0.06)] xl:flex">
+                <div className="flex w-full max-w-lg items-center gap-3 rounded-xl bg-[#f4f6f3] px-4 py-3 text-sm text-[#6d7b80]">
+                  <Icon icon="hugeicons:search-01" width="18" height="18" />
+                  <input
+                    type="search"
+                    value={adminSearchQuery}
+                    onChange={(event) => setAdminSearchQuery(event.target.value)}
+                    placeholder="Cerca eventi, pagamenti, email, date..."
+                    className="min-w-0 flex-1 bg-transparent text-sm font-semibold text-[#2c395b] outline-none placeholder:text-[#6d7b80]"
+                    aria-label="Cerca in admin"
+                  />
+                  {adminSearchQuery ? (
                     <button
                       type="button"
-                      onClick={startNewEvent}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#77674E] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#685b43]"
+                      onClick={() => setAdminSearchQuery("")}
+                      className="inline-flex h-7 w-7 items-center justify-center rounded-full text-[#c9573c] transition hover:bg-white"
+                      aria-label="Pulisci ricerca"
                     >
-                      <Icon
-                        icon="hugeicons:add-circle"
-                        width="18"
-                        height="18"
-                      />
-                      Nuovo evento
+                      <Icon icon="hugeicons:cancel-01" width="16" height="16" />
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        loadEvents(adminKey);
-                        loadPayments(adminKey);
-                      }}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-[#fef3ea] px-5 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#CE9486]/10"
-                    >
-                      <Icon icon="hugeicons:refresh" width="18" height="18" />
-                      Ricarica dati
-                    </button>
-                  </div>
+                  ) : null}
                 </div>
-              </header>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={startNewEvent}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#c9573c] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#b84c34]"
+                  >
+                    <Icon icon="hugeicons:add-circle" width="18" height="18" />
+                    Nuovo evento
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      loadEvents(adminKey);
+                      loadPayments(adminKey);
+                    }}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-white px-4 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#fff1ec]"
+                  >
+                    <Icon icon="hugeicons:refresh" width="18" height="18" />
+                    Ricarica
+                  </button>
+                </div>
+              </div>
 
               {error ? (
                 <div className="mb-6 rounded-md border border-[#c9573c]/20 bg-[#fff1ec] px-5 py-4 text-sm font-medium text-[#b74d33]">
@@ -3163,24 +4068,77 @@ export default function AdminDashboard() {
                 </div>
               ) : null}
 
-              <section className="grid grid-cols-1 gap-4 mb-8 md:grid-cols-2 2xl:grid-cols-4">
-                {stats.map((stat) => (
-                  <StatsCard key={stat.label} {...stat} />
-                ))}
-              </section>
+              {hasAdminSearchQuery && !showEditor && !showProfile && !showSettings ? (
+                <section className="mb-6 rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-4">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#c9573c]/70">
+                        Ricerca attiva
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-[#2c395b]">
+                        &quot;{adminSearchQuery}&quot; trova{" "}
+                        {filteredEvents.length}{" "}
+                        {filteredEvents.length === 1 ? "evento" : "eventi"} e{" "}
+                        {filteredPayments.length}{" "}
+                        {filteredPayments.length === 1
+                          ? "pagamento"
+                          : "pagamenti"}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setAdminSearchQuery("")}
+                      className="inline-flex items-center gap-2 rounded-xl border border-[#c9573c]/20 bg-white px-4 py-2 text-sm font-semibold text-[#c9573c] transition hover:bg-[#fff1ec]"
+                    >
+                      <Icon icon="hugeicons:cancel-01" width="16" height="16" />
+                      Pulisci
+                    </button>
+                  </div>
+                </section>
+              ) : null}
 
               {showOverview ? (
                 <OverviewPanel
-                  events={events}
-                  payments={payments}
+                  events={visibleAdminEvents}
+                  payments={visibleAdminPayments}
                   paymentStats={paymentStats}
                   loading={loading || paymentsLoading}
+                  dashboardSettings={adminSettings}
                   onNewEvent={startNewEvent}
                   onOpenEvents={() => handleNavSelect("events")}
                   onOpenEditor={() => handleNavSelect("editor")}
                   onOpenPayments={() => handleNavSelect("payments")}
                   onSelectEvent={handleSelectEvent}
                   onCreateManualBooking={createManualBooking}
+                />
+              ) : null}
+
+              {showProfile ? (
+                <ProfilePanel
+                  profile={adminProfile}
+                  adminUser={adminUser}
+                  saving={preferencesSaving}
+                  onChange={(field, value) =>
+                    setAdminProfile((current) => ({
+                      ...current,
+                      [field]: value,
+                    }))
+                  }
+                  onSave={() => savePreferences({ profile: adminProfile })}
+                />
+              ) : null}
+
+              {showSettings ? (
+                <SettingsPanel
+                  settings={adminSettings}
+                  saving={preferencesSaving}
+                  onChange={(field, value) =>
+                    setAdminSettings((current) => ({
+                      ...current,
+                      [field]: value,
+                    }))
+                  }
+                  onSave={() => savePreferences({ settings: adminSettings })}
                 />
               ) : null}
 
@@ -3204,8 +4162,8 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="space-y-4">
-                      {events.length ? (
-                        events.map((event) => {
+                      {visibleAdminEvents.length ? (
+                        visibleAdminEvents.map((event) => {
                           const firstDate = event.dates?.[0];
                           const statusLabel =
                             event.status === "published"
@@ -4222,8 +5180,8 @@ export default function AdminDashboard() {
                     </section>
 
                     <div className="space-y-4 lg:hidden">
-                      {payments.length ? (
-                        payments.map((payment) => {
+                      {visibleAdminPayments.length ? (
+                        visibleAdminPayments.map((payment) => {
                           const sessionId = String(
                             payment.stripe_session_id || "",
                           );
@@ -4257,7 +5215,9 @@ export default function AdminDashboard() {
                         })
                       ) : (
                         <div className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-6 text-center text-sm text-[#6d7b80]">
-                          Nessun pagamento registrato ancora.
+                          {hasAdminSearchQuery
+                            ? "Nessun pagamento corrisponde alla ricerca."
+                            : "Nessun pagamento registrato ancora."}
                         </div>
                       )}
                     </div>
@@ -4293,8 +5253,8 @@ export default function AdminDashboard() {
                           </tr>
                         </thead>
                         <tbody>
-                          {payments.length ? (
-                            payments.map((payment) => {
+                          {visibleAdminPayments.length ? (
+                            visibleAdminPayments.map((payment) => {
                               const attendeeNames = getAttendeeNames(payment);
                               const attendeeCount =
                                 getBookingAttendeeCount(payment);
@@ -4571,7 +5531,9 @@ export default function AdminDashboard() {
                                 colSpan={8}
                                 className="px-4 py-8 text-center text-[#6d7b80]"
                               >
-                                Nessun pagamento registrato ancora.
+                                {hasAdminSearchQuery
+                                  ? "Nessun pagamento corrisponde alla ricerca."
+                                  : "Nessun pagamento registrato ancora."}
                               </td>
                             </tr>
                           )}
