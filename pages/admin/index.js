@@ -25,7 +25,7 @@ const EMPTY_MANUAL_BOOKING_FORM = {
   attendeeCount: "1",
   attendeeNames: "",
   amountEuro: "",
-  paymentStatus: "pending",
+  paymentStatus: "paid",
   note: "",
 };
 const MANUAL_PAYMENT_STATUS_OPTIONS = [
@@ -469,6 +469,28 @@ function formatMoneyFromCents(cents, currency = "eur") {
     style: "currency",
     currency: String(currency || "eur").toUpperCase(),
   }).format(amount);
+}
+
+function formatEuroInputFromCents(cents) {
+  const amount = Number(cents || 0) / 100;
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return "";
+  }
+
+  return amount.toFixed(2).replace(".", ",");
+}
+
+function isManualBooking(payment) {
+  const sessionId = String(
+    payment?.stripe_session_id || payment?.raw_payload?.id || "",
+  ).trim();
+  const metadata = payment?.raw_payload?.metadata || {};
+
+  return (
+    sessionId.startsWith("manual_") ||
+    String(metadata.manualBooking || "").toLowerCase() === "true"
+  );
 }
 
 function getAttendeeNames(payment) {
@@ -1277,6 +1299,25 @@ function OverviewPanel({
                               />
                             </label>
                             <label className="text-sm font-semibold text-[#2c395b]">
+                              Stato pagamento
+                              <select
+                                value={manualBookingForm.paymentStatus}
+                                onChange={(inputEvent) =>
+                                  updateManualBookingField(
+                                    "paymentStatus",
+                                    inputEvent.target.value,
+                                  )
+                                }
+                                className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                              >
+                                {MANUAL_PAYMENT_STATUS_OPTIONS.map((option) => (
+                                  <option key={option.value} value={option.value}>
+                                    {option.label}
+                                  </option>
+                                ))}
+                              </select>
+                            </label>
+                            <label className="text-sm font-semibold text-[#2c395b]">
                               Nota
                               <input
                                 type="text"
@@ -1404,12 +1445,109 @@ function OverviewPanel({
   );
 }
 
+function ManualBookingEditForm({ payment, onSubmit, isSaving }) {
+  const metadata = payment?.raw_payload?.metadata || {};
+  const customerDetails = payment?.raw_payload?.customer_details || {};
+  const [form, setForm] = useState({
+    customerEmail: customerDetails.email || payment?.customer_email || "",
+    attendeeCount: String(getBookingAttendeeCount(payment)),
+    attendeeNames: getAttendeeNames(payment).join("\n"),
+    amountEuro: formatEuroInputFromCents(payment?.amount_total),
+    note: metadata.note || "",
+  });
+
+  function updateField(field, value) {
+    setForm((current) => ({
+      ...current,
+      [field]: value,
+    }));
+  }
+
+  return (
+    <form
+      className="grid grid-cols-1 gap-3 rounded-lg border border-[#c9573c]/15 bg-white p-4 sm:grid-cols-2"
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSubmit(payment, form);
+      }}
+    >
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E] sm:col-span-2">
+        Modifica prenotazione manuale
+      </p>
+      <label className="text-sm font-semibold text-[#2c395b]">
+        Email cliente
+        <input
+          type="email"
+          value={form.customerEmail}
+          onChange={(event) => updateField("customerEmail", event.target.value)}
+          className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+        />
+      </label>
+      <label className="text-sm font-semibold text-[#2c395b]">
+        Persone
+        <input
+          type="number"
+          min="1"
+          max={MAX_EVENT_SPOTS}
+          required
+          value={form.attendeeCount}
+          onChange={(event) => updateField("attendeeCount", event.target.value)}
+          className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+        />
+      </label>
+      <label className="text-sm font-semibold text-[#2c395b]">
+        Importo
+        <input
+          type="text"
+          inputMode="decimal"
+          value={form.amountEuro}
+          onChange={(event) => updateField("amountEuro", event.target.value)}
+          className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+          placeholder="45,00"
+        />
+      </label>
+      <label className="text-sm font-semibold text-[#2c395b]">
+        Nota
+        <input
+          type="text"
+          value={form.note}
+          onChange={(event) => updateField("note", event.target.value)}
+          className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+          placeholder="Bonifico"
+        />
+      </label>
+      <label className="text-sm font-semibold text-[#2c395b] sm:col-span-2">
+        Nomi partecipanti
+        <textarea
+          value={form.attendeeNames}
+          onChange={(event) => updateField("attendeeNames", event.target.value)}
+          className="mt-1 min-h-[72px] w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+          placeholder="Un nome per riga, oppure separati da virgola"
+        />
+      </label>
+      <div className="sm:col-span-2">
+        <button
+          type="submit"
+          disabled={isSaving}
+          className="rounded-xl bg-[#2c395b] px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isSaving ? "Salvataggio..." : "Salva modifiche"}
+        </button>
+      </div>
+    </form>
+  );
+}
+
 function PaymentMobileCard({
   payment,
   isExpanded,
   onToggle,
   onToggleExcluded,
+  onUpdateStatus,
+  onUpdateDetails,
   isUpdatingExclusion,
+  isUpdatingStatus,
+  isUpdatingDetails,
 }) {
   const attendeeNames = getAttendeeNames(payment);
   const attendeeCount = getBookingAttendeeCount(payment);
@@ -1496,7 +1634,7 @@ function PaymentMobileCard({
       <button
         type="button"
         onClick={() => onToggleExcluded(payment, !paymentIsTest)}
-        disabled={isUpdatingExclusion}
+        disabled={isUpdatingExclusion || isUpdatingStatus}
         className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#2c395b]/15 px-4 py-3 text-sm font-semibold text-[#2c395b] transition hover:bg-[#fff8f4] disabled:cursor-not-allowed disabled:opacity-60"
       >
         <Icon
@@ -1506,6 +1644,24 @@ function PaymentMobileCard({
         />
         {paymentIsTest ? "Reincludi nei conteggi" : "Escludi dai conteggi"}
       </button>
+
+      {isManualBooking(payment) ? (
+        <label className="mt-3 block text-sm font-semibold text-[#2c395b]">
+          Stato pagamento
+          <select
+            value={payment.payment_status || "pending"}
+            onChange={(event) => onUpdateStatus(payment, event.target.value)}
+            disabled={isUpdatingStatus}
+            className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c] disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {MANUAL_PAYMENT_STATUS_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : null}
 
       {isExpanded ? (
         <div className="mt-4 space-y-3 rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-3 text-sm text-[#2c395b]">
@@ -1529,6 +1685,13 @@ function PaymentMobileCard({
             <strong>Payment Intent:</strong>{" "}
             {payment.stripe_payment_intent_id || "-"}
           </p>
+          {isManualBooking(payment) ? (
+            <ManualBookingEditForm
+              payment={payment}
+              onSubmit={onUpdateDetails}
+              isSaving={isUpdatingDetails}
+            />
+          ) : null}
         </div>
       ) : null}
     </article>
@@ -1563,6 +1726,8 @@ export default function AdminDashboard() {
   const [expandedPaymentSessionId, setExpandedPaymentSessionId] = useState("");
   const [updatingPaymentExclusionId, setUpdatingPaymentExclusionId] =
     useState("");
+  const [updatingPaymentStatusId, setUpdatingPaymentStatusId] = useState("");
+  const [updatingPaymentDetailsId, setUpdatingPaymentDetailsId] = useState("");
   const [paymentsManualFormOpen, setPaymentsManualFormOpen] = useState(false);
   const [paymentsManualForm, setPaymentsManualForm] = useState({
     eventSlug: "",
@@ -1865,6 +2030,108 @@ export default function AdminDashboard() {
         setError(updateError.message);
       } finally {
         setUpdatingPaymentExclusionId("");
+      }
+    },
+    [adminKey, handleLogout],
+  );
+
+  const updatePaymentStatus = useCallback(
+    async (payment, paymentStatus) => {
+      const stripeSessionId = String(payment?.stripe_session_id || "").trim();
+
+      if (!adminKey || !stripeSessionId) {
+        return;
+      }
+
+      setUpdatingPaymentStatusId(stripeSessionId);
+      setError("");
+      setNotice("");
+
+      try {
+        const response = await fetch("/api/admin/payments", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${adminKey}`,
+          },
+          body: JSON.stringify({ stripeSessionId, paymentStatus }),
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (isSessionExpiredResponse(response, data)) {
+            await handleLogout({
+              skipRemoteSignOut: true,
+              message: SESSION_EXPIRED_MESSAGE,
+            });
+            return;
+          }
+          throw new Error(data.error || "Errore aggiornamento stato.");
+        }
+
+        setPayments((current) =>
+          current.map((item) =>
+            item.stripe_session_id === stripeSessionId
+              ? data.payment || item
+              : item,
+          ),
+        );
+        setNotice("Stato pagamento aggiornato.");
+      } catch (updateError) {
+        setError(updateError.message);
+      } finally {
+        setUpdatingPaymentStatusId("");
+      }
+    },
+    [adminKey, handleLogout],
+  );
+
+  const updateManualPaymentDetails = useCallback(
+    async (payment, manualDetails) => {
+      const stripeSessionId = String(payment?.stripe_session_id || "").trim();
+
+      if (!adminKey || !stripeSessionId) {
+        return;
+      }
+
+      setUpdatingPaymentDetailsId(stripeSessionId);
+      setError("");
+      setNotice("");
+
+      try {
+        const response = await fetch("/api/admin/payments", {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${adminKey}`,
+          },
+          body: JSON.stringify({ stripeSessionId, manualDetails }),
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (isSessionExpiredResponse(response, data)) {
+            await handleLogout({
+              skipRemoteSignOut: true,
+              message: SESSION_EXPIRED_MESSAGE,
+            });
+            return;
+          }
+          throw new Error(data.error || "Errore aggiornamento prenotazione.");
+        }
+
+        setPayments((current) =>
+          current.map((item) =>
+            item.stripe_session_id === stripeSessionId
+              ? data.payment || item
+              : item,
+          ),
+        );
+        setNotice("Prenotazione manuale aggiornata.");
+      } catch (updateError) {
+        setError(updateError.message);
+      } finally {
+        setUpdatingPaymentDetailsId("");
       }
     },
     [adminKey, handleLogout],
@@ -3890,6 +4157,25 @@ export default function AdminDashboard() {
                             />
                           </label>
                           <label className="text-sm font-semibold text-[#2c395b]">
+                            Stato pagamento
+                            <select
+                              value={paymentsManualForm.paymentStatus}
+                              onChange={(event) =>
+                                setPaymentsManualForm((current) => ({
+                                  ...current,
+                                  paymentStatus: event.target.value,
+                                }))
+                              }
+                              className="mt-1 w-full rounded-xl border border-[#c9573c]/15 bg-white px-3 py-2 text-sm outline-none focus:border-[#c9573c]"
+                            >
+                              {MANUAL_PAYMENT_STATUS_OPTIONS.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                          <label className="text-sm font-semibold text-[#2c395b]">
                             Nota
                             <input
                               type="text"
@@ -3952,8 +4238,16 @@ export default function AdminDashboard() {
                                 )
                               }
                               onToggleExcluded={updatePaymentExclusion}
+                              onUpdateStatus={updatePaymentStatus}
+                              onUpdateDetails={updateManualPaymentDetails}
                               isUpdatingExclusion={
                                 updatingPaymentExclusionId === sessionId
+                              }
+                              isUpdatingStatus={
+                                updatingPaymentStatusId === sessionId
+                              }
+                              isUpdatingDetails={
+                                updatingPaymentDetailsId === sessionId
                               }
                             />
                           );
@@ -4091,7 +4385,8 @@ export default function AdminDashboard() {
                                         }
                                         disabled={
                                           updatingPaymentExclusionId ===
-                                          sessionId
+                                            sessionId ||
+                                          updatingPaymentStatusId === sessionId
                                         }
                                         className="mt-2 block rounded-lg border border-[#2c395b]/15 px-2.5 py-1 text-[11px] font-semibold text-[#2c395b] transition hover:bg-[#fff8f4] disabled:cursor-not-allowed disabled:opacity-60"
                                       >
@@ -4099,6 +4394,36 @@ export default function AdminDashboard() {
                                           ? "Reincludi"
                                           : "Escludi"}
                                       </button>
+                                      {isManualBooking(payment) ? (
+                                        <select
+                                          value={
+                                            payment.payment_status || "pending"
+                                          }
+                                          onChange={(event) =>
+                                            updatePaymentStatus(
+                                              payment,
+                                              event.target.value,
+                                            )
+                                          }
+                                          disabled={
+                                            updatingPaymentStatusId ===
+                                            sessionId
+                                          }
+                                          className="mt-2 block w-full rounded-lg border border-[#c9573c]/15 bg-white px-2.5 py-1 text-[11px] font-semibold text-[#2c395b] outline-none transition focus:border-[#c9573c] disabled:cursor-not-allowed disabled:opacity-60"
+                                          aria-label="Stato pagamento"
+                                        >
+                                          {MANUAL_PAYMENT_STATUS_OPTIONS.map(
+                                            (option) => (
+                                              <option
+                                                key={option.value}
+                                                value={option.value}
+                                              >
+                                                {option.label}
+                                              </option>
+                                            ),
+                                          )}
+                                        </select>
+                                      ) : null}
                                     </td>
                                     <td className="px-4 py-3 text-[#6d7b80]">
                                       {payment.customer_email || "-"}
@@ -4130,6 +4455,20 @@ export default function AdminDashboard() {
                                     <tr className="border-t border-[#c9573c]/10 bg-[#fffaf7]">
                                       <td colSpan={8} className="px-4 py-4">
                                         <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
+                                          {isManualBooking(payment) ? (
+                                            <div className="xl:col-span-3">
+                                              <ManualBookingEditForm
+                                                payment={payment}
+                                                onSubmit={
+                                                  updateManualPaymentDetails
+                                                }
+                                                isSaving={
+                                                  updatingPaymentDetailsId ===
+                                                  sessionId
+                                                }
+                                              />
+                                            </div>
+                                          ) : null}
                                           <div className="rounded-lg border border-[#c9573c]/15 bg-white p-4">
                                             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77674E]">
                                               Dati cliente

@@ -39,7 +39,19 @@ function normalizeManualPaymentStatus(value) {
   return status === "pending" ? "pending" : "paid";
 }
 
-async function getBookedSeats(eventSlug, eventDateIso) {
+function isManualBooking(booking) {
+  const sessionId = String(
+    booking?.stripe_session_id || booking?.raw_payload?.id || "",
+  ).trim();
+  const metadata = booking?.raw_payload?.metadata || {};
+
+  return (
+    sessionId.startsWith("manual_") ||
+    String(metadata.manualBooking || "").toLowerCase() === "true"
+  );
+}
+
+async function getBookedSeats(eventSlug, eventDateIso, excludeSessionId = "") {
   const { data, error } = await supabaseAdmin
     .from("event_bookings")
     .select("raw_payload,payment_status,stripe_session_id,stripe_payment_intent_id")
@@ -51,6 +63,7 @@ async function getBookedSeats(eventSlug, eventDateIso) {
   }
 
   return (data || [])
+    .filter((booking) => booking.stripe_session_id !== excludeSessionId)
     .filter(isCountableBooking)
     .reduce((sum, booking) => sum + getBookingAttendeeCount(booking), 0);
 }
@@ -161,15 +174,38 @@ export default async function handler(req, res) {
 
     if (req.method === "PATCH") {
       const stripeSessionId = String(req.body?.stripeSessionId || "").trim();
+      const hasExcluded = Object.prototype.hasOwnProperty.call(
+        req.body || {},
+        "excluded",
+      );
+      const hasPaymentStatus = Object.prototype.hasOwnProperty.call(
+        req.body || {},
+        "paymentStatus",
+      );
+      const hasManualDetails = Object.prototype.hasOwnProperty.call(
+        req.body || {},
+        "manualDetails",
+      );
       const excluded = Boolean(req.body?.excluded);
+      const paymentStatus = normalizeManualPaymentStatus(
+        req.body?.paymentStatus,
+      );
+      const manualDetails =
+        req.body?.manualDetails && typeof req.body.manualDetails === "object"
+          ? req.body.manualDetails
+          : {};
 
       if (!stripeSessionId) {
         return res.status(400).json({ error: "Sessione Stripe obbligatoria." });
       }
 
+      if (!hasExcluded && !hasPaymentStatus && !hasManualDetails) {
+        return res.status(400).json({ error: "Nessuna modifica richiesta." });
+      }
+
       const { data: existing, error: readError } = await supabaseAdmin
         .from("event_bookings")
-        .select("raw_payload")
+        .select("*")
         .eq("stripe_session_id", stripeSessionId)
         .single();
 
@@ -187,22 +223,121 @@ export default async function handler(req, res) {
           : {};
       const nextMetadata = { ...metadata };
 
-      if (excluded) {
-        nextMetadata.testBooking = "true";
-        nextMetadata.adminExcludedFromCounts = "true";
-      } else {
-        delete nextMetadata.testBooking;
-        delete nextMetadata.adminExcludedFromCounts;
+      if (hasExcluded) {
+        if (excluded) {
+          nextMetadata.testBooking = "true";
+          nextMetadata.adminExcludedFromCounts = "true";
+        } else {
+          delete nextMetadata.testBooking;
+          delete nextMetadata.adminExcludedFromCounts;
+        }
+      }
+
+      if ((hasPaymentStatus || hasManualDetails) && !isManualBooking(existing)) {
+        return res
+          .status(400)
+          .json({ error: "Solo le prenotazioni manuali sono modificabili." });
+      }
+
+      if (hasPaymentStatus) {
+        nextMetadata.paymentStatus = paymentStatus;
+      }
+
+      const nextPaymentStatus = hasPaymentStatus
+        ? paymentStatus
+        : existing.payment_status;
+      const nextAttendeeCount = hasManualDetails
+        ? Math.max(
+            1,
+            Math.min(
+              MAX_EVENT_CAPACITY,
+              parsePositiveInt(
+                manualDetails.attendeeCount,
+                getBookingAttendeeCount(existing),
+              ),
+            ),
+          )
+        : getBookingAttendeeCount(existing);
+
+      if (hasManualDetails) {
+        const customerEmail = String(manualDetails.customerEmail || "").trim();
+        const attendeeNames = normalizeAttendeeNames(
+          manualDetails.attendeeNames,
+        );
+        const note = String(manualDetails.note || "").trim();
+
+        nextMetadata.attendeeCount = String(nextAttendeeCount);
+        nextMetadata.attendeeNames = attendeeNames;
+        nextMetadata.note = note;
+        nextMetadata.paymentStatus = nextPaymentStatus;
+
+        rawPayload.customer_details = {
+          ...(rawPayload.customer_details || {}),
+          email: customerEmail,
+        };
+      }
+
+      if (nextPaymentStatus === "paid" && !isTestBooking({
+        ...existing,
+        payment_status: nextPaymentStatus,
+        raw_payload: {
+          ...rawPayload,
+          metadata: nextMetadata,
+        },
+      })) {
+        const event = await getAdminEventBySlug(existing.event_slug);
+        const date = (event?.dates || []).find(
+          (item) => item.iso === existing.event_date_iso,
+        );
+
+        if (!event || !date) {
+          return res.status(404).json({ error: "Evento o data non trovati." });
+        }
+
+        const dateCapacity = Math.max(
+          1,
+          Math.min(
+            MAX_EVENT_CAPACITY,
+            parsePositiveInt(date.spots, MAX_EVENT_CAPACITY),
+          ),
+        );
+        const bookedSeats = await getBookedSeats(
+          existing.event_slug,
+          existing.event_date_iso,
+          stripeSessionId,
+        );
+        const remainingSeats = Math.max(0, dateCapacity - bookedSeats);
+
+        if (nextAttendeeCount > remainingSeats) {
+          return res.status(400).json({
+            error: `Posti disponibili insufficienti. Rimasti: ${remainingSeats}.`,
+          });
+        }
+      }
+
+      const updatePayload = {
+        raw_payload: {
+          ...rawPayload,
+          metadata: nextMetadata,
+        },
+      };
+
+      if (hasPaymentStatus) {
+        updatePayload.payment_status = paymentStatus;
+      }
+
+      if (hasManualDetails) {
+        updatePayload.customer_email = String(
+          manualDetails.customerEmail || "",
+        ).trim();
+        updatePayload.amount_total = parseAmountCents(
+          manualDetails.amountEuro,
+        );
       }
 
       const { data, error } = await supabaseAdmin
         .from("event_bookings")
-        .update({
-          raw_payload: {
-            ...rawPayload,
-            metadata: nextMetadata,
-          },
-        })
+        .update(updatePayload)
         .eq("stripe_session_id", stripeSessionId)
         .select("*")
         .single();
