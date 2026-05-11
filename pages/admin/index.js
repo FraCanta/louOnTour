@@ -2,7 +2,10 @@ import Head from "next/head";
 import Image from "next/image";
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
-import { uploadEventImage } from "../../utils/uploadEventImage";
+import {
+  uploadEventImage,
+  uploadProfileImage,
+} from "../../utils/uploadEventImage";
 import { supabase } from "../../utils/supabase";
 import {
   getBookingAttendeeCount,
@@ -18,6 +21,8 @@ const SESSION_EXPIRED_MESSAGE =
   "Sessione scaduta. Effettua di nuovo l'accesso.";
 const NAV_ITEMS = [
   { id: "overview", label: "Dashboard", icon: "hugeicons:square-lock-02" },
+  { id: "analytics", label: "Analytics", icon: "hugeicons:chart-line-data-01" },
+  { id: "calendar", label: "Calendario", icon: "hugeicons:calendar-03" },
   { id: "events", label: "Eventi", icon: "hugeicons:calendar-03" },
   { id: "payments", label: "Pagamenti", icon: "hugeicons:credit-card" },
   { id: "editor", label: "Editor", icon: "hugeicons:note-edit" },
@@ -38,26 +43,59 @@ const DEFAULT_ADMIN_PREFERENCES = {
   showCalendar: true,
   showSuccessChart: true,
 };
+
+function createAvatarPresetSvg({ label, background, foreground, accent }) {
+  const initial = encodeURIComponent(label.slice(0, 1).toUpperCase());
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><rect width="96" height="96" rx="48" fill="${background}"/><circle cx="68" cy="28" r="14" fill="${accent}" opacity=".85"/><path d="M24 67c7-18 41-18 48 0" fill="none" stroke="${accent}" stroke-width="10" stroke-linecap="round"/><text x="48" y="56" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="${foreground}">${initial}</text></svg>`;
+
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
 const ADMIN_AVATAR_PRESETS = [
   {
     label: "Sole",
-    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=sole-lq&backgroundColor=fef3ea",
+    url: createAvatarPresetSvg({
+      label: "Sole",
+      background: "#FEF3EA",
+      foreground: "#C9573C",
+      accent: "#F0B19A",
+    }),
   },
   {
     label: "Viola",
-    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=viola-lq&backgroundColor=fff1ec",
+    url: createAvatarPresetSvg({
+      label: "Viola",
+      background: "#F2EAF6",
+      foreground: "#5A4A76",
+      accent: "#CE9486",
+    }),
   },
   {
     label: "Menta",
-    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=menta-lq&backgroundColor=dfe9df",
+    url: createAvatarPresetSvg({
+      label: "Menta",
+      background: "#DFE9DF",
+      foreground: "#3E6847",
+      accent: "#7AA9A5",
+    }),
   },
   {
     label: "Cielo",
-    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=cielo-lq&backgroundColor=e7eff2",
+    url: createAvatarPresetSvg({
+      label: "Cielo",
+      background: "#E7EFF2",
+      foreground: "#2C395B",
+      accent: "#8AB2C4",
+    }),
   },
   {
     label: "Terra",
-    url: "https://api.dicebear.com/9.x/adventurer/svg?seed=terra-lq&backgroundColor=f5e4d8",
+    url: createAvatarPresetSvg({
+      label: "Terra",
+      background: "#F5E4D8",
+      foreground: "#77674E",
+      accent: "#D79B7F",
+    }),
   },
 ];
 const EMPTY_MANUAL_BOOKING_FORM = {
@@ -452,6 +490,28 @@ function getAdminDisplayName(user) {
   return email.split("@")[0] || email;
 }
 
+function buildAdminProfileFromUser(user) {
+  return {
+    email: user?.email || "",
+    display_name: getAdminDisplayName(user),
+    avatar_url: "",
+    role: "admin",
+    preferences: {},
+  };
+}
+
+function getInitials(value = "", fallback = "LQ") {
+  const initials = String(value || "")
+    .split(/\s+|@/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((item) => item[0])
+    .join("")
+    .toUpperCase();
+
+  return initials || fallback;
+}
+
 function getFileNameFromUrl(url = "") {
   const value = String(url || "").trim();
 
@@ -481,6 +541,32 @@ function isSessionExpiredResponse(response, data) {
     errorText.includes("scaduta") ||
     errorText.includes("unauthorized")
   );
+}
+
+async function readAdminJsonResponse(response, fallbackMessage) {
+  const responseText = await response.text();
+
+  if (!responseText) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(responseText);
+  } catch (_error) {
+    const startsLikeHtml = /^\s*</.test(responseText);
+
+    if (startsLikeHtml) {
+      throw new Error(
+        fallbackMessage ||
+          "Il server ha restituito una pagina HTML invece dei dati admin. Ricarica la dashboard e riprova.",
+      );
+    }
+
+    throw new Error(
+      fallbackMessage ||
+        `Risposta admin non valida: ${responseText.slice(0, 140)}`,
+    );
+  }
 }
 
 function formatAdminDateTime(value) {
@@ -618,66 +704,6 @@ function getEventNextDateLabel(event) {
   );
 }
 
-function normalizeSearchValue(value) {
-  return String(value || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim();
-}
-
-function getEventSearchText(event) {
-  return normalizeSearchValue(
-    [
-      event?.slug,
-      event?.status,
-      event?.title?.it,
-      event?.title?.en,
-      event?.location?.it,
-      event?.location?.en,
-      event?.price?.it,
-      event?.price?.en,
-      ...(event?.dates || []).flatMap((date) => [
-        date?.iso,
-        date?.labelIt,
-        date?.labelEn,
-        date?.time,
-        date?.recurringLabelIt,
-      ]),
-    ]
-      .filter(Boolean)
-      .join(" "),
-  );
-}
-
-function getPaymentSearchText(payment) {
-  const metadata = payment?.raw_payload?.metadata || {};
-  const customerDetails = payment?.raw_payload?.customer_details || {};
-
-  return normalizeSearchValue(
-    [
-      payment?.event_slug,
-      payment?.event_date_iso,
-      payment?.customer_email,
-      payment?.payment_status,
-      payment?.stripe_session_id,
-      payment?.stripe_payment_intent_id,
-      metadata.eventSlug,
-      metadata.eventDateLabel,
-      metadata.eventDateIso,
-      metadata.attendeeNames,
-      metadata.note,
-      customerDetails.email,
-      customerDetails.name,
-      customerDetails.phone,
-      getPaymentEventDateLabel(payment),
-      getAttendeeNames(payment).join(" "),
-    ]
-      .filter(Boolean)
-      .join(" "),
-  );
-}
-
 function getEventPeriodDates(event) {
   return (event?.dates || []).filter((date) => {
     const month = Number(String(date?.iso || "").slice(5, 7));
@@ -745,6 +771,7 @@ function EventPerformanceChart({ performance }) {
     (sum, item) => sum + item.revenueCents,
     0,
   );
+  const maxBooked = Math.max(1, ...topEvents.map((item) => item.booked));
   const chartEvents = topEvents.filter((item) => item.booked > 0);
   const chartTotal = chartEvents.reduce((sum, item) => sum + item.booked, 0);
   const circumference = 276.46;
@@ -765,7 +792,7 @@ function EventPerformanceChart({ performance }) {
         <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h4 className="text-lg font-bold text-[#2c395b]">
-              Successo eventi
+              Analisi eventi
             </h4>
             <p className="mt-1 text-xs text-[#6d7b80]">
               Prenotazioni pagate sulle date del periodo fino a novembre.
@@ -786,7 +813,7 @@ function EventPerformanceChart({ performance }) {
             <svg
               viewBox="0 0 120 120"
               role="img"
-              aria-label="Grafico a torta del successo eventi"
+              aria-label="Grafico a torta dell'analisi eventi"
               className="h-full w-full -rotate-90"
             >
               <circle
@@ -886,7 +913,7 @@ function EventPerformanceChart({ performance }) {
     <section className="rounded-md border border-[#c9573c]/10 bg-white p-4">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h4 className="text-lg font-bold text-[#2c395b]">Successo eventi</h4>
+          <h4 className="text-lg font-bold text-[#2c395b]">Analisi eventi</h4>
           <p className="mt-1 text-xs text-[#6d7b80]">
             Prenotazioni pagate sulle date del periodo fino a novembre.
           </p>
@@ -973,6 +1000,7 @@ function OverviewPanel({
   onOpenPayments,
   onSelectEvent,
   onCreateManualBooking,
+  calendarOnly = false,
 }) {
   const publishedEvents = events.filter(
     (event) => event.status === "published",
@@ -1138,9 +1166,11 @@ function OverviewPanel({
       <div className="flex flex-col gap-3 mb-6 xl:flex-row xl:items-end xl:justify-between">
         <div>
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
-            Panoramica
+            {calendarOnly ? "Calendario" : "Panoramica"}
           </p>
-          <h3 className="text-3xl font-bold text-[#2c395b]">Stato operativo</h3>
+          <h3 className="text-3xl font-bold text-[#2c395b]">
+            {calendarOnly ? "Calendario eventi" : "Stato operativo"}
+          </h3>
         </div>
         {loading ? (
           <span className="text-sm font-semibold text-[#77674E]">
@@ -1151,9 +1181,10 @@ function OverviewPanel({
 
       <div
         className={`grid grid-cols-1 gap-4 ${
-          showCalendar ? "xl:grid-cols-[1.15fr_0.85fr] 4xl:grid-cols-[1.3fr_0.7fr]" : ""
+          !calendarOnly && showCalendar ? "xl:grid-cols-[1.15fr_0.85fr] 4xl:grid-cols-[1.3fr_0.7fr]" : ""
         }`}
       >
+        {!calendarOnly ? (
         <div className="space-y-4">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 2xl:grid-cols-4">
             {[
@@ -1327,6 +1358,7 @@ function OverviewPanel({
             </section>
           </div>
         </div>
+        ) : null}
 
         {showCalendar ? (
         <aside className="space-y-4">
@@ -1397,7 +1429,11 @@ function OverviewPanel({
               ))}
             </div>
 
-            <div className="grid grid-cols-7 gap-1.5">
+            <div
+              className={`grid grid-cols-7 ${
+                calendarOnly ? "gap-1.5 sm:gap-2" : "gap-1 sm:gap-1.5"
+              }`}
+            >
               {calendarDays.map((day, index) => {
                 if (!day) {
                   return (
@@ -1422,7 +1458,11 @@ function OverviewPanel({
                         : null
                     }
                     disabled={!hasDayActivity}
-                    className={`min-h-[72px] rounded-xl border p-2 text-left transition ${
+                    className={`relative ${
+                      calendarOnly
+                        ? "min-h-[76px] p-1.5 sm:min-h-[112px] sm:p-3"
+                        : "min-h-[58px] p-1.5 sm:min-h-[72px] sm:p-2"
+                    } rounded-xl border text-left transition ${
                       hasDayActivity
                         ? "border-[#c9573c]/25 bg-white shadow-[0_10px_24px_rgba(35,47,55,0.05)]"
                         : "border-transparent bg-white/45 text-[#6d7b80]"
@@ -1436,15 +1476,18 @@ function OverviewPanel({
                       {day.day}
                     </span>
                     {hasEvent ? (
-                      <span className="mt-2 block h-1.5 w-8 rounded-full bg-[#c9573c]" />
+                      <span className="mt-1.5 block h-1.5 w-6 rounded-full bg-[#c9573c] sm:mt-2 sm:w-8" />
                     ) : null}
                     {dayEvents.length > 1 ? (
-                      <span className="mt-2 inline-flex rounded-full bg-[#c9573c]/10 px-2 py-1 text-[10px] font-bold text-[#c9573c]">
-                        {dayEvents.length} eventi
+                      <span className="absolute bottom-1.5 right-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[#c9573c]/10 px-1 text-[10px] font-bold text-[#c9573c] sm:static sm:mt-2 sm:h-auto sm:min-w-0 sm:px-2 sm:py-1">
+                        <span className="sm:hidden">{dayEvents.length}</span>
+                        <span className="hidden sm:inline">
+                          {dayEvents.length} eventi
+                        </span>
                       </span>
                     ) : null}
                     {bookedCount ? (
-                      <span className="mt-2 inline-flex rounded-full bg-[#dfe9df] px-2 py-1 text-[10px] font-bold text-[#4b6b4e]">
+                      <span className="absolute bottom-1.5 left-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[#dfe9df] px-1 text-[10px] font-bold text-[#4b6b4e] sm:static sm:mt-2 sm:h-auto sm:min-w-0 sm:px-2 sm:py-1">
                         {bookedCount}
                       </span>
                     ) : null}
@@ -2072,17 +2115,216 @@ function PaymentMobileCard({
   );
 }
 
-function ProfilePanel({ profile, adminUser, onChange, onSave, saving }) {
+function AnalyticsPanel({
+  events,
+  payments,
+  paymentStats,
+  loading,
+  onOpenEvents,
+  onOpenPayments,
+}) {
+  const eventPerformance = buildEventPerformance(events, payments);
+  const totalBooked = eventPerformance.reduce(
+    (sum, item) => sum + item.booked,
+    0,
+  );
+  const totalCapacity = eventPerformance.reduce(
+    (sum, item) => sum + item.capacity,
+    0,
+  );
+  const averageOccupancy =
+    totalCapacity > 0 ? Math.round((totalBooked / totalCapacity) * 100) : 0;
+  const averageOrderCents =
+    paymentStats.successfulCount > 0
+      ? Math.round(paymentStats.totalCents / paymentStats.successfulCount)
+      : 0;
+  const topRevenueEvent = [...eventPerformance].sort(
+    (left, right) => right.revenueCents - left.revenueCents,
+  )[0];
+
+  const analyticsCards = [
+    {
+      label: "Ricavi",
+      value: formatMoneyFromCents(paymentStats.totalCents, "eur"),
+      note: `${paymentStats.successfulCount} pagamenti pagati`,
+      icon: "hugeicons:wallet-02",
+    },
+    {
+      label: "Prenotazioni",
+      value: paymentStats.count,
+      note: paymentStats.testCount
+        ? `${paymentStats.testCount} test esclusi`
+        : "Solo dati reali",
+      icon: "hugeicons:credit-card",
+    },
+    {
+      label: "Persone prenotate",
+      value: totalBooked,
+      note: `${averageOccupancy}% riempimento medio`,
+      icon: "hugeicons:user-multiple",
+    },
+    {
+      label: "Ordine medio",
+      value: formatMoneyFromCents(averageOrderCents, "eur"),
+      note: topRevenueEvent
+        ? `Top ricavi: ${topRevenueEvent.title}`
+        : "In attesa di pagamenti",
+      icon: "hugeicons:chart-line-data-01",
+    },
+  ];
+
+  return (
+    <article className="rounded-md border border-[#dfe7e3] bg-white p-5 shadow-[0_18px_42px_rgba(44,57,91,0.06)] lg:p-7">
+      <div className="mb-6 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+        <div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
+            Analytics
+          </p>
+          <h3 className="text-3xl font-bold text-[#2c395b]">
+            Dati e performance
+          </h3>
+        </div>
+        {loading ? (
+          <span className="text-sm font-semibold text-[#77674E]">
+            Caricamento...
+          </span>
+        ) : null}
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-4">
+        {analyticsCards.map((item) => (
+          <section
+            key={item.label}
+            className="rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-4"
+          >
+            <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#fff1ec] text-[#c9573c]">
+              <Icon icon={item.icon} width="19" height="19" />
+            </span>
+            <p className="text-sm font-semibold text-[#6d7b80]">
+              {item.label}
+            </p>
+            <p className="mt-1 text-3xl font-bold text-[#2c395b]">
+              {item.value}
+            </p>
+            <p className="mt-1 text-xs text-[#6d7b80]">{item.note}</p>
+          </section>
+        ))}
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+        <EventPerformanceChart performance={eventPerformance} />
+
+        <section className="rounded-md border border-[#c9573c]/10 bg-white p-4">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <h4 className="text-lg font-bold text-[#2c395b]">
+                Riepilogo pagamenti
+              </h4>
+              <p className="mt-1 text-xs text-[#6d7b80]">
+                Stato dei pagamenti registrati.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={onOpenPayments}
+              className="text-xs font-semibold uppercase tracking-[0.16em] text-[#c9573c]"
+            >
+              Apri
+            </button>
+          </div>
+          <div className="grid gap-3 text-sm">
+            {[
+              ["Pagati", paymentStats.successfulCount],
+              ["Rimborsi/annullati", paymentStats.refundedCount],
+              ["Test esclusi", paymentStats.testCount],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className="flex items-center justify-between rounded-md bg-[#fff8f4] px-4 py-3"
+              >
+                <span className="font-semibold text-[#2c395b]">{label}</span>
+                <span className="font-bold text-[#c9573c]">{value}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <div className="mt-6 rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-4">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <h4 className="text-lg font-bold text-[#2c395b]">
+            Eventi per performance
+          </h4>
+          <button
+            type="button"
+            onClick={onOpenEvents}
+            className="text-xs font-semibold uppercase tracking-[0.16em] text-[#c9573c]"
+          >
+            Apri eventi
+          </button>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[680px] text-left text-sm">
+            <thead className="text-xs uppercase tracking-[0.18em] text-[#77674E]">
+              <tr>
+                <th className="px-3 py-2">Evento</th>
+                <th className="px-3 py-2">Persone</th>
+                <th className="px-3 py-2">Capienza</th>
+                <th className="px-3 py-2">Riempimento</th>
+                <th className="px-3 py-2">Ricavi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {eventPerformance.length ? (
+                eventPerformance.slice(0, 8).map((item) => (
+                  <tr key={item.slug} className="border-t border-[#c9573c]/10">
+                    <td className="px-3 py-3 font-semibold text-[#2c395b]">
+                      {item.title}
+                    </td>
+                    <td className="px-3 py-3 text-[#6d7b80]">{item.booked}</td>
+                    <td className="px-3 py-3 text-[#6d7b80]">
+                      {item.capacity || "-"}
+                    </td>
+                    <td className="px-3 py-3 text-[#6d7b80]">
+                      {item.occupancy}%
+                    </td>
+                    <td className="px-3 py-3 font-semibold text-[#2c395b]">
+                      {formatMoneyFromCents(item.revenueCents, "eur")}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan={5}
+                    className="px-3 py-6 text-center text-[#6d7b80]"
+                  >
+                    Gli analytics si popolano quando arrivano eventi e
+                    pagamenti.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ProfilePanel({
+  profile,
+  adminUser,
+  onChange,
+  onSave,
+  onUploadAvatar,
+  saving,
+  uploadingAvatar,
+}) {
   const email = profile.email || adminUser?.email || "";
-  const displayName = profile.display_name || "";
+  const displayName = profile.display_name || getAdminDisplayName(adminUser);
   const avatarUrl = profile.avatar_url || "";
-  const initials = (displayName || email || "LQ")
-    .split(/\s+|@/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((item) => item[0])
-    .join("")
-    .toUpperCase();
+  const initials = getInitials(displayName || email, "LQ");
 
   return (
     <article className="rounded-md border border-[#dfe7e3] bg-white p-5 shadow-[0_18px_42px_rgba(44,57,91,0.06)] lg:p-7">
@@ -2142,15 +2384,46 @@ function ProfilePanel({ profile, adminUser, onChange, onSave, saving }) {
             placeholder="admin@dominio.com"
           />
         </Field>
-        <Field label="URL immagine profilo" className="lg:col-span-2">
-          <input
-            type="url"
-            value={avatarUrl}
-            onChange={(event) => onChange("avatar_url", event.target.value)}
-            className={baseInputClass()}
-            placeholder="https://..."
-          />
-        </Field>
+        <div className="lg:col-span-2">
+          <span className="mb-2 block text-sm font-semibold text-[#2c395b]">
+            Immagine profilo
+          </span>
+          <div className="flex flex-wrap items-center gap-3 rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-4">
+            {avatarUrl ? (
+              <span
+                aria-label={displayName || "Profilo admin"}
+                className="h-16 w-16 rounded-full bg-[#fff1ec] bg-cover bg-center"
+                role="img"
+                style={{ backgroundImage: `url("${avatarUrl}")` }}
+              />
+            ) : (
+              <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#c9573c] text-sm font-bold text-white">
+                {initials}
+              </span>
+            )}
+            <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-[#2c395b] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#22304e]">
+              <Icon icon="hugeicons:upload-03" width="18" height="18" />
+              {uploadingAvatar ? "Caricamento..." : "Carica immagine"}
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/avif"
+                className="sr-only"
+                disabled={uploadingAvatar}
+                onChange={onUploadAvatar}
+              />
+            </label>
+            {avatarUrl ? (
+              <button
+                type="button"
+                onClick={() => onChange("avatar_url", "")}
+                className="inline-flex items-center gap-2 rounded-xl border border-[#c9573c]/20 px-4 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#fff8f4]"
+              >
+                <Icon icon="hugeicons:cancel-01" width="18" height="18" />
+                Rimuovi
+              </button>
+            ) : null}
+          </div>
+        </div>
         <div className="lg:col-span-2">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#77674E]">
             Avatar predefiniti
@@ -2178,22 +2451,12 @@ function ProfilePanel({ profile, adminUser, onChange, onSave, saving }) {
                 </button>
               );
             })}
-            {avatarUrl ? (
-              <button
-                type="button"
-                onClick={() => onChange("avatar_url", "")}
-                className="inline-flex items-center gap-2 rounded-full border border-[#dfe7e3] bg-white px-3 py-2 text-xs font-semibold text-[#6d7b80] transition hover:bg-[#fff8f4]"
-              >
-                <Icon icon="hugeicons:cancel-01" width="16" height="16" />
-                Nessun avatar
-              </button>
-            ) : null}
           </div>
         </div>
         <div className="lg:col-span-2">
           <button
             type="submit"
-            disabled={saving}
+            disabled={saving || uploadingAvatar}
             className="inline-flex items-center gap-2 rounded-xl bg-[#c9573c] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#b84c34] disabled:opacity-60"
           >
             <Icon icon="hugeicons:floppy-disk" width="18" height="18" />
@@ -2213,7 +2476,7 @@ function SettingsPanel({ settings, onChange, onSave, saving }) {
           Impostazioni
         </p>
         <h3 className="text-3xl font-bold text-[#2c395b]">
-          Aspetto dashboard
+          Dashboard
         </h3>
       </div>
 
@@ -2224,40 +2487,11 @@ function SettingsPanel({ settings, onChange, onSave, saving }) {
           onSave();
         }}
       >
-        <Field label="Nome brand">
-          <input
-            type="text"
-            value={settings.brand_name}
-            onChange={(event) => onChange("brand_name", event.target.value)}
-            className={baseInputClass()}
-          />
-        </Field>
-        <Field label="Sottotitolo">
-          <input
-            type="text"
-            value={settings.brand_subtitle}
-            onChange={(event) => onChange("brand_subtitle", event.target.value)}
-            className={baseInputClass()}
-          />
-        </Field>
-        <Field label="Testo logo">
-          <input
-            type="text"
-            value={settings.logo_text}
-            onChange={(event) => onChange("logo_text", event.target.value)}
-            className={baseInputClass()}
-            maxLength={4}
-          />
-        </Field>
-        <Field label="URL logo">
-          <input
-            type="url"
-            value={settings.logo_url}
-            onChange={(event) => onChange("logo_url", event.target.value)}
-            className={baseInputClass()}
-            placeholder="https://..."
-          />
-        </Field>
+        <div className="lg:col-span-2">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#77674E]">
+            Aspetto
+          </p>
+        </div>
         <Field label="Colore accento">
           <div className="flex gap-2">
             <input
@@ -2294,6 +2528,11 @@ function SettingsPanel({ settings, onChange, onSave, saving }) {
             <option value="compact">Compatto</option>
           </select>
         </Field>
+        <div className="lg:col-span-2">
+          <p className="mb-3 mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#77674E]">
+            Funzionalita
+          </p>
+        </div>
         <div className="grid gap-3 rounded-md bg-[#fff8f4] p-4 lg:col-span-2">
           <label className="inline-flex items-center gap-3 text-sm font-semibold text-[#2c395b]">
             <input
@@ -2313,7 +2552,7 @@ function SettingsPanel({ settings, onChange, onSave, saving }) {
               }
               className="h-4 w-4 accent-[#c9573c]"
             />
-            Mostra grafico successo eventi
+            Mostra grafico analisi eventi
           </label>
         </div>
         <div className="lg:col-span-2">
@@ -2351,12 +2590,12 @@ export default function AdminDashboard() {
   const [paymentsLoading, setPaymentsLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
+  const [uploadingProfileImage, setUploadingProfileImage] = useState(false);
   const [heroFileName, setHeroFileName] = useState("");
   const [booting, setBooting] = useState(true);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [payments, setPayments] = useState([]);
-  const [adminSearchQuery, setAdminSearchQuery] = useState("");
   const [expandedPaymentSessionId, setExpandedPaymentSessionId] = useState("");
   const [updatingPaymentExclusionId, setUpdatingPaymentExclusionId] =
     useState("");
@@ -2439,28 +2678,6 @@ export default function AdminDashboard() {
       testCount: payments.length - countablePayments.length,
     };
   }, [payments]);
-  const normalizedAdminSearchQuery = normalizeSearchValue(adminSearchQuery);
-  const hasAdminSearchQuery = normalizedAdminSearchQuery.length > 0;
-  const filteredEvents = useMemo(() => {
-    if (!hasAdminSearchQuery) {
-      return events;
-    }
-
-    return events.filter((event) =>
-      getEventSearchText(event).includes(normalizedAdminSearchQuery),
-    );
-  }, [events, hasAdminSearchQuery, normalizedAdminSearchQuery]);
-  const filteredPayments = useMemo(() => {
-    if (!hasAdminSearchQuery) {
-      return payments;
-    }
-
-    return payments.filter((payment) =>
-      getPaymentSearchText(payment).includes(normalizedAdminSearchQuery),
-    );
-  }, [payments, hasAdminSearchQuery, normalizedAdminSearchQuery]);
-  const visibleAdminEvents = hasAdminSearchQuery ? filteredEvents : events;
-  const visibleAdminPayments = hasAdminSearchQuery ? filteredPayments : payments;
   const manualBookingEventOptions = useMemo(
     () =>
       events
@@ -2481,11 +2698,10 @@ export default function AdminDashboard() {
     adminSettings.brand_name ||
     "Admin";
   const sidebarAvatarUrl = adminProfile.avatar_url || adminSettings.logo_url || "";
-  const sidebarInitials = String(
-    adminSettings.logo_text || sidebarDisplayName || "LQ",
-  )
-    .slice(0, 4)
-    .toUpperCase();
+  const sidebarInitials = getInitials(
+    sidebarDisplayName || adminSettings.logo_text,
+    "LQ",
+  );
 
   const clearAdminSession = useCallback((message = "") => {
     setAdminKey("");
@@ -2536,6 +2752,7 @@ export default function AdminDashboard() {
         const user = data?.session?.user || null;
 
         setAdminUser(user);
+        setAdminProfile(buildAdminProfileFromUser(user));
 
         if (accessToken) {
           setAdminKey(accessToken);
@@ -2559,6 +2776,7 @@ export default function AdminDashboard() {
         const user = session?.user || null;
         setAdminKey(token);
         setAdminUser(user);
+        setAdminProfile(buildAdminProfileFromUser(user));
 
         if (!token) {
           clearAdminSession("");
@@ -2596,7 +2814,10 @@ export default function AdminDashboard() {
             Authorization: `Bearer ${key}`,
           },
         });
-        const data = await response.json();
+        const data = await readAdminJsonResponse(
+          response,
+          "Errore nel caricamento eventi.",
+        );
 
         if (!response.ok) {
           if (isSessionExpiredResponse(response, data)) {
@@ -2623,10 +2844,6 @@ export default function AdminDashboard() {
             setSelectedSlug("");
             setForm(buildEmptyForm());
           }
-        } else if (nextEvents.length && activePanel !== "editor") {
-          const firstEvent = nextEvents[0];
-          setSelectedSlug(firstEvent.slug);
-          setForm(eventToForm(firstEvent));
         }
       } catch (fetchError) {
         setError(fetchError.message);
@@ -2634,7 +2851,7 @@ export default function AdminDashboard() {
         setLoading(false);
       }
     },
-    [activePanel, adminKey, handleLogout, selectedSlug],
+    [adminKey, handleLogout, selectedSlug],
   );
 
   const loadPreferences = useCallback(
@@ -2649,7 +2866,10 @@ export default function AdminDashboard() {
             Authorization: `Bearer ${key}`,
           },
         });
-        const data = await response.json();
+        const data = await readAdminJsonResponse(
+          response,
+          "Errore caricamento preferenze.",
+        );
 
         if (!response.ok) {
           if (isSessionExpiredResponse(response, data)) {
@@ -2695,7 +2915,10 @@ export default function AdminDashboard() {
           },
           body: JSON.stringify({ profile, settings }),
         });
-        const data = await response.json();
+        const data = await readAdminJsonResponse(
+          response,
+          "Errore salvataggio preferenze.",
+        );
 
         if (!response.ok) {
           if (isSessionExpiredResponse(response, data)) {
@@ -2740,7 +2963,10 @@ export default function AdminDashboard() {
             Authorization: `Bearer ${key}`,
           },
         });
-        const data = await response.json();
+        const data = await readAdminJsonResponse(
+          response,
+          "Errore nel caricamento pagamenti.",
+        );
 
         if (!response.ok) {
           if (isSessionExpiredResponse(response, data)) {
@@ -2784,7 +3010,10 @@ export default function AdminDashboard() {
           },
           body: JSON.stringify({ stripeSessionId, excluded }),
         });
-        const data = await response.json();
+        const data = await readAdminJsonResponse(
+          response,
+          "Errore aggiornamento pagamento.",
+        );
 
         if (!response.ok) {
           if (isSessionExpiredResponse(response, data)) {
@@ -2839,7 +3068,10 @@ export default function AdminDashboard() {
           },
           body: JSON.stringify({ stripeSessionId, paymentStatus }),
         });
-        const data = await response.json();
+        const data = await readAdminJsonResponse(
+          response,
+          "Errore aggiornamento stato.",
+        );
 
         if (!response.ok) {
           if (isSessionExpiredResponse(response, data)) {
@@ -2890,7 +3122,10 @@ export default function AdminDashboard() {
           },
           body: JSON.stringify({ stripeSessionId, manualDetails }),
         });
-        const data = await response.json();
+        const data = await readAdminJsonResponse(
+          response,
+          "Errore aggiornamento prenotazione.",
+        );
 
         if (!response.ok) {
           if (isSessionExpiredResponse(response, data)) {
@@ -2942,7 +3177,10 @@ export default function AdminDashboard() {
           },
           body: JSON.stringify(payload),
         });
-        const data = await response.json();
+        const data = await readAdminJsonResponse(
+          response,
+          "Errore creazione prenotazione.",
+        );
 
         if (!response.ok) {
           if (isSessionExpiredResponse(response, data)) {
@@ -3061,6 +3299,7 @@ export default function AdminDashboard() {
 
       setAdminKey(accessToken);
       setAdminUser(user);
+      setAdminProfile(buildAdminProfileFromUser(user));
       if (typeof window !== "undefined") {
         if (rememberEmail) {
           window.localStorage.setItem("lou-admin-email", email);
@@ -3117,6 +3356,7 @@ export default function AdminDashboard() {
       if (accessToken) {
         setAdminKey(accessToken);
         setAdminUser(user);
+        setAdminProfile(buildAdminProfileFromUser(user));
         setNotice("Account creato e accesso effettuato.");
       } else {
         setNotice(
@@ -3375,6 +3615,34 @@ export default function AdminDashboard() {
     }
   }
 
+  async function handleProfileImageUpload(event) {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    setUploadingProfileImage(true);
+    setError("");
+    setNotice("");
+
+    try {
+      const url = await uploadProfileImage(file, adminKey);
+      setAdminProfile((current) => ({
+        ...current,
+        avatar_url: url,
+      }));
+      setNotice("Immagine profilo caricata. Salva il profilo per confermare.");
+    } catch (uploadError) {
+      setError(
+        uploadError.message || "Upload immagine profilo non riuscito.",
+      );
+    } finally {
+      setUploadingProfileImage(false);
+      event.target.value = "";
+    }
+  }
+
   async function handleSave(nextStatus) {
     const validationError = validateForm(form);
 
@@ -3406,7 +3674,10 @@ export default function AdminDashboard() {
           body: JSON.stringify(payload),
         },
       );
-      const data = await response.json();
+      const data = await readAdminJsonResponse(
+        response,
+        "Salvataggio non riuscito.",
+      );
 
       if (!response.ok) {
         if (isSessionExpiredResponse(response, data)) {
@@ -3461,7 +3732,10 @@ export default function AdminDashboard() {
           Authorization: `Bearer ${adminKey}`,
         },
       });
-      const data = await response.json();
+      const data = await readAdminJsonResponse(
+        response,
+        "Eliminazione non riuscita.",
+      );
 
       if (!response.ok) {
         if (isSessionExpiredResponse(response, data)) {
@@ -3690,6 +3964,8 @@ export default function AdminDashboard() {
   }
 
   const showOverview = activePanel === "overview";
+  const showAnalytics = activePanel === "analytics";
+  const showCalendarPanel = activePanel === "calendar";
   const showEvents = activePanel === "events";
   const showEditor = activePanel === "editor";
   const showPayments = activePanel === "payments";
@@ -3701,6 +3977,13 @@ export default function AdminDashboard() {
     adminSettings.accent_color || DEFAULT_ADMIN_PREFERENCES.accentColor;
 
   function handleNavSelect(panelId) {
+    if (panelId === "editor") {
+      setSelectedSlug("");
+      setForm(buildEmptyForm());
+      setNotice("");
+      setError("");
+    }
+
     setActivePanel(panelId);
     setMobileNavOpen(false);
   }
@@ -3728,16 +4011,51 @@ export default function AdminDashboard() {
             background-color: #f4f6f3;
           }
 
-          .admin-dashboard-shell .bg-\\[\\#c9573c\\] {
+          .admin-dashboard-shell .bg-\\[\\#c9573c\\],
+          .admin-dashboard-shell [class*="bg-[#c9573c"] {
             background-color: var(--admin-accent) !important;
           }
 
-          .admin-dashboard-shell .text-\\[\\#c9573c\\] {
+          .admin-dashboard-shell .text-\\[\\#c9573c\\],
+          .admin-dashboard-shell [class*="text-[#c9573c"] {
             color: var(--admin-accent) !important;
           }
 
-          .admin-dashboard-shell .border-\\[\\#c9573c\\] {
+          .admin-dashboard-shell .border-\\[\\#c9573c\\],
+          .admin-dashboard-shell [class*="border-[#c9573c"] {
             border-color: var(--admin-accent) !important;
+          }
+
+          .admin-dashboard-shell [class*="bg-[#b84c34"] {
+            background-color: var(--admin-accent) !important;
+          }
+
+          .admin-dashboard-shell [class*="text-[#b84c34"] {
+            color: var(--admin-accent) !important;
+          }
+
+          .admin-dashboard-shell [class*="border-[#b84c34"] {
+            border-color: var(--admin-accent) !important;
+          }
+
+          .admin-dashboard-shell [class*="bg-[#CE9486"] {
+            background-color: color-mix(
+              in srgb,
+              var(--admin-accent) 20%,
+              transparent
+            ) !important;
+          }
+
+          .admin-dashboard-shell [class*="text-[#CE9486"] {
+            color: var(--admin-accent) !important;
+          }
+
+          .admin-dashboard-shell [class*="border-[#CE9486"] {
+            border-color: color-mix(
+              in srgb,
+              var(--admin-accent) 35%,
+              transparent
+            ) !important;
           }
 
           .admin-theme-dark {
@@ -3857,7 +4175,7 @@ export default function AdminDashboard() {
           }`}
         >
           <aside
-            className={`fixed inset-y-0 left-0 z-[100] w-[min(86vw,304px)] border-r border-[#dfe7e3] bg-white/95 px-4 py-6 shadow-[24px_0_60px_rgba(35,47,55,0.16)] backdrop-blur-md transition-transform duration-300 sm:px-5 xl:sticky xl:top-0 xl:z-30 xl:w-auto xl:min-h-screen xl:translate-x-0 xl:px-3 xl:shadow-none ${
+            className={`fixed inset-y-0 left-0 z-[100] flex w-[min(86vw,304px)] flex-col overflow-x-hidden overflow-y-auto border-r border-[#dfe7e3] bg-white/95 px-4 py-6 shadow-[24px_0_60px_rgba(35,47,55,0.16)] backdrop-blur-md transition-transform duration-300 sm:px-5 xl:sticky xl:top-0 xl:z-30 xl:w-auto xl:min-h-screen xl:translate-x-0 xl:px-3 xl:shadow-none ${
               mobileNavOpen ? "translate-x-0" : "-translate-x-full"
             }`}
           >
@@ -3866,31 +4184,27 @@ export default function AdminDashboard() {
                 sidebarCollapsed ? "xl:items-center" : ""
               }`}
             >
-              <div
-                className={`flex items-start justify-between gap-3 ${
-                  sidebarCollapsed ? "xl:justify-center" : ""
-                }`}
-              >
-                <div className={sidebarCollapsed ? "xl:hidden" : ""}>
-                  <div className="flex items-center gap-3">
+              <div className="flex items-start gap-3">
+                <div className={`min-w-0 flex-1 ${sidebarCollapsed ? "xl:hidden" : ""}`}>
+                  <div className="flex min-w-0 items-center gap-3">
                     {sidebarAvatarUrl ? (
                       <span
-                        aria-label={adminSettings.brand_name || "Logo admin"}
-                        className="h-12 w-12 rounded-2xl bg-[#fff1ec] bg-cover bg-center"
+                        aria-label={sidebarDisplayName || "Profilo admin"}
+                        className="h-12 w-12 shrink-0 rounded-2xl bg-[#fff1ec] bg-cover bg-center"
                         role="img"
                         style={{ backgroundImage: `url("${sidebarAvatarUrl}")` }}
                       />
                     ) : (
-                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#c9573c] text-sm font-bold text-white">
+                      <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#c9573c] text-sm font-bold text-white">
                         {sidebarInitials}
                       </span>
                     )}
                     <div className="min-w-0">
                       <p className="truncate text-base font-bold text-[#2c395b]">
-                        {adminSettings.brand_name || "Luisa Quaglia"}
+                        {sidebarDisplayName}
                       </p>
                       <p className="truncate text-xs font-semibold uppercase tracking-[0.18em] text-[#6d7b80]">
-                        {adminSettings.brand_subtitle || "Tour Guide Admin"}
+                        {adminProfile.email || adminUser?.email || adminSettings.brand_subtitle || "Tour Guide Admin"}
                       </p>
                     </div>
                   </div>
@@ -3899,7 +4213,7 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setMobileNavOpen(false)}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#c9573c]/20 bg-white text-[#c9573c] xl:hidden"
+                  className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#c9573c]/20 bg-white text-[#c9573c] xl:hidden"
                   aria-label="Chiudi menu admin"
                 >
                   <Icon icon="hugeicons:cancel-01" width="20" height="20" />
@@ -3908,7 +4222,9 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setSidebarCollapsed((current) => !current)}
-                  className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#c9573c]/18 bg-white text-[#c9573c] xl:inline-flex"
+                  className={`hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#c9573c]/18 bg-white text-[#c9573c] xl:inline-flex ${
+                    sidebarCollapsed ? "xl:mx-auto" : "xl:ml-auto"
+                  }`}
                   aria-label={
                     sidebarCollapsed
                       ? "Espandi barra laterale"
@@ -3966,10 +4282,14 @@ export default function AdminDashboard() {
 
             <div
               className={`mt-9 grid gap-2 ${
-                sidebarCollapsed ? "xl:hidden" : ""
+                sidebarCollapsed ? "xl:items-center" : ""
               }`}
             >
-              <p className="mb-1 px-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#6d7b80]">
+              <p
+                className={`mb-1 px-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#6d7b80] ${
+                  sidebarCollapsed ? "xl:hidden" : ""
+                }`}
+              >
                 Generale
               </p>
               {ADMIN_OTHER_ITEMS.map((item) => (
@@ -3977,14 +4297,17 @@ export default function AdminDashboard() {
                   key={item.id}
                   type="button"
                   onClick={() => handleNavSelect(item.id)}
+                  title={sidebarCollapsed ? item.label : undefined}
                   className={`flex items-center gap-3 rounded-md px-4 py-3 text-left text-sm font-bold transition ${
                     activePanel === item.id
                       ? "bg-[#c9573c] text-white shadow-[0_18px_30px_rgba(201,87,60,0.18)]"
                       : "bg-white text-[#2c395b] hover:bg-[#fff1ec]"
-                  }`}
+                  } ${sidebarCollapsed ? "xl:justify-center xl:px-3" : ""}`}
                 >
                   <Icon icon={item.icon} width="19" height="19" />
-                  {item.label}
+                  <span className={sidebarCollapsed ? "xl:hidden" : ""}>
+                    {item.label}
+                  </span>
                 </button>
               ))}
               <button
@@ -3993,46 +4316,37 @@ export default function AdminDashboard() {
                   loadEvents(adminKey);
                   loadPayments(adminKey);
                 }}
-                className="flex items-center gap-3 rounded-md bg-white px-4 py-3 text-left text-sm font-bold text-[#2c395b] transition hover:bg-[#fff1ec]"
+                title={sidebarCollapsed ? "Ricarica dati" : undefined}
+                className={`flex items-center gap-3 rounded-md bg-white px-4 py-3 text-left text-sm font-bold text-[#2c395b] transition hover:bg-[#fff1ec] ${
+                  sidebarCollapsed ? "xl:justify-center xl:px-3" : ""
+                }`}
               >
                 <Icon icon="hugeicons:refresh" width="19" height="19" />
-                Ricarica dati
+                <span className={sidebarCollapsed ? "xl:hidden" : ""}>
+                  Ricarica dati
+                </span>
               </button>
               <button
                 type="button"
                 onClick={handleLogout}
-                className="flex items-center gap-3 rounded-md bg-white px-4 py-3 text-left text-sm font-bold text-[#2c395b] transition hover:bg-[#fff1ec]"
+                title={sidebarCollapsed ? "Logout" : undefined}
+                className={`flex items-center gap-3 rounded-md bg-white px-4 py-3 text-left text-sm font-bold text-[#2c395b] transition hover:bg-[#fff1ec] ${
+                  sidebarCollapsed
+                    ? "xl:justify-center xl:px-3"
+                    : "xl:justify-end xl:text-right"
+                }`}
               >
                 <Icon icon="hugeicons:logout-03" width="19" height="19" />
-                Logout
+                <span className={sidebarCollapsed ? "xl:hidden" : ""}>
+                  Logout
+                </span>
               </button>
             </div>
           </aside>
 
           <section className="min-w-0 px-4 py-6 sm:px-6 lg:px-8 xl:px-10 xl:py-8">
             <div className="mx-auto w-full max-w-[2200px]">
-              <div className="mb-6 hidden items-center justify-between gap-4 rounded-md border border-[#dfe7e3] bg-white px-4 py-3 shadow-[0_16px_42px_rgba(44,57,91,0.06)] xl:flex">
-                <div className="flex w-full max-w-lg items-center gap-3 rounded-xl bg-[#f4f6f3] px-4 py-3 text-sm text-[#6d7b80]">
-                  <Icon icon="hugeicons:search-01" width="18" height="18" />
-                  <input
-                    type="search"
-                    value={adminSearchQuery}
-                    onChange={(event) => setAdminSearchQuery(event.target.value)}
-                    placeholder="Cerca eventi, pagamenti, email, date..."
-                    className="min-w-0 flex-1 bg-transparent text-sm font-semibold text-[#2c395b] outline-none placeholder:text-[#6d7b80]"
-                    aria-label="Cerca in admin"
-                  />
-                  {adminSearchQuery ? (
-                    <button
-                      type="button"
-                      onClick={() => setAdminSearchQuery("")}
-                      className="inline-flex h-7 w-7 items-center justify-center rounded-full text-[#c9573c] transition hover:bg-white"
-                      aria-label="Pulisci ricerca"
-                    >
-                      <Icon icon="hugeicons:cancel-01" width="16" height="16" />
-                    </button>
-                  ) : null}
-                </div>
+              <div className="mb-6 hidden items-center justify-end gap-4 rounded-md border border-[#dfe7e3] bg-white px-4 py-3 shadow-[0_16px_42px_rgba(44,57,91,0.06)] xl:flex">
                 <div className="flex items-center gap-3">
                   <button
                     type="button"
@@ -4068,39 +4382,10 @@ export default function AdminDashboard() {
                 </div>
               ) : null}
 
-              {hasAdminSearchQuery && !showEditor && !showProfile && !showSettings ? (
-                <section className="mb-6 rounded-md border border-[#c9573c]/10 bg-[#fffaf7] p-4">
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#c9573c]/70">
-                        Ricerca attiva
-                      </p>
-                      <p className="mt-1 text-sm font-semibold text-[#2c395b]">
-                        &quot;{adminSearchQuery}&quot; trova{" "}
-                        {filteredEvents.length}{" "}
-                        {filteredEvents.length === 1 ? "evento" : "eventi"} e{" "}
-                        {filteredPayments.length}{" "}
-                        {filteredPayments.length === 1
-                          ? "pagamento"
-                          : "pagamenti"}
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setAdminSearchQuery("")}
-                      className="inline-flex items-center gap-2 rounded-xl border border-[#c9573c]/20 bg-white px-4 py-2 text-sm font-semibold text-[#c9573c] transition hover:bg-[#fff1ec]"
-                    >
-                      <Icon icon="hugeicons:cancel-01" width="16" height="16" />
-                      Pulisci
-                    </button>
-                  </div>
-                </section>
-              ) : null}
-
               {showOverview ? (
                 <OverviewPanel
-                  events={visibleAdminEvents}
-                  payments={visibleAdminPayments}
+                  events={events}
+                  payments={payments}
                   paymentStats={paymentStats}
                   loading={loading || paymentsLoading}
                   dashboardSettings={adminSettings}
@@ -4110,6 +4395,38 @@ export default function AdminDashboard() {
                   onOpenPayments={() => handleNavSelect("payments")}
                   onSelectEvent={handleSelectEvent}
                   onCreateManualBooking={createManualBooking}
+                />
+              ) : null}
+
+              {showAnalytics ? (
+                <AnalyticsPanel
+                  events={events}
+                  payments={payments}
+                  paymentStats={paymentStats}
+                  loading={loading || paymentsLoading}
+                  onOpenEvents={() => handleNavSelect("events")}
+                  onOpenPayments={() => handleNavSelect("payments")}
+                />
+              ) : null}
+
+              {showCalendarPanel ? (
+                <OverviewPanel
+                  events={events}
+                  payments={payments}
+                  paymentStats={paymentStats}
+                  loading={loading || paymentsLoading}
+                  dashboardSettings={{
+                    ...adminSettings,
+                    show_calendar: true,
+                    show_success_chart: false,
+                  }}
+                  onNewEvent={startNewEvent}
+                  onOpenEvents={() => handleNavSelect("events")}
+                  onOpenEditor={() => handleNavSelect("editor")}
+                  onOpenPayments={() => handleNavSelect("payments")}
+                  onSelectEvent={handleSelectEvent}
+                  onCreateManualBooking={createManualBooking}
+                  calendarOnly
                 />
               ) : null}
 
@@ -4124,7 +4441,9 @@ export default function AdminDashboard() {
                       [field]: value,
                     }))
                   }
+                  onUploadAvatar={handleProfileImageUpload}
                   onSave={() => savePreferences({ profile: adminProfile })}
+                  uploadingAvatar={uploadingProfileImage}
                 />
               ) : null}
 
@@ -4162,8 +4481,8 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="space-y-4">
-                      {visibleAdminEvents.length ? (
-                        visibleAdminEvents.map((event) => {
+                      {events.length ? (
+                        events.map((event) => {
                           const firstDate = event.dates?.[0];
                           const statusLabel =
                             event.status === "published"
@@ -5180,8 +5499,8 @@ export default function AdminDashboard() {
                     </section>
 
                     <div className="space-y-4 lg:hidden">
-                      {visibleAdminPayments.length ? (
-                        visibleAdminPayments.map((payment) => {
+                      {payments.length ? (
+                        payments.map((payment) => {
                           const sessionId = String(
                             payment.stripe_session_id || "",
                           );
@@ -5215,9 +5534,7 @@ export default function AdminDashboard() {
                         })
                       ) : (
                         <div className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-6 text-center text-sm text-[#6d7b80]">
-                          {hasAdminSearchQuery
-                            ? "Nessun pagamento corrisponde alla ricerca."
-                            : "Nessun pagamento registrato ancora."}
+                          Nessun pagamento registrato ancora.
                         </div>
                       )}
                     </div>
@@ -5253,8 +5570,8 @@ export default function AdminDashboard() {
                           </tr>
                         </thead>
                         <tbody>
-                          {visibleAdminPayments.length ? (
-                            visibleAdminPayments.map((payment) => {
+                          {payments.length ? (
+                            payments.map((payment) => {
                               const attendeeNames = getAttendeeNames(payment);
                               const attendeeCount =
                                 getBookingAttendeeCount(payment);
@@ -5531,9 +5848,7 @@ export default function AdminDashboard() {
                                 colSpan={8}
                                 className="px-4 py-8 text-center text-[#6d7b80]"
                               >
-                                {hasAdminSearchQuery
-                                  ? "Nessun pagamento corrisponde alla ricerca."
-                                  : "Nessun pagamento registrato ancora."}
+                                Nessun pagamento registrato ancora.
                               </td>
                             </tr>
                           )}

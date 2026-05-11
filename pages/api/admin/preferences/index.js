@@ -89,6 +89,14 @@ function normalizeProfilePayload(payload = {}, user) {
   };
 }
 
+function getUserDisplayName(user) {
+  const metadata = user?.user_metadata || {};
+  const displayName =
+    metadata.full_name || metadata.name || metadata.display_name || "";
+
+  return normalizeString(displayName);
+}
+
 async function readSettings() {
   const { data, error } = await supabaseAdmin
     .from("admin_settings")
@@ -118,16 +126,24 @@ async function readProfile(user) {
     throw new Error(error.message);
   }
 
-  return (
-    data || {
+  const metadataDisplayName = getUserDisplayName(user);
+
+  if (data) {
+    return {
+      ...data,
+      email: data.email || user.email || "",
+      display_name: data.display_name || metadataDisplayName,
+    };
+  }
+
+  return {
       user_id: user.id,
       email: user.email || "",
-      display_name: "",
+      display_name: metadataDisplayName,
       avatar_url: "",
       role: "admin",
       preferences: {},
-    }
-  );
+    };
 }
 
 export default async function handler(req, res) {
