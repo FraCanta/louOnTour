@@ -111,6 +111,19 @@ async function readSettings() {
   return data || { id: "global", ...DEFAULT_SETTINGS };
 }
 
+function resolveProfileSettings(profile) {
+  const dashboardSettings =
+    profile?.preferences && typeof profile.preferences === "object"
+      ? profile.preferences.dashboardSettings
+      : null;
+
+  if (!dashboardSettings || typeof dashboardSettings !== "object") {
+    return null;
+  }
+
+  return normalizeSettingsPayload(dashboardSettings);
+}
+
 async function readProfile(user) {
   if (!user?.id) {
     return null;
@@ -160,10 +173,12 @@ export default async function handler(req, res) {
     const user = await getRequestUser(req);
 
     if (req.method === "GET") {
-      const [profile, settings] = await Promise.all([
+      const [profile, globalSettings] = await Promise.all([
         readProfile(user),
         readSettings(),
       ]);
+      const profileSettings = resolveProfileSettings(profile);
+      const settings = profileSettings || globalSettings;
 
       return res.status(200).json({ profile, settings });
     }
@@ -179,22 +194,65 @@ export default async function handler(req, res) {
     let savedProfile = null;
 
     if (nextSettings) {
-      const { data, error } = await supabaseAdmin
-        .from("admin_settings")
-        .upsert({
-          id: "global",
-          ...nextSettings,
-          updated_by: user?.id || null,
-          updated_at: new Date().toISOString(),
-        })
-        .select("*")
-        .single();
+      if (user?.id) {
+        const { data: existingProfile, error: existingProfileError } =
+          await supabaseAdmin
+            .from("admin_profiles")
+            .select("*")
+            .eq("user_id", user.id)
+            .maybeSingle();
 
-      if (error) {
-        throw new Error(error.message);
+        if (existingProfileError) {
+          throw new Error(existingProfileError.message);
+        }
+
+        const currentPreferences =
+          existingProfile?.preferences &&
+          typeof existingProfile.preferences === "object"
+            ? existingProfile.preferences
+            : {};
+
+        const { data, error } = await supabaseAdmin
+          .from("admin_profiles")
+          .upsert({
+            user_id: user.id,
+            email: existingProfile?.email || user.email || "",
+            display_name: existingProfile?.display_name || getUserDisplayName(user),
+            avatar_url: existingProfile?.avatar_url || "",
+            role: existingProfile?.role || "admin",
+            preferences: {
+              ...currentPreferences,
+              dashboardSettings: nextSettings,
+            },
+            updated_at: new Date().toISOString(),
+          })
+          .select("*")
+          .single();
+
+        if (error) {
+          throw new Error(error.message);
+        }
+
+        savedProfile = data;
+        savedSettings = nextSettings;
+      } else {
+        const { data, error } = await supabaseAdmin
+          .from("admin_settings")
+          .upsert({
+            id: "global",
+            ...nextSettings,
+            updated_by: user?.id || null,
+            updated_at: new Date().toISOString(),
+          })
+          .select("*")
+          .single();
+
+        if (error) {
+          throw new Error(error.message);
+        }
+
+        savedSettings = data;
       }
-
-      savedSettings = data;
     }
 
     if (nextProfile) {
@@ -221,10 +279,10 @@ export default async function handler(req, res) {
       savedProfile = data;
     }
 
-    const [profile, settings] = await Promise.all([
-      savedProfile ? Promise.resolve(savedProfile) : readProfile(user),
-      savedSettings ? Promise.resolve(savedSettings) : readSettings(),
-    ]);
+    const profile = savedProfile || (await readProfile(user));
+    const globalSettings = savedSettings || (await readSettings());
+    const profileSettings = resolveProfileSettings(profile);
+    const settings = profileSettings || globalSettings;
 
     return res.status(200).json({ profile, settings });
   } catch (error) {
