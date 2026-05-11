@@ -3,6 +3,7 @@ import { getAdminEventBySlug } from "../../../../utils/events";
 import {
   getBookingAttendeeCount,
   isCountableBooking,
+  isTestBooking,
   parsePositiveInt,
 } from "../../../../utils/eventBookings";
 import { supabaseAdmin } from "../../../../utils/supabaseAdmin";

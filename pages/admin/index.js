@@ -2127,6 +2127,9 @@ export default function AdminDashboard() {
               : item,
           ),
         );
+        setExpandedPaymentSessionId((current) =>
+          current === stripeSessionId ? "" : current,
+        );
         setNotice("Prenotazione manuale aggiornata.");
       } catch (updateError) {
         setError(updateError.message);

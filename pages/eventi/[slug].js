@@ -60,6 +60,7 @@ function DateCheckoutBox({
   lang,
   checkoutDateIso,
   bookingState,
+  availability,
   newsletterConsent,
   termsAccepted,
   onDateChange,
@@ -73,9 +74,17 @@ function DateCheckoutBox({
   const stripeEnabled =
     Boolean(date?.stripe?.enabled) && Number(date?.stripe?.priceCents) > 0;
   const quantity = bookingState.quantity;
-  const maxQuantity = Math.max(
+  const capacity = Math.max(
     1,
     Math.min(MAX_EVENT_CAPACITY, Number(date?.spots || MAX_EVENT_CAPACITY)),
+  );
+  const remainingSpots =
+    availability && Number.isFinite(Number(availability.remaining))
+      ? Math.max(0, Number(availability.remaining))
+      : capacity;
+  const maxQuantity = Math.max(
+    0,
+    Math.min(MAX_EVENT_CAPACITY, capacity, remainingSpots),
   );
   const unitPriceCents = Number(date?.stripe?.priceCents || 0);
   const totalPriceCents = unitPriceCents * quantity;
@@ -100,6 +109,7 @@ function DateCheckoutBox({
     lang === "en"
       ? "Online payment is not active for this date yet."
       : "Il pagamento online non e ancora attivo per questa data.";
+  const soldOutLabel = lang === "en" ? "Sold out" : "Posti esauriti";
   const moneyFormatter = new Intl.NumberFormat(
     lang === "en" ? "en-US" : "it-IT",
     {
@@ -140,11 +150,11 @@ function DateCheckoutBox({
         <p className="text-sm qhd:text-xl text-[#fef3ea]/75">{date.time}</p>
         <p className="mt-1 text-xs qhd:text-base text-[#fef3ea]/70">
           {lang === "en" ? "Available spots" : "Posti disponibili"}:{" "}
-          {date.spots || MAX_EVENT_CAPACITY}
+          {remainingSpots}
         </p>
       </div>
 
-      {stripeEnabled ? (
+      {stripeEnabled && maxQuantity > 0 ? (
         <div className="mt-3">
           <p className="mb-2 text-xs qhd:text-lg text-[#fef3ea]/75">
             {lang === "en" ? "Online payment" : "Pagamento online"}:{" "}
@@ -242,6 +252,10 @@ function DateCheckoutBox({
               : checkoutLabel}
           </button>
         </div>
+      ) : stripeEnabled ? (
+        <p className="mt-3 rounded-md border border-[#f8b7a8]/30 bg-[#f8b7a8]/10 px-3 py-2 text-sm text-[#fef3ea]">
+          {soldOutLabel}
+        </p>
       ) : (
         <p className="mt-3 rounded-md border border-[#f8b7a8]/30 bg-[#f8b7a8]/10 px-3 py-2 text-sm text-[#fef3ea]">
           {notAvailableLabel}
@@ -257,6 +271,7 @@ export default function EventDetailPage({ event, copy, locale, relatedEvents = [
   const [checkoutDateIso, setCheckoutDateIso] = useState("");
   const [checkoutError, setCheckoutError] = useState("");
   const [bookingByDate, setBookingByDate] = useState({});
+  const [availabilityByDate, setAvailabilityByDate] = useState({});
   const [newsletterConsentByDate, setNewsletterConsentByDate] = useState({});
   const [termsAcceptedByDate, setTermsAcceptedByDate] = useState({});
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(null);
@@ -339,6 +354,58 @@ export default function EventDetailPage({ event, copy, locale, relatedEvents = [
     );
   }, [event?.dates]);
 
+  useEffect(() => {
+    if (!event?.slug) {
+      setAvailabilityByDate({});
+      return undefined;
+    }
+
+    let isMounted = true;
+    const controller = new AbortController();
+
+    async function loadAvailability() {
+      try {
+        const params = new URLSearchParams({
+          slug: event.slug,
+          locale: lang,
+        });
+        const response = await fetch(`/api/events/availability?${params}`, {
+          signal: controller.signal,
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Disponibilita non disponibile.");
+        }
+
+        if (!isMounted) {
+          return;
+        }
+
+        const nextAvailability = (data.dates || []).reduce((accumulator, item) => {
+          if (item?.iso) {
+            accumulator[item.iso] = item;
+          }
+
+          return accumulator;
+        }, {});
+
+        setAvailabilityByDate(nextAvailability);
+      } catch (error) {
+        if (error.name !== "AbortError" && isMounted) {
+          setAvailabilityByDate({});
+        }
+      }
+    }
+
+    loadAvailability();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [event?.slug, lang]);
+
   if (!event) return null;
 
   const title = event.title;
@@ -358,9 +425,28 @@ export default function EventDetailPage({ event, copy, locale, relatedEvents = [
 
   function getDateBookingState(dateIso) {
     const current = bookingByDate[dateIso];
+    const availability = availabilityByDate[dateIso];
+    const maxQuantity =
+      availability && Number.isFinite(Number(availability.remaining))
+        ? Math.max(0, Number(availability.remaining))
+        : MAX_EVENT_CAPACITY;
 
     if (current) {
-      return current;
+      const clampedQuantity = Math.max(
+        1,
+        Math.min(Math.max(1, maxQuantity), current.quantity),
+      );
+
+      if (clampedQuantity === current.quantity) {
+        return current;
+      }
+
+      return {
+        quantity: clampedQuantity,
+        attendeeNames: Array.from({ length: clampedQuantity }, (_, index) =>
+          current.attendeeNames?.[index] || "",
+        ),
+      };
     }
 
     return {
@@ -446,6 +532,28 @@ export default function EventDetailPage({ event, copy, locale, relatedEvents = [
 
     try {
       const bookingState = getDateBookingState(date.iso);
+      const availability = availabilityByDate[date.iso];
+      const remainingSpots =
+        availability && Number.isFinite(Number(availability.remaining))
+          ? Math.max(0, Number(availability.remaining))
+          : MAX_EVENT_CAPACITY;
+
+      if (remainingSpots <= 0) {
+        throw new Error(
+          lang === "en"
+            ? "Sold out for this date."
+            : "Posti esauriti per questa data.",
+        );
+      }
+
+      if (bookingState.quantity > remainingSpots) {
+        throw new Error(
+          lang === "en"
+            ? `Not enough spots available. Remaining: ${remainingSpots}.`
+            : `Posti disponibili insufficienti. Rimasti: ${remainingSpots}.`,
+        );
+      }
+
       const newsletterConsent = getNewsletterConsent(date.iso);
       const attendeeNames = (bookingState.attendeeNames || [])
         .slice(0, bookingState.quantity)
@@ -664,6 +772,7 @@ export default function EventDetailPage({ event, copy, locale, relatedEvents = [
                   lang={lang}
                   checkoutDateIso={checkoutDateIso}
                   bookingState={getDateBookingState(selectedDate.iso)}
+                  availability={availabilityByDate[selectedDate.iso]}
                   newsletterConsent={getNewsletterConsent(selectedDate.iso)}
                   termsAccepted={getTermsAccepted(selectedDate.iso)}
                   onDateChange={setSelectedDateIso}
