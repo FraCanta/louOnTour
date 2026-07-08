@@ -1,5 +1,5 @@
 import { requireAdminApiKey } from "../../../utils/adminAuth";
-import { buildGoogleAuthorizationUrl, exchangeGoogleCode, getGoogleCalendarStatus, syncGoogleCalendar, verifyGoogleOAuthState, watchGoogleCalendar } from "../../../utils/googleCalendar";
+import { buildGoogleAuthorizationUrl, exchangeGoogleCode, getGoogleCalendars, getGoogleCalendarStatus, saveGoogleCalendars, syncGoogleCalendar, verifyGoogleOAuthState, watchGoogleCalendar } from "../../../utils/googleCalendar";
 
 export const config = {
   maxDuration: 60,
@@ -14,7 +14,9 @@ export default async function handler(req, res) {
     }
     if (!(await requireAdminApiKey(req, res))) return;
     if (req.method === "GET" && req.query.action === "authorize") return res.status(200).json({ url: buildGoogleAuthorizationUrl() });
+    if (req.method === "GET" && req.query.action === "calendars") return res.status(200).json(await getGoogleCalendars());
     if (req.method === "GET") return res.status(200).json(await getGoogleCalendarStatus());
+    if (req.method === "PUT" && req.query.action === "calendars") return res.status(200).json(await saveGoogleCalendars(req.body?.calendarIds));
     if (req.method === "POST" && req.query.action === "sync") return res.status(200).json(await syncGoogleCalendar());
     if (req.method === "POST" && req.query.action === "watch") return res.status(200).json(await watchGoogleCalendar());
     return res.status(405).json({ error: "Method not allowed" });

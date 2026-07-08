@@ -43,6 +43,8 @@ export default function TourAdminPanel({ adminKey }) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [google, setGoogle] = useState({ connected: false });
+  const [googleCalendars, setGoogleCalendars] = useState([]);
+  const [selectedGoogleCalendars, setSelectedGoogleCalendars] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [block, setBlock] = useState({ title: "Non disponibile", date: "", startTime: "10:30", endTime: "12:30" });
 
@@ -60,6 +62,16 @@ export default function TourAdminPanel({ adminKey }) {
       setTours(tourData.tours || []);
       setGoogle(googleData);
       setBookings(bookingData.bookings || []);
+      if (googleData.connected) {
+        try {
+          const calendarData = await request("/api/admin/google-calendar?action=calendars");
+          setGoogleCalendars(calendarData.calendars || []);
+          setSelectedGoogleCalendars(calendarData.selectedCalendarIds || []);
+        } catch (_calendarError) {
+          setGoogleCalendars([]);
+          setError("Ricollega Google Calendar per autorizzare la lettura delle disponibilita.");
+        }
+      }
     } catch (loadError) { setError(loadError.message); }
   }, [adminKey, request]);
 
@@ -98,6 +110,22 @@ export default function TourAdminPanel({ adminKey }) {
       const data = await request(`/api/admin/google-calendar?action=${action}`, { method: "POST" });
       setMessage(action === "sync" ? `Sincronizzazione completata: ${data.imported || 0} eventi.` : "Canale Google Calendar rinnovato."); await load();
     } catch (googleError) { setError(googleError.message); } finally { setBusy(false); }
+  }
+
+  function toggleGoogleCalendar(calendarId) {
+    setSelectedGoogleCalendars((current) => current.includes(calendarId)
+      ? current.filter((id) => id !== calendarId)
+      : [...current, calendarId]);
+  }
+
+  async function saveGoogleCalendarSelection() {
+    setBusy(true); setError("");
+    try {
+      await request("/api/admin/google-calendar?action=calendars", { method: "PUT", body: JSON.stringify({ calendarIds: selectedGoogleCalendars }) });
+      setMessage("Calendari salvati. Ora puoi sincronizzare le disponibilita.");
+      await load();
+    } catch (selectionError) { setError(selectionError.message); }
+    finally { setBusy(false); }
   }
 
   async function addBlock() {
@@ -160,7 +188,7 @@ export default function TourAdminPanel({ adminKey }) {
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-2"><article className="space-y-4 rounded-md border border-[#c9573c]/10 bg-white p-5"><h2 className="text-xl font-bold text-[#2c395b]">Google Calendar</h2><p className="text-sm text-[#6d7b80]">{google.connected ? `Collegato${google.connection?.channel_expiration ? ` · webhook fino al ${new Date(google.connection.channel_expiration).toLocaleString("it-IT")}` : ""}` : "Non collegato"}</p><div className="flex flex-wrap gap-2">{!google.connected ? <button onClick={() => googleAction("authorize")} className="rounded-md bg-[#2c395b] px-4 py-2 text-sm font-semibold text-white">Collega Google</button> : <><button onClick={() => googleAction("sync")} className="rounded-md bg-[#2c395b] px-4 py-2 text-sm font-semibold text-white">Sincronizza ora</button><button onClick={() => googleAction("watch")} className="rounded-md border border-[#2c395b]/20 px-4 py-2 text-sm font-semibold text-[#2c395b]">Rinnova webhook</button></>}</div></article>
+      <section className="grid gap-6 lg:grid-cols-2"><article className="space-y-4 rounded-md border border-[#c9573c]/10 bg-white p-5"><h2 className="text-xl font-bold text-[#2c395b]">Google Calendar</h2><p className="text-sm text-[#6d7b80]">{google.connected ? `Collegato${google.connection?.channel_expiration ? ` · webhook fino al ${new Date(google.connection.channel_expiration).toLocaleString("it-IT")}` : ""}` : "Non collegato"}</p>{google.connected && googleCalendars.length ? <fieldset className="space-y-2"><legend className="mb-2 text-sm font-semibold text-[#2c395b]">Calendari che bloccano le disponibilita</legend>{googleCalendars.map((calendar) => <label key={calendar.id} className="flex cursor-pointer items-center gap-3 rounded-md bg-[#fffaf7] p-3 text-sm text-[#2c395b]"><input type="checkbox" checked={selectedGoogleCalendars.includes(calendar.id)} onChange={() => toggleGoogleCalendar(calendar.id)} /><span className="h-3 w-3 rounded-full" style={{ backgroundColor: calendar.backgroundColor || "#526d91" }} /><span className="font-semibold">{calendar.summary}</span>{calendar.primary ? <span className="ml-auto text-xs text-[#6d7b80]">Principale</span> : null}</label>)}</fieldset> : null}<div className="flex flex-wrap gap-2">{!google.connected ? <button onClick={() => googleAction("authorize")} className="rounded-md bg-[#2c395b] px-4 py-2 text-sm font-semibold text-white">Collega Google</button> : <><button onClick={() => googleAction("authorize")} className="rounded-md border border-[#2c395b]/20 px-4 py-2 text-sm font-semibold text-[#2c395b]">Ricollega Google</button>{googleCalendars.length ? <button disabled={busy || !selectedGoogleCalendars.length} onClick={saveGoogleCalendarSelection} className="rounded-md bg-[#77674e] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">Salva calendari</button> : null}<button disabled={busy} onClick={() => googleAction("sync")} className="rounded-md bg-[#2c395b] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">Sincronizza ora</button><button disabled={busy} onClick={() => googleAction("watch")} className="rounded-md border border-[#2c395b]/20 px-4 py-2 text-sm font-semibold text-[#2c395b] disabled:opacity-50">Rinnova webhook</button></>}</div><p className="text-xs text-[#6d7b80]">Il sito riceve soltanto gli intervalli occupati, non titoli o dettagli degli appuntamenti.</p></article>
         <article className="space-y-4 rounded-md border border-[#c9573c]/10 bg-white p-5"><h2 className="text-xl font-bold text-[#2c395b]">Blocca una fascia</h2><div className="grid gap-3 sm:grid-cols-2"><input className={inputClass} value={block.title} onChange={(e) => setBlock({ ...block, title: e.target.value })} /><input type="date" className={inputClass} value={block.date} onChange={(e) => setBlock({ ...block, date: e.target.value })} /><input type="time" className={inputClass} value={block.startTime} onChange={(e) => setBlock({ ...block, startTime: e.target.value })} /><input type="time" className={inputClass} value={block.endTime} onChange={(e) => setBlock({ ...block, endTime: e.target.value })} /></div><button onClick={addBlock} className="rounded-md bg-[#77674e] px-4 py-2 text-sm font-semibold text-white">Blocca nel calendario</button></article></section>
     </div>
   );

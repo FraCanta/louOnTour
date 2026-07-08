@@ -3,7 +3,12 @@ import { supabaseAdmin } from "./supabaseAdmin";
 
 const TOKEN_URL = "https://oauth2.googleapis.com/token";
 const API_ROOT = "https://www.googleapis.com/calendar/v3";
-const SCOPE = "https://www.googleapis.com/auth/calendar.events";
+const SCOPE = [
+  "https://www.googleapis.com/auth/calendar.events",
+  "https://www.googleapis.com/auth/calendar.calendarlist.readonly",
+  "https://www.googleapis.com/auth/calendar.freebusy",
+  "https://www.googleapis.com/auth/calendar.freebusy",
+].join(" ");
 
 function config() {
   const clientId = String(process.env.GOOGLE_CALENDAR_CLIENT_ID || "").trim();
@@ -92,11 +97,46 @@ async function googleFetch(path, options = {}) {
   return { data, conn };
 }
 
+function selectedCalendarIds(conn) {
+  const ids = Array.isArray(conn.selected_calendar_ids)
+    ? conn.selected_calendar_ids.map(String).filter(Boolean)
+    : [];
+  return ids.length ? ids : [String(conn.calendar_id || "primary")];
+}
+
 export async function getGoogleCalendarStatus() {
   const { data, error } = await supabaseAdmin.from("google_calendar_connections")
-    .select("id,owner_email,calendar_id,channel_expiration,updated_at").limit(1).maybeSingle();
+    .select("id,owner_email,calendar_id,selected_calendar_ids,channel_expiration,updated_at").limit(1).maybeSingle();
   if (error) throw new Error(error.message);
   return { connected: Boolean(data), connection: data || null };
+}
+
+export async function getGoogleCalendars() {
+  const conn = await connection();
+  const { data } = await googleFetch("/users/me/calendarList?minAccessRole=reader&showHidden=false");
+  return {
+    calendars: (data.items || []).map((calendar) => ({
+      id: calendar.id,
+      summary: calendar.summary || calendar.id,
+      primary: Boolean(calendar.primary),
+      selectedInGoogle: Boolean(calendar.selected),
+      backgroundColor: calendar.backgroundColor || "",
+    })),
+    selectedCalendarIds: selectedCalendarIds(conn),
+  };
+}
+
+export async function saveGoogleCalendars(calendarIds = []) {
+  const conn = await connection();
+  const { calendars } = await getGoogleCalendars();
+  const allowed = new Set(calendars.map((calendar) => calendar.id));
+  const selected = [...new Set((calendarIds || []).map(String))].filter((id) => allowed.has(id));
+  if (!selected.length) throw new Error("Seleziona almeno un calendario Google.");
+  const { error } = await supabaseAdmin.from("google_calendar_connections")
+    .update({ selected_calendar_ids: selected, updated_at: new Date().toISOString() })
+    .eq("id", conn.id);
+  if (error) throw new Error(error.message);
+  return { selectedCalendarIds: selected };
 }
 
 export async function pushCalendarEntryToGoogle(entryId) {
@@ -128,65 +168,65 @@ export async function deleteCalendarEntryFromGoogle(googleEventId) {
 
 export async function syncGoogleCalendar() {
   const conn = await connection();
-  const calendarId = encodeURIComponent(conn.calendar_id || "primary");
-  const params = new URLSearchParams({ singleEvents: "true", showDeleted: "true", maxResults: "2500", timeMin: new Date(Date.now() - 86400000).toISOString(), timeMax: new Date(Date.now() + 366 * 86400000).toISOString() });
-  const { data } = await googleFetch(`/calendars/${calendarId}/events?${params}`);
-  const googleEntries = [];
-  const localEntries = [];
   const updatedAt = new Date().toISOString();
-
-  for (const event of data.items || []) {
-    const localId = Number(event.extendedProperties?.private?.louOnTourEntryId || 0);
-    const startsAt = event.start?.dateTime || (event.start?.date ? `${event.start.date}T00:00:00.000Z` : null);
-    const endsAt = event.end?.dateTime || (event.end?.date ? `${event.end.date}T00:00:00.000Z` : null);
-    if (!startsAt || !endsAt || !event.id) continue;
-
-    const payload = {
-      source_type: localId ? (event.extendedProperties?.private?.sourceType || "tour_booking") : "google",
-      source_id: event.id, title: event.summary || "Impegno Google Calendar",
-      starts_at: startsAt, ends_at: endsAt, status: event.status === "cancelled" ? "cancelled" : "confirmed",
-      google_event_id: event.id, google_updated_at: event.updated, updated_at: updatedAt,
-      metadata: { htmlLink: event.htmlLink || "", allDay: Boolean(event.start?.date) },
-    };
-
-    if (localId) localEntries.push({ localId, payload });
-    else googleEntries.push(payload);
+  const timeMin = new Date(Date.now() - 86400000).toISOString();
+  const timeMax = new Date(Date.now() + 366 * 86400000).toISOString();
+  const calendarIds = selectedCalendarIds(conn);
+  const { data } = await googleFetch("/freeBusy", {
+    method: "POST",
+    body: JSON.stringify({
+      timeMin,
+      timeMax,
+      timeZone: "Europe/Rome",
+      items: calendarIds.map((id) => ({ id })),
+    }),
+  });
+  const googleEntries = [];
+  for (const calendarId of calendarIds) {
+    const calendar = data.calendars?.[calendarId];
+    if (calendar?.errors?.length) throw new Error(`Impossibile leggere il calendario ${calendarId}.`);
+    for (const interval of calendar?.busy || []) {
+      const reference = crypto.createHash("sha256").update(`${calendarId}:${interval.start}:${interval.end}`).digest("hex");
+      googleEntries.push({
+        source_type: "google",
+        source_id: reference,
+        title: "Non disponibile",
+        starts_at: interval.start,
+        ends_at: interval.end,
+        status: "confirmed",
+        google_event_id: `busy-${reference}`,
+        google_updated_at: updatedAt,
+        updated_at: updatedAt,
+        metadata: { calendarId, busyOnly: true },
+      });
+    }
   }
 
-  const batchSize = 250;
-  for (let index = 0; index < googleEntries.length; index += batchSize) {
-    const batch = googleEntries.slice(index, index + batchSize);
-    const { error } = await supabaseAdmin
-      .from("calendar_entries")
-      .upsert(batch, { onConflict: "google_event_id" });
+  const { error: deleteError } = await supabaseAdmin.from("calendar_entries").delete().eq("source_type", "google");
+  if (deleteError) throw new Error(deleteError.message);
+  for (let index = 0; index < googleEntries.length; index += 250) {
+    const { error } = await supabaseAdmin.from("calendar_entries").insert(googleEntries.slice(index, index + 250));
     if (error) throw new Error(error.message);
   }
 
-  const localBatchSize = 20;
-  for (let index = 0; index < localEntries.length; index += localBatchSize) {
-    const results = await Promise.all(
-      localEntries.slice(index, index + localBatchSize).map(({ localId, payload }) =>
-        supabaseAdmin.from("calendar_entries").update(payload).eq("id", localId),
-      ),
-    );
-    const failed = results.find((result) => result.error);
-    if (failed?.error) throw new Error(failed.error.message);
-  }
-
-  const imported = googleEntries.length + localEntries.length;
+  const imported = googleEntries.length;
   await supabaseAdmin.from("google_calendar_connections").update({ updated_at: updatedAt }).eq("id", conn.id);
   return { imported };
 }
 
 export async function watchGoogleCalendar() {
   const conn = await connection();
-  const calendarId = encodeURIComponent(conn.calendar_id || "primary");
   const webhookUrl = String(process.env.GOOGLE_CALENDAR_WEBHOOK_URL || "").trim();
   const channelToken = String(process.env.GOOGLE_CALENDAR_CHANNEL_TOKEN || "").trim();
   if (!webhookUrl || !channelToken) throw new Error("Webhook URL/token Google non configurati.");
-  const channelId = crypto.randomUUID();
   const expiration = Date.now() + 6 * 86400000;
-  const { data } = await googleFetch(`/calendars/${calendarId}/events/watch`, { method: "POST", body: JSON.stringify({ id: channelId, type: "web_hook", address: webhookUrl, token: channelToken, expiration: String(expiration) }) });
-  await supabaseAdmin.from("google_calendar_connections").update({ channel_id: data.id, channel_resource_id: data.resourceId, channel_expiration: new Date(Number(data.expiration)).toISOString(), updated_at: new Date().toISOString() }).eq("id", conn.id);
-  return data;
+  const channels = [];
+  for (const calendarId of selectedCalendarIds(conn)) {
+    const channelId = crypto.randomUUID();
+    const { data } = await googleFetch(`/calendars/${encodeURIComponent(calendarId)}/events/watch`, { method: "POST", body: JSON.stringify({ id: channelId, type: "web_hook", address: webhookUrl, token: channelToken, expiration: String(expiration) }) });
+    channels.push({ ...data, calendarId });
+  }
+  const first = channels[0];
+  await supabaseAdmin.from("google_calendar_connections").update({ channel_id: first?.id || null, channel_resource_id: first?.resourceId || null, channel_expiration: new Date(expiration).toISOString(), updated_at: new Date().toISOString() }).eq("id", conn.id);
+  return { channels, expiration };
 }

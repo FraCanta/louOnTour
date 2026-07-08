@@ -75,6 +75,7 @@ create table if not exists public.google_calendar_connections (
   id bigint generated always as identity primary key,
   owner_email text,
   calendar_id text not null default 'primary',
+  selected_calendar_ids jsonb not null default '["primary"]'::jsonb,
   refresh_token text not null,
   scope text,
   sync_token text,
@@ -85,6 +86,9 @@ create table if not exists public.google_calendar_connections (
   updated_at timestamptz not null default now()
 );
 
+alter table public.google_calendar_connections
+  add column if not exists selected_calendar_ids jsonb not null default '["primary"]'::jsonb;
+
 alter table public.tours enable row level security;
 alter table public.calendar_entries enable row level security;
 alter table public.tour_bookings enable row level security;
@@ -93,4 +97,3 @@ alter table public.google_calendar_connections enable row level security;
 drop policy if exists "published tours are public" on public.tours;
 create policy "published tours are public" on public.tours
   for select using (status = 'published');
-
