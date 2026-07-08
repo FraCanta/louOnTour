@@ -1,6 +1,10 @@
 import { requireAdminApiKey } from "../../../utils/adminAuth";
 import { buildGoogleAuthorizationUrl, exchangeGoogleCode, getGoogleCalendarStatus, syncGoogleCalendar, verifyGoogleOAuthState, watchGoogleCalendar } from "../../../utils/googleCalendar";
 
+export const config = {
+  maxDuration: 60,
+};
+
 export default async function handler(req, res) {
   try {
     if (req.method === "GET" && req.query.action === "callback") {
@@ -18,4 +22,3 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: error.message || "Operazione Google Calendar non riuscita." });
   }
 }
-

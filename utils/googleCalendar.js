@@ -131,27 +131,50 @@ export async function syncGoogleCalendar() {
   const calendarId = encodeURIComponent(conn.calendar_id || "primary");
   const params = new URLSearchParams({ singleEvents: "true", showDeleted: "true", maxResults: "2500", timeMin: new Date(Date.now() - 86400000).toISOString(), timeMax: new Date(Date.now() + 366 * 86400000).toISOString() });
   const { data } = await googleFetch(`/calendars/${calendarId}/events?${params}`);
-  let imported = 0;
+  const googleEntries = [];
+  const localEntries = [];
+  const updatedAt = new Date().toISOString();
+
   for (const event of data.items || []) {
     const localId = Number(event.extendedProperties?.private?.louOnTourEntryId || 0);
     const startsAt = event.start?.dateTime || (event.start?.date ? `${event.start.date}T00:00:00.000Z` : null);
     const endsAt = event.end?.dateTime || (event.end?.date ? `${event.end.date}T00:00:00.000Z` : null);
+    if (!startsAt || !endsAt || !event.id) continue;
+
     const payload = {
       source_type: localId ? (event.extendedProperties?.private?.sourceType || "tour_booking") : "google",
       source_id: event.id, title: event.summary || "Impegno Google Calendar",
       starts_at: startsAt, ends_at: endsAt, status: event.status === "cancelled" ? "cancelled" : "confirmed",
-      google_event_id: event.id, google_updated_at: event.updated, updated_at: new Date().toISOString(),
+      google_event_id: event.id, google_updated_at: event.updated, updated_at: updatedAt,
       metadata: { htmlLink: event.htmlLink || "", allDay: Boolean(event.start?.date) },
     };
-    if (!startsAt || !endsAt) continue;
-    const query = localId
-      ? supabaseAdmin.from("calendar_entries").update(payload).eq("id", localId)
-      : supabaseAdmin.from("calendar_entries").upsert(payload, { onConflict: "google_event_id" });
-    const { error } = await query;
-    if (error) throw new Error(error.message);
-    imported += 1;
+
+    if (localId) localEntries.push({ localId, payload });
+    else googleEntries.push(payload);
   }
-  await supabaseAdmin.from("google_calendar_connections").update({ updated_at: new Date().toISOString() }).eq("id", conn.id);
+
+  const batchSize = 250;
+  for (let index = 0; index < googleEntries.length; index += batchSize) {
+    const batch = googleEntries.slice(index, index + batchSize);
+    const { error } = await supabaseAdmin
+      .from("calendar_entries")
+      .upsert(batch, { onConflict: "google_event_id" });
+    if (error) throw new Error(error.message);
+  }
+
+  const localBatchSize = 20;
+  for (let index = 0; index < localEntries.length; index += localBatchSize) {
+    const results = await Promise.all(
+      localEntries.slice(index, index + localBatchSize).map(({ localId, payload }) =>
+        supabaseAdmin.from("calendar_entries").update(payload).eq("id", localId),
+      ),
+    );
+    const failed = results.find((result) => result.error);
+    if (failed?.error) throw new Error(failed.error.message);
+  }
+
+  const imported = googleEntries.length + localEntries.length;
+  await supabaseAdmin.from("google_calendar_connections").update({ updated_at: updatedAt }).eq("id", conn.id);
   return { imported };
 }
 
