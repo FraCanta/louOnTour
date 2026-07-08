@@ -13,6 +13,7 @@ import {
   isTestBooking,
   parsePositiveInt,
 } from "../../utils/eventBookings";
+import TourAdminPanel from "../../components/TourAdminPanel";
 
 const SITE_TIMEZONE = "Europe/Rome";
 const MIN_EVENT_SPOTS = 4;
@@ -24,6 +25,7 @@ const NAV_ITEMS = [
   { id: "analytics", label: "Analytics", icon: "hugeicons:chart-line-data-01" },
   { id: "calendar", label: "Calendario", icon: "hugeicons:calendar-03" },
   { id: "events", label: "Eventi", icon: "hugeicons:calendar-03" },
+  { id: "tours", label: "Tour", icon: "hugeicons:maps-location-01" },
   { id: "payments", label: "Pagamenti", icon: "hugeicons:credit-card" },
   { id: "editor", label: "Editor", icon: "hugeicons:note-edit" },
 ];
@@ -3967,6 +3969,7 @@ export default function AdminDashboard() {
   const showAnalytics = activePanel === "analytics";
   const showCalendarPanel = activePanel === "calendar";
   const showEvents = activePanel === "events";
+  const showTours = activePanel === "tours";
   const showEditor = activePanel === "editor";
   const showPayments = activePanel === "payments";
   const showProfile = activePanel === "profile";
@@ -4397,6 +4400,8 @@ export default function AdminDashboard() {
                   onCreateManualBooking={createManualBooking}
                 />
               ) : null}
+
+              {showTours ? <TourAdminPanel adminKey={adminKey} /> : null}
 
               {showAnalytics ? (
                 <AnalyticsPanel

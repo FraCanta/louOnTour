@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const ToursItem = ({ img, name, descrizione, link, text }) => {
+const ToursItem = ({ img, name, descrizione, link, text, disabled = false }) => {
+  const CardWrapper = disabled ? "div" : Link;
+
   return (
-    <>
-      <Link
-        href={link}
-        className="relative flex flex-col justify-end overflow-hidden transition-shadow duration-300 rounded-sm shadow-lg aspect-square"
+      <CardWrapper
+        {...(disabled ? { "aria-disabled": true } : { href: link })}
+        className={`relative flex flex-col justify-end overflow-hidden transition-shadow duration-300 rounded-sm shadow-lg aspect-square ${disabled ? "cursor-default" : "cursor-pointer"}`}
       >
         <Image
           src={img}
@@ -22,8 +23,7 @@ const ToursItem = ({ img, name, descrizione, link, text }) => {
             {name}
           </h2>
         </div>
-      </Link>
-    </>
+      </CardWrapper>
   );
 };
 

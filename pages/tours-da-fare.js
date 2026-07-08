@@ -141,6 +141,7 @@ const Tours = ({ translation }) => {
               name={el.name}
               descrizione={el.descrizione}
               text={el.text}
+              disabled
             />
           );
         })}

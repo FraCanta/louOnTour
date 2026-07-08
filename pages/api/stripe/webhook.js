@@ -275,6 +275,48 @@ async function persistBookingFromSession(session) {
   }
 }
 
+async function persistTourBookingFromSession(session) {
+  const tourSlug = String(session.metadata?.tourSlug || "").trim();
+  const startsAt = String(session.metadata?.tourStartsAt || "").trim();
+  const endsAt = String(session.metadata?.tourEndsAt || "").trim();
+  const calendarEntryId = Number(session.metadata?.calendarEntryId || 0);
+  if (!tourSlug || !startsAt || !endsAt || !calendarEntryId) {
+    throw new Error("Metadata tour mancanti nella sessione Stripe.");
+  }
+
+  const record = {
+    stripe_session_id: session.id,
+    stripe_payment_intent_id: String(session.payment_intent || ""),
+    tour_slug: tourSlug,
+    calendar_entry_id: calendarEntryId,
+    starts_at: startsAt,
+    ends_at: endsAt,
+    attendee_count: getSessionAttendeeCount(session),
+    extension_selected: String(session.metadata?.extensionSelected) === "true",
+    customer_email: String(session.customer_details?.email || session.customer_email || "").trim(),
+    amount_total: Number(session.amount_total || 0),
+    currency: String(session.currency || "eur").toLowerCase(),
+    payment_status: String(session.payment_status || "paid"),
+    raw_payload: session,
+  };
+  const { error } = await supabaseAdmin.from("tour_bookings").upsert(record, { onConflict: "stripe_session_id" });
+  if (error) throw new Error(`Tour booking upsert failed: ${error.message}`);
+
+  const { error: calendarError } = await supabaseAdmin.from("calendar_entries").update({
+    status: "confirmed", hold_expires_at: null, source_id: session.id,
+    metadata: { stripeSessionId: session.id, customerEmail: record.customer_email, attendeeCount: record.attendee_count },
+    updated_at: new Date().toISOString(),
+  }).eq("id", calendarEntryId);
+  if (calendarError) throw new Error(`Calendar confirmation failed: ${calendarError.message}`);
+
+  try {
+    const { pushCalendarEntryToGoogle } = await import("../../../utils/googleCalendar");
+    await pushCalendarEntryToGoogle(calendarEntryId);
+  } catch (error) {
+    console.warn(`[stripe-webhook] Google Calendar push skipped: ${error.message}`);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", ["POST"]);
@@ -329,7 +371,11 @@ export default async function handler(req, res) {
         return res.status(200).json({ received: true, ignored: true });
       }
 
-      await persistBookingFromSession(session);
+      if (session.metadata?.productType === "tour") {
+        await persistTourBookingFromSession(session);
+      } else {
+        await persistBookingFromSession(session);
+      }
     }
 
     return res.status(200).json({ received: true });

@@ -39,3 +39,8 @@ export function buildEventPath(slug, locale = "it") {
   const localePrefix = normalizedLocale === "en" ? "/en" : "";
   return `${localePrefix}/eventi/${encodeURIComponent(slug)}`;
 }
+
+export function buildTourPath(slug, locale = "it") {
+  const localePrefix = locale === "en" ? "/en" : "";
+  return `${localePrefix}/tour/${encodeURIComponent(slug)}`;
+}

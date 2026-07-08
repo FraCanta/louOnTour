@@ -54,3 +54,20 @@ Create bookings table in Supabase by running:
 ```sql
 -- data/event_bookings.sql
 ```
+
+## Tours and Google Calendar
+
+Run `data/tours.sql` in the Supabase SQL editor, then configure:
+
+```bash
+GOOGLE_CALENDAR_CLIENT_ID=...
+GOOGLE_CALENDAR_CLIENT_SECRET=...
+GOOGLE_OAUTH_STATE_SECRET=...
+GOOGLE_CALENDAR_REDIRECT_URI=https://example.com/api/admin/google-calendar?action=callback
+GOOGLE_CALENDAR_WEBHOOK_URL=https://example.com/api/google-calendar-webhook
+GOOGLE_CALENDAR_CHANNEL_TOKEN=...
+```
+
+Google notification channels expire and must be renewed. Call
+`POST /api/admin/google-calendar?action=watch` from an authenticated admin
+session before the stored channel expiration.
