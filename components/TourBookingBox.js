@@ -33,7 +33,17 @@ export default function TourBookingBox({ tour, locale = "it", checkoutStatus = "
   useEffect(() => {
     let active = true;
     fetch(`/api/tours?action=availability&slug=${encodeURIComponent(tour.slug)}&locale=${lang}`)
-      .then(async (response) => { const data = await response.json(); if (!response.ok) throw new Error(data.error); return data; })
+      .then(async (response) => {
+        const responseText = await response.text();
+        let data = {};
+        try {
+          data = responseText ? JSON.parse(responseText) : {};
+        } catch (_error) {
+          throw new Error(lang === "en" ? "Availability is temporarily unavailable." : "Le disponibilita sono temporaneamente non raggiungibili.");
+        }
+        if (!response.ok) throw new Error(data.error || (lang === "en" ? "Unable to load availability." : "Impossibile caricare le disponibilita."));
+        return data;
+      })
       .then((data) => {
         if (!active) return;
         const nextAvailability = data.availability || [];

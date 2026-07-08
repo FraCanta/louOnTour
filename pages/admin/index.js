@@ -654,6 +654,28 @@ function getIsoDateKey(value = "") {
   return String(value || "").split("T")[0] || "";
 }
 
+function getCalendarEntryDateKey(value = "") {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: SITE_TIMEZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function getCalendarEntrySourceLabel(sourceType = "") {
+  return {
+    google: "Google",
+    tour_booking: "Tour",
+    manual: "Blocco manuale",
+    event: "Evento",
+  }[sourceType] || "Calendario";
+}
+
 function getAdminMonthLabel(date) {
   return new Intl.DateTimeFormat("it-IT", {
     month: "long",
@@ -993,6 +1015,7 @@ function EventPerformanceChart({ performance }) {
 function OverviewPanel({
   events,
   payments,
+  calendarEntries,
   paymentStats,
   loading,
   dashboardSettings,
@@ -1068,6 +1091,18 @@ function OverviewPanel({
 
     return accumulator;
   }, {});
+  const activeCalendarEntries = (calendarEntries || []).filter((entry) => {
+    if (entry.status === "cancelled") return false;
+    if (entry.status !== "hold") return true;
+    return new Date(entry.hold_expires_at || 0).getTime() > Date.now();
+  });
+  const calendarEntriesByDate = activeCalendarEntries.reduce((accumulator, entry) => {
+    const key = getCalendarEntryDateKey(entry.starts_at);
+    if (!key) return accumulator;
+    accumulator[key] = accumulator[key] || [];
+    accumulator[key].push(entry);
+    return accumulator;
+  }, {});
   const monthEventDates = Object.keys(eventsByDate).filter((key) =>
     key.startsWith(calendarMonthKey),
   ).length;
@@ -1096,6 +1131,9 @@ function OverviewPanel({
   const monthBookings = Object.entries(bookingsByDate)
     .filter(([key]) => key.startsWith(calendarMonthKey))
     .reduce((sum, [, count]) => sum + count, 0);
+  const monthCalendarEntries = activeCalendarEntries.filter(
+    (entry) => getCalendarEntryDateKey(entry.starts_at).startsWith(calendarMonthKey),
+  );
   const selectedDayEvents = selectedCalendarDay
     ? eventsByDate[selectedCalendarDay.key] || []
     : [];
@@ -1105,6 +1143,9 @@ function OverviewPanel({
           isCountableBooking(payment) &&
           getIsoDateKey(payment.event_date_iso) === selectedCalendarDay.key,
       )
+    : [];
+  const selectedDayCalendarEntries = selectedCalendarDay
+    ? calendarEntriesByDate[selectedCalendarDay.key] || []
     : [];
   const selectedDayBookedCount = selectedDayPayments.reduce(
     (sum, payment) => sum + getBookingAttendeeCount(payment),
@@ -1398,7 +1439,7 @@ function OverviewPanel({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 mb-4">
+            <div className="grid grid-cols-3 gap-2 mb-4">
               <div className="px-3 py-2 bg-white rounded-xl">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
                   Eventi mese
@@ -1409,6 +1450,15 @@ function OverviewPanel({
                 <p className="mt-1 text-[10px] text-[#6d7b80]">
                   {monthEventDates} giorni
                 </p>
+              </div>
+              <div className="px-3 py-2 bg-white rounded-xl">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#526d91]">
+                  Impegni
+                </p>
+                <p className="mt-1 text-2xl font-bold text-[#2c395b]">
+                  {monthCalendarEntries.length}
+                </p>
+                <p className="mt-1 text-[10px] text-[#6d7b80]">Google, tour e blocchi</p>
               </div>
               <div className="px-3 py-2 bg-white rounded-xl">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c9573c]/70">
@@ -1444,9 +1494,11 @@ function OverviewPanel({
                 }
 
                 const dayEvents = eventsByDate[day.key] || [];
+                const dayCalendarEntries = calendarEntriesByDate[day.key] || [];
                 const bookedCount = bookingsByDate[day.key] || 0;
                 const hasEvent = dayEvents.length > 0;
-                const hasDayActivity = hasEvent || bookedCount > 0;
+                const hasCalendarEntry = dayCalendarEntries.length > 0;
+                const hasDayActivity = hasEvent || hasCalendarEntry || bookedCount > 0;
                 return (
                   <button
                     key={day.key}
@@ -1479,6 +1531,9 @@ function OverviewPanel({
                     </span>
                     {hasEvent ? (
                       <span className="mt-1.5 block h-1.5 w-6 rounded-full bg-[#c9573c] sm:mt-2 sm:w-8" />
+                    ) : null}
+                    {hasCalendarEntry ? (
+                      <span className="mt-1 block h-1.5 w-6 rounded-full bg-[#526d91] sm:w-8" />
                     ) : null}
                     {dayEvents.length > 1 ? (
                       <span className="absolute bottom-1.5 right-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[#c9573c]/10 px-1 text-[10px] font-bold text-[#c9573c] sm:static sm:mt-2 sm:h-auto sm:min-w-0 sm:px-2 sm:py-1">
@@ -1530,6 +1585,9 @@ function OverviewPanel({
                 <span className="rounded-full bg-[#dfe9df] px-3 py-1.5 text-[#4b6b4e]">
                   {selectedDayBookedCount} prenotati
                 </span>
+                <span className="rounded-full bg-[#e7edf5] px-3 py-1.5 text-[#526d91]">
+                  {selectedDayCalendarEntries.length} impegni
+                </span>
               </div>
             </div>
             <button
@@ -1541,6 +1599,32 @@ function OverviewPanel({
               <Icon icon="hugeicons:cancel-01" width="18" height="18" />
             </button>
           </div>
+
+          {selectedDayCalendarEntries.length ? (
+            <section className="mb-5 space-y-3">
+              <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#526d91]">
+                Agenda operativa
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {selectedDayCalendarEntries.map((entry) => (
+                  <article key={entry.id} className="rounded-md border border-[#526d91]/15 bg-white p-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#526d91]">
+                          {getCalendarEntrySourceLabel(entry.source_type)}
+                        </p>
+                        <h5 className="mt-1 font-bold text-[#2c395b]">{entry.title}</h5>
+                      </div>
+                      <Icon icon="hugeicons:calendar-03" width="18" height="18" className="shrink-0 text-[#526d91]" />
+                    </div>
+                    <p className="mt-3 text-sm text-[#6d7b80]">
+                      {formatAdminDateTime(entry.starts_at)} - {new Intl.DateTimeFormat("it-IT", { hour: "2-digit", minute: "2-digit", timeZone: SITE_TIMEZONE }).format(new Date(entry.ends_at))}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           <div className="grid gap-4 lg:grid-cols-[1.25fr_0.75fr]">
             <section className="space-y-3">
@@ -2586,10 +2670,12 @@ export default function AdminDashboard() {
   const [rememberEmail, setRememberEmail] = useState(true);
   const [authLoading, setAuthLoading] = useState(false);
   const [events, setEvents] = useState([]);
+  const [calendarEntries, setCalendarEntries] = useState([]);
   const [selectedSlug, setSelectedSlug] = useState("");
   const [form, setForm] = useState(() => buildEmptyForm());
   const [loading, setLoading] = useState(false);
   const [paymentsLoading, setPaymentsLoading] = useState(false);
+  const [calendarLoading, setCalendarLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
   const [uploadingProfileImage, setUploadingProfileImage] = useState(false);
@@ -2710,6 +2796,7 @@ export default function AdminDashboard() {
     setAdminUser(null);
     setAuthPassword("");
     setEvents([]);
+    setCalendarEntries([]);
     setSelectedSlug("");
     setForm(buildEmptyForm());
     setAdminProfile({
@@ -2991,6 +3078,28 @@ export default function AdminDashboard() {
     [adminKey, handleLogout],
   );
 
+  const loadCalendarEntries = useCallback(
+    async (key = adminKey) => {
+      if (!key) return;
+      setCalendarLoading(true);
+      try {
+        const from = new Date(Date.now() - 365 * 86400000).toISOString();
+        const to = new Date(Date.now() + 366 * 86400000).toISOString();
+        const response = await fetch(`/api/admin/calendar?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`, {
+          headers: { Authorization: `Bearer ${key}` },
+        });
+        const data = await readAdminJsonResponse(response, "Errore nel caricamento calendario.");
+        if (!response.ok) throw new Error(data.error || "Errore nel caricamento calendario.");
+        setCalendarEntries(data.entries || []);
+      } catch (calendarError) {
+        setError(calendarError.message);
+      } finally {
+        setCalendarLoading(false);
+      }
+    },
+    [adminKey],
+  );
+
   const updatePaymentExclusion = useCallback(
     async (payment, excluded) => {
       const stripeSessionId = String(payment?.stripe_session_id || "").trim();
@@ -3231,8 +3340,9 @@ export default function AdminDashboard() {
 
     loadEvents(adminKey);
     loadPayments(adminKey);
+    loadCalendarEntries(adminKey);
     loadPreferences(adminKey);
-  }, [adminKey, loadEvents, loadPayments, loadPreferences]);
+  }, [adminKey, loadCalendarEntries, loadEvents, loadPayments, loadPreferences]);
 
   useEffect(() => {
     if (!adminKey || typeof window === "undefined") {
@@ -4153,6 +4263,7 @@ export default function AdminDashboard() {
             onClick={() => {
               loadEvents(adminKey);
               loadPayments(adminKey);
+              loadCalendarEntries(adminKey);
             }}
             className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#c9573c]/20 bg-white text-[#c9573c]"
             aria-label="Ricarica dati"
@@ -4318,6 +4429,7 @@ export default function AdminDashboard() {
                 onClick={() => {
                   loadEvents(adminKey);
                   loadPayments(adminKey);
+                  loadCalendarEntries(adminKey);
                 }}
                 title={sidebarCollapsed ? "Ricarica dati" : undefined}
                 className={`flex items-center gap-3 rounded-md bg-white px-4 py-3 text-left text-sm font-bold text-[#2c395b] transition hover:bg-[#fff1ec] ${
@@ -4364,6 +4476,7 @@ export default function AdminDashboard() {
                     onClick={() => {
                       loadEvents(adminKey);
                       loadPayments(adminKey);
+                      loadCalendarEntries(adminKey);
                     }}
                     className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#c9573c]/20 bg-white px-4 py-3 text-sm font-semibold text-[#c9573c] transition hover:bg-[#fff1ec]"
                   >
@@ -4389,8 +4502,9 @@ export default function AdminDashboard() {
                 <OverviewPanel
                   events={events}
                   payments={payments}
+                  calendarEntries={calendarEntries}
                   paymentStats={paymentStats}
-                  loading={loading || paymentsLoading}
+                  loading={loading || paymentsLoading || calendarLoading}
                   dashboardSettings={adminSettings}
                   onNewEvent={startNewEvent}
                   onOpenEvents={() => handleNavSelect("events")}
@@ -4418,8 +4532,9 @@ export default function AdminDashboard() {
                 <OverviewPanel
                   events={events}
                   payments={payments}
+                  calendarEntries={calendarEntries}
                   paymentStats={paymentStats}
-                  loading={loading || paymentsLoading}
+                  loading={loading || paymentsLoading || calendarLoading}
                   dashboardSettings={{
                     ...adminSettings,
                     show_calendar: true,

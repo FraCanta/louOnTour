@@ -24,7 +24,7 @@ export function addMinutes(iso, minutes) {
   return new Date(new Date(iso).getTime() + Number(minutes) * 60000).toISOString();
 }
 
-export async function getConflictingEntries(startsAt, endsAt, excludeId = null) {
+export async function getBlockingEntriesInRange(startsAt, endsAt, excludeId = null) {
   let query = supabaseAdmin.from("calendar_entries")
     .select("id,source_type,source_id,title,starts_at,ends_at,status,hold_expires_at,google_event_id")
     .lt("starts_at", endsAt).gt("ends_at", startsAt).neq("status", "cancelled");
@@ -36,8 +36,8 @@ export async function getConflictingEntries(startsAt, endsAt, excludeId = null) 
 
   const { data: events, error: eventsError } = await supabaseAdmin.from("events").select("slug,title,dates").eq("status", "published");
   if (eventsError) throw new Error(eventsError.message);
-  const requestedStart = new Date(startsAt).getTime();
-  const requestedEnd = new Date(endsAt).getTime();
+  const rangeStart = new Date(startsAt).getTime();
+  const rangeEnd = new Date(endsAt).getTime();
   for (const event of events || []) {
     for (const date of event.dates || []) {
       const dateKey = String(date.iso || "").slice(0, 10);
@@ -46,12 +46,16 @@ export async function getConflictingEntries(startsAt, endsAt, excludeId = null) 
       if (!dateKey || !startTime || !endTime) continue;
       const eventStart = new Date(localDateTimeToIso(dateKey, startTime)).getTime();
       const eventEnd = new Date(localDateTimeToIso(dateKey, endTime)).getTime();
-      if (eventStart < requestedEnd && eventEnd > requestedStart) {
+      if (eventStart < rangeEnd && eventEnd > rangeStart) {
         entries.push({ id: `event:${event.slug}:${date.iso}`, source_type: "event", title: event.title?.it || event.slug, starts_at: new Date(eventStart).toISOString(), ends_at: new Date(eventEnd).toISOString(), status: "confirmed" });
       }
     }
   }
   return entries;
+}
+
+export async function getConflictingEntries(startsAt, endsAt, excludeId = null) {
+  return getBlockingEntriesInRange(startsAt, endsAt, excludeId);
 }
 
 export async function createCheckoutHold({ tour, startsAt, endsAt, metadata }) {

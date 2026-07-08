@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { getTourBySlug } from "../../utils/tours";
-import { addMinutes, createCheckoutHold, getConflictingEntries, localDateTimeToIso } from "../../utils/tourCalendar";
+import { addMinutes, createCheckoutHold, getBlockingEntriesInRange, localDateTimeToIso } from "../../utils/tourCalendar";
 import { buildTourPath, getSiteUrlFromRequest, getStripeClient } from "../../utils/stripe";
 
 async function availability(req, res) {
@@ -11,6 +11,13 @@ async function availability(req, res) {
   const noticeLimit = now.getTime() + Number(tour.minimum_notice_hours || 0) * 3600000;
   const result = [];
   const days = Math.min(365, Number(tour.booking_horizon_days || 180));
+  const rangeEnd = new Date(now.getTime() + (days + 2) * 86400000).toISOString();
+  const blockingEntries = await getBlockingEntriesInRange(now.toISOString(), rangeEnd);
+  const blockingIntervals = blockingEntries.map((entry) => ({
+    startsAt: new Date(entry.starts_at).getTime(),
+    endsAt: new Date(entry.ends_at).getTime(),
+  }));
+
   for (let offset = 0; offset <= days; offset += 1) {
     const day = new Date(now.getTime() + offset * 86400000);
     const dateKey = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome", year: "numeric", month: "2-digit", day: "2-digit" }).format(day);
@@ -19,7 +26,12 @@ async function availability(req, res) {
       const startsAt = localDateTimeToIso(dateKey, rule.startTime);
       if (new Date(startsAt).getTime() < noticeLimit) continue;
       const endsAt = addMinutes(startsAt, tour.duration_minutes);
-      if (!(await getConflictingEntries(startsAt, endsAt)).length) slots.push({ startsAt, endsAt, startTime: rule.startTime, endTime: rule.endTime });
+      const slotStart = new Date(startsAt).getTime();
+      const slotEnd = new Date(endsAt).getTime();
+      const hasConflict = blockingIntervals.some(
+        (entry) => entry.startsAt < slotEnd && entry.endsAt > slotStart,
+      );
+      if (!hasConflict) slots.push({ startsAt, endsAt, startTime: rule.startTime, endTime: rule.endTime });
     }
     if (slots.length) result.push({ date: dateKey, slots });
   }
@@ -60,4 +72,3 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: error.message || "Operazione tour non riuscita." });
   }
 }
-
