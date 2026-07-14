@@ -27,7 +27,7 @@ const NAV_ITEMS = [
   { id: "events", label: "Eventi", icon: "hugeicons:calendar-03" },
   { id: "tours", label: "Tour", icon: "hugeicons:maps-location-01" },
   { id: "payments", label: "Pagamenti", icon: "hugeicons:credit-card" },
-  { id: "editor", label: "Editor", icon: "hugeicons:note-edit" },
+  { id: "editor", label: "Editor eventi", icon: "hugeicons:note-edit" },
 ];
 const ADMIN_OTHER_ITEMS = [
   { id: "profile", label: "Profilo", icon: "hugeicons:user-account" },
