@@ -1,7 +1,5 @@
 import { supabase } from "./supabase";
 import { supabaseAdmin } from "./supabaseAdmin";
-import translationIT from "../public/locales/it/it.json";
-import translationEN from "../public/locales/en/en.json";
 
 const DEFAULT_SLOTS = [
   { startTime: "10:30", endTime: "12:30" },
@@ -39,12 +37,12 @@ export function normalizeTourPayload(payload = {}) {
     excerpt: { it: text(payload.excerpt?.it), en: text(payload.excerpt?.en) },
     location: { it: text(payload.location?.it), en: text(payload.location?.en) },
     duration_minutes: money(payload.duration_minutes, 120) || 120,
-    price_mode: payload.price_mode === "per_person" ? "per_person" : "per_booking",
-    base_price_cents: money(payload.base_price_cents, 18800),
+    price_mode: "per_booking",
+    base_price_cents: money(payload.base_price_cents, 18000),
     currency: text(payload.currency || "eur").toLowerCase(),
-    extension_enabled: payload.extension_enabled !== false,
+    extension_enabled: false,
     extension_minutes: money(payload.extension_minutes, 30) || 30,
-    extension_price_cents: money(payload.extension_price_cents, 2000),
+    extension_price_cents: 0,
     meeting_point: {
       it: text(payload.meeting_point?.it),
       en: text(payload.meeting_point?.en),
@@ -123,34 +121,4 @@ export async function updateTour(slug, payload) {
 export async function deleteTour(slug) {
   const { error } = await supabaseAdmin.from("tours").delete().eq("slug", slug);
   if (error) throw new Error(error.message);
-}
-
-
-export async function importLegacyTours() {
-  const italian = translationIT?.tours?.locationTours || {};
-  const english = translationEN?.tours?.locationTours || {};
-  const records = Object.keys(italian).map((slug) => {
-    const it = italian[slug] || {};
-    const en = english[slug] || {};
-    return normalizeTourPayload({
-      slug,
-      status: "published",
-      hero_image: it.img || en.img || "",
-      gallery: (it.tourItem || []).map((item) => item.img).filter(Boolean),
-      title: { it: it.titleImg || it.name || slug, en: en.titleImg || en.name || slug },
-      excerpt: { it: it.descrizione2 || "", en: en.descrizione2 || "" },
-      location: { it: it.name || slug, en: en.name || slug },
-      description: {
-        it: (it.descrizione || []).map((item) => item.p || "").filter(Boolean),
-        en: (en.descrizione || []).map((item) => item.p || "").filter(Boolean),
-      },
-      included: { it: (it.list || []).map((item) => item?.l?.title || "").filter(Boolean), en: (en.list || []).map((item) => item?.l?.title || "").filter(Boolean) },
-      base_price_cents: 18800,
-      extension_price_cents: 2000,
-      extension_minutes: 30,
-    });
-  });
-  const { data, error } = await supabaseAdmin.from("tours").upsert(records, { onConflict: "slug", ignoreDuplicates: true }).select();
-  if (error) throw new Error(error.message);
-  return data || [];
 }

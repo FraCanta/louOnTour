@@ -1,5 +1,5 @@
 import { requireAdminApiKey } from "../../../utils/adminAuth";
-import { createTour, deleteTour, getAdminTours, importLegacyTours, updateTour } from "../../../utils/tours";
+import { createTour, deleteTour, getAdminTours, updateTour } from "../../../utils/tours";
 import { supabaseAdmin } from "../../../utils/supabaseAdmin";
 
 export default async function handler(req, res) {
@@ -11,7 +11,6 @@ export default async function handler(req, res) {
       return res.status(200).json({ bookings: data || [] });
     }
     if (req.method === "GET") return res.status(200).json({ tours: await getAdminTours() });
-    if (req.method === "POST" && req.query.action === "import") return res.status(200).json({ tours: await importLegacyTours() });
     if (req.method === "POST") return res.status(201).json({ tour: await createTour(req.body) });
     if (req.method === "PUT") return res.status(200).json({ tour: await updateTour(req.query.slug, req.body) });
     if (req.method === "DELETE") {

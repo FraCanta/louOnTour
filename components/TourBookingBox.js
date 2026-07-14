@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
+import {
+  TOUR_BOOKING_WINDOW,
+  TOUR_PRICE_PRESETS,
+  getDefaultTourPricePreset,
+  getTourPricePreset,
+  getTourPricePresetLabel,
+} from "../utils/tourPricing";
 
 function getMonthDays(monthKey) {
   if (!monthKey) return [];
@@ -24,7 +31,7 @@ export default function TourBookingBox({ tour, locale = "it", checkoutStatus = "
   const [date, setDate] = useState("");
   const [visibleMonth, setVisibleMonth] = useState("");
   const [startsAt, setStartsAt] = useState("");
-  const [extension, setExtension] = useState(false);
+  const [tariff, setTariff] = useState(getDefaultTourPricePreset().key);
   const [attendees, setAttendees] = useState(1);
   const [terms, setTerms] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -32,7 +39,11 @@ export default function TourBookingBox({ tour, locale = "it", checkoutStatus = "
 
   useEffect(() => {
     let active = true;
-    fetch(`/api/tours?action=availability&slug=${encodeURIComponent(tour.slug)}&locale=${lang}`)
+    setAvailability([]);
+    setDate("");
+    setVisibleMonth("");
+    setStartsAt("");
+    fetch(`/api/tours?action=availability&slug=${encodeURIComponent(tour.slug)}&locale=${lang}&tariff=${encodeURIComponent(tariff)}`)
       .then(async (response) => {
         const responseText = await response.text();
         let data = {};
@@ -54,7 +65,7 @@ export default function TourBookingBox({ tour, locale = "it", checkoutStatus = "
       })
       .catch((loadError) => active && setError(loadError.message));
     return () => { active = false; };
-  }, [lang, tour.slug]);
+  }, [lang, tariff, tour.slug]);
 
   const day = useMemo(() => availability.find((item) => item.date === date), [availability, date]);
   const availableDates = useMemo(() => new Set(availability.map((item) => item.date)), [availability]);
@@ -66,14 +77,15 @@ export default function TourBookingBox({ tour, locale = "it", checkoutStatus = "
     : "";
   const weekDays = lang === "en" ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] : ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
   useEffect(() => { setStartsAt(day?.slots?.[0]?.startsAt || ""); }, [day]);
-  const priceCents = Number(tour.base_price_cents || 0) + (extension ? Number(tour.extension_price_cents || 0) : 0);
-  const totalCents = tour.price_mode === "per_person" ? priceCents * attendees : priceCents;
+  const selectedPreset = getTourPricePreset(tariff);
+  const priceCents = Number(selectedPreset.priceCents || 0);
+  const totalCents = priceCents;
   const money = new Intl.NumberFormat(lang === "en" ? "en-US" : "it-IT", { style: "currency", currency: String(tour.currency || "eur").toUpperCase() });
 
   async function checkout() {
     setError(""); setLoading(true);
     try {
-      const response = await fetch("/api/tours?action=checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug: tour.slug, locale: lang, startsAt, extensionSelected: extension, attendeeCount: attendees, termsAccepted: terms }) });
+      const response = await fetch("/api/tours?action=checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug: tour.slug, locale: lang, tariff, startsAt, attendeeCount: attendees, termsAccepted: terms }) });
       const data = await response.json();
       if (!response.ok || !data.url) throw new Error(data.error || "Checkout non disponibile.");
       window.location.href = data.url;
@@ -83,11 +95,43 @@ export default function TourBookingBox({ tour, locale = "it", checkoutStatus = "
   return (
     <article id="prenotazione" className="scroll-mt-6 rounded-md bg-[#2c395b] p-6 text-[#fef3ea] lg:p-8 qhd:p-10">
       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">{lang === "en" ? "Book this tour" : "Prenota questo tour"}</p>
-      <h2 className="mt-2 text-3xl font-bold text-white qhd:text-5xl">{lang === "en" ? "Choose date and time" : "Scegli data e orario"}</h2>
-      <p className="mt-3 text-sm text-white/70">{lang === "en" ? "Select one of the available slots and complete the secure payment with Stripe." : "Seleziona una disponibilita e completa il pagamento sicuro con Stripe."}</p>
+      <h2 className="mt-2 text-3xl font-bold text-white qhd:text-5xl">{lang === "en" ? "Choose rate, date and time" : "Scegli tariffa, data e orario"}</h2>
+      <p className="mt-3 text-sm text-white/70">{lang === "en" ? "Choose the tour duration, then select a free slot and complete secure payment with Stripe." : "Scegli la durata del tour, poi seleziona una fascia libera e completa il pagamento sicuro con Stripe."}</p>
       {(router.query.checkout || checkoutStatus) === "success" ? <p className="mt-4 rounded-md border border-[#9ac6a2]/35 bg-[#9ac6a2]/20 p-3">{lang === "en" ? "Payment completed. We will contact you shortly with details." : "Pagamento completato. Ti contatteremo presto con i dettagli."}</p> : null}
       {(router.query.checkout || checkoutStatus) === "cancel" ? <p className="mt-4 rounded-md border border-[#e7c197]/35 bg-[#e7c197]/20 p-3">{lang === "en" ? "Checkout canceled. You can retry anytime." : "Checkout annullato. Puoi riprovare quando vuoi."}</p> : null}
       {error ? <p role="alert" className="mt-4 rounded-md border border-[#f8b7a8]/35 bg-[#f8b7a8]/20 p-3">{error}</p> : null}
+
+      <div className="mt-5 grid gap-3 md:grid-cols-3">
+        {TOUR_PRICE_PRESETS.map((preset) => {
+          const isSelected = preset.key === tariff;
+          return (
+            <button
+              key={preset.key}
+              type="button"
+              onClick={() => setTariff(preset.key)}
+              aria-pressed={isSelected}
+              className={`rounded-md border p-4 text-left transition focus:outline-none focus:ring-2 focus:ring-white ${
+                isSelected
+                  ? "border-[#CE9486] bg-[#CE9486] text-[#2c395b]"
+                  : "border-white/15 bg-white/5 text-white hover:bg-white/10"
+              }`}
+            >
+              <span className="block text-sm font-bold">
+                {getTourPricePresetLabel(preset, lang)}
+              </span>
+              <span className="mt-1 block text-xs font-semibold">
+                {money.format(preset.priceCents / 100)} {lang === "en" ? "per tour" : "a tour"}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      <p className="mt-3 text-xs text-white/60">
+        {lang === "en"
+          ? `Available times are calculated every ${TOUR_BOOKING_WINDOW.stepMinutes} minutes between ${TOUR_BOOKING_WINDOW.startTime} and ${TOUR_BOOKING_WINDOW.endTime}.`
+          : `Gli orari disponibili sono calcolati ogni ${TOUR_BOOKING_WINDOW.stepMinutes} minuti tra le ${TOUR_BOOKING_WINDOW.startTime} e le ${TOUR_BOOKING_WINDOW.endTime}.`}
+      </p>
+
       <div className="mx-auto mt-5 w-full max-w-[320px] rounded-md border border-white/10 bg-white/5 p-3">
         <div className="mb-2 flex items-center justify-between gap-2">
           <button type="button" onClick={() => setVisibleMonth(availableMonths[monthIndex - 1])} disabled={monthIndex <= 0} aria-label={lang === "en" ? "Previous month" : "Mese precedente"} className="flex h-8 w-8 items-center justify-center rounded-md border border-white/20 text-lg disabled:cursor-not-allowed disabled:opacity-30">‹</button>
@@ -109,10 +153,9 @@ export default function TourBookingBox({ tour, locale = "it", checkoutStatus = "
       {date ? <p className="mt-3 text-center text-sm text-white/75">{lang === "en" ? "Selected" : "Selezionata"}: <strong className="text-white">{new Date(`${date}T12:00:00`).toLocaleDateString(lang === "en" ? "en-US" : "it-IT", { dateStyle: "long" })}</strong></p> : null}
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <label className="space-y-2 text-sm"><span>{lang === "en" ? "Time" : "Orario"}</span><select className="w-full rounded-md bg-white p-3 text-[#2c395b]" value={startsAt} onChange={(e) => setStartsAt(e.target.value)}>{(day?.slots || []).map((slot) => <option key={slot.startsAt} value={slot.startsAt}>{slot.startTime} - {slot.endTime}</option>)}</select></label>
-        <label className="space-y-2 text-sm"><span>{lang === "en" ? "Participants" : "Partecipanti"}</span><input type="number" min="1" max="20" className="w-full rounded-md bg-white p-3 text-[#2c395b]" value={attendees} onChange={(e) => setAttendees(Math.max(1, Number(e.target.value)))} /></label>
-        {tour.extension_enabled ? <label className="flex items-center gap-3 rounded-md bg-white/5 p-4"><input type="checkbox" checked={extension} onChange={(e) => setExtension(e.target.checked)} /><span>+{tour.extension_minutes} min · {money.format(Number(tour.extension_price_cents) / 100)}</span></label> : null}
+        <label className="space-y-2 text-sm"><span>{lang === "en" ? "Participants" : "Partecipanti"}</span><input type="number" min="1" max="20" className="w-full rounded-md bg-white p-3 text-[#2c395b]" value={attendees} onChange={(e) => setAttendees(Math.max(1, Number(e.target.value)))} /><span className="block text-xs text-white/60">{lang === "en" ? "Informational only: the price is per tour." : "Solo informativo: il prezzo e a tour."}</span></label>
       </div>
-      <div className="mt-5 rounded-md bg-white/5 p-4"><div className="flex flex-wrap items-center justify-between gap-4"><span className="text-sm text-white/70">{lang === "en" ? "Order total" : "Totale ordine"}</span><strong className="text-2xl text-white">{money.format(totalCents / 100)} {tour.price_mode === "per_booking" ? (lang === "en" ? "total" : "totale") : ""}</strong></div></div>
+      <div className="mt-5 rounded-md bg-white/5 p-4"><div className="flex flex-wrap items-center justify-between gap-4"><span className="text-sm text-white/70">{lang === "en" ? "Order total" : "Totale ordine"}</span><strong className="text-2xl text-white">{money.format(totalCents / 100)} {lang === "en" ? "total" : "totale"}</strong></div></div>
       <label className="mt-5 flex items-start gap-2 text-sm"><input type="checkbox" checked={terms} onChange={(e) => setTerms(e.target.checked)} className="mt-1" /><span>{lang === "en" ? "I have read and accept the" : "Ho letto e accetto i"} <Link className="underline underline-offset-4" href="/termini-condizioni" target="_blank">{lang === "en" ? "terms and conditions" : "Termini e condizioni di acquisto"}</Link></span></label>
       <button type="button" disabled={!startsAt || !terms || loading} onClick={checkout} className="mt-5 w-full rounded-md bg-[#77674e] px-6 py-3 font-semibold text-white transition hover:bg-[#695b46] focus:outline-none focus:ring-2 focus:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50">{loading ? (lang === "en" ? "Opening checkout..." : "Apertura checkout...") : (lang === "en" ? "Book and pay" : "Prenota e paga")}</button>
       <div className="mt-6 rounded-md bg-white/5 p-4">

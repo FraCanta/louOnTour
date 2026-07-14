@@ -292,7 +292,7 @@ async function persistTourBookingFromSession(session) {
     starts_at: startsAt,
     ends_at: endsAt,
     attendee_count: getSessionAttendeeCount(session),
-    extension_selected: String(session.metadata?.extensionSelected) === "true",
+    extension_selected: false,
     customer_email: String(session.customer_details?.email || session.customer_email || "").trim(),
     amount_total: Number(session.amount_total || 0),
     currency: String(session.currency || "eur").toLowerCase(),

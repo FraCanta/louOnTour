@@ -9,11 +9,11 @@ create table if not exists public.tours (
   location jsonb not null default '{}'::jsonb,
   duration_minutes integer not null default 120 check (duration_minutes > 0),
   price_mode text not null default 'per_booking' check (price_mode in ('per_booking', 'per_person')),
-  base_price_cents integer not null default 18800 check (base_price_cents >= 0),
+  base_price_cents integer not null default 18000 check (base_price_cents >= 0),
   currency text not null default 'eur',
-  extension_enabled boolean not null default true,
+  extension_enabled boolean not null default false,
   extension_minutes integer not null default 30 check (extension_minutes > 0),
-  extension_price_cents integer not null default 2000 check (extension_price_cents >= 0),
+  extension_price_cents integer not null default 0 check (extension_price_cents >= 0),
   meeting_point jsonb not null default '{}'::jsonb,
   languages jsonb not null default '{}'::jsonb,
   included jsonb not null default '{"it":[],"en":[]}'::jsonb,
@@ -88,6 +88,31 @@ create table if not exists public.google_calendar_connections (
 
 alter table public.google_calendar_connections
   add column if not exists selected_calendar_ids jsonb not null default '["primary"]'::jsonb;
+
+alter table public.tours
+  alter column base_price_cents set default 18000;
+
+update public.tours
+  set base_price_cents = 18000,
+      price_mode = 'per_booking',
+      updated_at = now()
+  where base_price_cents = 18800;
+
+alter table public.tours
+  alter column extension_enabled set default false,
+  alter column extension_price_cents set default 0;
+
+update public.tours
+  set extension_enabled = false,
+      extension_price_cents = 0,
+      updated_at = now()
+  where extension_enabled is distinct from false
+     or extension_price_cents <> 0;
+
+update public.tours
+  set price_mode = 'per_booking',
+      updated_at = now()
+  where price_mode <> 'per_booking';
 
 alter table public.tours enable row level security;
 alter table public.calendar_entries enable row level security;

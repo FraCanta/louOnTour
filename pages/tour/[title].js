@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { MaskText } from "../../components/UI/MaskText";
-import TourBookingBox from "../../components/TourBookingBox";
+import Banner from "../../components/sectionFive/banner";
+import TourGalleryLightbox from "../../components/TourGalleryLightbox";
 import translationIT from "../../public/locales/it/it.json";
 import translationEN from "../../public/locales/en/en.json";
 import { getAllTours, getTourBySlug } from "../../utils/tours";
@@ -12,7 +13,39 @@ function plainText(value = "") {
   return String(value).replace(/<[^>]*>/g, "").trim();
 }
 
-export default function TourDetailPage({ city, databaseTour, locale }) {
+async function getGalleryImageMetadata(src) {
+  if (!src || !String(src).startsWith("/")) {
+    return { src, width: 1600, height: 1067 };
+  }
+
+  try {
+    const path = require("path");
+    const sharp = require("sharp");
+    const publicDir = path.join(process.cwd(), "public");
+    const imagePath = path.join(publicDir, String(src).replace(/^\/+/, ""));
+    const resolvedPath = path.resolve(imagePath);
+
+    if (!resolvedPath.startsWith(path.resolve(publicDir))) {
+      return { src, width: 1600, height: 1067 };
+    }
+
+    const metadata = await sharp(resolvedPath).metadata();
+
+    return {
+      src,
+      width: metadata.width || 1600,
+      height: metadata.height || 1067,
+    };
+  } catch (_error) {
+    return { src, width: 1600, height: 1067 };
+  }
+}
+
+async function buildGalleryImages(images = []) {
+  return Promise.all(images.map((image) => getGalleryImageMetadata(image)));
+}
+
+export default function TourDetailPage({ city, databaseTour, locale, banner, gallery }) {
   if (!city) return null;
 
   const lang = locale === "en" ? "en" : "it";
@@ -26,9 +59,7 @@ export default function TourDetailPage({ city, databaseTour, locale }) {
   const included = databaseTour?.included?.length
     ? databaseTour.included
     : (city.list || []).map((item) => item?.l?.title).filter(Boolean);
-  const gallery = databaseTour?.gallery?.length
-    ? databaseTour.gallery
-    : (city.tourItem || []).map((item) => item.img).filter(Boolean);
+  const galleryImages = gallery || [];
 
   return (
     <>
@@ -65,15 +96,6 @@ export default function TourDetailPage({ city, databaseTour, locale }) {
               className="max-w-3xl text-base leading-7 qhd:max-w-5xl text-para lg:text-lg qhd:text-2xl qhd:leading-10"
               dangerouslySetInnerHTML={{ __html: excerpt }}
             />
-            {databaseTour ? (
-              <a
-                href="#prenotazione"
-                className="md:hidden inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#2c395b] px-6 py-3 font-semibold text-white"
-              >
-                {lang === "en" ? "Book now" : "Prenota ora"}
-                <Icon icon="hugeicons:calendar-check-out-02" width="18" height="18" />
-              </a>
-            ) : null}
           </div>
 
           <div className="relative h-[380px] overflow-hidden rounded-md lg:h-[620px] qhd:h-[826px]">
@@ -120,29 +142,16 @@ export default function TourDetailPage({ city, databaseTour, locale }) {
           </div>
 
           <div className="space-y-8">
-            {databaseTour ? <TourBookingBox tour={databaseTour} locale={lang} /> : null}
-
             <article className="rounded-md border border-[#c9573c]/10 bg-white p-6 shadow-[0_18px_45px_rgba(35,47,55,0.05)] lg:p-8">
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#c9573c]/70">
                 {lang === "en" ? "Gallery" : "Galleria"}
               </p>
-              {gallery.length ? (
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {gallery.slice(0, 5).map((image, index) => (
-                    <div key={`${image}-${index}`} className={`relative overflow-hidden rounded-md ${index === 0 ? "h-[260px] sm:col-span-2" : "h-[180px]"}`}>
-                      <Image src={image} alt={`${title} ${index + 1}`} fill className="object-cover" />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-sm text-para">
-                  {lang === "en" ? "No images available." : "Nessuna immagine disponibile."}
-                </p>
-              )}
+              <TourGalleryLightbox images={galleryImages} title={title} locale={lang} />
             </article>
           </div>
         </section>
       </div>
+      <Banner translation={banner} />
     </>
   );
 }
@@ -163,11 +172,18 @@ export async function getStaticProps({ params, locale = "it" }) {
     return { notFound: true, revalidate: 60 };
   }
 
+  const gallerySources = databaseTour?.gallery?.length
+    ? databaseTour.gallery
+    : (city?.tourItem || []).map((item) => item.img).filter(Boolean);
+  const gallery = await buildGalleryImages(gallerySources);
+
   return {
     props: {
       city: city || {},
       databaseTour,
       locale: lang,
+      banner: translations?.tours?.banner || null,
+      gallery,
     },
     revalidate: 60,
   };

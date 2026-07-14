@@ -1,6 +1,10 @@
 import { Icon } from "@iconify/react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { uploadEventImage } from "../utils/uploadEventImage";
+import {
+  TOUR_PRICE_PRESETS,
+  getTourPricePresetLabel,
+} from "../utils/tourPricing";
 
 const DEFAULT_AVAILABILITY_RULES = [
   { startTime: "10:30", endTime: "12:30" },
@@ -18,11 +22,11 @@ const emptyTour = {
   location: { it: "", en: "" },
   duration_minutes: 120,
   price_mode: "per_booking",
-  base_price_cents: 18800,
+  base_price_cents: 18000,
   currency: "eur",
-  extension_enabled: true,
+  extension_enabled: false,
   extension_minutes: 30,
-  extension_price_cents: 2000,
+  extension_price_cents: 0,
   meeting_point: { it: "", en: "", link: "" },
   languages: { it: "Italiano", en: "Italian" },
   included: { it: [], en: [] },
@@ -65,16 +69,6 @@ function centsToEuro(cents) {
   }
 
   return amount.toFixed(2);
-}
-
-function euroToCents(value) {
-  const parsed = Number(String(value || "0").replace(",", "."));
-
-  if (!Number.isFinite(parsed)) {
-    return 0;
-  }
-
-  return Math.max(0, Math.round(parsed * 100));
 }
 
 function formatMoney(cents, currency = "eur") {
@@ -151,7 +145,6 @@ function toForm(tour = {}) {
     descriptionIt: (base.description?.it || []).join("\n\n"),
     descriptionEn: (base.description?.en || []).join("\n\n"),
     basePriceEuro: centsToEuro(base.base_price_cents),
-    extensionPriceEuro: centsToEuro(base.extension_price_cents),
   };
 }
 
@@ -178,13 +171,13 @@ function buildPayload(form, status) {
       it: String(form.location?.it || "").trim(),
       en: String(form.location?.en || "").trim(),
     },
-    duration_minutes: Number(form.duration_minutes || 120),
-    price_mode: form.price_mode === "per_person" ? "per_person" : "per_booking",
-    base_price_cents: euroToCents(form.basePriceEuro),
+    duration_minutes: 120,
+    price_mode: "per_booking",
+    base_price_cents: 18000,
     currency: String(form.currency || "eur").trim().toLowerCase(),
-    extension_enabled: Boolean(form.extension_enabled),
+    extension_enabled: false,
     extension_minutes: Number(form.extension_minutes || 30),
-    extension_price_cents: euroToCents(form.extensionPriceEuro),
+    extension_price_cents: 0,
     meeting_point: {
       it: String(form.meeting_point?.it || "").trim(),
       en: String(form.meeting_point?.en || "").trim(),
@@ -220,10 +213,6 @@ function validateTourForm(form) {
 
   if (!String(form.title?.it || "").trim() || !String(form.title?.en || "").trim()) {
     return "Titolo IT e titolo EN sono obbligatori.";
-  }
-
-  if (euroToCents(form.basePriceEuro) <= 0) {
-    return "Inserisci un prezzo base maggiore di zero.";
   }
 
   if (!form.availability_rules?.length) {
@@ -705,8 +694,12 @@ export default function TourAdminPanel({ adminKey }) {
                     {getTourTitle(tour)}
                   </strong>
                   <span className="mt-2 block text-xs text-[#6d7b80]">
-                    {tour.location?.it || "-"} ·{" "}
-                    {formatMoney(tour.base_price_cents, tour.currency)}
+                    {tour.location?.it || "-"} · Tariffe da{" "}
+                    {formatMoney(TOUR_PRICE_PRESETS[0].priceCents, "eur")} a{" "}
+                    {formatMoney(
+                      TOUR_PRICE_PRESETS[TOUR_PRICE_PRESETS.length - 1].priceCents,
+                      "eur",
+                    )}
                   </span>
                   <span className="mt-4 flex flex-wrap gap-2">
                     <button
@@ -731,8 +724,7 @@ export default function TourAdminPanel({ adminKey }) {
               ))
             ) : (
               <p className="rounded-md border border-dashed border-[#c9573c]/20 bg-[#fffaf7] p-5 text-sm leading-6 text-[#6d7b80]">
-                Nessun tour nel database. Puoi importare quelli attuali o
-                crearne uno nuovo.
+                Nessun tour nel database. Crea il primo tour dalla dashboard.
               </p>
             )}
           </div>
@@ -943,40 +935,29 @@ export default function TourAdminPanel({ adminKey }) {
                 </label>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-                <Field label="Prezzo base EUR">
-                  <input
-                    type="number"
-                    min="0"
-                    step="0.50"
-                    value={form.basePriceEuro}
-                    onChange={(event) =>
-                      updateField("basePriceEuro", event.target.value)
-                    }
-                    className={inputClass}
-                  />
-                </Field>
-                <Field label="Tipo tariffa">
-                  <select
-                    value={form.price_mode}
-                    onChange={(event) => updateField("price_mode", event.target.value)}
-                    className={inputClass}
-                  >
-                    <option value="per_booking">Complessiva</option>
-                    <option value="per_person">Per persona</option>
-                  </select>
-                </Field>
-                <Field label="Durata minuti">
-                  <input
-                    type="number"
-                    min="1"
-                    value={form.duration_minutes}
-                    onChange={(event) =>
-                      updateField("duration_minutes", Number(event.target.value))
-                    }
-                    className={inputClass}
-                  />
-                </Field>
+              <div className="mb-5">
+                <p className="mb-3 text-sm leading-6 text-[#6d7b80]">
+                  Il cliente sceglie la tariffa nel checkout. Tutti i prezzi
+                  sono a tour, non a persona.
+                </p>
+                <div className="grid gap-3 md:grid-cols-3">
+                  {TOUR_PRICE_PRESETS.map((preset) => (
+                    <div
+                      key={preset.key}
+                      className="rounded-xl border border-[#c9573c]/10 bg-white px-4 py-3 text-left text-[#2c395b]"
+                    >
+                      <span className="block text-sm font-bold">
+                        {getTourPricePresetLabel(preset, "it")}
+                      </span>
+                      <span className="mt-1 block text-xs font-semibold text-[#6d7b80]">
+                        {formatMoney(preset.priceCents, "eur")} / tour
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <Field label="Preavviso ore">
                   <input
                     type="number"
@@ -984,29 +965,6 @@ export default function TourAdminPanel({ adminKey }) {
                     value={form.minimum_notice_hours}
                     onChange={(event) =>
                       updateField("minimum_notice_hours", Number(event.target.value))
-                    }
-                    className={inputClass}
-                  />
-                </Field>
-                <Field label="Supplemento EUR">
-                  <input
-                    type="number"
-                    min="0"
-                    step="0.50"
-                    value={form.extensionPriceEuro}
-                    onChange={(event) =>
-                      updateField("extensionPriceEuro", event.target.value)
-                    }
-                    className={inputClass}
-                  />
-                </Field>
-                <Field label="Minuti supplemento">
-                  <input
-                    type="number"
-                    min="1"
-                    value={form.extension_minutes}
-                    onChange={(event) =>
-                      updateField("extension_minutes", Number(event.target.value))
                     }
                     className={inputClass}
                   />
@@ -1022,17 +980,6 @@ export default function TourAdminPanel({ adminKey }) {
                     className={inputClass}
                   />
                 </Field>
-                <label className="flex items-center gap-2 rounded-xl border border-[#c9573c]/10 bg-white px-4 py-3 text-sm font-semibold text-[#2c395b]">
-                  <input
-                    type="checkbox"
-                    checked={form.extension_enabled}
-                    onChange={(event) =>
-                      updateField("extension_enabled", event.target.checked)
-                    }
-                    className="h-4 w-4 rounded border-[#c9573c]/40 text-[#c9573c] focus:ring-[#c9573c]"
-                  />
-                  Supplemento attivo
-                </label>
               </div>
             </div>
 
